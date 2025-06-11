@@ -38,32 +38,39 @@
 		qdel(target)
 	return TRUE
 
-/mob/living/simple/hostile/swarmer/proc/disintegrate(atom/movable/target)
+// These two are global as they're also used by swarmer borg.
+/proc/swarmer_disintegrate(mob/living/user, atom/movable/target)
 	make_sparks(1, TRUE, GET_TURF(target))
 	target.ex_act(3)
-	next_move = world.time + 9
+	user.next_move = world.time + 9
 	return TRUE
 
-/mob/living/simple/hostile/swarmer/proc/disperse_target(mob/living/target)
-	if(target == src)
+/proc/swarmer_disperse_target(mob/living/user, mob/living/target)
+	if(target == user)
 		return FALSE
-	if(isnotstationlevel(z))
-		balloon_alert(src, "cannot locate a bluespace link")
-		return FALSE
-
-	to_chat(src, SPAN_INFO("Attempting to remove this being from our presence."))
-	if(!do_after(src, 3 SECONDS, target))
+	if(isnotstationlevel(user.z))
+		user.balloon_alert(user, "cannot locate a bluespace link")
 		return FALSE
 
-	swarmer_teleport_target(src, target)
+	to_chat(user, SPAN_INFO("Attempting to remove this being from our presence."))
+	if(!do_after(user, 3 SECONDS, target))
+		return FALSE
+
+	swarmer_teleport_target(user, target)
 	return TRUE
 
 /mob/living/simple/hostile/swarmer/proc/contact_swarmers()
 	var/message = input(src, "Announce to other swarmers", "Swarmer Contact")
 	if(!message)
 		return
-	for(var/mob/living/simple/hostile/swarmer/S in GLOBL.living_mob_list)
-		to_chat(S, "<b>Swarm communication:</b> [message]")
+	for_no_type_check(var/mob/living/alive, GLOBL.living_mob_list)
+		if(isswarmer(alive))
+			to_chat(alive, "<b>Swarm communication:</b> [message]")
+		else if(isrobot(alive))
+			var/mob/living/silicon/robot/robby = alive
+			if(!istype(robby.model, /obj/item/robot_model/swarmer))
+				continue
+			to_chat(robby, "<b>Swarm communication:</b> [message]")
 
 /mob/living/simple/hostile/swarmer/proc/toggle_lights()
 	if(luminosity)

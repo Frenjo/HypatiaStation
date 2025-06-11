@@ -8,8 +8,10 @@
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/extinguisher,
+		/obj/item/storage/bag/sheetsnatcher/borg,
 		/obj/item/gun/energy/disabler/cyborg,
-		/obj/item/robot_module/swarmer_teleporter
+		/obj/item/robot_module/swarmer_disperser,
+		/obj/item/robot_module/swarmer_disintegrator
 	)
 	emag_modules = list(/obj/item/robot_module/stun)
 
@@ -19,3 +21,7 @@
 	)
 
 	can_be_pushed = FALSE
+
+/obj/item/robot_model/swarmer/on_transform_to(mob/living/silicon/robot/robby)
+	. = ..()
+	robby.pass_flags |= PASS_FLAG_SWARMER

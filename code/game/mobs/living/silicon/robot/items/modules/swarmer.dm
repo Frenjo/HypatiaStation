@@ -1,21 +1,25 @@
 /*
  * Swarmer Model Items
  */
-/obj/item/robot_module/swarmer_teleporter
-	name = "organic relocation device"
+/obj/item/robot_module/swarmer_disperser
+	name = "biological dispersion matrix"
 	desc = "A cyborg module which mimics the innate forced teleportation ability of standard Swarmer constructs."
 	icon = 'icons/obj/effects/decals.dmi'
 	icon_state = "direction_evac"
 
-/obj/item/robot_module/swarmer_teleporter/attack(mob/living/target, mob/living/silicon/robot/user)
-	if(target == user)
-		return
-	if(isnotstationlevel(user.z))
-		balloon_alert(user, "cannot locate a bluespace link")
-		return
+/obj/item/robot_module/swarmer_disperser/attack(mob/living/target, mob/living/silicon/robot/robby)
+	swarmer_disperse_target(robby, target)
 
-	to_chat(user, SPAN_INFO("Attempting to remove this being from our presence."))
-	if(!do_after(user, 3 SECONDS, target))
-		return
+/obj/item/robot_module/swarmer_disintegrator
+	name = "abiological disintegration matrix"
+	desc = "A cyborg module which mimics the innate disintegration ability of standard Swarmer constructs."
+	icon = 'icons/mob/simple/swarmer.dmi'
+	icon_state = "swarmer"
 
-	swarmer_teleport_target(user, target)
+/obj/item/robot_module/swarmer_disintegrator/afterattack(atom/target, mob/living/silicon/robot/robby, proximity_flag, click_parameters)
+	if(robby.next_move > world.time)
+		return FALSE
+	if(!proximity_flag)
+		return FALSE
+
+	return swarmer_disintegrate(robby, target)

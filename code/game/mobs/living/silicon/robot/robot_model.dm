@@ -35,6 +35,12 @@
 /mob/living/silicon/robot/proc/transform_to_model(model_path)
 	model = new model_path(src)
 
+	// Resets pass flags, currently only modified by swarmer borgs.
+	pass_flags = initial(pass_flags)
+
+	// Performs model-specific on-transform actions.
+	model.on_transform_to(src)
+
 	// Camera networks
 	if(isnotnull(camera) && ("Robots" in camera.network))
 		for(var/network in model.camera_networks)

@@ -5,6 +5,8 @@
 	infra_luminosity = 8
 	initial_icon = "eidolon"
 
+	pass_flags = PASS_FLAG_SWARMER
+
 	damtype = HALLOSS
 	force = 35
 
@@ -109,6 +111,8 @@
 /obj/mecha/combat/eidolon/salvaged // We can rebuild him.
 	name = "\improper Salvaged Eidolon"
 	desc = "A primitive replica of a mech of strange origin. This one appears to be constructed from salvaged parts."
+
+	pass_flags = null
 
 	force = 26
 

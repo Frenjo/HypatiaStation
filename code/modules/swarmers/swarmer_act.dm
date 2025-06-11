@@ -1,5 +1,5 @@
 /atom/proc/swarmer_act(mob/living/simple/hostile/swarmer/sammy)
-	sammy.disintegrate(src)
+	swarmer_disintegrate(sammy, src)
 	return TRUE
 
 /obj/item/swarmer_act(mob/living/simple/hostile/swarmer/sammy)
@@ -7,7 +7,7 @@
 	return TRUE
 
 /mob/living/swarmer_act(mob/living/simple/hostile/swarmer/sammy)
-	sammy.disperse_target(src)
+	swarmer_disperse_target(sammy, src)
 	return TRUE
 
 // ex_act() on turf calls it on its contents, this is to prevent attacking mobs by disintegrate()'ing the floor!

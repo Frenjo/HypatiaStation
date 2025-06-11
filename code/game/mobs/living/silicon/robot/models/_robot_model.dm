@@ -54,6 +54,9 @@
 			O.emp_act(severity)
 	. = ..()
 
+/obj/item/robot_model/proc/on_transform_to(mob/living/silicon/robot/robby)
+	return
+
 /obj/item/robot_model/proc/respawn_consumable(mob/living/silicon/robot/robby)
 	SHOULD_CALL_PARENT(TRUE)
 

@@ -37,6 +37,8 @@
 	name = "disabler pulse"
 	icon_state = "bluespark"
 
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_SWARMER
+
 	damage_type = HALLOSS
 	nodamage = TRUE
 	weaken = 5

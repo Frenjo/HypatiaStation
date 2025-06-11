@@ -4,7 +4,7 @@
 	icon = 'icons/mob/simple/swarmer.dmi'
 	icon_state = "swarmer"
 
-	pass_flags = PASS_FLAG_TABLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_SWARMER
 
 	light_color = "#0066FF"
 
@@ -63,10 +63,7 @@
 	qdel(src)
 
 /mob/living/simple/hostile/swarmer/CanPass(atom/movable/mover)
-	// Allows for swarmers to fight as a group without wasting their shots hitting each other
-	if(istype(mover, /obj/item/projectile/energy/pulse/disabler))
-		return TRUE
-	if(isswarmer(mover))
+	if(HAS_PASS_FLAGS(mover, PASS_FLAG_SWARMER))
 		return TRUE
 	. = ..()
 

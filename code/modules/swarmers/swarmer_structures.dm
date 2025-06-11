@@ -35,7 +35,7 @@
 /obj/structure/swarmer/trap/Crossed(atom/movable/mover)
 	if(isliving(mover))
 		var/mob/living/alive = mover
-		if(!isswarmer(alive))
+		if(!HAS_PASS_FLAGS(mover, PASS_FLAG_SWARMER))
 			alive.electrocute_act(0, src, 1, 1)
 			qdel(src)
 	. = ..()
@@ -52,8 +52,6 @@
 	health = 50
 
 /obj/structure/swarmer/barricade/CanPass(atom/movable/mover)
-	if(isswarmer(mover))
-		return TRUE
-	if(istype(mover, /obj/item/projectile/energy/pulse/disabler))
+	if(HAS_PASS_FLAGS(mover, PASS_FLAG_SWARMER))
 		return TRUE
 	return ..()
