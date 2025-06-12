@@ -105,6 +105,10 @@
 
 /obj/mecha/Destroy()
 	go_out()
+	for(var/mob/M in src)
+		M.forceMove(loc)
+		step_rand(M)
+
 	QDEL_NULL(pr_inertial_movement)
 	// If there's any equipment left at this point then the mech's been admin-deleted.
 	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)

@@ -6,11 +6,10 @@
 
 /obj/mecha/working/Destroy()
 	if(!isemptylist(cargo))
-		var/turf/T = GET_TURF(src)
-		for(var/obj/O in cargo) // Dumps contents of stored cargo.
-			O.forceMove(T)
-			cargo.Remove(O)
-			T.Entered(O)
+		for_no_type_check(var/atom/movable/mover, cargo) // Dumps contents of stored cargo.
+			mover.forceMove(loc)
+			cargo.Remove(mover)
+			step_rand(mover)
 	return ..()
 
 /*

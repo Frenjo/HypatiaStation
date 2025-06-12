@@ -20,23 +20,9 @@
 	var/static/max_goliath_hides = 3
 
 /obj/mecha/working/ripley/Destroy()
-	var/turf/source_turf = GET_TURF(src)
-	for(var/mob/M in src)
-		if(M == occupant)
-			continue
-		M.forceMove(source_turf)
-		M.loc.Entered(M)
-		step_rand(M)
-
 	for(var/i = 1, i <= goliath_hides, i++)
 		new /obj/item/stack/goliath_hide(loc)
 	damage_absorption["brute"] = initial(damage_absorption["brute"])
-
-	for_no_type_check(var/atom/movable/A, cargo)
-		A.forceMove(source_turf)
-		var/turf/T = GET_TURF(A)
-		T?.Entered(A)
-		step_rand(A)
 	return ..()
 
 /obj/mecha/working/ripley/Exit(atom/movable/O)
@@ -52,8 +38,6 @@
 			occupant_message(SPAN_INFO("You unload [O]."))
 			O.forceMove(GET_TURF(src))
 			cargo.Remove(O)
-			var/turf/T = GET_TURF(O)
-			T?.Entered(O)
 			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - length(cargo)]")
 
 /obj/mecha/working/ripley/get_stats_part()
