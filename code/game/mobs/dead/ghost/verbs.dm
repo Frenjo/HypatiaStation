@@ -21,12 +21,13 @@ GLOBAL_GLOBL_INIT(mouse_respawn_time, 5 MINUTES) // Amount of time that must pas
 				return
 		H.ajourn = FALSE
 
+	var/area/ghost_area = GET_AREA(src)
+	mind.current.key = key
+
 	// Ensures that the space parallax state updates if the ghost is in a different area to the body.
 	var/area/mind_area = GET_AREA(mind.current)
-	if(GET_AREA(src) != mind_area)
+	if(ghost_area != mind_area)
 		mind.current.client.set_parallax_space(mind_area.parallax_type)
-
-	mind.current.key = key
 
 	return 1
 
