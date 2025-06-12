@@ -103,7 +103,6 @@
 
 	equip_range = MECHA_EQUIP_MELEE
 
-	var/datum/event/event
 	var/turf/old_turf
 	var/obj/structure/cable/last_piece
 	var/obj/item/stack/cable_coil/cable
@@ -115,17 +114,8 @@
 	cable.amount = 0
 
 /obj/item/mecha_equipment/tool/cable_layer/Destroy()
-	chassis.events.clearEvent("onMove", event)
 	last_piece = null
 	QDEL_NULL(cable)
-	return ..()
-
-/obj/item/mecha_equipment/tool/cable_layer/attach()
-	. = ..()
-	event = chassis.events.addEvent("onMove", src, "layCable")
-
-/obj/item/mecha_equipment/tool/cable_layer/detach()
-	chassis.events.clearEvent("onMove", event)
 	return ..()
 
 /obj/item/mecha_equipment/tool/cable_layer/action(obj/item/stack/cable_coil/target)
@@ -161,11 +151,11 @@
 			occupant_message(SPAN_WARNING("There's no more cable on the reel."))
 
 /obj/item/mecha_equipment/tool/cable_layer/get_equip_info()
-	. = "[..()] \[Cable: [cable ? cable.amount : 0] m\][(cable && cable.amount) ? "- <a href='byond://?src=\ref[src];toggle=1'>[!equip_ready ? "Dea" : "A"]ctivate</a>|<a href='byond://?src=\ref[src];cut=1'>Cut</a>" : null]"
+	. = "[..()] \[Cable: [cable ? cable.amount : 0] m\][cable?.amount ? "- <a href='byond://?src=\ref[src];toggle=1'>[!equip_ready ? "Dea" : "A"]ctivate</a>|<a href='byond://?src=\ref[src];cut=1'>Cut</a>" : null]"
 
 /obj/item/mecha_equipment/tool/cable_layer/proc/load_cable(obj/item/stack/cable_coil/CC)
 	if(istype(CC) && CC.amount)
-		var/cur_amount = cable? cable.amount : 0
+		var/cur_amount = cable ? cable.amount : 0
 		var/to_load = max(max_cable - cur_amount, 0)
 		if(to_load)
 			to_load = min(CC.amount, to_load)
@@ -192,7 +182,7 @@
 /obj/item/mecha_equipment/tool/cable_layer/proc/reset()
 	last_piece = null
 
-/obj/item/mecha_equipment/tool/cable_layer/proc/dismantleFloor(turf/new_turf)
+/obj/item/mecha_equipment/tool/cable_layer/proc/dismantle_floor(turf/new_turf)
 	if(isfloorturf(new_turf))
 		var/turf/open/floor/T = new_turf
 		if(!istype(new_turf, /turf/open/floor/plating/metal))
@@ -201,33 +191,38 @@
 			T.make_plating()
 	return !new_turf.intact
 
-/obj/item/mecha_equipment/tool/cable_layer/proc/layCable(turf/new_turf)
-	if(equip_ready || !istype(new_turf) || !dismantleFloor(new_turf))
+/obj/item/mecha_equipment/tool/cable_layer/handle_movement_action()
+	var/turf/new_turf = GET_TURF(chassis)
+
+	if(equip_ready || !istype(new_turf) || !dismantle_floor(new_turf))
 		return reset()
+
 	var/fdirn = turn(chassis.dir, 180)
-	for(var/obj/structure/cable/LC in new_turf)		// check to make sure there's not a cable there already
-		if(LC.d1 == fdirn || LC.d2 == fdirn)
+	for(var/obj/structure/cable/existing_cable in new_turf) // check to make sure there's not a cable there already
+		if(existing_cable.d1 == fdirn || existing_cable.d2 == fdirn)
 			return reset()
+
 	if(!use_cable(1))
 		return reset()
-	var/obj/structure/cable/NC = new /obj/structure/cable(new_turf)
-	NC.cableColor("red")
-	NC.d1 = 0
-	NC.d2 = fdirn
-	NC.updateicon()
 
-	var/datum/powernet/PN
+	var/obj/structure/cable/new_cable = new /obj/structure/cable(new_turf)
+	new_cable.cableColor("red")
+	new_cable.d1 = 0
+	new_cable.d2 = fdirn
+	new_cable.updateicon()
+
+	var/datum/powernet/power_net
 	if(last_piece && last_piece.d2 != chassis.dir)
 		last_piece.d1 = min(last_piece.d2, chassis.dir)
 		last_piece.d2 = max(last_piece.d2, chassis.dir)
 		last_piece.updateicon()
-		PN = last_piece.powernet
+		power_net = last_piece.powernet
 
-	if(isnull(PN))
-		PN = new /datum/powernet()
-	PN.add_cable(NC)
-	NC.mergeConnectedNetworks(NC.d2)
+	if(isnull(power_net))
+		power_net = new /datum/powernet()
+	power_net.add_cable(new_cable)
+	new_cable.mergeConnectedNetworks(new_cable.d2)
 
-	//NC.mergeConnectedNetworksOnTurf()
-	last_piece = NC
+	//new_cable.mergeConnectedNetworksOnTurf()
+	last_piece = new_cable
 	return 1

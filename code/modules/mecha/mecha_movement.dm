@@ -2,11 +2,6 @@
 ////////  Movement procs  ////////
 //////////////////////////////////
 
-/obj/mecha/Move()
-	. = ..()
-	if(.)
-		events.fireEvent("onMove", GET_TURF(src))
-
 /obj/mecha/relaymove(mob/user, direction)
 	if(user != occupant) //While not "realistic", this piece is player friendly.
 		user.forceMove(GET_TURF(src))

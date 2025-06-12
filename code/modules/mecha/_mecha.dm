@@ -79,11 +79,8 @@
 
 	var/wreckage
 
-	var/datum/events/events
-
 /obj/mecha/New()
 	. = ..()
-	events = new /datum/events()
 	icon_state += "-open"
 	add_radio()
 	add_cabin()
@@ -120,7 +117,6 @@
 	QDEL_NULL(cabin_air)
 	QDEL_NULL(radio)
 	QDEL_NULL(cell)
-	QDEL_NULL(events)
 	GLOBL.mechas_list.Remove(src) //global mech list
 	GLOBL.processing_objects.Remove(src) // Removes the mech from the processing objects list.
 	return ..()

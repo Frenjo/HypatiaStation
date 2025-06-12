@@ -9,25 +9,26 @@
 	equip_range = MECHA_EQUIP_MELEE
 
 	var/dam_force = 20
-	var/obj/mecha/working/cargo_holder
+	var/obj/mecha/working/cargo_holder = null
 
 	var/is_safety_clamp = FALSE
 
-/obj/item/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/working/M)
+/obj/item/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/M)
 	. = ..()
-	cargo_holder = M
+	if(istype(M, /obj/mecha/working)) // If it's not a working mech with cargo capacity, then it still gets squeeze functionality.
+		cargo_holder = M
 
 /obj/item/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
 	if(!..())
 		return FALSE
-	if(isnull(cargo_holder))
+	if(isnull(chassis))
 		return FALSE
 	if(istype(target, /obj/structure/stool))
 		return FALSE
 	for(var/mob/living/M in target.contents)
 		return FALSE
 
-	if(isobj(target))
+	if(isobj(target) && isnotnull(cargo_holder))
 		var/obj/O = target
 		if(!O.anchored)
 			if(length(cargo_holder.cargo) < cargo_holder.cargo_capacity)
@@ -85,6 +86,17 @@
 		chassis.occupant_message(pilot_message)
 		chassis.visible_message(radial_message)
 		start_cooldown()
+	return TRUE
+
+/obj/item/mecha_equipment/tool/hydraulic_clamp/handle_movement_action()
+	if(isnull(cargo_holder))
+		return FALSE
+	var/obj/structure/ore_box/box = locate(/obj/structure/ore_box) in cargo_holder.cargo
+	if(isnull(box))
+		return FALSE
+	for(var/obj/item/ore/ore in range(cargo_holder, 1))
+		if((get_dir(cargo_holder, ore) & cargo_holder.dir) || ore.loc == cargo_holder.loc) // If we can reach it and it's in front of us, grab it.
+			ore.forceMove(box)
 	return TRUE
 
 // Safety Clamp (Kill Clamp)

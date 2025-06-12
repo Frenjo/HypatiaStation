@@ -351,7 +351,6 @@
 #include "code\game\datums\gamemodes\wizard\veilrender.dm"
 #include "code\game\datums\gamemodes\wizard\wizard.dm"
 #include "code\game\datums\helper_datums\construction.dm"
-#include "code\game\datums\helper_datums\events.dm"
 #include "code\game\datums\helper_datums\getrev.dm"
 #include "code\game\datums\helper_datums\global_iterator.dm"
 #include "code\game\datums\helper_datums\teleport.dm"
