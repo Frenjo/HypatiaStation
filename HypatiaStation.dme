@@ -1843,6 +1843,7 @@
 #include "code\modules\research\designs\mechfab\parts.dm"
 #include "code\modules\research\designs\mechfab\equipment\_equipment.dm"
 #include "code\modules\research\designs\mechfab\equipment\armour.dm"
+#include "code\modules\research\designs\mechfab\equipment\conversion_kits.dm"
 #include "code\modules\research\designs\mechfab\equipment\weapons.dm"
 #include "code\modules\research\xenoarchaeology\chemistry.dm"
 #include "code\modules\research\xenoarchaeology\geosample.dm"

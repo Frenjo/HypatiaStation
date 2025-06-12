@@ -4,6 +4,9 @@
 	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
 	icon_state = "clamp"
 
+	matter_amounts = /datum/design/mechfab/equipment/working/hydraulic_clamp::materials
+	origin_tech = /datum/design/mechfab/equipment/working/hydraulic_clamp::req_tech
+
 	equip_cooldown = 1.5 SECONDS
 	energy_drain = 10
 	equip_range = MECHA_EQUIP_MELEE

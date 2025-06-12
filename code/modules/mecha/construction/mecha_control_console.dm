@@ -74,22 +74,20 @@
 	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/programming = 2)
 
 /obj/item/mecha_part/tracking/proc/get_mecha_info()
-	var/obj/mecha/M = in_mecha()
-	if(isnull(M))
+	var/obj/mecha/mech = in_mecha()
+	if(isnull(mech))
 		return null
-	var/cell_charge = M.get_charge()
-	var/answer = {"<b>Name:</b> [M.name]<br>
-						<b>Integrity:</b> [M.health / initial(M.health) * 100]%<br>
-						<b>Cell charge:</b> [isnull(cell_charge) ? "Not found" : "[M.cell.percent()]%"]<br>
-						<b>Air Tank:</b> [M.return_pressure()]kPa<br>
-						<b>Pilot:</b> [M.occupant || "None"]<br>
-						<b>Location:</b> [GET_AREA(M) || "Unknown"]<br>
-						<b>Active equipment:</b> [M.selected || "None"]"}
-	if(istype(M, /obj/mecha/working/ripley))
-		var/obj/mecha/working/ripley/RM = M
-		answer += "<b>Used cargo space:</b> [length(RM.cargo) / RM.cargo_capacity * 100]%<br>"
-
-	return answer
+	var/cell_charge = mech.get_charge()
+	. = {"<b>Name:</b> [mech.name]<br>
+		<b>Integrity:</b> [mech.health / initial(mech.health) * 100]%<br>
+		<b>Cell charge:</b> [isnull(cell_charge) ? "Not found" : "[mech.cell.percent()]%"]<br>
+		<b>Air Tank:</b> [mech.return_pressure()]kPa<br>
+		<b>Pilot:</b> [mech.occupant || "None"]<br>
+		<b>Location:</b> [GET_AREA(mech) || "Unknown"]<br>
+		<b>Active equipment:</b> [mech.selected || "None"]"}
+	if(istype(mech, /obj/mecha/working))
+		var/obj/mecha/working/worker = mech
+		. += "<b>Used cargo space:</b> [length(worker.cargo) / worker.cargo_capacity * 100]%<br>"
 
 /obj/item/mecha_part/tracking/emp_act()
 	qdel(src)

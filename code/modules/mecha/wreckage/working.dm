@@ -34,6 +34,10 @@
 	name = "Sindy wreckage"
 	icon_state = "sindy-broken"
 
+/obj/structure/mecha_wreckage/ripley/paddy
+	name = "Paddy wreckage"
+	icon_state = "paddy-broken"
+
 // HoverPod
 /obj/structure/mecha_wreckage/hoverpod
 	name = "HoverPod wreckage"

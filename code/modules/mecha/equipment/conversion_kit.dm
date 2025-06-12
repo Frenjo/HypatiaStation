@@ -48,3 +48,21 @@
 	playsound(GET_TURF(new_mech), 'sound/items/ratchet.ogg', 50, TRUE)
 	qdel(mech)
 	qdel(src)
+
+// Ripley -> Paddy conversion kit
+/obj/item/mecha_equipment/conversion_kit/paddy
+	name = "APLU \"Paddy\" conversion kit"
+	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an APLU \"Paddy\" light security mech."
+	icon_state = "paddy_upgrade"
+
+	matter_amounts = /datum/design/mechfab/equipment/conversion_kit/paddy::materials
+	origin_tech = /datum/design/mechfab/equipment/conversion_kit/paddy::req_tech
+
+	required_type = /obj/mecha/working/ripley
+	target_type = /obj/mecha/working/ripley/paddy
+
+/obj/item/mecha_equipment/conversion_kit/paddy/can_attach(obj/mecha/mech)
+	if(!isemptylist(mech.equipment))
+		to_chat(loc, SPAN_WARNING("\The [src] cannot be applied to \the [mech] while it has equipment attached."))
+		return FALSE
+	. = ..()

@@ -12,26 +12,27 @@
 			step_rand(mover)
 	return ..()
 
-/*
-/obj/mecha/working/melee_action(atom/target)
-	if(internal_damage&MECHA_INT_CONTROL_LOST)
-		target = pick(oview(1,src))
-	if(selected_tool)
-		selected_tool.action(target)
-	return
-*/
+/obj/mecha/working/Exit(atom/movable/O)
+	if(isnotnull(O) && (O in cargo))
+		return 0
+	return ..()
 
-/obj/mecha/working/range_action(atom/target)
-	return
-
-/*
 /obj/mecha/working/get_stats_part()
 	. = ..()
-	. += "<b>[name] Tools:</b><div style=\"margin-left: 15px;\">"
-	if(length(equipment))
-		for(var/obj/item/mecha_equipment/MT in equipment)
-			. += "[selected == MT?  "<b>" : "<a href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
+	. += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
+	if(length(cargo))
+		for_no_type_check(var/atom/movable/mover, cargo)
+			. += "<a href='byond://?src=\ref[src];drop_from_cargo=\ref[mover]'>Unload</a> : [mover]<br>"
 	else
-		. += "None"
+		. += "Nothing"
 	. += "</div>"
-*/
+
+/obj/mecha/working/Topic(href, href_list)
+	. = ..()
+	if(href_list["drop_from_cargo"])
+		var/atom/movable/mover = locate(href_list["drop_from_cargo"])
+		if(isnotnull(mover) && (mover in cargo))
+			occupant_message(SPAN_INFO("You unload [mover]."))
+			mover.forceMove(GET_TURF(src))
+			cargo.Remove(mover)
+			log_message("Unloaded [mover]. Cargo compartment capacity: [cargo_capacity - length(cargo)]")

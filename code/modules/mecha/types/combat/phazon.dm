@@ -48,7 +48,7 @@
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
+		<a href='byond://?src=\ref[src];toggle_phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
 		<br>
 		<a href='byond://?src=\ref[src];switch_damage_type=1'>Change Melee Damage Type</a><br>
 		</div>
@@ -60,7 +60,7 @@
 	. = ..()
 	if(href_list["switch_damage_type"])
 		switch_damage_type()
-	if(href_list["phasing"])
+	if(href_list["toggle_phasing"])
 		toggle_phasing()
 
 /obj/mecha/combat/phazon/proc/phase()

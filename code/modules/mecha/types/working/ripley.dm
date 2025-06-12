@@ -23,31 +23,6 @@
 	damage_absorption["brute"] = initial(damage_absorption["brute"])
 	return ..()
 
-/obj/mecha/working/ripley/Exit(atom/movable/O)
-	if(isnotnull(O) && (O in cargo))
-		return 0
-	return ..()
-
-/obj/mecha/working/ripley/Topic(href, href_list)
-	. = ..()
-	if(href_list["drop_from_cargo"])
-		var/obj/O = locate(href_list["drop_from_cargo"])
-		if(isnotnull(O) && (O in cargo))
-			occupant_message(SPAN_INFO("You unload [O]."))
-			O.forceMove(GET_TURF(src))
-			cargo.Remove(O)
-			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - length(cargo)]")
-
-/obj/mecha/working/ripley/get_stats_part()
-	. = ..()
-	. += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
-	if(length(cargo))
-		for(var/obj/O in cargo)
-			. += "<a href='byond://?src=\ref[src];drop_from_cargo=\ref[O]'>Unload</a> : [O]<br>"
-	else
-		. += "Nothing"
-	. += "</div>"
-
 /obj/mecha/working/ripley/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/goliath_hide))
 		if(isnotnull(occupant))
@@ -95,6 +70,8 @@
 	var/image/new_overlay = null
 	var/overlay_prefix = custom_goliath_overlay ? initial(icon_state) : "ripley"
 	var/overlay_suffix = isnotnull(occupant) ? "" : "-open"
+	if(!goliath_hides)
+		return
 	if(goliath_hides < max_goliath_hides)
 		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g[overlay_suffix]")
 	else
@@ -197,3 +174,73 @@
 		/obj/item/mecha_equipment/weapon/energy/laser/heavy, /obj/item/mecha_equipment/tool/hydraulic_clamp,
 		/obj/item/mecha_equipment/melee_armour_booster
 	)
+
+// Paddy
+/obj/mecha/working/ripley/paddy
+	name = "\improper APLU \"Paddy\""
+	desc = "A modified variant of the standard APLU chassis intended for light security use."
+	icon_state = "paddy"
+
+	health = 225
+	step_in = 4 // Faster than a Ripley because it's less armoured, but slower than the more specialised Gygax.
+	damage_absorption = list("brute" = 1, "fire" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1)
+
+	mecha_flag = MECHA_FLAG_PADDY
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/paddy
+
+	cargo_capacity = 2
+
+	custom_goliath_overlay = TRUE
+
+	// Whether the flashers are active.
+	var/flashers = FALSE
+	// The overlay for the flashers.
+	var/mutable_appearance/flasher_lights
+
+/obj/mecha/working/ripley/paddy/go_out()
+	flashers = FALSE
+	. = ..()
+
+/obj/mecha/working/ripley/paddy/update_overlays()
+	. = ..()
+	if(!flashers)
+		return
+	flasher_lights = new /mutable_appearance()
+	flasher_lights.icon = 'icons/obj/mecha/mecha_overlays.dmi'
+	flasher_lights.icon_state = "paddy-flashers"
+	flasher_lights.plane = UNLIT_EFFECTS_PLANE
+	overlays.Add(flasher_lights)
+
+/obj/mecha/working/ripley/paddy/get_stats_part()
+	. = ..()
+	. += "<b>Flashers: [flashers ? "enabled" : "disabled"]</b>"
+
+/obj/mecha/working/ripley/paddy/get_commands()
+	. = {"<div class='wr'>
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];toggle_flashers=1'><span id="flashers_command">[flashers ? "Dis" : "En"]able Flashers</span></a>
+		</div>
+		</div>
+	"}
+	. += ..()
+
+/obj/mecha/working/ripley/paddy/Topic(href, href_list)
+	. = ..()
+	if(href_list["toggle_flashers"])
+		toggle_flashers()
+
+/obj/mecha/working/ripley/paddy/verb/toggle_flashers()
+	set category = "Exosuit Interface"
+	set name = "Toggle Flashers"
+	set popup_menu = FALSE
+	set src = usr.loc
+
+	if(usr != occupant)
+		return
+
+	flashers = !flashers
+	balloon_alert(occupant, "flashers [flashers ? "activated" : "disabled"]")
+	send_byjax(occupant, "exosuit.browser", "flashers_command", "[flashers ? "Dis" : "En"]able Flashers")
+	update_overlays()

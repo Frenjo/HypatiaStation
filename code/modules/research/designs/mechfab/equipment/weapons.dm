@@ -131,3 +131,10 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 2.5)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
+
+// Paddy claw
+/datum/design/mechfab/equipment/weapon/paddy_claw
+	// Same as a Bulwark targeting board with materials instead of programming.
+	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 2, /decl/tech/engineering = 3)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
+	build_path = /obj/item/mecha_equipment/weapon/paddy_claw

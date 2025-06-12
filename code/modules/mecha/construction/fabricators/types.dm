@@ -55,6 +55,7 @@
 		"Working Exosuit Equipment",
 		"Medical Exosuit Equipment",
 		"Combat Exosuit Equipment", "Exosuit Weapons",
+		"Exosuit Conversion Kits",
 		"Power Cells"
 	)
 
