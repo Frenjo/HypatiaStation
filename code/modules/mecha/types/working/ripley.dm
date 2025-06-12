@@ -67,7 +67,7 @@
 				desc = initial(desc) + " It is wearing a fearsome carapace entirely composed of goliath hide plates - the pilot must be an experienced monster hunter."
 			else
 				desc = initial(desc) + " Its armour is enhanced with some goliath hide plates."
-			update_overlays(FALSE)
+			update_overlays()
 		else
 			to_chat(user, SPAN_WARNING("You can't improve the armour on \the [src] any further."))
 		return TRUE
@@ -77,24 +77,24 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	update_overlays(TRUE)
+	update_overlays()
 
 /obj/mecha/working/ripley/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
-	update_overlays(TRUE)
+	update_overlays()
 
 /obj/mecha/working/ripley/go_out()
 	. = ..()
 	if(!.)
 		return FALSE
-	update_overlays(FALSE)
+	update_overlays()
 
-/obj/mecha/working/ripley/proc/update_overlays(has_occupant)
+/obj/mecha/working/ripley/proc/update_overlays()
 	overlays.Cut()
 	var/image/new_overlay = null
-	var/overlay_suffix = has_occupant ? "" : "-open"
+	var/overlay_suffix = isnotnull(occupant) ? "" : "-open"
 	if(goliath_hides < max_goliath_hides)
 		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g[overlay_suffix]")
 	else
