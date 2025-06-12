@@ -131,40 +131,6 @@
 	if(targeted_by && target_locked)
 		overlays.Add(target_locked)
 
-/mob/living/silicon/robot/Move(a, b, flag)
-	. = ..()
-	if(istype(model, /obj/item/robot_model/janitor))
-		var/turf/tile = loc
-		if(isturf(tile))
-			tile.clean_blood()
-			if(isopenturf(tile))
-				var/turf/open/S = tile
-				S.dirt = 0
-			for(var/A in tile)
-				if(istype(A, /obj/effect))
-					if(isrune(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
-						qdel(A)
-				else if(isitem(A))
-					var/obj/item/cleaned_item = A
-					cleaned_item.clean_blood()
-				else if(ishuman(A))
-					var/mob/living/carbon/human/cleaned_human = A
-					if(cleaned_human.lying)
-						if(isnotnull(cleaned_human.head))
-							cleaned_human.head.clean_blood()
-							cleaned_human.update_inv_head(0)
-						if(isnotnull(cleaned_human.wear_suit))
-							cleaned_human.wear_suit.clean_blood()
-							cleaned_human.update_inv_wear_suit(0)
-						else if(isnotnull(cleaned_human.wear_uniform))
-							cleaned_human.wear_uniform.clean_blood()
-							cleaned_human.update_inv_wear_uniform(0)
-						if(isnotnull(cleaned_human.shoes))
-							cleaned_human.shoes.clean_blood()
-							cleaned_human.update_inv_shoes(0)
-						cleaned_human.clean_blood(1)
-						to_chat(cleaned_human, SPAN_WARNING("[src] cleans your face!"))
-
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()
 	if(isnull(rbPDA))

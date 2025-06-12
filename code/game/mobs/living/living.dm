@@ -117,12 +117,10 @@ default behaviour is:
 				now_pushing = 1
 
 				if(!AM.anchored)
+					if(pulling == AM)
+						stop_pulling()
 					var/t = get_dir(src, AM)
-					if(istype(AM, /obj/structure/window))
-						for(var/obj/structure/window/win in get_step(AM, t))
-							now_pushing = 0
-							return
-					step(AM, t)
+					AM.Move(get_step(AM, t))
 				now_pushing = 0
 			return
 	return
@@ -493,13 +491,13 @@ default behaviour is:
 		var/turf/T = loc
 		. = ..()
 
-		if(pulling && pulling.loc)
-			if(!(isturf(pulling.loc)))
+		if(pulling?.loc)
+			if(!isturf(pulling.loc))
 				stop_pulling()
 				return
 
 		/////
-		if(pulling && pulling.anchored)
+		if(isnotnull(pulling) && pulling.anchored)
 			stop_pulling()
 			return
 
@@ -550,16 +548,11 @@ default behaviour is:
 											H.vessel.remove_reagent("blood",1)
 
 
-						step(pulling, get_dir(pulling.loc, T))
-						M.start_pulling(t)
+						pulling.Move(T)
+						M?.start_pulling(t)
 				else
 					if(pulling)
-						if(istype(pulling, /obj/structure/window))
-							if(pulling:ini_dir == NORTHWEST || pulling:ini_dir == NORTHEAST || pulling:ini_dir == SOUTHWEST || pulling:ini_dir == SOUTHEAST)
-								for(var/obj/structure/window/win in get_step(pulling, get_dir(pulling.loc, T)))
-									stop_pulling()
-					if(pulling)
-						step(pulling, get_dir(pulling.loc, T))
+						pulling.Move(T)
 	else
 		stop_pulling()
 		. = ..()

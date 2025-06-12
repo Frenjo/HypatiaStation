@@ -95,7 +95,6 @@
 	verbs.Remove(/obj/mecha/verb/disconnect_from_port)
 	verbs.Remove(/atom/movable/verb/pull)
 	log_message("[name] created.")
-	loc.Entered(src)
 	GLOBL.mechas_list.Add(src) //global mech list
 	GLOBL.processing_objects.Add(src) // Adds the mech to the processing objects list.
 

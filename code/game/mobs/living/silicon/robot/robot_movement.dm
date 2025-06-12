@@ -16,5 +16,6 @@
 
 	. += CONFIG_GET(/decl/configuration_entry/robot_delay)
 
-/mob/living/silicon/robot/Move()
-	..()
+/mob/living/silicon/robot/Move(a, b, flag)
+	. = ..()
+	model.on_move(src)

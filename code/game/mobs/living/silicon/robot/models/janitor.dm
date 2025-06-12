@@ -25,6 +25,46 @@
 	)
 	model_select_sprite = "mopgearrex"
 
+/obj/item/robot_model/janitor/on_move(mob/living/silicon/robot/robby)
+	if(!isturf(loc))
+		return
+
+	var/turf/tile = loc
+	tile.clean_blood()
+	if(isopenturf(tile))
+		var/turf/open/S = tile
+		S.dirt = 0
+
+	for_no_type_check(var/atom/movable/A, tile)
+		if(istype(A, /obj/effect))
+			if(isrune(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
+				qdel(A)
+			continue
+
+		if(isitem(A))
+			var/obj/item/cleaned_item = A
+			cleaned_item.clean_blood()
+			continue
+
+		if(ishuman(A))
+			var/mob/living/carbon/human/cleaned_human = A
+			if(cleaned_human.lying)
+				if(isnotnull(cleaned_human.head))
+					cleaned_human.head.clean_blood()
+					cleaned_human.update_inv_head(FALSE)
+				if(isnotnull(cleaned_human.wear_suit))
+					cleaned_human.wear_suit.clean_blood()
+					cleaned_human.update_inv_wear_suit(FALSE)
+				else if(isnotnull(cleaned_human.wear_uniform))
+					cleaned_human.wear_uniform.clean_blood()
+					cleaned_human.update_inv_wear_uniform(FALSE)
+				if(isnotnull(cleaned_human.shoes))
+					cleaned_human.shoes.clean_blood()
+					cleaned_human.update_inv_shoes(FALSE)
+				cleaned_human.clean_blood(TRUE)
+				to_chat(cleaned_human, SPAN_WARNING("[src] cleans your face!"))
+			continue
+
 /obj/item/robot_model/janitor/respawn_consumable(mob/living/silicon/robot/robby)
 	. = ..()
 	var/obj/item/lightreplacer/replacer = locate() in modules

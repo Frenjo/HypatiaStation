@@ -38,18 +38,6 @@
 
 	return FALSE // Asteroid tiles don't burn.
 
-/turf/open/floor/plating/asteroid/Entered(atom/movable/M)
-	. = ..()
-	if(isrobot(M))
-		var/mob/living/silicon/robot/R = M
-		if(istype(R.model, /obj/item/robot_model/miner))
-			if(istype(R.module_state_1, /obj/item/storage/bag/ore))
-				attack_by(R.module_state_1, R)
-			else if(istype(R.module_state_2, /obj/item/storage/bag/ore))
-				attack_by(R.module_state_2, R)
-			else if(istype(R.module_state_3, /obj/item/storage/bag/ore))
-				attack_by(R.module_state_3, R)
-
 /turf/open/floor/plating/asteroid/attack_tool(obj/item/tool, mob/user)
 	if(istype(tool, /obj/item/shovel))
 		return start_digging(user, "digging", 4 SECONDS)

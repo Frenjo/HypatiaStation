@@ -29,6 +29,18 @@
 
 	integrated_light_range = 6 // Equivalent to a mining lantern.
 
+/obj/item/robot_model/miner/on_move(mob/living/silicon/robot/robby)
+	. = ..()
+	var/turf/open/floor/plating/asteroid/new_loc = robby.loc
+	if(!istype(new_loc))
+		return
+	if(istype(robby.module_state_1, /obj/item/storage/bag/ore))
+		new_loc.attack_by(robby.module_state_1, robby)
+	else if(istype(robby.module_state_2, /obj/item/storage/bag/ore))
+		new_loc.attack_by(robby.module_state_2, robby)
+	else if(istype(robby.module_state_3, /obj/item/storage/bag/ore))
+		new_loc.attack_by(robby.module_state_3, robby)
+
 /obj/item/robot_model/miner/on_emag(mob/living/silicon/robot/robby)
 	var/obj/item/pickaxe/drill/cyborg/drill = locate() in modules // Removes the regular drill.
 	qdel(drill)
