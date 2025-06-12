@@ -4,7 +4,6 @@
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	icon_state = "marauder"
 	infra_luminosity = 3
-	initial_icon = "marauder"
 
 	force = 45
 
@@ -190,7 +189,6 @@
 	name = "\improper Seraph"
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
 	icon_state = "seraph"
-	initial_icon = "seraph"
 
 	force = 55
 
@@ -216,7 +214,6 @@
 	name = "\improper Mauler"
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
 	icon_state = "mauler"
-	initial_icon = "mauler"
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 

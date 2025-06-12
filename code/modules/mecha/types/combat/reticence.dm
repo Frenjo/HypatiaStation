@@ -3,7 +3,6 @@
 	desc = "A silent and fast miming exosuit. Popular among mimes and mime assassins."
 	icon_state = "reticence"
 	infra_luminosity = 5
-	initial_icon = "reticence"
 
 	step_sound = null
 	turn_sound = null

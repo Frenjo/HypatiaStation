@@ -5,7 +5,6 @@
 			To most, it can only be described as 'WTF?'."
 	icon_state = "phazon"
 	infra_luminosity = 3
-	initial_icon = "phazon"
 
 	entry_direction = NORTH
 
@@ -115,7 +114,6 @@
 			A sinister variant of the pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace technology and even more expensive materials. \
 			To most, it can only be described as 'WTF?'."
 	icon_state = "dark_phazon"
-	initial_icon = "dark_phazon"
 
 	health = 300
 	step_in = 1

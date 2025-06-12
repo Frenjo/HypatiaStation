@@ -3,7 +3,6 @@
 	name = "\improper HoverPod"
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
 	icon_state = "engineering_pod"
-	initial_icon = "engineering_pod"
 	infra_luminosity = 6
 
 	step_sound = 'sound/machines/hiss.ogg'

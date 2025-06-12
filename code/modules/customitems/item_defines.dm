@@ -438,29 +438,49 @@
 
 ////// Ripley customisation kit - Butchery Royce - MayeDay
 
-/obj/item/paintkit/fluff/butcher_royce_1
-	name = "Ripley customisation kit"
-	desc = "A kit containing all the needed tools and parts to turn an APLU Ripley into a Titan's Fist worker mech."
+/obj/item/mecha_equipment/conversion_kit/titan
+	name = "APLU \"Titan's Fist\" conversion kit"
+	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into a \"Titan's Fist\" worker mech."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "royce_kit"
 
-	new_name = "APLU \"Titan's Fist\""
-	new_desc = "This ordinary mining Ripley has been customized to look like a unit of the Titans Fist."
-	new_icon = "titan"
-	allowed_types = list("ripley","firefighter")
+	required_type = /obj/mecha/working/ripley
+	target_type = /obj/mecha/working/ripley/titan
+
+/obj/mecha/working/ripley/titan
+	name = "APLU \"Titan's Fist\""
+	desc = "This ordinary Ripley has been customized to look like a unit of the Titan's Fist."
+	icon_state = "titan"
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/titan
+
+/obj/structure/mecha_wreckage/ripley/titan
+	name = "Titan's Fist wreckage"
+	icon_state = "titan-broken"
 
 ////// Ripley customisation kit - Sven Fjeltson - Mordeth221
 
-/obj/item/paintkit/fluff/sven_fjeltson_1
-	name = "Mercenary APLU kit"
-	desc = "A kit containing all the needed tools and parts to turn an APLU Ripley into an old Mercenaries APLU."
+/obj/item/mecha_equipment/conversion_kit/earth
+	name = "Mercenary APLU conversion kit"
+	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an old Mercenaries APLU."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "sven_kit"
 
-	new_name = "APLU \"Strike the Earth!\""
-	new_desc = "Looks like an over worked, under maintained Ripley with some horrific damage."
-	new_icon = "earth"
-	allowed_types = list("ripley","firefighter")
+	required_type = /obj/mecha/working/ripley
+	target_type = /obj/mecha/working/ripley/earth
+
+/obj/mecha/working/ripley/earth
+	name = "APLU \"Strike the Earth!\""
+	desc = "Looks like an overworked, under-maintained Ripley with some horrific damage."
+	icon_state = "earth"
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/earth
+
+	custom_goliath_overlay = TRUE
+
+/obj/structure/mecha_wreckage/ripley/earth
+	name = "Strike the Earth wreckage"
+	icon_state = "earth-broken"
 
 //////////////////////////////////
 //////////// Clothing ////////////

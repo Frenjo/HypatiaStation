@@ -2,7 +2,6 @@
 	name = "\improper APLU \"Ripley\""
 	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
 	icon_state = "ripley"
-	initial_icon = "ripley"
 
 	health = 200
 	step_in = 6
@@ -14,8 +13,7 @@
 
 	cargo_capacity = 15
 
-	var/goliath_overlay = "ripley"
-
+	var/custom_goliath_overlay = FALSE
 	var/goliath_hides = 0
 	var/static/max_goliath_hides = 3
 
@@ -95,11 +93,12 @@
 /obj/mecha/working/ripley/proc/update_overlays()
 	overlays.Cut()
 	var/image/new_overlay = null
+	var/overlay_prefix = custom_goliath_overlay ? initial(icon_state) : "ripley"
 	var/overlay_suffix = isnotnull(occupant) ? "" : "-open"
 	if(goliath_hides < max_goliath_hides)
-		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g[overlay_suffix]")
+		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g[overlay_suffix]")
 	else
-		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g-full[overlay_suffix]")
+		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g-full[overlay_suffix]")
 
 	if(isnull(new_overlay))
 		return
@@ -111,7 +110,6 @@
 	name = "\improper APLU \"Firefighter\""
 	desc = "Standard APLU chassis refitted with additional thermal protection and cistern."
 	icon_state = "firefighter"
-	initial_icon = "firefighter"
 
 	health = 250
 	max_temperature = 65000
@@ -123,7 +121,6 @@
 	name = "\improper DEATH-RIPLEY"
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
 	icon_state = "deathripley"
-	initial_icon = "deathripley"
 
 	step_in = 2
 	step_energy_drain = 0
@@ -153,7 +150,6 @@
 	name = "\improper APLU \"Rescue Ranger\""
 	desc = "A standard APLU chassis fitted with mounting hardpoints for basic medical equipment. It is painted in the Vey-Med(&copy; all rights reserved) livery."
 	icon_state = "rescue_ranger"
-	initial_icon = "rescue_ranger"
 
 	health = 175
 	step_in = 5
@@ -164,14 +160,13 @@
 
 	cargo_capacity = 10
 
-	goliath_overlay = "rescue_ranger"
+	custom_goliath_overlay = TRUE
 
 // Sindy
 /obj/mecha/working/ripley/sindy
 	name = "\improper APLU \"Sindy\""
 	desc = "A sinister variant of the standard APLU chassis fitted with rudimentary targeting systems and mounting hardpoints for basic weaponry."
 	icon_state = "sindy"
-	initial_icon = "sindy"
 
 	health = 225
 	step_in = 5
@@ -187,7 +182,7 @@
 
 	cargo_capacity = 10
 
-	goliath_overlay = "sindy"
+	custom_goliath_overlay = TRUE
 
 /obj/mecha/working/ripley/sindy/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

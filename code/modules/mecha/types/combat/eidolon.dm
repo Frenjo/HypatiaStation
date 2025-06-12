@@ -3,7 +3,6 @@
 	desc = "A mech of strange origin. Where did it come from?"
 	icon_state = "eidolon"
 	infra_luminosity = 8
-	initial_icon = "eidolon"
 
 	pass_flags = PASS_FLAG_SWARMER
 
@@ -99,7 +98,7 @@
 		turn_sound = null
 		occupant_message(SPAN_INFO("You enable ball mode."))
 	else
-		icon_state = initial_icon
+		icon_state = initial(icon_state)
 		deflect_chance -= 40
 		step_in = initial(step_in)
 		step_sound = initial(step_sound)

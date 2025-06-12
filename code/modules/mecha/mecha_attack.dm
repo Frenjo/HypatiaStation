@@ -232,36 +232,6 @@
 		)
 		return TRUE
 
-	if(istype(I, /obj/item/paintkit))
-		if(isnotnull(occupant))
-			to_chat(user, SPAN_WARNING("You can't customize a mech while someone is piloting it - that would be unsafe!"))
-			return TRUE
-
-		var/obj/item/paintkit/P = I
-		var/found = FALSE
-		for(var/type in P.allowed_types)
-			if(type == initial_icon)
-				found = TRUE
-				break
-		if(!found)
-			to_chat(user, SPAN_WARNING("That kit isn't meant for use on this class of exosuit."))
-			return TRUE
-
-		user.visible_message(
-			SPAN_INFO("[user] opens \the [I] and spends some quality time customising \the [src]."),
-			SPAN_INFO("You open \the [I] and spend some quality time customising \the [src]."),
-			SPAN_INFO("You hear spraying.")
-		)
-
-		name = P.new_name
-		desc = P.new_desc
-		initial_icon = P.new_icon
-		reset_icon()
-
-		user.drop_item()
-		qdel(P)
-		return TRUE
-
 	return ..()
 
 /obj/mecha/attackby(obj/item/W, mob/user)

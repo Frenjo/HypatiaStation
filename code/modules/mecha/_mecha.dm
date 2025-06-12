@@ -18,7 +18,6 @@
 	anchored = TRUE // No pulling around.
 	obj_flags = OBJ_FLAG_UNACIDABLE // And no deleting hoomans inside.
 
-	var/initial_icon = null // Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/entry_direction = SOUTH // Which direction the exosuit faces when entered. I only recently realised some are entered from the back not the front!
 	var/can_move = TRUE
 	var/mob/living/carbon/occupant = null
@@ -123,13 +122,6 @@
 	GLOBL.mechas_list.Remove(src) //global mech list
 	GLOBL.processing_objects.Remove(src) // Removes the mech from the processing objects list.
 	return ..()
-
-/obj/mecha/proc/reset_icon()
-	if(isnotnull(initial_icon))
-		icon_state = initial_icon
-	else
-		icon_state = initial(icon_state)
-	return icon_state
 
 ////////////////////////////
 ///// Action processing ////

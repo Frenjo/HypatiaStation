@@ -2,7 +2,6 @@
 	name = "\improper Odysseus"
 	desc = "A medical exosuit developed and produced by Vey-Med(&copy; all rights reserved)."
 	icon_state = "odysseus"
-	initial_icon = "odysseus"
 
 	health = 120
 	step_in = 2
@@ -43,7 +42,6 @@
 	name = "\improper Dark Odysseus"
 	desc = "A significantly upgraded Vey-Med(&copy; all rights reserved) Odysseus-type chassis painted in a dark livery."
 	icon_state = "dark_odysseus"
-	initial_icon = "dark_odysseus"
 
 	health = 220
 	step_in = 1.5
@@ -75,7 +73,6 @@
 	name = "\improper Eurymachus"
 	desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
 	icon_state = "eurymachus"
-	initial_icon = "eurymachus"
 
 	health = 170
 	step_in = 1.75

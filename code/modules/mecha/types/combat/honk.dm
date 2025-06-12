@@ -3,7 +3,6 @@
 	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
 	icon_state = "honk"
 	infra_luminosity = 5
-	initial_icon = "honk"
 
 	health = 140
 	step_in = 2

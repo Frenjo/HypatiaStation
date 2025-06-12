@@ -55,7 +55,7 @@
 		add_fingerprint(H)
 		forceMove(loc)
 		log_append_to_last("[H] moved in as pilot.")
-		icon_state = reset_icon()
+		icon_state = initial(icon_state)
 		set_dir(entry_direction)
 		H.visible_message(
 			SPAN_INFO("[H] climbs into \the [src]."),
@@ -117,7 +117,7 @@
 		brainmob.canmove = TRUE
 		mmi_as_oc.forceMove(src)
 		verbs.Remove(/obj/mecha/verb/eject)
-		icon_state = reset_icon()
+		icon_state = initial(icon_state)
 		set_dir(entry_direction)
 		log_message("[mmi_as_oc] moved in as pilot.")
 		if(!internal_damage)

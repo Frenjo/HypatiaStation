@@ -3,7 +3,6 @@
 	desc = "A lightweight, security exosuit. Popular among private and corporate security."
 	icon_state = "gygax"
 	infra_luminosity = 6
-	initial_icon = "gygax"
 
 	entry_direction = NORTH
 
@@ -74,7 +73,6 @@
 	name = "\improper Dark Gygax"
 	desc = "A lightweight exosuit used by NanoTrasen Death Squads. A significantly upgraded Gygax security mech."
 	icon_state = "dark_gygax"
-	initial_icon = "dark_gygax"
 
 	health = 400
 	step_energy_drain = 5
@@ -108,7 +106,6 @@
 	desc = "A lightweight exosuit constructed from a modified Gygax chassis combined with proprietary Vey-Med(&copy; all rights reserved) medical technology."
 	icon_state = "serenity"
 	infra_luminosity = 11
-	initial_icon = "serenity"
 
 	force = 15
 

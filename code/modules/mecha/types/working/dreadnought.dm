@@ -2,7 +2,6 @@
 	name = "\improper D20-type \"Dreadnought\""
 	desc = "An old-style, and to some arguably classic, D20-type \"Dreadnought\" heavy engineering exosuit."
 	icon_state = "dreadnought"
-	initial_icon = "dreadnought"
 
 	health = 250
 	step_in = 6
@@ -20,7 +19,6 @@
 	desc = "A modern variant of the old-style D20-type \"Dreadnought\" heavy engineering exosuit.\
 			This design combines the D20-type chassis with rudimentary weapon control systems and Durand-type armour plates to create a hybrid engineering-combat platform."
 	icon_state = "bulwark"
-	initial_icon = "bulwark"
 
 	health = 300
 	step_in = 7
