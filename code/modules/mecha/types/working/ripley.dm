@@ -62,6 +62,7 @@
 
 			damage_absorption["brute"] -= 0.1
 			to_chat(user, SPAN_INFO("You strengthen the armour on \the [src], improving its resistance against melee attacks."))
+			goliath_hides++
 
 			if(goliath_hides == max_goliath_hides)
 				desc = initial(desc) + " It is wearing a fearsome carapace entirely composed of goliath hide plates - the pilot must be an experienced monster hunter."
