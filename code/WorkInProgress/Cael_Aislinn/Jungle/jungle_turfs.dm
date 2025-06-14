@@ -29,7 +29,7 @@
 					I = image('icons/obj/flora/ausflora.dmi', "stalkybush_[rand(1,3)]")
 			I.pixel_x = rand(-6, 6)
 			I.pixel_y = rand(-6, 6)
-			overlays += I
+			add_overlay(I)
 		else
 			var/obj/structure/jungle_plant/J = new(src)
 			J.pixel_x = rand(-6, 6)
@@ -100,19 +100,19 @@
 		if(!istype(get_step(src, NORTH), /turf/open/jungle/rock) && !istype(get_step(src, NORTH), /turf/closed/wall/reinforced/riveted))
 			T = get_step(src, NORTH)
 			if(T)
-				T.overlays += image(icon, "rock_side_s")
+				T.add_overlay(image(icon, "rock_side_s"))
 		if(!istype(get_step(src, SOUTH), /turf/open/jungle/rock) && !istype(get_step(src, SOUTH), /turf/closed/wall/reinforced/riveted))
 			T = get_step(src, SOUTH)
 			if(T)
-				T.overlays += image(icon, "rock_side_n", layer = 6)
+				T.add_overlay(image(icon, "rock_side_n", layer = 6))
 		if(!istype(get_step(src, EAST), /turf/open/jungle/rock) && !istype(get_step(src, EAST), /turf/closed/wall/reinforced/riveted))
 			T = get_step(src, EAST)
 			if(T)
-				T.overlays += image(icon, "rock_side_w", layer = 6)
+				T.add_overlay(image(icon, "rock_side_w", layer = 6))
 		if(!istype(get_step(src, WEST), /turf/open/jungle/rock) && !istype(get_step(src, WEST), /turf/closed/wall/reinforced/riveted))
 			T = get_step(src, WEST)
 			if(T)
-				T.overlays += image(icon, "rock_side_e", layer = 6)
+				T.add_overlay(image(icon, "rock_side_e", layer = 6))
 
 /turf/open/jungle/water
 	bushes_spawn = 0

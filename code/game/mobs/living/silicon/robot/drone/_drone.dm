@@ -82,9 +82,9 @@
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat == CONSCIOUS)
-		overlays.Add("eyes-[icon_state]")
+		add_overlay("eyes-[icon_state]")
 
 /mob/living/silicon/robot/drone/pick_model()
 	return

@@ -65,7 +65,7 @@
 		if(!R.stamped)
 			R.stamped = list()
 		R.stamped.Add(/obj/item/stamp)
-		R.overlays.Add(stampoverlay)
+		R.add_overlay(stampoverlay)
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account

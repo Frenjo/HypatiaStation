@@ -368,27 +368,27 @@ mob
 				network.marker = rand(1,4)
 
 			for(var/obj/machinery/atmospherics/pipe/P in GLOBL.machines)
-				P.overlays.Cut()
+				P.cut_overlays()
 
 				var/datum/pipe_network/master = P.return_network()
 				if(master)
-					P.overlays += icon('icons/Testing/atmos_testing.dmi',"marker[master.marker]")
+					P.add_overlay(icon('icons/Testing/atmos_testing.dmi', "marker[master.marker]"))
 				else
 					to_world("error")
-					P.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
+					P.add_overlay(icon('icons/Testing/atmos_testing.dmi', "marker0"))
 
 			for(var/obj/machinery/atmospherics/binary/valve/V in GLOBL.machines)
-				V.overlays.Cut()
+				V.cut_overlays()
 
 				if(V.network_node1)
-					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker[V.network_node1.marker]")
+					V.add_overlay(icon('icons/Testing/atmos_testing.dmi', "marker[V.network_node1.marker]"))
 				else
-					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
+					V.add_overlay(icon('icons/Testing/atmos_testing.dmi', "marker0"))
 
 				if(V.network_node2)
-					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker[V.network_node2.marker]")
+					V.add_overlay(icon('icons/Testing/atmos_testing.dmi', "marker[V.network_node2.marker]"))
 				else
-					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
+					V.add_overlay(icon('icons/Testing/atmos_testing.dmi', "marker0"))
 
 turf/open
 	var/fire_verbose = 0
@@ -396,12 +396,12 @@ turf/open
 	verb
 		mark_direction()
 			set src in world
-			overlays.Cut()
+			cut_overlays()
 			for(var/direction in list(NORTH,SOUTH,EAST,WEST))
 				if(group_border&direction)
-					overlays += icon('icons/Testing/turf_analysis.dmi',"red_arrow",direction)
+					add_overlay(icon('icons/Testing/turf_analysis.dmi', "red_arrow", direction))
 				else if(air_check_directions&direction)
-					overlays += icon('icons/Testing/turf_analysis.dmi',"arrow",direction)
+					add_overlay(icon('icons/Testing/turf_analysis.dmi', "arrow", direction))
 		air_status()
 			set src in world
 			set category = "Minor"

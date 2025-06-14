@@ -78,7 +78,7 @@
 
 /obj/machinery/portable_atmospherics/canister/update_icon()
 	if(destroyed)
-		overlays.Cut()
+		cut_overlays()
 		icon_state = "[canister_color]-1"
 		return
 
@@ -88,20 +88,20 @@
 	if(!check_change()) // Returns FALSE if no change to icons is needed.
 		return
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(update_flags & CANISTER_FLAG_HOLDING)
-		overlays.Add("can-open")
+		add_overlay("can-open")
 	if(update_flags & CANISTER_FLAG_CONNECTED)
-		overlays.Add("can-connector")
+		add_overlay("can-connector")
 	if(update_flags & CANISTER_FLAG_PRESSURE_10)
-		overlays.Add("can-o0")
+		add_overlay("can-o0")
 	if(update_flags & CANISTER_FLAG_PRESSURE_ATMOS)
-		overlays.Add("can-o1")
+		add_overlay("can-o1")
 	else if(update_flags & CANISTER_FLAG_PRESSURE_15_ATMOS)
-		overlays.Add("can-o2")
+		add_overlay("can-o2")
 	else if(update_flags & CANISTER_FLAG_PRESSURE_BOOM)
-		overlays.Add("can-o3")
+		add_overlay("can-o3")
 #undef CANISTER_FLAG_PRESSURE_BOOM
 #undef CANISTER_FLAG_PRESSURE_15_ATMOS
 #undef CANISTER_FLAG_PRESSURE_ATMOS

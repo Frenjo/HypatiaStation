@@ -40,10 +40,10 @@
 	if(locked)
 		if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && (!emagged))
 			emagged = 1
-			overlays += image(icon, icon_sparking)
+			add_overlay(image(icon, icon_sparking))
 			sleep(6)
 			overlays = null
-			overlays += image(icon, icon_locking)
+			add_overlay(image(icon, icon_locking))
 			locked = 0
 			if(istype(W, /obj/item/melee/energy/blade))
 				make_sparks(5, FALSE, loc)
@@ -116,7 +116,7 @@
 			else if ((code == l_code) && (emagged == 0) && (l_set == 1))
 				locked = 0
 				overlays = null
-				overlays += image(icon, icon_opened)
+				add_overlay(image(icon, icon_opened))
 				code = null
 			else
 				code = "ERROR"

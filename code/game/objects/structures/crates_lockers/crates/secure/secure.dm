@@ -15,11 +15,11 @@
 /obj/structure/closet/crate/secure/New()
 	. = ..()
 	if(locked)
-		overlays.Cut()
-		overlays.Add(redlight)
+		cut_overlays()
+		add_overlay(redlight)
 	else
-		overlays.Cut()
-		overlays.Add(greenlight)
+		cut_overlays()
+		add_overlay(greenlight)
 
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
@@ -36,8 +36,8 @@
 		for(var/mob/O in viewers(user, 3))
 			if(O.client && !O.blinded)
 				to_chat(O, SPAN_NOTICE("The crate has been [locked ? null : "un"]locked by [user]."))
-		overlays.Cut()
-		overlays.Add(locked ? redlight : greenlight)
+		cut_overlays()
+		add_overlay(locked ? redlight : greenlight)
 	else
 		FEEDBACK_ACCESS_DENIED(user)
 
@@ -66,9 +66,9 @@
 	if(is_type_in_list(W, list(/obj/item/package_wrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/wirecutters)))
 		return ..()
 	if(locked && (istype(W, /obj/item/card/emag) || istype(W, /obj/item/melee/energy/blade)))
-		overlays.Cut()
-		overlays.Add(emag)
-		overlays.Add(sparks)
+		cut_overlays()
+		add_overlay(emag)
+		add_overlay(sparks)
 		spawn(6)
 			overlays.Remove(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 		playsound(src, "sparks", 60, 1)
@@ -87,12 +87,12 @@
 	if(!broken && !opened  && prob(50 / severity))
 		if(!locked)
 			src.locked = 1
-			overlays.Cut()
-			overlays.Add(redlight)
+			cut_overlays()
+			add_overlay(redlight)
 		else
-			overlays.Cut()
-			overlays.Add(emag)
-			overlays.Add(sparks)
+			cut_overlays()
+			add_overlay(emag)
+			add_overlay(sparks)
 			spawn(6)
 				overlays.Remove(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)

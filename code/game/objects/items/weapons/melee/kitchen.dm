@@ -292,7 +292,7 @@
 
 /obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
 	// Drop all the things. All of them.
-	overlays.Cut()
+	cut_overlays()
 	for(var/obj/item/I in carrying)
 		I.forceMove(M.loc)
 		carrying.Remove(I)
@@ -455,7 +455,7 @@
 
 			I.forceMove(src)
 			carrying.Add(I)
-			overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
+			add_overlay(image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer))
 
 /obj/item/tray/dropped(mob/user)
 	var/mob/living/M
@@ -467,7 +467,7 @@
 		foundtable = 1
 		break
 
-	overlays.Cut()
+	cut_overlays()
 
 	for(var/obj/item/I in carrying)
 		I.forceMove(loc)

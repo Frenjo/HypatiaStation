@@ -211,15 +211,15 @@
 	return
 
 /obj/machinery/door/firedoor/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(density)
 		icon_state = "door_closed"
 		if(blocked)
-			overlays += "welded"
+			add_overlay("welded")
 	else
 		icon_state = "door_open"
 		if(blocked)
-			overlays += "welded_open"
+			add_overlay("welded_open")
 	return
 
 //These are playing merry hell on ZAS.  Sorry fellas :(

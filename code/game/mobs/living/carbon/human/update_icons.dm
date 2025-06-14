@@ -143,7 +143,7 @@ Please contact me on #coderbus IRC. ~Carn x
 /mob/living/carbon/human/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this
-	overlays.Cut()
+	cut_overlays()
 
 	//cloaking devices. //TODO: get rid of this :<
 	for(var/obj/item/cloaking_device/S in list(l_hand, r_hand, belt, l_pocket, r_pocket))
@@ -155,14 +155,14 @@ Please contact me on #coderbus IRC. ~Carn x
 		icon_state = "body_cloaked"
 		var/image/I = overlays_standing[L_HAND_LAYER]
 		if(istype(I))
-			overlays += I
+			add_overlay(I)
 		I = overlays_standing[R_HAND_LAYER]
 		if(istype(I))
-			overlays += I
+			add_overlay(I)
 	else if(icon_update)
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
-			overlays += I
+			add_overlay(I)
 
 	if(lying)
 		var/matrix/M = matrix()
@@ -217,7 +217,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 			var/icon/DI = get_damage_icon_part(O.damage_state, O.icon_name)
 
-			standing_image.overlays += DI
+			standing_image.add_overlay(DI)
 
 	overlays_standing[DAMAGE_LAYER]	= standing_image
 
@@ -451,7 +451,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 				add_image = 1
 			*/
 			if(LASER)
-				standing.overlays.Add("lasereyes_s")
+				standing.add_overlay("lasereyes_s")
 				add_image = 1
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing
@@ -556,12 +556,12 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		if(uniform.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "uniformblood")
 			bloodsies.color = uniform.blood_color
-			standing.overlays += bloodsies
+			standing.add_overlay(bloodsies)
 
 		if(uniform.hastie)
 			var/tie_color = uniform.hastie.item_color
 			if(!tie_color) tie_color = uniform.hastie.icon_state
-			standing.overlays += image("icon" = 'icons/mob/on_mob/ties.dmi', "icon_state" = "[tie_color]")
+			standing.add_overlay(image("icon" = 'icons/mob/on_mob/ties.dmi', "icon_state" = "[tie_color]"))
 
 		overlays_standing[UNIFORM_LAYER] = standing
 	else
@@ -681,7 +681,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		if(shoes.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
-			standing.overlays += bloodsies
+			standing.add_overlay(bloodsies)
 
 		overlays_standing[SHOES_LAYER] = standing
 
@@ -726,7 +726,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		if(head.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "helmetblood")
 			bloodsies.color = head.blood_color
-			standing.overlays += bloodsies
+			standing.add_overlay(bloodsies)
 
 		overlays_standing[HEAD_LAYER] = standing
 
@@ -776,7 +776,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 			var/obj/item/clothing/suit/S = wear_suit
 			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
-			standing.overlays += bloodsies
+			standing.add_overlay(bloodsies)
 
 		overlays_standing[SUIT_LAYER] = standing
 		update_tail_showing(0)
@@ -813,7 +813,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		if(!istype(wear_mask, /obj/item/clothing/mask/cigarette) && wear_mask.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "maskblood")
 			bloodsies.color = wear_mask.blood_color
-			standing.overlays += bloodsies
+			standing.add_overlay(bloodsies)
 
 		overlays_standing[FACEMASK_LAYER] = standing
 

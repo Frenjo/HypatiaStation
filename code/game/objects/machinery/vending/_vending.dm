@@ -115,9 +115,9 @@
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
-		overlays.Cut()
+		cut_overlays()
 		if(panel_open)
-			overlays.Add(image(icon, "[initial(icon_state)]-panel"))
+			add_overlay(image(icon, "[initial(icon_state)]-panel"))
 		updateUsrDialog()
 		return
 	else if(ismultitool(W) || iswirecutter(W))

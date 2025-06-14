@@ -218,7 +218,7 @@ datum
 						T.overlays -= T.wet_overlay
 						T.wet_overlay = null
 					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-					T.overlays += T.wet_overlay
+					T.add_overlay(T.wet_overlay)
 
 					spawn(800)
 						if (!istype(T)) return
@@ -343,7 +343,7 @@ datum
 					M.monkeyizing = 1
 					M.canmove = FALSE
 					M.icon = null
-					M.overlays.Cut()
+					M.cut_overlays()
 					M.invisibility = INVISIBILITY_MAXIMUM
 					for(var/obj/item/W in M)
 						if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
@@ -758,7 +758,7 @@ datum
 					if(istype(T, /turf/closed/wall))
 						var/turf/closed/wall/W = T
 						W.thermite = 1
-						W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
+						W.add_overlay(image('icons/effects/effects.dmi', icon_state = "#673910"))
 				return
 
 			on_mob_life(var/mob/living/M)
@@ -2283,7 +2283,7 @@ datum
 						T.overlays -= T.wet_overlay
 						T.wet_overlay = null
 					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
-					T.overlays += T.wet_overlay
+					T.add_overlay(T.wet_overlay)
 
 					spawn(800)
 						if (!istype(T)) return

@@ -129,7 +129,7 @@
 		qdel(target_locked)
 	updateicon()
 	if(targeted_by && target_locked)
-		overlays.Add(target_locked)
+		add_overlay(target_locked)
 
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()

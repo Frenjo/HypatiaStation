@@ -55,9 +55,9 @@
 	. = ..()
 	if(iscontactlevel(z))
 		if(isnotnull(GLOBL.security_level))
-			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
+			add_overlay(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
 		else
-			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))
+			add_overlay(image('icons/obj/machines/monitors.dmi', "overlay_green"))
 	update_icon()
 
 /obj/machinery/fire_alarm/update_icon()

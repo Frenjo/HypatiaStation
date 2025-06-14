@@ -667,7 +667,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	var/obj/item/secbot_assembly/Sa = new /obj/item/secbot_assembly(T)
 	Sa.build_step = 1
-	Sa.overlays.Add("hs_hole")
+	Sa.add_overlay("hs_hole")
 	Sa.created_name = name
 	new /obj/item/assembly/prox_sensor(T)
 
@@ -728,7 +728,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		if(WT.remove_fuel(0, user))
 			build_step++
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			overlays.Add("hs_hole")
+			add_overlay("hs_hole")
 			to_chat(user, SPAN_INFO("You weld a hole in \the [src]!"))
 		return TRUE
 
@@ -736,7 +736,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor assembly"
-		overlays.Add("hs_eye")
+		add_overlay("hs_eye")
 		to_chat(user, SPAN_INFO("You add the prox sensor to \the [src]!"))
 		qdel(I)
 		return TRUE
@@ -745,7 +745,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor/robot arm assembly"
-		overlays.Add("hs_arm")
+		add_overlay("hs_arm")
 		to_chat(user, SPAN_INFO("You add the robot arm to \the [src]!"))
 		qdel(I)
 		return TRUE

@@ -156,7 +156,7 @@
 	var/obj/item/paper/P = new(usr.loc)
 	P.name = "Autopsy Data ([target_name])"
 	P.info = "<tt>[scan_data]</tt>"
-	P.overlays += "paper_words"
+	P.add_overlay("paper_words")
 
 	if(iscarbon(usr))
 		// place the item in the usr's hand if possible

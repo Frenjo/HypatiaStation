@@ -23,9 +23,9 @@
 	icon_state = "folder_white"
 
 /obj/item/folder/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(length(contents))
-		overlays += "folder_paper"
+		add_overlay("folder_paper")
 	return
 
 /obj/item/folder/attackby(obj/item/W, mob/user)

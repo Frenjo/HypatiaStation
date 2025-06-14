@@ -113,9 +113,9 @@
 
 /obj/item/storage/fancy/crayons/update_icon()
 	overlays = list() //resets list
-	overlays.Add(image('icons/obj/items/crayons.dmi', "crayonbox"))
+	add_overlay(image('icons/obj/items/crayons.dmi', "crayonbox"))
 	for(var/obj/item/toy/crayon/crayon in contents)
-		overlays.Add(image('icons/obj/items/crayons.dmi', crayon.colourName))
+		add_overlay(image('icons/obj/items/crayons.dmi', crayon.colourName))
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/toy/crayon))
@@ -217,13 +217,13 @@
 /obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
 	var/total_contents = length(contents) - itemremoved
 	icon_state = "vialbox[total_contents]"
-	overlays.Cut()
+	cut_overlays()
 	if(!broken)
-		overlays.Add(image(icon, src, "led[locked]"))
+		add_overlay(image(icon, src, "led[locked]"))
 		if(locked)
-			overlays.Add(image(icon, src, "cover"))
+			add_overlay(image(icon, src, "cover"))
 	else
-		overlays.Add(image(icon, src, "ledb"))
+		add_overlay(image(icon, src, "ledb"))
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)
 	. = ..()

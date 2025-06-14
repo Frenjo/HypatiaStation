@@ -174,9 +174,9 @@
 		qdel(O)
 
 /obj/item/tk_grab/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(isnotnull(focus) && isnotnull(focus.icon) && isnotnull(focus.icon_state))
-		overlays.Add(icon(focus.icon, focus.icon_state))
+		add_overlay(icon(focus.icon, focus.icon_state))
 
 /*Not quite done likely needs to use something thats not get_step_to
 /obj/item/tk_grab/proc/check_path()

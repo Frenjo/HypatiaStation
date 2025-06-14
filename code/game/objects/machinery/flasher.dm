@@ -117,10 +117,10 @@
 		anchored = !anchored
 		if(!anchored)
 			to_chat(user, SPAN_NOTICE("\The [src] can now be moved."))
-			overlays.Cut()
+			cut_overlays()
 		else
 			to_chat(user, SPAN_NOTICE("\The [src] is now secured."))
-			overlays.Add("[base_state]-s")
+			add_overlay("[base_state]-s")
 		return TRUE
 
 	return ..()

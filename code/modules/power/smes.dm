@@ -83,21 +83,21 @@
 	return ..()
 
 /obj/machinery/power/smes/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
 		return
 
-	overlays.Add(image(icon, "smes-op[outputting]"))
+	add_overlay(image(icon, "smes-op[outputting]"))
 
 	if(inputting)
-		overlays.Add(image(icon, "smes-oc1"))
+		add_overlay(image(icon, "smes-oc1"))
 	else
 		if(input_attempt)
-			overlays.Add(image(icon, "smes-oc0"))
+			add_overlay(image(icon, "smes-oc0"))
 
 	var/clevel = chargedisplay()
 	if(clevel > 0)
-		overlays.Add(image(icon, "smes-og[clevel]"))
+		add_overlay(image(icon, "smes-og[clevel]"))
 	return
 
 /obj/machinery/power/smes/proc/chargedisplay()

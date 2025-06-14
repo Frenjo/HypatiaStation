@@ -37,7 +37,7 @@
 	if(iswirecutter(tool) && name != "body bag")
 		to_chat(user, SPAN_NOTICE("You cut the tag off the body bag."))
 		name = "body bag"
-		overlays.Cut()
+		cut_overlays()
 		return TRUE
 
 	return ..()
@@ -52,7 +52,7 @@
 		t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 		if(isnotnull(t))
 			name = "body bag - [t]"
-			overlays.Add(image(icon, "bodybag_label"))
+			add_overlay(image(icon, "bodybag_label"))
 		else
 			name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri

@@ -39,7 +39,7 @@
 				SPAN_NOTICE("You slice uneven and scorched chunks of aluminium off \the [src]."),
 				SPAN_WARNING("You hear welding.")
 			)
-			overlays.Cut()
+			cut_overlays()
 		return TRUE
 
 	return ..()
@@ -142,7 +142,7 @@
 			virtualIcon.DrawBox(null, B.b1x1, B.b1y, B.b1x2, B.b1y) // horizontal line, left to right
 			virtualIcon.DrawBox(null, B.b2x, B.b2y1, B.b2x, B.b2y2) // vertical line, top to bottom
 
-		overlays += bmark // add the decal
+		add_overlay(bmark) // add the decal
 
 		icon = virtualIcon // apply bulletholes over decals
 

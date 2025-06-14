@@ -91,14 +91,14 @@
 	return src.attack_hand(user)
 
 /obj/structure/closet/secure/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
-	overlays.Cut()
+	cut_overlays()
 	if(!opened)
 		if(locked)
 			icon_state = icon_locked
 		else
 			icon_state = icon_closed
 		if(welded)
-			overlays.Add("welded")
+			add_overlay("welded")
 	else
 		icon_state = icon_opened
 

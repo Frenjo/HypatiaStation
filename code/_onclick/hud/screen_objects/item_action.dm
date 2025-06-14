@@ -51,7 +51,7 @@
 			var/image/img = image(I.icon, A, I.icon_state)
 			img.pixel_x = 0
 			img.pixel_y = 0
-			A.overlays.Add(img)
+			A.add_overlay(img)
 
 			if(isnotnull(I.action_button_name))
 				A.name = I.action_button_name

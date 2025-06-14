@@ -49,7 +49,7 @@
 		for(var/obj/item/I in T)
 			if(!length(suspension_field.contents))
 				suspension_field.icon_state = "energynet"
-				suspension_field.overlays += "shield2"
+				suspension_field.add_overlay("shield2")
 			I.forceMove(suspension_field)
 
 		for(var/mob/living/simple/M in T)
@@ -323,7 +323,7 @@
 
 	if(collected)
 		suspension_field.icon_state = "energynet"
-		suspension_field.overlays += "shield2"
+		suspension_field.add_overlay("shield2")
 		visible_message(SPAN_INFO("\icon[suspension_field] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
 		if(istype(T, /turf/closed/rock) || istype(T, /turf/closed/wall))

@@ -83,15 +83,15 @@
 	icon_state = "asteroid_dug"
 
 /turf/open/floor/plating/asteroid/proc/update_mineral_overlays()
-	overlays.Cut()
+	cut_overlays()
 	if(istype(get_step(src, NORTH), /turf/closed/rock))
-		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_n"))
+		add_overlay(image('icons/turf/walls/rocks_ores.dmi', "rock_side_n"))
 	if(istype(get_step(src, SOUTH), /turf/closed/rock))
-		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_s", layer = 6))
+		add_overlay(image('icons/turf/walls/rocks_ores.dmi', "rock_side_s", layer = 6))
 	if(istype(get_step(src, EAST), /turf/closed/rock))
-		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_e", layer = 6))
+		add_overlay(image('icons/turf/walls/rocks_ores.dmi', "rock_side_e", layer = 6))
 	if(istype(get_step(src, WEST), /turf/closed/rock))
-		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_w", layer = 6))
+		add_overlay(image('icons/turf/walls/rocks_ores.dmi', "rock_side_w", layer = 6))
 
 /turf/open/floor/plating/asteroid/proc/full_update_mineral_overlays()
 	for(var/direction in GLOBL.alldirs)

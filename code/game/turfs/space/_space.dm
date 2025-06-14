@@ -64,7 +64,7 @@
 		speedspace_cache["EW_[i]"] = im
 
 /turf/space/proc/toggle_transit(direction)
-	overlays.Cut()
+	cut_overlays()
 
 	if(!direction)
 		overlays |= dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]

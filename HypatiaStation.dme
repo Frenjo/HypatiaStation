@@ -195,6 +195,7 @@
 #include "code\game\atoms\atom_act.dm"
 #include "code\game\atoms\atom_air.dm"
 #include "code\game\atoms\atom_flags.dm"
+#include "code\game\atoms\atom_overlays.dm"
 #include "code\game\atoms\atom_prints.dm"
 #include "code\game\atoms\atom_procs.dm"
 #include "code\game\atoms\atom_screentip.dm"

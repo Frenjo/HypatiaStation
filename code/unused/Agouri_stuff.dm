@@ -1943,4 +1943,4 @@ turf/open/floor/return_siding_icon_state()
 	if(HAS_TURF_FLAGS(src, TURF_NO_JAUNT))
 		return
 	SET_TURF_FLAGS(src, TURF_NO_JAUNT)
-	overlays += image('icons/effects/water.dmi',src,"holywater")*/
+	add_overlay(image('icons/effects/water.dmi',src,"holywater"))*/

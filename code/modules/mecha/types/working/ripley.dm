@@ -66,7 +66,7 @@
 	update_overlays()
 
 /obj/mecha/working/ripley/proc/update_overlays()
-	overlays.Cut()
+	cut_overlays()
 	var/image/new_overlay = null
 	var/overlay_prefix = custom_goliath_overlay ? initial(icon_state) : "ripley"
 	var/overlay_suffix = isnotnull(occupant) ? "" : "-open"
@@ -81,7 +81,7 @@
 		return
 
 	new_overlay.plane = plane
-	overlays.Add(new_overlay)
+	add_overlay(new_overlay)
 
 /obj/mecha/working/ripley/firefighter
 	name = "\improper APLU \"Firefighter\""
@@ -210,7 +210,7 @@
 	flasher_lights.icon = 'icons/obj/mecha/mecha_overlays.dmi'
 	flasher_lights.icon_state = "paddy-flashers"
 	flasher_lights.plane = UNLIT_EFFECTS_PLANE
-	overlays.Add(flasher_lights)
+	add_overlay(flasher_lights)
 
 /obj/mecha/working/ripley/paddy/get_stats_part()
 	. = ..()

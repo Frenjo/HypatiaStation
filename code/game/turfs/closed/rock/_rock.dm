@@ -44,7 +44,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 			var/image/overlay = image(icon, "rock_side_s")
 			if(is_space)
 				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.overlays.Add(overlay)
+			T.add_overlay(overlay)
 		T = null
 		is_space = FALSE
 	T = get_step(src, SOUTH)
@@ -54,7 +54,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 			var/image/overlay = image(icon, "rock_side_n", layer = 6)
 			if(is_space)
 				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.overlays.Add(overlay)
+			T.add_overlay(overlay)
 		T = null
 		is_space = FALSE
 	T = get_step(src, EAST)
@@ -64,7 +64,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 			var/image/overlay = image(icon, "rock_side_w", layer = 6)
 			if(is_space)
 				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.overlays.Add(overlay)
+			T.add_overlay(overlay)
 		T = null
 		is_space = FALSE
 	T = get_step(src, WEST)
@@ -74,7 +74,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 			var/image/overlay = image(icon, "rock_side_e", layer = 6)
 			if(is_space)
 				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.overlays.Add(overlay)
+			T.add_overlay(overlay)
 
 /turf/closed/rock/Destroy()
 	GLOBL.all_rock_turfs.Remove(src)

@@ -23,12 +23,12 @@
 		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		//to_world("nl: [newlevel]")
 		if(chargelevel != newlevel)
-			overlays.Cut()
-			overlays.Add("ccharger-o[newlevel]")
+			cut_overlays()
+			add_overlay("ccharger-o[newlevel]")
 
 			chargelevel = newlevel
 	else
-		overlays.Cut()
+		cut_overlays()
 
 /obj/machinery/cell_charger/examine()
 	set src in oview(5)

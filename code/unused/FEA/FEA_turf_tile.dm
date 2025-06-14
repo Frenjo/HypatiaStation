@@ -107,17 +107,17 @@ turf/open
 	var/tmp/being_superconductive = 0
 
 	proc/update_visuals(datum/gas_mixture/model)
-		overlays.Cut()
+		cut_overlays()
 
 		var/siding_icon_state = return_siding_icon_state()
 		if(siding_icon_state)
-			overlays += image('icons/turf/floors.dmi',siding_icon_state)
+			add_overlay(image('icons/turf/floors.dmi', siding_icon_state))
 
 		switch(model.graphic)
 			if("plasma")
-				overlays.Add(plmaster)
+				add_overlay(plmaster)
 			if("sleeping_agent")
-				overlays.Add(slmaster)
+				add_overlay(slmaster)
 
 
 

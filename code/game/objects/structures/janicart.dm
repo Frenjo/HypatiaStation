@@ -145,17 +145,17 @@
 	updateUsrDialog()
 
 /obj/structure/janitorialcart/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(isnotnull(mybag))
-		overlays.Add("cart_garbage")
+		add_overlay("cart_garbage")
 	if(isnotnull(mymop))
-		overlays.Add("cart_mop")
+		add_overlay("cart_mop")
 	if(isnotnull(myspray))
-		overlays.Add("cart_spray")
+		add_overlay("cart_spray")
 	if(isnotnull(myreplacer))
-		overlays.Add("cart_replacer")
+		add_overlay("cart_replacer")
 	if(signs)
-		overlays.Add("cart_sign[signs]")
+		add_overlay("cart_sign[signs]")
 
 
 //old style retardo-cart

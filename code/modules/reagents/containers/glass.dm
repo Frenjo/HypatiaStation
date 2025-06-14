@@ -180,7 +180,7 @@
 	update_icon()
 
 /obj/item/reagent_holder/glass/beaker/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
@@ -203,11 +203,11 @@
 				filling.icon_state = "[icon_state]100"
 
 		filling.icon += mix_colour_from_reagents(reagents.reagent_list)
-		overlays += filling
+		add_overlay(filling)
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		add_overlay(lid)
 
 
 /obj/item/reagent_holder/glass/beaker/large
@@ -286,10 +286,10 @@
 	volume = 70
 
 /obj/item/reagent_holder/glass/bucket/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		overlays += lid
+		add_overlay(lid)
 
 // vials are defined twice, what?
 /*

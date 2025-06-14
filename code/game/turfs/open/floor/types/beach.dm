@@ -23,4 +23,4 @@
 	var/image/water = image(icon = 'icons/misc/beach.dmi', icon_state = "water5")
 	water.plane = DEFAULT_PLANE
 	water.layer = MOB_LAYER + 0.1
-	overlays.Add(water)
+	add_overlay(water)

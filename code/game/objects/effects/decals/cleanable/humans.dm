@@ -62,7 +62,7 @@
 		if(!perp.shoes.blood_DNA)
 			perp.shoes.blood_DNA = list()
 			perp.shoes.blood_overlay.color = basecolor
-			perp.shoes.overlays += perp.shoes.blood_overlay
+			perp.shoes.add_overlay(perp.shoes.blood_overlay)
 		perp.shoes.blood_DNA |= blood_DNA.Copy()
 
 	else//Or feet
@@ -162,8 +162,8 @@
 	blood.Blend(basecolor, ICON_MULTIPLY)
 
 	icon = blood
-	overlays.Cut()
-	overlays += giblets
+	cut_overlays()
+	add_overlay(giblets)
 
 /obj/effect/decal/cleanable/blood/gibs/up
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gibup1", "gibup1", "gibup1")

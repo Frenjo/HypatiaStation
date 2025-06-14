@@ -562,7 +562,7 @@
 //EXTRA FUNCTIONS===================================
 
 	if(mode == 2 || mode == 21)//To clear message overlays.
-		overlays.Cut()
+		cut_overlays()
 		newmessage = FALSE
 
 	if(honkamt > 0 && prob(60))//For clown virus.
@@ -724,8 +724,8 @@
 		global.PCnanoui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
 
 		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
-		P.overlays.Cut()
-		P.overlays += image('icons/obj/items/devices/pda.dmi', "pda-r")
+		P.cut_overlays()
+		P.add_overlay(image('icons/obj/items/devices/pda.dmi', "pda-r"))
 		P.newmessage = TRUE
 	else
 		to_chat(U, SPAN_NOTICE("ERROR: Messaging server is not responding."))

@@ -1,7 +1,7 @@
 // Chassis
 /datum/construction/mecha_chassis/custom_action(step, obj/item/used_item, mob/living/user)
 	holder.balloon_alert_visible("connected [used_item.name]")
-	holder.overlays.Add(image(used_item.icon, used_item.icon_state + "+o"))
+	holder.add_overlay(image(used_item.icon, used_item.icon_state + "+o"))
 	user.drop_item()
 	qdel(used_item)
 	return TRUE

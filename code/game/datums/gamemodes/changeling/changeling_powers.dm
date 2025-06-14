@@ -236,7 +236,7 @@
 	C.monkeyizing = 1
 	C.canmove = FALSE
 	C.icon = null
-	C.overlays.Cut()
+	C.cut_overlays()
 	C.invisibility = INVISIBILITY_MAXIMUM
 
 	var/atom/movable/overlay/animation = new /atom/movable/overlay(C.loc)
@@ -312,7 +312,7 @@
 	C.monkeyizing = 1
 	C.canmove = FALSE
 	C.icon = null
-	C.overlays.Cut()
+	C.cut_overlays()
 	C.invisibility = INVISIBILITY_MAXIMUM
 	var/atom/movable/overlay/animation = new /atom/movable/overlay(C.loc)
 	animation.icon_state = "blank"

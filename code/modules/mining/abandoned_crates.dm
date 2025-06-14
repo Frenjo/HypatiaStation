@@ -27,8 +27,8 @@
 			if(input == code)
 				to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 				locked = FALSE
-				overlays.Cut()
-				overlays += greenlight
+				cut_overlays()
+				add_overlay(greenlight)
 			else if(isnull(input) || input > max || input < min)
 				to_chat(user, SPAN_NOTICE("You leave the crate alone."))
 			else

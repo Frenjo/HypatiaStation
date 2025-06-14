@@ -349,7 +349,7 @@
 
 		var/icon/head_icon = image('icons/mob/simple/corgi_head.dmi', head_icon_state)
 		if(head_icon)
-			overlays += head_icon
+			add_overlay(head_icon)
 
 	if(inventory_back)
 		var/back_icon_state = inventory_back.icon_state
@@ -358,13 +358,13 @@
 
 		var/icon/back_icon = image('icons/mob/simple/corgi_back.dmi', back_icon_state)
 		if(back_icon)
-			overlays += back_icon
+			add_overlay(back_icon)
 
 	if(facehugger)
 		if(istype(src, /mob/living/simple/corgi/puppy))
-			overlays += image('icons/mob/on_mob/mask.dmi', "facehugger_corgipuppy")
+			add_overlay(image('icons/mob/on_mob/mask.dmi', "facehugger_corgipuppy"))
 		else
-			overlays += image('icons/mob/on_mob/mask.dmi', "facehugger_corgi")
+			add_overlay(image('icons/mob/on_mob/mask.dmi', "facehugger_corgi"))
 
 	return
 

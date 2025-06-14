@@ -325,7 +325,7 @@ area
 
 			ul_Overlay = image('icons/effects/ULIcons.dmi', , num2text(LightLevelRed) + "-" + num2text(LightLevelGreen) + "-" + num2text(LightLevelBlue), ul_Layer)
 
-			overlays += ul_Overlay
+			add_overlay(ul_Overlay)
 
 			return
 

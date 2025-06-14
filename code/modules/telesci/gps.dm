@@ -16,7 +16,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	. = ..()
 	GLOBL.gps_list.Add(src)
 	name = "global positioning system ([gpstag])"
-	overlays += "working"
+	add_overlay("working")
 
 /obj/item/gps/Destroy()
 	GLOBL.gps_list.Remove(src)
@@ -25,11 +25,11 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 /obj/item/gps/emp_act(severity)
 	emped = TRUE
 	overlays.Remove("working")
-	overlays.Add("emp")
+	add_overlay("emp")
 	spawn(300)
 		emped = FALSE
 		overlays.Remove("emp")
-		overlays.Add("working")
+		add_overlay("working")
 
 /obj/item/gps/attack_self(mob/user)
 	var/html

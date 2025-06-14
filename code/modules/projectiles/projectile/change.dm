@@ -20,7 +20,7 @@
 		M.monkeyizing = 1
 		M.canmove = FALSE
 		M.icon = null
-		M.overlays.Cut()
+		M.cut_overlays()
 		M.invisibility = INVISIBILITY_MAXIMUM
 
 		if(isrobot(M))

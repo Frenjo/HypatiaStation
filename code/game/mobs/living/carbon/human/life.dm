@@ -1250,7 +1250,7 @@
 					I = image("icon" = 'icons/hud/screen1_full.dmi', "icon_state" = "passage9")
 				if(-INFINITY to -95)
 					I = image("icon" = 'icons/hud/screen1_full.dmi', "icon_state" = "passage10")
-			damageoverlay.overlays.Add(I)
+			damageoverlay.add_overlay(I)
 	else
 		//Oxygen damage overlay
 		if(oxyloss)
@@ -1270,7 +1270,7 @@
 					I = image("icon" = 'icons/hud/screen1_full.dmi', "icon_state" = "oxydamageoverlay6")
 				if(45 to INFINITY)
 					I = image("icon" = 'icons/hud/screen1_full.dmi', "icon_state" = "oxydamageoverlay7")
-			damageoverlay.overlays.Add(I)
+			damageoverlay.add_overlay(I)
 
 		//Fire and Brute damage overlay (BSSR)
 		var/hurtdamage = getBruteLoss() + getFireLoss() + damageoverlaytemp
@@ -1290,7 +1290,7 @@
 					I = image("icon" = 'icons/hud/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
 				if(85 to INFINITY)
 					I = image("icon" = 'icons/hud/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
-			damageoverlay.overlays.Add(I)
+			damageoverlay.add_overlay(I)
 
 	if(stat == DEAD)
 		sight |= (SEE_TURFS | SEE_MOBS | SEE_OBJS)

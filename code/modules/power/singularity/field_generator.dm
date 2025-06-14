@@ -46,19 +46,19 @@ field_generator power level display
 	return ..()
 
 /obj/machinery/field_generator/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!active)
 		if(warming_up)
-			overlays += "+a[warming_up]"
+			add_overlay("+a[warming_up]")
 	if(length(fields))
-		overlays += "+on"
+		add_overlay("+on")
 	// Power level indicator
 	// Scale % power to % num_power_levels and truncate value
 	var/level = round(num_power_levels * power / FIELD_GENERATOR_MAX_POWER)
 	// Clamp between 0 and num_power_levels for out of range power values
 	level = clamp(level, 0, num_power_levels)
 	if(level)
-		overlays += "+p[level]"
+		add_overlay("+p[level]")
 
 	return
 

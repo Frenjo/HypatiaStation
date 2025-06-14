@@ -20,7 +20,7 @@
 		return
 	has_suit = S
 	loc = has_suit
-	has_suit.overlays += inv_overlay
+	has_suit.add_overlay(inv_overlay)
 	to_chat(user, SPAN_NOTICE("You attach [src] to [has_suit]."))
 	src.add_fingerprint(user)
 

@@ -88,7 +88,7 @@
 			qdel(CC)
 			return
 
-		overlays += image('icons/obj/items/coins.dmi', "coin_string_overlay")
+		add_overlay(image('icons/obj/items/coins.dmi', "coin_string_overlay"))
 		string_attached = TRUE
 		to_chat(user, SPAN_INFO("You attach a string to the coin."))
 		CC.use(1)

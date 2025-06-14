@@ -131,7 +131,7 @@
 			T.overlays.Remove(T.wet_overlay)
 			T.wet_overlay = null
 		T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
-		T.overlays.Add(T.wet_overlay)
+		T.add_overlay(T.wet_overlay)
 
 		spawn(800)
 			if(!istype(T))
@@ -263,7 +263,7 @@
 		C.monkeyizing = TRUE
 		C.canmove = FALSE
 		C.icon = null
-		C.overlays.Cut()
+		C.cut_overlays()
 		C.invisibility = INVISIBILITY_MAXIMUM
 		for(var/obj/item/W in C)
 			if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
@@ -575,7 +575,7 @@
 		if(istype(T, /turf/closed/wall))
 			var/turf/closed/wall/W = T
 			W.thermite = TRUE
-			W.overlays.Add(image('icons/effects/effects.dmi', icon_state = "#673910"))
+			W.add_overlay(image('icons/effects/effects.dmi', icon_state = "#673910"))
 
 /datum/reagent/thermite/on_mob_life(mob/living/carbon/C)
 	C.adjustFireLoss(1)

@@ -39,7 +39,7 @@
 		shield.forceMove(chassis)
 
 		drone_overlay = new /icon(icon, icon_state = "shield_droid_idle")
-		M.overlays.Add(drone_overlay)
+		M.add_overlay(drone_overlay)
 
 /obj/item/mecha_equipment/shield_droid/detach()
 	chassis.overlays.Remove(drone_overlay)

@@ -158,7 +158,7 @@
 	info = null
 	stamps = null
 	stamped = list()
-	overlays.Cut()
+	cut_overlays()
 	updateinfolinks()
 	update_icon()
 
@@ -337,7 +337,7 @@
 		if(!stamped)
 			stamped = new
 		stamped += P.type
-		overlays += stampoverlay
+		add_overlay(stampoverlay)
 
 		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 

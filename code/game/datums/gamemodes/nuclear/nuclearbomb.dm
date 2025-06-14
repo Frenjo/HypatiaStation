@@ -73,7 +73,7 @@ var/bomb_set
 		if(auth)
 			opened = !opened
 			if(opened)
-				overlays.Add(image(icon, "npanel_open"))
+				add_overlay(image(icon, "npanel_open"))
 				to_chat(user, SPAN_NOTICE("You unscrew the control panel of \the [src]."))
 			else
 				overlays.Remove(image(icon, "npanel_open"))

@@ -101,7 +101,7 @@ Note: Must be placed west/left of and R&D console to function.
 		to_chat(user, SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more."))
 		return 1
 
-	overlays.Add("protolathe_[sheets.material.icon_prefix]")
+	add_overlay("protolathe_[sheets.material.icon_prefix]")
 	busy = TRUE
 	if(do_after(user, 1.6 SECONDS))
 		var/sheets_added = materials.add_sheets(sheets)

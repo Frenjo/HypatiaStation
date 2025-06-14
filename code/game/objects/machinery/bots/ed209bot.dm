@@ -709,7 +709,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	var/turf/T = GET_TURF(src)
 	var/obj/item/ed209_assembly/Sa = new /obj/item/ed209_assembly(T)
 	Sa.build_step = 1
-	Sa.overlays.Add(image('icons/mob/bot/securitron.dmi', "hs_hole"))
+	Sa.add_overlay(image('icons/mob/bot/securitron.dmi', "hs_hole"))
 	Sa.created_name = name
 	new /obj/item/assembly/prox_sensor(T)
 

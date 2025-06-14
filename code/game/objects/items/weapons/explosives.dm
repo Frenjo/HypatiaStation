@@ -64,7 +64,7 @@
 			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.overlays += image_overlay
+		target.add_overlay(image_overlay)
 
 		user << "Bomb has been planted. Timer counting down from [timer]."
 		spawn(timer*10)

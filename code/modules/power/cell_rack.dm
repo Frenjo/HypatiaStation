@@ -41,18 +41,18 @@
 	capacity = C * 40 // Basic cells are such crap. Hyper cells are needed to get on normal SMES levels.
 
 /obj/machinery/power/smes/cell_rack/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
 		return
 
 	if(output_attempt)
-		overlays.Add(image(icon, "[icon_state]_outputting"))
+		add_overlay(image(icon, "[icon_state]_outputting"))
 	if(input_attempt)
-		overlays.Add(image(icon, "[icon_state]_charging"))
+		add_overlay(image(icon, "[icon_state]_charging"))
 
 	var/clevel = chargedisplay()
 	if(clevel > 0)
-		overlays.Add(image(icon, "[icon_state]_og[clevel]"))
+		add_overlay(image(icon, "[icon_state]_og[clevel]"))
 
 /obj/machinery/power/smes/cell_rack/chargedisplay()
 	return round(4 * charge/(capacity ? capacity : 5e6))
@@ -115,7 +115,7 @@
 /obj/machinery/power/smes/cell_rack/makeshift/update_icon()
 	. = ..()
 	if(overcharge_percent > 100)
-		overlays.Add(image(icon, "[icon_state]_overcharge"))
+		add_overlay(image(icon, "[icon_state]_overcharge"))
 
 //This mess of if-elses and magic numbers handles what happens if the engies don't pay attention and let it eat too much charge
 //What happens depends on how much capacity has the ghetto smes and how much it is overcharged.

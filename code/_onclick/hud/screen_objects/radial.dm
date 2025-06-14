@@ -150,7 +150,7 @@
 			SetElement(E, page_choices[i], angle, anim = anim, anim_order = i)
 
 /datum/radial_menu/proc/HideElement(atom/movable/screen/radial/slice/E)
-	E.overlays.Cut()
+	E.cut_overlays()
 	E.alpha = 0
 	E.name = "None"
 	E.maptext = null
@@ -176,11 +176,11 @@
 	//Visuals
 	E.alpha = 255
 	E.mouse_opacity = TRUE
-	E.overlays.Cut()
+	E.cut_overlays()
 	if(choice_id == NEXT_PAGE_ID)
 		E.name = "Next Page"
 		E.next_page = TRUE
-		E.overlays.Add("radial_next")
+		E.add_overlay("radial_next")
 	else
 		if(istext(choices_values[choice_id]))
 			E.name = choices_values[choice_id]
@@ -191,7 +191,7 @@
 		E.maptext = null
 		E.next_page = FALSE
 		if(choices_icons[choice_id])
-			E.overlays.Add(choices_icons[choice_id])
+			E.add_overlay(choices_icons[choice_id])
 
 /datum/radial_menu/New()
 	close_button = new /atom/movable/screen/radial/centre()

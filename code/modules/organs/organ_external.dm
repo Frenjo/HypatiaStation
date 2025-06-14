@@ -1017,7 +1017,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			if(facial_hair_style.do_colouration)
 				facial.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)
 
-			overlays.Add(facial) // icon.Blend(facial, ICON_OVERLAY)
+			add_overlay(facial) // icon.Blend(facial, ICON_OVERLAY)
 
 	if(H.h_style && !(H.head && HAS_INV_FLAGS(H.head, INV_FLAG_BLOCK_HEAD_HAIR)))
 		var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[H.h_style]
@@ -1026,7 +1026,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			if(hair_style.do_colouration)
 				hair.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 
-			overlays.Add(hair) //icon.Blend(hair, ICON_OVERLAY)
+			add_overlay(hair) //icon.Blend(hair, ICON_OVERLAY)
 	spawn(5)
 	if(brainmob && brainmob.client)
 		brainmob.client.screen.len = null //clear the hud
@@ -1034,7 +1034,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	//if(ishuman(H))
 	//	if(H.gender == FEMALE)
 	//		H.icon_state = "head_f"
-	//	H.overlays += H.generate_head_icon()
+	//	H.add_overlay(H.generate_head_icon())
 	transfer_identity(H)
 
 	name = "[H.real_name]'s head"

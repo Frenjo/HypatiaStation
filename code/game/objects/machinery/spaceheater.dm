@@ -19,7 +19,7 @@
 	update_icon()
 
 /obj/machinery/space_heater/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "sheater[on]"
 	if(open)
 		overlays  += "sheater-open"

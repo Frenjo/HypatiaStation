@@ -150,7 +150,7 @@
 			var/icon/test = getFlatIcon(W)
 			test.Shift(NORTH, 1)
 			test.Shift(EAST, 6)
-			overlays += test
+			add_overlay(test)
 
 	return ..()
 

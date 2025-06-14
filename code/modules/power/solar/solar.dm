@@ -65,11 +65,11 @@
 
 /obj/machinery/power/solar/update_icon()
 	. = ..()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
-		overlays.Add(image(icon, "solar_panel-b", layer = FLY_LAYER))
+		add_overlay(image(icon, "solar_panel-b", layer = FLY_LAYER))
 	else
-		overlays.Add(image(icon, "solar_panel", layer = FLY_LAYER))
+		add_overlay(image(icon, "solar_panel", layer = FLY_LAYER))
 		set_dir(angle2dir(adir))
 
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY

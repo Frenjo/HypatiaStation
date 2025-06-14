@@ -185,7 +185,7 @@
 		bottom_hatch = target
 
 	flick(top_icon_state_open, top_hatch)
-	bottom_hatch.overlays += green_overlay
+	bottom_hatch.add_overlay(green_overlay)
 
 	spawn(7)
 		if(!target || !isturf(target.loc))
@@ -196,7 +196,7 @@
 			M.Move(target.loc)
 		flick(top_icon_state_close, top_hatch)
 		bottom_hatch.overlays -= green_overlay
-		bottom_hatch.overlays += red_overlay
+		bottom_hatch.add_overlay(red_overlay)
 
 		spawn(7)
 			top_hatch.icon_state = top_icon_state

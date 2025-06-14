@@ -13,7 +13,7 @@
 
 /obj/machinery/door/airlock/maintenance/update_icon()
 	if(isnotnull(overlays))
-		overlays.Cut()
+		cut_overlays()
 	if(density)
 		// Maintenance doors flash yellow if we have emergency maintenance access. -Frenjo
 		if(GLOBL.maint_all_access && isstationlevel(z))
@@ -28,9 +28,9 @@
 		if(p_open || welded)
 			overlays = list()
 			if(p_open)
-				overlays.Add(image(icon, "panel_open"))
+				add_overlay(image(icon, "panel_open"))
 			if(welded)
-				overlays.Add(image(icon, "welded"))
+				add_overlay(image(icon, "welded"))
 	else
 		icon_state = "door_open"
 
@@ -38,14 +38,14 @@
 	switch(animation)
 		if("opening")
 			if(isnotnull(overlays))
-				overlays.Cut()
+				cut_overlays()
 			if(p_open)
 				flick("o_door_opening", src)
 			else
 				flick("door_opening", src)
 		if("closing")
 			if(isnotnull(overlays))
-				overlays.Cut()
+				cut_overlays()
 			if(p_open)
 				flick("o_door_closing", src)
 			else

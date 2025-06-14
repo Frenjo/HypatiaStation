@@ -2784,7 +2784,7 @@
 		if(pizza)
 			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
 			pizzaimg.pixel_y = -3
-			overlays += pizzaimg
+			add_overlay(pizzaimg)
 
 		return
 	else
@@ -2801,7 +2801,7 @@
 		if(doimgtag)
 			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
 			tagimg.pixel_y = length(boxes) * 3
-			overlays += tagimg
+			add_overlay(tagimg)
 
 	icon_state = "pizzabox[length(boxes) + 1]"
 

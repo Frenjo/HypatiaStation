@@ -290,9 +290,9 @@ area
 			overlays -= lighting_overlay
 			lighting_overlay.icon_state = "[light]"
 		else
-			lighting_overlay = image(LIGHTING_ICON,,num2text(light),LIGHTING_LAYER)
+			lighting_overlay = image(LIGHTING_ICON, , num2text(light), LIGHTING_LAYER)
 
-		overlays += lighting_overlay
+		add_overlay(lighting_overlay)
 
 	proc/InitializeLighting()	//TODO: could probably improve this bit ~Carn
 		if(!tag) tag = "[type]"

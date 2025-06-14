@@ -54,11 +54,11 @@
 	qdel(src)
 
 /mob/living/simple/hostile/asteroid/gutlunch/regenerate_icons()
-	overlays.Cut()
+	cut_overlays()
 	if(nutrient_sac.reagents.total_volume == nutrient_sac.reagents.maximum_volume)
 		if(full_udder.color == COLOR_WHITE)
 			full_udder.color = color
-		overlays.Add(full_udder)
+		add_overlay(full_udder)
 	. = ..()
 
 /mob/living/simple/hostile/asteroid/gutlunch/Life()

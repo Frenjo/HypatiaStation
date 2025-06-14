@@ -30,7 +30,7 @@
 			if(!O)
 				O = new /obj/effect/mark(T)
 			else
-				O.overlays.Cut()
+				O.cut_overlays()
 
 			var/obj/move/OM = locate(/obj/move/, T)
 
@@ -45,13 +45,13 @@ Doing this because FindTurfs() isn't even used
 				for(var/atom/U in OM.FindTurfs() )
 					var/dirn = get_dir(OM, U)
 					if(dirn == 1)
-						O.overlays += image('icons/misc/mark.dmi', OM.airdir==1?"up":"fup")
+						O.add_overlay(image('icons/misc/mark.dmi', OM.airdir == 1 ? "up" : "fup"))
 					else if(dirn == 2)
-						O.overlays += image('icons/misc/mark.dmi', OM.airdir==2?"dn":"fdn")
+						O.add_overlay(image('icons/misc/mark.dmi', OM.airdir == 2 ? "dn" : "fdn"))
 					else if(dirn == 4)
-						O.overlays += image('icons/misc/mark.dmi', OM.airdir==4?"rt":"frt")
+						O.add_overlay(image('icons/misc/mark.dmi', OM.airdir == 4 ? "rt" : "frt"))
 					else if(dirn == 8)
-						O.overlays += image('icons/misc/mark.dmi', OM.airdir==8?"lf":"flf")
+						O.add_overlay(image('icons/misc/mark.dmi', OM.airdir == 8 ? "lf" : "flf"))
 */
 			else
 
@@ -61,29 +61,29 @@ Doing this because FindTurfs() isn't even used
 					O.icon_state = "blank"
 
 				if(T.airN)
-					O.overlays += image('icons/misc/mark.dmi', T.airdir==1?"up":"fup")
+					O.add_overlay(image('icons/misc/mark.dmi', T.airdir == 1 ? "up" : "fup"))
 
 				if(T.airS)
-					O.overlays += image('icons/misc/mark.dmi', T.airdir==2?"dn":"fdn")
+					O.add_overlay(image('icons/misc/mark.dmi', T.airdir == 2 ? "dn" : "fdn"))
 
 				if(T.airW)
-					O.overlays += image('icons/misc/mark.dmi', T.airdir==8?"lf":"flf")
+					O.add_overlay(image('icons/misc/mark.dmi', T.airdir == 8 ? "lf" : "flf"))
 
 				if(T.airE)
-					O.overlays += image('icons/misc/mark.dmi', T.airdir==4?"rt":"frt")
+					O.add_overlay(image('icons/misc/mark.dmi', T.airdir == 4 ? "rt" :"frt"))
 
 
 				if(T.condN)
-					O.overlays += image('icons/misc/mark.dmi', T.condN == 1?"yup":"rup")
+					O.add_overlay(image('icons/misc/mark.dmi', T.condN == 1 ? "yup" : "rup"))
 
 				if(T.condS)
-					O.overlays += image('icons/misc/mark.dmi', T.condS == 1?"ydn":"rdn")
+					O.add_overlay(image('icons/misc/mark.dmi', T.condS == 1 ? "ydn" : "rdn"))
 
 				if(T.condE)
-					O.overlays += image('icons/misc/mark.dmi', T.condE == 1?"yrt":"rrt")
+					O.add_overlay(image('icons/misc/mark.dmi', T.condE == 1 ? "yrt" : "rrt"))
 
 				if(T.condW)
-					O.overlays += image('icons/misc/mark.dmi', T.condW == 1?"ylf":"rlf")
+					O.add_overlay(image('icons/misc/mark.dmi', T.condW == 1 ? "ylf" : "rlf"))
 	else
 		alert("Debugging off")
 		return
@@ -122,7 +122,7 @@ Doing this because FindTurfs() isn't even used
 			ID.pixel_y = s
 			//if(d>1) I.Shift(WEST, (d-1)*8)
 
-			I.overlays += ID
+			I.add_overlay(ID)
 
 
 
@@ -141,16 +141,16 @@ Doing this because FindTurfs() isn't even used
 		if(!O)
 			O = new /obj/effect/mark(T)
 		else
-			O.overlays.Cut()
+			O.cut_overlays()
 
 
 		var/temp = round(T.temp-T0C, 0.1)
 
-		O.overlays += numbericon("[temp]C")
+		O.add_overlay(numbericon("[temp]C"))
 
 		var/pres = round(T.tot_gas() / CELLSTANDARD * 100, 0.1)
 
-		O.overlays += numbericon("[pres]", -8)
+		O.add_overlay(numbericon("[pres]", -8))
 		O.mark = "[temp]/[pres]"
 */
 /*
@@ -172,11 +172,11 @@ Doing this because FindTurfs() isn't even used
 				if(!O)
 					O = new /obj/effect/mark(T)
 				else
-					O.overlays.Cut()
+					O.cut_overlays()
 
 				if(istype(M, /obj/machinery/pipes))
 					var/obj/machinery/pipes/P = M
-					O.overlays += numbericon("[P.plnum]    ", -20)
+					O.add_overlay(numbericon("[P.plnum]    ", -20))
 					M = P.pl
 
 
@@ -186,8 +186,8 @@ Doing this because FindTurfs() isn't even used
 
 					var/cap = round( 100*(G.tot_gas()/ M.capmult / 6e6), 0.1)
 					var/temp = round(G.temperature - T0C, 0.1)
-					O.overlays += numbericon("[temp]C", 0)
-					O.overlays += numbericon("[cap]", -8)
+					O.add_overlay(numbericon("[temp]C", 0))
+					O.add_overlay(numbericon("[cap]", -8))
 
 				break
 */
@@ -204,7 +204,7 @@ Doing this because FindTurfs() isn't even used
 			if(!O)
 				O = new /obj/effect/mark(T)
 			else
-				O.overlays.Cut()
+				O.cut_overlays()
 
 			var/marked = 0
 			for(var/obj/M in T)
@@ -217,14 +217,14 @@ Doing this because FindTurfs() isn't even used
 					var/obj/structure/cable/C = M
 					//to_world("Accepted")
 
-					O.overlays += numbericon("[C.netnum]  " ,  marked)
+					O.add_overlay(numbericon("[C.netnum]  " ,  marked))
 
 					marked -= 8
 
 				else if(M && istype(M, /obj/machinery/power/))
 
 					var/obj/machinery/power/P = M
-					O.overlays += numbericon("*[P.netnum]  " ,  marked)
+					O.add_overlay(numbericon("*[P.netnum]  " ,  marked))
 					marked -= 8
 
 			if(!marked)
@@ -248,7 +248,7 @@ Doing this because FindTurfs() isn't even used
 			if(!O)
 				O = new /obj/effect/mark(T)
 			else
-				O.overlays.Cut()
+				O.cut_overlays()
 
 
 			var/obj/machinery/power/solar/S
@@ -257,8 +257,8 @@ Doing this because FindTurfs() isn't even used
 
 			if(S)
 
-				O.overlays += numbericon("[S.obscured]  " ,  0)
-				O.overlays += numbericon("[round(S.sunfrac*100,0.1)]  " ,  -12)
+				O.add_overlay(numbericon("[S.obscured]  " , 0))
+				O.add_overlay(numbericon("[round(S.sunfrac*100,0.1)]  " , -12))
 
 			else
 				del(O)
@@ -286,8 +286,8 @@ Doing this because FindTurfs() isn't even used
 
 			var/obj/effect/mark/O = new(T)
 
-			O.overlays += numbericon("[num] * 1  ", -4)
-			O.overlays += numbericon("[ndirs[1]] - [ndirs[2]]",-16)
+			O.add_overlay(numbericon("[num] * 1  ", -4))
+			O.add_overlay(numbericon("[ndirs[1]] - [ndirs[2]]", -16))
 
 
 			P = PL.nodes[PL.nodes.len]	// last node in list
@@ -297,8 +297,8 @@ Doing this because FindTurfs() isn't even used
 
 			O = new(T)
 
-			O.overlays += numbericon("[num] * 2  ", -4)
-			O.overlays += numbericon("[ndirs[1]] - [ndirs[2]]", -16)
+			O.add_overlay(numbericon("[num] * 2  ", -4))
+			O.add_overlay(numbericon("[ndirs[1]] - [ndirs[2]]", -16))
 	else
 		alert("Debugging off")
 		return

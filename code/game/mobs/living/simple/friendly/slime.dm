@@ -28,7 +28,7 @@
 
 /mob/living/simple/slime/adult/pet/New()
 	. = ..()
-	overlays.Add("aslime-:33")
+	add_overlay("aslime-:33")
 
 /mob/living/simple/slime/adult/pet/Die()
 	var/mob/living/simple/slime/pet/S1 = new /mob/living/simple/slime/pet(loc)

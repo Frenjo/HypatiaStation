@@ -337,7 +337,7 @@ CONTROLLER_DEF(master)
 				var/datum/find/F = archeo_turf.finds[1]
 				if(F.excavation_required <= F.view_range)
 					archeo_turf.archaeo_overlay = "overlay_archaeo[rand(1, 3)]"
-					archeo_turf.overlays.Add(archeo_turf.archaeo_overlay)
+					archeo_turf.add_overlay(archeo_turf.archaeo_overlay)
 
 		//dont create artifact machinery in animal or plant digsites, or if we already have one
 		if(isnull(turf.artifact_find) && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))

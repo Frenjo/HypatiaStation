@@ -71,5 +71,5 @@
 	return 1
 
 /atom/movable/screen/zone_sel/proc/update_icon()
-	overlays.Cut()
-	overlays.Add(image('icons/hud/zone_sel.dmi', "[selecting]"))
+	cut_overlays()
+	add_overlay(image('icons/hud/zone_sel.dmi', "[selecting]"))

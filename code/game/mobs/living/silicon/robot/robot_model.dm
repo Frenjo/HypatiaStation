@@ -24,7 +24,7 @@
 			var/temp_sprite_path = temp_model::sprite_path
 			var/temp_state = temp_model::model_select_sprite
 			var/image/radial_button = image(icon = temp_sprite_path, icon_state = temp_state)
-			radial_button.overlays.Add(image(icon = temp_sprite_path, icon_state = "eyes-[temp_state]"))
+			radial_button.add_overlay(image(icon = temp_sprite_path, icon_state = "eyes-[temp_state]"))
 			radial_models[model_type] = radial_button
 	var/input_model = show_radial_menu(src, src, radial_models)
 	if(isnull(input_model))
@@ -87,7 +87,7 @@
 		var/list/options = list()
 		for(var/sprite_name in model_sprites)
 			var/image/radial_button = image(icon = model.sprite_path, icon_state = model_sprites[sprite_name])
-			radial_button.overlays.Add(image(icon = model.sprite_path, icon_state = "eyes-[model_sprites[sprite_name]]"))
+			radial_button.add_overlay(image(icon = model.sprite_path, icon_state = "eyes-[model_sprites[sprite_name]]"))
 			options[sprite_name] = radial_button
 		icontype = show_radial_menu(src, src, options)
 

@@ -60,16 +60,16 @@
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)
 		icon_state = "broken"
-		overlays.Cut()
+		cut_overlays()
 		return
 	if(stat & NOPOWER)
 		icon_state = "c_unpowered"
-		overlays.Cut()
+		cut_overlays()
 		return
 	icon_state = "solar"
-	overlays.Cut()
+	cut_overlays()
 	if(cdir > -1)
-		overlays.Add(image('icons/obj/machines/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
+		add_overlay(image('icons/obj/machines/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
 	return
 
 /obj/machinery/power/solar_control/attack_ai(mob/user)

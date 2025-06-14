@@ -189,7 +189,7 @@
 	if(length(targeted_by) == 1)
 		spawn(0)
 			target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking")
-			overlays += target_locked
+			add_overlay(target_locked)
 			spawn(0)
 				sleep(20)
 				if(target_locked)

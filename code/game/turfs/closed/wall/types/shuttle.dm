@@ -101,7 +101,7 @@
 		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state)
 		corner_overlay.plane = TURF_PLANE
 		corner_overlay.layer = TURF_BASE_LAYER
-	overlays.Add(corner_overlay)
+	add_overlay(corner_overlay)
 
 // Smooth white
 /turf/closed/wall/shuttle/corner/exterior/white

@@ -5,7 +5,7 @@
 
 /obj/effect/decal/floor/initialise()
 	. = ..()
-	loc.overlays.Add(image(icon, loc, icon_state, layer, dir))
+	loc.add_overlay(image(icon, loc, icon_state, layer, dir))
 	qdel(src)
 
 // Chapel floor pattern

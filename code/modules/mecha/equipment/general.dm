@@ -24,7 +24,7 @@
 /obj/item/mecha_equipment/repair_droid/attach(obj/mecha/M)
 	. = ..()
 	droid_overlay = new /icon(icon, icon_state = "repair_droid_idle")
-	M.overlays.Add(droid_overlay)
+	M.add_overlay(droid_overlay)
 
 /obj/item/mecha_equipment/repair_droid/detach()
 	chassis.overlays.Remove(droid_overlay)
@@ -48,7 +48,7 @@
 			droid_overlay = new /icon(icon, icon_state = "repair_droid_idle")
 			log_message("Deactivated.")
 			set_ready_state(TRUE)
-		chassis.overlays.Add(droid_overlay)
+		chassis.add_overlay(droid_overlay)
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
 /obj/item/mecha_equipment/repair_droid/process()

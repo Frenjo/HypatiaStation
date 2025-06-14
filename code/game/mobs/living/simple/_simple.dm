@@ -365,9 +365,9 @@
 /mob/living/simple/update_targeted()
 	if(isnull(targeted_by) && target_locked)
 		qdel(target_locked)
-	overlays.Cut()
+	cut_overlays()
 	if(isnotnull(targeted_by) && target_locked)
-		overlays.Add(target_locked)
+		add_overlay(target_locked)
 
 /mob/living/simple/say(message)
 	if(stat)

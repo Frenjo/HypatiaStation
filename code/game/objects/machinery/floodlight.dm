@@ -81,7 +81,7 @@
 				to_chat(user, SPAN_NOTICE("You remove the battery panel."))
 			else
 				to_chat(user, SPAN_NOTICE("You crowbar the battery panel into place."))
-				overlays.Cut()
+				cut_overlays()
 		return TRUE
 
 	return ..()

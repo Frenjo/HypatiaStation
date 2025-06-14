@@ -126,7 +126,7 @@
 				P.icon_state = template.icon_state
 				P.overlays = null
 				for(var/overlay in template.overlays)
-					P.overlays += overlay
+					P.add_overlay(overlay)
 			else if(istype(template, /obj/item/photo))
 				// make duplicate photo
 				var/obj/item/photo/P = new(src.loc)

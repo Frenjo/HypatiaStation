@@ -15,6 +15,6 @@
 
 	icon_state = "[colour] baby slime dead"
 
-	overlays.Cut()
+	cut_overlays()
 
 	return ..(gibbed)

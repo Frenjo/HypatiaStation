@@ -187,7 +187,7 @@
 		if(!lowest_id)
 			lowest_id = current_identifier++
 			identical_ids.Add(lowest_id)
-			overlays.Add(image('icons/misc/debug_rebuild.dmi',, "[lowest_id]"))
+			add_overlay(image('icons/misc/debug_rebuild.dmi',, "[lowest_id]"))
 
 		for(var/turf/open/adjacent in current_adjacents)
 			adjacent_id = turfs[adjacent]
@@ -197,14 +197,14 @@
 					identical_ids[adjacent_id] = lowest_id
 
 				turfs[adjacent] = lowest_id
-				adjacent.overlays.Add(overlays[lowest_id])
+				adjacent.add_overlay(overlays[lowest_id])
 
 				sleep(5)
 
 		if(turfs[current])
 			current.overlays.Remove(overlays[turfs[current]])
 		turfs[current] = lowest_id
-		current.overlays.Add(overlays[lowest_id])
+		current.add_overlay(overlays[lowest_id])
 		sleep(5)
 
 	var/list/final_arrangement = list()
@@ -212,7 +212,7 @@
 	for(var/turf/open/current in turfs)
 		current_identifier = identical_ids[turfs[current]]
 		current.overlays.Remove(overlays[turfs[current]])
-		current.overlays.Add(overlays[current_identifier])
+		current.add_overlay(overlays[current_identifier])
 		sleep(5)
 
 		if(current_identifier > length(final_arrangement))

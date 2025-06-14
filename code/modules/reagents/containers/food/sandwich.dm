@@ -44,7 +44,7 @@
 	var/fullname = "" //We need to build this from the contents of the var.
 	var/i = 0
 
-	overlays.Cut()
+	cut_overlays()
 
 	for(var/obj/item/reagent_holder/food/snacks/O in ingredients)
 		i++
@@ -59,12 +59,12 @@
 		I.color = O.filling_color
 		I.pixel_x = pick(list(-1, 0, 1))
 		I.pixel_y = (i * 2) + 1
-		overlays += I
+		add_overlay(I)
 
 	var/image/T = new(src.icon, "sandwich_top")
 	T.pixel_x = pick(list(-1, 0, 1))
 	T.pixel_y = (length(ingredients) * 2) + 1
-	overlays += T
+	add_overlay(T)
 
 	name = lowertext("[fullname] sandwich")
 	if(length(name) > 80)

@@ -54,15 +54,15 @@
 
 /obj/machinery/power/generator/proc/updateicon()
 	if(stat & (NOPOWER|BROKEN))
-		overlays.Cut()
+		cut_overlays()
 	else
-		overlays.Cut()
+		cut_overlays()
 
 		if(lastgenlev != 0)
-			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
+			add_overlay(image('icons/obj/power.dmi', "teg-op[lastgenlev]"))
 			// Add a flashy thing because why not. -Frenjo
 			if(lastgen > 250000)
-				overlays += image('icons/obj/power.dmi', "teg-max-flash")
+				add_overlay(image('icons/obj/power.dmi', "teg-max-flash"))
 
 /obj/machinery/power/generator/process()
 	if(!circ1 || !circ2 || !anchored || stat & (BROKEN|NOPOWER))

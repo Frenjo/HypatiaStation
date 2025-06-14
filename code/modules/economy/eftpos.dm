@@ -54,7 +54,7 @@
 		if(!R.stamped)
 			R.stamped = list()
 		R.stamped += /obj/item/stamp
-		R.overlays += stampoverlay
+		R.add_overlay(stampoverlay)
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 	//by default, connect to the station account
@@ -74,7 +74,7 @@
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/small_delivery/D = new(R.loc)
 	R.forceMove(D)

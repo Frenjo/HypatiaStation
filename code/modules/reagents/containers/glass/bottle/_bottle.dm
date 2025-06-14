@@ -16,11 +16,11 @@
 		icon_state = "bottle[rand(1, 20)]"
 
 /obj/item/reagent_holder/glass/bottle/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_bottle")
-		overlays += lid
+		add_overlay(lid)
 
 
 /obj/item/reagent_holder/glass/bottle/inaprovaline

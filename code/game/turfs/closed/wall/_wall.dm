@@ -77,7 +77,7 @@
 		generate_overlays()
 
 	if(!damage)
-		overlays.Cut()
+		cut_overlays()
 		return
 
 	var/overlay = round(damage / damage_cap * length(damage_overlays)) + 1
@@ -87,8 +87,8 @@
 	if(damage_overlay && overlay == damage_overlay) //No need to update.
 		return
 
-	overlays.Cut()
-	overlays.Add(damage_overlays[overlay])
+	cut_overlays()
+	add_overlay(damage_overlays[overlay])
 	damage_overlay = overlay
 
 /turf/closed/wall/proc/generate_overlays()

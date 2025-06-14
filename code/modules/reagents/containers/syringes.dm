@@ -190,10 +190,10 @@
 /obj/item/reagent_holder/syringe/update_icon()
 	if(mode == SYRINGE_BROKEN)
 		icon_state = "broken"
-		overlays.Cut()
+		cut_overlays()
 		return
 	var/rounded_vol = round(reagents.total_volume, 5)
-	overlays.Cut()
+	cut_overlays()
 	if(ismob(loc))
 		var/injoverlay
 		switch(mode)
@@ -201,7 +201,7 @@
 				injoverlay = "draw"
 			if(SYRINGE_INJECT)
 				injoverlay = "inject"
-		overlays += injoverlay
+		add_overlay(injoverlay)
 	icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 
@@ -211,7 +211,7 @@
 		filling.icon_state = "syringe[rounded_vol]"
 
 		filling.icon += mix_colour_from_reagents(reagents.reagent_list)
-		overlays += filling
+		add_overlay(filling)
 
 /obj/item/reagent_holder/syringe/proc/syringestab(mob/living/carbon/target, mob/living/carbon/user)
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"

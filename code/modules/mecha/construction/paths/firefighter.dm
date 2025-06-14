@@ -16,7 +16,7 @@
 	holder.balloon_alert_visible("[is_firesuit ? "added" : "connected"] [used_item.name]")
 	var/icon_to_use = is_firesuit ? 'icons/obj/mecha/parts/ripley.dmi' : used_item.icon
 	var/state_to_use = "[is_firesuit ? "firesuit" : used_item.icon_state]+o"
-	holder.overlays.Add(image(icon_to_use, state_to_use))
+	holder.add_overlay(image(icon_to_use, state_to_use))
 	user.drop_item()
 	qdel(used_item)
 	return TRUE

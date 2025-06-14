@@ -42,7 +42,7 @@
 	var/image/I = image(W.icon, W, icon_state = W.icon_state)
 	I.pixel_x = x
 	I.pixel_y = y
-	overlays += I
+	add_overlay(I)
 /*
 /obj/item/firbang
 	desc = "It is set to detonate in 10 seconds."

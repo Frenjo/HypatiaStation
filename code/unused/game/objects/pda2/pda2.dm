@@ -254,8 +254,8 @@
 			for (var/mob/O in hearers(3, src.loc))
 				O.show_message(text("\icon[src] *[alert_message]*"))
 
-		src.overlays.Cut()
-		src.overlays += image('icons/obj/items/devices/pda.dmi', "pda-r")
+		src.cut_overlays()
+		add_overlay(image('icons/obj/items/devices/pda.dmi', "pda-r"))
 		return
 
 	run_program(datum/computer/file/pda_program/program)

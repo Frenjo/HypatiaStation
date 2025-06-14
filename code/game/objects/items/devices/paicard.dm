@@ -13,7 +13,7 @@
 
 /obj/item/paicard/New()
 	. = ..()
-	overlays += "pai-off"
+	add_overlay("pai-off")
 
 /obj/item/paicard/Destroy()
 	QDEL_NULL(radio)
@@ -270,35 +270,35 @@
 
 /obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
-	src.overlays += "pai-happy"
+	add_overlay("pai-happy")
 
 /obj/item/paicard/proc/removePersonality()
 	src.pai = null
-	src.overlays.Cut()
-	src.overlays += "pai-off"
+	cut_overlays()
+	add_overlay("pai-off")
 
 /obj/item/paicard/proc/setEmotion(emotion)
 	if(pai)
-		src.overlays.Cut()
+		cut_overlays()
 		switch(emotion)
 			if(1)
-				src.overlays += "pai-happy"
+				add_overlay("pai-happy")
 			if(2)
-				src.overlays += "pai-cat"
+				add_overlay("pai-cat")
 			if(3)
-				src.overlays += "pai-extremely-happy"
+				add_overlay("pai-extremely-happy")
 			if(4)
-				src.overlays += "pai-face"
+				add_overlay("pai-face")
 			if(5)
-				src.overlays += "pai-laugh"
+				add_overlay("pai-laugh")
 			if(6)
-				src.overlays += "pai-off"
+				add_overlay("pai-off")
 			if(7)
-				src.overlays += "pai-sad"
+				add_overlay("pai-sad")
 			if(8)
-				src.overlays += "pai-angry"
+				add_overlay("pai-angry")
 			if(9)
-				src.overlays += "pai-what"
+				add_overlay("pai-what")
 
 /obj/item/paicard/proc/alertUpdate()
 	var/turf/T = GET_TURF(src)

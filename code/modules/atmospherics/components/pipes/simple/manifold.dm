@@ -356,7 +356,7 @@
 	..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(isnotnull(node1) && isnotnull(node2) && isnotnull(node3) && isnotnull(node4))
 		switch(pipe_color)
 			if("red")
@@ -380,13 +380,13 @@
 		var/icon/con = new /icon('icons/obj/pipes/manifold.dmi',"manifold4w_con") //Since 4-ways are supposed to be directionless, they need an overlay instead it seems.
 
 		if(isnotnull(node1))
-			overlays.Add(new /image(con, dir = 1))
+			add_overlay(new /image(con, dir = 1))
 		if(isnotnull(node2))
-			overlays.Add(new /image(con, dir = 2))
+			add_overlay(new /image(con, dir = 2))
 		if(isnotnull(node3))
-			overlays.Add(new /image(con, dir = 4))
+			add_overlay(new /image(con, dir = 4))
 		if(isnotnull(node4))
-			overlays.Add(new /image(con, dir = 8))
+			add_overlay(new /image(con, dir = 8))
 
 		if(isnull(node1) && isnull(node2) && isnull(node3) && isnull(node4))
 			src = null

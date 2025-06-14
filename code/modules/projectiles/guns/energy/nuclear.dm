@@ -52,7 +52,7 @@
 	reliability -= round(15 / severity)
 
 /obj/item/gun/energy/gun/nuclear/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	update_charge()
 	update_reactor()
 	update_mode()
@@ -83,22 +83,22 @@
 
 /obj/item/gun/energy/gun/nuclear/proc/update_charge()
 	if(crit_fail)
-		overlays.Add("nucgun-whee")
+		add_overlay("nucgun-whee")
 		return
 	var/ratio = power_supply.charge / power_supply.maxcharge
 	ratio = round(ratio, 0.25) * 100
-	overlays.Add("nucgun-[ratio]")
+	add_overlay("nucgun-[ratio]")
 
 /obj/item/gun/energy/gun/nuclear/proc/update_reactor()
 	if(crit_fail)
-		overlays.Add("nucgun-crit")
+		add_overlay("nucgun-crit")
 		return
 	if(lightfail)
-		overlays.Add("nucgun-medium")
+		add_overlay("nucgun-medium")
 	else if((power_supply.charge / power_supply.maxcharge) <= 0.5)
-		overlays.Add("nucgun-light")
+		add_overlay("nucgun-light")
 	else
-		overlays.Add("nucgun-clean")
+		add_overlay("nucgun-clean")
 
 /obj/item/gun/energy/gun/nuclear/proc/update_mode()
-	overlays.Add("nucgun-[gun_setting]")
+	add_overlay("nucgun-[gun_setting]")

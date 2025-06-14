@@ -9,9 +9,9 @@
 
 /turf/open/proc/set_graphic(new_graphic)
 	gas_graphic = new_graphic
-	overlays.Cut()
+	cut_overlays()
 	for(var/i in gas_graphic)
-		overlays.Add(i)
+		add_overlay(i)
 
 /turf/proc/update_air_properties()
 	var/block = c_airblock(src)

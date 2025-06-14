@@ -17,7 +17,7 @@ var/global/image/mark = image('icons/Testing/Zone.dmi', icon_state = "mark")
 	if(d > 0)
 		img.dir = d
 	overlays.Remove(dbg_img)
-	overlays.Add(img)
+	add_overlay(img)
 	dbg_img = img
 
 /proc/soft_assert(thing, fail)

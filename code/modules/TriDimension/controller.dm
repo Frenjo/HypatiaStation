@@ -115,9 +115,9 @@
 					var/image/temp = image(below, dir = below.dir, layer = TURF_LAYER + 0.04)
 
 					temp.color = rgb(127, 127, 127)
-					temp.overlays.Add(below.overlays)
+					temp.add_overlay(below.overlays)
 					t_img.Add(temp)
-					T.overlays.Add(t_img)
+					T.add_overlay(t_img)
 					T.z_overlays.Add(t_img)
 
 				// get objects
@@ -129,10 +129,10 @@
 					new_list = 2
 					var/image/temp2 = image(o, dir = o.dir, layer = TURF_LAYER + 0.05 * o.layer)
 					temp2.color = rgb(127, 127, 127)
-					temp2.overlays.Add(o.overlays)
+					temp2.add_overlay(o.overlays)
 					o_img.Add(temp2)
 					// you need to add a list to .overlays or it will not display any because space
-				T.overlays.Add(o_img)
+				T.add_overlay(o_img)
 				T.z_overlays.Add(o_img)
 
 				// get mobs
@@ -146,10 +146,10 @@
 						new_list = 3
 					var/image/temp2 = image(m, dir = m.dir, layer = TURF_LAYER + 0.05 * m.layer)
 					temp2.color = rgb(127, 127, 127)
-					temp2.overlays.Add(m.overlays)
+					temp2.add_overlay(m.overlays)
 					m_img.Add(temp2)
 					// you need to add a list to .overlays or it will not display any because space
-				T.overlays.Add(m_img)
+				T.add_overlay(m_img)
 				T.z_overlays.Add(m_img)
 
 				T.overlays.Remove(below.z_overlays)
@@ -178,13 +178,13 @@
 
 						above.overlays -= above.z_overlays
 						var/image/temp = image(above, dir=above.dir, layer = 5 + 0.04)
-						above.overlays += above.z_overlays
+						above.add_overlay(above.z_overlays)
 
 						temp.alpha = 100
-						temp.overlays += above.overlays
+						temp.add_overlay(above.overlays)
 						temp.overlays -= above.z_overlays
 						t_img += temp
-						T.overlays += t_img
+						T.add_overlay(t_img)
 						T.z_overlays += t_img
 
 					// get objects
@@ -195,10 +195,10 @@
 						if(new_list < 2) new_list = 2
 						var/image/temp2 = image(o, dir=o.dir, layer = 5+0.05*o.layer)
 						temp2.alpha = 100
-						temp2.overlays += o.overlays
+						temp2.add_overlay(o.overlays)
 						o_img += temp2
 						// you need to add a list to .overlays or it will not display any because space
-					T.overlays += o_img
+					T.add_overlay(o_img)
 					T.z_overlays += o_img
 
 					// get mobs
@@ -210,10 +210,10 @@
 						if(isliving(m) && new_list < 3) new_list = 3
 						var/image/temp2 = image(m, dir=m.dir, layer = 5+0.05*m.layer)
 						temp2.alpha = 100
-						temp2.overlays += m.overlays
+						temp2.add_overlay(m.overlays)
 						m_img += temp2
 						// you need to add a list to .overlays or it will not display any because space
-					T.overlays += m_img
+					T.add_overlay(m_img)
 					T.z_overlays += m_img
 
 					T.overlays -= above.z_overlays

@@ -325,7 +325,7 @@
 
 			var/atom/myloc = src.loc
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "sawblade")
-			myloc.overlays += flicker
+			myloc.add_overlay(flicker)
 			spawn(8)
 				myloc.overlays -= flicker
 				qdel(flicker)
@@ -336,7 +336,7 @@
 
 			var/atom/myloc = src.loc
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "dart[rand(1,3)]")
-			myloc.overlays += flicker
+			myloc.add_overlay(flicker)
 			spawn(8)
 				myloc.overlays -= flicker
 				qdel(flicker)
@@ -347,7 +347,7 @@
 
 			var/atom/myloc = src.loc
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "flameburst")
-			myloc.overlays += flicker
+			myloc.add_overlay(flicker)
 			spawn(8)
 				myloc.overlays -= flicker
 				qdel(flicker)
@@ -363,7 +363,7 @@
 
 			var/atom/myloc = src.loc
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "throw[throw_dir]")
-			myloc.overlays += flicker
+			myloc.add_overlay(flicker)
 			var/turf/my_turf = GET_TURF(src)
 			if(!my_turf.density)
 				my_turf.density = TRUE

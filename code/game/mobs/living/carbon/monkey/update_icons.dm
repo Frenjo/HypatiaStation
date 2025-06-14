@@ -29,9 +29,9 @@
 /mob/living/carbon/monkey/update_icons()
 	update_hud()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	overlays.Cut()
+	cut_overlays()
 	for(var/image/I in overlays_standing)
-		overlays += I
+		add_overlay(I)
 
 	if(lying)
 		var/matrix/M = matrix()

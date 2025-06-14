@@ -78,13 +78,13 @@ Des: Removes all infected images from the alien.
 /mob/living/carbon/human/alien/queen/large/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
 	update_hud()		//TODO: remove the need for this to be here
-	overlays.Cut()
+	cut_overlays()
 	if(lying)
 		if(resting)					icon_state = "queen_sleep"
 		else						icon_state = "queen_l"
 		for(var/image/I in overlays_lying)
-			overlays += I
+			add_overlay(I)
 	else
 		icon_state = "queen_s"
 		for(var/image/I in overlays_standing)
-			overlays += I*/
+			add_overlay(I)*/

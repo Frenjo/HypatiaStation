@@ -20,10 +20,10 @@
 		icon_state = "psiphon:0"
 
 	if(isnotnull(holding))
-		overlays.Add("siphon-open")
+		add_overlay("siphon-open")
 
 	if(isnotnull(connected_port))
-		overlays.Add("siphon-connector")
+		add_overlay("siphon-connector")
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
 	if(stat & (BROKEN | NOPOWER))

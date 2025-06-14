@@ -288,8 +288,8 @@
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
 /obj/machinery/door_timer/proc/set_picture(state)
 	picture_state = state
-	overlays.Cut()
-	overlays += image('icons/obj/machines/status_display.dmi', icon_state = picture_state)
+	cut_overlays()
+	add_overlay(image('icons/obj/machines/status_display.dmi', icon_state = picture_state))
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
@@ -311,7 +311,7 @@
 		var/image/ID = image('icons/obj/machines/status_display.dmi', icon_state = char)
 		ID.pixel_x = -(d - 1) * 5 + px
 		ID.pixel_y = py
-		I.overlays += ID
+		I.add_overlay(ID)
 	return I
 
 /obj/machinery/door_timer/cell_1

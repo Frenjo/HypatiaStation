@@ -1545,7 +1545,7 @@
 					if(!P.stamped)
 						P.stamped = new
 					P.stamped += /obj/item/stamp
-					P.overlays += stampoverlay
+					P.add_overlay(stampoverlay)
 					P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 		src.owner << "Message reply to transmitted successfully."
@@ -2221,7 +2221,7 @@
 					if(isstationlevel(F.z))
 						F.name = "lava"
 						F.desc = "The floor is LAVA!"
-						F.overlays += "lava"
+						F.add_overlay("lava")
 						F.lava = 1
 
 				spawn(0)
@@ -2246,7 +2246,7 @@
 						if(isstationlevel(F.z))
 							F.name = initial(F.name)
 							F.desc = initial(F.desc)
-							F.overlays.Cut()
+							F.cut_overlays()
 							F.lava = 0
 							F.update_icon()
 					floorIsLava = 0

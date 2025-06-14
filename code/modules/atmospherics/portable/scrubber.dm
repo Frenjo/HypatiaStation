@@ -19,10 +19,10 @@
 		icon_state = "pscrubber:0"
 
 	if(isnotnull(holding))
-		overlays.Add("scrubber-open")
+		add_overlay("scrubber-open")
 
 	if(isnotnull(connected_port))
-		overlays.Add("scrubber-connector")
+		add_overlay("scrubber-connector")
 
 /obj/machinery/portable_atmospherics/scrubber/process()
 	..()

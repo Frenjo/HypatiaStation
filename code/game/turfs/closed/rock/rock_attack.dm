@@ -105,8 +105,8 @@
 	if(!archaeo_overlay && length(finds))
 		var/datum/find/F = finds[1]
 		if(F.excavation_required <= excavation_level + F.view_range)
-			archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-			overlays += archaeo_overlay
+			archaeo_overlay = "overlay_archaeo[rand(1, 3)]"
+			add_overlay(archaeo_overlay)
 
 	//there's got to be a better way to do this
 	var/update_excav_overlay = 0
@@ -123,8 +123,8 @@
 	//update overlays displaying excavation level
 	if(!(excav_overlay && excavation_level > 0) || update_excav_overlay)
 		var/excav_quadrant = round(excavation_level / 25) + 1
-		excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-		overlays += excav_overlay
+		excav_overlay = "overlay_excv[excav_quadrant]_[rand(1, 3)]"
+		add_overlay(excav_overlay)
 
 	/* Nope.
 	//extract pesky minerals while we're excavating

@@ -55,7 +55,7 @@
 	. = ..()
 
 	if(isnotnull(skin))
-		overlays.Add(image('icons/mob/bot/medibot.dmi', "medskin_[skin]"))
+		add_overlay(image('icons/mob/bot/medibot.dmi', "medskin_[skin]"))
 
 	botcard = new /obj/item/card/id(src)
 	if(!length(botcard_access))
@@ -543,7 +543,7 @@
 /obj/item/medbot_assembly/initialise()
 	. = ..()
 	if(isnotnull(skin))
-		overlays.Add("kit_skin_[skin]")
+		add_overlay("kit_skin_[skin]")
 
 /obj/item/medbot_assembly/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/pen))
@@ -563,7 +563,7 @@
 				build_step++
 				to_chat(user, SPAN_INFO("You add the health sensor to [src]."))
 				name = "first aid/robot arm/health analyser assembly"
-				overlays.Add("na_scanner")
+				add_overlay("na_scanner")
 				return TRUE
 
 		if(1)

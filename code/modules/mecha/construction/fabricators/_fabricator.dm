@@ -161,7 +161,7 @@
 	being_built = D
 	desc = "It's building \a [initial(part.name)]."
 	remove_materials(D)
-	overlays.Add("fab-active")
+	add_overlay("fab-active")
 	update_power_state(USE_POWER_ACTIVE)
 	updateUsrDialog()
 	sleep(get_construction_time_w_coeff(D))
@@ -495,7 +495,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] cannot hold more [stack.name]."))
 		return
 
-	overlays.Add("fab-load-[stack.material.icon_prefix]")
+	add_overlay("fab-load-[stack.material.icon_prefix]")
 	if(do_after(user, 1 SECOND))
 		to_chat(user, SPAN_INFO("You insert [materials.add_sheets(stack)] [stack.name] into \the [src]."))
 	else
