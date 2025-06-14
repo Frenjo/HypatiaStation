@@ -70,7 +70,7 @@
 		add_overlay(emag)
 		add_overlay(sparks)
 		spawn(6)
-			overlays.Remove(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
+			remove_overlay(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 		playsound(src, "sparks", 60, 1)
 		src.locked = 0
 		src.broken = 1
@@ -94,7 +94,7 @@
 			add_overlay(emag)
 			add_overlay(sparks)
 			spawn(6)
-				overlays.Remove(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
+				remove_overlay(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 			src.locked = 0
 	if(!opened && prob(20 / severity))

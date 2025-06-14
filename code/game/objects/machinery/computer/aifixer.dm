@@ -11,7 +11,7 @@
 
 /obj/machinery/computer/aifixer/New()
 	. = ..()
-	add_overlay(image('icons/obj/machines/computer.dmi', "ai-fixer-empty"))
+	add_overlay("ai-fixer-empty")
 
 /obj/machinery/computer/aifixer/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/aicard))
@@ -82,7 +82,7 @@
 		return
 	if(href_list["fix"])
 		src.active = 1
-		add_overlay(image('icons/obj/machines/computer.dmi', "ai-fixer-on"))
+		add_overlay("ai-fixer-on")
 		while(src.occupant.health < 100)
 			src.occupant.adjustOxyLoss(-1)
 			src.occupant.adjustFireLoss(-1)
@@ -94,12 +94,12 @@
 				src.occupant.lying = 0
 				GLOBL.dead_mob_list.Remove(src.occupant)
 				GLOBL.living_mob_list.Add(src.occupant)
-				src.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-404")
-				add_overlay(image('icons/obj/machines/computer.dmi', "ai-fixer-full"))
+				remove_overlay("ai-fixer-404")
+				add_overlay("ai-fixer-full")
 			src.updateUsrDialog()
 			sleep(10)
 		src.active = 0
-		src.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-on")
+		remove_overlay("ai-fixer-on")
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()
@@ -117,8 +117,8 @@
 		if(occupant)
 			switch(occupant.stat)
 				if(0)
-					add_overlay(image('icons/obj/machines/computer.dmi', "ai-fixer-full"))
+					add_overlay("ai-fixer-full")
 				if(2)
-					add_overlay(image('icons/obj/machines/computer.dmi', "ai-fixer-404"))
+					add_overlay("ai-fixer-404")
 		else
-			add_overlay(image('icons/obj/machines/computer.dmi', "ai-fixer-empty"))
+			add_overlay("ai-fixer-empty")

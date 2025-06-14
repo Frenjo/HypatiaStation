@@ -195,8 +195,7 @@
 	return ""
 
 /obj/machinery/status_display/proc/remove_display()
-	if(length(overlays))
-		cut_overlays()
+	cut_overlays()
 	if(maptext)
 		maptext = ""
 

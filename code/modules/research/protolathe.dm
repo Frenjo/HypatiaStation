@@ -110,7 +110,7 @@ Note: Must be placed west/left of and R&D console to function.
 	else
 		to_chat(user, SPAN_WARNING("You fail to insert the [sheets.name] into \the [src]."))
 	busy = FALSE
-	overlays.Remove("protolathe_[sheets.material.icon_prefix]")
+	remove_overlay("protolathe_[sheets.material.icon_prefix]")
 
 	updateUsrDialog()
 	return 1

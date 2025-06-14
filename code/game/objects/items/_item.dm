@@ -529,7 +529,7 @@
 /obj/item/clean_blood()
 	. = ..()
 	if(blood_overlay)
-		overlays.Remove(blood_overlay)
+		remove_overlay(blood_overlay)
 
 /obj/item/clothing/gloves/clean_blood()
 	. = ..()

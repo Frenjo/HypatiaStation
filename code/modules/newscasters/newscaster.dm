@@ -66,7 +66,7 @@
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
 			cut_overlays()
-			add_overlay(image(icon, "crack3"))
+			add_overlay("crack3")
 		return
 
 	cut_overlays() //reset overlays
@@ -79,7 +79,7 @@
 		add_overlay("newscaster_alert")
 
 	if(hitstaken > 0) //Cosmetic damage overlay
-		add_overlay(image(icon, "crack[hitstaken]"))
+		add_overlay("crack[hitstaken]")
 
 	icon_state = "newscaster_normal"
 	return

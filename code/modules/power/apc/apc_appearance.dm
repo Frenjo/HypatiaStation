@@ -1,42 +1,6 @@
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
-	if(!status_overlays)
-		status_overlays = 1
-		status_overlays_lock = new
-		status_overlays_charging = new
-		status_overlays_equipment = new
-		status_overlays_lighting = new
-		status_overlays_environ = new
-
-		status_overlays_lock.len = 2
-		status_overlays_charging.len = 3
-		status_overlays_equipment.len = 4
-		status_overlays_lighting.len = 4
-		status_overlays_environ.len = 4
-
-		status_overlays_lock[1] = image(icon, "apcox-0")	// 0=blue 1=red
-		status_overlays_lock[2] = image(icon, "apcox-1")
-
-		status_overlays_charging[1] = image(icon, "apco3-0")
-		status_overlays_charging[2] = image(icon, "apco3-1")
-		status_overlays_charging[3] = image(icon, "apco3-2")
-
-		status_overlays_equipment[1] = image(icon, "apco0-0")
-		status_overlays_equipment[2] = image(icon, "apco0-1")
-		status_overlays_equipment[3] = image(icon, "apco0-2")
-		status_overlays_equipment[4] = image(icon, "apco0-3")
-
-		status_overlays_lighting[1] = image(icon, "apco1-0")
-		status_overlays_lighting[2] = image(icon, "apco1-1")
-		status_overlays_lighting[3] = image(icon, "apco1-2")
-		status_overlays_lighting[4] = image(icon, "apco1-3")
-
-		status_overlays_environ[1] = image(icon, "apco2-0")
-		status_overlays_environ[2] = image(icon, "apco2-1")
-		status_overlays_environ[3] = image(icon, "apco2-2")
-		status_overlays_environ[4] = image(icon, "apco2-3")
-
 	var/update = check_updates()	//returns 0 if no need to update icons.
 									// 1 if we need to update the icon_state
 									// 2 if we need to update the overlays
@@ -63,21 +27,20 @@
 			icon_state = "apcewires"
 
 	if(!(update_state & UPSTATE_ALLGOOD))
-		if(length(overlays))
-			overlays = 0
-			return
+		cut_overlays()
+		return
 
 	if(update & 2)
-		if(length(overlays))
-			overlays.len = 0
+		cut_overlays()
 
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
-			add_overlay(status_overlays_lock[locked + 1])
-			add_overlay(status_overlays_charging[charging + 1])
+			var/list/to_update = list(
+				"apcox-[locked]",
+				"apco3-[charging]"
+			)
 			if(operating)
-				add_overlay(status_overlays_equipment[equipment + 1])
-				add_overlay(status_overlays_lighting[lighting + 1])
-				add_overlay(status_overlays_environ[environ + 1])
+				to_update.Add("apco0-[equipment]", "apco1-[lighting]", "apco2-[environ]")
+			add_overlay(to_update)
 
 	if(update & 3)
 		if(update_state & UPSTATE_BLUESCREEN)

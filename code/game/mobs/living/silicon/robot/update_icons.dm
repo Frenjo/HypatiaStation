@@ -18,7 +18,7 @@
 		eye_lights.appearance_flags = PIXEL_SCALE
 		add_overlay(eye_lights)
 	else
-		overlays.Remove(eye_lights)
+		remove_overlay(eye_lights)
 
 	if(opened && custom_sprite) // Custom borgs also have custom panels, heh.
 		if(wiresexposed)

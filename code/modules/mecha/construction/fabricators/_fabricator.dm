@@ -166,7 +166,7 @@
 	updateUsrDialog()
 	sleep(get_construction_time_w_coeff(D))
 	update_power_state(USE_POWER_IDLE)
-	overlays.Remove("fab-active")
+	remove_overlay("fab-active")
 	desc = initial(desc)
 
 	var/obj/item/output = new D.build_path()
@@ -500,7 +500,7 @@
 		to_chat(user, SPAN_INFO("You insert [materials.add_sheets(stack)] [stack.name] into \the [src]."))
 	else
 		to_chat(user, SPAN_WARNING("You fail to insert the [stack.name] into \the [src]."))
-	overlays.Remove("fab-load-[stack.material.icon_prefix]")
+	remove_overlay("fab-load-[stack.material.icon_prefix]")
 
 // Returns TRUE if the internal container has all of the required material amounts.
 /obj/machinery/robotics_fabricator/proc/has_materials(datum/design/D)

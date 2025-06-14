@@ -24,11 +24,11 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 
 /obj/item/gps/emp_act(severity)
 	emped = TRUE
-	overlays.Remove("working")
+	remove_overlay("working")
 	add_overlay("emp")
 	spawn(300)
 		emped = FALSE
-		overlays.Remove("emp")
+		remove_overlay("emp")
 		add_overlay("working")
 
 /obj/item/gps/attack_self(mob/user)

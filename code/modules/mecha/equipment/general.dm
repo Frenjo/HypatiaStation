@@ -17,7 +17,7 @@
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH)
 
 /obj/item/mecha_equipment/repair_droid/Destroy()
-	chassis?.overlays.Remove(droid_overlay)
+	chassis?.remove_overlay(droid_overlay)
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
@@ -27,7 +27,7 @@
 	M.add_overlay(droid_overlay)
 
 /obj/item/mecha_equipment/repair_droid/detach()
-	chassis.overlays.Remove(droid_overlay)
+	chassis.remove_overlay(droid_overlay)
 	GLOBL.processing_objects.Remove(src)
 	. = ..()
 
@@ -37,7 +37,7 @@
 /obj/item/mecha_equipment/repair_droid/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_repairs"])
-		chassis.overlays.Remove(droid_overlay)
+		chassis.remove_overlay(droid_overlay)
 		if(equip_ready)
 			GLOBL.processing_objects.Add(src)
 			droid_overlay = new /icon(icon, icon_state = "repair_droid_a")

@@ -116,7 +116,7 @@
 				A.control_disabled = !A.control_disabled
 				to_chat(A, "The intelicard's wireless port has been [A.control_disabled ? "disabled" : "enabled"]!")
 				if(A.control_disabled)
-					overlays -= "aicard-on"
+					remove_overlay("aicard-on")
 				else
 					add_overlay("aicard-on")
 	attack_self(U)

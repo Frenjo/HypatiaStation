@@ -395,7 +395,7 @@
 				for (var/mob/O in hearers(3, pda.loc))
 					O.show_message(text("\icon[pda] *[pda.ttone]*"))
 
-			pda.overlays = null
+			pda.cut_overlays()
 			pda.add_overlay(image('icons/obj/items/devices/pda.dmi', "pda-r"))
 		else
 			var/list/href_list = list()

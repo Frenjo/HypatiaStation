@@ -67,9 +67,9 @@
 	. = ..()
 	cut_overlays()
 	if(stat & BROKEN)
-		add_overlay(image(icon, "solar_panel-b", layer = FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "solar_panel-b", layer = FLY_LAYER))
 	else
-		add_overlay(image(icon, "solar_panel", layer = FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "solar_panel", layer = FLY_LAYER))
 		set_dir(angle2dir(adir))
 
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY

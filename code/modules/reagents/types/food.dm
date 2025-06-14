@@ -354,7 +354,7 @@
 			return
 		T.wet = 1
 		if(isnotnull(T.wet_overlay))
-			T.overlays.Remove(T.wet_overlay)
+			T.remove_overlay(T.wet_overlay)
 			T.wet_overlay = null
 		T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
 		T.add_overlay(T.wet_overlay)
@@ -366,7 +366,7 @@
 				return
 			T.wet = 0
 			if(isnotnull(T.wet_overlay))
-				T.overlays.Remove(T.wet_overlay)
+				T.remove_overlay(T.wet_overlay)
 				T.wet_overlay = null
 	var/obj/fire/hotspot = locate(/obj/fire) in T
 	if(isnotnull(hotspot))

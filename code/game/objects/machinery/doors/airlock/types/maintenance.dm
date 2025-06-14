@@ -28,9 +28,9 @@
 		if(p_open || welded)
 			overlays = list()
 			if(p_open)
-				add_overlay(image(icon, "panel_open"))
+				add_overlay("panel_open")
 			if(welded)
-				add_overlay(image(icon, "welded"))
+				add_overlay("welded")
 	else
 		icon_state = "door_open"
 

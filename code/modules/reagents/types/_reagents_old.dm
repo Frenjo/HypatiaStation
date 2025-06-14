@@ -215,7 +215,7 @@ datum
 					if(T.wet >= 1) return
 					T.wet = 1
 					if(T.wet_overlay)
-						T.overlays -= T.wet_overlay
+						T.remove_overlay(T.wet_overlay)
 						T.wet_overlay = null
 					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
 					T.add_overlay(T.wet_overlay)
@@ -225,7 +225,7 @@ datum
 						if(T.wet >= 2) return
 						T.wet = 0
 						if(T.wet_overlay)
-							T.overlays -= T.wet_overlay
+							T.remove_overlay(T.wet_overlay)
 							T.wet_overlay = null
 
 				for(var/mob/living/carbon/slime/M in T)
@@ -289,7 +289,7 @@ datum
 						if (!istype(T)) return
 						T.wet = 0
 						if(T.wet_overlay)
-							T.overlays -= T.wet_overlay
+							T.remove_overlay(T.wet_overlay)
 							T.wet_overlay = null
 						return
 
@@ -2280,7 +2280,7 @@ datum
 					if(T.wet >= 1) return
 					T.wet = 1
 					if(T.wet_overlay)
-						T.overlays -= T.wet_overlay
+						T.remove_overlay(T.wet_overlay)
 						T.wet_overlay = null
 					T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
 					T.add_overlay(T.wet_overlay)
@@ -2290,7 +2290,7 @@ datum
 						if(T.wet >= 2) return
 						T.wet = 0
 						if(T.wet_overlay)
-							T.overlays -= T.wet_overlay
+							T.remove_overlay(T.wet_overlay)
 							T.wet_overlay = null
 				var/hotspot = (locate(/obj/fire) in T)
 				if(hotspot)

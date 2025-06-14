@@ -315,7 +315,7 @@ area
 			if(!src || !src.ul_Lighting)
 				return
 
-			overlays -= ul_Overlay
+			remove_overlay(ul_Overlay)
 
 			LightLevelRed = Red
 			LightLevelGreen = Green

@@ -52,7 +52,7 @@
 		t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 		if(isnotnull(t))
 			name = "body bag - [t]"
-			add_overlay(image(icon, "bodybag_label"))
+			add_overlay("bodybag_label")
 		else
 			name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri

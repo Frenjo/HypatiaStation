@@ -223,7 +223,7 @@
 	mymob.flash.layer = 17
 
 	mymob.zone_sel = new /atom/movable/screen/zone_sel( null )
-	mymob.zone_sel.overlays = null
+	mymob.zone_sel.cut_overlays()
 	mymob.zone_sel.add_overlay(image(icon = 'icons/hud/zone_sel.dmi', icon_state = "[mymob.zone_sel.selecting]"))
 
 	//Handle the gun settings buttons

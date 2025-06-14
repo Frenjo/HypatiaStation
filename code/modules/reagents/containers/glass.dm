@@ -206,8 +206,7 @@
 		add_overlay(filling_overlay)
 
 	if(!is_open_container())
-		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		add_overlay(lid)
+		add_overlay(mutable_appearance(icon, "lid_[initial(icon_state)]"))
 
 
 /obj/item/reagent_holder/glass/beaker/large
@@ -288,8 +287,7 @@
 /obj/item/reagent_holder/glass/bucket/update_icon()
 	cut_overlays()
 	if(!is_open_container())
-		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		add_overlay(lid)
+		add_overlay(mutable_appearance(icon, "lid_[initial(icon_state)]"))
 
 // vials are defined twice, what?
 /*

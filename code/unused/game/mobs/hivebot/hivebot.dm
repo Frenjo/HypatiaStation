@@ -277,9 +277,9 @@
 	src.cut_overlays()
 
 	if(src.stat == 0)
-		src.add_overlay("eyes")
+		add_overlay("eyes")
 	else
-		src.overlays -= "eyes"
+		remove_overlay("eyes")
 
 
 /mob/living/silicon/hivebot/proc/installed_modules()

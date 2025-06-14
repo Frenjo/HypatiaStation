@@ -218,11 +218,11 @@
 	icon_state = "vialbox[total_contents]"
 	cut_overlays()
 	if(!broken)
-		add_overlay(image(icon, src, "led[locked]"))
+		add_overlay("led[locked]")
 		if(locked)
-			add_overlay(image(icon, src, "cover"))
+			add_overlay("cover")
 	else
-		add_overlay(image(icon, src, "ledb"))
+		add_overlay("ledb")
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)
 	. = ..()

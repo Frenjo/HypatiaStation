@@ -193,7 +193,7 @@
 			adjacent_id = turfs[adjacent]
 			if(adjacent_id != lowest_id)
 				if(adjacent_id)
-					adjacent.overlays.Remove(overlays[adjacent_id])
+					adjacent.remove_overlay(overlays[adjacent_id])
 					identical_ids[adjacent_id] = lowest_id
 
 				turfs[adjacent] = lowest_id
@@ -202,7 +202,7 @@
 				sleep(5)
 
 		if(turfs[current])
-			current.overlays.Remove(overlays[turfs[current]])
+			current.remove_overlay(overlays[turfs[current]])
 		turfs[current] = lowest_id
 		current.add_overlay(overlays[lowest_id])
 		sleep(5)
@@ -211,7 +211,7 @@
 
 	for(var/turf/open/current in turfs)
 		current_identifier = identical_ids[turfs[current]]
-		current.overlays.Remove(overlays[turfs[current]])
+		current.remove_overlay(overlays[turfs[current]])
 		current.add_overlay(overlays[current_identifier])
 		sleep(5)
 
@@ -228,7 +228,7 @@
 	src << "There are [length(final_arrangement)] unique segments."
 
 	for(var/turf/current in turfs)
-		current.overlays.Remove(overlays)
+		current.remove_overlay(overlays)
 
 	return final_arrangement*/
 

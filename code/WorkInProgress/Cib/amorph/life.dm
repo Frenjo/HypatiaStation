@@ -389,7 +389,7 @@
 
 			if (src.sleep)
 				src.sleep.icon_state = text("sleep[]", src.sleeping > 0 ? 1 : 0)
-				src.sleep.overlays = null
+				src.sleep.cut_overlays()
 				if(src.sleeping_willingly)
 					src.sleep.add_overlay(icon(src.sleep.icon, "sleep_willing"))
 			if (src.rest) src.rest.icon_state = text("rest[]", src.resting)

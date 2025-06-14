@@ -40,10 +40,10 @@
 	if(locked)
 		if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && (!emagged))
 			emagged = 1
-			add_overlay(image(icon, icon_sparking))
+			add_overlay(icon_sparking)
 			sleep(6)
-			overlays = null
-			add_overlay(image(icon, icon_locking))
+			cut_overlays()
+			add_overlay(icon_locking)
 			locked = 0
 			if(istype(W, /obj/item/melee/energy/blade))
 				make_sparks(5, FALSE, loc)
@@ -115,7 +115,7 @@
 				l_set = 1
 			else if ((code == l_code) && (emagged == 0) && (l_set == 1))
 				locked = 0
-				overlays = null
+				cut_overlays()
 				add_overlay(icon_opened)
 				code = null
 			else
@@ -123,7 +123,7 @@
 		else
 			if ((href_list["type"] == "R") && (emagged == 0) && (!l_setshort))
 				locked = 1
-				overlays = null
+				cut_overlays()
 				code = null
 				close(usr)
 			else

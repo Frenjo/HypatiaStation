@@ -124,7 +124,7 @@
 				P.info = template:info
 				P.stamped = template:stamped
 				P.icon_state = template.icon_state
-				P.overlays = null
+				P.cut_overlays()
 				for(var/overlay in template.overlays)
 					P.add_overlay(overlay)
 			else if(istype(template, /obj/item/photo))

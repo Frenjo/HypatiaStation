@@ -166,8 +166,8 @@
 
 /obj/multiz/ladder/hatch/New()
 	. = ..()
-	red_overlay = image(icon, "red-ladderlight")
-	green_overlay = image(icon, "green-ladderlight")
+	red_overlay = "red-ladderlight"
+	green_overlay = "green-ladderlight"
 
 /obj/multiz/ladder/hatch/attack_hand(var/mob/M)
 	if(!target || !isturf(target.loc))
@@ -195,12 +195,12 @@
 			M.visible_message(SPAN_INFO("\The [M] scurries [target.z == adjacent_to_me["up"] ? "up" : "down"] \the [src]!"), "You scramble [target.z == adjacent_to_me["up"] ? "up" : "down"] \the [src]!", "You hear some grunting, and a hatch sealing.")
 			M.Move(target.loc)
 		flick(top_icon_state_close, top_hatch)
-		bottom_hatch.overlays -= green_overlay
+		bottom_hatch.remove_overlay(green_overlay)
 		bottom_hatch.add_overlay(red_overlay)
 
 		spawn(7)
 			top_hatch.icon_state = top_icon_state
-			bottom_hatch.overlays -= red_overlay
+			bottom_hatch.remove_overlay(red_overlay)
 			active = 0
 */
 

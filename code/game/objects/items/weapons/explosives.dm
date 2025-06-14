@@ -87,7 +87,7 @@
 		else
 			target.ex_act(1)
 	if(target)
-		target.overlays -= plastic_overlay
+		target.remove_overlay(plastic_overlay)
 	qdel(src)
 
 /obj/item/plastique/attack(mob/M, mob/user, def_zone)

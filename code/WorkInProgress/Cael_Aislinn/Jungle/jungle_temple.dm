@@ -327,7 +327,7 @@
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "sawblade")
 			myloc.add_overlay(flicker)
 			spawn(8)
-				myloc.overlays -= flicker
+				myloc.remove_overlay(flicker)
 				qdel(flicker)
 			//flick("sawblade",src)
 		if("poison_dart")
@@ -338,7 +338,7 @@
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "dart[rand(1,3)]")
 			myloc.add_overlay(flicker)
 			spawn(8)
-				myloc.overlays -= flicker
+				myloc.remove_overlay(flicker)
 				qdel(flicker)
 			//flick("dart[rand(1,3)]",src)
 		if("flame_burst")
@@ -349,7 +349,7 @@
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "flameburst")
 			myloc.add_overlay(flicker)
 			spawn(8)
-				myloc.overlays -= flicker
+				myloc.remove_overlay(flicker)
 				qdel(flicker)
 			//flick("flameburst",src)
 		if("plasma_gas")
@@ -370,7 +370,7 @@
 				spawn(8)
 					my_turf.density = FALSE
 			spawn(8)
-				myloc.overlays -= flicker
+				myloc.remove_overlay(flicker)
 				qdel(flicker)
 
 			var/dist = rand(1, 5)

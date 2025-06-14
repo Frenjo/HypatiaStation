@@ -46,13 +46,13 @@
 		return
 
 	if(output_attempt)
-		add_overlay(image(icon, "[icon_state]_outputting"))
+		add_overlay("[icon_state]_outputting")
 	if(input_attempt)
-		add_overlay(image(icon, "[icon_state]_charging"))
+		add_overlay("[icon_state]_charging")
 
 	var/clevel = chargedisplay()
 	if(clevel > 0)
-		add_overlay(image(icon, "[icon_state]_og[clevel]"))
+		add_overlay("[icon_state]_og[clevel]")
 
 /obj/machinery/power/smes/cell_rack/chargedisplay()
 	return round(4 * charge/(capacity ? capacity : 5e6))
@@ -115,7 +115,7 @@
 /obj/machinery/power/smes/cell_rack/makeshift/update_icon()
 	. = ..()
 	if(overcharge_percent > 100)
-		add_overlay(image(icon, "[icon_state]_overcharge"))
+		add_overlay("[icon_state]_overcharge")
 
 //This mess of if-elses and magic numbers handles what happens if the engies don't pay attention and let it eat too much charge
 //What happens depends on how much capacity has the ghetto smes and how much it is overcharged.

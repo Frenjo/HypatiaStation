@@ -17,10 +17,8 @@
 
 /obj/item/reagent_holder/glass/bottle/update_icon()
 	cut_overlays()
-
 	if(!is_open_container())
-		var/image/lid = image(icon, src, "lid_bottle")
-		add_overlay(lid)
+		add_overlay(mutable_appearance(icon, "lid_bottle"))
 
 
 /obj/item/reagent_holder/glass/bottle/inaprovaline

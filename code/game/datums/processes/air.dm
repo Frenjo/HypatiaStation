@@ -157,7 +157,7 @@ PROCESS_DEF(air)
 			T.post_update_air_properties()
 			T.needs_air_update = FALSE
 			#ifdef ZASDBG
-			T.overlays.Remove(mark)
+			T.remove_overlay(mark)
 			updated++
 			#endif
 			CHECK_TICK

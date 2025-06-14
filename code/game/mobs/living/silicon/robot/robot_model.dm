@@ -96,7 +96,7 @@
 	else
 		icon_state = model_sprites[model_sprites[1]]
 
-	overlays.Remove("eyes")
+	remove_overlay("eyes")
 	updateicon()
 	to_chat(src, "Your icon has been set. You now require a model reset to change it.")
 

@@ -165,7 +165,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 			if(T.wet < 1)
 				T.wet = TRUE
 				if(T.wet_overlay)
-					T.overlays -= T.wet_overlay
+					T.remove_overlay(T.wet_overlay)
 					T.wet_overlay = null
 				T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
 				T.add_overlay(T.wet_overlay)
@@ -173,7 +173,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 					if(istype(T) && T.wet < 2)
 						T.wet = FALSE
 						if(T.wet_overlay)
-							T.overlays -= T.wet_overlay
+							T.remove_overlay(T.wet_overlay)
 							T.wet_overlay = null
 	if(oddbutton && prob(5))
 		visible_message("Something flies out of [src]. He seems to be acting oddly.")

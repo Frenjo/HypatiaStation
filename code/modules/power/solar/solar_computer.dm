@@ -69,7 +69,8 @@
 	icon_state = "solar"
 	cut_overlays()
 	if(cdir > -1)
-		add_overlay(image('icons/obj/machines/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
+		set_dir(angle2dir(cdir))
+		add_overlay(mutable_appearance(icon, "solcon-o", layer = FLY_LAYER))
 	return
 
 /obj/machinery/power/solar_control/attack_ai(mob/user)

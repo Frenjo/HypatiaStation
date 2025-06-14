@@ -287,7 +287,7 @@ area
 			luminosity = 1
 
 		if(lighting_overlay)
-			overlays -= lighting_overlay
+			remove_overlay(lighting_overlay)
 			lighting_overlay.icon_state = "[light]"
 		else
 			lighting_overlay = image(LIGHTING_ICON, , num2text(light), LIGHTING_LAYER)

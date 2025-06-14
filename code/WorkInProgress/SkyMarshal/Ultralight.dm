@@ -333,7 +333,7 @@ area/proc/ul_Light(var/Red = LightLevelRed, var/Green = LightLevelGreen, var/Blu
 	if(!src || !src.ul_Lighting)
 		return
 
-	overlays -= ul_Overlay
+	remove_overlay(ul_Overlay)
 	if(LightLevels)
 		if(Red < LightLevels["Red"])
 			Red = LightLevels["Red"]

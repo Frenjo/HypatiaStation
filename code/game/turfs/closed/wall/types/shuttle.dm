@@ -96,7 +96,7 @@
 
 /turf/closed/wall/shuttle/corner/exterior/proc/reset_overlay()
 	if(isnotnull(corner_overlay))
-		overlays.Remove(corner_overlay)
+		remove_overlay(corner_overlay)
 	else
 		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state)
 		corner_overlay.plane = TURF_PLANE

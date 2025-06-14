@@ -23,7 +23,7 @@
 	shield.adjust_health(-200)
 
 /obj/item/mecha_equipment/shield_droid/Destroy()
-	chassis.overlays.Remove(drone_overlay)
+	chassis.remove_overlay(drone_overlay)
 	shield.forceMove(src)
 	shield.destroy_shields()
 	shield:my_tool = null
@@ -42,7 +42,7 @@
 		M.add_overlay(drone_overlay)
 
 /obj/item/mecha_equipment/shield_droid/detach()
-	chassis.overlays.Remove(drone_overlay)
+	chassis.remove_overlay(drone_overlay)
 	. = ..()
 	shield.destroy_shields()
 	shield:my_mecha = null

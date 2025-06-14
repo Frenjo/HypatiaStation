@@ -57,7 +57,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 
 /obj/item/proc/decontaminate()
 	contaminated = FALSE
-	overlays.Remove(contamination_overlay)
+	remove_overlay(contamination_overlay)
 
 /mob/proc/contaminate()
 

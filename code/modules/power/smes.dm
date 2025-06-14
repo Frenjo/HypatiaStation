@@ -87,17 +87,17 @@
 	if(stat & BROKEN)
 		return
 
-	add_overlay(image(icon, "smes-op[outputting]"))
+	add_overlay("smes-op[outputting]")
 
 	if(inputting)
-		add_overlay(image(icon, "smes-oc1"))
+		add_overlay("smes-oc1")
 	else
 		if(input_attempt)
-			add_overlay(image(icon, "smes-oc0"))
+			add_overlay("smes-oc0")
 
 	var/clevel = chargedisplay()
 	if(clevel > 0)
-		add_overlay(image(icon, "smes-og[clevel]"))
+		add_overlay("smes-og[clevel]")
 	return
 
 /obj/machinery/power/smes/proc/chargedisplay()

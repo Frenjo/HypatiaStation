@@ -100,7 +100,7 @@
 			continue
 
 		if(isnotnull(T.z_overlays))
-			T.overlays.Remove(T.z_overlays)
+			T.remove_overlay(T.z_overlays)
 			T.z_overlays.Remove(T.z_overlays)
 		else
 			T.z_overlays = list()
@@ -152,7 +152,7 @@
 				T.add_overlay(m_img)
 				T.z_overlays.Add(m_img)
 
-				T.overlays.Remove(below.z_overlays)
+				T.remove_overlay(below.z_overlays)
 				T.z_overlays.Remove(below.z_overlays)
 
 		// this is sadly impossible to use right now
@@ -176,13 +176,13 @@
 						var/image/t_img = list()
 						if(new_list < 1) new_list = 1
 
-						above.overlays -= above.z_overlays
+						above.remove_overlay(above.z_overlays)
 						var/image/temp = image(above, dir=above.dir, layer = 5 + 0.04)
 						above.add_overlay(above.z_overlays)
 
 						temp.alpha = 100
 						temp.add_overlay(above.overlays)
-						temp.overlays -= above.z_overlays
+						temp.remove_overlay(above.z_overlays)
 						t_img += temp
 						T.add_overlay(t_img)
 						T.z_overlays += t_img
@@ -216,7 +216,7 @@
 					T.add_overlay(m_img)
 					T.z_overlays += m_img
 
-					T.overlays -= above.z_overlays
+					T.remove_overlay(above.z_overlays)
 					T.z_overlays -= above.z_overlays*/
 
 		L.Remove(T)
