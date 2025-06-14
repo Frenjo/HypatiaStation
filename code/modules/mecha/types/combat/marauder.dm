@@ -97,8 +97,9 @@
 
 	if(get_charge() > 0)
 		thrusters = !thrusters
+		balloon_alert(occupant, "[thrusters ? "en" : "dis"]abled thrusters")
+		send_byjax(occupant, "exosuit.browser", "thrusters_command", "[thrusters ? "Dis" : "En"]able Thrusters")
 		log_message("Toggled thrusters.")
-		occupant_message(SPAN(thrusters ? "info" : "warning", "Thrusters [thrusters ? "en" : "dis"]abled."))
 
 /obj/mecha/combat/marauder/verb/smoke()
 	set category = "Exosuit Interface"
@@ -128,8 +129,9 @@
 		return
 
 	zoom = !zoom
+	balloon_alert(occupant, "[zoom ? "en" : "dis"]abled zoom mode")
+	send_byjax(occupant, "exosuit.browser", "zoom_command", "[zoom ? "Dis" : "En"]able Zoom Mode")
 	log_message("Toggled zoom mode.")
-	occupant_message(SPAN(zoom ? "info" : "warning", "Zoom mode [zoom ? "en" : "dis"]abled."))
 	if(zoom)
 		occupant.client.view = 12
 		occupant << sound('sound/mecha/voice/image_enh.ogg', volume = 50)
@@ -144,17 +146,17 @@
 
 /obj/mecha/combat/marauder/get_stats_part()
 	. = ..()
-	. += {"<b>Smoke:</b> [smoke]
+	. += {"<b>Thrusters:</b> [thrusters ? "enabled" : "disabled"]
 		<br>
-		<b>Thrusters:</b> [thrusters?"on":"off"]
+		<b>Smoke:</b> [smoke]
 	"}
 
 /obj/mecha/combat/marauder/get_commands()
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];toggle_thrusters=1'>Toggle Thrusters</a><br>
-		<a href='byond://?src=\ref[src];toggle_zoom=1'>Toggle Zoom Mode</a><br>
+		<a href='byond://?src=\ref[src];thrusters=1'><span id="thrusters_command">[thrusters ? "Dis" : "En"]able Thrusters</span></a><br>
+		<a href='byond://?src=\ref[src];zoom=1'><span id="zoom_command">[zoom ? "Dis" : "En"]able Zoom Mode</span></a><br>
 		<a href='byond://?src=\ref[src];smoke=1'>Smoke</a>
 		</div>
 		</div>
@@ -163,12 +165,12 @@
 
 /obj/mecha/combat/marauder/Topic(href, href_list)
 	. = ..()
-	if(href_list["toggle_thrusters"])
+	if(href_list["thrusters"])
 		toggle_thrusters()
+	if(href_list["zoom"])
+		zoom()
 	if(href_list["smoke"])
 		smoke()
-	if(href_list["toggle_zoom"])
-		zoom()
 
 /obj/mecha/combat/marauder/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

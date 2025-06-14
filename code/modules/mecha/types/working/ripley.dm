@@ -220,7 +220,7 @@
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];toggle_flashers=1'><span id="flashers_command">[flashers ? "Dis" : "En"]able Flashers</span></a>
+		<a href='byond://?src=\ref[src];flashers=1'><span id="flashers_command">[flashers ? "Dis" : "En"]able Flashers</span></a>
 		</div>
 		</div>
 	"}
@@ -228,7 +228,7 @@
 
 /obj/mecha/working/ripley/paddy/Topic(href, href_list)
 	. = ..()
-	if(href_list["toggle_flashers"])
+	if(href_list["flashers"])
 		toggle_flashers()
 
 /obj/mecha/working/ripley/paddy/verb/toggle_flashers()
@@ -241,6 +241,6 @@
 		return
 
 	flashers = !flashers
-	balloon_alert(occupant, "flashers [flashers ? "activated" : "disabled"]")
+	balloon_alert(occupant, "[flashers ? "en" : "dis"]abled flashers")
 	send_byjax(occupant, "exosuit.browser", "flashers_command", "[flashers ? "Dis" : "En"]able Flashers")
 	update_overlays()

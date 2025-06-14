@@ -20,7 +20,7 @@
 	var/initial_pixel_y
 
 	var/datum/effect/system/ion_trail_follow/ion_trail
-	var/stabilization_enabled = TRUE
+	var/stabilisation = TRUE
 
 /obj/mecha/working/hoverpod/New()
 	. = ..()
@@ -33,35 +33,39 @@
 	QDEL_NULL(ion_trail)
 	return ..()
 
-//Modified phazon code
-/obj/mecha/working/hoverpod/Topic(href, href_list)
+/obj/mecha/working/hoverpod/get_stats_part()
 	. = ..()
-	if(href_list["toggle_stabilization"])
-		stabilization_enabled = !stabilization_enabled
-		send_byjax(occupant, "exosuit.browser", "stabilization_command", "[stabilization_enabled ? "Dis" : "En"]able thruster stabilization")
-		occupant_message(SPAN_INFO("Thruster stabilization [stabilization_enabled ? "enabled" : "disabled"]."))
-		return
+	. += "<b>Thruster Stabilisation: [stabilisation ? "enabled" : "disabled"]</b>"
 
 /obj/mecha/working/hoverpod/get_commands()
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled ? "Dis" : "En"]able Thruster Stabilisation</span></a>
+		<a href='byond://?src=\ref[src];stabilisation=1'><span id="stabilisation_command">[stabilisation ? "Dis" : "En"]able Thruster Stabilisation</span></a>
 		<br>
 		</div>
 		</div>
 	"}
 	. += ..()
 
+//Modified phazon code
+/obj/mecha/working/hoverpod/Topic(href, href_list)
+	. = ..()
+	if(href_list["stabilisation"])
+		stabilisation = !stabilisation
+		balloon_alert(occupant, "[stabilisation ? "en" : "dis"]abled stabilisation")
+		send_byjax(occupant, "exosuit.browser", "stabilisation_command", "[stabilisation ? "Dis" : "En"]able Thruster Stabilisation")
+		return
+
 //No space drifting
 /obj/mecha/working/hoverpod/check_for_support()
-	//does the hoverpod have enough charge left to stabilize itself?
+	//does the hoverpod have enough charge left to stabilise itself?
 	if(!has_charge(step_energy_drain))
 		ion_trail.stop()
 	else
 		if(!ion_trail.on)
 			ion_trail.start()
-		if(stabilization_enabled)
+		if(stabilisation)
 			return TRUE
 
 	return ..()

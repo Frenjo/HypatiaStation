@@ -34,9 +34,32 @@
 	else
 		. = ..()
 
+/obj/mecha/combat/phazon/mechstep(direction)
+	. = ..()
+	if(. && phasing)
+		do_phasing_effects()
+
+/obj/mecha/combat/phazon/mechsteprand()
+	. = ..()
+	if(. && phasing)
+		do_phasing_effects()
+
+/obj/mecha/combat/phazon/proc/phase()
+	if(can_move)
+		can_move = FALSE
+		forceMove(get_step(src, dir))
+		use_power(phasing_energy_drain)
+		sleep(step_in * 3)
+		can_move = TRUE
+
+/obj/mecha/combat/phazon/proc/do_phasing_effects()
+	// This mostly replicates the original appearance of the manual method as closely as I possibly can.
+	animate(get_filter("phasing"), size = 2, time = 3, flags = ANIMATION_END_NOW)
+	animate(size = 0, time = 2)
+
 /obj/mecha/combat/phazon/click_action(atom/target, mob/user)
 	if(phasing)
-		occupant_message(SPAN_WARNING("Unable to interact with objects while phasing."))
+		balloon_alert(occupant, "not while phasing!")
 		return
 	return ..()
 
@@ -48,7 +71,7 @@
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];toggle_phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
+		<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
 		<br>
 		<a href='byond://?src=\ref[src];switch_damage_type=1'>Change Melee Damage Type</a><br>
 		</div>
@@ -58,21 +81,23 @@
 
 /obj/mecha/combat/phazon/Topic(href, href_list)
 	. = ..()
+	if(href_list["phasing"])
+		toggle_phasing()
 	if(href_list["switch_damage_type"])
 		switch_damage_type()
-	if(href_list["toggle_phasing"])
-		toggle_phasing()
 
-/obj/mecha/combat/phazon/proc/phase()
-	if(can_move)
-		can_move = FALSE
-		// This mostly replicates the original appearance of the manual method as closely as I possibly can.
-		animate(get_filter("phasing"), size = 2, time = 3, flags = ANIMATION_END_NOW)
-		animate(size = 0, time = 2)
-		forceMove(get_step(src, dir))
-		use_power(phasing_energy_drain)
-		sleep(step_in * 3)
-		can_move = TRUE
+/obj/mecha/combat/phazon/verb/toggle_phasing()
+	set category = "Exosuit Interface"
+	set name = "Toggle Phasing"
+	set popup_menu = FALSE
+	set src = usr.loc
+
+	if(usr != occupant)
+		return
+
+	phasing = !phasing
+	balloon_alert(occupant, "[phasing ? "en" : "dis"]abled phasing")
+	send_byjax(occupant, "exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able Phasing")
 
 /obj/mecha/combat/phazon/verb/switch_damage_type()
 	set category = "Exosuit Interface"
@@ -92,19 +117,6 @@
 		if("Toxin")
 			damtype = "tox"
 	occupant_message(SPAN_INFO("Melee damage type switched to [lowertext(new_damtype)]."))
-
-/obj/mecha/combat/phazon/verb/toggle_phasing()
-	set category = "Exosuit Interface"
-	set name = "Toggle Phasing"
-	set popup_menu = FALSE
-	set src = usr.loc
-
-	if(usr != occupant)
-		return
-
-	phasing = !phasing
-	send_byjax(occupant, "exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able phasing")
-	occupant_message("<font color=\"[phasing ? "#00f\">En" : "#f00\">Dis"]abled phasing.</font>")
 
 // Dark Phazon
 // This is the new variant to replace the old pre-equipped/pre-constructable version for admin shenanigans.

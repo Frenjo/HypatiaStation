@@ -47,10 +47,18 @@
 		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
 	return TRUE
 
-/obj/mecha/combat/eidolon/Topic(href, list/href_list)
+/obj/mecha/combat/eidolon/go_out()
 	. = ..()
-	if(href_list["toggle_ball_mode"])
+	if(isnotnull(occupant))
+		return
+	if(rolling)
 		toggle_ball_mode()
+
+/obj/mecha/combat/eidolon/mechstep(direction) // No strafing when rolling, also looping movement sound.
+	if(!rolling)
+		step_loop = (step_loop++) % 3
+		step_sound = "sound/mecha/movement/eidolon/sbdwalk[step_loop].ogg"
+	. = ..()
 
 /obj/mecha/combat/eidolon/get_stats_part()
 	. = ..()
@@ -60,23 +68,15 @@
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];toggle_ball_mode=1'>Toggle Ball Mode</a>
+		<a href='byond://?src=\ref[src];ball_mode=1'><span id="ball_mode_command">[rolling ? "Dis" : "En"]able Ball Mode</span></a>
 		</div>
 		</div>
 	"}
 	. += ..()
 
-/obj/mecha/combat/eidolon/mechstep(direction) // No strafing when rolling, also looping movement sound.
-	if(!rolling)
-		step_loop = (step_loop++) % 3
-		step_sound = "sound/mecha/movement/eidolon/sbdwalk[step_loop].ogg"
+/obj/mecha/combat/eidolon/Topic(href, list/href_list)
 	. = ..()
-
-/obj/mecha/combat/eidolon/go_out()
-	. = ..()
-	if(isnotnull(occupant))
-		return
-	if(rolling)
+	if(href_list["ball_mode"])
 		toggle_ball_mode()
 
 /obj/mecha/combat/eidolon/verb/toggle_ball_mode()
@@ -96,7 +96,6 @@
 		step_sound = 'sound/mecha/movement/eidolon/mechball.ogg'
 		step_sound_volume = 100
 		turn_sound = null
-		occupant_message(SPAN_INFO("You enable ball mode."))
 	else
 		icon_state = initial(icon_state)
 		deflect_chance -= 40
@@ -104,7 +103,8 @@
 		step_sound = initial(step_sound)
 		step_sound_volume = initial(step_sound_volume)
 		turn_sound = initial(turn_sound)
-		occupant_message(SPAN_WARNING("You disable ball mode."))
+	balloon_alert(occupant, "[rolling ? "en" : "dis"]abled ball mode")
+	send_byjax(occupant, "exosuit.browser", "ball_mode_command", "[rolling ? "Dis" : "En"]able Ball Mode")
 	log_message("Toggled ball mode.")
 
 /obj/mecha/combat/eidolon/salvaged // We can rebuild him.

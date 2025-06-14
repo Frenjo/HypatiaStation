@@ -29,6 +29,25 @@
 		return 0
 	. = ..()
 
+/obj/mecha/combat/durand/get_stats_part()
+	. = ..()
+	. += "<b>Defence Mode: [defence ? "enabled" : "disabled"]</b>"
+
+/obj/mecha/combat/durand/get_commands()
+	. = {"<div class='wr'>
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];defence_mode=1'><span id="defence_mode_command">[defence ? "Dis" : "En"]able Defence Mode</span></a>
+		</div>
+		</div>
+	"}
+	. += ..()
+
+/obj/mecha/combat/durand/Topic(href, href_list)
+	. = ..()
+	if(href_list["defence_mode"])
+		defence_mode()
+
 /obj/mecha/combat/durand/verb/defence_mode()
 	set category = "Exosuit Interface"
 	set name = "Toggle Defence Mode"
@@ -41,30 +60,11 @@
 	defence = !defence
 	if(defence)
 		deflect_chance = defence_deflect
-		occupant_message(SPAN_INFO("You enable defence mode."))
 	else
 		deflect_chance = initial(deflect_chance)
-		occupant_message(SPAN_WARNING("You disable defence mode."))
+	balloon_alert(occupant, "[defence ? "en" : "dis"]abled defence mode")
+	send_byjax(occupant, "exosuit.browser", "defence_mode_command", "[defence ? "Dis" : "En"]able Defence Mode")
 	log_message("Toggled defence mode.")
-
-/obj/mecha/combat/durand/get_stats_part()
-	. = ..()
-	. += "<b>Defence mode: [defence ? "on" : "off"]</b>"
-
-/obj/mecha/combat/durand/get_commands()
-	. = {"<div class='wr'>
-		<div class='header'>Special</div>
-		<div class='links'>
-		<a href='byond://?src=\ref[src];toggle_defence_mode=1'>Toggle Defence Mode</a>
-		</div>
-		</div>
-	"}
-	. += ..()
-
-/obj/mecha/combat/durand/Topic(href, href_list)
-	. = ..()
-	if(href_list["toggle_defence_mode"])
-		defence_mode()
 
 // Archambeau
 /obj/mecha/combat/durand/archambeau

@@ -112,6 +112,10 @@
 		return
 	cell = new /obj/item/cell/hyper(src)
 
+/obj/mecha/medical/odysseus/eurymachus/get_stats_part()
+	. = ..()
+	. += "<b>Camouflage: [camouflage ? "enabled" : "disabled"]</b>"
+
 /obj/mecha/medical/odysseus/eurymachus/get_commands()
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
@@ -140,16 +144,16 @@
 		disable_camouflage()
 	else
 		if(camouflage_animation_playing)
-			occupant_message(SPAN_WARNING("Camouflage recharging!"))
+			balloon_alert(occupant, "camouflage recharging!")
 			return
-		occupant_message(SPAN_INFO("Activating camouflage..."))
+		balloon_alert(occupant, "activating camouflage...")
 		apply_wibbly_filters(src)
 		if(do_after(occupant, 4 SECONDS, src) && has_charge(2000)) // This is akin to the force fields where they stop working below 2000 charge.
 			do_camouflage_effects()
 			enable_camouflage()
 		else
 			do_camouflage_effects()
-			occupant_message(SPAN_WARNING("Camouflage failed!"))
+			balloon_alert(occupant, "camouflage failed!")
 		remove_wibbly_filters(src)
 		camouflage_animation_playing = FALSE
 
@@ -168,13 +172,13 @@
 	playsound(T, 'sound/effects/pop.ogg', 100, TRUE, -6)
 
 /obj/mecha/medical/odysseus/eurymachus/proc/enable_camouflage()
-	occupant_message(SPAN_INFO("Enabled camouflage."))
+	balloon_alert(occupant, "enabled camouflage")
 	camouflage = TRUE
 	icon_state = /obj/mecha/medical/odysseus::icon_state
 	desc = /obj/mecha/medical/odysseus::desc
 
 /obj/mecha/medical/odysseus/eurymachus/proc/disable_camouflage()
-	occupant_message(SPAN_WARNING("Disabled camouflage."))
+	balloon_alert(occupant, "disabled camouflage")
 	camouflage = FALSE
 	icon_state = initial(icon_state)
 	desc = initial(desc)

@@ -31,7 +31,8 @@
 		var/atom/movable/movable_source = src
 		bound_width = movable_source.bound_width
 
-	var/image/balloon_alert = image(loc = loc, layer = MOB_LAYER + 0.1)
+	var/alert_loc = isturf(src) ? src : get_atom_on_turf(src)
+	var/image/balloon_alert = image(loc = alert_loc, layer = MOB_LAYER + 0.1)
 	balloon_alert.plane = BALLOON_TEXT_PLANE
 	balloon_alert.alpha = 0
 	balloon_alert.maptext = "<span style='text-align: center; -dm-text-outline: 1px #0005'>[text]</span>"
