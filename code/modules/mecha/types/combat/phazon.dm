@@ -47,6 +47,7 @@
 /obj/mecha/combat/phazon/proc/phase()
 	if(can_move)
 		can_move = FALSE
+		do_phasing_effects()
 		forceMove(get_step(src, dir))
 		use_power(phasing_energy_drain)
 		sleep(step_in * 3)
