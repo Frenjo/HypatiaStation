@@ -32,7 +32,7 @@ log transactions
 	var/ticks_left_locked_down = 0
 	var/ticks_left_timeout = 0
 	var/machine_id = ""
-	var/obj/item/card/held_card
+	var/obj/item/card/id/held_card
 	var/editing_security_level = 0
 	var/view_screen = NO_SCREEN
 	var/datum/effect/system/spark_spread/spark_system
@@ -87,17 +87,16 @@ log transactions
 	return TRUE
 
 /obj/machinery/atm/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/card))
+	if(istype(I, /obj/item/card/id))
 		if(emagged)
 			//prevent inserting id into an emagged ATM
 			to_chat(user, SPAN_WARNING("\icon[src] CARD READER ERROR. This system has been compromised!"))
 			return
 
-		var/obj/item/card/id/idcard = I
-		if(!held_card)
+		if(isnull(held_card))
 			usr.drop_item()
-			idcard.forceMove(src)
-			held_card = idcard
+			I.forceMove(src)
+			held_card = I
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 				authenticated_account = null
 	else if(authenticated_account)
@@ -138,7 +137,7 @@ log transactions
 		if(emagged > 0)
 			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact NanoTrasen IT Support.</span>"
 		else
-			dat += "Card: <a href='byond://?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
+			dat += "Card: <a href='byond://?src=\ref[src];choice=insert_card'>[isnotnull(held_card) ? held_card.name : "------"]</a><br><br>"
 
 			if(ticks_left_locked_down > 0)
 				dat += SPAN_ALERT("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
@@ -255,19 +254,19 @@ log transactions
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
 				if(authenticated_account)
-					var/new_sec_level = max( min(text2num(href_list["new_security_level"]), 2), 0)
+					var/new_sec_level = max(min(text2num(href_list["new_security_level"]), 2), 0)
 					authenticated_account.security_level = new_sec_level
 			if("attempt_auth")
 				// check if they have low security enabled
 				scan_user(usr)
 
-				if(!ticks_left_locked_down && held_card)
+				if(!ticks_left_locked_down && isnotnull(held_card))
 					var/tried_account_num = text2num(href_list["account_num"])
 					if(!tried_account_num)
 						tried_account_num = held_card.associated_account_number
 					var/tried_pin = text2num(href_list["account_pin"])
 
-					authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
+					authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card?.associated_account_number == tried_account_num ? 2 : 1)
 					if(!authenticated_account)
 						number_incorrect_tries++
 						if(previous_account_number == tried_account_num)
@@ -403,7 +402,7 @@ log transactions
 					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
 			if("insert_card")
-				if(!held_card)
+				if(isnull(held_card))
 					//this might happen if the user had the browser window open when somebody emagged it
 					if(emagged > 0)
 						to_chat(usr, SPAN_WARNING("\icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!"))
@@ -449,7 +448,7 @@ log transactions
 
 // put the currently held id on the ground or in the hand of the user
 /obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user)
-	if(!held_card)
+	if(isnull(held_card))
 		return
 
 	held_card.forceMove(loc)
