@@ -12,37 +12,37 @@
 
 /obj/item/mecha_part/part/durand/torso
 	name = "\improper Durand torso"
-	icon_state = "durand_harness"
+	icon_state = "harness"
 	matter_amounts = /datum/design/mechfab/part/durand_torso::materials
 	origin_tech = /datum/design/mechfab/part/durand_torso::req_tech
 
 /obj/item/mecha_part/part/durand/head
 	name = "\improper Durand head"
-	icon_state = "durand_head"
+	icon_state = "head"
 	matter_amounts = /datum/design/mechfab/part/durand_head::materials
 	origin_tech = /datum/design/mechfab/part/durand_head::req_tech
 
 /obj/item/mecha_part/part/durand/left_arm
 	name = "\improper Durand left arm"
-	icon_state = "durand_l_arm"
+	icon_state = "l_arm"
 	matter_amounts = /datum/design/mechfab/part/durand_left_arm::materials
 	origin_tech = /datum/design/mechfab/part/durand_left_arm::req_tech
 
 /obj/item/mecha_part/part/durand/right_arm
 	name = "\improper Durand right arm"
-	icon_state = "durand_r_arm"
+	icon_state = "r_arm"
 	matter_amounts = /datum/design/mechfab/part/durand_right_arm::materials
 	origin_tech = /datum/design/mechfab/part/durand_right_arm::req_tech
 
 /obj/item/mecha_part/part/durand/left_leg
 	name = "\improper Durand left leg"
-	icon_state = "durand_l_leg"
+	icon_state = "l_leg"
 	matter_amounts = /datum/design/mechfab/part/durand_left_leg::materials
 	origin_tech = /datum/design/mechfab/part/durand_left_leg::req_tech
 
 /obj/item/mecha_part/part/durand/right_leg
 	name = "\improper Durand right leg"
-	icon_state = "durand_r_leg"
+	icon_state = "r_leg"
 	matter_amounts = /datum/design/mechfab/part/durand_right_leg::materials
 	origin_tech = /datum/design/mechfab/part/durand_right_leg::req_tech
 
