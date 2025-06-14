@@ -176,7 +176,7 @@
 		return
 	picture_state = state
 	remove_display()
-	add_overlay(image('icons/obj/machines/status_display.dmi', icon_state = picture_state))
+	add_overlay(picture_state)
 
 /obj/machinery/status_display/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}

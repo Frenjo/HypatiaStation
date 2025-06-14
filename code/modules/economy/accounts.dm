@@ -60,12 +60,11 @@
 		R.info += "<i>Authorised NT officer overseeing creation:</i> [source_db.held_card.registered_name]<br>"
 
 		//stamp the paper
-		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-		stampoverlay.icon_state = "paper_stamp-cent"
+		var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
 		if(!R.stamped)
 			R.stamped = list()
 		R.stamped.Add(/obj/item/stamp)
-		R.add_overlay(stampoverlay)
+		R.add_overlay(stamp_overlay)
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account

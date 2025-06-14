@@ -289,7 +289,7 @@
 /obj/machinery/door_timer/proc/set_picture(state)
 	picture_state = state
 	cut_overlays()
-	add_overlay(image('icons/obj/machines/status_display.dmi', icon_state = picture_state))
+	add_overlay(mutable_appearance('icons/obj/machines/status_display.dmi', picture_state))
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display

@@ -198,7 +198,7 @@
 		qdel(mymist)
 
 	if(on)
-		add_overlay(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
+		add_overlay(mutable_appearance('icons/obj/watercloset.dmi', "water", layer = MOB_LAYER + 1))
 		if(watertemp == "freezing")
 			return
 		if(!ismist)

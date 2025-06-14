@@ -48,20 +48,20 @@
 
 /obj/machinery/gibber/New()
 	..()
-	add_overlay(image('icons/obj/kitchen.dmi', "grjam"))
+	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()
 	cut_overlays()
 	if (dirty)
-		add_overlay(image('icons/obj/kitchen.dmi', "grbloody"))
+		add_overlay("grbloody")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		add_overlay(image('icons/obj/kitchen.dmi', "grjam"))
+		add_overlay("grjam")
 	else if (operating)
-		add_overlay(image('icons/obj/kitchen.dmi', "gruse"))
+		add_overlay("gruse")
 	else
-		add_overlay(image('icons/obj/kitchen.dmi', "gridle"))
+		add_overlay("gridle")
 
 /obj/machinery/gibber/attack_paw(mob/user)
 	return src.attack_hand(user)

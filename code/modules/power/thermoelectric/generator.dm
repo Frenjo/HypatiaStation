@@ -59,10 +59,10 @@
 		cut_overlays()
 
 		if(lastgenlev != 0)
-			add_overlay(image('icons/obj/power.dmi', "teg-op[lastgenlev]"))
+			add_overlay("teg-op[lastgenlev]")
 			// Add a flashy thing because why not. -Frenjo
 			if(lastgen > 250000)
-				add_overlay(image('icons/obj/power.dmi', "teg-max-flash"))
+				add_overlay("teg-max-flash")
 
 /obj/machinery/power/generator/process()
 	if(!circ1 || !circ2 || !anchored || stat & (BROKEN|NOPOWER))

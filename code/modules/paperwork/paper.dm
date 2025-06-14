@@ -323,21 +323,19 @@
 
 		stamps += (stamps == "" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
 
-		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-		stampoverlay.pixel_x = rand(-2, 2)
-		stampoverlay.pixel_y = rand(-3, 2)
+		var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_[P.icon_state]")
+		stamp_overlay.pixel_x = rand(-2, 2)
+		stamp_overlay.pixel_y = rand(-3, 2)
 
 		if(istype(P, /obj/item/stamp/clown))
 			if(!clown)
 				to_chat(user, SPAN_NOTICE("You are totally unable to use the stamp. HONK!"))
 				return
 
-		stampoverlay.icon_state = "paper_[P.icon_state]"
-
 		if(!stamped)
 			stamped = new
 		stamped += P.type
-		add_overlay(stampoverlay)
+		add_overlay(stamp_overlay)
 
 		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 

@@ -21,11 +21,10 @@
 
 	stamps = (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the NanoTrasen Synthetic Intelligence Division rubber stamp.</i>"
 
-	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-	stampoverlay.pixel_x = rand(-2, 2)
-	stampoverlay.pixel_y = rand(-3, 2)
-	stampoverlay.icon_state = "paper_stamp-rd"
-	add_overlay(stampoverlay)
+	var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-rd")
+	stamp_overlay.pixel_x = rand(-2, 2)
+	stamp_overlay.pixel_y = rand(-3, 2)
+	add_overlay(stamp_overlay)
 
 	update_icon()
 

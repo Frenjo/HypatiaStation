@@ -361,10 +361,12 @@
 			add_overlay(back_icon)
 
 	if(facehugger)
+		var/mutable_appearance/facehugger_overlay = mutable_appearance('icons/mob/on_mob/mask.dmi')
 		if(istype(src, /mob/living/simple/corgi/puppy))
-			add_overlay(image('icons/mob/on_mob/mask.dmi', "facehugger_corgipuppy"))
+			facehugger_overlay.icon_state = "facehugger_corgipuppy"
 		else
-			add_overlay(image('icons/mob/on_mob/mask.dmi', "facehugger_corgi"))
+			facehugger_overlay.icon_state = "facehugger_corgi"
+		add_overlay(facehugger_overlay)
 
 	return
 

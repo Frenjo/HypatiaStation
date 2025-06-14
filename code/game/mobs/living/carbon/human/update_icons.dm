@@ -944,7 +944,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 /mob/living/carbon/human/update_fire(update_icons = 1)
 	overlays_standing[FIRE_LAYER] = null
 	if(on_fire)
-		overlays_standing[FIRE_LAYER] = image("icon" = 'icons/mob/on_fire.dmi', "icon_state" = "standing", "layer" = FIRE_LAYER)
+		overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/on_fire.dmi', "standing", layer = FIRE_LAYER)
 
 	if(update_icons)
 		update_icons()

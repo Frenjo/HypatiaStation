@@ -117,7 +117,7 @@
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
 		cut_overlays()
 		if(panel_open)
-			add_overlay(image(icon, "[initial(icon_state)]-panel"))
+			add_overlay("[initial(icon_state)]-panel")
 		updateUsrDialog()
 		return
 	else if(ismultitool(W) || iswirecutter(W))

@@ -1540,12 +1540,11 @@
 					playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
 
 					// Stamps
-					var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-					stampoverlay.icon_state = "paper_stamp-cent"
+					var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
 					if(!P.stamped)
 						P.stamped = new
 					P.stamped += /obj/item/stamp
-					P.add_overlay(stampoverlay)
+					P.add_overlay(stamp_overlay)
 					P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 		src.owner << "Message reply to transmitted successfully."

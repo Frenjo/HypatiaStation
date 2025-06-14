@@ -51,7 +51,7 @@
 		outturf.assume_air(removed)
 
 	if(lastgen > 100)
-		add_overlay(image('icons/obj/pipes/pipes.dmi', "turb-o", FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "turb-o", layer = FLY_LAYER))
 
 
 	for(var/mob/M in viewers(1, src))

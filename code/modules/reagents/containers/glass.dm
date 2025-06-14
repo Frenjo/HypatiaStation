@@ -183,27 +183,27 @@
 	cut_overlays()
 
 	if(reagents.total_volume)
-		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")
+		var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
 			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
+				filling_overlay.icon_state = "[icon_state]-10"
 			if(10 to 24)
-				filling.icon_state = "[icon_state]10"
+				filling_overlay.icon_state = "[icon_state]10"
 			if(25 to 49)
-				filling.icon_state = "[icon_state]25"
+				filling_overlay.icon_state = "[icon_state]25"
 			if(50 to 74)
-				filling.icon_state = "[icon_state]50"
+				filling_overlay.icon_state = "[icon_state]50"
 			if(75 to 79)
-				filling.icon_state = "[icon_state]75"
+				filling_overlay.icon_state = "[icon_state]75"
 			if(80 to 90)
-				filling.icon_state = "[icon_state]80"
+				filling_overlay.icon_state = "[icon_state]80"
 			if(91 to INFINITY)
-				filling.icon_state = "[icon_state]100"
+				filling_overlay.icon_state = "[icon_state]100"
 
-		filling.icon += mix_colour_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		filling_overlay.icon += mix_colour_from_reagents(reagents.reagent_list)
+		add_overlay(filling_overlay)
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")

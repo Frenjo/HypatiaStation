@@ -2782,9 +2782,9 @@
 			icon_state = "pizzabox_open"
 
 		if(pizza)
-			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
-			pizzaimg.pixel_y = -3
-			add_overlay(pizzaimg)
+			var/mutable_appearance/pizza_overlay = mutable_appearance(pizza.icon, pizza.icon_state)
+			pizza_overlay.pixel_y = -3
+			add_overlay(pizza_overlay)
 
 		return
 	else
@@ -2799,9 +2799,9 @@
 				doimgtag = 1
 
 		if(doimgtag)
-			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
-			tagimg.pixel_y = length(boxes) * 3
-			add_overlay(tagimg)
+			var/mutable_appearance/tag_overlay = mutable_appearance(icon, "pizzabox_tag")
+			tag_overlay.pixel_y = length(boxes) * 3
+			add_overlay(tag_overlay)
 
 	icon_state = "pizzabox[length(boxes) + 1]"
 

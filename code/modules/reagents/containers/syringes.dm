@@ -206,12 +206,9 @@
 	item_state = "syringe_[rounded_vol]"
 
 	if(reagents.total_volume)
-		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "syringe10")
-
-		filling.icon_state = "syringe[rounded_vol]"
-
-		filling.icon += mix_colour_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+		filling_overlay.icon += mix_colour_from_reagents(reagents.reagent_list)
+		add_overlay(filling_overlay)
 
 /obj/item/reagent_holder/syringe/proc/syringestab(mob/living/carbon/target, mob/living/carbon/user)
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"

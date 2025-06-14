@@ -206,10 +206,7 @@
 	. = ..()
 	if(!flashers)
 		return
-	flasher_lights = new /mutable_appearance()
-	flasher_lights.icon = 'icons/obj/mecha/mecha_overlays.dmi'
-	flasher_lights.icon_state = "paddy-flashers"
-	flasher_lights.plane = UNLIT_EFFECTS_PLANE
+	flasher_lights = mutable_appearance('icons/obj/mecha/mecha_overlays.dmi', "paddy-flashers", UNLIT_EFFECTS_PLANE)
 	add_overlay(flasher_lights)
 
 /obj/mecha/working/ripley/paddy/get_stats_part()

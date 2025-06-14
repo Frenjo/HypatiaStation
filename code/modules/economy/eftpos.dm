@@ -49,12 +49,11 @@
 		R.info += "4. If everything is done correctly, the money will be transferred. To unlock the device you will have to reset the EFTPOS device.<br>"
 
 		//stamp the paper
-		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-		stampoverlay.icon_state = "paper_stamp-cent"
+		var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
 		if(!R.stamped)
 			R.stamped = list()
 		R.stamped += /obj/item/stamp
-		R.add_overlay(stampoverlay)
+		R.add_overlay(stamp_overlay)
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 	//by default, connect to the station account
@@ -69,12 +68,11 @@
 	R.info += "<b>Do not lose or misplace this code.</b><br>"
 
 	//stamp the paper
-	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-	stampoverlay.icon_state = "paper_stamp-cent"
+	var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/stamp
-	R.add_overlay(stampoverlay)
+	R.add_overlay(stamp_overlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/small_delivery/D = new(R.loc)
 	R.forceMove(D)

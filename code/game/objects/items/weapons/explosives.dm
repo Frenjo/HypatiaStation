@@ -13,11 +13,11 @@
 	var/timer = 10
 	var/atom/target = null
 	var/open_panel = 0
-	var/image_overlay = null
+	var/mutable_appearance/plastic_overlay = null
 
 /obj/item/plastique/New()
 	wires = new(src)
-	image_overlay = image('icons/obj/items/assemblies/assemblies.dmi', "plastic-explosive2")
+	plastic_overlay = mutable_appearance('icons/obj/items/assemblies/assemblies.dmi', "plastic-explosive2")
 	..()
 
 /obj/item/plastique/attack_tool(obj/item/tool, mob/user)
@@ -64,7 +64,7 @@
 			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.add_overlay(image_overlay)
+		target.add_overlay(plastic_overlay)
 
 		user << "Bomb has been planted. Timer counting down from [timer]."
 		spawn(timer*10)
@@ -87,7 +87,7 @@
 		else
 			target.ex_act(1)
 	if(target)
-		target.overlays -= image_overlay
+		target.overlays -= plastic_overlay
 	qdel(src)
 
 /obj/item/plastique/attack(mob/M, mob/user, def_zone)

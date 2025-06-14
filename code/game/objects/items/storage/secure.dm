@@ -116,7 +116,7 @@
 			else if ((code == l_code) && (emagged == 0) && (l_set == 1))
 				locked = 0
 				overlays = null
-				add_overlay(image(icon, icon_opened))
+				add_overlay(icon_opened)
 				code = null
 			else
 				code = "ERROR"

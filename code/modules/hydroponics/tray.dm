@@ -162,33 +162,29 @@
 	cut_overlays()
 	if(planted)
 		if(dead)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "[myseed.species]-dead"))
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "[myseed.species]-dead"))
 		else if(harvest)
 			if(myseed.plant_type == 2) // Shrooms don't have a -harvest graphic
-				add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "[myseed.species]-grow[myseed.growthstages]"))
+				add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "[myseed.species]-grow[myseed.growthstages]"))
 			else
-				add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "[myseed.species]-harvest"))
+				add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "[myseed.species]-harvest"))
 		else if(age < myseed.maturation)
 			var/t_growthstate = ((age / myseed.maturation) * myseed.growthstages) // Make sure it won't crap out due to HERPDERP 6 stages only
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "[myseed.species]-grow[round(t_growthstate)]"))
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "[myseed.species]-grow[round(t_growthstate)]"))
 			lastproduce = age //Cheating by putting this here, it means that it isn't instantly ready to harvest
 		else
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "[myseed.species]-grow[myseed.growthstages]")) // Same
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "[myseed.species]-grow[myseed.growthstages]")) // Same
 
 		if(waterlevel <= 10)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_lowwater3"))
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "over_lowwater3"))
 		if(nutrilevel <= 2)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_lownutri3"))
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "over_lownutri3"))
 		if(health <= (myseed.endurance / 2))
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_lowhealth3"))
-		if(weedlevel >= 5)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_alert3"))
-		if(pestlevel >= 5)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_alert3"))
-		if(toxic >= 40)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_alert3"))
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "over_lowhealth3"))
+		if(weedlevel >= 5 || pestlevel >= 5 || toxic >= 40)
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "over_alert3"))
 		if(harvest)
-			add_overlay(image('icons/obj/flora/hydroponics.dmi', icon_state = "over_harvest3"))
+			add_overlay(mutable_appearance('icons/obj/flora/hydroponics.dmi', "over_harvest3"))
 
 	if(istype(myseed,/obj/item/seeds/glowshroom))
 		set_light(round(myseed.potency / 10))

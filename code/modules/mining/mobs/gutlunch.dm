@@ -39,9 +39,7 @@
 /mob/living/simple/hostile/asteroid/gutlunch/New()
 	. = ..()
 	nutrient_sac = new /obj/item/udder/gutlunch(src)
-	full_udder = new /mutable_appearance()
-	full_udder.icon = icon
-	full_udder.icon_state = "gutlunch_full"
+	full_udder = mutable_appearance(icon, "gutlunch_full")
 	full_udder.color = COLOR_WHITE
 
 /mob/living/simple/hostile/asteroid/gutlunch/Destroy()

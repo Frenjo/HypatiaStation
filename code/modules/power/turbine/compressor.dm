@@ -57,13 +57,13 @@
 			rpmtarget = 0
 
 	if(rpm > 50000)
-		add_overlay(image('icons/obj/pipes/pipes.dmi', "comp-o4", FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "comp-o4", layer = FLY_LAYER))
 	else if(rpm > 10000)
-		add_overlay(image('icons/obj/pipes/pipes.dmi', "comp-o3", FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "comp-o3", layer = FLY_LAYER))
 	else if(rpm > 2000)
-		add_overlay(image('icons/obj/pipes/pipes.dmi', "comp-o2", FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "comp-o2", layer = FLY_LAYER))
 	else if(rpm > 500)
-		add_overlay(image('icons/obj/pipes/pipes.dmi', "comp-o1", FLY_LAYER))
+		add_overlay(mutable_appearance(icon, "comp-o1", layer = FLY_LAYER))
 	 //TODO: DEFERRED
 
 #undef COMPFRICTION

@@ -55,7 +55,7 @@
 	. = ..()
 
 	if(isnotnull(skin))
-		add_overlay(image('icons/mob/bot/medibot.dmi', "medskin_[skin]"))
+		add_overlay("medskin_[skin]")
 
 	botcard = new /obj/item/card/id(src)
 	if(!length(botcard_access))
