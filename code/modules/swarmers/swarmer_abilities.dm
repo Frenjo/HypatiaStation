@@ -59,6 +59,16 @@
 	swarmer_teleport_target(user, target)
 	return TRUE
 
+// The actual proc that does the teleportation.
+/proc/swarmer_teleport_target(mob/living/user, mob/living/target)
+	var/turf/open/floor/safe_turf = find_safe_turf(target.z)
+	if(isnull(safe_turf))
+		return
+
+	make_sparks(4, FALSE, GET_TURF(target))
+	playsound(user, 'sound/effects/sparks4.ogg', 50, TRUE)
+	do_teleport(target, safe_turf)
+
 /mob/living/simple/hostile/swarmer/proc/contact_swarmers()
 	var/message = input(src, "Announce to other swarmers", "Swarmer Contact")
 	if(!message)

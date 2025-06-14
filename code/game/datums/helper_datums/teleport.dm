@@ -234,15 +234,3 @@
 
 		// DING! You have passed the gauntlet, and are "probably" safe.
 		return F
-
-/*
- * Swarmer Teleportation
- */
-/proc/swarmer_teleport_target(mob/living/user, mob/living/target)
-	var/turf/open/floor/safe_turf = find_safe_turf(target.z)
-	if(isnull(safe_turf))
-		return
-
-	make_sparks(4, FALSE, GET_TURF(target))
-	playsound(user, 'sound/effects/sparks4.ogg', 50, TRUE)
-	do_teleport(target, safe_turf)
