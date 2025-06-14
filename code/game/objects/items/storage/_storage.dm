@@ -446,13 +446,13 @@
 			quick_empty()
 			return
 
-	//Otherwise we'll try to fold it.
+	// Otherwise we'll try to fold it.
+	if(!ispath(foldable))
+		return
 	if(length(contents))
 		to_chat(user, SPAN_WARNING("You can't fold \the [src] with items still inside!"))
 		return
 
-	if(!ispath(foldable))
-		return
 	var/found = FALSE
 	// Close any open UI windows first
 	for(var/mob/M in range(1))
