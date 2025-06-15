@@ -36,7 +36,6 @@
 	. = ..()
 	if(isnull(powernet))
 		return
-	set_panels(cdir)
 	connect_to_network()
 
 /obj/machinery/power/solar_control/Destroy()
@@ -191,10 +190,10 @@
 			set_panels(targetdir)
 
 	if(href_list["search_connected"])
-		src.search_for_connected()
-		if(connected_tracker && track == TRACKING_AUTO)
+		search_for_connected()
+		if(isnotnull(connected_tracker) && track == TRACKING_AUTO)
 			connected_tracker.set_angle(global.PCsun.angle)
-		src.set_panels(cdir)
+		set_panels(cdir)
 
 	interact(usr)
 	return 1
@@ -263,3 +262,14 @@
 /obj/machinery/power/solar_control/proc/broken()
 	stat |= BROKEN
 	update_icon()
+
+// Variant that activates itself automatically on spawning.
+/obj/machinery/power/solar_control/tracking
+	track = TRACKING_AUTO
+
+/obj/machinery/power/solar_control/tracking/initialise()
+	. = ..()
+	search_for_connected()
+	if(isnotnull(connected_tracker) && track == TRACKING_AUTO)
+		connected_tracker.set_angle(global.PCsun.angle)
+	set_panels(cdir)
