@@ -204,7 +204,7 @@ That prevents a few funky behaviors.
 										to_chat(user, "\red <b>ERROR</b>: \black Remote transfer interface disabled.") //Do ho ho ho~
 										return
 							new /obj/structure/ai_core/deactivated(target_ai.loc) //Spawns a deactivated terminal at AI location.
-							target_ai.aiRestorePowerRoutine = 0 //So the AI initially has power.
+							target_ai.aiRestorePowerRoutine = AI_POWER_RESTORATION_OFF //So the AI initially has power.
 							target_ai.control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
 							target_ai.forceMove(card) //Throw AI into the card.
 							card.name = "inteliCard - [target_ai.name]"
@@ -230,7 +230,7 @@ That prevents a few funky behaviors.
 								to_chat(user, "\red <b>ERROR</b>: \black [target_ai.name] data core is corrupted. Unable to install.")
 							else
 								new /obj/structure/ai_core/deactivated(target_ai.loc)
-								target_ai.aiRestorePowerRoutine = 0
+								target_ai.aiRestorePowerRoutine = AI_POWER_RESTORATION_OFF
 								target_ai.control_disabled = TRUE
 								target_ai.forceMove(ninja_suit)
 								ninja_suit.AI = target_ai

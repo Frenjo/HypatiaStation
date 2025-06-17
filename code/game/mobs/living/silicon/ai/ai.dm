@@ -19,8 +19,6 @@
 
 	hud_type = /datum/hud/ai
 
-	var/obj/machinery/ai_power_supply/power_supply = null // The connected power supply.
-
 	var/list/network = list("SS13")
 	var/obj/machinery/camera/current = null
 	var/list/connected_robots = list()
@@ -130,13 +128,8 @@
 
 	GLOBL.ai_list.Add(src)
 
-/mob/living/silicon/ai/initialise()
-	. = ..()
-	create_power_supply()
-
 /mob/living/silicon/ai/Destroy()
 	GLOBL.ai_list.Remove(src)
-	QDEL_NULL(power_supply)
 	return ..()
 
 // displays the malf_ai information if the AI is the malf
