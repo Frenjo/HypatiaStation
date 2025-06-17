@@ -14,6 +14,8 @@
 	)
 	emag_modules = list(/obj/item/reagent_holder/spray/polyacid)
 
+	channels = list(CHANNEL_SECURITY)
+
 	sprite_path = 'icons/mob/silicon/robot/peacekeeper.dmi'
 	sprites = list(
 		"Default" = "peaceborg",
