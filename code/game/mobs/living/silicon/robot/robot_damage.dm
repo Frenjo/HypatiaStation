@@ -1,25 +1,23 @@
 /mob/living/silicon/robot/updatehealth()
 	if(status_flags & GODMODE)
-		health = 200
+		health = maxHealth
 		stat = CONSCIOUS
 		return
-	health = 200 - (getBruteLoss() + getFireLoss())
+	health = maxHealth - (getBruteLoss() + getFireLoss())
 
 /mob/living/silicon/robot/getBruteLoss()
-	var/amount = 0
+	. = 0
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(C.installed != 0)
-			amount += C.brute_damage
-	return amount
+			. += C.brute_damage
 
 /mob/living/silicon/robot/getFireLoss()
-	var/amount = 0
+	. = 0
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(C.installed != 0)
-			amount += C.electronics_damage
-	return amount
+			. += C.electronics_damage
 
 /mob/living/silicon/robot/adjustBruteLoss(amount)
 	if(amount > 0)
@@ -34,21 +32,23 @@
 		heal_overall_damage(0, -amount)
 
 /mob/living/silicon/robot/proc/get_damaged_components(brute, burn, destroyed = 0)
-	var/list/datum/robot_component/parts = list()
+	RETURN_TYPE(/list/datum/robot_component)
+
+	. = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(C.installed == 1 || (C.installed == -1 && destroyed))
 			if((brute && C.brute_damage) || (burn && C.electronics_damage) || (!C.toggled) || (!C.powered && C.toggled))
-				parts.Add(C)
-	return parts
+				. += C
 
 /mob/living/silicon/robot/proc/get_damageable_components()
-	var/list/rval = list()
+	RETURN_TYPE(/list/datum/robot_component)
+
+	. = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(C.installed == 1)
-			rval.Add(C)
-	return rval
+			. += C
 
 /mob/living/silicon/robot/proc/get_armour()
 	if(!length(components))

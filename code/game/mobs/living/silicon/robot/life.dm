@@ -48,10 +48,7 @@
 
 /mob/living/silicon/robot/proc/handle_regular_status_updates()
 	if(isnotnull(camera) && !scrambledcodes)
-		if(stat == DEAD || isWireCut(5))
-			camera.status = 0
-		else
-			camera.status = 1
+		camera.status = (stat == DEAD || isWireCut(5))
 
 	updatehealth()
 
@@ -64,6 +61,11 @@
 
 	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_dead) && stat != DEAD) //die only once
 		death()
+
+	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_crit)) // Robot enters 'critically damaged' state.
+		if(isnotnull(module_state_1) || isnotnull(module_state_2) || isnotnull(module_state_3))
+			uneq_all()
+			to_chat(src, SPAN_DANGER("SYSTEM ERROR: Critical damage sustained! All modules unresponsive!"))
 
 	if(stat != DEAD) //Alive.
 		if(paralysis || stunned || weakened || !has_power) //Stunned etc.
@@ -188,15 +190,15 @@
 						healths.icon_state = "health6"
 			else
 				switch(health)
-					if(200 to INFINITY)
+					if(100 to INFINITY)
 						healths.icon_state = "health0"
-					if(150 to 200)
+					if(75 to 100)
 						healths.icon_state = "health1"
-					if(100 to 150)
+					if(50 to 75)
 						healths.icon_state = "health2"
-					if(50 to 100)
+					if(25 to 50)
 						healths.icon_state = "health3"
-					if(0 to 50)
+					if(0 to 25)
 						healths.icon_state = "health4"
 					else
 						if(health > CONFIG_GET(/decl/configuration_entry/health_threshold_dead))

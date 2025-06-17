@@ -3,8 +3,8 @@
 	real_name = "Cyborg"
 	icon = 'icons/mob/silicon/robot/standard.dmi'
 	icon_state = "robot"
-	maxHealth = 200
-	health = 200
+	maxHealth = 100
+	health = 100
 
 	hud_type = /datum/hud/robot
 

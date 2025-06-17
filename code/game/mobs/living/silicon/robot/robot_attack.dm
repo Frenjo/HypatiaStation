@@ -45,6 +45,8 @@
 			updatehealth()
 			add_fingerprint(user)
 			visible_message(SPAN_NOTICE("[user] has fixed some of the dents on [src]!"))
+		else
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return TRUE
 
 	if(iscable(tool) && wiresexposed)

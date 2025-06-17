@@ -89,19 +89,6 @@
 /mob/living/silicon/robot/drone/pick_model()
 	return
 
-// Sick of trying to get this to display properly without redefining it.
-/mob/living/silicon/robot/drone/show_system_integrity()
-	if(!stat)
-		var/temphealth = health + 35 //Brings it to 0.
-		if(temphealth < 0)
-			temphealth = 0
-		//Convert to percentage.
-		temphealth = (temphealth / (maxHealth * 2)) * 100
-
-		stat(null, "System integrity: [temphealth]%")
-	else
-		stat(null, "Systems nonfunctional")
-
 /mob/living/silicon/robot/drone/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(isnull(client) || stat == DEAD)
 		to_chat(user, SPAN_WARNING("There's not much point subverting this heap of junk."))

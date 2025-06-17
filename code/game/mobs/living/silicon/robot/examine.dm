@@ -19,6 +19,8 @@
 			msg += "It looks slightly charred.\n"
 		else
 			msg += "<B>It looks severely burnt and heat-warped!</B>\n"
+	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_crit)) // If it's in the "critically damaged" state.
+		msg += "It looks barely operational.\n"
 	msg += "</span>"
 
 	if(opened)

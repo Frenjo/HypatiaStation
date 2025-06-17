@@ -159,10 +159,10 @@
 /mob/living/silicon/proc/damage_mob(brute = 0, fire = 0, tox = 0)
 	return
 
-// this function shows the health of the pAI in the Status panel
+// this function shows the health of the silicon in the Status panel.
 /mob/living/silicon/proc/show_system_integrity()
 	if(!stat)
-		stat(null, "System integrity: [(health + 100) / 2]%")
+		stat(null, "System integrity: [(health / maxHealth) * 100]%")
 	else
 		stat(null, "Systems nonfunctional")
 
