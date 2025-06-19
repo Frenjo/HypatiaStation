@@ -54,6 +54,9 @@
 		item_state = "flamethrower_0"
 	return
 
+/obj/item/flamethrower/return_air()
+	return ptank?.return_air()
+
 /obj/item/flamethrower/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
@@ -63,6 +66,12 @@
 		if(isnotnull(target_turf))
 			var/turflist = getline(user, target_turf)
 			flame_turf(turflist)
+
+/obj/item/flamethrower/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/gas_analyser))
+		atmos_scan(user, src)
+		return TRUE
+	return ..()
 
 /obj/item/flamethrower/attackby(obj/item/W, mob/user)
 	if(user.stat || user.restrained() || user.lying)
@@ -108,22 +117,6 @@
 		update_icon()
 		return
 
-	if(istype(W, /obj/item/gas_analyser) && ptank)
-		var/obj/item/icon = src
-		user.visible_message(SPAN_NOTICE("[user] has used the analyser on \icon[icon]"))
-		var/pressure = ptank.air_contents.return_pressure()
-		var/total_moles = ptank.air_contents.total_moles
-
-		to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]"))
-		if(total_moles > 0)
-			to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-			var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-			for(var/g in ptank.air_contents.gas)
-				to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((ptank.air_contents.gas[g] / total_moles) * 100)]"))
-			to_chat(user, SPAN_INFO("Temperature: [round(ptank.air_contents.temperature-T0C)]&deg;C"))
-		else
-			to_chat(user, SPAN_INFO("Tank is empty!"))
-		return
 	..()
 	return
 

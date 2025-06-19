@@ -125,26 +125,7 @@ GLOBAL_GLOBL_INIT(mouse_respawn_time, 5 MINUTES) // Amount of time that must pas
 	if(!isghost(usr))
 		return
 
-	// Shamelessly copied from the Gas Analysers
-	if(!isturf(usr.loc))
-		return
-
-	var/datum/gas_mixture/environment = usr.loc.return_air()
-
-	var/pressure = environment.return_pressure()
-	var/total_moles = environment.total_moles
-
-	to_chat(src, SPAN_INFO_B("Results:"))
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(src, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-	else
-		to_chat(src, SPAN_WARNING("Pressure: [round(pressure,0.1)] kPa"))
-	if(total_moles)
-		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-		for(var/g in environment.gas)
-			to_chat(src, SPAN_INFO("[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"))
-		to_chat(src, SPAN_INFO("Temperature: [round(environment.temperature - T0C, 0.1)]&deg;C"))
-		to_chat(src, SPAN_INFO("Heat Capacity: [round(environment.heat_capacity(), 0.1)]"))
+	atmos_scan(usr, GET_TURF(usr))
 
 /mob/dead/ghost/verb/toggle_darkness()
 	set category = PANEL_GHOST

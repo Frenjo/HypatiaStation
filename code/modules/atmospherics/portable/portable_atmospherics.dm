@@ -32,6 +32,9 @@
 	QDEL_NULL(holding)
 	return ..()
 
+/obj/machinery/portable_atmospherics/return_air()
+	return air_contents
+
 /obj/machinery/portable_atmospherics/process()
 	if(isnull(connected_port)) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
@@ -80,8 +83,13 @@
 
 	return 1
 
+/obj/machinery/portable_atmospherics/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/gas_analyser))
+		atmos_scan(user, src)
+		return TRUE
+	return ..()
+
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user)
-	var/obj/icon = src
 	if(istype(W, /obj/item/tank) && !destroyed)
 		if(isnotnull(holding))
 			return
@@ -111,23 +119,3 @@
 			else
 				to_chat(user, SPAN_INFO("Nothing happens."))
 				return
-
-	else if(istype(W, /obj/item/gas_analyser) && get_dist(user, src) <= 1)
-		visible_message("\red [user] has used [W] on \icon[icon]")
-		if(isnotnull(air_contents))
-			var/pressure = air_contents.return_pressure()
-			var/total_moles = air_contents.total_moles
-
-			to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]"))
-			if(total_moles > 0)
-				to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-				var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-				for(var/g in air_contents.gas)
-					to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"))
-
-				to_chat(user, SPAN_INFO("Temperature: [round(air_contents.temperature - T0C)]&deg;C"))
-			else
-				to_chat(user, SPAN_INFO("Tank is empty!"))
-		else
-			to_chat(user, SPAN_INFO("Tank is empty!"))
-		return

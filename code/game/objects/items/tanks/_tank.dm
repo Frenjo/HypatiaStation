@@ -94,31 +94,19 @@
 
 		qdel(src)
 
+/obj/item/tank/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/gas_analyser))
+		atmos_scan(user, src)
+		return TRUE
+	return ..()
+
 /obj/item/tank/attackby(obj/item/W, mob/user)
 	. = ..()
-	var/obj/icon = src
 
 	if(istype(loc, /obj/item/assembly))
 		icon = loc
 
-	if((istype(W, /obj/item/gas_analyser)) && get_dist(user, src) <= 1)
-		visible_message(SPAN_WARNING("[user] has used [W] on \icon[icon] [src]."))
-
-		var/pressure = air_contents.return_pressure()
-		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
-		var/total_moles = air_contents.total_moles
-
-		to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]:"))
-		if(total_moles > 0)
-			to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-			var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-			for(var/g in air_contents.gas)
-				to_chat(user, SPAN_INFO("[gas_data.name[g]]: [(round(air_contents.gas[g] / total_moles) * 100)]%"))
-			to_chat(user, SPAN_INFO("Temperature: [round(air_contents.temperature - T0C)]&deg;C"))
-		else
-			to_chat(user, SPAN_INFO("Tank is empty!"))
-		add_fingerprint(user)
-	else if(istype(W, /obj/item/latexballon))
+	if(istype(W, /obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
 		add_fingerprint(user)

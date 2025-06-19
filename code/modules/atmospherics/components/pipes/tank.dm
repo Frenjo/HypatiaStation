@@ -67,23 +67,14 @@
 	update_icon()
 	return null
 
-/obj/machinery/atmospherics/pipe/tank/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/gas_analyser) && get_dist(user, src) <= 1)
-		for(var/mob/O in viewers(user, null))
-			to_chat(O, SPAN_WARNING("[user] has used the analyser on \icon[icon]."))
+/obj/machinery/atmospherics/pipe/tank/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/gas_analyser))
+		atmos_scan(user, src)
+		return TRUE
+	return ..()
 
-		var/pressure = parent.air.return_pressure()
-		var/total_moles = parent.air.total_moles
-
-		to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]"))
-		if(total_moles > 0)
-			to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-			var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-			for(var/g in parent.air.gas)
-				to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%"))
-			to_chat(user, SPAN_INFO("Temperature: [round(parent.air.temperature - T0C)]&deg;C"))
-		else
-			to_chat(user, SPAN_INFO("Tank is empty!"))
+/obj/machinery/atmospherics/pipe/tank/return_air()
+	return parent?.air
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide
 	name = "pressure tank (Carbon Dioxide)"
