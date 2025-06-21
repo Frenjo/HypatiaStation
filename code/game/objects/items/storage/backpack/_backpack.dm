@@ -32,49 +32,6 @@
 /*
  * Backpack Types
  */
-/obj/item/storage/backpack/holding
-	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of Blue Space."
-	icon_state = "holdingpack"
-	matter_amounts = /datum/design/bluespace/bag_holding::materials
-	origin_tech = /datum/design/bluespace/bag_holding::req_tech
-	max_w_class = 4
-	max_combined_w_class = 28
-
-/obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
-	if(crit_fail)
-		to_chat(user, SPAN_WARNING("The Bluespace generator isn't working."))
-		return
-	if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
-		qdel(W)
-		return
-		/* //BoH+BoH=Singularity, commented out.
-	if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-		investigate_log("has become a singularity. Caused by [user.key]","singulo")
-		user << "\red The Bluespace interfaces of the two devices catastrophically malfunction!"
-		del(W)
-		var/obj/machinery/singularity/singulo = new /obj/machinery/singularity(GET_TURF(src))
-		singulo.energy = 300 //should make it a bit bigger~
-		message_admins("[key_name_admin(user)] detonated a bag of holding")
-		log_game("[key_name(user)] detonated a bag of holding")
-		del(src)
-		return
-		*/
-	..()
-
-/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
-	if(prob(reliability))
-		return 1 //No failure
-	if(prob(reliability))
-		to_chat(user, SPAN_WARNING("The Bluespace portal resists your attempt to add another item.")) // Light failure.
-	else
-		to_chat(user, SPAN_WARNING("The Bluespace generator malfunctions!"))
-		for(var/obj/O in contents) //it broke, delete what was in it
-			qdel(O)
-		crit_fail = TRUE
-		icon_state = "brokenpack"
-
 /obj/item/storage/backpack/santabag
 	name = "santa's gift bag"
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"

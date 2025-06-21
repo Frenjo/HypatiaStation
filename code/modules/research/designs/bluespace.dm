@@ -24,12 +24,15 @@
 	build_path = /obj/item/bluespace_crystal/artificial
 
 /datum/design/bluespace/bag_holding
-	name = "Bag of Holding"
-	desc = "A backpack that opens into a localized pocket of Blue Space."
+	name = "Inert Bag of Holding"
+	desc = "A backpack that, when assembled, opens into a localised pocket of Bluespace."
 	req_tech = alist(/decl/tech/materials = 6, /decl/tech/bluespace = 4)
-	materials = alist(/decl/material/gold = 3000, /decl/material/diamond = 1500, /decl/material/uranium = 250)
+	materials = alist(
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 1.5, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 0.75,
+		/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 0.25
+	)
 	reliability_base = 80
-	build_path = /obj/item/storage/backpack/holding
+	build_path = /obj/item/inert_bag_of_holding
 
 /datum/design/bluespace/mining_satchel_holding
 	name = "Mining Satchel of Holding"
