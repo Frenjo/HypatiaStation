@@ -7,7 +7,7 @@
 
 /datum/design/bluespace/beacon
 	name = "Tracking Beacon"
-	desc = "A blue space tracking beacon."
+	desc = "A bluespace tracking beacon."
 	req_tech = alist(/decl/tech/bluespace = 1)
 	materials = alist(/decl/material/plastic = 20, /decl/material/glass = 10)
 	build_path = /obj/item/radio/beacon
@@ -25,7 +25,7 @@
 
 /datum/design/bluespace/bag_holding
 	name = "Inert Bag of Holding"
-	desc = "A backpack that, when assembled, opens into a localised pocket of Bluespace."
+	desc = "A backpack that, when assembled, opens into a localised pocket of bluespace."
 	req_tech = alist(/decl/tech/materials = 6, /decl/tech/bluespace = 4)
 	materials = alist(
 		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 1.5, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 0.75,
@@ -38,6 +38,10 @@
 	name = "Mining Satchel of Holding"
 	desc = "A mining satchel that can hold an infinite amount of ores."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/bluespace = 3)
-	materials = alist(/decl/material/gold = 500, /decl/material/diamond = 500, /decl/material/uranium = 500) //quite cheap, for more convenience
+	// Fairly cheap for more convenience, but still requires some effort to obtain.
+	materials = alist(
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 0.5, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 0.5,
+		/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 0.25
+	)
 	reliability_base = 100
 	build_path = /obj/item/storage/bag/ore/holding
