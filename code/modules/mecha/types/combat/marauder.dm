@@ -17,7 +17,7 @@
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	add_req_access = FALSE
 
-	max_equip = 4
+	max_equip = 5
 	mecha_flag = MECHA_FLAG_MARAUDER
 
 	wreckage = /obj/structure/mecha_wreckage/marauder
@@ -183,7 +183,8 @@
 /obj/mecha/combat/marauder/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/weapon/energy/pulse, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
-		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
 // Seraph
@@ -200,7 +201,7 @@
 
 	operation_req_access = list(ACCESS_CENT_CREED)
 
-	max_equip = 5
+	max_equip = 6
 
 	wreckage = /obj/structure/mecha_wreckage/seraph
 
@@ -208,7 +209,8 @@
 /obj/mecha/combat/marauder/seraph/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
-		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
 // Mauler
@@ -225,5 +227,6 @@
 /obj/mecha/combat/marauder/mauler/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/weapon/energy/pulse, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
-		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation/hardened
 	)

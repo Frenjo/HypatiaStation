@@ -17,7 +17,7 @@
 #define MECHA_FLAG_SERENITY BITFLAG(12)
 
 #define MECHA_FLAG_DURAND BITFLAG(13) // Durand, Archambeau
-#define MECHA_FLAG_MARAUDER BITFLAG(14) // Marauder, Mauler, Seraph
+#define MECHA_FLAG_MARAUDER BITFLAG(14) // Marauder, Seraph, Mauler
 
 #define MECHA_FLAG_PHAZON BITFLAG(15) // Phazon, Dark Phazon
 

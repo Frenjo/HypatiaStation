@@ -91,3 +91,13 @@
 		return FALSE
 	start_cooldown()
 	return TRUE
+
+// Hardened version used on Syndicate and CentCom exosuits.
+/obj/item/mecha_equipment/emp_insulation/hardened
+	name = "armour module (hardened ablative EMP insulation)"
+	desc = "Boosts exosuit systems against energy and EMP-based interference. Requires energy to operate. \
+	This variant sports improved shielding at the cost of being permanently integrated into the exosuit's chassis."
+
+	allow_detach = FALSE // It's stuck on the suits it comes with.
+
+	severity_modifier = 0.75

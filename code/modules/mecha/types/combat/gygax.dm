@@ -80,7 +80,7 @@
 	deflect_chance = 25
 	damage_absorption = list("brute" = 0.6, "fire" = 0.8, "bullet" = 0.6, "laser" = 0.5, "energy" = 0.65, "bomb" = 0.8)
 
-	max_equip = 4
+	max_equip = 5
 
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
 
@@ -97,7 +97,7 @@
 /obj/mecha/combat/gygax/dark/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster,
-		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
 // Serenity
