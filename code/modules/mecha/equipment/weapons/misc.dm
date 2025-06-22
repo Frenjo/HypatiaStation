@@ -40,7 +40,8 @@
 // Technically a weapon but technically not.
 /obj/item/mecha_equipment/weapon/paddy_claw
 	name = "hydraulic claw"
-	desc = "A modified hydraulic clamp, for use exclusively with the Paddy exosuit. Non-lethally apprehends suspects."
+	desc = "A modified hydraulic clamp, for use exclusively with the Paddy exosuit. Non-lethally apprehends suspects. \
+		(Can be attached to: Paddy)"
 	icon_state = "paddy_claw"
 
 	matter_amounts = /datum/design/mechfab/equipment/weapon/paddy_claw::materials

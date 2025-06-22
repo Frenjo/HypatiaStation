@@ -1,7 +1,8 @@
 // Tesla Energy Relay
 /obj/item/mecha_equipment/tesla_energy_relay
 	name = "tesla energy relay"
-	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
+	desc = "An exosuit module that wirelessly drains energy from any available power channel in the local area. The performance index is quite low. \
+		(Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	matter_amounts = /datum/design/mechfab/equipment/general/energy_relay::materials
 	origin_tech = /datum/design/mechfab/equipment/general/energy_relay::req_tech

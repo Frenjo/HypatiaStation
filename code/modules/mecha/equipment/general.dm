@@ -1,7 +1,8 @@
 // Repair Droid
 /obj/item/mecha_equipment/repair_droid
 	name = "repair droid"
-	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage. (Can be attached to: Any Exosuit)"
+	desc = "An automated repair droid which scans an exosuit for damage and repairs it. Can fix almost all types of external or internal damage. \
+		(Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"
 	matter_amounts = /datum/design/mechfab/equipment/general/repair_droid::materials
 	origin_tech = /datum/design/mechfab/equipment/general/repair_droid::req_tech
@@ -80,7 +81,7 @@
 // Teleporter
 /obj/item/mecha_equipment/teleporter
 	name = "teleporter"
-	desc = "An exosuit module that allows exosuits to teleport to any position in view. (Can be attached to: Any Exosuit)"
+	desc = "An exosuit module that allows limited teleportation to any position in view. (Can be attached to: Any Exosuit)"
 	icon_state = "teleporter"
 	matter_amounts = /datum/design/mechfab/equipment/general/teleporter::materials
 	origin_tech = /datum/design/mechfab/equipment/general/teleporter::req_tech
@@ -104,7 +105,7 @@
 // Wormhole Generator
 /obj/item/mecha_equipment/wormhole_generator
 	name = "wormhole generator"
-	desc = "An exosuit module that allows generating of small quasi-stable wormholes. (Can be attached to: Any Exosuit)"
+	desc = "An exosuit module that allows the generation of small quasi-stable wormholes. (Can be attached to: Any Exosuit)"
 	icon_state = "wholegen"
 	matter_amounts = /datum/design/mechfab/equipment/general/wormhole_gen::materials
 	origin_tech = /datum/design/mechfab/equipment/general/wormhole_gen::req_tech
@@ -190,7 +191,7 @@
 					return FALSE
 				locked = target
 				occupant_message("Locked on [target].")
-				send_byjax(chassis.occupant, "exosuit.browser","\ref[src]",get_equip_info())
+				send_byjax(chassis.occupant, "exosuit.browser","\ref[src]", get_equip_info())
 				return TRUE
 			else if(target != locked)
 				if(locked in view(chassis))

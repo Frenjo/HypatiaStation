@@ -1,7 +1,8 @@
 // Melee Armour Booster
 /obj/item/mecha_equipment/melee_armour_booster // What is that noise? A BAWWW from TK mutants.
 	name = "armour booster module (close combat weaponry)"
-	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	desc = "An exosuit module that boosts armour against armed melee attacks. Requires energy to operate. \
+		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_armour_booster"
 	matter_amounts = /datum/design/mechfab/equipment/melee_armour_booster::materials
 	origin_tech = /datum/design/mechfab/equipment/melee_armour_booster::req_tech
@@ -21,7 +22,8 @@
 
 /obj/item/mecha_equipment/melee_defence_shocker
 	name = "armour module (melee defence shocker)"
-	desc = "Electrically charges exosuit armour to discourage melee attackers. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	desc = "An exosuit module that electrically charges the armour to discourage melee attackers. Requires energy to operate. \
+		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_defence_shocker"
 	matter_amounts = /datum/design/mechfab/equipment/melee_defence_shocker::materials
 	origin_tech = /datum/design/mechfab/equipment/melee_defence_shocker::req_tech
@@ -54,7 +56,8 @@
 // Ranged Armour Booster
 /obj/item/mecha_equipment/ranged_armour_booster
 	name = "armour booster module (ranged weaponry)"
-	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	desc = "An exosuit module that boosts armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. \
+		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "ranged_armour_booster"
 	matter_amounts = /datum/design/mechfab/equipment/ranged_armour_booster::materials
 	origin_tech = /datum/design/mechfab/equipment/ranged_armour_booster::req_tech
@@ -75,7 +78,8 @@
 // EMP Armour Booster
 /obj/item/mecha_equipment/emp_insulation
 	name = "armour module (ablative EMP insulation)"
-	desc = "Boosts exosuit systems against energy and EMP-based interference. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	desc = "An exosuit module that boosts internal systems against energy and EMP-based interference. Requires energy to operate. \
+		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "emp_insulation"
 	matter_amounts = /datum/design/mechfab/equipment/emp_insulation::materials
 	origin_tech = /datum/design/mechfab/equipment/emp_insulation::req_tech
@@ -95,8 +99,9 @@
 // Hardened version used on Syndicate and CentCom exosuits.
 /obj/item/mecha_equipment/emp_insulation/hardened
 	name = "armour module (hardened ablative EMP insulation)"
-	desc = "Boosts exosuit systems against energy and EMP-based interference. Requires energy to operate. \
-	This variant sports improved shielding at the cost of being permanently integrated into the exosuit's chassis."
+	desc = "An exosuit module that boosts internal systems against energy and EMP-based interference. Requires energy to operate. \
+		This variant sports improved shielding at the cost of being permanently integrated into the exosuit's chassis. \
+		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 
 	allow_detach = FALSE // It's stuck on the suits it comes with.
 

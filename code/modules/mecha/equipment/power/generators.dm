@@ -4,7 +4,7 @@
 // Plasma
 /obj/item/mecha_equipment/generator
 	name = "plasma converter"
-	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
+	desc = "An exosuit module that generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 
 	matter_amounts = /datum/design/mechfab/equipment/general/plasma_generator::materials
@@ -144,7 +144,7 @@
 // Nuclear
 /obj/item/mecha_equipment/generator/nuclear
 	name = "\improper ExoNuclear reactor"
-	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
+	desc = "An exosuit module that generates power using uranium as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 
 	matter_amounts = /datum/design/mechfab/equipment/general/nuclear_generator::materials

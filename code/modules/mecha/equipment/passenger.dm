@@ -2,7 +2,7 @@
 // Ported the passenger compartment from NSS Eternal along with the hoverpod. -Frenjo
 /obj/item/mecha_equipment/passenger
 	name = "passenger compartment"
-	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
+	desc = "A mounted passenger compartment for exosuits. Rather cramped. (Can be attached to: Any Exosuit)"
 	icon_state = "passenger_compartment"
 	matter_amounts = /datum/design/mechfab/equipment/general/passenger_compartment::materials
 	origin_tech = /datum/design/mechfab/equipment/general/passenger_compartment::req_tech
