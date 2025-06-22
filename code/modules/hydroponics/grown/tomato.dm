@@ -137,7 +137,7 @@
  */
 /obj/item/reagent_holder/food/snacks/grown/bluespacetomato
 	seed = /obj/item/seeds/tomato/bluespace
-	name = "blue-space tomato"
+	name = "bluespace tomato"
 	desc = "So lubricated, you might slip through space-time."
 	icon_state = "bluespacetomato"
 	potency = 20

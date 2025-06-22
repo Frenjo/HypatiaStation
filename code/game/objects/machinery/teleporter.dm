@@ -220,7 +220,7 @@
 	if(isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/storage/backpack/holding))
-			MM << "\red The Bluespace interface on your Bag of Holding interferes with the teleport!"
+			MM << "\red The bluespace interface on your Bag of Holding interferes with the teleport!"
 			precision = rand(1,100)
 	if (istype(M, /obj/item/storage/backpack/holding))
 		precision = rand(1,100)

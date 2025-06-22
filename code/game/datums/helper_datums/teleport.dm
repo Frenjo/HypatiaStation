@@ -146,7 +146,7 @@
 		precision = max(rand(1, 100) * length(bagholding), 100)
 		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
-			to_chat(MM, SPAN_WARNING("The Bluespace interface on your Bag of Holding interferes with the teleport!"))
+			to_chat(MM, SPAN_WARNING("The bluespace interface on your Bag of Holding interferes with the teleport!"))
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()

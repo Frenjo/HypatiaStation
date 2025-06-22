@@ -61,11 +61,11 @@
  * Bluespace Tomato
  */
 /obj/item/seeds/tomato/bluespace
-	name = "pack of blue-space tomato seeds"
-	desc = "These seeds grow into blue-space tomato plants."
+	name = "pack of bluespace tomato seeds"
+	desc = "These seeds grow into bluespace tomato plants."
 	icon_state = "seed-bluespacetomato"
 	species = "bluespacetomato"
-	plantname = "Blue-Space Tomato Plants"
+	plantname = "Bluespace Tomato Plants"
 	productname = /obj/item/reagent_holder/food/snacks/grown/bluespacetomato
 
 /*

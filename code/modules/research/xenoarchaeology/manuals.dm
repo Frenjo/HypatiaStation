@@ -344,7 +344,7 @@
 				<a href="#Contents">Contents</a>
 
 				<h1><a name="Development">The breakthrough</a></h1>
-				It was in examining the effects of decellerated, blue-space high energy particles when transphased through bluespace that the effects where primarily noticed.
+				It was in examining the effects of decelerated, bluespace high energy particles when transphased through bluespace that the effects where primarily noticed.
 				Due to exigent properties of that dimension, transphasing those particles capable of existing in bluespace with high stability levels has the effect of bringing
 				some of those effects into realspace. Examining the Hoffman emissions in particular, it was discovered that they exhibited a-entropic behaviour, and in what is
 				now termed the 'Effete Hoffman Principle,' it was found that metastabilising the Hoffman radiation resulted in the effect being applied across other physical

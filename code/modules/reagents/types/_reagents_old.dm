@@ -3542,7 +3542,7 @@ datum
 		ethanol/singulo
 			name = "Singulo"
 			id = "singulo"
-			description = "A blue-space beverage!"
+			description = "A bluespace beverage!"
 			color = "#2E6671" // rgb: 46, 102, 113
 			boozepwr = 5
 			dizzy_adj = 15

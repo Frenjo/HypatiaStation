@@ -203,8 +203,8 @@ research holder datum.
 	desc = "Research into the mysterious substance colloqually known as 'plasma'."
 
 /decl/tech/bluespace
-	name = "'Blue-space' Research"
-	desc = "Research into the sub-reality known as 'blue-space'."
+	name = "'Bluespace' Research"
+	desc = "Research into the sub-reality known as 'bluespace'."
 
 // Secret Techs
 /decl/tech/syndicate

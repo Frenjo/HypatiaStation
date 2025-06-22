@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
-	desc = "A backpack that opens into a localised pocket of Bluespace."
+	desc = "A backpack that opens into a localised pocket of bluespace."
 	icon_state = "holdingpack"
 
 	// These amounts reflect that as well as the inert item, you also need an artificial bluespace crystal and a piece of cable to assemble it.
@@ -17,18 +17,18 @@
 
 /obj/item/storage/backpack/holding/attack_by(obj/item/I, mob/user)
 	if(crit_fail)
-		to_chat(user, SPAN_WARNING("The Bluespace generator isn't working."))
+		to_chat(user, SPAN_WARNING("The bluespace generator isn't working."))
 		return TRUE
 
 	if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
-		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
+		to_chat(user, SPAN_WARNING("The bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(I)
 		return TRUE
 
 	/* //BoH+BoH=Singularity, commented out.
 	if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
 		investigate_log("has become a singularity. Caused by [user.key]","singulo")
-		user << "\red The Bluespace interfaces of the two devices catastrophically malfunction!"
+		user << "\red The bluespace interfaces of the two devices catastrophically malfunction!"
 		del(I)
 		var/obj/machinery/singularity/singulo = new /obj/machinery/singularity(GET_TURF(src))
 		singulo.energy = 300 //should make it a bit bigger~
@@ -44,9 +44,9 @@
 	if(prob(reliability))
 		return 1 // No failure!
 	if(prob(reliability))
-		to_chat(user, SPAN_WARNING("The Bluespace portal resists your attempt to add another item.")) // Light failure!
+		to_chat(user, SPAN_WARNING("The bluespace portal resists your attempt to add another item.")) // Light failure!
 	else
-		to_chat(user, SPAN_WARNING("The Bluespace generator malfunctions!"))
+		to_chat(user, SPAN_WARNING("The bluespace generator malfunctions!"))
 		for_no_type_check(var/atom/movable/mover, src) // It broke, delete what was in it!
 			qdel(mover)
 		crit_fail = TRUE

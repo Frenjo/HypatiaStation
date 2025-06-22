@@ -125,7 +125,7 @@ Frequency:
  */
 /obj/item/hand_teleporter
 	name = "hand teleporter"
-	desc = "A portable item using blue-space technology."
+	desc = "A portable item using bluespace technology."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
