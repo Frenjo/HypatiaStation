@@ -1999,7 +1999,7 @@
 /turf/open/floor/airless,
 /area/station/research/toxins/test_area)
 "aLD" = (
-/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow,
+/obj/machinery/atmospherics/pipe/manifold4w/visible/purple,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "aMj" = (
@@ -5208,14 +5208,12 @@
 /area/station/engineering/engine/singularity/space)
 "bQp" = (
 /obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 4
-	},
 /obj/machinery/fire_alarm{
 	dir = 1;
 	name = "south bump";
 	pixel_y = -24
 	},
+/obj/machinery/atmospherics/pipe/manifold/visible,
 /turf/open/floor/tiled/grey,
 /area/station/research/toxins/mixing)
 "bQH" = (
@@ -5714,8 +5712,8 @@
 	dir = 2;
 	name = "engineering emergency shutter"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/effect/window_spawner/reinforced,
+/obj/machinery/atmospherics/pipe/simple/visible/purple,
 /turf/open/floor/plating/metal,
 /area/station/engineering/atmospherics)
 "bZc" = (
@@ -10003,6 +10001,11 @@
 	},
 /turf/open/floor/airless,
 /area/station/research/toxins/test_area)
+"dwR" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/meter,
+/turf/open/floor/tiled/white,
+/area/station/research/toxins/mixing)
 "dwU" = (
 /obj/structure/table/woodentable,
 /obj/item/camera,
@@ -15519,7 +15522,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "fzL" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow,
+/obj/machinery/atmospherics/pipe/manifold/visible/purple,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "fAo" = (
@@ -18179,6 +18182,13 @@
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
+"gsc" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/visible/purple{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "gsh" = (
 /obj/machinery/light,
 /obj/structure/cable{
@@ -20150,8 +20160,8 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "heX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/purple,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "heZ" = (
@@ -22626,6 +22636,12 @@
 	icon_state = "whitehall"
 	},
 /area/station/research/hallway)
+"hVn" = (
+/obj/machinery/atmospherics/pipe/simple/visible/purple{
+	dir = 4
+	},
+/turf/open/floor/tiled/grey,
+/area/station/engineering/atmospherics)
 "hVA" = (
 /obj/machinery/door/airlock/glass/engineering{
 	name = "Engineering Lobby"
@@ -25992,6 +26008,12 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
+"iZA" = (
+/obj/machinery/atmospherics/binary/pump{
+	name = "Auxiliary To Mixing"
+	},
+/turf/open/floor/tiled/grey,
+/area/station/research/toxins/mixing)
 "iZI" = (
 /obj/machinery/light{
 	dir = 4
@@ -26914,6 +26936,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/cargo/bay)
 "jrz" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
@@ -32944,6 +32967,13 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/security/range)
+"lEO" = (
+/obj/effect/decal/floor/industrial/warning/border,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 9
+	},
+/turf/open/floor/tiled/white,
+/area/station/research/toxins/mixing)
 "lFa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/open/floor/tiled/white,
@@ -33184,6 +33214,10 @@
 	},
 /turf/open/floor/tiled/dark,
 /area/turret_protected/ai_upload_foyer)
+"lIo" = (
+/obj/machinery/atmospherics/mains_pipe/split/aux/visible,
+/turf/open/floor/tiled/white,
+/area/station/research/toxins/mixing)
 "lIp" = (
 /obj/structure/stool/bed/chair{
 	dir = 4
@@ -34178,10 +34212,10 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/hydroponics)
 "mbB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/purple,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "mbS" = (
@@ -36683,6 +36717,9 @@
 /area/external/prison/solitary)
 "mRs" = (
 /obj/effect/decal/floor/industrial/warning/border,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
+	},
 /turf/open/floor/tiled/white,
 /area/station/research/toxins/mixing)
 "mRx" = (
@@ -37555,12 +37592,12 @@
 /turf/open/floor/circuit_grid/blue,
 /area/station/research/robotics/chargebay)
 "niQ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
 /obj/machinery/atmospherics/binary/pump{
 	dir = 0;
 	name = "Air to Mix"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/purple{
+	dir = 4
 	},
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
@@ -43466,6 +43503,25 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/security/warden)
+"pjp" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/obj/machinery/door/firedoor/border_only{
+	dir = 2;
+	name = "engineering emergency shutter"
+	},
+/obj/machinery/door/poddoor{
+	density = FALSE;
+	icon_state = "pdoor0";
+	id = "atmos";
+	name = "Atmos Blast Door";
+	opacity = FALSE
+	},
+/obj/effect/window_spawner/reinforced,
+/obj/machinery/atmospherics/pipe/simple/visible/purple{
+	dir = 4
+	},
+/turf/open/floor/plating/metal,
+/area/station/engineering/atmospherics)
 "pju" = (
 /turf/closed/wall/reinforced,
 /area/turret_protected/messaging_server)
@@ -47970,7 +48026,7 @@
 /obj/machinery/meter{
 	name = "Mix Tank Out"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/obj/machinery/atmospherics/pipe/simple/visible/purple{
 	dir = 4
 	},
 /turf/closed/wall/reinforced,
@@ -57353,7 +57409,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
 "ujQ" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+/obj/machinery/atmospherics/pipe/manifold/visible/purple{
 	dir = 1
 	},
 /turf/open/floor/tiled/grey,
@@ -102911,7 +102967,7 @@ drb
 agj
 jID
 xgO
-qTg
+hVn
 tBM
 lTc
 sCc
@@ -103682,7 +103738,7 @@ vYU
 bFF
 xel
 iiP
-ish
+pjp
 wBz
 uxy
 ftX
@@ -103939,7 +103995,7 @@ vYU
 kUr
 eMU
 eMU
-aOY
+gsc
 eMU
 nOO
 eMU
@@ -117557,7 +117613,7 @@ mEx
 rCX
 mRs
 jrz
-ogD
+iZA
 bQp
 tDi
 dDh
@@ -117810,9 +117866,9 @@ waN
 tDi
 qsV
 phj
-mEx
-afJ
-mRs
+lIo
+dwR
+lEO
 nXC
 ogD
 nXC
