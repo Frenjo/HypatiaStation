@@ -3225,6 +3225,7 @@
 	id = "derelictsolar";
 	name = "derelict solar array"
 	},
+/obj/effect/decal/floor/solar_panel,
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/starboard)
 "HD" = (
@@ -3313,6 +3314,7 @@
 	id = "derelictsolar";
 	name = "derelict solar array"
 	},
+/obj/effect/decal/floor/solar_panel,
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/starboard)
 "Iq" = (
@@ -3568,6 +3570,7 @@
 	id = "derelictsolar";
 	name = "derelict solar array"
 	},
+/obj/effect/decal/floor/solar_panel,
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/aft)
 "KF" = (
@@ -3964,6 +3967,7 @@
 	id = "derelictsolar";
 	name = "derelict solar array"
 	},
+/obj/effect/decal/floor/solar_panel,
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/aft)
 "Pz" = (
