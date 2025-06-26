@@ -19,6 +19,8 @@
 	name = "\improper Arrival Shuttle CentCom"
 	icon_state = "shuttle2"
 
+	area_flags = AREA_FLAG_IS_CENTCOM
+
 /area/shuttle/arrival/transit
 	name = "\improper Arrival Shuttle Transit"
 	icon_state = "shuttle"
@@ -43,6 +45,8 @@
 /area/shuttle/escape/centcom
 	name = "\improper Emergency Shuttle CentCom"
 	icon_state = "shuttle"
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/escape/transit // the area to pass through for 3 minute transit
 	name = "\improper Emergency Shuttle Transit"
@@ -69,6 +73,8 @@
 	name = "\improper Escape Pod One CentCom"
 	icon_state = "shuttle"
 
+	area_flags = AREA_FLAG_IS_CENTCOM
+
 /area/shuttle/escape_pod/one/transit
 	name = "\improper Escape Pod One Transit"
 	icon_state = "shuttle"
@@ -83,6 +89,8 @@
 /area/shuttle/escape_pod/two/centcom
 	name = "\improper Escape Pod Two CentCom"
 	icon_state = "shuttle"
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/escape_pod/two/transit
 	name = "\improper Escape Pod Two Transit"
@@ -99,6 +107,8 @@
 	name = "\improper Escape Pod Three CentCom"
 	icon_state = "shuttle"
 
+	area_flags = AREA_FLAG_IS_CENTCOM
+
 /area/shuttle/escape_pod/three/transit
 	name = "\improper Escape Pod Three Transit"
 	icon_state = "shuttle"
@@ -114,6 +124,8 @@
 	name = "\improper Escape Pod Four CentCom"
 	icon_state = "shuttle"
 
+	area_flags = AREA_FLAG_IS_CENTCOM
+
 /area/shuttle/escape_pod/four/transit
 	name = "\improper Escape Pod Four Transit"
 	icon_state = "shuttle"
@@ -128,6 +140,8 @@
 /area/shuttle/escape_pod/five/centcom
 	name = "\improper Escape Pod Five CentCom"
 	icon_state = "shuttle"
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/escape_pod/five/transit
 	name = "\improper Escape Pod Five Transit"
@@ -160,6 +174,8 @@
 	name = "\improper Transport Shuttle CentCom"
 	icon_state = "shuttle"
 	base_turf = /turf/open/floor/plating/metal
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/transport/station
 	name = "\improper Transport Shuttle Station"
@@ -195,6 +211,8 @@
 /area/shuttle/specops/centcom
 	name = "\improper Special Ops Shuttle CentCom"
 	icon_state = "shuttlered"
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/specops/station
 	name = "\improper Special Ops Shuttle Station"
@@ -261,6 +279,8 @@
 	name = "\improper Administration Shuttle CentCom"
 	icon_state = "shuttlered"
 	base_turf = /turf/open/floor/plating/metal
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/administration/station
 	name = "\improper Administration Shuttle Station"
@@ -339,6 +359,8 @@
 	name = "\improper Supply Shuttle CentCom"
 	icon_state = "shuttle3"
 	base_turf = /turf/open/floor/plating/metal
+
+	area_flags = AREA_FLAG_IS_CENTCOM
 
 /area/shuttle/supply/station
 	name = "\improper Supply Shuttle Station"

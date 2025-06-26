@@ -156,14 +156,9 @@ Implants;
 	var/escaped_on_pod_1 = 0
 	var/escaped_on_pod_2 = 0
 	var/escaped_on_pod_3 = 0
+	var/escaped_on_pod_4 = 0
 	var/escaped_on_pod_5 = 0
 	var/escaped_on_shuttle = 0
-
-	var/list/area/escape_locations = list(
-		/area/shuttle/escape/centcom, /area/shuttle/escape_pod/one/centcom, /area/shuttle/escape_pod/two/centcom,
-		/area/shuttle/escape_pod/three/centcom, /area/shuttle/escape_pod/four/centcom, /area/shuttle/escape_pod/five/centcom,
-		/area/shuttle/arrival/centcom
-	)
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnotnull(M.client))
@@ -171,11 +166,13 @@ Implants;
 			if(ishuman(M))
 				if(!M.stat)
 					surviving_humans++
-					if(isnotnull(M.loc?.loc) && (M.loc.loc.type in escape_locations))
+					var/area/mob_area = GET_AREA(M)
+					if(isnotnull(mob_area) && HAS_AREA_FLAGS(mob_area, AREA_FLAG_IS_CENTCOM))
 						escaped_humans++
 			if(!M.stat)
 				surviving_total++
-				if(isnotnull(M.loc?.loc) && (M.loc.loc.type in escape_locations))
+				var/area/mob_area = GET_AREA(M)
+				if(isnotnull(mob_area) && HAS_AREA_FLAGS(mob_area, AREA_FLAG_IS_CENTCOM))
 					escaped_total++
 
 				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape/centcom)
@@ -187,6 +184,8 @@ Implants;
 					escaped_on_pod_2++
 				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/three/centcom)
 					escaped_on_pod_3++
+				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/four/centcom)
+					escaped_on_pod_4++
 				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/five/centcom)
 					escaped_on_pod_5++
 
@@ -213,10 +212,12 @@ Implants;
 		feedback_set("escaped_on_pod_2", escaped_on_pod_2)
 	if(escaped_on_pod_3 > 0)
 		feedback_set("escaped_on_pod_3", escaped_on_pod_3)
+	if(escaped_on_pod_4 > 0)
+		feedback_set("escaped_on_pod_4", escaped_on_pod_4)
 	if(escaped_on_pod_5 > 0)
 		feedback_set("escaped_on_pod_5", escaped_on_pod_5)
 
-	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	send2mainirc("A round of [name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 
 	return 0
 

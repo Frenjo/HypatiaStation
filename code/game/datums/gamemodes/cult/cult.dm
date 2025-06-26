@@ -255,8 +255,8 @@
 	acolytes_survived = 0
 	for_no_type_check(var/datum/mind/cult_mind, cult)
 		if(cult_mind.current && cult_mind.current.stat != DEAD)
-			var/area/A = GET_AREA(cult_mind.current)
-			if(is_type_in_list(A, GLOBL.centcom_areas))
+			var/area/mind_area = GET_AREA(cult_mind.current)
+			if(HAS_AREA_FLAGS(mind_area, AREA_FLAG_IS_CENTCOM))
 				acolytes_survived++
 	if(acolytes_survived >= acolytes_needed)
 		return 0

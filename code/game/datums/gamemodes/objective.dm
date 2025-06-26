@@ -339,12 +339,11 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			continue
 		if(isnotnull(player.mind))
 			if(player.stat != DEAD)
-				var/turf/T = GET_TURF(player)
-				if(isnull(T))
+				var/area/player_area = GET_AREA(player)
+				if(isnull(player_area))
 					continue
-				switch(T.loc.type)
-					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod/one/centcom, /area/shuttle/escape_pod/two/centcom, /area/shuttle/escape_pod/three/centcom, /area/shuttle/escape_pod/four/centcom, /area/shuttle/escape_pod/five/centcom, /area/shuttle/arrival/centcom)
-						return 0
+				if(HAS_AREA_FLAGS(player_area, AREA_FLAG_IS_CENTCOM))
+					return 0
 	return 1
 
 
@@ -372,18 +371,8 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 				return 1
 		return 0
 
-	var/area/check_area = location.loc
-	if(istype(check_area, /area/shuttle/escape/centcom))
-		return 1
-	if(istype(check_area, /area/shuttle/escape_pod/one/centcom))
-		return 1
-	if(istype(check_area, /area/shuttle/escape_pod/two/centcom))
-		return 1
-	if(istype(check_area, /area/shuttle/escape_pod/three/centcom))
-		return 1
-	if(istype(check_area, /area/shuttle/escape_pod/five/centcom))
-		return 1
-	if(istype(check_area, /area/shuttle/arrival/centcom))
+	var/area/check_area = GET_AREA(owner)
+	if(HAS_AREA_FLAGS(check_area, AREA_FLAG_IS_CENTCOM))
 		return 1
 	else
 		return 0
@@ -593,17 +582,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			for_no_type_check(var/mob/living/silicon/ai/ai, GLOBL.ai_list)
 				if(isturf(ai.loc))
 					var/area/check_area = GET_AREA(ai)
-					if(istype(check_area, /area/shuttle/escape/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod/one/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod/two/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod/three/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/escape_pod/five/centcom))
-						return 1
-					if(istype(check_area, /area/shuttle/arrival/centcom))
+					if(HAS_AREA_FLAGS(check_area, AREA_FLAG_IS_CENTCOM))
 						return 1
 
 		else

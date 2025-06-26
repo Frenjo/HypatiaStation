@@ -4,6 +4,9 @@
 /area/centcom
 	name = "\improper CentCom"
 	icon_state = "centcom"
+
+	area_flags = AREA_FLAG_IS_CENTCOM
+
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 
