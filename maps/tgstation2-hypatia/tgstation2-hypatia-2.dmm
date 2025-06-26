@@ -1,22 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/structure/shuttle/engine/propulsion/right{
+/obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
 /turf/open/floor/plating/metal/shuttle/airless,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "ab" = (
 /obj/structure/table,
 /turf/open/floor{
 	icon_state = "redyellowfull"
 	},
 /area/centcom/tdome/admin)
-"ac" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 1
-	},
-/turf/open/floor/plating/metal/shuttle/airless,
-/area/centcom/rescue_shuttle)
 "ad" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tiled/grey,
@@ -27,12 +21,6 @@
 	icon_state = "carpetside"
 	},
 /area/centcom/control)
-"af" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 1
-	},
-/turf/open/floor/plating/metal/shuttle/airless,
-/area/centcom/rescue_shuttle)
 "ag" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -56,11 +44,6 @@
 	icon_state = "grimy"
 	},
 /area/special/holodeck/source/meeting_hall)
-"aj" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall7"
-	},
-/area/centcom/rescue_shuttle)
 "ak" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swallc2inv"
@@ -73,18 +56,6 @@
 	},
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
-"am" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/turf/open/floor/plating/metal/shuttle/airless,
-/area/centcom/rescue_shuttle)
-"an" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall15"
-	},
-/area/centcom/rescue_shuttle)
 "ao" = (
 /turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/supply/centcom)
@@ -96,14 +67,11 @@
 	},
 /area/special/holodeck/source/meeting_hall)
 "aq" = (
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "escape_pod_1_recovery_hatch";
-	locked = 1;
-	name = "Salvage Shuttle Dock"
+/obj/structure/shuttle/engine/propulsion/right{
+	dir = 1
 	},
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/centcom/rescue_shuttle/one)
 "ar" = (
 /obj/effect/decal/floor/coloured/green,
 /turf/open/floor/holofloor{
@@ -111,19 +79,11 @@
 	},
 /area/special/holodeck/source/empty_court)
 "as" = (
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "escape_pod_2_recovery_hatch";
-	locked = 1;
-	name = "Salvage Shuttle Dock"
+/obj/structure/shuttle/engine/propulsion/left{
+	dir = 1
 	},
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
-"at" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall11"
-	},
-/area/centcom/rescue_shuttle)
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/centcom/rescue_shuttle/one)
 "au" = (
 /obj/structure/rack,
 /obj/item/gun/dartgun/vox/raider,
@@ -140,10 +100,6 @@
 	icon_state = "gravsnow_corner"
 	},
 /area/enemy/syndicate/mothership)
-"aw" = (
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
 "ax" = (
 /turf/closed/wall/reinforced/riveted,
 /area/centcom/shuttle_dock/supply)
@@ -177,10 +133,6 @@
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
-"aC" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
 "aD" = (
 /obj/machinery/computer/shuttle_control/multi/syndicate,
 /turf/open/floor/shuttle/red,
@@ -211,13 +163,14 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/specops/centcom)
 "aH" = (
-/turf/closed/wall/shuttle/corner/interior/white/nw{
-	icon_state = "swall_plating"
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_2_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
 	},
-/area/centcom/rescue_shuttle)
-"aI" = (
-/turf/closed/wall/shuttle/corner/interior/white/se,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "aJ" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swall7"
@@ -230,9 +183,10 @@
 /turf/open/floor/wood,
 /area/centcom/living)
 "aL" = (
-/obj/structure/closet/emergency,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle{
+	icon_state = "swall15"
+	},
+/area/centcom/rescue_shuttle/one)
 "aM" = (
 /obj/machinery/librarycomp,
 /obj/structure/table/woodentable,
@@ -255,24 +209,6 @@
 	icon_state = "floor"
 	},
 /area/special/holodeck/source/boxing_court)
-"aP" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	id_tag = "escape_pod_1_recovery";
-	pixel_x = 25;
-	pixel_y = 25;
-	tag_door = "escape_pod_1_recovery_hatch"
-	},
-/turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
-"aQ" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/toxin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/storage/firstaid/toxin,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
 "aR" = (
 /obj/machinery/telecoms/allinone{
 	intercept = 1
@@ -286,18 +222,12 @@
 /turf/space,
 /area/space)
 "aT" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/fire{
-	pixel_x = -2;
-	pixel_y = 4
+/obj/structure/window/reinforced,
+/obj/structure/shuttle/engine/heater{
+	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/centcom/rescue_shuttle/one)
 "aU" = (
 /obj/item/clothing/head/collectable/petehat{
 	desc = "It smells faintly of reptile.";
@@ -319,16 +249,10 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/specops)
 "aX" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2
+/turf/closed/wall/shuttle{
+	icon_state = "swall11"
 	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "aY" = (
 /obj/item/cash/c200,
 /obj/item/cash/c50,
@@ -344,14 +268,8 @@
 /turf/space,
 /area/space)
 "bb" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	id_tag = "escape_pod_2_recovery";
-	pixel_x = -25;
-	pixel_y = 25;
-	tag_door = "escape_pod_2_recovery_hatch"
-	},
-/turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/area/centcom/rescue_shuttle/one)
 "bc" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
@@ -361,8 +279,12 @@
 	},
 /area/enemy/syndicate/mothership)
 "bd" = (
-/turf/closed/wall/shuttle/corner/interior/white/sw,
-/area/centcom/rescue_shuttle)
+/obj/effect/window_spawner/reinforced,
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "be" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -409,40 +331,57 @@
 /turf/open/floor/tiled/dark,
 /area/centcom/control)
 "bk" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne{
-	icon_state = "swall_plating"
-	},
-/area/centcom/rescue_shuttle)
+/obj/structure/stool,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "bl" = (
-/obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle{
+	icon_state = "swall7"
+	},
+/area/centcom/rescue_shuttle/one)
 "bm" = (
-/obj/machinery/vending/engineering,
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
-"bn" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_1_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
+"bn" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/machinery/light{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "bo" = (
 /turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/transport/centcom)
 "bp" = (
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
-"bq" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = -30
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
 	},
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"br" = (
+/area/centcom/rescue_shuttle/one)
+"bq" = (
+/obj/structure/closet/emergency,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
+"br" = (
+/turf/closed/wall/shuttle/corner/interior/white/sw,
+/area/centcom/rescue_shuttle/one)
 "bs" = (
 /obj/structure/closet/walllocker/emerglocker/east,
 /obj/machinery/light/small{
@@ -462,8 +401,10 @@
 	},
 /area/centcom/control)
 "bv" = (
-/turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle/corner/interior/white/ne{
+	icon_state = "swall_plating"
+	},
+/area/centcom/rescue_shuttle/one)
 "bw" = (
 /obj/machinery/door/poddoor{
 	name = "Shuttle Bay Interior Blast Door";
@@ -493,22 +434,23 @@
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
 "bA" = (
-/obj/structure/stool,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"bB" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = 30
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"bC" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
+/obj/machinery/vending/engineering,
 /turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
+"bB" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/pen,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
+"bC" = (
+/obj/machinery/computer{
+	desc = "For shuttle control.";
+	icon_state = "shuttle";
+	name = "Shuttle"
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "bD" = (
 /obj/structure/rack,
 /obj/item/toy/sword,
@@ -558,24 +500,11 @@
 	},
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/administration/centcom)
-"bM" = (
-/obj/machinery/door/airlock/hatch/maintenance{
-	req_access = list(101)
-	},
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
-"bN" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"bO" = (
-/obj/structure/stool/bed/chair,
-/turf/open/floor/shuttle/blue,
-/area/space)
 "bP" = (
-/obj/machinery/vending/snack,
+/obj/structure/table,
+/obj/item/stamp/captain,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/two)
 "bQ" = (
 /obj/effect/landmark{
 	name = "Response Team"
@@ -586,23 +515,10 @@
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
-"bR" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"bS" = (
-/obj/structure/stool/bed/chair{
-	dir = 4
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
 "bT" = (
-/obj/structure/table,
+/obj/structure/stool,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/two)
 "bU" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -610,23 +526,10 @@
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "bV" = (
-/obj/structure/stool/bed/chair{
-	dir = 8
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"bW" = (
-/obj/machinery/vending/cola,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"bX" = (
 /obj/structure/table,
-/obj/item/hand_labeler,
+/obj/item/storage/lockbox,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/two)
 "bY" = (
 /obj/structure/table,
 /obj/machinery/processor{
@@ -668,14 +571,11 @@
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
 "ce" = (
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "escape_pod_5_recovery_hatch";
-	locked = 1;
-	name = "Salvage Shuttle Dock"
+/obj/structure/stool/bed/chair{
+	dir = 8
 	},
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "cf" = (
 /obj/effect/overlay/palmtree_r,
 /obj/effect/overlay/coconut,
@@ -684,15 +584,6 @@
 	tag = "icon-desert"
 	},
 /area/centcom/holding)
-"cg" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	id_tag = "escape_pod_5_recovery";
-	pixel_x = -25;
-	pixel_y = 25;
-	tag_door = "escape_pod_5_recovery_hatch"
-	},
-/turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
 "ch" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
@@ -725,12 +616,6 @@
 	icon_state = "vault"
 	},
 /area/centcom/tdome)
-"cm" = (
-/obj/structure/stool/bed/chair{
-	dir = 1
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
 "cn" = (
 /obj/structure/holostool,
 /turf/open/floor/holofloor{
@@ -739,6 +624,14 @@
 	},
 /area/special/holodeck/source/theatre)
 "co" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
+"cp" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
+"cq" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	id_tag = "escape_pod_3_recovery";
 	pixel_x = 25;
@@ -746,24 +639,10 @@
 	tag_door = "escape_pod_3_recovery_hatch"
 	},
 /turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
-"cp" = (
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "escape_pod_3_recovery_hatch";
-	locked = 1;
-	name = "Salvage Shuttle Dock"
-	},
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
-"cq" = (
-/obj/machinery/vending/coffee,
-/obj/machinery/light/small,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "cr" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne,
-/area/centcom/rescue_shuttle)
+/turf/space,
+/area/shuttle/escape_pod/three/centcom)
 "cs" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	id_tag = "escapeshuttle_centcomdock";
@@ -774,23 +653,15 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/shuttle_dock/emergency)
 "ct" = (
+/turf/closed/wall/shuttle/corner/interior/white/se,
+/area/centcom/rescue_shuttle/one)
+"cw" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"cv" = (
-/obj/structure/closet/secure/personal/patient,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
-"cw" = (
-/obj/structure/closet/secure/personal/patient,
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "cx" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	id_tag = "admin_shuttle";
@@ -799,26 +670,19 @@
 	},
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/administration/centcom)
-"cy" = (
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/structure/table,
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
 "cz" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "cA" = (
-/obj/effect/window_spawner/reinforced,
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_1_recovery";
+	pixel_x = 25;
+	pixel_y = 25;
+	tag_door = "escape_pod_1_recovery_hatch"
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/one)
 "cB" = (
 /obj/structure/rack,
 /obj/item/toy/gun,
@@ -844,63 +708,48 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/elite/mothership)
 "cE" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/structure/table,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -2;
+	pixel_y = 4
 	},
-/turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "cF" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swall13inv"
 	},
 /area/shuttle/specops/centcom)
-"cG" = (
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
 "cH" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_2_recovery";
+	pixel_x = -25;
+	pixel_y = 25;
+	tag_door = "escape_pod_2_recovery_hatch"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/one)
 "cI" = (
 /obj/structure/stool/bed/chair,
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
 "cJ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft{
-	name = "Security Desk";
-	req_access = list(103)
-	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "cK" = (
 /turf/open/floor/holofloor{
 	icon_state = "snow"
 	},
 /area/special/holodeck/source/snow_field)
-"cL" = (
-/obj/structure/table/reinforced,
-/obj/item/pen,
-/obj/machinery/door/window/northright{
-	name = "Security Desk";
-	req_access = list(103)
-	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
 "cN" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 4
 	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "cO" = (
 /obj/machinery/vending/snack,
 /turf/open/floor{
@@ -908,12 +757,14 @@
 	},
 /area/centcom/tdome/observation)
 "cP" = (
-/obj/machinery/sleeper,
-/obj/machinery/light/small{
-	dir = 8
+/obj/structure/table/reinforced,
+/obj/item/pen,
+/obj/machinery/door/window/northright{
+	name = "Security Desk";
+	req_access = list(103)
 	},
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "cQ" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor{
@@ -921,36 +772,27 @@
 	},
 /area/centcom/living)
 "cR" = (
-/obj/machinery/sleep_console,
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
-"cS" = (
-/obj/machinery/door/airlock/glass/medical{
-	name = "Infirmary"
-	},
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
-"cT" = (
 /obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/stamp,
 /obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
-"cU" = (
-/obj/structure/stool/bed/chair{
 	dir = 1
 	},
 /turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
-"cV" = (
+/area/centcom/rescue_shuttle/one)
+"cS" = (
 /obj/structure/stool/bed/chair{
-	dir = 4
+	dir = 1
 	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
+"cU" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
+"cV" = (
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "cW" = (
 /obj/machinery/light{
 	dir = 8
@@ -966,9 +808,12 @@
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
 "cY" = (
-/obj/machinery/computer/card,
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_x = -30
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "cZ" = (
 /obj/item/radio/intercom{
 	pixel_y = -30
@@ -1020,12 +865,11 @@
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/supply)
 "dh" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = -30
+/obj/structure/stool/bed/chair{
+	dir = 4
 	},
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "di" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'FOURTH WALL'.";
@@ -1035,12 +879,12 @@
 /turf/open/floor/plating/snow,
 /area/enemy/syndicate/mothership)
 "dj" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_x = 30
 	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "dk" = (
 /obj/structure/stool/bed/chair{
 	dir = 4
@@ -1048,8 +892,11 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
 "dl" = (
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "dm" = (
 /obj/structure/closet/walllocker/emerglocker/west{
 	amount = 4
@@ -1057,20 +904,13 @@
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/escape/centcom)
 "dn" = (
-/obj/machinery/computer/secure_data,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/obj/machinery/computer/communications,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "do" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
-"dp" = (
-/obj/machinery/sleeper,
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
 "dq" = (
 /obj/structure/closet/hydrant{
 	pixel_y = 31
@@ -1078,21 +918,21 @@
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
 "dr" = (
-/obj/machinery/light/small,
-/turf/open/floor/shuttle/white,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle{
+	icon_state = "swall3"
+	},
+/area/centcom/rescue_shuttle/one)
 "ds" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/centcom/control)
 "dt" = (
-/obj/machinery/door/window/westleft{
-	name = "Security Desk";
-	req_access = list(103)
+/obj/structure/stool/bed/chair{
+	dir = 8;
+	name = "Defence"
 	},
-/obj/machinery/light/small,
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "du" = (
 /obj/structure/stool/bed,
 /obj/item/bedsheet/rd,
@@ -1115,48 +955,21 @@
 /turf/open/floor/plating/metal,
 /area/centcom/tdome/team_two)
 "dy" = (
-/obj/structure/table,
-/obj/item/storage/box/handcuffs,
-/obj/item/flash,
-/turf/open/floor/shuttle/red,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/area/centcom/rescue_shuttle/two)
 "dz" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Cockpit";
-	req_access = list(109)
-	},
 /turf/open/floor/shuttle/yellow,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/two)
 "dA" = (
+/turf/closed/wall/shuttle/corner/exterior/white/se,
+/area/centcom/rescue_shuttle/one)
+"dB" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"dB" = (
-/obj/structure/stool/bed/chair{
-	dir = 4;
-	name = "Defence"
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"dC" = (
-/obj/machinery/computer/communications,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
-"dD" = (
-/obj/structure/table,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/two)
 "dE" = (
-/obj/structure/table,
-/obj/item/radio/off,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/area/centcom/rescue_shuttle/one)
 "dF" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
@@ -1170,15 +983,16 @@
 /turf/space,
 /area/space)
 "dH" = (
-/obj/structure/table,
-/obj/item/storage/lockbox,
-/turf/open/floor/shuttle/blue,
-/area/space)
+/obj/machinery/door/airlock/hatch/maintenance{
+	req_access = list(101)
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "dI" = (
-/obj/structure/table,
-/obj/item/stamp/captain,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle{
+	icon_state = "swall13"
+	},
+/area/centcom/rescue_shuttle/two)
 "dJ" = (
 /turf/open/floor/tiled/white,
 /area/centcom/test)
@@ -1193,24 +1007,18 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "dM" = (
-/obj/machinery/computer{
-	desc = "For shuttle control.";
-	icon_state = "shuttle";
-	name = "Shuttle"
+/turf/closed/wall/shuttle{
+	icon_state = "swall14"
 	},
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/two)
 "dN" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/item/pen,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "dO" = (
-/obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/stool/bed/chair,
 /turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "dQ" = (
 /obj/structure/rack,
 /obj/item/clothing/tie/storage/black_vest,
@@ -1229,13 +1037,6 @@
 	},
 /turf/open/floor/shuttle/purple,
 /area/special/alien)
-"dT" = (
-/obj/effect/window_spawner/reinforced,
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/turf/open/floor/plating/metal/shuttle,
-/area/centcom/rescue_shuttle)
 "dU" = (
 /obj/effect/decal/floor/chapel/red{
 	dir = 8
@@ -1249,6 +1050,13 @@
 	icon_state = "carpetside"
 	},
 /area/centcom/control)
+"dX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "dY" = (
 /obj/structure/closet/emergency{
 	anchored = 1;
@@ -1502,6 +1310,11 @@
 	icon_state = "carpet7-3"
 	},
 /area/special/holodeck/source/theatre)
+"fb" = (
+/obj/structure/table/reinforced,
+/obj/item/pen,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "fd" = (
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
@@ -1534,6 +1347,9 @@
 	icon_state = "vault"
 	},
 /area/centcom/tdome)
+"fr" = (
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "ft" = (
 /obj/structure/stool/bed/chair{
 	dir = 1
@@ -1546,6 +1362,13 @@
 	icon_state = "redbluefull"
 	},
 /area/centcom/tdome/observation)
+"fw" = (
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_x = -30
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "fy" = (
 /obj/structure/stool/bed/chair{
 	dir = 4
@@ -1609,6 +1432,14 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom)
+"fR" = (
+/obj/structure/table,
+/obj/item/radio/off,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "fS" = (
 /turf/closed/wall/shuttle{
 	dir = 1;
@@ -1849,6 +1680,10 @@
 	icon_state = "plasma3"
 	},
 /area/special/alien)
+"hk" = (
+/obj/machinery/light/small,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "hm" = (
 /obj/effect/decal/floor/coloured/red{
 	dir = 4
@@ -1899,6 +1734,15 @@
 	tag = "icon-desert"
 	},
 /area/centcom/holding)
+"hz" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/stamp,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "hA" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/wizrobe/red,
@@ -1998,6 +1842,9 @@
 	},
 /turf/open/floor/carpet,
 /area/enemy/wizard_station)
+"hV" = (
+/turf/space,
+/area/shuttle/escape_pod/four/centcom)
 "hW" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/holofloor{
@@ -2025,8 +1872,8 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/supply/centcom)
 "ik" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "im" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/effect/decal/floor/siding/wood/border{
@@ -2056,6 +1903,14 @@
 /obj/item/pda/captain,
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
+"iu" = (
+/obj/structure/table,
+/obj/item/radio/off,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "ix" = (
 /obj/structure/closet/medical_wall{
 	pixel_y = 31
@@ -2070,10 +1925,8 @@
 	},
 /area/special/holodeck/source/meeting_hall)
 "iz" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall14"
-	},
-/area/centcom/rescue_shuttle)
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "iD" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/wizrobe/magusred,
@@ -2112,6 +1965,18 @@
 /obj/machinery/dna_scannernew,
 /turf/open/floor/tiled/white,
 /area/centcom/test)
+"iN" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/centcom/rescue_shuttle/two)
+"iP" = (
+/obj/machinery/door/window/southright{
+	name = "Security Desk";
+	req_access = list(103)
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "iQ" = (
 /obj/machinery/computer/station_alert,
 /turf/open/floor/shuttle/blue,
@@ -2130,6 +1995,9 @@
 	icon_state = "floor"
 	},
 /area/special/holodeck/source/thunderdome_court)
+"iY" = (
+/turf/closed/wall/shuttle/corner/interior/white/nw,
+/area/centcom/rescue_shuttle/two)
 "jd" = (
 /obj/structure/table,
 /obj/machinery/juicer{
@@ -2154,6 +2022,12 @@
 	icon_state = "floor"
 	},
 /area/special/holodeck/source/empty_court)
+"jh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "jj" = (
 /obj/machinery/atm{
 	pixel_y = 24
@@ -2172,6 +2046,10 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/shuttle/blue,
 /area/shuttle/administration/centcom)
+"jp" = (
+/obj/effect/window_spawner/reinforced,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "js" = (
 /obj/effect/decal/floor/coloured/green,
 /turf/open/floor/tiled/grey,
@@ -2281,10 +2159,19 @@
 	},
 /turf/open/floor/plating/metal,
 /area/centcom)
+"jY" = (
+/obj/structure/stool/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "jZ" = (
 /obj/structure/table,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
+"kb" = (
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "ke" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
@@ -2329,6 +2216,10 @@
 	},
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
+"ko" = (
+/obj/structure/closet/secure/personal/patient,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "kp" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/reinforced,
@@ -2386,6 +2277,12 @@
 	icon_state = "redyellowfull"
 	},
 /area/centcom/tdome/admin)
+"kM" = (
+/obj/structure/stool/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "kN" = (
 /turf/open/floor/shuttle/purple,
 /area/special/alien)
@@ -2538,6 +2435,13 @@
 /obj/item/reagent_holder/glass/beaker/cryoxadone,
 /turf/open/floor/shuttle/white,
 /area/shuttle/escape/centcom)
+"lD" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Cockpit";
+	req_access = list(109)
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/two)
 "lE" = (
 /obj/machinery/door/airlock/centcom{
 	name = "General Access";
@@ -2663,6 +2567,10 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
 /area/enemy/wizard_station)
+"mk" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "mn" = (
 /obj/machinery/door/airlock/external{
 	name = "Holding Facility Airlock";
@@ -2695,6 +2603,13 @@
 	icon_state = "swall11inv"
 	},
 /area/shuttle/administration/centcom)
+"mA" = (
+/obj/machinery/sleeper,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "mB" = (
 /obj/structure/rack,
 /obj/item/clothing/tie/storage/black_vest,
@@ -2792,6 +2707,18 @@
 	icon_state = "swall4inv"
 	},
 /area/shuttle/syndicate/mercenary/start)
+"ng" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/machinery/light{
+	on = 1
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "ni" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -2818,6 +2745,15 @@
 	},
 /turf/space,
 /area/space)
+"nm" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_3_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "nt" = (
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -2870,8 +2806,9 @@
 	},
 /area/special/holodeck/source/theatre)
 "nI" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
-/area/centcom/rescue_shuttle)
+/obj/machinery/vending/snack,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "nJ" = (
 /obj/machinery/computer/secure_data,
 /turf/open/floor/tiled/grey,
@@ -3033,6 +2970,15 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
+"oy" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_6_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "oA" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -3228,6 +3174,12 @@
 "pm" = (
 /turf/closed/wall/reinforced/riveted,
 /area/centcom/specops)
+"ps" = (
+/obj/structure/table,
+/obj/item/storage/box/handcuffs,
+/obj/item/flash,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "px" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swallc2inv"
@@ -3370,6 +3322,16 @@
 	},
 /turf/open/floor/tiled/freezer,
 /area/enemy/wizard_station)
+"qe" = (
+/obj/machinery/door/window/eastleft{
+	name = "Security Desk";
+	req_access = list(103)
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "qf" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Barracks"
@@ -3389,6 +3351,10 @@
 	icon_state = "swallc2inv"
 	},
 /area/shuttle/vox/start)
+"qn" = (
+/obj/machinery/computer/card,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "qo" = (
 /obj/structure/table,
 /obj/effect/decal/floor/coloured/green{
@@ -3418,6 +3384,13 @@
 	icon_state = "bar"
 	},
 /area/centcom/living)
+"qw" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/shuttle/engine/heater,
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/centcom/rescue_shuttle/two)
 "qy" = (
 /obj/machinery/camera{
 	c_tag = "Assault Armor North";
@@ -3560,6 +3533,13 @@
 	},
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/administration/centcom)
+"rh" = (
+/obj/machinery/computer/secure_data,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "ri" = (
 /obj/structure/artilleryplaceholder{
 	icon_state = "30"
@@ -3595,10 +3575,8 @@
 /turf/closed/wall/shuttle/corner/interior/white/se,
 /area/shuttle/transport/centcom)
 "rv" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall12"
-	},
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/area/centcom/rescue_shuttle/one)
 "ry" = (
 /obj/item/storage/box/donkpockets{
 	pixel_x = 3;
@@ -3640,6 +3618,13 @@
 /obj/item/trash/tray,
 /turf/open/floor/carpet,
 /area/enemy/wizard_station)
+"rI" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "rJ" = (
 /obj/effect/decal/floor/industrial/loadingarea,
 /turf/open/floor/tiled/grey,
@@ -3690,6 +3675,13 @@
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
+"rV" = (
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_x = 30
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "rW" = (
 /obj/structure/bookcase{
 	name = "bookcase (Reports)"
@@ -3797,6 +3789,10 @@
 	tag = "icon-desert"
 	},
 /area/centcom/holding)
+"sx" = (
+/obj/effect/window_spawner/reinforced,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "sy" = (
 /obj/machinery/door_control{
 	id = "QMLoaddoor2";
@@ -3952,6 +3948,17 @@
 	icon_state = "plasma6"
 	},
 /area/special/alien)
+"tu" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "tv" = (
 /obj/machinery/door/airlock/command{
 	name = "Thunderdome Administration";
@@ -3974,6 +3981,10 @@
 "tA" = (
 /turf/open/floor/plating/metal/shuttle/airless,
 /area/shuttle/escape/centcom)
+"tC" = (
+/obj/machinery/computer/card,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "tE" = (
 /turf/open/floor/tiled/dark,
 /area/enemy/syndicate/mothership)
@@ -4000,6 +4011,17 @@
 	},
 /turf/open/floor/shuttle/white,
 /area/shuttle/administration/centcom)
+"tQ" = (
+/obj/structure/stool/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
+"tS" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall7"
+	},
+/area/centcom/rescue_shuttle/two)
 "tV" = (
 /obj/structure/closet/crate/medical,
 /obj/item/storage/firstaid/fire,
@@ -4090,6 +4112,17 @@
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
+"uv" = (
+/obj/structure/table,
+/obj/item/storage/lockbox,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
+"ux" = (
+/obj/machinery/door/airlock/glass/medical{
+	name = "Infirmary"
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "uy" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/decal/floor/industrial/bot,
@@ -4113,6 +4146,10 @@
 /obj/structure/stool,
 /turf/open/floor/shuttle/blue,
 /area/shuttle/administration/centcom)
+"uF" = (
+/obj/structure/table,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "uH" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swall15inv"
@@ -4150,9 +4187,10 @@
 	},
 /area/shuttle/administration/centcom)
 "uT" = (
-/obj/structure/stool/bed/chair,
-/turf/open/floor/shuttle/blue,
-/area/centcom/rescue_shuttle)
+/turf/closed/wall/shuttle/corner/interior/white/nw{
+	icon_state = "swall_plating"
+	},
+/area/centcom/rescue_shuttle/one)
 "uU" = (
 /obj/structure/table/holotable,
 /obj/item/clothing/gloves/boxing/hologlove{
@@ -4295,6 +4333,18 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom)
+"vv" = (
+/obj/machinery/computer{
+	desc = "For shuttle control.";
+	icon_state = "shuttle";
+	name = "Shuttle"
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
+"vw" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "vy" = (
 /obj/structure/rack,
 /obj/item/clothing/head/that{
@@ -4376,6 +4426,10 @@
 	},
 /turf/open/floor/shuttle/white,
 /area/shuttle/administration/centcom)
+"vV" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "vY" = (
 /obj/structure/table,
 /obj/machinery/light/small,
@@ -4458,6 +4512,15 @@
 /obj/machinery/sleeper,
 /turf/open/floor/tiled/white,
 /area/centcom/test)
+"wy" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_7_recovery";
+	pixel_x = -25;
+	pixel_y = 25;
+	tag_door = "escape_pod_7_recovery_hatch"
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/two)
 "wB" = (
 /turf/closed/wall/shuttle/corner/exterior/inverted/nw,
 /area/shuttle/syndicate/elite/mothership)
@@ -4506,6 +4569,13 @@
 	},
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
+"wO" = (
+/obj/machinery/computer/secure_data,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "wS" = (
 /obj/structure/artilleryplaceholder{
 	icon_state = "7"
@@ -4560,6 +4630,13 @@
 /obj/item/gun/energy/ion,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
+"xj" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "xk" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swall11"
@@ -4716,8 +4793,15 @@
 	},
 /area/centcom/control)
 "xN" = (
-/turf/space,
-/area/shuttle/escape_pod1/centcom)
+/obj/machinery/sleeper{
+	icon_state = "sleeper_0-r";
+	orient = "RIGHT"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "xO" = (
 /obj/structure/artilleryplaceholder{
 	icon_state = "10"
@@ -4748,6 +4832,12 @@
 	},
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
+"xW" = (
+/obj/machinery/door/airlock/hatch/maintenance{
+	req_access = list(101)
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "xX" = (
 /turf/open/floor{
 	dir = 5;
@@ -4780,10 +4870,19 @@
 "ye" = (
 /turf/open/floor/shuttle/red/brig,
 /area/shuttle/escape/centcom)
+"yg" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/stamp,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "yj" = (
 /obj/machinery/door/window/westright,
 /turf/open/floor/tiled/grey,
 /area/centcom/tdome)
+"yk" = (
+/turf/closed/wall/shuttle/corner/interior/white/ne,
+/area/centcom/rescue_shuttle/one)
 "yn" = (
 /turf/open/floor/holofloor{
 	dir = 5;
@@ -4844,6 +4943,13 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
+"yC" = (
+/obj/machinery/sleep_console{
+	icon_state = "sleeperconsole-r";
+	orient = "RIGHT"
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "yE" = (
 /turf/closed/wall/shuttle{
 	dir = 5;
@@ -4985,6 +5091,15 @@
 	icon_state = "gravsnow_corner"
 	},
 /area/enemy/syndicate/mothership)
+"zy" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_8_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "zD" = (
 /obj/structure/artilleryplaceholder{
 	icon_state = "4"
@@ -5035,6 +5150,11 @@
 "zS" = (
 /turf/closed/wall/reinforced/riveted,
 /area/centcom/shuttle_dock/administration)
+"zU" = (
+/obj/structure/window/reinforced,
+/obj/structure/table/reinforced,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "zV" = (
 /obj/effect/decal/floor/coloured/green{
 	dir = 8
@@ -5073,6 +5193,11 @@
 /obj/item/stack/sheet/plasma,
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/administration/centcom)
+"Af" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall12"
+	},
+/area/centcom/rescue_shuttle/two)
 "Ah" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Teleporter Bay";
@@ -5087,6 +5212,13 @@
 	icon_state = "swall12inv"
 	},
 /area/shuttle/syndicate/mercenary/start)
+"An" = (
+/obj/machinery/sleeper{
+	icon_state = "sleeper_0-r";
+	orient = "RIGHT"
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "Ao" = (
 /obj/effect/overlay/palmtree_l,
 /obj/effect/overlay/coconut,
@@ -5191,6 +5323,10 @@
 /obj/structure/closet/secure/courtroom,
 /turf/open/floor/carpet,
 /area/centcom/control)
+"AP" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "AR" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swall15"
@@ -5204,6 +5340,19 @@
 /obj/item/clothing/mask/breath/vox,
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
+"AT" = (
+/obj/machinery/door/airlock/glass/medical{
+	name = "Infirmary"
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
+"AV" = (
+/obj/machinery/vending/cola,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "AW" = (
 /obj/effect/landmark{
 	name = "Syndicate-Spawn"
@@ -5299,6 +5448,15 @@
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
+"BE" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_6_recovery";
+	pixel_x = 25;
+	pixel_y = -25;
+	tag_door = "escape_pod_6_recovery_hatch"
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/two)
 "BF" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light/small{
@@ -5420,9 +5578,9 @@
 /area/shuttle/administration/centcom)
 "Cl" = (
 /turf/closed/wall/shuttle{
-	icon_state = "swall3"
+	icon_state = "swall12"
 	},
-/area/centcom/rescue_shuttle)
+/area/centcom/rescue_shuttle/one)
 "Cm" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
@@ -5440,6 +5598,12 @@
 	icon_state = "floor"
 	},
 /area/special/holodeck/source/basketball_court)
+"Cr" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/two)
 "Ct" = (
 /obj/effect/window_spawner/reinforced,
 /turf/open/floor/plating/metal,
@@ -5455,6 +5619,12 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom)
+"Cy" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "Cz" = (
 /turf/open/floor/grass,
 /area/centcom/specops)
@@ -5483,6 +5653,19 @@
 	icon_state = "wall3"
 	},
 /area/enemy/syndicate/mothership/elite_squad)
+"CH" = (
+/obj/machinery/door/window/westleft{
+	name = "Security Desk";
+	req_access = list(103)
+	},
+/obj/machinery/light/small,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
+"CJ" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "CK" = (
 /obj/structure/table,
 /obj/item/reagent_holder/food/drinks/shaker,
@@ -5519,6 +5702,10 @@
 	icon_state = "swall12"
 	},
 /area/shuttle/escape/centcom)
+"CV" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "Db" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer{
 	current_temperature = 80;
@@ -5551,6 +5738,18 @@
 	},
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/administration/centcom)
+"Df" = (
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/table,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
 "Dg" = (
 /turf/open/floor/linoleum,
 /area/centcom/creed)
@@ -5570,8 +5769,13 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/syndicate/mercenary/start)
 "Di" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
-/area/centcom/rescue_shuttle)
+/turf/space,
+/area/shuttle/escape_pod/one/centcom)
+"Dj" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "Dm" = (
 /obj/structure/artilleryplaceholder{
 	icon_state = "16"
@@ -5706,6 +5910,13 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
+"DK" = (
+/obj/machinery/computer/arcade,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "DL" = (
 /obj/structure/closet/syndicate/personal,
 /obj/item/clothing/tie/storage/brown_vest,
@@ -5876,6 +6087,10 @@
 	},
 /turf/open/floor/shuttle/red,
 /area/shuttle/specops/centcom)
+"EB" = (
+/obj/machinery/vending/engineering,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "EC" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark{
@@ -5989,6 +6204,15 @@
 	icon_state = "cafeteria"
 	},
 /area/enemy/syndicate/mothership)
+"Fb" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/storage/firstaid/toxin,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "Fg" = (
 /obj/structure/holowindow{
 	dir = 1
@@ -6019,8 +6243,8 @@
 /turf/open/floor/wood,
 /area/enemy/wizard_station)
 "Fk" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
-/area/centcom/rescue_shuttle)
+/turf/space,
+/area/shuttle/escape_pod/two/centcom)
 "Fl" = (
 /obj/structure/stool/bed/chair{
 	dir = 8
@@ -6035,8 +6259,11 @@
 /turf/closed/wall/reinforced/riveted,
 /area/space)
 "Fn" = (
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
+"Fp" = (
 /turf/space,
-/area/shuttle/escape_pod3/centcom)
+/area/shuttle/escape_pod/five/centcom)
 "Fq" = (
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/elite/mothership)
@@ -6173,6 +6400,13 @@
 	icon_state = "carpet15-15"
 	},
 /area/special/holodeck/source/theatre)
+"FT" = (
+/obj/structure/stool/bed/chair{
+	dir = 4;
+	name = "Defence"
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "FV" = (
 /obj/structure/table,
 /obj/item/crowbar,
@@ -6188,6 +6422,17 @@
 /obj/item/clothing/glasses/night,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
+"FX" = (
+/obj/structure/stool/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
+"FZ" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall13"
+	},
+/area/centcom/rescue_shuttle/one)
 "Gb" = (
 /obj/effect/decal/floor/coloured/green,
 /turf/open/floor/tiled/grey,
@@ -6226,6 +6471,18 @@
 	icon_state = "cult"
 	},
 /area/special/holodeck/source/theatre)
+"Gk" = (
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/table,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "Gr" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets{
@@ -6249,6 +6506,9 @@
 	},
 /turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
+"Gv" = (
+/turf/closed/wall/shuttle/corner/interior/white/sw,
+/area/centcom/rescue_shuttle/two)
 "Gw" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Commander Quarters";
@@ -6373,6 +6633,9 @@
 	},
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/escape/centcom)
+"Hi" = (
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/area/centcom/rescue_shuttle/two)
 "Ho" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/gas,
@@ -6410,6 +6673,11 @@
 /obj/item/storage/satchel,
 /turf/open/floor/carpet,
 /area/enemy/wizard_station)
+"Ht" = (
+/turf/closed/wall/shuttle/corner/interior/white/se{
+	icon_state = "swall_plating"
+	},
+/area/centcom/rescue_shuttle/two)
 "Hv" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -6599,6 +6867,11 @@
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tiled/freezer,
 /area/enemy/syndicate/mothership)
+"Im" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall11"
+	},
+/area/centcom/rescue_shuttle/two)
 "In" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -6654,6 +6927,16 @@
 /obj/machinery/artillerycontrol,
 /turf/space,
 /area/space)
+"IC" = (
+/obj/structure/closet/secure/personal/patient,
+/obj/machinery/light/small,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/two)
+"IE" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light/small,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "IF" = (
 /obj/structure/stool{
 	pixel_y = 8
@@ -6690,6 +6973,13 @@
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/transport/centcom)
+"IS" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "IT" = (
 /obj/machinery/microwave,
 /obj/structure/table/reinforced,
@@ -6742,6 +7032,10 @@
 	},
 /turf/open/floor/plating/metal/shuttle/airless,
 /area/shuttle/syndicate/elite/mothership)
+"Jl" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "Jn" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -6752,6 +7046,15 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom/shuttle_dock/arrival)
+"Jo" = (
+/turf/closed/wall/shuttle/corner/exterior/white/se,
+/area/centcom/rescue_shuttle/two)
+"Jq" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/one)
 "Jr" = (
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/escape/centcom)
@@ -6764,6 +7067,11 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom/solitary)
+"Jx" = (
+/turf/closed/wall/shuttle/corner/interior/white/sw{
+	icon_state = "swall_plating"
+	},
+/area/centcom/rescue_shuttle/two)
 "Jy" = (
 /obj/machinery/door/airlock/glass{
 	name = "Administration Shuttle Medical"
@@ -6980,6 +7288,11 @@
 	},
 /turf/open/floor/wood,
 /area/enemy/wizard_station)
+"KA" = (
+/obj/structure/table,
+/obj/item/stamp/captain,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "KB" = (
 /obj/machinery/computer/security/nuclear,
 /turf/open/floor/shuttle/red,
@@ -6991,6 +7304,12 @@
 	tag = "icon-desert"
 	},
 /area/centcom/holding)
+"KK" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "KL" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -7091,6 +7410,9 @@
 /obj/item/robot_part/torso,
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
+"Li" = (
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "Lk" = (
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack,
@@ -7118,6 +7440,13 @@
 	icon_state = "floor"
 	},
 /area/special/holodeck/source/basketball_court)
+"Lu" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "Lv" = (
 /obj/machinery/door/airlock/centcom{
 	name = "General Access";
@@ -7175,6 +7504,13 @@
 	},
 /turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
+"LG" = (
+/obj/effect/window_spawner/reinforced,
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "LH" = (
 /obj/effect/decal/floor/siding/black/border{
 	dir = 1
@@ -7184,6 +7520,10 @@
 	icon_state = "wood"
 	},
 /area/special/holodeck/source/theatre)
+"LI" = (
+/obj/structure/stool/bed/chair,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "LJ" = (
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/ferry)
@@ -7222,6 +7562,12 @@
 "LV" = (
 /turf/open/floor/tiled/white,
 /area/centcom/control)
+"LW" = (
+/obj/structure/stool/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/two)
 "LX" = (
 /turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/transport/centcom)
@@ -7238,6 +7584,10 @@
 	},
 /turf/open/floor/shuttle/white,
 /area/shuttle/administration/centcom)
+"Ma" = (
+/obj/structure/table,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "Mb" = (
 /obj/machinery/optable,
 /obj/machinery/light/small{
@@ -7252,6 +7602,11 @@
 	},
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
+"Md" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "Me" = (
 /obj/structure/sign/greencross{
 	pixel_y = -32
@@ -7353,6 +7708,9 @@
 	tag = "icon-beach"
 	},
 /area/special/holodeck/source/beach)
+"MG" = (
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "MI" = (
 /turf/open/floor/beach/sand{
 	icon_state = "desert";
@@ -7511,6 +7869,10 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom)
+"NE" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "NG" = (
 /turf/open/floor/holofloor{
 	icon_state = "floor"
@@ -7556,9 +7918,22 @@
 /obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/grey,
 /area/centcom)
+"NU" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_5_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/one)
 "NV" = (
-/turf/space,
-/area/shuttle/escape_pod2/centcom)
+/obj/machinery/vending/coffee,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "NY" = (
 /obj/machinery/mass_driver{
 	dir = 8;
@@ -7701,6 +8076,14 @@
 	icon_state = "floor"
 	},
 /area/special/holodeck/source/empty_court)
+"OI" = (
+/obj/structure/closet/secure/personal/patient,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
+"OK" = (
+/obj/machinery/sleeper,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "OL" = (
 /obj/effect/decal/floor/coloured/green{
 	dir = 8
@@ -7763,6 +8146,12 @@
 	},
 /turf/closed/wall/reinforced/riveted,
 /area/centcom/shuttle_dock/emergency)
+"Pe" = (
+/obj/structure/table,
+/obj/item/storage/box/handcuffs,
+/obj/item/flash,
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "Pf" = (
 /obj/effect/window_spawner/reinforced,
 /turf/open/floor/plating/metal,
@@ -7824,6 +8213,18 @@
 	},
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
+"Po" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_7_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
+"Pt" = (
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/area/centcom/rescue_shuttle/two)
 "Pw" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
@@ -7910,6 +8311,15 @@
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
+"PO" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_8_recovery";
+	pixel_x = 25;
+	pixel_y = -25;
+	tag_door = "escape_pod_8_recovery_hatch"
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/two)
 "PP" = (
 /obj/structure/table,
 /turf/open/floor{
@@ -8007,6 +8417,15 @@
 	icon_state = "gravsnow_corner"
 	},
 /area/enemy/syndicate/mothership)
+"Qp" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_5_recovery";
+	pixel_x = -25;
+	pixel_y = 25;
+	tag_door = "escape_pod_5_recovery_hatch"
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/one)
 "Qt" = (
 /obj/machinery/chem_master,
 /turf/open/floor/shuttle/white,
@@ -8027,8 +8446,8 @@
 /turf/open/floor/plating/metal,
 /area/centcom/tdome)
 "Qx" = (
-/turf/space,
-/area/shuttle/escape_pod5/centcom)
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/one)
 "Qy" = (
 /obj/structure/stool/bed/chair{
 	dir = 1
@@ -8242,6 +8661,10 @@
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
+"Rt" = (
+/obj/structure/closet/emergency,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "Rw" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -8283,11 +8706,28 @@
 /obj/structure/stool/bed,
 /turf/open/floor/tiled/grey,
 /area/centcom/solitary)
+"RH" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "RI" = (
 /obj/structure/table/woodentable,
 /obj/item/cash/c1,
 /turf/open/floor/wood,
 /area/enemy/wizard_station)
+"RJ" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/pen,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "RK" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/decal/floor/industrial/vault,
@@ -8397,6 +8837,15 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom/specops)
+"Sw" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "escape_pod_4_recovery_hatch";
+	locked = 1;
+	name = "Salvage Shuttle Dock"
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/centcom/rescue_shuttle/two)
 "Sx" = (
 /obj/structure/closet/crate/freezer,
 /turf/open/floor{
@@ -8409,6 +8858,9 @@
 	icon_state = "swall14inv"
 	},
 /area/shuttle/administration/centcom)
+"Sz" = (
+/turf/closed/wall/shuttle/corner/interior/white/ne,
+/area/centcom/rescue_shuttle/two)
 "SA" = (
 /obj/machinery/light/small,
 /turf/open/floor/shuttle/blue,
@@ -8691,6 +9143,12 @@
 	},
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
+"TW" = (
+/obj/structure/stool/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "TX" = (
 /turf/closed/wall/shuttle{
 	icon_state = "swall12"
@@ -8711,6 +9169,13 @@
 	icon_state = "carpetside"
 	},
 /area/centcom/control)
+"Uc" = (
+/obj/structure/closet/secure/personal/patient,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "Uf" = (
 /obj/structure/rack,
 /obj/item/bodybag/cryo,
@@ -8780,6 +9245,10 @@
 "UC" = (
 /turf/open/floor/tiled/freezer,
 /area/enemy/wizard_station)
+"UD" = (
+/obj/structure/stool/bed/chair,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "UE" = (
 /turf/open/floor/holofloor{
 	icon_state = "asteroid"
@@ -8870,6 +9339,11 @@
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
+"Vi" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall14"
+	},
+/area/centcom/rescue_shuttle/one)
 "Vj" = (
 /obj/structure/table/woodentable,
 /turf/open/floor{
@@ -8990,6 +9464,13 @@
 	icon_state = "asteroid"
 	},
 /area/special/holodeck/source/desert)
+"Wm" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Cockpit";
+	req_access = list(109)
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/one)
 "Wn" = (
 /obj/structure/stool/bed/chair{
 	dir = 1
@@ -9007,6 +9488,13 @@
 	icon_state = "carpet14-10"
 	},
 /area/special/holodeck/source/theatre)
+"Wq" = (
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_x = -30
+	},
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
 "Wr" = (
 /obj/item/weldingtool,
 /obj/structure/window/reinforced{
@@ -9017,6 +9505,15 @@
 	},
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
+"Wu" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "escape_pod_4_recovery";
+	pixel_x = -25;
+	pixel_y = -25;
+	tag_door = "escape_pod_4_recovery_hatch"
+	},
+/turf/open/floor/shuttle/yellow,
+/area/centcom/rescue_shuttle/two)
 "Wv" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -9213,6 +9710,14 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
+"Xq" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/northleft{
+	name = "Security Desk";
+	req_access = list(103)
+	},
+/turf/open/floor/shuttle/red,
+/area/centcom/rescue_shuttle/one)
 "Xs" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/effect/decal/floor/siding/wood/border{
@@ -9348,6 +9853,13 @@
 /obj/structure/closet/secure/personal/standard,
 /turf/open/floor/wood,
 /area/centcom/living)
+"Ys" = (
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_x = 30
+	},
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "Yu" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9408,6 +9920,15 @@
 	},
 /turf/space,
 /area/space)
+"YD" = (
+/obj/machinery/sleep_console,
+/turf/open/floor/shuttle/white,
+/area/centcom/rescue_shuttle/one)
+"YE" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall3"
+	},
+/area/centcom/rescue_shuttle/two)
 "YF" = (
 /obj/item/circular_saw,
 /obj/structure/window/basic{
@@ -9499,6 +10020,11 @@
 	},
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
+"YW" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "YY" = (
 /turf/closed/wall/reinforced/riveted{
 	icon = 'icons/turf/walls/mineral.dmi';
@@ -9517,6 +10043,11 @@
 	icon_state = "asteroid"
 	},
 /area/special/holodeck/source/picnic_area)
+"Zd" = (
+/obj/structure/table,
+/obj/item/hand_labeler,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/one)
 "Ze" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9557,6 +10088,13 @@
 	icon_state = "cult"
 	},
 /area/special/holodeck/source/theatre)
+"Zn" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/cola,
+/turf/open/floor/shuttle/blue,
+/area/centcom/rescue_shuttle/two)
 "Zo" = (
 /obj/structure/table/holotable,
 /obj/item/clothing/head/helmet/thunderdome,
@@ -9658,6 +10196,11 @@
 	icon_state = "cafeteria"
 	},
 /area/centcom/living)
+"ZM" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall15"
+	},
+/area/centcom/rescue_shuttle/two)
 "ZN" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/yellow,
@@ -60405,9 +60948,9 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
+Fp
+Fp
+Fp
 ua
 ua
 ua
@@ -60655,16 +61198,16 @@ ua
 ua
 ua
 ua
+rv
+bl
+dr
+dr
+dE
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Fp
+Fp
+Fp
 ua
 ua
 ua
@@ -60912,16 +61455,16 @@ ua
 ua
 ua
 ua
+aq
+aT
+co
+cU
+bv
+dE
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Fp
+Fp
+Fp
 ua
 ua
 ua
@@ -61169,16 +61712,16 @@ ua
 ua
 ua
 ua
+aa
+aT
+cp
+cV
+cV
+Cl
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Fp
+Fp
+Fp
 ua
 ua
 ua
@@ -61426,23 +61969,23 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+as
+aT
+uT
+dr
+dH
+aX
+dr
+dr
+NU
+dr
+bl
+LG
+dr
+dr
+dr
+dr
+dE
 ua
 ua
 ua
@@ -61683,24 +62226,24 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bb
+aL
+ct
+cY
+Qx
+dN
+xj
+Zd
+Qp
+bq
+Cl
+Uc
+MG
+mA
+Wq
+OK
+Vi
+dE
 ua
 ua
 ua
@@ -61937,30 +62480,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Di
+Di
+Di
+Di
+Cl
+bq
+ik
+Qx
+ik
+bk
+ik
+Qx
+IE
+Cl
+OI
+MG
+YD
+MG
+YD
+Vi
+aX
+dr
+dr
+dE
 ua
 ua
 ua
@@ -62194,30 +62737,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Di
+Di
+Di
+Di
+bm
+cA
 Qx
 Qx
 Qx
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Qx
+Qx
+Qx
+Qx
+Cl
+Gk
+MG
+MG
+MG
+hk
+Cl
+Jl
+IS
+uv
+LG
 ua
 ua
 ua
@@ -62451,30 +62994,30 @@ ua
 ua
 ua
 ua
-ua
-ua
 Di
-aj
+Di
+Di
+Di
 Cl
-Cl
+cE
 ik
-ua
-ua
 Qx
+ik
+FX
+FX
+ik
 Qx
-Qx
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+yk
+jp
+jp
+AT
+jp
+jp
+FZ
+ce
+ik
+KA
+LG
 ua
 ua
 ua
@@ -62710,28 +63253,28 @@ ua
 ua
 ua
 ua
-aa
-am
-aw
+ua
+ua
+Cl
 bn
 bk
-ik
-ua
+Qx
+dO
+Ma
+Ma
+tQ
+Qx
+Qx
+Jq
 Qx
 Qx
 Qx
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Qx
+Wm
+Qx
+dO
+vv
+LG
 ua
 ua
 ua
@@ -62965,30 +63508,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-ac
-am
-aC
+Fk
+Fk
+Fk
+Fk
+Cl
 bp
-bp
-rv
-ua
+ik
 Qx
+dO
+Ma
+Ma
+tQ
 Qx
-Qx
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+ik
+ik
+RH
+hz
+Lu
+CH
+Cl
+FT
+ik
+RJ
+LG
 ua
 ua
 ua
@@ -63222,30 +63765,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-af
-am
+Fk
+Fk
+Fk
+Fk
 aH
-Cl
-bM
-at
-Cl
-Cl
-ce
-Cl
-aj
-dT
-Cl
-Cl
-Cl
-Cl
+cH
+Qx
+Qx
 ik
-ua
-ua
-ua
-ua
-ua
+ce
+ce
+ik
+Qx
+Qx
+Qx
+Xq
+jY
+iz
+iz
+Cl
+AP
+iu
+Md
+LG
 ua
 ua
 ua
@@ -63479,30 +64022,30 @@ ua
 ua
 ua
 ua
-ua
-ua
 Fk
-an
-aI
+Fk
+Fk
+Fk
+Cl
 bq
-bv
-bN
-bR
-bX
-cg
-aL
-rv
-cv
-cG
+ik
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
+Qx
 cP
 dh
-dp
 iz
-ik
-ua
-ua
-ua
-ua
+iz
+Vi
+bl
+dr
+dr
+dA
 ua
 ua
 ua
@@ -63735,30 +64278,30 @@ ua
 ua
 ua
 ua
-xN
-xN
-xN
-xN
+ua
+ua
+ua
+ua
 rv
 aL
 br
-bv
-br
-bA
-br
-bv
+dj
+Qx
+nI
+AV
+bq
 cq
-rv
-cw
-cG
-cR
-cG
-cR
-iz
-at
-Cl
-Cl
 ik
+cw
+ik
+cR
+qn
+wO
+Pe
+Vi
+dA
+ua
+ua
 ua
 ua
 ua
@@ -63992,30 +64535,30 @@ ua
 ua
 ua
 ua
-xN
-xN
-xN
-xN
+ua
+ua
+ua
+ua
 aq
-aP
+aT
 bv
-bv
-bv
-bv
-bv
-bv
-bv
-rv
-cy
-cG
-cG
-cG
 dr
-rv
-dA
-dD
 dH
-dT
+bl
+dr
+dr
+nm
+dr
+dr
+LG
+dr
+dr
+dr
+dr
+dA
+ua
+ua
+ua
 ua
 ua
 ua
@@ -64249,30 +64792,30 @@ ua
 ua
 ua
 ua
-xN
-xN
-xN
-xN
-vI
-aQ
-br
-bv
-br
-bS
-bS
-br
-bv
+ua
+ua
+ua
+ua
+aa
+aT
+cJ
+cV
+cV
+Cl
+ua
 cr
-cA
-cA
-cS
-cA
-cA
-rv
-bV
-br
-dI
-dT
+cr
+cr
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -64510,26 +65053,26 @@ ua
 ua
 ua
 ua
-rv
+as
 aT
 bA
-bv
+dl
 uT
-bT
-bT
-cm
-bv
-bv
-cE
-bv
-bv
-bv
-bv
-dz
-bv
-uT
-dM
-dT
+dA
+ua
+cr
+cr
+cr
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -64763,30 +65306,30 @@ ua
 ua
 ua
 ua
-NV
-NV
-NV
-NV
-vI
+ua
+ua
+ua
+ua
+bb
 aX
-br
-bv
-bO
-bT
-bT
-cm
-bv
-br
-br
-cH
-cT
-dj
-dt
-rv
-dB
-br
-dN
-dT
+dr
+dr
+dA
+ua
+ua
+cr
+cr
+cr
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -65020,30 +65563,30 @@ ua
 ua
 ua
 ua
-NV
-NV
-NV
-NV
-as
-bb
-bv
-bv
-br
-bV
-bV
-br
-bv
-bv
-bv
-cJ
-cU
-dl
-dl
-rv
-dC
-dE
-dO
-dT
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+cr
+cr
+cr
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -65277,30 +65820,30 @@ ua
 ua
 ua
 ua
-NV
-NV
-NV
-NV
-rv
-aL
-br
-bv
-bv
-bv
-bv
-bv
-bv
-bv
-bv
-cL
-cV
-dl
-dl
-iz
-aj
-Cl
-Cl
-nI
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -65537,24 +66080,24 @@ ua
 ua
 ua
 ua
-Di
-an
-bd
-bB
-bv
-bP
-bW
-aL
-co
-br
-ct
-br
-cN
-cY
-dn
-dy
-iz
-nI
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -65794,23 +66337,23 @@ ua
 ua
 ua
 ua
-aa
-am
-bk
-Cl
-bM
-aj
-Cl
-Cl
-cp
-Cl
-Cl
-dT
-Cl
-Cl
-Cl
-Cl
-nI
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -66051,16 +66594,16 @@ ua
 ua
 ua
 ua
-ac
-am
-bl
-bp
-bp
-rv
 ua
-Fn
-Fn
-Fn
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua
@@ -66308,16 +66851,6 @@ ua
 ua
 ua
 ua
-af
-am
-bm
-bC
-aH
-nI
-ua
-Fn
-Fn
-Fn
 ua
 ua
 ua
@@ -66330,6 +66863,16 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+ua
+dy
+YE
+YE
+tS
+Pt
 ua
 ua
 ua
@@ -66565,16 +67108,6 @@ ua
 ua
 ua
 ua
-Fk
-at
-Cl
-Cl
-nI
-ua
-ua
-Fn
-Fn
-Fn
 ua
 ua
 ua
@@ -66587,6 +67120,16 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+dy
+Ht
+KK
+EB
+qw
+iN
 ua
 ua
 ua
@@ -66829,9 +67372,6 @@ ua
 ua
 ua
 ua
-Fn
-Fn
-Fn
 ua
 ua
 ua
@@ -66841,9 +67381,12 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
+Af
+Li
+Li
+vw
+qw
+iN
 ua
 ua
 ua
@@ -67084,23 +67627,23 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+dy
+YE
+YE
+YE
+YE
+bd
+YE
+YE
+Po
+YE
+YE
+Im
+xW
+YE
+Jx
+qw
+iN
 ua
 ua
 ua
@@ -67340,24 +67883,24 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+dy
+dI
+ps
+rh
+tC
+zU
+fr
+DK
+fr
+wy
+Rt
+Zn
+mk
+dz
+fw
+Sz
+ZM
+Jo
 ua
 ua
 ua
@@ -67594,26 +68137,26 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+dy
+YE
+YE
+Im
+dI
+Fn
+Fn
+LW
+fb
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+fr
+Rt
+Af
 ua
 ua
 ua
@@ -67851,26 +68394,26 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bd
+CJ
+fR
+dn
+Af
+Fn
+Fn
+LI
+iP
+dz
+dz
+dz
+fr
+kM
+kM
+fr
+dz
+dz
+BE
+oy
 ua
 ua
 ua
@@ -68108,26 +68651,26 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bd
+bB
+fr
+dt
+Af
+qe
+rI
+yg
+Dj
+fr
+fr
+dz
+UD
+uF
+uF
+cS
+dz
+fr
+Fb
+Af
 ua
 ua
 ua
@@ -68365,26 +68908,26 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bd
+bC
+cS
+dz
+lD
+dz
+dz
+dz
+dz
+Cr
+dz
+dz
+UD
+uF
+uF
+cS
+dz
+bT
+ng
+Af
 ua
 ua
 ua
@@ -68622,30 +69165,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bd
+bP
+fr
+kM
+dM
+sx
+sx
+ux
+sx
+sx
+Gv
+dz
+fr
+TW
+TW
+fr
+dz
+fr
+tu
+Af
+hV
+hV
+hV
+hV
 ua
 ua
 ua
@@ -68879,30 +69422,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bd
+bV
+cN
+dB
+Af
+Cy
+kb
+kb
+kb
+Df
+Af
+dz
+dz
+dz
+dz
+dz
+dz
+dz
+Wu
+Sw
+hV
+hV
+hV
+hV
 ua
 ua
 ua
@@ -69136,30 +69679,30 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Hi
+YE
+YE
+tS
+dI
+yC
+kb
+yC
+kb
+ko
+Af
+NV
+dz
+fr
+bT
+fr
+dz
+fr
+Rt
+Af
+hV
+hV
+hV
+hV
 ua
 ua
 ua
@@ -69396,24 +69939,24 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Hi
+dI
+An
+rV
+xN
+kb
+IC
+Af
+Rt
+PO
+YW
+dX
+CV
+dz
+Ys
+iY
+ZM
+Pt
 ua
 ua
 ua
@@ -69654,23 +70197,23 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+Hi
+YE
+YE
+YE
+YE
+bd
+Im
+YE
+zy
+YE
+YE
+tS
+xW
+YE
+Ht
+qw
+iN
 ua
 ua
 ua
@@ -69922,12 +70465,12 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
+Af
+Li
+Li
+vV
+qw
+iN
 ua
 ua
 ua
@@ -70179,12 +70722,12 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
+Hi
+Jx
+jh
+NE
+qw
+iN
 ua
 ua
 ua
@@ -70437,11 +70980,11 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
+Hi
+YE
+YE
+Im
+Jo
 ua
 ua
 ua

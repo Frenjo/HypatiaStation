@@ -1452,10 +1452,10 @@ datum/objective/silence
 			return 0
 
 		var/area/shuttle = locate(/area/shuttle/escape/centcom)
-		var/area/pod1 =    locate(/area/shuttle/escape_pod1/centcom)
-		var/area/pod2 =    locate(/area/shuttle/escape_pod2/centcom)
-		var/area/pod3 =    locate(/area/shuttle/escape_pod3/centcom)
-		var/area/pod4 =    locate(/area/shuttle/escape_pod5/centcom)
+		var/area/pod1 =    locate(/area/shuttle/escape_pod/one/centcom)
+		var/area/pod2 =    locate(/area/shuttle/escape_pod/two/centcom)
+		var/area/pod3 =    locate(/area/shuttle/escape_pod/three/centcom)
+		var/area/pod4 =    locate(/area/shuttle/escape_pod/five/centcom)
 
 		for(var/mob/living/player in GLOBL.mob_list)
 			if(player == owner.current)

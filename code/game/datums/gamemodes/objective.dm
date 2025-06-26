@@ -343,7 +343,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 				if(isnull(T))
 					continue
 				switch(T.loc.type)
-					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom)
+					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod/one/centcom, /area/shuttle/escape_pod/two/centcom, /area/shuttle/escape_pod/three/centcom, /area/shuttle/escape_pod/four/centcom, /area/shuttle/escape_pod/five/centcom, /area/shuttle/arrival/centcom)
 						return 0
 	return 1
 
@@ -375,13 +375,13 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	var/area/check_area = location.loc
 	if(istype(check_area, /area/shuttle/escape/centcom))
 		return 1
-	if(istype(check_area, /area/shuttle/escape_pod1/centcom))
+	if(istype(check_area, /area/shuttle/escape_pod/one/centcom))
 		return 1
-	if(istype(check_area, /area/shuttle/escape_pod2/centcom))
+	if(istype(check_area, /area/shuttle/escape_pod/two/centcom))
 		return 1
-	if(istype(check_area, /area/shuttle/escape_pod3/centcom))
+	if(istype(check_area, /area/shuttle/escape_pod/three/centcom))
 		return 1
-	if(istype(check_area, /area/shuttle/escape_pod5/centcom))
+	if(istype(check_area, /area/shuttle/escape_pod/five/centcom))
 		return 1
 	if(istype(check_area, /area/shuttle/arrival/centcom))
 		return 1
@@ -595,13 +595,13 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 					var/area/check_area = GET_AREA(ai)
 					if(istype(check_area, /area/shuttle/escape/centcom))
 						return 1
-					if(istype(check_area, /area/shuttle/escape_pod1/centcom))
+					if(istype(check_area, /area/shuttle/escape_pod/one/centcom))
 						return 1
-					if(istype(check_area, /area/shuttle/escape_pod2/centcom))
+					if(istype(check_area, /area/shuttle/escape_pod/two/centcom))
 						return 1
-					if(istype(check_area, /area/shuttle/escape_pod3/centcom))
+					if(istype(check_area, /area/shuttle/escape_pod/three/centcom))
 						return 1
-					if(istype(check_area, /area/shuttle/escape_pod5/centcom))
+					if(istype(check_area, /area/shuttle/escape_pod/five/centcom))
 						return 1
 					if(istype(check_area, /area/shuttle/arrival/centcom))
 						return 1

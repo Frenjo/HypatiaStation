@@ -160,8 +160,9 @@ Implants;
 	var/escaped_on_shuttle = 0
 
 	var/list/area/escape_locations = list(
-		/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom,
-		/area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom
+		/area/shuttle/escape/centcom, /area/shuttle/escape_pod/one/centcom, /area/shuttle/escape_pod/two/centcom,
+		/area/shuttle/escape_pod/three/centcom, /area/shuttle/escape_pod/four/centcom, /area/shuttle/escape_pod/five/centcom,
+		/area/shuttle/arrival/centcom
 	)
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
@@ -180,13 +181,13 @@ Implants;
 				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape/centcom)
 					escaped_on_shuttle++
 
-				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod1/centcom)
+				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/one/centcom)
 					escaped_on_pod_1++
-				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod2/centcom)
+				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/two/centcom)
 					escaped_on_pod_2++
-				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod3/centcom)
+				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/three/centcom)
 					escaped_on_pod_3++
-				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
+				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod/five/centcom)
 					escaped_on_pod_5++
 
 			if(isghost(M))

@@ -58,8 +58,12 @@
  * ... So was just labelled as "CentCom Emergency Shuttle". I think "Rescue Shuttle" makes more sense as it's for rescuing escape pods...
  * ... And is less confusing, otherwise we'd have "CentCom Emergency Shuttle", "CentCom Emergency Shuttle Dock" and "Emergency Shuttle CentCom".
  */
-/area/centcom/rescue_shuttle
-	name = "\improper CentCom Rescue Shuttle"
+/area/centcom/rescue_shuttle/one
+	name = "\improper CentCom Rescue Shuttle One"
+
+// Now there's two of them!
+/area/centcom/rescue_shuttle/two
+	name = "\improper CentCom Rescue Shuttle Two"
 
 /*
  * Thunderdome

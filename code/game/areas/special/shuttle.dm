@@ -53,89 +53,83 @@
 /*
  * Escape Pods
  */
-// Escape Pod 1
-/area/shuttle/escape_pod1
+/area/shuttle/escape_pod
 	/*
 	ambience = list(
 		'sound/music/escape.ogg'
 	)
 	*/
 
-/area/shuttle/escape_pod1/station
+// Escape Pod 1
+/area/shuttle/escape_pod/one/station
 	name = "\improper Escape Pod One Station"
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod1/centcom
+/area/shuttle/escape_pod/one/centcom
 	name = "\improper Escape Pod One CentCom"
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod1/transit
+/area/shuttle/escape_pod/one/transit
 	name = "\improper Escape Pod One Transit"
 	icon_state = "shuttle"
 	parallax_type = PARALLAX_BLUESPACE
 	base_turf = /turf/space/transit/north
 
 // Escape Pod 2
-/area/shuttle/escape_pod2
-	/*
-	ambience = list(
-		'sound/music/escape.ogg'
-	)
-	*/
-
-/area/shuttle/escape_pod2/station
+/area/shuttle/escape_pod/two/station
 	name = "\improper Escape Pod Two Station"
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod2/centcom
+/area/shuttle/escape_pod/two/centcom
 	name = "\improper Escape Pod Two CentCom"
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod2/transit
+/area/shuttle/escape_pod/two/transit
 	name = "\improper Escape Pod Two Transit"
 	icon_state = "shuttle"
 	parallax_type = PARALLAX_BLUESPACE
 	base_turf = /turf/space/transit/north
 
 // Escape Pod 3
-/area/shuttle/escape_pod3
-	/*
-	ambience = list(
-		'sound/music/escape.ogg'
-	)
-	*/
-
-/area/shuttle/escape_pod3/station
+/area/shuttle/escape_pod/three/station
 	name = "\improper Escape Pod Three Station"
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod3/centcom
+/area/shuttle/escape_pod/three/centcom
 	name = "\improper Escape Pod Three CentCom"
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod3/transit
+/area/shuttle/escape_pod/three/transit
 	name = "\improper Escape Pod Three Transit"
 	icon_state = "shuttle"
 	parallax_type = PARALLAX_BLUESPACE
 	base_turf = /turf/space/transit/east
 
-// Escape Pod 5
-/area/shuttle/escape_pod5 // Pod 4 was lost to meteors.
-	/*
-	ambience = list(
-		'sound/music/escape.ogg'
-	)
-	*/
+// Escape Pod 4 - Recovered from being lost to meteors and restored to working condition.
+/area/shuttle/escape_pod/four/station
+	name = "\improper Escape Pod Four Station"
+	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod5/station
+/area/shuttle/escape_pod/four/centcom
+	name = "\improper Escape Pod Four CentCom"
+	icon_state = "shuttle"
+
+/area/shuttle/escape_pod/four/transit
+	name = "\improper Escape Pod Four Transit"
+	icon_state = "shuttle"
+	parallax_type = PARALLAX_BLUESPACE
+	base_turf = /turf/space/transit/south
+
+// Escape Pod 5
+/area/shuttle/escape_pod/five/station
 	name = "\improper Escape Pod Five Station"
 	icon_state = "shuttle2"
 
-/area/shuttle/escape_pod5/centcom
+/area/shuttle/escape_pod/five/centcom
 	name = "\improper Escape Pod Five CentCom"
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod5/transit
+/area/shuttle/escape_pod/five/transit
 	name = "\improper Escape Pod Five Transit"
 	icon_state = "shuttle"
 	parallax_type = PARALLAX_BLUESPACE

@@ -56,7 +56,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "abh" = (
 /obj/machinery/air_alarm{
 	dir = 1;
@@ -2070,9 +2070,9 @@
 /turf/open/floor/tiled/grey,
 /area/external/prison/cell_block/A)
 "aMI" = (
-/obj/item/flashlight,
-/turf/open/floor/plating/metal,
-/area/station/maintenance/aft/starboard_central)
+/obj/structure/sign/pods,
+/turf/closed/wall/steel,
+/area/station/maintenance/fore/starboard_central)
 "aMT" = (
 /obj/structure/sign/nosmoking_1{
 	pixel_y = 28
@@ -4722,7 +4722,7 @@
 /obj/machinery/camera/xray{
 	c_tag = "Security Escape Pod"
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/emergency{
 	dir = 1
 	},
 /turf/open/floor/plating/metal,
@@ -6984,6 +6984,20 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/crew/dormitories)
+"crY" = (
+/obj/structure/stool/bed/chair,
+/obj/machinery/status_display{
+	dir = 8;
+	layer = 4;
+	pixel_x = -32
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
+	id_tag = "escape_pod_4";
+	pixel_x = 25;
+	tag_door = "escape_pod_4_hatch"
+	},
+/turf/open/floor/shuttle/blue,
+/area/shuttle/escape_pod/four/station)
 "csf" = (
 /obj/structure/table,
 /obj/item/reagent_holder/food/snacks/monkeycube/wrapped,
@@ -7208,7 +7222,13 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/gateway)
 "cwJ" = (
-/obj/machinery/space_heater,
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
+	id_tag = "escape_pod_4_berth";
+	pixel_x = 25;
+	pixel_y = -25;
+	tag_door = "escape_pod_4_berth_hatch"
+	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "cwK" = (
@@ -9252,6 +9272,10 @@
 	},
 /turf/open/floor/tiled/dark,
 /area/station/hallway/primary/central)
+"dhz" = (
+/obj/structure/stool,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "dhS" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9993,7 +10017,7 @@
 	req_one_access = list(11,24)
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "duu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -10066,7 +10090,7 @@
 	pixel_x = 28
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "dvB" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall/reinforced,
@@ -11694,13 +11718,13 @@
 /area/station/research/development)
 "dXF" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/sign/pods{
-	pixel_x = 32
-	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/light/small/emergency{
+	dir = 4
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
@@ -12104,10 +12128,11 @@
 /turf/open/floor/tiled/grey,
 /area/ai_monitored/storage/eva)
 "efi" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/structure/disposalpipe/segment,
+/obj/structure/rack{
+	dir = 1
 	},
-/obj/structure/stool,
+/obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "efj" = (
@@ -12825,6 +12850,10 @@
 	},
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
+"ewR" = (
+/obj/structure/sign/pods,
+/turf/closed/wall/steel,
+/area/station/maintenance/aft/port)
 "exg" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -13656,12 +13685,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage)
 "eKh" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/sign/pods{
-	pixel_x = -32
-	},
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
 	},
@@ -13732,6 +13755,9 @@
 /area/station/research/toxins/test_area)
 "eMq" = (
 /obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
+/obj/machinery/light/small/emergency{
 	dir = 8
 	},
 /turf/open/floor/plating/metal,
@@ -14050,11 +14076,11 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "eRR" = (
-/obj/effect/landmark{
-	name = "blobstart"
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 1
 	},
-/turf/open/floor/plating/metal,
-/area/station/maintenance/aft/starboard_central)
+/turf/open/floor/plating/metal/shuttle,
+/area/shuttle/escape_pod/four/station)
 "eRS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/decal/floor/coloured/neutral{
@@ -16468,6 +16494,9 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
+"fLS" = (
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/area/shuttle/escape_pod/four/station)
 "fMb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -16537,6 +16566,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/item/flashlight,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "fNt" = (
@@ -18305,7 +18335,7 @@
 	pixel_x = 28
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "gpC" = (
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on{
 	dir = 4;
@@ -18825,7 +18855,9 @@
 /turf/open/floor/tiled/white,
 /area/station/research/xenobiology)
 "gyj" = (
-/obj/structure/stool/bed/chair,
+/obj/structure/stool/bed/chair{
+	dir = 1
+	},
 /obj/item/storage/fancy/cigarettes,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
@@ -20030,7 +20062,7 @@
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	id_tag = "escape_pod_5_berth";
 	pixel_x = -25;
-	pixel_y = 25;
+	pixel_y = -25;
 	tag_door = "escape_pod_5_berth_hatch"
 	},
 /obj/effect/decal/floor/industrial/warning/border{
@@ -20699,6 +20731,18 @@
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
+"hhT" = (
+/obj/structure/stool/bed/chair,
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -29
+	},
+/obj/machinery/light/small/emergency{
+	dir = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/shuttle/escape_pod/four/station)
 "hhW" = (
 /turf/open/floor/shuttle/blue,
 /area/shuttle/research/station)
@@ -21280,7 +21324,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall3"
 	},
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "hsP" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -22840,6 +22884,10 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
 /area/station/command/gateway)
+"hSC" = (
+/obj/structure/closet/emergency,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "hSO" = (
 /obj/machinery/door/airlock/medical{
 	name = "Examination Room";
@@ -23384,7 +23432,7 @@
 	tag_door = "escape_pod_5_hatch"
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "idu" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
@@ -24633,7 +24681,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall8"
 	},
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "iwc" = (
 /turf/open/floor/carpet,
 /area/station/command/bridge/meeting_room)
@@ -25248,7 +25296,7 @@
 	req_one_access = list(11,24)
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "iHA" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
@@ -25466,6 +25514,9 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/structure/rack,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/glasses/sunglasses,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "iLm" = (
@@ -27071,7 +27122,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall1"
 	},
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "jnj" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -27449,7 +27500,7 @@
 	req_one_access = list(11,24)
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "jtR" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
@@ -27780,7 +27831,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "jCH" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall/reinforced,
@@ -28300,7 +28351,7 @@
 	tag_door = "escape_pod_1_hatch"
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "jNM" = (
 /obj/machinery/driver_button{
 	id = "SMEngineCoreEject";
@@ -29060,10 +29111,10 @@
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
-	pixel_y = -29
+	pixel_y = 23
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "kdB" = (
 /obj/structure/stool/bed/chair/office/dark,
 /turf/open/floor{
@@ -31353,10 +31404,8 @@
 /turf/closed/wall/steel,
 /area/station/maintenance/incinerator)
 "kQz" = (
-/obj/structure/rack{
-	dir = 1
-	},
-/obj/item/storage/box/lights/mixed,
+/obj/effect/decal/floor/industrial/warning/border,
+/obj/machinery/light/small/emergency,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "kQF" = (
@@ -33171,7 +33220,7 @@
 /area/station/security/brig)
 "lAa" = (
 /turf/closed/wall/shuttle/corner/exterior/white/ne,
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "lAb" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -33330,15 +33379,8 @@
 /turf/open/floor/tiled/freezer,
 /area/station/crew/dormitories/toilet)
 "lCF" = (
-/obj/structure/rack{
-	dir = 1
-	},
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/tank/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/extinguisher,
-/obj/item/clothing/head/hardhat/red,
-/obj/item/clothing/glasses/meson,
+/obj/machinery/space_heater,
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "lDc" = (
@@ -33790,7 +33832,7 @@
 /area/station/maintenance/fore/port_central)
 "lLq" = (
 /turf/closed/wall/shuttle/corner/exterior/white/nw,
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "lLr" = (
 /obj/machinery/computer/telescience,
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -34064,12 +34106,13 @@
 /area/station/maintenance/fore/starboard_central)
 "lPy" = (
 /turf/closed/wall/shuttle/corner/exterior/white/sw,
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "lPD" = (
 /obj/machinery/air_alarm{
 	name = "north bump";
 	pixel_y = 24
 	},
+/obj/machinery/space_heater,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "lPG" = (
@@ -34325,6 +34368,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/open/floor/wood,
 /area/station/crew/vacant_office)
+"lUj" = (
+/obj/machinery/light/small/emergency,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/port)
 "lUq" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -34834,6 +34881,11 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
+"meY" = (
+/obj/effect/window_spawner/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "mfa" = (
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden,
 /turf/open/floor/tiled/white,
@@ -35226,6 +35278,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/auxiliary)
+"mkI" = (
+/turf/closed/wall/shuttle{
+	icon_state = "swall3"
+	},
+/area/shuttle/escape_pod/four/station)
 "mkO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -35254,7 +35311,7 @@
 	req_one_access = list(11,24)
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "mlX" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
@@ -37038,16 +37095,8 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/custodial)
 "mPs" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Firefighting Equipment";
-	req_access = list(12)
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock south"
-	},
-/turf/open/floor/plating/metal,
+/obj/structure/sign/pods,
+/turf/closed/wall/steel,
 /area/station/maintenance/aft/starboard_central)
 "mPu" = (
 /obj/structure/table,
@@ -39595,7 +39644,7 @@
 	},
 /obj/machinery/light/small/emergency,
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "nGS" = (
 /obj/structure/stool/bed/chair/office/dark{
 	dir = 8
@@ -42248,7 +42297,7 @@
 	tag_door = "escape_pod_3_hatch"
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "oET" = (
 /obj/structure/stool/bed/chair/comfy/brown{
 	dir = 8
@@ -43295,7 +43344,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "oYd" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -43594,7 +43643,7 @@
 /area/station/medical/genetics)
 "pcz" = (
 /turf/closed/wall/shuttle/corner/exterior/white/ne,
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "pcD" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -43682,7 +43731,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/metal/shuttle,
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "peo" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
@@ -45548,9 +45597,16 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/smes/thermoelectric)
 "pIs" = (
-/obj/structure/closet,
-/turf/open/floor/plating/metal,
-/area/station/maintenance/aft/starboard_central)
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "escape_pod_4_hatch";
+	locked = 1;
+	name = "Escape Pod";
+	req_one_access = list(11,24)
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/shuttle/escape_pod/four/station)
 "pIv" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 4
@@ -47151,7 +47207,7 @@
 /area/station/command/gateway)
 "qoV" = (
 /turf/closed/wall/shuttle/corner/exterior/white/nw,
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "qpi" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -49253,7 +49309,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall12"
 	},
-/area/shuttle/escape_pod5/station)
+/area/shuttle/escape_pod/five/station)
 "qZV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -49482,6 +49538,15 @@
 	},
 /turf/open/floor/carpet,
 /area/station/command/office/captain)
+"reV" = (
+/obj/effect/landmark{
+	name = "blobstart"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "rfe" = (
 /turf/closed/wall/reinforced,
 /area/station/research/toxins/storage)
@@ -52792,9 +52857,15 @@
 /turf/open/floor/circuit_grid/blue,
 /area/turret_protected/ai_chamber)
 "sgl" = (
-/obj/structure/table,
-/obj/item/t_scanner,
-/obj/item/flashlight,
+/obj/machinery/door/airlock/maintenance{
+	name = "Firefighting Equipment";
+	req_access = list(12)
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "sgr" = (
@@ -53446,7 +53517,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall3"
 	},
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "stW" = (
 /obj/item/clothing/mask/cigarette,
 /turf/open/floor/plating/metal/airless,
@@ -53650,10 +53721,10 @@
 /area/station/medical/chemistry)
 "syN" = (
 /turf/closed/wall/shuttle/corner/exterior/white/ne,
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "syX" = (
 /turf/closed/wall/shuttle/corner/exterior/white/se,
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "szb" = (
 /obj/machinery/power/emitter,
 /turf/open/floor/plating/metal,
@@ -53774,6 +53845,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
+"sAE" = (
+/turf/closed/wall/shuttle/corner/exterior/white/se,
+/area/shuttle/escape_pod/four/station)
 "sBe" = (
 /obj/machinery/light{
 	dir = 4
@@ -54450,7 +54524,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall12"
 	},
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "sPp" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -54637,7 +54711,7 @@
 	tag_door = "escape_pod_2_hatch"
 	},
 /turf/open/floor/shuttle/blue,
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "sTw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -57561,7 +57635,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall1"
 	},
-/area/shuttle/escape_pod1/station)
+/area/shuttle/escape_pod/one/station)
 "tYX" = (
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
@@ -58638,7 +58712,7 @@
 /turf/closed/wall/shuttle{
 	icon_state = "swall4"
 	},
-/area/shuttle/escape_pod3/station)
+/area/shuttle/escape_pod/three/station)
 "ust" = (
 /obj/machinery/door/poddoor{
 	density = FALSE;
@@ -59642,7 +59716,7 @@
 /area/station/maintenance/fore/port_central)
 "uMd" = (
 /turf/closed/wall/shuttle/corner/exterior/white/nw,
-/area/shuttle/escape_pod2/station)
+/area/shuttle/escape_pod/two/station)
 "uMi" = (
 /obj/effect/landmark{
 	name = "xeno_spawn";
@@ -60380,7 +60454,10 @@
 /turf/closed/wall/reinforced,
 /area/external/prison/cell_block/B)
 "vao" = (
-/obj/structure/stool/bed/chair,
+/obj/structure/stool/bed/chair{
+	dir = 1
+	},
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "vas" = (
@@ -65126,6 +65203,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
+"wKN" = (
+/obj/machinery/light/small/emergency{
+	dir = 4
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "wLb" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -65550,6 +65633,13 @@
 	icon_state = "arrival"
 	},
 /area/station/hallway/secondary/arrivals)
+"wRh" = (
+/obj/effect/window_spawner/reinforced,
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/shuttle/escape_pod/four/station)
 "wRB" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -66616,7 +66706,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "xjk" = (
-/obj/machinery/light/small{
+/obj/machinery/light/small/emergency{
 	dir = 8
 	},
 /turf/open/floor/plating/metal,
@@ -66999,6 +67089,18 @@
 /obj/item/pen,
 /turf/open/floor/tiled/dark,
 /area/station/security/warden)
+"xpf" = (
+/obj/structure/rack{
+	dir = 1
+	},
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/tank/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/item/extinguisher,
+/obj/item/clothing/head/hardhat/red,
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "xpm" = (
 /obj/structure/table,
 /obj/item/radio/off{
@@ -67567,8 +67669,9 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/genetics)
 "xyr" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/window_spawner/reinforced,
+/obj/structure/table,
+/obj/item/t_scanner,
+/obj/item/flashlight,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "xyx" = (
@@ -68460,6 +68563,17 @@
 	},
 /turf/open/floor/tiled/white,
 /area/station/research/miscellaneous)
+"xPV" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "escape_pod_4_berth_hatch";
+	locked = 1;
+	name = "Escape Pod Berth Four";
+	req_one_access = list(11,24)
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "xPY" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/vending/medical,
@@ -69187,6 +69301,10 @@
 	},
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
+"ycs" = (
+/obj/structure/closet,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "ycy" = (
 /obj/machinery/camera{
 	c_tag = "Cargo Recieving Dock";
@@ -92218,7 +92336,7 @@ sjh
 kQa
 eDI
 nID
-vtI
+lUj
 wyq
 ciU
 ciU
@@ -92473,7 +92591,7 @@ sjh
 foX
 sjh
 kQa
-wyq
+ewR
 bkE
 wyq
 wyq
@@ -102929,7 +103047,7 @@ eMU
 xBx
 xBx
 mdY
-xBx
+aMI
 xBx
 xBx
 xBx
@@ -111228,7 +111346,7 @@ nCw
 nVu
 uCu
 qym
-qym
+efi
 iKJ
 dZT
 pyy
@@ -112002,10 +112120,10 @@ iUX
 deG
 vao
 tVy
-sgl
-efi
+tVy
+tVy
 kdV
-kdV
+rPC
 kdV
 kdV
 kdV
@@ -112257,13 +112375,13 @@ qxy
 vye
 iUX
 deG
-jaI
+kQz
 mPs
-jaI
+hSC
 eRR
-xyr
-eMU
-eMU
+mkI
+mkI
+fLS
 eMU
 eMU
 eMU
@@ -112515,13 +112633,13 @@ vye
 iUX
 deG
 cwJ
-tVy
-lCF
+xPV
+jaI
 pIs
-xyr
+hhT
+crY
+wRh
 eMU
-ciU
-ciU
 ciU
 eMU
 ciU
@@ -112771,14 +112889,14 @@ hLq
 xYX
 iUX
 deG
-cwJ
+lCF
 tVy
-xyr
-xyr
-tVy
+wKN
+eRR
+mkI
+mkI
+sAE
 eMU
-ciU
-ciU
 ciU
 eMU
 ciU
@@ -113028,14 +113146,14 @@ aFW
 kPO
 iUX
 deG
-wPi
-xyr
-ciU
-ciU
-ciU
+tVy
+tVy
+tVy
+tVy
+tVy
+lXa
 eMU
-ciU
-ciU
+eMU
 ciU
 eMU
 ciU
@@ -113285,11 +113403,11 @@ peU
 wbo
 iUX
 deG
+sgl
 jaI
-xyr
-eMU
-eMU
-eMU
+reV
+ycs
+meY
 qCv
 eMU
 wWv
@@ -113542,11 +113660,11 @@ peU
 rwP
 iUX
 deG
-aMI
+tVy
 xyr
-ciU
-ciU
-eMU
+dhz
+xpf
+meY
 ciU
 ciU
 wWv
@@ -113799,7 +113917,7 @@ hIq
 iUX
 iUX
 deG
-kQz
+tVy
 uIa
 uIa
 uIa

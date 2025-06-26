@@ -130,9 +130,9 @@ PROCESS_DEF(shuttle)
 
 	// Escape Pod 1
 	shuttle = new /datum/shuttle/ferry/escape_pod()
-	shuttle.area_station = locate(/area/shuttle/escape_pod1/station)
-	shuttle.area_offsite = locate(/area/shuttle/escape_pod1/centcom)
-	shuttle.area_transition = locate(/area/shuttle/escape_pod1/transit)
+	shuttle.area_station = locate(/area/shuttle/escape_pod/one/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod/one/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod/one/transit)
 	shuttle.docking_controller_tag = "escape_pod_1"
 	shuttle.dock_target_station = "escape_pod_1_berth"
 	shuttle.dock_target_offsite = "escape_pod_1_recovery"
@@ -143,9 +143,9 @@ PROCESS_DEF(shuttle)
 
 	// Escape Pod 2
 	shuttle = new /datum/shuttle/ferry/escape_pod()
-	shuttle.area_station = locate(/area/shuttle/escape_pod2/station)
-	shuttle.area_offsite = locate(/area/shuttle/escape_pod2/centcom)
-	shuttle.area_transition = locate(/area/shuttle/escape_pod2/transit)
+	shuttle.area_station = locate(/area/shuttle/escape_pod/two/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod/two/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod/two/transit)
 	shuttle.docking_controller_tag = "escape_pod_2"
 	shuttle.dock_target_station = "escape_pod_2_berth"
 	shuttle.dock_target_offsite = "escape_pod_2_recovery"
@@ -156,9 +156,9 @@ PROCESS_DEF(shuttle)
 
 	// Escape Pod 3
 	shuttle = new /datum/shuttle/ferry/escape_pod()
-	shuttle.area_station = locate(/area/shuttle/escape_pod3/station)
-	shuttle.area_offsite = locate(/area/shuttle/escape_pod3/centcom)
-	shuttle.area_transition = locate(/area/shuttle/escape_pod3/transit)
+	shuttle.area_station = locate(/area/shuttle/escape_pod/three/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod/three/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod/three/transit)
 	shuttle.docking_controller_tag = "escape_pod_3"
 	shuttle.dock_target_station = "escape_pod_3_berth"
 	shuttle.dock_target_offsite = "escape_pod_3_recovery"
@@ -167,17 +167,28 @@ PROCESS_DEF(shuttle)
 	shuttles["Escape Pod 3"] = shuttle
 	process_shuttles.Add(shuttle)
 
-	// There is no pod 4, apparently.
+	// There was no pod 4, but now she's back!
+	shuttle = new /datum/shuttle/ferry/escape_pod()
+	shuttle.area_station = locate(/area/shuttle/escape_pod/four/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod/four/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod/four/transit)
+	shuttle.docking_controller_tag = "escape_pod_4"
+	shuttle.dock_target_station = "escape_pod_4_berth"
+	shuttle.dock_target_offsite = "escape_pod_4_recovery"
+	shuttle.transit_direction = SOUTH
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	shuttles["Escape Pod 4"] = shuttle
+	process_shuttles.Add(shuttle)
 
 	// Escape Pod 5
 	shuttle = new /datum/shuttle/ferry/escape_pod()
-	shuttle.area_station = locate(/area/shuttle/escape_pod5/station)
-	shuttle.area_offsite = locate(/area/shuttle/escape_pod5/centcom)
-	shuttle.area_transition = locate(/area/shuttle/escape_pod5/transit)
+	shuttle.area_station = locate(/area/shuttle/escape_pod/five/station)
+	shuttle.area_offsite = locate(/area/shuttle/escape_pod/five/centcom)
+	shuttle.area_transition = locate(/area/shuttle/escape_pod/five/transit)
 	shuttle.docking_controller_tag = "escape_pod_5"
 	shuttle.dock_target_station = "escape_pod_5_berth"
 	shuttle.dock_target_offsite = "escape_pod_5_recovery"
-	shuttle.transit_direction = EAST //should this be WEST? I have no idea.
+	shuttle.transit_direction = WEST
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
 	shuttles["Escape Pod 5"] = shuttle
 	process_shuttles.Add(shuttle)
@@ -188,6 +199,7 @@ PROCESS_DEF(shuttle)
 		shuttles["Escape Pod 1"],
 		shuttles["Escape Pod 2"],
 		shuttles["Escape Pod 3"],
+		shuttles["Escape Pod 4"],
 		shuttles["Escape Pod 5"],
 		shuttles["Arrival"], // This is really hacky but okay.
 	)
