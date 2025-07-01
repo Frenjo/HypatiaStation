@@ -19,14 +19,15 @@
 	var/high_colour = "#0099FF" // Colour the shield will be when at max health. A light blue.
 	var/low_colour = "#FF0000" // Colour the shield will drift towards as health is lowered. Deep red.
 
-/obj/item/shield_projector/New()
+/obj/item/shield_projector/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 	if(always_on)
 		create_shields()
 
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/shield_projector/proc/create_shield(newloc, new_dir)

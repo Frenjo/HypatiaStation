@@ -16,12 +16,12 @@
 	var/temperature = T20C
 	var/current_temperature = T20C
 
-/obj/item/gun/energy/temperature/New()
+/obj/item/gun/energy/temperature/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 
 /obj/item/gun/energy/temperature/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/gun/energy/temperature/attack_self(mob/living/user)

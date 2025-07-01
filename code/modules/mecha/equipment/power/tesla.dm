@@ -16,11 +16,11 @@
 	var/list/use_channels = list(EQUIP, ENVIRON, LIGHT)
 
 /obj/item/mecha_equipment/tesla_energy_relay/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/mecha_equipment/tesla_energy_relay/detach()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	. = ..()
 
 /obj/item/mecha_equipment/tesla_energy_relay/proc/get_power_channel(area/A)
@@ -36,7 +36,7 @@
 	. = ..()
 	if(href_list["toggle_relay"])
 		if(equip_ready)
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 			log_message("Activated.")
 			set_ready_state(FALSE)
 		else

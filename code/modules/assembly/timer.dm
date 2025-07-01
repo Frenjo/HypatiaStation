@@ -24,10 +24,10 @@
 /obj/item/assembly/timer/toggle_secure()
 	secured = !secured
 	if(secured)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 	else
 		timing = 0
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 	update_icon()
 	return secured
 

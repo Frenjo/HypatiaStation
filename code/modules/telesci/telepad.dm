@@ -107,12 +107,13 @@
 	var/emagged = 0
 	var/teleporting = 0
 
-/obj/item/rcs/New()
-	..()
-	GLOBL.processing_objects.Add(src)
+/obj/item/rcs/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/item/rcs/Destroy()
 	pad = null
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/rcs/examine()

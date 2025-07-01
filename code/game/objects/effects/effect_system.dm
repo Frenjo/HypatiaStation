@@ -482,12 +482,15 @@ steam.start() -- spawns the effect
 	..(loc)
 	icon_state = "[ismetal ? "m" : ""]foam"
 	metal = ismetal
+
+/obj/effect/foam/initialise()
+	. = ..()
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
 	spawn(3 + metal * 3)
 		process()
 		checkReagents()
 	spawn(120)
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 		sleep(30)
 
 		if(metal)
@@ -498,7 +501,6 @@ steam.start() -- spawns the effect
 		flick("[icon_state]-disolve", src)
 		sleep(5)
 		qdel(src)
-	return
 
 // transfer any reagents to the floor
 /obj/effect/foam/proc/checkReagents()

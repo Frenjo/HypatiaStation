@@ -58,8 +58,7 @@
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
-		GLOBL.processing_objects.Remove(src)
-		return
+		return PROCESS_KILL
 
 	var/turf/location = src.loc
 	if(ishuman(location))
@@ -78,7 +77,7 @@
 		force = 3
 		damtype = "fire"
 		icon_state = "cake1"
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 	else
 		force = null
 		damtype = "brute"

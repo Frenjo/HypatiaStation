@@ -95,8 +95,10 @@
 	verbs.Remove(/atom/movable/verb/pull)
 	log_message("[name] created.")
 	GLOBL.mechas_list.Add(src) //global mech list
-	GLOBL.processing_objects.Add(src) // Adds the mech to the processing objects list.
 
+/obj/mecha/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src) // Adds the mech to the processing objects list.
 	if(isnotnull(starts_with)) // Equips any pre-loaded equipment if applicable.
 		for(var/equipment_path in starts_with)
 			var/obj/item/mecha_equipment/equip = new equipment_path(src)
@@ -120,7 +122,7 @@
 	QDEL_NULL(radio)
 	QDEL_NULL(cell)
 	GLOBL.mechas_list.Remove(src) //global mech list
-	GLOBL.processing_objects.Remove(src) // Removes the mech from the processing objects list.
+	STOP_PROCESSING(PCobj, src) // Removes the mech from the processing objects list.
 	return ..()
 
 ////////////////////////////

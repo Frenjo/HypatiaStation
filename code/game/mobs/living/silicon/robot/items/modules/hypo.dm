@@ -22,10 +22,13 @@
 	. = ..()
 	for(var/id in reagent_ids)
 		add_reagent(id)
-	GLOBL.processing_objects.Add(src)
+
+/obj/item/reagent_holder/borghypo/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/item/reagent_holder/borghypo/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/reagent_holder/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg

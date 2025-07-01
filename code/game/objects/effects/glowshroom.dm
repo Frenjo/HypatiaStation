@@ -40,10 +40,12 @@
 	else //if on the floor, glowshroom on-floor sprite
 		icon_state = "glowshroomf"
 
-	GLOBL.processing_objects += src
-
 	set_light(round(potency / 10))
+
+/obj/effect/glowshroom/initialise()
+	. = ..()
 	lastTick = world.timeofday
+	START_PROCESSING(PCobj, src)
 
 /obj/effect/glowshroom/process()
 	if(!spreaded)

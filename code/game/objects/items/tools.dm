@@ -229,8 +229,7 @@
 				src.damtype = "brute"
 				src.icon_state = "welder"
 				src.welding = 0
-			GLOBL.processing_objects.Remove(src)
-			return
+			return PROCESS_KILL
 		//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(WELDING_TOOL_ON)
 			if(src.icon_state != "welder1") //Check that the sprite is correct, if it isnt, it means toggle() was not called
@@ -316,7 +315,7 @@
 			src.force = 15
 			src.damtype = "fire"
 			src.icon_state = "welder1"
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 		else
 			to_chat(usr, SPAN_INFO("Need more fuel!"))
 			src.welding = WELDING_TOOL_OFF
@@ -347,7 +346,7 @@
 			src.force = 15
 			src.damtype = "fire"
 			src.icon_state = "welder1"
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 		else
 			to_chat(usr, SPAN_INFO("Need more fuel!"))
 			src.welding = WELDING_TOOL_OFF

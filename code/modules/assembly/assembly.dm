@@ -109,8 +109,7 @@
 	return
 
 /obj/item/assembly/process()
-	GLOBL.processing_objects.Remove(src)
-	return
+	return PROCESS_KILL
 
 /obj/item/assembly/examine()
 	set src in view()

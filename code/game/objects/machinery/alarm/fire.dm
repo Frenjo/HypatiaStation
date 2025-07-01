@@ -172,7 +172,7 @@
 			alarm()
 			time = 0
 			timing = 0
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 		updateDialog()
 	last_process = world.timeofday
 
@@ -247,7 +247,7 @@
 		else if(href_list["time"])
 			timing = text2num(href_list["time"])
 			last_process = world.timeofday
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 		else if(href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			time += tp

@@ -12,9 +12,13 @@
 	var/mob/living/silicon/ai/ai = list()
 	var/last_tick //used to delay the powercheck
 
-/obj/item/radio/intercom/New()
+/obj/item/radio/intercom/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
+
+/obj/item/radio/intercom/Destroy()
+	STOP_PROCESSING(PCobj, src)
+	return ..()
 
 /obj/item/radio/intercom/attack_ai(mob/user)
 	src.add_fingerprint(user)

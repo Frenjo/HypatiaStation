@@ -48,7 +48,7 @@
 				return TRUE
 
 			if(2)
-				GLOBL.processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
+				STOP_PROCESSING(PCobj, src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
 				GLOBL.processing_power_items.Remove(src)
 				anchored = FALSE
 				mode = 0
@@ -82,7 +82,7 @@
 				to_chat(M, "[user] activates the power sink!")
 			mode = 2
 			icon_state = "powersink1"
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 			GLOBL.processing_power_items.Add(src)
 
 		if(2)	//This switch option wasn't originally included. It exists now. --NeoFite
@@ -94,7 +94,7 @@
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 			GLOBL.processing_power_items.Remove(src)
 
 /obj/item/powersink/pwr_drain()

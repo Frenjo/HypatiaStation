@@ -12,8 +12,7 @@
 
 /obj/item/process()
 	if(!speaking_to_players)
-		GLOBL.processing_objects.Remove(src)
-		return
+		return PROCESS_KILL
 	if(prob(10) && world.timeofday >= lastsaid && length(heard_words))
 		SaySomething()
 

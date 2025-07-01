@@ -31,11 +31,12 @@
 	var/obj/item/anobattery/inserted_battery
 	var/turf/archived_loc
 
-/obj/item/anodevice/New()
-	..()
-	GLOBL.processing_objects.Add(src)
+/obj/item/anodevice/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/item/anodevice/Destroy()
+	STOP_PROCESSING(PCobj, src)
 	QDEL_NULL(inserted_battery)
 	archived_loc = null
 	return ..()

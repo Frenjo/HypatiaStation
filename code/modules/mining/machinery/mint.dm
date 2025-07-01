@@ -33,7 +33,11 @@
 		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(isnotnull(output))
 			break
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
+
+/obj/machinery/mineral/mint/Destroy()
+	STOP_PROCESSING(PCobj, src)
+	return ..()
 
 /obj/machinery/mineral/mint/process()
 	if(isnotnull(input))

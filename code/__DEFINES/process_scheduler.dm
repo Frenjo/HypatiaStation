@@ -23,3 +23,7 @@
 
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list
+
+// Used to add and remove THING from PROCESS' processing_list.
+#define START_PROCESSING(PROCESS, THING) global.PROCESS.processing_list.Add(THING)
+#define STOP_PROCESSING(PROCESS, THING) global.PROCESS.processing_list.Remove(THING)

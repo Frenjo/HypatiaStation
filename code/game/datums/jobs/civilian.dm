@@ -221,16 +221,16 @@
 	var/timeleft = 300
 	var/last_process = 0
 
-/obj/effect/forcefield/mime/New()
+/obj/effect/forcefield/mime/initialise()
 	. = ..()
 	last_process = world.time
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 
 /obj/effect/forcefield/mime/process()
 	timeleft -= (world.time - last_process)
 	if(timeleft <= 0)
-		GLOBL.processing_objects.Remove(src)
 		qdel(src)
+		return PROCESS_KILL
 
 /*
  * Mime Speech

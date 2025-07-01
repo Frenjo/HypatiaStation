@@ -19,7 +19,7 @@
 
 /obj/item/mecha_equipment/repair_droid/Destroy()
 	chassis?.remove_overlay(droid_overlay)
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/mecha_equipment/repair_droid/attach(obj/mecha/M)
@@ -29,7 +29,7 @@
 
 /obj/item/mecha_equipment/repair_droid/detach()
 	chassis.remove_overlay(droid_overlay)
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	. = ..()
 
 /obj/item/mecha_equipment/repair_droid/get_equip_info()
@@ -40,12 +40,12 @@
 	if(href_list["toggle_repairs"])
 		chassis.remove_overlay(droid_overlay)
 		if(equip_ready)
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 			droid_overlay = new /icon(icon, icon_state = "repair_droid_a")
 			log_message("Activated.")
 			set_ready_state(FALSE)
 		else
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 			droid_overlay = new /icon(icon, icon_state = "repair_droid_idle")
 			log_message("Deactivated.")
 			set_ready_state(TRUE)

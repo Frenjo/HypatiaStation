@@ -9,11 +9,15 @@
 /obj/effect/blob/node/New(loc, h = 100)
 	GLOBL.blobs.Add(src)
 	GLOBL.blob_nodes.Add(src)
-	GLOBL.processing_objects.Add(src)
 	. = ..(loc, h)
+
+/obj/effect/blob/node/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/effect/blob/node/Destroy()
 	GLOBL.blob_nodes.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/effect/blob/node/update_icon()

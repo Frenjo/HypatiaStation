@@ -31,7 +31,7 @@
 /obj/item/pinpointer/attack_self()
 	active = !active
 	if(active)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 		to_chat(usr, SPAN_INFO("You activate the pinpointer."))
 	else
 		icon_state = "pinoff"
@@ -124,7 +124,7 @@
 /obj/item/pinpointer/nukeop/attack_self(mob/user)
 	active = !active
 	if(active)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 		switch(mode)
 			if(PINPOINTER_MODE_DISK)
 				thing_to_find = locate(/obj/item/disk/nuclear)

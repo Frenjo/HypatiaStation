@@ -287,7 +287,7 @@
 		W.lit = TRUE
 		W.damtype = "burn"
 		W.icon_state = "match_lit"
-		GLOBL.processing_objects.Add(W)
+		START_PROCESSING(PCobj, W)
 	W.update_icon()
 
 // Injectors

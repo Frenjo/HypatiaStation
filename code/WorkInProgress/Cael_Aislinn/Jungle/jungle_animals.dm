@@ -13,8 +13,15 @@
 		new new_type(GET_TURF(src))
 		qdel(src)
 
-	GLOBL.processing_objects.Add(src)
 	spawned_animal = new spawn_type(GET_TURF(src))
+
+/obj/effect/landmark/animal_spawner/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
+
+/obj/effect/landmark/animal_spawner/Destroy()
+	STOP_PROCESSING(PCobj, src)
+	return ..()
 
 /obj/effect/landmark/animal_spawner/process()
 	//if any of our animals are killed, spawn new ones

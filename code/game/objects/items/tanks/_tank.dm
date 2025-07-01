@@ -38,11 +38,14 @@
 	air_contents.volume = volume //liters
 	air_contents.temperature = T20C
 
-	GLOBL.processing_objects.Add(src)
+/obj/item/tank/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/item/tank/Destroy()
 	if(isnotnull(air_contents))
 		QDEL_NULL(air_contents)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/tank/process()

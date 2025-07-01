@@ -44,16 +44,19 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	if(temp)
 		spawn(temp)
 			qdel(src)
-	..()
-	GLOBL.processing_objects += src
+	. = ..()
+
+/obj/singularity/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 	for(var/obj/machinery/singularity_beacon/singubeacon in GLOBL.machines)
 		if(singubeacon.active)
 			target = singubeacon
 			break
-	return
 
 /obj/singularity/Destroy()
 	target = null
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/singularity/attack_hand(mob/user)
@@ -514,10 +517,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	if(isliving(A))//Mobs get gibbed
 		A:gib()
 	else if(isobj(A))
-		var/obj/O = A
-		GLOBL.machines -= O
-		GLOBL.processing_objects -= O
-		O.forceMove(null)
+		qdel(A)
 	else if(isturf(A))
 		var/turf/T = A
 		if(T.intact)

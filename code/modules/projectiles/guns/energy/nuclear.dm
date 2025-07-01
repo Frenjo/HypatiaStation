@@ -77,7 +77,7 @@
 			to_chat(M, SPAN_WARNING("You feel a wave of heat wash over you."))
 			M.apply_effect(300, IRRADIATE)
 		crit_fail = TRUE //break the gun so it stops recharging
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 		update_icon()
 	return TRUE
 

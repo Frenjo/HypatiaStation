@@ -22,12 +22,15 @@
 	gen_secondary = B
 	if(isnotnull(A) && isnotnull(B))
 		needs_power = 1
-	GLOBL.processing_objects.Add(src)
+
+/obj/effect/shield_wall/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/effect/shield_wall/Destroy()
 	gen_primary = null
 	gen_secondary = null
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/effect/shield_wall/attack_hand(mob/user)

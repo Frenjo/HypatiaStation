@@ -25,7 +25,7 @@
 	init()
 
 /obj/item/mecha_equipment/generator/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/mecha_equipment/generator/proc/init()
@@ -33,18 +33,18 @@
 	fuel.amount = 0
 
 /obj/item/mecha_equipment/generator/detach()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	. = ..()
 
 /obj/item/mecha_equipment/generator/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle"])
 		if(equip_ready)
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 			log_message("Activated.")
 			set_ready_state(FALSE)
 		else
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 			log_message("Deactivated.")
 			set_ready_state(TRUE)
 

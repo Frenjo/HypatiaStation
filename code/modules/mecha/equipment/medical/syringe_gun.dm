@@ -32,11 +32,11 @@
 	create_reagents(max_volume)
 
 /obj/item/mecha_equipment/medical/syringe_gun/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/mecha_equipment/medical/syringe_gun/detach()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/mecha_equipment/medical/syringe_gun/critfail()
@@ -144,7 +144,7 @@
 				m++
 		if(processed_reagents.len)
 			message += " added to production"
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 			occupant_message(message)
 			occupant_message("Reagent processing started.")
 			log_message("Reagent processing started.")

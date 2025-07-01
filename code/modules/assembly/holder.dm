@@ -213,8 +213,7 @@
 	name = "timer-igniter assembly"
 
 /obj/item/assembly_holder/timer_igniter/New()
-	..()
-
+	. = ..()
 	var/obj/item/assembly/igniter/ign = new(src)
 	ign.secured = 1
 	ign.holder = src
@@ -222,14 +221,18 @@
 	tmr.time = 5
 	tmr.secured = 1
 	tmr.holder = src
-	GLOBL.processing_objects.Add(tmr)
 	a_left = tmr
 	a_right = ign
 	secured = 1
+
 	update_icon()
 	name = initial(name) + " ([tmr.time] secs)"
 
 	loc.verbs += /obj/item/assembly_holder/timer_igniter/verb/configure
+
+/obj/item/assembly_holder/timer_igniter/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, a_left)
 
 /obj/item/assembly_holder/timer_igniter/detached()
 	loc.verbs -= /obj/item/assembly_holder/timer_igniter/verb/configure

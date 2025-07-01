@@ -20,7 +20,7 @@
 	on = !on
 	icon_state = "t-ray[on]"
 	if(on)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 
 /obj/item/t_scanner/process()
 	if(!on)

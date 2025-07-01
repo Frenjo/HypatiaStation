@@ -35,12 +35,14 @@
 	else
 		power_supply = new /obj/item/cell(src)
 
+/obj/item/gun/energy/initialise()
+	. = ..()
 	if(self_charging)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 
 /obj/item/gun/energy/Destroy()
 	if(self_charging)
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 	return ..()
 
 // This is only called if self_charging = TRUE.

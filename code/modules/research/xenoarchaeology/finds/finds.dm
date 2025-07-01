@@ -535,7 +535,7 @@
 			new_item.listening_to_players = 1
 			if(prob(25))
 				new_item.speaking_to_players = 1
-				GLOBL.processing_objects.Add(src)
+				START_PROCESSING(PCobj, src)
 		var/turf/T = GET_TURF(src)
 		if(istype(T, /turf/closed/rock))
 			var/turf/closed/rock/closed = T
@@ -546,4 +546,4 @@
 		listening_to_players = 1
 		if(prob(25))
 			speaking_to_players = 1
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)

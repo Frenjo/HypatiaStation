@@ -13,11 +13,15 @@
 	. = ..()
 	if(isliving(loc))
 		affected_mob = loc
-		GLOBL.processing_objects.Add(src)
 		spawn(0)
 			AddInfectionImages(affected_mob)
 	else
 		qdel(src)
+
+/obj/item/alien_embryo/initialise()
+	. = ..()
+	if(isnotnull(affected_mob))
+		START_PROCESSING(PCobj, src)
 
 /obj/item/alien_embryo/Destroy()
 	if(isnotnull(affected_mob))
@@ -25,17 +29,18 @@
 		spawn(0)
 			RemoveInfectionImages(affected_mob)
 		affected_mob = null
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/alien_embryo/process()
-	if(!affected_mob)	return
+	if(!affected_mob)
+		return PROCESS_KILL
 	if(loc != affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
-		GLOBL.processing_objects.Remove(src)
 		spawn(0)
 			RemoveInfectionImages(affected_mob)
 			affected_mob = null
-		return
+		return PROCESS_KILL
 
 	if(stage < 5 && prob(3))
 		stage++

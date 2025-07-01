@@ -11,12 +11,13 @@
 	var/scan_ticks = 0
 	var/obj/item/radio/target_radio
 
-/obj/item/beacon_locator/New()
+/obj/item/beacon_locator/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 
 /obj/item/beacon_locator/Destroy()
 	target_radio = null
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/beacon_locator/process()
@@ -38,7 +39,7 @@
 			if(prob(scan_ticks * 10))
 				spawn(0)
 					set background = BACKGROUND_ENABLED
-					if(GLOBL.processing_objects.Find(src))
+					if(global.PCobj.processing_list.Find(src))
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
 						for(var/obj/item/radio/beacon/R in GLOBL.movable_atom_list)

@@ -15,9 +15,9 @@
 	slot_flags = SLOT_HEAD
 	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/biotech = 5)
 
-/obj/item/holder/New()
+/obj/item/holder/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 
 /obj/item/holder/Destroy()
 	//Hopefully this will stop the icon from remaining on human mobs.
@@ -25,6 +25,7 @@
 		var/mob/living/A = src.loc
 		src.forceMove(null)
 		A.update_icons()
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/holder/process()

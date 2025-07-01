@@ -38,7 +38,7 @@
 			else
 				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 			qdel(a)
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 		if("emp")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 			var/name = prob(50) ? t.name : pick(GLOBL.teleportlocs)
@@ -48,7 +48,7 @@
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
 			qdel(a)
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 
 /obj/item/implant/death_alarm/emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
 	if(malfunction)		//so I'm just going to add a meltdown chance here
@@ -61,14 +61,14 @@
 			meltdown()
 		else if(prob(60))	//but more likely it will just quietly die
 			malfunction = MALFUNCTION_PERMANENT
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 
 	spawn(20)
 		malfunction--
 
 /obj/item/implant/death_alarm/implanted(mob/source)
 	mobname = source.real_name
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 	return 1
 
 // Case

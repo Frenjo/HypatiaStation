@@ -27,7 +27,7 @@
 			var/obj/item/clothing/mask/cigarette/cig = W
 			if(cig.lit == 1)
 				src.visible_message("[user] crushes [cig] in [src], putting it out.")
-				GLOBL.processing_objects.Remove(cig)
+				STOP_PROCESSING(PCobj, cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
 				qdel(cig)

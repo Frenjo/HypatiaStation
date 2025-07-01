@@ -113,11 +113,15 @@
 		qdel(src)
 
 	spawn_spacevine_piece(src.loc)
-	GLOBL.processing_objects.Add(src)
+
+/obj/effect/spacevine_controller/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/effect/spacevine_controller/Destroy()
 	vines.Cut()
 	growth_queue.Cut()
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/effect/spacevine_controller/proc/spawn_spacevine_piece(turf/location)

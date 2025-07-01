@@ -23,7 +23,8 @@
 	var/force = 0
 
 /obj/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	if(isnotnull(PCobj))
+		STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/assume_air(datum/gas_mixture/giver)

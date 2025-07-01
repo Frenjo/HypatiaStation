@@ -53,7 +53,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 
 //////////////////
 //FINE SMOKABLES//
@@ -156,7 +156,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		item_state = icon_on
 		var/turf/T = GET_TURF(src)
 		T?.visible_message(flavor_text)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 
 
 /obj/item/clothing/mask/cigarette/process()
@@ -194,7 +194,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		to_chat(M, SPAN_NOTICE("Your [name] goes out."))
 		M.u_equip(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask(0)
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	qdel(src)
 
 ////////////
@@ -297,7 +297,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		item_state = icon_on
 		var/turf/T = GET_TURF(src)
 		T?.visible_message(flavor_text)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 
 /obj/item/clothing/mask/cigarette/pipe/process()
 	var/turf/location = GET_TURF(src)
@@ -311,8 +311,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			icon_state = icon_off
 			item_state = icon_off
 			M.update_inv_wear_mask(0)
-		GLOBL.processing_objects.Remove(src)
-		return
+		return PROCESS_KILL
 	if(location)
 		location.hotspot_expose(700, 5)
 
@@ -322,7 +321,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = 0
 		icon_state = icon_off
 		item_state = icon_off
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 		return
 	if(smoketime <= 0)
 		to_chat(user, SPAN_NOTICE("You refill the pipe with tobacco."))
@@ -414,7 +413,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 			//user.SetLuminosity(user.luminosity + 2)
 			user.set_light(user.luminosity + 2)
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 		else
 			lit = 0
 			icon_state = icon_off
@@ -426,7 +425,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 			//user.SetLuminosity(user.luminosity - 2)
 			user.set_light(user.luminosity - 2)
-			GLOBL.processing_objects.Remove(src)
+			STOP_PROCESSING(PCobj, src)
 	else
 		return ..()
 	return

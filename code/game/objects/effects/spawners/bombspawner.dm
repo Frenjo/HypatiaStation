@@ -123,7 +123,7 @@
 	btype = 0
 
 
-/obj/effect/spawner/newbomb/New()
+/obj/effect/spawner/newbomb/initialise()
 	. = ..()
 
 	var/obj/item/transfer_valve/V = new(src.loc)

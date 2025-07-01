@@ -25,12 +25,12 @@
 /obj/item/assembly/infra/toggle_secure()
 	secured = !secured
 	if(secured)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 	else
 		on = 0
 		if(first)
 			qdel(first)
-		GLOBL.processing_objects.Remove(src)
+		STOP_PROCESSING(PCobj, src)
 	update_icon()
 	return secured
 

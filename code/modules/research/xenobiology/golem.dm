@@ -75,9 +75,13 @@
 	icon_state = "golem"
 	layer = TURF_LAYER
 
-/obj/effect/golemrune/New()
+/obj/effect/golemrune/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
+
+/obj/effect/golemrune/Destroy()
+	STOP_PROCESSING(PCobj, src)
+	return ..()
 
 /obj/effect/golemrune/process()
 	var/mob/dead/ghost/ghost

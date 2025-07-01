@@ -28,7 +28,10 @@
 	cell = new /obj/item/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.forceMove(src)
 	. = ..()
-	GLOBL.processing_objects |= src
+
+/obj/item/suit_cooling_unit/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
 
 /obj/item/suit_cooling_unit/process()
 	if(!on || !cell)

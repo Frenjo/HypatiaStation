@@ -30,8 +30,7 @@
 
 /obj/item/flamethrower/process()
 	if(!lit)
-		GLOBL.processing_objects.Remove(src)
-		return null
+		return PROCESS_KILL
 	var/turf/location = loc
 	if(istype(location, /mob/))
 		var/mob/M = location
@@ -149,7 +148,7 @@
 			return
 		lit = !lit
 		if(lit)
-			GLOBL.processing_objects.Add(src)
+			START_PROCESSING(PCobj, src)
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))

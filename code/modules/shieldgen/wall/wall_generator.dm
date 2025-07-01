@@ -90,7 +90,7 @@
 			SPAN_INFO("You turn on \the [src]."),
 			SPAN_INFO("You hear heavy droning.")
 		)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 	add_fingerprint(user)
 
 /obj/machinery/shieldwallgen/process()

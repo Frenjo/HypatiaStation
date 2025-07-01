@@ -162,7 +162,7 @@
 		turn_off()
 		if(!fuel)
 			src.icon_state = "[initial(icon_state)]-empty"
-		GLOBL.processing_objects -= src
+		return PROCESS_KILL
 
 /obj/item/flashlight/flare/proc/turn_off()
 	on = 0
@@ -191,7 +191,7 @@
 		)
 		src.force = on_damage
 		src.damtype = "fire"
-		GLOBL.processing_objects += src
+		START_PROCESSING(PCobj, src)
 
 /obj/item/flashlight/slime
 	gender = PLURAL

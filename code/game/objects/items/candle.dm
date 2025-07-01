@@ -47,7 +47,7 @@
 			O.show_message(flavor_text, 1)
 		//SetLuminosity(CANDLE_LUM)
 		set_light(CANDLE_LUM)
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 
 /obj/item/candle/process()
 	if(!lit)

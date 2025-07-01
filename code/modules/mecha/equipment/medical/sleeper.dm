@@ -18,7 +18,7 @@
 	var/inject_amount = 10
 
 /obj/item/mecha_equipment/medical/sleeper/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
 		mover.forceMove(T)
@@ -57,7 +57,7 @@
 		patient = target
 		target.reset_view(src)
 
-		GLOBL.processing_objects.Add(src)
+		START_PROCESSING(PCobj, src)
 		update_equip_info()
 
 		occupant_message(SPAN_INFO("[target] successfully loaded into \the [src]. Life support functions engaged."))
@@ -100,18 +100,18 @@
 	log_message(SPAN_INFO("[patient] ejected. Life support functions disabled."))
 	patient.reset_view()
 
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	update_equip_info()
 
 /obj/item/mecha_equipment/medical/sleeper/attach(obj/mecha/M)
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 
 /obj/item/mecha_equipment/medical/sleeper/detach()
 	if(isnotnull(patient))
 		occupant_message(SPAN_WARNING("Unable to detach \the [src] - equipment occupied."))
 		return
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	update_equip_info()
 	return ..()
 

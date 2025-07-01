@@ -120,7 +120,11 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 		if(isnotnull(output))
 			break
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
+
+/obj/machinery/mineral/stacking_machine/Destroy()
+	STOP_PROCESSING(PCobj, src)
+	return ..()
 
 /obj/machinery/mineral/stacking_machine/process()
 	if(isnotnull(input) && isnotnull(output))

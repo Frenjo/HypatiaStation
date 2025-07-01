@@ -16,7 +16,6 @@
 	var/tribe_type = 1
 
 /obj/effect/jungle_tribe_spawn/New()
-	GLOBL.processing_objects.Add(src)
 	tribe_type = rand(1, 5)
 
 	var/num_tribesmen = rand(3, 6)
@@ -27,8 +26,12 @@
 		T.y += rand(-6, 6)
 		tribesmen += T
 
+/obj/effect/jungle_tribe_spawn/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
+
 /obj/effect/jungle_tribe_spawn/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/effect/jungle_tribe_spawn/process()

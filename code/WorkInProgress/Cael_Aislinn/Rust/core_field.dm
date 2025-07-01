@@ -113,7 +113,13 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 	minor_radius = field_strength * 0.2125// max = 8.625
 	volume_covered = PI * major_radius * minor_radius * 2.5 * 2.5 * 1000
 
-	GLOBL.processing_objects.Add(src)
+/obj/effect/rust_em_field/initialise()
+	. = ..()
+	START_PROCESSING(PCobj, src)
+
+/obj/effect/rust_em_field/Destroy()
+	STOP_PROCESSING(PCobj, src)
+	return ..()
 
 /obj/effect/rust_em_field/process()
 	//make sure the field generator is still intact

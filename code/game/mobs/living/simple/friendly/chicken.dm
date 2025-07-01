@@ -70,19 +70,18 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
 		if(GLOBL.chicken_count < MAX_CHICKENS && prob(10))
-			GLOBL.processing_objects.Add(E)
+			START_PROCESSING(PCobj, E)
 
 /obj/item/reagent_holder/food/snacks/egg/var/amount_grown = 0
 /obj/item/reagent_holder/food/snacks/egg/process()
-	if(isturf(loc))
-		amount_grown += rand(1,2)
-		if(amount_grown >= 100)
-			visible_message("[src] hatches with a quiet cracking sound.")
-			new /mob/living/simple/chick(GET_TURF(src))
-			GLOBL.processing_objects.Remove(src)
-			qdel(src)
-	else
-		GLOBL.processing_objects.Remove(src)
+	if(!isturf(loc))
+		return PROCESS_KILL
+	amount_grown += rand(1,2)
+	if(amount_grown >= 100)
+		visible_message("[src] hatches with a quiet cracking sound.")
+		new /mob/living/simple/chick(GET_TURF(src))
+		qdel(src)
+		return PROCESS_KILL
 
 // Chicks
 /mob/living/simple/chick

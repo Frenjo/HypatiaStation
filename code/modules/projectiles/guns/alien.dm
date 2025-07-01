@@ -32,13 +32,14 @@
 	var/tmp/list/mob/living/target
 	var/tmp/mob/living/last_moved_mob
 
-/obj/item/spikethrower/New()
+/obj/item/spikethrower/initialise()
 	. = ..()
-	GLOBL.processing_objects.Add(src)
+	START_PROCESSING(PCobj, src)
 	last_regen = world.time
 
 /obj/item/spikethrower/Destroy()
 	QDEL_NULL(spike)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/spikethrower/process()
