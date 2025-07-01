@@ -6,7 +6,7 @@ PROCESS_DEF(obj)
 	schedule_interval = 2 SECONDS
 	start_delay = 8
 
-	var/list/obj/processing_list = list()
+	var/static/list/obj/processing_list = list()
 
 /datum/process/obj/do_work()
 	for_no_type_check(var/obj/O, processing_list)

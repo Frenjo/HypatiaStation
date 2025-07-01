@@ -68,12 +68,12 @@
 // which should be the only place it's referenced.
 // Called when start(), announce() and end() has all been called.
 /datum/round_event/proc/kill()
-	GLOBL.events.Remove(src)
+	STOP_PROCESSING(PCevent, src)
 
 // Adds the event to the global events list, and removes it from the list of potential events.
 /datum/round_event/New()
 	setup()
-	GLOBL.events.Add(src)
+	START_PROCESSING(PCevent, src)
 	/*if(one_shot)
 		potentialRandomEvents.Remove(type)*/
 	. = ..()

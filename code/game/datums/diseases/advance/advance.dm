@@ -374,7 +374,7 @@ var/list/advance_cures = list(
 		D.AssignName(new_name)
 		D.Refresh()
 
-		for(var/datum/disease/advance/AD in GLOBL.active_diseases)
+		for(var/datum/disease/advance/AD in global.PCdisease.processing_list)
 			AD.Refresh()
 
 		for(var/mob/living/carbon/human/H in shuffle(GLOBL.living_mob_list))

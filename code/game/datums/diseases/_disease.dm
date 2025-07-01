@@ -54,11 +54,11 @@ GLOBAL_GLOBL_LIST_INIT(diseases, SUBTYPESOF(/datum/disease))
 /datum/disease/New(process = 1, datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
 	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
 	if(process)				 // Viruses in list are considered active.
-		GLOBL.active_diseases += src
+		START_PROCESSING(PCdisease, src)
 	initial_spread = spread
 
 /datum/disease/Destroy()
-	GLOBL.active_diseases.Remove(src)
+	STOP_PROCESSING(PCdisease, src)
 	return ..()
 
 /datum/disease/proc/stage_act()
@@ -155,8 +155,7 @@ GLOBAL_GLOBL_LIST_INIT(diseases, SUBTYPESOF(/datum/disease))
 
 /datum/disease/proc/process()
 	if(!holder)
-		GLOBL.active_diseases -= src
-		return
+		return PROCESS_KILL
 	if(prob(65))
 		spread(holder)
 

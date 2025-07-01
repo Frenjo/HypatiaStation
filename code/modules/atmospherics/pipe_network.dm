@@ -16,7 +16,7 @@
 	. = ..()
 
 /datum/pipe_network/Destroy()
-	GLOBL.pipe_networks.Remove(src)
+	STOP_PROCESSING(PCpipenet, src)
 	for_no_type_check(var/datum/pipeline/line_member, line_members)
 		line_members.Remove(line_member)
 		line_member.network = null
@@ -49,7 +49,7 @@
 	update_network_gases()
 
 	if(length(normal_members) || length(line_members))
-		GLOBL.pipe_networks.Add(src)
+		START_PROCESSING(PCpipenet, src)
 	else
 		qdel(src)
 
