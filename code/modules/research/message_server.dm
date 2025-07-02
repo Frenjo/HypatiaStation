@@ -245,11 +245,11 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 	var/pda_msg_amt = 0
 	var/rc_msg_amt = 0
 
-	for_no_type_check(var/obj/machinery/message_server/MS, GET_MACHINES_TYPED(/obj/machinery/message_server))
-		if(length(MS.pda_msgs) > pda_msg_amt)
-			pda_msg_amt = length(MS.pda_msgs)
-		if(length(MS.rc_msgs) > rc_msg_amt)
-			rc_msg_amt = length(MS.rc_msgs)
+	FOR_MACHINES_TYPED(server, /obj/machinery/message_server)
+		if(length(server.pda_msgs) > pda_msg_amt)
+			pda_msg_amt = length(server.pda_msgs)
+		if(length(server.rc_msgs) > rc_msg_amt)
+			rc_msg_amt = length(server.rc_msgs)
 
 	feedback_set_details("radio_usage", "")
 

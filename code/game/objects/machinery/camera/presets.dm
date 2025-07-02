@@ -45,13 +45,13 @@
 	var/area/A = GET_AREA(src)
 	if(isnotnull(A))
 		// Optimise this to use the area's machines list.
-		for_no_type_check(var/obj/machinery/camera/autoname/C, GET_MACHINES_TYPED(/obj/machinery/camera/autoname))
-			if(C == src)
+		FOR_MACHINES_TYPED(cam, /obj/machinery/camera/autoname)
+			if(cam == src)
 				continue
-			var/area/CA = GET_AREA(C)
+			var/area/CA = GET_AREA(cam)
 			if(CA.type == A.type)
-				if(C.number)
-					number = max(number, C.number+1)
+				if(cam.number)
+					number = max(number, cam.number+1)
 		c_tag = "[A.name] #[number]"
 
 // CHECKS

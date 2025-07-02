@@ -38,13 +38,13 @@
 
 /obj/machinery/door_timer/initialise()
 	. = ..()
-	for_no_type_check(var/obj/machinery/door/window/brigdoor/M, GET_MACHINES_TYPED(/obj/machinery/door/window/brigdoor))
-		if(M.id == id)
-			targets += M
+	FOR_MACHINES_TYPED(brig_door, /obj/machinery/door/window/brigdoor)
+		if(brig_door.id == id)
+			targets += brig_door
 
-	for_no_type_check(var/obj/machinery/flasher/F, GET_MACHINES_TYPED(/obj/machinery/flasher))
-		if(F.id == id)
-			targets += F
+	FOR_MACHINES_TYPED(flashy, /obj/machinery/flasher)
+		if(flashy.id == id)
+			targets += flashy
 
 	for(var/obj/structure/closet/secure/brig/C in GLOBL.movable_atom_list)
 		if(C.id == id)

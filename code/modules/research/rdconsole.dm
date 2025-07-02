@@ -57,8 +57,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/initialise()
 	. = ..()
 	if(!id)
-		for_no_type_check(var/obj/machinery/r_n_d/server/centcom/C, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server/centcom))
-			C.initialise()
+		FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server/centcom)
+			server.initialise()
 			break
 	sync_devices()
 
@@ -81,12 +81,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 // Have it automatically push research to the centcom server so wild griffins can't fuck up R&D's work --NEO
 /obj/machinery/computer/rdconsole/proc/grief_protection()
-	for_no_type_check(var/obj/machinery/r_n_d/server/centcom/C, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server/centcom))
+	FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server/centcom)
 		for_no_type_check(var/decl/tech/T, files.known_tech)
-			C.files.AddTech2Known(T)
+			server.files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, files.known_designs)
-			C.files.AddDesign2Known(D)
-		C.files.refresh_research()
+			server.files.AddDesign2Known(D)
+		server.files.refresh_research()
 
 /*	Instead of calling this every tick, it is only being called when needed
 /obj/machinery/computer/rdconsole/process()
@@ -264,26 +264,26 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			grief_protection() //Putting this here because I dont trust the sync process
 			spawn(30)
 				if(src)
-					for_no_type_check(var/obj/machinery/r_n_d/server/S, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server))
+					FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
 						var/server_processed = 0
-						if(S.disabled)
+						if(server.disabled)
 							continue
-						if((id in S.id_with_upload) || istype(S, /obj/machinery/r_n_d/server/centcom))
+						if((id in server.id_with_upload) || istype(server, /obj/machinery/r_n_d/server/centcom))
 							for_no_type_check(var/decl/tech/T, files.known_tech)
-								S.files.AddTech2Known(T)
+								server.files.AddTech2Known(T)
 							for_no_type_check(var/datum/design/D, files.known_designs)
-								S.files.AddDesign2Known(D)
-							S.files.refresh_research()
+								server.files.AddDesign2Known(D)
+							server.files.refresh_research()
 							server_processed = 1
-						if(((id in S.id_with_download) && !istype(S, /obj/machinery/r_n_d/server/centcom)) || S.hacked)
-							for_no_type_check(var/decl/tech/T, S.files.known_tech)
+						if(((id in server.id_with_download) && !istype(server, /obj/machinery/r_n_d/server/centcom)) || server.hacked)
+							for_no_type_check(var/decl/tech/T, server.files.known_tech)
 								files.AddTech2Known(T)
-							for_no_type_check(var/datum/design/D, S.files.known_designs)
+							for_no_type_check(var/datum/design/D, server.files.known_designs)
 								files.AddDesign2Known(D)
 							files.refresh_research()
 							server_processed = 1
-						if(!istype(S, /obj/machinery/r_n_d/server/centcom) && server_processed)
-							S.produce_heat(100)
+						if(!istype(server, /obj/machinery/r_n_d/server/centcom) && server_processed)
+							server.produce_heat(100)
 					screen = 1.6
 					updateUsrDialog()
 

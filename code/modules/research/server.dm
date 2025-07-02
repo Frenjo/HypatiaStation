@@ -100,12 +100,12 @@
 
 //Backup files to centcom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
-	for_no_type_check(var/obj/machinery/r_n_d/server/centcom/C, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server/centcom))
+	FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server/centcom)
 		for_no_type_check(var/decl/tech/T, files.known_tech)
-			C.files.AddTech2Known(T)
+			server.files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, files.known_designs)
-			C.files.AddDesign2Known(D)
-		C.files.refresh_research()
+			server.files.AddDesign2Known(D)
+		server.files.refresh_research()
 
 /obj/machinery/r_n_d/server/proc/produce_heat(/*heat_amt*/new_temperature)
 	if(!(stat & (NOPOWER | BROKEN))) //Blatently stolen from space heater.
@@ -172,14 +172,14 @@
 	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
-	for_no_type_check(var/obj/machinery/r_n_d/server/S, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server))
-		switch(S.server_id)
+	FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+		switch(server.server_id)
 			if(-1)
 				continue
 			if(0)
-				no_id_servers.Add(S)
+				no_id_servers.Add(server)
 			else
-				server_ids.Add(S.server_id)
+				server_ids.Add(server.server_id)
 
 	for(var/obj/machinery/r_n_d/server/S in no_id_servers)
 		var/num = 1
@@ -227,23 +227,23 @@
 		temp_server = null
 		consoles = list()
 		servers = list()
-		for_no_type_check(var/obj/machinery/r_n_d/server/S, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server))
-			if(S.server_id == text2num(href_list["access"]) || S.server_id == text2num(href_list["data"]) || S.server_id == text2num(href_list["transfer"]))
-				temp_server = S
+		FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+			if(server.server_id == text2num(href_list["access"]) || server.server_id == text2num(href_list["data"]) || server.server_id == text2num(href_list["transfer"]))
+				temp_server = server
 				break
 		if(href_list["access"])
 			screen = RDSCONTROL_SCREEN_ACCESS_MENU
-			for_no_type_check(var/obj/machinery/computer/rdconsole/C, GET_MACHINES_TYPED(/obj/machinery/computer/rdconsole))
-				if(C.sync)
-					consoles += C
+			FOR_MACHINES_TYPED(console, /obj/machinery/computer/rdconsole)
+				if(console.sync)
+					consoles += console
 		else if(href_list["data"])
 			screen = RDSCONTROL_SCREEN_DATA_MENU
 		else if(href_list["transfer"])
 			screen = RDSCONTROL_SCREEN_TRANSFER_MENU
-			for_no_type_check(var/obj/machinery/r_n_d/server/S, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server))
-				if(S == src)
+			FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+				if(server == src)
 					continue
-				servers += S
+				servers += server
 
 	else if(href_list["upload_toggle"])
 		var/num = text2num(href_list["upload_toggle"])
@@ -290,14 +290,14 @@
 	switch(screen)
 		if(RDSCONTROL_SCREEN_MAIN_MENU) //Main Menu
 			dat += "Connected Servers:<BR><BR>"
-			for_no_type_check(var/obj/machinery/r_n_d/server/S, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server))
-				if(istype(S, /obj/machinery/r_n_d/server/centcom) && !badmin)
+			FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+				if(istype(server, /obj/machinery/r_n_d/server/centcom) && !badmin)
 					continue
-				dat += "[S.name] || "
-				dat += "<A href='byond://?src=\ref[src];access=[S.server_id]'> Access Rights</A> | "
-				dat += "<A href='byond://?src=\ref[src];data=[S.server_id]'>Data Management</A>"
+				dat += "[server.name] || "
+				dat += "<A href='byond://?src=\ref[src];access=[server.server_id]'> Access Rights</A> | "
+				dat += "<A href='byond://?src=\ref[src];data=[server.server_id]'>Data Management</A>"
 				if(badmin)
-					dat += " | <A href='byond://?src=\ref[src];transfer=[S.server_id]'>Server-to-Server Transfer</A>"
+					dat += " | <A href='byond://?src=\ref[src];transfer=[server.server_id]'>Server-to-Server Transfer</A>"
 				dat += "<BR>"
 
 		if(RDSCONTROL_SCREEN_ACCESS_MENU) //Access rights menu

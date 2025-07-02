@@ -13,13 +13,14 @@
 
 /obj/machinery/computer/turbine_control/initialise()
 	. = ..()
-	for_no_type_check(var/obj/machinery/compressor/C, GET_MACHINES_TYPED(/obj/machinery/compressor))
-		if(id == C.comp_id)
-			compressor = C
-		doors = list()
-		for_no_type_check(var/obj/machinery/door/poddoor/P, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-			if(P.id == id)
-				doors.Add(P)
+	FOR_MACHINES_TYPED(comp, /obj/machinery/compressor)
+		if(id == comp.comp_id)
+			compressor = comp
+			break
+	doors = list()
+	FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+		if(pod_door.id == id)
+			doors.Add(pod_door)
 
 /obj/machinery/computer/turbine_control/attack_hand(mob/user)
 	user.machine = src

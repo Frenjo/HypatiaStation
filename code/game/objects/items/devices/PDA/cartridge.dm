@@ -90,11 +90,11 @@
 	/*		Power Monitor (Mode: 43 / 433)			*/
 	if(mode == 43 || mode == 433)
 		var/pMonData[0]
-		for_no_type_check(var/obj/machinery/power/monitor/pMon, GET_MACHINES_TYPED(/obj/machinery/power/monitor))
-			if(!(pMon.stat & (NOPOWER | BROKEN)))
-				pMonData[++pMonData.len] = list("Name" = pMon.name, "ref" = "\ref[pMon]")
+		FOR_MACHINES_TYPED(power_monitor, /obj/machinery/power/monitor)
+			if(!(power_monitor.stat & (NOPOWER | BROKEN)))
+				pMonData[++pMonData.len] = list("Name" = power_monitor.name, "ref" = "\ref[power_monitor]")
 				if(isnull(powmonitor))
-					powmonitor = pMon
+					powmonitor = power_monitor
 
 		values["powermonitors"] = pMonData
 

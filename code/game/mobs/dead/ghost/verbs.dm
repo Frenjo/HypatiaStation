@@ -163,9 +163,9 @@ GLOBAL_GLOBL_INIT(mouse_respawn_time, 5 MINUTES) // Amount of time that must pas
 	var/mob/living/simple/mouse/host
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
-	for_no_type_check(var/obj/machinery/atmospherics/unary/vent_pump/v, GET_MACHINES_TYPED(/obj/machinery/atmospherics/unary/vent_pump))
-		if(!v.welded && v.z == src.z)
-			found_vents.Add(v)
+	FOR_MACHINES_TYPED(vent, /obj/machinery/atmospherics/unary/vent_pump)
+		if(!vent.welded && vent.z == src.z)
+			found_vents.Add(vent)
 	if(length(found_vents))
 		vent_found = pick(found_vents)
 		host = new /mob/living/simple/mouse(vent_found.loc)

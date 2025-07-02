@@ -39,10 +39,10 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 //Code for spawning a nuke auth code.
 	var/nuke_code
 	var/temp_code
-	for_no_type_check(var/obj/machinery/nuclearbomb/N, GET_MACHINES_TYPED(/obj/machinery/nuclearbomb))
-		temp_code = text2num(N.r_code)
+	FOR_MACHINES_TYPED(bomb, /obj/machinery/nuclearbomb)
+		temp_code = text2num(bomb.r_code)
 		if(temp_code)//if it's actually a number. It won't convert any non-numericals.
-			nuke_code = N.r_code
+			nuke_code = bomb.r_code
 			break
 
 //Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.

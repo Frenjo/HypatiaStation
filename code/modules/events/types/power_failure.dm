@@ -7,22 +7,22 @@
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
-	for_no_type_check(var/obj/machinery/power/smes/S, GET_MACHINES_TYPED(/obj/machinery/power/smes))
-		var/area/current_area = GET_AREA(S)
-		if(current_area.type in skipped_areas || isnotstationlevel(S.z))
+	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+		var/area/current_area = GET_AREA(smes)
+		if(current_area.type in skipped_areas || isnotstationlevel(smes.z))
 			continue
-		S.last_charge			= S.charge
-		S.last_output_attempt	= S.output_attempt
-		S.last_input_attempt 	= S.input_attempt
-		S.charge = 0
-		S.input_attempt = 0
-		S.output_attempt = 0
-		S.update_icon()
-		S.power_change()
+		smes.last_charge = smes.charge
+		smes.last_output_attempt = smes.output_attempt
+		smes.last_input_attempt = smes.input_attempt
+		smes.charge = 0
+		smes.input_attempt = 0
+		smes.output_attempt = 0
+		smes.update_icon()
+		smes.power_change()
 
-	for_no_type_check(var/obj/machinery/power/apc/C, GET_MACHINES_TYPED(/obj/machinery/power/apc))
-		if(C.cell && isstationlevel(C.z))
-			var/area/A = GET_AREA(C)
+	FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
+		if(apc.cell && isstationlevel(apc.z))
+			var/area/A = GET_AREA(apc)
 			var/skip = 0
 			for(var/area_type in skipped_areas)
 				if(istype(A, area_type))
@@ -31,7 +31,7 @@
 			if(skip)
 				continue
 
-			C.cell.charge = 0
+			apc.cell.charge = 0
 
 /proc/power_restore(announce = TRUE)
 	if(announce)
@@ -41,19 +41,19 @@
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
-	for_no_type_check(var/obj/machinery/power/apc/C, GET_MACHINES_TYPED(/obj/machinery/power/apc))
-		if(C.cell && isstationlevel(C.z))
-			C.cell.charge = C.cell.maxcharge
+	FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
+		if(apc.cell && isstationlevel(apc.z))
+			apc.cell.charge = apc.cell.maxcharge
 
-	for_no_type_check(var/obj/machinery/power/smes/S, GET_MACHINES_TYPED(/obj/machinery/power/smes))
-		var/area/current_area = GET_AREA(S)
-		if(current_area.type in skipped_areas || isnotstationlevel(S.z))
+	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+		var/area/current_area = GET_AREA(smes)
+		if(current_area.type in skipped_areas || isnotstationlevel(smes.z))
 			continue
-		S.charge = S.last_charge
-		S.output_attempt = S.last_output_attempt
-		S.input_attempt = S.last_input_attempt
-		S.update_icon()
-		S.power_change()
+		smes.charge = smes.last_charge
+		smes.output_attempt = smes.last_output_attempt
+		smes.input_attempt = smes.last_input_attempt
+		smes.update_icon()
+		smes.power_change()
 
 	/*
 	for_no_type_check(var/area/A, GLOBL.area_list)
@@ -70,12 +70,12 @@
 			"All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", 'sound/AI/poweron.ogg'
 		)
 
-	for_no_type_check(var/obj/machinery/power/smes/S, GET_MACHINES_TYPED(/obj/machinery/power/smes))
-		if(isnotstationlevel(S.z))
+	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+		if(isnotstationlevel(smes.z))
 			continue
-		S.charge = S.capacity
-		S.output_level = 200000
-		S.output_attempt = 1
-		S.input_attempt = 1
-		S.update_icon()
-		S.power_change()
+		smes.charge = smes.capacity
+		smes.output_level = 200000
+		smes.output_attempt = 1
+		smes.input_attempt = 1
+		smes.update_icon()
+		smes.power_change()

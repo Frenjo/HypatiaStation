@@ -19,7 +19,7 @@
 
 /datum/round_event/borer_infestation/start()
 	var/list/vents = list()
-	for_no_type_check(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent, GET_MACHINES_TYPED(/obj/machinery/atmospherics/unary/vent_pump))
+	FOR_MACHINES_TYPED(temp_vent, /obj/machinery/atmospherics/unary/vent_pump)
 		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			//Stops cortical borers getting stuck in small networks. See: Security, Virology
 			if(length(temp_vent.network.normal_members) > 50)

@@ -233,10 +233,10 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for_no_type_check(var/obj/machinery/conveyor_switch/S, GET_MACHINES_TYPED(/obj/machinery/conveyor_switch))
-		if(S.id == src.id)
-			S.position = position
-			S.update()
+	FOR_MACHINES_TYPED(lever, /obj/machinery/conveyor_switch)
+		if(lever.id == src.id)
+			lever.position = position
+			lever.update()
 		CHECK_TICK
 
 
@@ -256,8 +256,8 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for_no_type_check(var/obj/machinery/conveyor_switch/S, GET_MACHINES_TYPED(/obj/machinery/conveyor_switch))
-		if(S.id == src.id)
-			S.position = position
-			S.update()
+	FOR_MACHINES_TYPED(lever, /obj/machinery/conveyor_switch)
+		if(lever.id == src.id)
+			lever.position = position
+			lever.update()
 		CHECK_TICK

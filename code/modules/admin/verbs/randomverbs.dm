@@ -560,14 +560,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	if(!customname)
 		customname = "NanoTrasen Update"
-	for_no_type_check(var/obj/machinery/computer/communications/C, GET_MACHINES_TYPED(/obj/machinery/computer/communications))
-		if(! (C.stat & (BROKEN|NOPOWER) ) )
-			var/obj/item/paper/P = new /obj/item/paper( C.loc )
+	FOR_MACHINES_TYPED(comms, /obj/machinery/computer/communications)
+		if(!(comms.stat & (BROKEN|NOPOWER)))
+			var/obj/item/paper/P = new /obj/item/paper(comms.loc)
 			P.name = "'[command_name()] Update.'"
 			P.info = input
 			P.update_icon()
-			C.messagetitle.Add("[command_name()] Update")
-			C.messagetext.Add(P.info)
+			comms.messagetitle.Add("[command_name()] Update")
+			comms.messagetext.Add(P.info)
 
 	switch(alert("Should this be announced to the general population?",,"Yes","No"))
 		if("Yes")

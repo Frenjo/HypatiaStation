@@ -121,15 +121,15 @@
 						D.safe = TRUE
 
 	else
-		for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-			if(M.id == src.id)
-				if(M.density)
+		FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+			if(pod_door.id == src.id)
+				if(pod_door.density)
 					spawn(0)
-						M.open()
+						pod_door.open()
 						return
 				else
 					spawn(0)
-						M.close()
+						pod_door.close()
 						return
 
 	desiredstate = !desiredstate
@@ -184,24 +184,24 @@
 	active = TRUE
 	icon_state = "launcheract"
 
-	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-		if(M.id == src.id)
+	FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+		if(pod_door.id == src.id)
 			spawn(0)
-				M.open()
+				pod_door.open()
 				return
 
 	sleep(20)
 
-	for_no_type_check(var/obj/machinery/mass_driver/M, GET_MACHINES_TYPED(/obj/machinery/mass_driver))
-		if(M.id == src.id)
-			M.drive()
+	FOR_MACHINES_TYPED(driver, /obj/machinery/mass_driver)
+		if(driver.id == src.id)
+			driver.drive()
 
 	sleep(50)
 
-	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-		if(M.id == src.id)
+	FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+		if(pod_door.id == src.id)
 			spawn(0)
-				M.close()
+				pod_door.close()
 				return
 
 	icon_state = "launcherbtt"

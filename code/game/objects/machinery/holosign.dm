@@ -84,10 +84,10 @@
 	else
 		icon_state = "light0"
 
-	for_no_type_check(var/obj/machinery/holosign/M, GET_MACHINES_TYPED(/obj/machinery/holosign))
-		if(M.id == src.id)
+	FOR_MACHINES_TYPED(sign, /obj/machinery/holosign)
+		if(sign.id == src.id)
 			spawn(0)
-				M.toggle()
+				sign.toggle()
 				return
 
 	return

@@ -15,9 +15,9 @@
 
 /obj/machinery/computer/pod/initialise()
 	. = ..()
-	for_no_type_check(var/obj/machinery/mass_driver/M, GET_MACHINES_TYPED(/obj/machinery/mass_driver))
-		if(M.id == id)
-			connected = M
+	FOR_MACHINES_TYPED(driver, /obj/machinery/mass_driver)
+		if(driver.id == id)
+			connected = driver
 
 /obj/machinery/computer/pod/proc/alarm()
 	if(stat & (NOPOWER|BROKEN))
@@ -27,23 +27,23 @@
 		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
 		return
 
-	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-		if(M.id == id)
-			M.open()
+	FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+		if(pod_door.id == id)
+			pod_door.open()
 			return
 
 	sleep(20)
 
-	for_no_type_check(var/obj/machinery/mass_driver/M, GET_MACHINES_TYPED(/obj/machinery/mass_driver))
-		if(M.id == id)
-			M.power = connected.power
-			M.drive()
+	FOR_MACHINES_TYPED(driver, /obj/machinery/mass_driver)
+		if(driver.id == id)
+			driver.power = connected.power
+			driver.drive()
 
 	sleep(50)
 
-	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-		if(M.id == id)
-			M.close()
+	FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+		if(pod_door.id == id)
+			pod_door.close()
 			return
 	return
 
@@ -177,12 +177,12 @@
 			time += tp
 			time = min(max(round(time), 0), 120)
 		if(href_list["door"])
-			for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-				if(M.id == id)
-					if(M.density)
-						M.open()
+			FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+				if(pod_door.id == id)
+					if(pod_door.density)
+						pod_door.open()
 					else
-						M.close()
+						pod_door.close()
 		updateUsrDialog()
 	return
 

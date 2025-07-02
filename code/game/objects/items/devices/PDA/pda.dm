@@ -472,12 +472,12 @@
 
 		if("Toggle Door")
 			if(cartridge && cartridge.access_remote_door)
-				for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
-					if(M.id == cartridge.remote_door_id)
-						if(M.density)
-							M.open()
+				FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)
+					if(pod_door.id == cartridge.remote_door_id)
+						if(pod_door.density)
+							pod_door.open()
 						else
-							M.close()
+							pod_door.close()
 
 		if("Detonate")//Detonate PDA... maybe
 			// check if telecoms I/O route FREQUENCY_COMMON (1459) is stable

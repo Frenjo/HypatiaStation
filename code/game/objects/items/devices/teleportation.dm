@@ -142,10 +142,10 @@ Frequency:
 		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))
 		return
 	var/list/L = list()
-	for_no_type_check(var/obj/machinery/teleport/hub/R, GET_MACHINES_TYPED(/obj/machinery/teleport/hub))
-		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
+	FOR_MACHINES_TYPED(tp_hub, /obj/machinery/teleport/hub)
+		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(tp_hub.x - 2, tp_hub.y, tp_hub.z))
 		if(istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
-			if(R.icon_state == "tele1")
+			if(tp_hub.icon_state == "tele1")
 				L["[com.id] (Active)"] = com.locked
 			else
 				L["[com.id] (Inactive)"] = com.locked

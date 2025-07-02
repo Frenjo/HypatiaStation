@@ -470,9 +470,9 @@
 					to_chat(usr, SPAN_WARNING("Equipping a Syndicate failed!"))
 			if("tellcode")
 				var/code
-				for_no_type_check(var/obj/machinery/nuclearbomb/bombue, GET_MACHINES_TYPED(/obj/machinery/nuclearbomb))
-					if(length(bombue.r_code) <= 5 && bombue.r_code != "LOLNO" && bombue.r_code != "ADMIN")
-						code = bombue.r_code
+				FOR_MACHINES_TYPED(bomb, /obj/machinery/nuclearbomb)
+					if(length(bomb.r_code) <= 5 && bomb.r_code != "LOLNO" && bomb.r_code != "ADMIN")
+						code = bomb.r_code
 						break
 				if(code)
 					store_memory("<B>Syndicate Nuclear Bomb Code</B>: [code]", 0, 0)

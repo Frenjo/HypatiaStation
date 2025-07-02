@@ -32,6 +32,9 @@
 #define GET_MACHINES_TYPED(TYPE) global.PCmachinery.get_machines_by_type(TYPE)
 // Returns an explicitly typed list of all machinery of TYPE (including subtypes).
 #define GET_MACHINES_SUBTYPED(TYPE) global.PCmachinery.get_machines_by_type_and_subtypes(TYPE)
+// Shortforms of some commonly used iterator functions for neatness.
+#define FOR_MACHINES_TYPED(VAR, TYPE) for_no_type_check(var##TYPE/##VAR, GET_MACHINES_TYPED(TYPE))
+#define FOR_MACHINES_SUBTYPED(VAR, TYPE) for_no_type_check(var##TYPE/##VAR, GET_MACHINES_SUBTYPED(TYPE))
 
 // Used to add and remove POWERITEMs from the global power items list.
 #define REGISTER_POWER_ITEM(POWERITEM) global.PCmachinery.processing_power_items.Add(POWERITEM)

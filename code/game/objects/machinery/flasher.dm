@@ -160,10 +160,10 @@
 	active = TRUE
 	icon_state = "launcheract"
 
-	for_no_type_check(var/obj/machinery/flasher/M, GET_MACHINES_TYPED(/obj/machinery/flasher))
-		if(M.id == src.id)
+	FOR_MACHINES_TYPED(flashy, /obj/machinery/flasher)
+		if(flashy.id == src.id)
 			spawn()
-				M.flash()
+				flashy.flash()
 
 	sleep(50)
 

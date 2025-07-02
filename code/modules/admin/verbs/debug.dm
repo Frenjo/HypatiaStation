@@ -444,28 +444,28 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	for_no_type_check(var/obj/machinery/power/apc/APC, GET_MACHINES_TYPED(/obj/machinery/power/apc))
-		var/area/A = GET_AREA(APC)
+	FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
+		var/area/A = GET_AREA(apc)
 		if(!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
 
-	for_no_type_check(var/obj/machinery/air_alarm/alarm, GET_MACHINES_TYPED(/obj/machinery/air_alarm))
+	FOR_MACHINES_TYPED(alarm, /obj/machinery/air_alarm)
 		var/area/A = GET_AREA(alarm)
 		if(!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 
-	for_no_type_check(var/obj/machinery/requests_console/RC, GET_MACHINES_TYPED(/obj/machinery/requests_console))
-		var/area/A = GET_AREA(RC)
+	FOR_MACHINES_TYPED(console, /obj/machinery/requests_console)
+		var/area/A = GET_AREA(console)
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
-	for_no_type_check(var/obj/machinery/light/L, GET_MACHINES_TYPED(/obj/machinery/light))
-		var/area/A = GET_AREA(L)
+	FOR_MACHINES_TYPED(fixture, /obj/machinery/light)
+		var/area/A = GET_AREA(fixture)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
-	for_no_type_check(var/obj/machinery/light_switch/LS, GET_MACHINES_TYPED(/obj/machinery/light_switch))
-		var/area/A = GET_AREA(LS)
+	FOR_MACHINES_TYPED(l_switch, /obj/machinery/light_switch)
+		var/area/A = GET_AREA(l_switch)
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
@@ -474,8 +474,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
-	for_no_type_check(var/obj/machinery/camera/C, GET_MACHINES_TYPED(/obj/machinery/camera))
-		var/area/A = GET_AREA(C)
+	FOR_MACHINES_TYPED(cam, /obj/machinery/camera)
+		var/area/A = GET_AREA(cam)
 		if(!(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
 
@@ -551,19 +551,20 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(alert("Are you sure? This will start up the engine. Should only be used during debug!", , "Yes", "No") != "Yes")
 		return
 
-	for_no_type_check(var/obj/machinery/power/emitter/E, GET_MACHINES_TYPED(/obj/machinery/power/emitter))
-		if(E.anchored)
-			E.active = 1
+	FOR_MACHINES_TYPED(laser, /obj/machinery/power/emitter)
+		if(laser.anchored)
+			laser.active = 1
 
-	for_no_type_check(var/obj/machinery/field_generator/F, GET_MACHINES_TYPED(/obj/machinery/field_generator))
-		if(F.anchored)
-			F.Varedit_start = 1
+	FOR_MACHINES_TYPED(shield, /obj/machinery/field_generator)
+		if(shield.anchored)
+			shield.Varedit_start = 1
+
 	spawn(30)
-		for_no_type_check(var/obj/machinery/the_singularitygen/G, GET_MACHINES_TYPED(/obj/machinery/the_singularitygen))
-			if(G.anchored)
-				var/obj/singularity/S = new /obj/singularity(GET_TURF(G), 50)
+		FOR_MACHINES_TYPED(generator, /obj/machinery/the_singularitygen)
+			if(generator.anchored)
+				var/obj/singularity/S = new /obj/singularity(GET_TURF(generator), 50)
 				spawn(0)
-					qdel(G)
+					qdel(generator)
 				S.energy = 1750
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'
@@ -577,21 +578,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				//S.dissipate_track = 0
 				//S.dissipate_strength = 10
 
-	for_no_type_check(var/obj/machinery/power/rad_collector/Rad, GET_MACHINES_TYPED(/obj/machinery/power/rad_collector))
-		if(Rad.anchored)
-			if(!Rad.P)
-				var/obj/item/tank/plasma/Plasma = new/obj/item/tank/plasma(Rad)
+	FOR_MACHINES_TYPED(collector, /obj/machinery/power/rad_collector)
+		if(collector.anchored)
+			if(!collector.P)
+				var/obj/item/tank/plasma/Plasma = new/obj/item/tank/plasma(collector)
 				Plasma.air_contents.gas[/decl/xgm_gas/plasma] = 70
-				Rad.drainratio = 0
-				Rad.P = Plasma
-				Plasma.forceMove(Rad)
+				collector.drainratio = 0
+				collector.P = Plasma
+				Plasma.forceMove(collector)
 
-			if(!Rad.active)
-				Rad.toggle_power()
+			if(!collector.active)
+				collector.toggle_power()
 
-	for_no_type_check(var/obj/machinery/power/smes/SMES, GET_MACHINES_TYPED(/obj/machinery/power/smes))
-		if(SMES.anchored)
-			SMES.input_attempt = 1
+	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+		if(smes.anchored)
+			smes.input_attempt = 1
 
 /client/proc/cmd_debug_mob_lists()
 	set category = PANEL_DEBUG

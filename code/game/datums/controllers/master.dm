@@ -259,18 +259,18 @@ CONTROLLER_DEF(master)
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
-	for_no_type_check(var/obj/machinery/atmospherics/machine, GET_MACHINES_TYPED(/obj/machinery/atmospherics))
+	FOR_MACHINES_TYPED(machine, /obj/machinery/atmospherics)
 		if(!GC_DESTROYED(machine))
 			machine.atmos_initialise()
-	for_no_type_check(var/obj/machinery/atmospherics/machine, GET_MACHINES_TYPED(/obj/machinery/atmospherics))
+	FOR_MACHINES_TYPED(machine, /obj/machinery/atmospherics)
 		if(!GC_DESTROYED(machine))
 			machine.build_network()
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
-	for_no_type_check(var/obj/machinery/atmospherics/unary/U, GET_MACHINES_TYPED(/obj/machinery/atmospherics/unary))
-		if(!GC_DESTROYED(U))
-			U.broadcast_status()
+	FOR_MACHINES_TYPED(machine, /obj/machinery/atmospherics/unary)
+		if(!GC_DESTROYED(machine))
+			machine.broadcast_status()
 	WAIT_FOR_BACKLOG
 
 	// Sets up spawn points.

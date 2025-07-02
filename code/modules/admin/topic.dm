@@ -1524,20 +1524,20 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for_no_type_check(var/obj/machinery/faxmachine/F, GET_MACHINES_TYPED(/obj/machinery/faxmachine))
-			if(! (F.stat & (BROKEN|NOPOWER) ) )
+		FOR_MACHINES_TYPED(fax, /obj/machinery/faxmachine)
+			if(!(fax.stat & (BROKEN|NOPOWER)))
 
 				// animate! it's alive!
-				flick("faxreceive", F)
+				flick("faxreceive", fax)
 
 				// give the sprite some time to flick
 				spawn(20)
-					var/obj/item/paper/P = new /obj/item/paper( F.loc )
+					var/obj/item/paper/P = new /obj/item/paper(fax.loc)
 					P.name = "[command_name()]- [customname]"
 					P.info = input
 					P.update_icon()
 
-					playsound(F.loc, "sound/items/polaroid1.ogg", 50, 1)
+					playsound(fax.loc, "sound/items/polaroid1.ogg", 50, 1)
 
 					// Stamps
 					var/mutable_appearance/stamp_overlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
@@ -2179,13 +2179,13 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "BO")
 				message_admins("[key_name_admin(usr)] broke all lights.", 1)
-				for_no_type_check(var/obj/machinery/power/apc/apc, GET_MACHINES_TYPED(/obj/machinery/power/apc))
+				FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
 					apc.overload_lighting()
 			if("whiteout")
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "WO")
-				for_no_type_check(var/obj/machinery/light/L, GET_MACHINES_TYPED(/obj/machinery/light))
-					L.fix()
+				FOR_MACHINES_TYPED(fixture, /obj/machinery/light)
+					fixture.fix()
 				message_admins("[key_name_admin(usr)] fixed all lights.", 1)
 			if("friendai")
 				feedback_inc("admin_secrets_fun_used", 1)

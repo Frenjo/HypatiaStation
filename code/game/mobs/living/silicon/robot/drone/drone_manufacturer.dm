@@ -111,14 +111,14 @@
 		usr << "You must wait 10 minutes to respawn as a drone!"
 		return
 
-	for_no_type_check(var/obj/machinery/drone_fabricator/DF, GET_MACHINES_TYPED(/obj/machinery/drone_fabricator))
-		if(DF.stat & NOPOWER || !DF.produce_drones)
+	FOR_MACHINES_TYPED(drone_fab, /obj/machinery/drone_fabricator)
+		if(drone_fab.stat & NOPOWER || !drone_fab.produce_drones)
 			continue
-		if(DF.count_drones() >= CONFIG_GET(/decl/configuration_entry/max_maint_drones))
+		if(drone_fab.count_drones() >= CONFIG_GET(/decl/configuration_entry/max_maint_drones))
 			src << "\red There are too many active drones in the world for you to spawn."
 			return
 
-		DF.create_drone(src.client)
+		drone_fab.create_drone(src.client)
 		return
 
 	src << "\red There are no available drone spawn points, sorry."

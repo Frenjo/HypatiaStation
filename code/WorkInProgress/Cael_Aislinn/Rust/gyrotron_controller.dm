@@ -32,7 +32,7 @@
 			return
 	var/t = "<B>Gyrotron Remote Control Console</B><BR>"
 	t += "<hr>"
-	for_no_type_check(var/obj/machinery/rust/gyrotron/gyro, GET_MACHINES_TYPED(/obj/machinery/rust/gyrotron))
+	FOR_MACHINES_TYPED(gyro, /obj/machinery/rust/gyrotron)
 		if(gyro.remoteenabled && gyro.on)
 			t += "<font color=green>Gyrotron operational</font><br>"
 			t += "Operational mode: <font color=blue>"

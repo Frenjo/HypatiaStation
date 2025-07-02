@@ -131,7 +131,7 @@ rcd light flash thingy on matter drain
 	for(var/datum/malf_module/small/blackout/blackout in malf.current_modules)
 		if(blackout.uses > 0)
 			blackout.uses --
-			for_no_type_check(var/obj/machinery/power/apc/apc, GET_MACHINES_TYPED(/obj/machinery/power/apc))
+			FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
 				if(prob(30 * apc.overload))
 					apc.overload_lighting()
 				else apc.overload++

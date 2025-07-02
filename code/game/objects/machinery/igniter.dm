@@ -161,16 +161,16 @@
 	active = TRUE
 	icon_state = "launcheract"
 
-	for_no_type_check(var/obj/machinery/sparker/M, GET_MACHINES_TYPED(/obj/machinery/sparker))
-		if(M.id == src.id)
+	FOR_MACHINES_TYPED(sparky, /obj/machinery/sparker)
+		if(sparky.id == src.id)
 			spawn(0)
-				M.ignite()
+				sparky.ignite()
 
-	for_no_type_check(var/obj/machinery/igniter/M, GET_MACHINES_TYPED(/obj/machinery/igniter))
-		if(M.id == src.id)
+	FOR_MACHINES_TYPED(ignis, /obj/machinery/igniter)
+		if(ignis.id == src.id)
 			use_power(50)
-			M.on = !M.on
-			M.icon_state = "igniter[M.on]"
+			ignis.on = !ignis.on
+			ignis.icon_state = "igniter[ignis.on]"
 
 	sleep(50)
 

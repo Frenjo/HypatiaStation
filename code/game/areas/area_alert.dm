@@ -20,12 +20,12 @@
 						aiPlayer.cancelAlarm("Power", src, source)
 					else
 						aiPlayer.triggerAlarm("Power", src, cameras, source)
-			for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
-				if(a.z == source.z)
+			FOR_MACHINES_TYPED(computer, /obj/machinery/computer/station_alert)
+				if(computer.z == source.z)
 					if(state == 1)
-						a.cancelAlarm("Power", src, source)
+						computer.cancelAlarm("Power", src, source)
 					else
-						a.triggerAlarm("Power", src, cameras, source)
+						computer.triggerAlarm("Power", src, cameras, source)
 
 // Atmos
 /area/proc/atmos_alert(danger_level)
@@ -37,15 +37,15 @@
 				C.network.Add("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 				aiPlayer.triggerAlarm("Atmosphere", src, cameras, src)
-			for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
-				a.triggerAlarm("Atmosphere", src, cameras, src)
+			FOR_MACHINES_TYPED(computer, /obj/machinery/computer/station_alert)
+				computer.triggerAlarm("Atmosphere", src, cameras, src)
 		else if(atmos_alarm == 2)
 			for(var/obj/machinery/camera/C in machines_list)
 				C.network.Remove("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 				aiPlayer.cancelAlarm("Atmosphere", src, src)
-			for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
-				a.cancelAlarm("Atmosphere", src, src)
+			FOR_MACHINES_TYPED(computer, /obj/machinery/computer/station_alert)
+				computer.cancelAlarm("Atmosphere", src, src)
 		atmos_alarm = danger_level
 		return TRUE
 	return FALSE
@@ -69,8 +69,8 @@
 			C.network.Add("Fire Alarms")
 		for(var/mob/living/silicon/ai/aiPlayer in GLOBL.player_list)
 			aiPlayer.triggerAlarm("Fire", src, cameras, src)
-		for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
-			a.triggerAlarm("Fire", src, cameras, src)
+		FOR_MACHINES_TYPED(computer, /obj/machinery/computer/station_alert)
+			computer.triggerAlarm("Fire", src, cameras, src)
 
 /area/proc/fire_reset()
 	if(fire_alarm)
@@ -88,8 +88,8 @@
 			C.network.Remove("Fire Alarms")
 		for(var/mob/living/silicon/ai/aiPlayer in GLOBL.player_list)
 			aiPlayer.cancelAlarm("Fire", src, src)
-		for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
-			a.cancelAlarm("Fire", src, src)
+		FOR_MACHINES_TYPED(computer, /obj/machinery/computer/station_alert)
+			computer.cancelAlarm("Fire", src, src)
 
 // Evac
 /area/proc/evac_alert()

@@ -222,9 +222,9 @@
 /obj/machinery/magnetic_controller/initialise()
 	. = ..()
 	if(autolink)
-		for_no_type_check(var/obj/machinery/magnetic_module/M, GET_MACHINES_TYPED(/obj/machinery/magnetic_module))
-			if(M.freq == frequency && M.code == code)
-				magnets.Add(M)
+		FOR_MACHINES_TYPED(magnet, /obj/machinery/magnetic_module)
+			if(magnet.freq == frequency && magnet.code == code)
+				magnets.Add(magnet)
 
 	if(path) // check for default path
 		filter_path() // renders rpath
@@ -237,9 +237,9 @@
 
 /obj/machinery/magnetic_controller/process()
 	if(!length(magnets) && autolink)
-		for_no_type_check(var/obj/machinery/magnetic_module/M, GET_MACHINES_TYPED(/obj/machinery/magnetic_module))
-			if(M.freq == frequency && M.code == code)
-				magnets.Add(M)
+		FOR_MACHINES_TYPED(magnet, /obj/machinery/magnetic_module)
+			if(magnet.freq == frequency && magnet.code == code)
+				magnets.Add(magnet)
 
 /obj/machinery/magnetic_controller/attack_ai(mob/user)
 	return src.attack_hand(user)

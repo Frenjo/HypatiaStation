@@ -158,7 +158,7 @@
 	var/area/A = GET_AREA(src)
 	if(isnull(A))
 		return
-	for_no_type_check(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber, GET_MACHINES_TYPED(/obj/machinery/portable_atmospherics/scrubber/huge))
+	FOR_MACHINES_TYPED(scrubber, /obj/machinery/portable_atmospherics/scrubber/huge)
 		var/area/A2 = GET_AREA(scrubber)
 		if(istype(A2) && A2 == A)
 			connectedscrubbers += scrubber
