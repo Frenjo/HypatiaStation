@@ -1435,7 +1435,6 @@
 #include "code\modules\economy\trade_destinations.dm"
 #include "code\modules\events\event.dm"
 #include "code\modules\events\event_dynamic.dm"
-#include "code\modules\events\event_manager.dm"
 #include "code\modules\events\types\brand_intelligence.dm"
 #include "code\modules\events\types\carp_migration.dm"
 #include "code\modules\events\types\communications_blackout.dm"
