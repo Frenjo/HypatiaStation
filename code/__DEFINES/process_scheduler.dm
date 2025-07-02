@@ -24,6 +24,19 @@
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list
 
-// Used to add and remove THING from PROCESS' processing_list.
+// Used to add and remove THINGs from PROCESS' processing_list.
 #define START_PROCESSING(PROCESS, THING) global.PROCESS.processing_list.Add(THING)
 #define STOP_PROCESSING(PROCESS, THING) global.PROCESS.processing_list.Remove(THING)
+
+// Returns an explicitly typed list of all machinery of TYPE (excluding subtypes).
+#define GET_MACHINES_TYPED(TYPE) global.PCmachinery.get_machines_by_type(TYPE)
+// Returns an explicitly typed list of all machinery of TYPE (including subtypes).
+#define GET_MACHINES_SUBTYPED(TYPE) global.PCmachinery.get_machines_by_type_and_subtypes(TYPE)
+
+// Used to add and remove POWERITEMs from the global power items list.
+#define REGISTER_POWER_ITEM(POWERITEM) global.PCmachinery.processing_power_items.Add(POWERITEM)
+#define UNREGISTER_POWER_ITEM(POWERITEM) global.PCmachinery.processing_power_items.Remove(POWERITEM)
+
+// Used to add and remove POWERNETs from the global powernets list.
+#define REGISTER_POWERNET(POWERNET) global.PCmachinery.powernets.Add(POWERNET)
+#define UNREGISTER_POWERNET(POWERNET) global.PCmachinery.powernets.Remove(POWERNET)

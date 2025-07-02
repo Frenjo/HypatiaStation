@@ -15,7 +15,7 @@
 	var/problem = 0				// If this is not 0 there is some sort of issue in the powernet. Monitors will display warnings.
 
 /datum/powernet/New()
-	GLOBL.powernets.Add(src)
+	REGISTER_POWERNET(src)
 	. = ..()
 
 /datum/powernet/Destroy()
@@ -25,7 +25,7 @@
 	for_no_type_check(var/obj/machinery/power/M, nodes)
 		nodes.Remove(M)
 		M.powernet = null
-	GLOBL.powernets.Remove(src)
+	UNREGISTER_POWERNET(src)
 	return ..()
 
 //Returns the amount of excess power (before refunding to SMESs) from last tick.

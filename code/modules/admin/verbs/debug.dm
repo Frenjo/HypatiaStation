@@ -360,7 +360,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = PANEL_DEBUG
 	set name = "Make Powernets"
 
-	makepowernets()
+	global.PCmachinery.makepowernets()
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 	feedback_add_details("admin_verb", "MPWN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -444,27 +444,27 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	for(var/obj/machinery/power/apc/APC in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/power/apc/APC, GET_MACHINES_TYPED(/obj/machinery/power/apc))
 		var/area/A = GET_AREA(APC)
 		if(!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
 
-	for(var/obj/machinery/air_alarm/alarm in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/air_alarm/alarm, GET_MACHINES_TYPED(/obj/machinery/air_alarm))
 		var/area/A = GET_AREA(alarm)
 		if(!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 
-	for(var/obj/machinery/requests_console/RC in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/requests_console/RC, GET_MACHINES_TYPED(/obj/machinery/requests_console))
 		var/area/A = GET_AREA(RC)
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
-	for(var/obj/machinery/light/L in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/light/L, GET_MACHINES_TYPED(/obj/machinery/light))
 		var/area/A = GET_AREA(L)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
-	for(var/obj/machinery/light_switch/LS in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/light_switch/LS, GET_MACHINES_TYPED(/obj/machinery/light_switch))
 		var/area/A = GET_AREA(LS)
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
@@ -474,7 +474,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
-	for(var/obj/machinery/camera/C in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/camera/C, GET_MACHINES_TYPED(/obj/machinery/camera))
 		var/area/A = GET_AREA(C)
 		if(!(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
@@ -551,15 +551,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(alert("Are you sure? This will start up the engine. Should only be used during debug!", , "Yes", "No") != "Yes")
 		return
 
-	for(var/obj/machinery/power/emitter/E in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/power/emitter/E, GET_MACHINES_TYPED(/obj/machinery/power/emitter))
 		if(E.anchored)
 			E.active = 1
 
-	for(var/obj/machinery/field_generator/F in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/field_generator/F, GET_MACHINES_TYPED(/obj/machinery/field_generator))
 		if(F.anchored)
 			F.Varedit_start = 1
 	spawn(30)
-		for(var/obj/machinery/the_singularitygen/G in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/the_singularitygen/G, GET_MACHINES_TYPED(/obj/machinery/the_singularitygen))
 			if(G.anchored)
 				var/obj/singularity/S = new /obj/singularity(GET_TURF(G), 50)
 				spawn(0)
@@ -577,7 +577,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				//S.dissipate_track = 0
 				//S.dissipate_strength = 10
 
-	for(var/obj/machinery/power/rad_collector/Rad in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/power/rad_collector/Rad, GET_MACHINES_TYPED(/obj/machinery/power/rad_collector))
 		if(Rad.anchored)
 			if(!Rad.P)
 				var/obj/item/tank/plasma/Plasma = new/obj/item/tank/plasma(Rad)
@@ -589,7 +589,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!Rad.active)
 				Rad.toggle_power()
 
-	for(var/obj/machinery/power/smes/SMES in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/power/smes/SMES, GET_MACHINES_TYPED(/obj/machinery/power/smes))
 		if(SMES.anchored)
 			SMES.input_attempt = 1
 

@@ -13,11 +13,11 @@
 
 /obj/machinery/computer/turbine_control/initialise()
 	. = ..()
-	for(var/obj/machinery/compressor/C in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/compressor/C, GET_MACHINES_TYPED(/obj/machinery/compressor))
 		if(id == C.comp_id)
 			compressor = C
 		doors = list()
-		for(var/obj/machinery/door/poddoor/P in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/door/poddoor/P, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 			if(P.id == id)
 				doors.Add(P)
 

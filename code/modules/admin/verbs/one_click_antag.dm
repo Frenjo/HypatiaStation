@@ -239,7 +239,7 @@
 						var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
 						synd_mind.current.client.images.Add(I)
 
-		for(var/obj/machinery/nuclearbomb/bomb in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/nuclearbomb/bomb, GET_MACHINES_TYPED(/obj/machinery/nuclearbomb))
 			bomb.r_code = nuke_code // All the nukes are set to this code.
 
 	return 1

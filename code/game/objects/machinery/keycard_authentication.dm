@@ -115,7 +115,7 @@
 
 /obj/machinery/keycard_auth/proc/broadcast_request()
 	icon_state = "auth_on"
-	for(var/obj/machinery/keycard_auth/auth in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/keycard_auth/auth, GET_MACHINES_TYPED(/obj/machinery/keycard_auth))
 		if(auth == src)
 			continue
 		auth.reset()

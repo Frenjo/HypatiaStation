@@ -472,7 +472,7 @@
 
 		if("Toggle Door")
 			if(cartridge && cartridge.access_remote_door)
-				for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+				for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 					if(M.id == cartridge.remote_door_id)
 						if(M.density)
 							M.open()

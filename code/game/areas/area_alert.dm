@@ -20,7 +20,7 @@
 						aiPlayer.cancelAlarm("Power", src, source)
 					else
 						aiPlayer.triggerAlarm("Power", src, cameras, source)
-			for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
+			for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
 				if(a.z == source.z)
 					if(state == 1)
 						a.cancelAlarm("Power", src, source)
@@ -37,14 +37,14 @@
 				C.network.Add("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 				aiPlayer.triggerAlarm("Atmosphere", src, cameras, src)
-			for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
+			for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
 				a.triggerAlarm("Atmosphere", src, cameras, src)
 		else if(atmos_alarm == 2)
 			for(var/obj/machinery/camera/C in machines_list)
 				C.network.Remove("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 				aiPlayer.cancelAlarm("Atmosphere", src, src)
-			for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
+			for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
 				a.cancelAlarm("Atmosphere", src, src)
 		atmos_alarm = danger_level
 		return TRUE
@@ -69,7 +69,7 @@
 			C.network.Add("Fire Alarms")
 		for(var/mob/living/silicon/ai/aiPlayer in GLOBL.player_list)
 			aiPlayer.triggerAlarm("Fire", src, cameras, src)
-		for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
 			a.triggerAlarm("Fire", src, cameras, src)
 
 /area/proc/fire_reset()
@@ -88,7 +88,7 @@
 			C.network.Remove("Fire Alarms")
 		for(var/mob/living/silicon/ai/aiPlayer in GLOBL.player_list)
 			aiPlayer.cancelAlarm("Fire", src, src)
-		for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/computer/station_alert/a, GET_MACHINES_TYPED(/obj/machinery/computer/station_alert))
 			a.cancelAlarm("Fire", src, src)
 
 // Evac

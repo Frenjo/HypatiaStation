@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/lasercon/initialise()
 	. = ..()
-	for(var/obj/machinery/zero_point_emitter/laser in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/zero_point_emitter/laser, GET_MACHINES_TYPED(/obj/machinery/zero_point_emitter))
 		if(laser.id == id)
 			lasers.Add(laser)
 

@@ -34,7 +34,7 @@
 	if(current)
 		dat += specific()
 	else
-		for(var/obj/machinery/air_alarm/alarm in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/air_alarm/alarm, GET_MACHINES_TYPED(/obj/machinery/air_alarm))
 			dat += "<a href='byond://?src=\ref[src]&alarm=\ref[alarm]'>"
 			switch(max(alarm.danger_level, alarm.alarm_area.atmos_alarm))
 				if (0)

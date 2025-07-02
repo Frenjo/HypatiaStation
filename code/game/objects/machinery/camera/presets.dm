@@ -44,7 +44,8 @@
 	number = 1
 	var/area/A = GET_AREA(src)
 	if(isnotnull(A))
-		for(var/obj/machinery/camera/autoname/C in GLOBL.machines) // Optimise this to use the area's machines list.
+		// Optimise this to use the area's machines list.
+		for_no_type_check(var/obj/machinery/camera/autoname/C, GET_MACHINES_TYPED(/obj/machinery/camera/autoname))
 			if(C == src)
 				continue
 			var/area/CA = GET_AREA(C)

@@ -160,7 +160,7 @@
 	active = TRUE
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/flasher/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/flasher/M, GET_MACHINES_TYPED(/obj/machinery/flasher))
 		if(M.id == src.id)
 			spawn()
 				M.flash()

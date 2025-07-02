@@ -121,7 +121,7 @@
 						D.safe = TRUE
 
 	else
-		for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 			if(M.id == src.id)
 				if(M.density)
 					spawn(0)
@@ -184,7 +184,7 @@
 	active = TRUE
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 		if(M.id == src.id)
 			spawn(0)
 				M.open()
@@ -192,13 +192,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/mass_driver/M, GET_MACHINES_TYPED(/obj/machinery/mass_driver))
 		if(M.id == src.id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 		if(M.id == src.id)
 			spawn(0)
 				M.close()

@@ -55,7 +55,8 @@ PROCESS_DEF(shuttle)
 
 	//search for the controllers, if we have one.
 	if(length(dock_controller_map))
-		for(var/obj/machinery/embedded_controller/radio/C in GLOBL.machines)	//only radio controllers are supported at the moment
+		//only radio controllers are supported at the moment
+		for_no_type_check(var/obj/machinery/embedded_controller/radio/C, GET_MACHINES_SUBTYPED(/obj/machinery/embedded_controller/radio))
 			if(istype(C.program, /datum/computer/file/embedded_program/docking))
 				if(C.id_tag in dock_controller_map)
 					shuttle = dock_controller_map[C.id_tag]

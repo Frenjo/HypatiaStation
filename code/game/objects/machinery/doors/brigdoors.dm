@@ -32,29 +32,27 @@
 	maptext_width = 32
 
 /obj/machinery/door_timer/New()
-	..()
-
+	. = ..()
 	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 32 : -32)
 	pixel_y = (dir & 3) ? (dir == 1 ? 24 : -32) : 0
 
-	spawn(20)
-		for(var/obj/machinery/door/window/brigdoor/M in GLOBL.machines)
-			if(M.id == id)
-				targets += M
+/obj/machinery/door_timer/initialise()
+	. = ..()
+	for_no_type_check(var/obj/machinery/door/window/brigdoor/M, GET_MACHINES_TYPED(/obj/machinery/door/window/brigdoor))
+		if(M.id == id)
+			targets += M
 
-		for(var/obj/machinery/flasher/F in GLOBL.machines)
-			if(F.id == id)
-				targets += F
+	for_no_type_check(var/obj/machinery/flasher/F, GET_MACHINES_TYPED(/obj/machinery/flasher))
+		if(F.id == id)
+			targets += F
 
-		for(var/obj/structure/closet/secure/brig/C in GLOBL.movable_atom_list)
-			if(C.id == id)
-				targets += C
+	for(var/obj/structure/closet/secure/brig/C in GLOBL.movable_atom_list)
+		if(C.id == id)
+			targets += C
 
-		if(!length(targets))
-			stat |= BROKEN
-		update_icon()
-		return
-	return
+	if(!length(targets))
+		stat |= BROKEN
+	update_icon()
 
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer

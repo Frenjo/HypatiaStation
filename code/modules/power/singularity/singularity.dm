@@ -49,7 +49,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 /obj/singularity/initialise()
 	. = ..()
 	START_PROCESSING(PCobj, src)
-	for(var/obj/machinery/singularity_beacon/singubeacon in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/singularity_beacon/singubeacon, GET_MACHINES_TYPED(/obj/machinery/singularity_beacon))
 		if(singubeacon.active)
 			target = singubeacon
 			break

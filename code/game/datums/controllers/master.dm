@@ -121,6 +121,7 @@ CONTROLLER_DEF(master)
 		to_world(SPAN_DANGER("↪ Economy setup complete."))
 
 	setup_processes()
+	global.PCmachinery.makepowernets() // This temporarily goes here until I can find a better place.
 	setup_objects()
 	setup_factions()
 	setup_xenoarch()
@@ -258,16 +259,16 @@ CONTROLLER_DEF(master)
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
-	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/atmospherics/machine, GET_MACHINES_TYPED(/obj/machinery/atmospherics))
 		if(!GC_DESTROYED(machine))
 			machine.atmos_initialise()
-	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/atmospherics/machine, GET_MACHINES_TYPED(/obj/machinery/atmospherics))
 		if(!GC_DESTROYED(machine))
 			machine.build_network()
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
-	for(var/obj/machinery/atmospherics/unary/U in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/atmospherics/unary/U, GET_MACHINES_TYPED(/obj/machinery/atmospherics/unary))
 		if(!GC_DESTROYED(U))
 			U.broadcast_status()
 	WAIT_FOR_BACKLOG

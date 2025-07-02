@@ -45,7 +45,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 //Code for spawning a nuke auth code.
 	var/nuke_code
 	var/temp_code
-	for(var/obj/machinery/nuclearbomb/N in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/nuclearbomb/N, GET_MACHINES_TYPED(/obj/machinery/nuclearbomb))
 		temp_code = text2num(N.r_code)
 		if(temp_code)//if it's actually a number. It won't convert any non-numericals.
 			nuke_code = N.r_code

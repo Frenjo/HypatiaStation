@@ -11,7 +11,7 @@
 	priority_announce("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
 /datum/round_event/brand_intelligence/start()
-	for(var/obj/machinery/vending/V in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/vending/V, GET_MACHINES_TYPED(/obj/machinery/vending))
 		if(isnotstationlevel(V.z))
 			continue
 		vendingMachines.Add(V)

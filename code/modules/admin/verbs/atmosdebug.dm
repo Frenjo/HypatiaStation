@@ -9,17 +9,17 @@
 	feedback_add_details("admin_verb", "CP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	//all plumbing - yes, some things might get stated twice, doesn't matter.
-	for(var/obj/machinery/atmospherics/plumbing in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/atmospherics/plumbing, GET_MACHINES_TYPED(/obj/machinery/atmospherics))
 		if(plumbing.nodealert)
 			to_chat(usr, "Unconnected [plumbing.name] located at [plumbing.x], [plumbing.y], [plumbing.z] ([GET_AREA(plumbing)])")
 
 	//Manifolds
-	for(var/obj/machinery/atmospherics/pipe/manifold/pipe in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/atmospherics/pipe/manifold/pipe, GET_MACHINES_TYPED(/obj/machinery/atmospherics/pipe/manifold))
 		if(!pipe.node1 || !pipe.node2 || !pipe.node3)
 			to_chat(usr, "Unconnected [pipe.name] located at [pipe.x], [pipe.y], [pipe.z] ([GET_AREA(pipe)])")
 
 	//Pipes
-	for(var/obj/machinery/atmospherics/pipe/simple/pipe in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/atmospherics/pipe/simple/pipe, GET_MACHINES_TYPED(/obj/machinery/atmospherics/pipe/simple))
 		if(!pipe.node1 || !pipe.node2)
 			to_chat(usr, "Unconnected [pipe.name] located at [pipe.x], [pipe.y], [pipe.z] ([GET_AREA(pipe)])")
 
@@ -33,7 +33,7 @@
 
 	feedback_add_details("admin_verb", "CPOW") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	for_no_type_check(var/datum/powernet/PN, GLOBL.powernets)
+	for_no_type_check(var/datum/powernet/PN, global.PCmachinery.powernets)
 		if(!length(PN.nodes))
 			if(length(PN.cables) > 1)
 				var/obj/structure/cable/C = PN.cables[1]

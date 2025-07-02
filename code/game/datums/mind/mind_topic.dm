@@ -470,7 +470,7 @@
 					to_chat(usr, SPAN_WARNING("Equipping a Syndicate failed!"))
 			if("tellcode")
 				var/code
-				for(var/obj/machinery/nuclearbomb/bombue in GLOBL.machines)
+				for_no_type_check(var/obj/machinery/nuclearbomb/bombue, GET_MACHINES_TYPED(/obj/machinery/nuclearbomb))
 					if(length(bombue.r_code) <= 5 && bombue.r_code != "LOLNO" && bombue.r_code != "ADMIN")
 						code = bombue.r_code
 						break

@@ -24,7 +24,7 @@
 
 /obj/item/pinpointer/examine()
 	. = ..()
-	for(var/obj/machinery/nuclearbomb/bomb in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/nuclearbomb/bomb, GET_MACHINES_TYPED(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
 			to_chat(usr, SPAN_DANGER("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft]."))
 

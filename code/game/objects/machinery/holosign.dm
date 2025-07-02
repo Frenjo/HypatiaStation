@@ -84,7 +84,7 @@
 	else
 		icon_state = "light0"
 
-	for(var/obj/machinery/holosign/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/holosign/M, GET_MACHINES_TYPED(/obj/machinery/holosign))
 		if(M.id == src.id)
 			spawn(0)
 				M.toggle()

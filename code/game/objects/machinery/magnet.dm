@@ -219,19 +219,16 @@
 
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/magnetic_controller/New()
+/obj/machinery/magnetic_controller/initialise()
 	. = ..()
-
 	if(autolink)
-		for(var/obj/machinery/magnetic_module/M in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/magnetic_module/M, GET_MACHINES_TYPED(/obj/machinery/magnetic_module))
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
 	if(path) // check for default path
 		filter_path() // renders rpath
 
-/obj/machinery/magnetic_controller/initialise()
-	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_MAGNETS)
 
 /obj/machinery/magnetic_controller/Destroy()
@@ -240,7 +237,7 @@
 
 /obj/machinery/magnetic_controller/process()
 	if(!length(magnets) && autolink)
-		for(var/obj/machinery/magnetic_module/M in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/magnetic_module/M, GET_MACHINES_TYPED(/obj/machinery/magnetic_module))
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 

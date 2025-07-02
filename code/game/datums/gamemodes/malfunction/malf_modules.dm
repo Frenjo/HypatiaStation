@@ -90,7 +90,7 @@ rcd light flash thingy on matter drain
 	mod_pick_name = "overload"
 	uses = 2
 
-/client/proc/overload_machine(obj/machinery/M as obj in GLOBL.machines)
+/client/proc/overload_machine(obj/machinery/M as anything in global.PCmachinery.machines)
 	set category = PANEL_MALFUNCTION
 	set name = "Overload Machine"
 
@@ -131,7 +131,7 @@ rcd light flash thingy on matter drain
 	for(var/datum/malf_module/small/blackout/blackout in malf.current_modules)
 		if(blackout.uses > 0)
 			blackout.uses --
-			for(var/obj/machinery/power/apc/apc in GLOBL.machines)
+			for_no_type_check(var/obj/machinery/power/apc/apc, GET_MACHINES_TYPED(/obj/machinery/power/apc))
 				if(prob(30 * apc.overload))
 					apc.overload_lighting()
 				else apc.overload++
@@ -227,7 +227,7 @@ rcd light flash thingy on matter drain
 						C.upgradeMotion()
 						upgraded = 1
 						// Add it to machines that process
-						GLOBL.machines |= C
+						global.PCmachinery.register_machine(C)
 
 					if(upgraded)
 						UC.uses --

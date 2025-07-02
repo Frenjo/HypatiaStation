@@ -53,13 +53,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/New()
 	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
-	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in GLOBL.machines)
-			S.initialise()
-			break
 
 /obj/machinery/computer/rdconsole/initialise()
 	. = ..()
+	if(!id)
+		for_no_type_check(var/obj/machinery/r_n_d/server/centcom/C, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server/centcom))
+			C.initialise()
+			break
 	sync_devices()
 
 /obj/machinery/computer/rdconsole/proc/sync_devices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
@@ -81,7 +81,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 // Have it automatically push research to the centcom server so wild griffins can't fuck up R&D's work --NEO
 /obj/machinery/computer/rdconsole/proc/grief_protection()
-	for(var/obj/machinery/r_n_d/server/centcom/C in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/r_n_d/server/centcom/C, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server/centcom))
 		for_no_type_check(var/decl/tech/T, files.known_tech)
 			C.files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, files.known_designs)
@@ -264,7 +264,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			grief_protection() //Putting this here because I dont trust the sync process
 			spawn(30)
 				if(src)
-					for(var/obj/machinery/r_n_d/server/S in GLOBL.machines)
+					for_no_type_check(var/obj/machinery/r_n_d/server/S, GET_MACHINES_TYPED(/obj/machinery/r_n_d/server))
 						var/server_processed = 0
 						if(S.disabled)
 							continue

@@ -233,7 +233,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/conveyor_switch/S, GET_MACHINES_TYPED(/obj/machinery/conveyor_switch))
 		if(S.id == src.id)
 			S.position = position
 			S.update()
@@ -256,7 +256,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/conveyor_switch/S, GET_MACHINES_TYPED(/obj/machinery/conveyor_switch))
 		if(S.id == src.id)
 			S.position = position
 			S.update()

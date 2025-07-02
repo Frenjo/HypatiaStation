@@ -223,13 +223,13 @@
 		new_power = min(new_power, 0.01)	//highest possible value
 		energy = new_power
 		//
-		for(var/obj/machinery/computer/lasercon/comp in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/computer/lasercon/comp, GET_MACHINES_TYPED(/obj/machinery/computer/lasercon))
 			if(comp.id == id)
 				comp.updateDialog()
 	else if(href_list["online"] )
 		active = !active
 		//
-		for(var/obj/machinery/computer/lasercon/comp in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/computer/lasercon/comp, GET_MACHINES_TYPED(/obj/machinery/computer/lasercon))
 			if(comp.id == id)
 				comp.updateDialog()
 	else if(href_list["freq"] )
@@ -239,6 +239,6 @@
 		new_freq = min(new_freq, 20000)	//highest possible value
 		frequency = new_freq
 		//
-		for(var/obj/machinery/computer/lasercon/comp in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/computer/lasercon/comp, GET_MACHINES_TYPED(/obj/machinery/computer/lasercon))
 			if(comp.id == id)
 				comp.updateDialog()

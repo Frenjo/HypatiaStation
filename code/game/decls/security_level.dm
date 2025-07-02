@@ -36,7 +36,7 @@
 	comms?.post_status("alert", status_post)
 
 	// Updates all fire alarms to display the corresponding alert light.
-	for(var/obj/machinery/fire_alarm/alarm in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/fire_alarm/alarm, GET_MACHINES_TYPED(/obj/machinery/fire_alarm))
 		if(iscontactlevel(alarm.z))
 			alarm.cut_overlays()
 			alarm.add_overlay(image('icons/obj/machines/monitors.dmi', "overlay_[name]"))

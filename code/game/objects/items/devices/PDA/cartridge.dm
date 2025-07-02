@@ -90,7 +90,7 @@
 	/*		Power Monitor (Mode: 43 / 433)			*/
 	if(mode == 43 || mode == 433)
 		var/pMonData[0]
-		for(var/obj/machinery/power/monitor/pMon in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/power/monitor/pMon, GET_MACHINES_TYPED(/obj/machinery/power/monitor))
 			if(!(pMon.stat & (NOPOWER | BROKEN)))
 				pMonData[++pMonData.len] = list("Name" = pMon.name, "ref" = "\ref[pMon]")
 				if(isnull(powmonitor))

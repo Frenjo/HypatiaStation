@@ -13,15 +13,11 @@
 
 	light_color = "#00b000"
 
-/obj/machinery/computer/pod/New()
-	..()
-	spawn(5)
-		for(var/obj/machinery/mass_driver/M in GLOBL.machines)
-			if(M.id == id)
-				connected = M
-			else
-		return
-	return
+/obj/machinery/computer/pod/initialise()
+	. = ..()
+	for_no_type_check(var/obj/machinery/mass_driver/M, GET_MACHINES_TYPED(/obj/machinery/mass_driver))
+		if(M.id == id)
+			connected = M
 
 /obj/machinery/computer/pod/proc/alarm()
 	if(stat & (NOPOWER|BROKEN))
@@ -31,21 +27,21 @@
 		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
 		return
 
-	for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 		if(M.id == id)
 			M.open()
 			return
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/mass_driver/M, GET_MACHINES_TYPED(/obj/machinery/mass_driver))
 		if(M.id == id)
 			M.power = connected.power
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+	for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 		if(M.id == id)
 			M.close()
 			return
@@ -181,7 +177,7 @@
 			time += tp
 			time = min(max(round(time), 0), 120)
 		if(href_list["door"])
-			for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
+			for_no_type_check(var/obj/machinery/door/poddoor/M, GET_MACHINES_TYPED(/obj/machinery/door/poddoor))
 				if(M.id == id)
 					if(M.density)
 						M.open()

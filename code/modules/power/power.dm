@@ -205,22 +205,6 @@
 				else if(C.d1 == d || C.d2 == d)
 					. += C
 
-/hook/startup/proc/build_powernets()
-	. = makepowernets()
-
-// rebuild all power networks from scratch - only called at world creation or by the admin verb
-/proc/makepowernets()
-	for_no_type_check(var/datum/powernet/PN, GLOBL.powernets)
-		qdel(PN)
-	GLOBL.powernets.Cut()
-
-	for_no_type_check(var/obj/structure/cable/PC, GLOBL.cable_list)
-		if(isnull(PC.powernet))
-			var/datum/powernet/NewPN = new /datum/powernet()
-			NewPN.add_cable(PC)
-			propagate_network(PC, PC.powernet)
-	return 1
-
 //remove the old powernet and replace it with a new one throughout the network.
 /proc/propagate_network(obj/O, datum/powernet/PN)
 	//world.log << "propagating new network"

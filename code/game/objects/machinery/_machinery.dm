@@ -113,16 +113,16 @@
 		refresh_parts()
 	var/area/machine_area = GET_AREA(src)
 	machine_area.machines_list.Add(src)
-	if(!GLOBL.machinery_sort_required && isnotnull(global.PCticker))
-		dd_insertObjectList(GLOBL.machines, src)
-	else
-		GLOBL.machines.Add(src)
-		GLOBL.machinery_sort_required = TRUE
+
+/obj/machinery/initialise()
+	. = ..()
+	global.PCmachinery.register_machine(src)
 
 /obj/machinery/Destroy()
 	var/area/machine_area = GET_AREA(src)
 	machine_area?.machines_list.Remove(src)
-	GLOBL.machines.Remove(src)
+	if(isnotnull(global.PCmachinery))
+		global.PCmachinery.unregister_machine(src)
 
 	if(length(component_parts))
 		for_no_type_check(var/obj/item/part, component_parts)

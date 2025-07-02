@@ -1524,7 +1524,7 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/faxmachine/F in GLOBL.machines)
+		for_no_type_check(var/obj/machinery/faxmachine/F, GET_MACHINES_TYPED(/obj/machinery/faxmachine))
 			if(! (F.stat & (BROKEN|NOPOWER) ) )
 
 				// animate! it's alive!
@@ -2179,12 +2179,12 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "BO")
 				message_admins("[key_name_admin(usr)] broke all lights.", 1)
-				for(var/obj/machinery/power/apc/apc in GLOBL.machines)
+				for_no_type_check(var/obj/machinery/power/apc/apc, GET_MACHINES_TYPED(/obj/machinery/power/apc))
 					apc.overload_lighting()
 			if("whiteout")
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "WO")
-				for(var/obj/machinery/light/L in GLOBL.machines)
+				for_no_type_check(var/obj/machinery/light/L, GET_MACHINES_TYPED(/obj/machinery/light))
 					L.fix()
 				message_admins("[key_name_admin(usr)] fixed all lights.", 1)
 			if("friendai")
