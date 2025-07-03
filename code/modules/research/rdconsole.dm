@@ -264,7 +264,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			grief_protection() //Putting this here because I dont trust the sync process
 			spawn(30)
 				if(src)
-					FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+					FOR_MACHINES_SUBTYPED(server, /obj/machinery/r_n_d/server)
 						var/server_processed = 0
 						if(server.disabled)
 							continue

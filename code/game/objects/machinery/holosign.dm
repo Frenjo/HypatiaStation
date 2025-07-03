@@ -84,7 +84,7 @@
 	else
 		icon_state = "light0"
 
-	FOR_MACHINES_TYPED(sign, /obj/machinery/holosign)
+	FOR_MACHINES_SUBTYPED(sign, /obj/machinery/holosign)
 		if(sign.id == src.id)
 			spawn(0)
 				sign.toggle()

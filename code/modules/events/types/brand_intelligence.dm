@@ -11,7 +11,7 @@
 	priority_announce("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
 /datum/round_event/brand_intelligence/start()
-	FOR_MACHINES_TYPED(vendor, /obj/machinery/vending)
+	FOR_MACHINES_SUBTYPED(vendor, /obj/machinery/vending)
 		if(isnotstationlevel(vendor.z))
 			continue
 		vendingMachines.Add(vendor)

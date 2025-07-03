@@ -444,7 +444,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
+	FOR_MACHINES_SUBTYPED(apc, /obj/machinery/power/apc)
 		var/area/A = GET_AREA(apc)
 		if(!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
@@ -459,7 +459,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
-	FOR_MACHINES_TYPED(fixture, /obj/machinery/light)
+	FOR_MACHINES_SUBTYPED(fixture, /obj/machinery/light)
 		var/area/A = GET_AREA(fixture)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
@@ -474,7 +474,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
-	FOR_MACHINES_TYPED(cam, /obj/machinery/camera)
+	FOR_MACHINES_SUBTYPED(cam, /obj/machinery/camera)
 		var/area/A = GET_AREA(cam)
 		if(!(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
@@ -590,7 +590,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!collector.active)
 				collector.toggle_power()
 
-	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+	FOR_MACHINES_SUBTYPED(smes, /obj/machinery/power/smes)
 		if(smes.anchored)
 			smes.input_attempt = 1
 

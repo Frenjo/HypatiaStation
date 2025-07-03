@@ -259,16 +259,16 @@ CONTROLLER_DEF(master)
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
-	FOR_MACHINES_TYPED(machine, /obj/machinery/atmospherics)
+	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
 		if(!GC_DESTROYED(machine))
 			machine.atmos_initialise()
-	FOR_MACHINES_TYPED(machine, /obj/machinery/atmospherics)
+	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
 		if(!GC_DESTROYED(machine))
 			machine.build_network()
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
-	FOR_MACHINES_TYPED(machine, /obj/machinery/atmospherics/unary)
+	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics/unary)
 		if(!GC_DESTROYED(machine))
 			machine.broadcast_status()
 	WAIT_FOR_BACKLOG

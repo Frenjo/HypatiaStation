@@ -19,7 +19,7 @@ GLOBAL_GLOBL_INIT(sent_spiders_to_station, FALSE)
 
 /datum/round_event/spider_infestation/start()
 	var/list/vents = list()
-	FOR_MACHINES_TYPED(temp_vent, /obj/machinery/atmospherics/unary/vent_pump)
+	FOR_MACHINES_SUBTYPED(temp_vent, /obj/machinery/atmospherics/unary/vent_pump)
 		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			if(length(temp_vent.network.normal_members) > 50)
 				vents.Add(temp_vent)

@@ -172,7 +172,7 @@
 	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
-	FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+	FOR_MACHINES_SUBTYPED(server, /obj/machinery/r_n_d/server)
 		switch(server.server_id)
 			if(-1)
 				continue
@@ -227,7 +227,7 @@
 		temp_server = null
 		consoles = list()
 		servers = list()
-		FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+		FOR_MACHINES_SUBTYPED(server, /obj/machinery/r_n_d/server)
 			if(server.server_id == text2num(href_list["access"]) || server.server_id == text2num(href_list["data"]) || server.server_id == text2num(href_list["transfer"]))
 				temp_server = server
 				break
@@ -240,7 +240,7 @@
 			screen = RDSCONTROL_SCREEN_DATA_MENU
 		else if(href_list["transfer"])
 			screen = RDSCONTROL_SCREEN_TRANSFER_MENU
-			FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+			FOR_MACHINES_SUBTYPED(server, /obj/machinery/r_n_d/server)
 				if(server == src)
 					continue
 				servers += server
@@ -290,7 +290,7 @@
 	switch(screen)
 		if(RDSCONTROL_SCREEN_MAIN_MENU) //Main Menu
 			dat += "Connected Servers:<BR><BR>"
-			FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server)
+			FOR_MACHINES_SUBTYPED(server, /obj/machinery/r_n_d/server)
 				if(istype(server, /obj/machinery/r_n_d/server/centcom) && !badmin)
 					continue
 				dat += "[server.name] || "

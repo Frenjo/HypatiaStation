@@ -7,7 +7,7 @@
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
-	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+	FOR_MACHINES_SUBTYPED(smes, /obj/machinery/power/smes)
 		var/area/current_area = GET_AREA(smes)
 		if(current_area.type in skipped_areas || isnotstationlevel(smes.z))
 			continue
@@ -20,7 +20,7 @@
 		smes.update_icon()
 		smes.power_change()
 
-	FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
+	FOR_MACHINES_SUBTYPED(apc, /obj/machinery/power/apc)
 		if(apc.cell && isstationlevel(apc.z))
 			var/area/A = GET_AREA(apc)
 			var/skip = 0
@@ -41,11 +41,11 @@
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
-	FOR_MACHINES_TYPED(apc, /obj/machinery/power/apc)
+	FOR_MACHINES_SUBTYPED(apc, /obj/machinery/power/apc)
 		if(apc.cell && isstationlevel(apc.z))
 			apc.cell.charge = apc.cell.maxcharge
 
-	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+	FOR_MACHINES_SUBTYPED(smes, /obj/machinery/power/smes)
 		var/area/current_area = GET_AREA(smes)
 		if(current_area.type in skipped_areas || isnotstationlevel(smes.z))
 			continue
@@ -70,7 +70,7 @@
 			"All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", 'sound/AI/poweron.ogg'
 		)
 
-	FOR_MACHINES_TYPED(smes, /obj/machinery/power/smes)
+	FOR_MACHINES_SUBTYPED(smes, /obj/machinery/power/smes)
 		if(isnotstationlevel(smes.z))
 			continue
 		smes.charge = smes.capacity
