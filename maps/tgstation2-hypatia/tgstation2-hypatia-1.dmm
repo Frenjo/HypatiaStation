@@ -62277,6 +62277,10 @@
 	},
 /turf/open/floor/tiled/white,
 /area/station/medical/genetics)
+"vLg" = (
+/obj/structure/sign/hypatia_plaque,
+/turf/open/floor/tiled/grey,
+/area/station/command/bridge)
 "vLn" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 1
@@ -98460,7 +98464,7 @@ wBV
 kwN
 nPh
 nxM
-uiN
+wPC
 eyK
 mPo
 ohu
@@ -98717,7 +98721,7 @@ wBV
 rTK
 ien
 uiN
-wPC
+uiN
 wtd
 mPo
 ohu
@@ -98974,7 +98978,7 @@ wBV
 kwN
 onX
 hjI
-uiN
+vLg
 wfD
 mPo
 ohu

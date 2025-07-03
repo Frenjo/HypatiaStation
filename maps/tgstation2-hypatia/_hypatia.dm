@@ -30,3 +30,9 @@
 	// Spacing should be a reliable method of getting rid of a body -- Urist.
 	// Go away Urist, I'm restoring this to the longer list. ~Errorage
 	accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "5" = 10, "6" = 60)
+
+// Just putting this here since it's the best place I can think of.
+/obj/structure/sign/hypatia_plaque
+	name = "\improper Commissioning Plaque"
+	desc = "NSS Hypatia\nA retrofitted G4407-series TG4407-type 'Box'-class station.\nCommissioned 2555."
+	icon_state = "goonplaque"
