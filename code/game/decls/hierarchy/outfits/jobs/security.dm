@@ -27,6 +27,7 @@
 	backpack_contents = list(
 		/obj/item/handcuffs
 	)
+	implants = list(/obj/item/implant/loyalty)
 
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/pda/heads/hos
@@ -47,6 +48,7 @@
 	backpack_contents = list(
 		/obj/item/handcuffs
 	)
+	implants = list(/obj/item/implant/mindshield)
 
 	pda_type = /obj/item/pda/warden
 
@@ -70,6 +72,7 @@
 		/obj/item/storage/box/evidence,
 		/obj/item/detective_scanner
 	)
+	implants = list(/obj/item/implant/mindshield)
 
 	pda_type = /obj/item/pda/detective
 
@@ -98,6 +101,7 @@
 	backpack_contents = list(
 		/obj/item/handcuffs
 	)
+	implants = list(/obj/item/implant/mindshield)
 
 	pda_type = /obj/item/pda/security
 
@@ -113,6 +117,8 @@
 	l_ear = /obj/item/radio/headset/sec_para
 
 	l_hand = /obj/item/storage/firstaid/regular
+
+	implants = list(/obj/item/implant/mindshield)
 
 	pda_type = /obj/item/pda/medical
 

@@ -34,6 +34,9 @@ GLOBAL_GLOBL_ALIST_NEW(all_outfits)
 	// An associative list containing items to be placed in the uniform's backpack.
 	// With the format (path = count).
 	var/list/backpack_contents = list()
+	// A list containing typepaths of implants that this outfit spawns with.
+	// Can be associative to specify the limb in which the implant spawns, head by default.
+	var/list/implants = list()
 
 	/*
 	 * ID and PDA Configuration.
@@ -124,7 +127,7 @@ if(isnotnull(VAR)) \
 		pda.set_owner_and_job(user.real_name, isnotnull(id_pda_assignment) ? id_pda_assignment : name)
 		user.equip_to_slot_or_del(pda, pda_slot)
 
-	// Finally the backpack contents.
+	// Then the backpack contents.
 	for(var/path in backpack_contents)
 		var/count = backpack_contents[path]
 		// If there's no specified count, assume it's 1.
@@ -136,6 +139,16 @@ if(isnotnull(VAR)) \
 				continue
 			else
 				new path(user.loc)
+
+	// Finally any implants.
+	for(var/path in implants)
+		var/obj/item/implant/imp = new path(user)
+		imp.imp_in = user
+		imp.implanted = TRUE
+		var/target_organ_name = isnotnull(implants[path]) ? implants[path] : "head"
+		var/datum/organ/external/affected = user.organs_by_name[target_organ_name]
+		affected.implants.Add(imp)
+		imp.part = affected
 
 	post_equip(user)
 	user.regenerate_icons()

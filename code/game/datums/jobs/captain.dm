@@ -18,7 +18,6 @@
 	minimal_player_age = 14
 
 	outfit = /decl/hierarchy/outfit/job/command/captain
-	has_loyalty_implant = TRUE
 
 /datum/job/captain/get_access()
 	return get_all_station_access()
@@ -83,4 +82,3 @@
 	)
 
 	outfit = /decl/hierarchy/outfit/job/command/internal_affairs
-	has_loyalty_implant = TRUE

@@ -20,6 +20,7 @@
 	backpack_contents = list(
 		/obj/item/storage/box/ids
 	)
+	implants = list(/obj/item/implant/loyalty)
 
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/pda/captain
@@ -66,6 +67,8 @@
 
 	l_hand = /obj/item/storage/briefcase
 	r_hand = /obj/item/encryptionkey/com
+
+	implants = list(/obj/item/implant/loyalty)
 
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/pda/lawyer

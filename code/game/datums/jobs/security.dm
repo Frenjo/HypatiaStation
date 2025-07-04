@@ -27,7 +27,6 @@
 
 	outfit = /decl/hierarchy/outfit/job/security/hos
 	alt_titles = list("Security Commander")
-	has_loyalty_implant = TRUE
 
 /*
  * Warden
@@ -56,7 +55,6 @@
 	)
 
 	outfit = /decl/hierarchy/outfit/job/security/warden
-	has_mindshield_implant = TRUE
 
 /*
  * Detective
@@ -82,7 +80,6 @@
 
 	outfit = /decl/hierarchy/outfit/job/security/detective
 	alt_titles = list("Forensic Technician" = /decl/hierarchy/outfit/job/security/detective/forensics)
-	has_mindshield_implant = TRUE
 
 /*
  * Security Officer
@@ -111,7 +108,6 @@
 	)
 
 	outfit = /decl/hierarchy/outfit/job/security/officer
-	has_mindshield_implant = TRUE
 
 /*
  * Security Paramedic
@@ -140,4 +136,3 @@
 	)
 
 	outfit = /decl/hierarchy/outfit/job/security/paramedic
-	has_mindshield_implant = TRUE

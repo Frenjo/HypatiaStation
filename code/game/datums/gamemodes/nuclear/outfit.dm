@@ -16,6 +16,7 @@
 		/obj/item/reagent_holder/pill/cyanide = 1,
 		/obj/item/ammo_magazine/a12mm = 2
 	)
+	implants = list(/obj/item/implant/explosive)
 
 	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/syndicate
@@ -41,7 +42,4 @@
 	var/obj/item/clothing/head/helmet/space/rig/syndi/new_helmet = user.head
 	new_helmet.species_restricted = list(species)
 
-	var/obj/item/implant/explosive/E = new/obj/item/implant/explosive(user)
-	E.imp_in = user
-	E.implanted = TRUE
 	user.update_icons()
