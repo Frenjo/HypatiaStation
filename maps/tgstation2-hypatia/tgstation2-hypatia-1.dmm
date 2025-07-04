@@ -1840,13 +1840,12 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "aHy" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Firefighting Equipment";
-	req_access = list(12)
-	},
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock west"
+	},
+/obj/machinery/door/airlock{
+	name = "Firefighting Equipment"
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
@@ -12714,14 +12713,13 @@
 /turf/open/floor/tiled/white,
 /area/station/research/hallway)
 "eua" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Firefighting Equipment";
-	req_access = list(12)
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock south"
+	},
+/obj/machinery/door/airlock{
+	name = "Firefighting Equipment"
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
@@ -12959,13 +12957,12 @@
 	},
 /area/station/medical/surgery/one)
 "ezn" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Firefighting Equipment";
-	req_access = list(12)
-	},
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock west"
+	},
+/obj/machinery/door/airlock{
+	name = "Firefighting Equipment"
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
@@ -15347,13 +15344,13 @@
 	pixel_y = 32
 	},
 /obj/structure/stool/bed/chair/office/light,
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/light/small/emergency{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 5;
@@ -19489,15 +19486,15 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/locker_room)
 "gJw" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/tank/air{
 	dir = 1
 	},
 /obj/machinery/camera/motion{
 	c_tag = "Bunker Motion Sensor";
 	dir = 4
+	},
+/obj/machinery/light/small/emergency{
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 5;
@@ -20882,10 +20879,10 @@
 /turf/closed/wall/steel,
 /area/station/hallway/secondary/escape)
 "hkR" = (
-/obj/machinery/light/small{
+/obj/structure/stool,
+/obj/machinery/light/small/emergency{
 	dir = 4
 	},
-/obj/structure/stool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "hkU" = (
@@ -24832,7 +24829,7 @@
 /area/station/crew/dormitories/toilet)
 "izn" = (
 /obj/structure/stool,
-/obj/machinery/light/small{
+/obj/machinery/light/small/emergency{
 	dir = 4
 	},
 /turf/open/floor/plating/metal,
@@ -34833,10 +34830,10 @@
 	},
 /area/station/engineering/foyer)
 "meL" = (
-/obj/machinery/light/small{
+/obj/structure/stool,
+/obj/machinery/light/small/emergency{
 	dir = 1
 	},
-/obj/structure/stool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "meQ" = (
@@ -45376,8 +45373,8 @@
 /turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "pEX" = (
-/obj/machinery/light/small,
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light/small/emergency,
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/port)
 "pFj" = (
@@ -45970,7 +45967,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/emergency{
 	dir = 8
 	},
 /turf/open/floor/plating/metal,
@@ -46509,9 +46506,6 @@
 /turf/open/floor/reinforced,
 /area/station/research/xenobiology)
 "qfg" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/structure/closet/crate/bin{
 	pixel_y = 12
 	},
@@ -46519,6 +46513,9 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/machinery/light/small/emergency{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 5;
@@ -47696,13 +47693,13 @@
 /turf/open/floor/reinforced/oxygen,
 /area/station/engineering/atmospherics)
 "qzF" = (
-/obj/machinery/light/small,
 /obj/item/storage/toolbox/mechanical{
 	pixel_y = 5
 	},
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
+/obj/machinery/light/small/emergency,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -49441,7 +49438,7 @@
 /obj/effect/landmark{
 	name = "blobstart"
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/emergency{
 	dir = 8
 	},
 /turf/open/floor/plating/metal,
@@ -52744,14 +52741,13 @@
 /turf/open/floor/circuit_grid/blue,
 /area/turret_protected/ai_chamber)
 "sgl" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Firefighting Equipment";
-	req_access = list(12)
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock south"
+	},
+/obj/machinery/door/airlock{
+	name = "Firefighting Equipment"
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
@@ -118402,8 +118398,8 @@ uiD
 pUk
 rjt
 rjt
-pUk
 rjt
+pUk
 rjt
 khY
 iEZ
