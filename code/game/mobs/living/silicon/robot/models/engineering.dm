@@ -7,7 +7,7 @@
 
 	basic_modules = list(
 		/obj/item/flash,
-		/obj/item/extinguisher,
+		/obj/item/fire_extinguisher,
 		/obj/item/robot_module/sight/meson,
 		/obj/item/rcd/borg,
 		/obj/item/weldingtool/largetank,

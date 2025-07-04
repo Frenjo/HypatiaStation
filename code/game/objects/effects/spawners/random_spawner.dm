@@ -114,7 +114,7 @@
 		prob(2); /obj/effect/random_spawner/technology_scanner, \
 		prob(1); /obj/item/package_wrap, \
 		prob(2); /obj/effect/random_spawner/bomb_supply, \
-		prob(1); /obj/item/extinguisher, \
+		prob(1); /obj/item/fire_extinguisher, \
 		prob(1); /obj/item/clothing/gloves/fyellow, \
 		prob(3); /obj/item/stack/cable_coil, \
 		prob(2); /obj/effect/random_spawner/toolbox, \

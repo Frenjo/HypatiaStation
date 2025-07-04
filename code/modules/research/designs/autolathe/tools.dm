@@ -55,7 +55,7 @@
 /datum/design/autolathe/extinguisher
 	name = "Fire Extinguisher"
 	materials = alist(/decl/material/steel = 90)
-	build_path = /obj/item/extinguisher
+	build_path = /obj/item/fire_extinguisher
 
 // Miscellaneous
 /datum/design/autolathe/kitchen_knife

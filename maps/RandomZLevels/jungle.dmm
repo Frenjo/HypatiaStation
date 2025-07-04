@@ -137,7 +137,7 @@
 "cG" = (/turf/open/jungle/impenetrable,/area/jungle)
 "cH" = (/turf/open/jungle/rock,/area/jungle)
 "cI" = (/obj/structure/largecrate,/turf/open/jungle/clear,/area/jungle)
-"cJ" = (/obj/structure/closet/crate/secure/gear,/obj/item/extinguisher,/obj/item/minihoe,/turf/open/jungle/clear,/area/jungle)
+"cJ" = (/obj/structure/closet/crate/secure/gear,/obj/item/fire_extinguisher,/obj/item/minihoe,/turf/open/jungle/clear,/area/jungle)
 "cK" = (/turf/open/jungle/clear,/area/jungle)
 "cL" = (/obj/effect/landmark/river_waypoint,/turf/open/jungle/water/deep,/area/jungle)
 "cM" = (/turf/open/jungle,/area/jungle)

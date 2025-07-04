@@ -5294,7 +5294,7 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/supply/centcom)
 "AH" = (
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /turf/open/floor{
 	icon_state = "redyellowfull"
 	},
@@ -5369,7 +5369,7 @@
 "Ba" = (
 /obj/structure/rack,
 /obj/item/crowbar,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
 "Bd" = (

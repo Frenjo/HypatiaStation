@@ -3074,7 +3074,7 @@
 /turf/open/floor/tiled/freezer,
 /area/station/crew/locker_room/toilet)
 "bge" = (
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/port)
 "bgy" = (
@@ -26651,8 +26651,8 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/item/extinguisher,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
+/obj/item/fire_extinguisher,
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
@@ -27485,7 +27485,7 @@
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/tank/oxygen,
 /obj/item/clothing/mask/gas,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plating/metal,
@@ -33827,7 +33827,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "lLb" = (
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "lLq" = (
@@ -35134,7 +35134,7 @@
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/tank/oxygen,
 /obj/item/clothing/mask/gas,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/clothing/glasses/meson,
 /obj/item/flashlight,
@@ -44698,7 +44698,7 @@
 "puJ" = (
 /obj/structure/table,
 /obj/item/storage/box/syringes,
-/obj/item/extinguisher/mini,
+/obj/item/fire_extinguisher/mini,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -45550,7 +45550,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
@@ -47024,7 +47024,7 @@
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/box/lights/mixed,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/starboard)
 "qlI" = (
@@ -52833,7 +52833,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/flashlight,
 /turf/open/floor/plating/metal,
@@ -62470,7 +62470,7 @@
 /area/station/hallway/primary/central)
 "vQb" = (
 /obj/structure/rack,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/storage/belt/utility,
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plating/metal,
@@ -63344,7 +63344,7 @@
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/tank/oxygen,
 /obj/item/clothing/mask/gas,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/clothing/glasses/meson,
 /obj/effect/decal/floor/industrial/warning/border{
@@ -65801,7 +65801,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/flashlight,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
@@ -67100,7 +67100,7 @@
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/tank/oxygen,
 /obj/item/clothing/mask/gas,
-/obj/item/extinguisher,
+/obj/item/fire_extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plating/metal,

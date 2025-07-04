@@ -10,7 +10,7 @@
 	model_icon = "engineering"
 
 	basic_modules = list(
-		/obj/item/extinguisher/mini,
+		/obj/item/fire_extinguisher/mini,
 		/obj/item/weldingtool,
 		/obj/item/screwdriver,
 		/obj/item/wrench,

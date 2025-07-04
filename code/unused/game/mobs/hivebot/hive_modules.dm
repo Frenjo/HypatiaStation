@@ -20,7 +20,7 @@
 /obj/item/hive_module/standard/New()
 	..()
 	src.modules += new /obj/item/melee/baton(src)
-	src.modules += new /obj/item/extinguisher(src)
+	src.modules += new /obj/item/fire_extinguisher(src)
 	//var/obj/item/gun/mp5/M = new /obj/item/gun/mp5(src)
 	//M.weapon_lock = 0
 	//src.modules += M
@@ -28,7 +28,7 @@
 
 /obj/item/hive_module/engineering/New()
 
-	src.modules += new /obj/item/extinguisher(src)
+	src.modules += new /obj/item/fire_extinguisher(src)
 	src.modules += new /obj/item/screwdriver(src)
 	src.modules += new /obj/item/weldingtool(src)
 	src.modules += new /obj/item/wrench(src)

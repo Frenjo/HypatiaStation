@@ -8,7 +8,7 @@
 	// The shovel was removed due to the buffed drill.
 	basic_modules = list(
 		/obj/item/flash,
-		/obj/item/extinguisher/mini,
+		/obj/item/fire_extinguisher/mini,
 		/obj/item/robot_module/sight/meson,
 		/obj/item/storage/bag/ore,
 		/obj/item/pickaxe/drill/cyborg,

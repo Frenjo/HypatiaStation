@@ -1,4 +1,4 @@
-/obj/item/extinguisher
+/obj/item/fire_extinguisher
 	name = "fire extinguisher"
 	desc = "A traditional red fire extinguisher."
 	icon = 'icons/obj/items.dmi'
@@ -19,7 +19,7 @@
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
 
-/obj/item/extinguisher/mini
+/obj/item/fire_extinguisher/mini
 	name = "fire extinguisher"
 	desc = "A light and compact fibreglass-framed model fire extinguisher."
 	icon_state = "miniFE0"
@@ -32,26 +32,26 @@
 	max_water = 30
 	sprite_name = "miniFE"
 
-/obj/item/extinguisher/New()
+/obj/item/fire_extinguisher/New()
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
 	..()
 
-/obj/item/extinguisher/examine()
+/obj/item/fire_extinguisher/examine()
 	set src in usr
 
 	usr << "\icon[src] [name] contains [reagents.total_volume] units of water left!"
 	..()
 	return
 
-/obj/item/extinguisher/attack_self(mob/user)
+/obj/item/fire_extinguisher/attack_self(mob/user)
 	safety = !safety
 	src.icon_state = "[sprite_name][!safety]"
 	src.desc = "The safety is [safety ? "on" : "off"]."
 	user << "The safety is [safety ? "on" : "off"]."
 	return
 
-/obj/item/extinguisher/afterattack(atom/target, mob/user , flag)
+/obj/item/fire_extinguisher/afterattack(atom/target, mob/user , flag)
 	//TODO; Add support for reagents in water.
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(src, target) <= 1)
 		var/obj/o = target

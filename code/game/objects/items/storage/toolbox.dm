@@ -26,7 +26,7 @@
 
 	starts_with = list(
 		/obj/item/crowbar/red,
-		/obj/item/extinguisher/mini,
+		/obj/item/fire_extinguisher/mini,
 		/obj/item/radio
 	)
 
