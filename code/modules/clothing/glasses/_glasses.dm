@@ -31,16 +31,16 @@
 		if(active)
 			icon_state = "degoggles"
 			user.update_inv_glasses()
-			to_chat(user, "You deactivate the optical matrix on the [src].")
+			to_chat(user, "You deactivate the optical matrix on \the [src].")
 		else
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			to_chat(user, "You activate the optical matrix on the [src].")
+			to_chat(user, "You activate the optical matrix on \the [src].")
 		active = !active
 
 
 /obj/item/clothing/glasses/meson
-	name = "Optical Meson Scanner"
+	name = "optical meson scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	item_state = "glasses"
@@ -56,12 +56,12 @@
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
-	desc = "Optical Meson Scanner with prescription lenses."
+	desc = "An optical meson scanner with prescription lenses."
 	prescription = TRUE
 
 
 /obj/item/clothing/glasses/science
-	name = "Science Goggles"
+	name = "science goggles"
 	desc = "The goggles do nothing!"
 	icon_state = "purple"
 	item_state = "glasses"
@@ -74,7 +74,7 @@
 
 
 /obj/item/clothing/glasses/night
-	name = "Night Vision Goggles"
+	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
@@ -101,7 +101,7 @@
 
 
 /obj/item/clothing/glasses/material
-	name = "Optical Material Scanner"
+	name = "optical material scanner"
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
@@ -112,36 +112,36 @@
 
 
 /obj/item/clothing/glasses/regular
-	name = "Prescription Glasses"
+	name = "prescription glasses"
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state = "glasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/regular/hipster
-	name = "Prescription Glasses"
+	name = "prescription glasses"
 	desc = "Made by Uncool. Co."
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
 
 
 /obj/item/clothing/glasses/threedglasses
-	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
 	name = "3D glasses"
+	desc = "A long time ago, people used these glasses to makes images from screens three-dimensional."
 	icon_state = "3d"
 	item_state = "3d"
 
 
 /obj/item/clothing/glasses/gglasses
-	name = "Green Glasses"
+	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
 
 
 /obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	name = "sunglasses"
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	icon_state = "sun"
 	item_state = "sunglasses"
 	darkness_view = -1
@@ -213,7 +213,7 @@
 
 
 /obj/item/clothing/glasses/thermal
-	name = "Optical Thermal Scanner"
+	name = "optical thermal scanner"
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state = "glasses"
@@ -230,7 +230,7 @@
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/M = loc
-		to_chat(M, SPAN_WARNING("The Optical Thermal Scanner overloads and blinds you!"))
+		to_chat(M, SPAN_WARNING("\The [src] overloads and blinds you!"))
 		if(M.glasses == src)
 			M.eye_blind = 3
 			M.eye_blurry = 5
@@ -240,28 +240,28 @@
 	..()
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
-	name = "Optical Meson Scanner"
+	name = "optical meson scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	icon_action_button = "action_meson"
 	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 
 /obj/item/clothing/glasses/thermal/monocle
-	name = "Thermoncle"
+	name = "thermoncle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
 	item_flags = null //doesn't protect eyes because it's a monocle, duh
 	toggleable = FALSE
 
 /obj/item/clothing/glasses/thermal/eyepatch
-	name = "Optical Thermal Eyepatch"
+	name = "optical thermal eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	toggleable = FALSE
 
 /obj/item/clothing/glasses/thermal/jensen
-	name = "Optical Thermal Implants"
+	name = "optical thermal implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
