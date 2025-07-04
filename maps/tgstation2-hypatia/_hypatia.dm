@@ -34,5 +34,5 @@
 // Just putting this here since it's the best place I can think of.
 /obj/structure/sign/hypatia_plaque
 	name = "\improper Commissioning Plaque"
-	desc = "NSS Hypatia\nA retrofitted G4407-series TG4407-type 'Box'-class station.\nCommissioned 2555."
+	desc = "NSS Hypatia\nA retrofitted G4407-series TG4407-type 'Box'-class station.\nDesigned 2554, commissioned 2555."
 	icon_state = "goonplaque"
