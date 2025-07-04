@@ -732,9 +732,9 @@
 /area/station/medical/chemistry)
 "anu" = (
 /obj/structure/closet/crate,
-/obj/item/multitool,
-/obj/item/multitool,
-/obj/item/assembly/prox_sensor,
+/obj/effect/random_spawner/tool,
+/obj/effect/random_spawner/tool,
+/obj/effect/random_spawner/bomb_supply,
 /obj/item/flashlight,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
@@ -3073,7 +3073,10 @@
 /turf/open/floor/tiled/freezer,
 /area/station/crew/locker_room/toilet)
 "bge" = (
-/obj/item/fire_extinguisher,
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/port)
 "bgy" = (
@@ -8709,13 +8712,12 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/bridge)
 "cWR" = (
-/obj/structure/rack{
-	dir = 1
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = 26
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/glasses/meson,
-/turf/open/floor/plating/metal,
-/area/station/maintenance/aft/starboard_central)
+/turf/open/floor/tiled/grey,
+/area/station/storage/tools/primary)
 "cWZ" = (
 /obj/structure/closet/l3/scientist,
 /obj/structure/window/reinforced{
@@ -9598,7 +9600,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/starboard)
 "doH" = (
-/obj/structure/closet,
+/obj/structure/closet/fire_safety/maintenance,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "doV" = (
@@ -11126,7 +11128,7 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/smes/supermatter)
 "dOy" = (
-/obj/structure/closet,
+/obj/structure/closet/fire_safety/maintenance,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "dOC" = (
@@ -11235,10 +11237,7 @@
 	},
 /area/station/engineering/hallway/main)
 "dQI" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
+/obj/effect/random_spawner/toolbox,
 /turf/open/floor/plating/metal/airless,
 /area/space)
 "dQU" = (
@@ -12111,6 +12110,7 @@
 	dir = 1
 	},
 /obj/item/storage/box/lights/mixed,
+/obj/item/flashlight,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "efj" = (
@@ -14855,7 +14855,6 @@
 /area/station/storage/tech)
 "fgz" = (
 /obj/structure/table,
-/obj/item/t_scanner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "fgG" = (
@@ -16541,7 +16540,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/item/flashlight,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "fNt" = (
@@ -17011,7 +17010,6 @@
 /area/station/crew/bar)
 "fTN" = (
 /obj/structure/table,
-/obj/item/t_scanner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "fUn" = (
@@ -27455,12 +27453,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/tank/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/fire_extinguisher,
-/obj/item/clothing/head/hardhat/red,
-/obj/item/clothing/glasses/meson,
+/obj/effect/random_spawner/technology_scanner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "jtN" = (
@@ -33788,7 +33781,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "lLb" = (
-/obj/item/fire_extinguisher,
+/obj/effect/random_spawner/tech_supply,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "lLq" = (
@@ -34073,7 +34066,6 @@
 	name = "north bump";
 	pixel_y = 24
 	},
-/obj/machinery/space_heater,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "lPG" = (
@@ -35092,14 +35084,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/tank/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/fire_extinguisher,
-/obj/item/clothing/head/hardhat/red,
-/obj/item/clothing/glasses/meson,
-/obj/item/flashlight,
-/obj/item/flashlight,
+/obj/effect/random_spawner/technology_scanner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "miT" = (
@@ -39661,7 +39646,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/foyer)
 "nJf" = (
-/obj/item/screwdriver,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
 "nJo" = (
@@ -46922,7 +46907,10 @@
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/box/lights/mixed,
-/obj/item/fire_extinguisher,
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/starboard)
 "qlI" = (
@@ -52717,9 +52705,8 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/fire_extinguisher,
-/obj/item/clothing/head/hardhat/red,
-/obj/item/flashlight,
+/obj/effect/random_spawner/tech_supply,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "sfV" = (
@@ -63218,21 +63205,13 @@
 /turf/open/floor/tiled/white,
 /area/station/research/telescience)
 "wbA" = (
-/obj/structure/rack{
-	dir = 1
-	},
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/tank/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/fire_extinguisher,
-/obj/item/clothing/head/hardhat/red,
-/obj/item/clothing/glasses/meson,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 9
 	},
+/obj/structure/closet/fire_safety/maintenance,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "wbL" = (
@@ -65680,7 +65659,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/fire_extinguisher,
+/obj/effect/random_spawner/tech_supply,
 /obj/item/flashlight,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
@@ -66663,7 +66642,7 @@
 /area/external/prison/cell_block/A)
 "xlb" = (
 /obj/structure/table,
-/obj/item/crowbar,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "xlc" = (
@@ -66969,15 +66948,7 @@
 /turf/open/floor/tiled/dark,
 /area/station/security/warden)
 "xpf" = (
-/obj/structure/rack{
-	dir = 1
-	},
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/tank/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/item/fire_extinguisher,
-/obj/item/clothing/head/hardhat/red,
-/obj/item/clothing/glasses/meson,
+/obj/structure/table,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "xpm" = (
@@ -67548,9 +67519,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/genetics)
 "xyr" = (
-/obj/structure/table,
-/obj/item/t_scanner,
-/obj/item/flashlight,
+/obj/structure/closet/fire_safety/maintenance,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "xyx" = (
@@ -68350,6 +68319,10 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/dark,
 /area/station/security/warden)
+"xND" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/starboard_central)
 "xNE" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -69181,7 +69154,10 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "ycs" = (
-/obj/structure/closet,
+/obj/structure/rack{
+	dir = 1
+	},
+/obj/effect/random_spawner/technology_scanner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "ycy" = (
@@ -89075,7 +89051,7 @@ xFs
 wGf
 fLu
 lEa
-fPO
+cWR
 jUq
 gzI
 gVD
@@ -114051,7 +114027,7 @@ rfe
 lkw
 rom
 iUX
-cWR
+xyr
 noC
 sWm
 sWm
@@ -114565,7 +114541,7 @@ ois
 qPG
 sxe
 bVS
-jaI
+xND
 okl
 uIa
 mhQ

@@ -93,14 +93,16 @@
 		/obj/item/clothing/head/hardhat/red
 	)
 
-/obj/structure/closet/fire_safety/full
+// This variant only spawns in maintenance firefighting equipment rooms.
+/obj/structure/closet/fire_safety/maintenance
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
 		/obj/item/flashlight,
 		/obj/item/tank/oxygen/red,
 		/obj/item/fire_extinguisher,
-		/obj/item/clothing/head/hardhat/red
+		/obj/item/clothing/head/hardhat/red,
+		/obj/item/clothing/glasses/meson
 	)
 
 /obj/structure/closet/fire_safety/update_icon()
