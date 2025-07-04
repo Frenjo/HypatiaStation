@@ -3854,9 +3854,8 @@
 /turf/closed/wall/steel,
 /area/station/engineering/storage)
 "btU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 5;
@@ -5482,16 +5481,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/security/main)
-"bTj" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Hydrogen Tank Out"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "bTm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/standard/apc{
@@ -10529,16 +10518,6 @@
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
-"dDj" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Hydrogen Tank In"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 4
-	},
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "dDt" = (
 /obj/structure/sign/fire{
 	pixel_y = -32
@@ -14499,9 +14478,8 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/cloning)
 "eZa" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/closed/wall/reinforced,
 /area/station/crew/bunker)
@@ -17303,7 +17281,7 @@
 "fXR" = (
 /obj/structure/grille,
 /obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible{
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
 /turf/space,
@@ -20600,12 +20578,10 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/surgery/one)
 "hgB" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/meter{
-	name = "Air Reserve"
-	},
+/obj/machinery/meter,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -30492,11 +30468,7 @@
 /area/station/hallway/primary/central)
 "kyu" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/supply,
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "dloop_atm_meter";
-	name = "Distribution Loop"
-	},
+/obj/machinery/meter,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "kyy" = (
@@ -33523,14 +33495,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/escape)
-"lFD" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Oxygen Tank In"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "lFP" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -35326,14 +35290,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/shuttle/blue,
 /area/shuttle/engineering/station)
-"mmh" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Oxygen Tank Out"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "mmj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36733,16 +36689,6 @@
 	},
 /turf/open/floor/tiled/white,
 /area/station/medical/aft)
-"mJC" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Plasma Tank In"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 4
-	},
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "mJF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -37827,14 +37773,6 @@
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
-"ndc" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Nitrogen Tank In"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/green,
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "ndd" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -38242,14 +38180,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
-"nkw" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Nitrogen Tank Out"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "nkK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -38775,16 +38705,6 @@
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
-"nrS" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "mair_in_meter";
-	name = "Mixed Air Tank In"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "nrX" = (
 /obj/structure/rack,
 /obj/item/tank/oxygen,
@@ -38925,16 +38845,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/open/floor/tiled/dark,
 /area/turret_protected/cyborg_station)
-"nuU" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Mix Tank In"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 4
-	},
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "nvh" = (
 /obj/structure/cable{
 	d2 = 4;
@@ -39914,9 +39824,8 @@
 /turf/open/floor/tiled/white,
 /area/station/research/toxins/mixing)
 "nNy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/closed/wall/reinforced,
 /area/space)
@@ -42205,12 +42114,8 @@
 /area/station/engineering/engine/singularity)
 "oCW" = (
 /obj/structure/grille,
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "mair_out_meter";
-	name = "Mixed Air Tank Out"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/obj/machinery/meter,
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "oDc" = (
@@ -42514,10 +42419,8 @@
 /area/station/crew/chapel/main)
 "oIK" = (
 /obj/structure/grille,
-/obj/machinery/meter{
-	name = "Carbon Dioxide Tank In"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/green,
+/obj/machinery/meter,
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "oIZ" = (
@@ -42808,10 +42711,8 @@
 /area/station/engineering/engine/singularity)
 "oPf" = (
 /obj/structure/grille,
-/obj/machinery/meter{
-	name = "Carbon Dioxide Tank Out"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/meter,
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "oPo" = (
@@ -48762,12 +48663,10 @@
 /area/station/medical/virology)
 "qRZ" = (
 /obj/structure/grille,
-/obj/machinery/meter{
-	name = "Mix Tank Out"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/purple{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "qSg" = (
@@ -51343,16 +51242,6 @@
 "rHw" = (
 /turf/closed/wall/reinforced,
 /area/station/storage/tools/primary)
-"rHC" = (
-/obj/structure/grille,
-/obj/machinery/meter{
-	name = "Nitrous Oxide Tank Out"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/turf/closed/wall/reinforced,
-/area/station/engineering/atmospherics)
 "rIa" = (
 /obj/structure/table,
 /obj/item/book/manual/engineering_construction,
@@ -52582,12 +52471,10 @@
 /area/station/research/robotics/lab)
 "sct" = (
 /obj/structure/grille,
-/obj/machinery/meter{
-	name = "Plasma Tank Out"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "scx" = (
@@ -57747,12 +57634,10 @@
 /area/station/command/office/rd)
 "uby" = (
 /obj/structure/grille,
-/obj/machinery/meter{
-	name = "Nitrous Oxide Tank In"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "ubT" = (
@@ -59794,14 +59679,13 @@
 	name = "east bump";
 	pixel_x = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
-	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 5;
@@ -63722,16 +63606,15 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "wjT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
-	},
 /obj/machinery/power/terminal{
 	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 5;
@@ -66192,14 +66075,10 @@
 	dir = 1;
 	on = 1
 	},
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "wloop_atm_meter";
-	name = "Waste Loop"
-	},
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
 	dir = 1
 	},
+/obj/machinery/meter,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "xaK" = (
@@ -68243,7 +68122,7 @@
 /area/station/cargo/bay)
 "xHS" = (
 /obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible{
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
 /turf/space,
@@ -100318,7 +100197,7 @@ pWS
 tyr
 vry
 fSy
-lFD
+oIK
 qzC
 rWX
 rWX
@@ -100832,7 +100711,7 @@ sWR
 vsb
 tJe
 kSK
-mmh
+oPf
 qRt
 rWX
 rWX
@@ -101346,7 +101225,7 @@ eGu
 hQZ
 iOP
 fSy
-ndc
+oIK
 rmN
 tqG
 tqG
@@ -101860,7 +101739,7 @@ rmj
 iyz
 oAI
 kSK
-nkw
+oPf
 rBv
 tqG
 tqG
@@ -102374,7 +102253,7 @@ sWR
 knr
 gjh
 ljX
-nrS
+oCW
 elo
 gVF
 gVF
@@ -105440,17 +105319,17 @@ ciU
 mLM
 qRZ
 uOP
-nuU
-mLM
-bTj
-uOP
-dDj
+uby
 mLM
 sct
 uOP
-mJC
+uby
 mLM
-rHC
+sct
+uOP
+uby
+mLM
+sct
 uOP
 uby
 mLM
