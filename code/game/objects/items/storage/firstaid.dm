@@ -60,7 +60,7 @@
 
 	starts_with = list(
 		/obj/item/health_analyser,
-		/obj/item/reagent_holder/syringe/antitoxin = 3,
+		/obj/item/reagent_holder/syringe/preloaded/antitoxin = 3,
 		/obj/item/reagent_holder/pill/antitox = 3
 	)
 
@@ -73,7 +73,7 @@
 	starts_with = list(
 		/obj/item/health_analyser,
 		/obj/item/reagent_holder/hypospray/autoinjector,
-		/obj/item/reagent_holder/syringe/inaprovaline,
+		/obj/item/reagent_holder/syringe/preloaded/inaprovaline,
 		/obj/item/reagent_holder/pill/dexalin = 4
 	)
 
@@ -101,8 +101,8 @@
 	starts_with = list(
 		/obj/item/health_analyser,
 		/obj/item/reagent_holder/hypospray/autoinjector,
-		/obj/item/reagent_holder/syringe/hyronalin,
-		/obj/item/reagent_holder/syringe/antitoxin,
+		/obj/item/reagent_holder/syringe/preloaded/hyronalin,
+		/obj/item/reagent_holder/syringe/preloaded/antitoxin,
 		/obj/item/reagent_holder/pill/hyronalin,
 		/obj/item/reagent_holder/pill/antitox,
 		/obj/item/reagent_holder/pill/arithracaridine

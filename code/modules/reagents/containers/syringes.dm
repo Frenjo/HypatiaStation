@@ -258,7 +258,7 @@
 
 
 /obj/item/reagent_holder/ld50_syringe
-	name = "Lethal Injection Syringe"
+	name = "lethal injection syringe"
 	desc = "A syringe used for lethal injections."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
@@ -369,97 +369,46 @@
 		icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 
-////////////////////////////////////////////////////////////////////////////////
-/// Syringes. END
-////////////////////////////////////////////////////////////////////////////////
-
-/obj/item/reagent_holder/syringe/inaprovaline
-	name = "Syringe (inaprovaline)"
-	desc = "Contains inaprovaline - used to stabilize patients."
-
-/obj/item/reagent_holder/syringe/inaprovaline/New()
-	..()
-	reagents.add_reagent("inaprovaline", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-
-/obj/item/reagent_holder/syringe/antitoxin
-	name = "Syringe (anti-toxin)"
-	desc = "Contains anti-toxins."
-
-/obj/item/reagent_holder/syringe/antitoxin/New()
-	..()
-	reagents.add_reagent("anti_toxin", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-
-/obj/item/reagent_holder/syringe/antiviral
-	name = "Syringe (spaceacillin)"
-	desc = "Contains antiviral agents."
-
-/obj/item/reagent_holder/syringe/antiviral/New()
-	..()
-	reagents.add_reagent("spaceacillin", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-
-/obj/item/reagent_holder/ld50_syringe/choral
-
 /obj/item/reagent_holder/ld50_syringe/choral/New()
-	..()
+	. = ..()
 	reagents.add_reagent("chloralhydrate", 50)
 	mode = SYRINGE_INJECT
 	update_icon()
 
+////////////////////////////////////////////////////////////////////////////////
+/// Syringes. END
+////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/reagent_holder/syringe/preloaded
+	var/starting_reagent_id = null
+	var/starting_reagent_amount = 15
+
+/obj/item/reagent_holder/syringe/preloaded/New()
+	. = ..()
+	reagents.add_reagent(starting_reagent_id, starting_reagent_amount)
+	mode = SYRINGE_INJECT
+	update_icon()
+
+/obj/item/reagent_holder/syringe/preloaded/inaprovaline
+	name = "syringe (inaprovaline)"
+	desc = "Contains inaprovaline - used to stabilize patients."
+	starting_reagent_id = "inaprovaline"
+
+/obj/item/reagent_holder/syringe/preloaded/antitoxin
+	name = "syringe (anti-toxin)"
+	desc = "Contains anti-toxins."
+	starting_reagent_id = "anti_toxin"
+
+/obj/item/reagent_holder/syringe/preloaded/antiviral
+	name = "syringe (spaceacillin)"
+	desc = "Contains antiviral agents."
+	starting_reagent_id = "spaceacillin"
 
 // Added to go with the radiation first aid kit. -Frenjo
-/obj/item/reagent_holder/syringe/hyronalin
-	name = "Syringe (hyronalin)"
+/obj/item/reagent_holder/syringe/preloaded/hyronalin
+	name = "syringe (hyronalin)"
 	desc = "Contains hyronalin - used to treat radiation."
-
-/obj/item/reagent_holder/syringe/hyronalin/New()
-	..()
-	reagents.add_reagent("hyronalin", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-//Robot syringes
-//Not special in any way, code wise. They don't have added variables or procs.
-/obj/item/reagent_holder/syringe/robot/antitoxin
-	name = "Syringe (anti-toxin)"
-	desc = "Contains anti-toxins."
-
-/obj/item/reagent_holder/syringe/robot/antitoxin/New()
-	..()
-	reagents.add_reagent("anti_toxin", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-
-/obj/item/reagent_holder/syringe/robot/inoprovaline
-	name = "Syringe (inoprovaline)"
-	desc = "Contains inaprovaline - used to stabilize patients."
-
-/obj/item/reagent_holder/syringe/robot/inoprovaline/New()
-	..()
-	reagents.add_reagent("inaprovaline", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-
-/obj/item/reagent_holder/syringe/robot/mixed
-	name = "Syringe (mixed)"
-	desc = "Contains inaprovaline & anti-toxins."
-
-/obj/item/reagent_holder/syringe/robot/mixed/New()
-	..()
-	reagents.add_reagent("inaprovaline", 7)
-	reagents.add_reagent("anti_toxin", 8)
-	mode = SYRINGE_INJECT
-	update_icon()
+	starting_reagent_id = "hyronalin"
 
 #undef SYRINGE_DRAW
 #undef SYRINGE_INJECT

@@ -14,7 +14,7 @@
 	products = list(
 		/obj/item/reagent_holder/glass/bottle/antitoxin = 4, /obj/item/reagent_holder/glass/bottle/inaprovaline = 4,
 		/obj/item/reagent_holder/glass/bottle/stoxin = 4, /obj/item/reagent_holder/glass/bottle/toxin = 4,
-		/obj/item/reagent_holder/syringe/antiviral = 4, /obj/item/reagent_holder/syringe = 12,
+		/obj/item/reagent_holder/syringe/preloaded/antiviral = 4, /obj/item/reagent_holder/syringe = 12,
 		/obj/item/health_analyser = 5, /obj/item/reagent_holder/glass/beaker = 4, /obj/item/reagent_holder/dropper = 2,
 		/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2
 	)
@@ -39,7 +39,8 @@
 		/obj/item/health_analyser = 1
 	)
 	contraband = list(
-		/obj/item/reagent_holder/syringe/antitoxin = 4, /obj/item/reagent_holder/syringe/antiviral = 4, /obj/item/reagent_holder/pill/tox = 1
+		/obj/item/reagent_holder/syringe/preloaded/antitoxin = 4, /obj/item/reagent_holder/syringe/preloaded/antiviral = 4,
+		/obj/item/reagent_holder/pill/tox = 1
 	)
 
 	ad_list = list(
@@ -57,7 +58,8 @@
 	req_access = list(ACCESS_MEDICAL)
 
 	products = list(
-		/obj/item/reagent_holder/hypospray/autoinjector = 5, /obj/item/reagent_holder/syringe/antitoxin = 3, /obj/item/stack/medical/bruise_pack = 3,
-		/obj/item/stack/medical/ointment = 3, /obj/item/health_analyser = 3
+		/obj/item/reagent_holder/hypospray/autoinjector = 5, /obj/item/reagent_holder/syringe/preloaded/antitoxin = 3,
+		/obj/item/stack/medical/bruise_pack = 3, /obj/item/stack/medical/ointment = 3,
+		/obj/item/health_analyser = 3
 	)
 	contraband = list(/obj/item/reagent_holder/pill/tox = 3)

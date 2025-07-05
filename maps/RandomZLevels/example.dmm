@@ -58,7 +58,7 @@
 "bf" = (/obj/structure/table,/obj/item/reagent_holder/glass/beaker,/turf/open/floor/tiled/white,/area/away_mission/example)
 "bg" = (/obj/structure/table,/obj/item/folder/white,/obj/item/pen/red,/turf/open/floor/tiled/white,/area/away_mission/example)
 "bh" = (/obj/machinery/light,/turf/open/floor/tiled/white,/area/away_mission/example)
-"bi" = (/obj/structure/table,/obj/item/clipboard,/obj/item/reagent_holder/syringe/antiviral,/turf/open/floor/tiled/white,/area/away_mission/example)
+"bi" = (/obj/structure/table,/obj/item/clipboard,/obj/item/reagent_holder/syringe/preloaded/antiviral,/turf/open/floor/tiled/white,/area/away_mission/example)
 "bj" = (/obj/machinery/light{dir = 8},/turf/open/floor,/area/away_mission/example)
 "bk" = (/obj/effect/decal/floor/coloured/yellow/corner{dir = 4},/turf/open/floor,/area/away_mission/example)
 "bl" = (/obj/effect/decal/floor/coloured/yellow{dir = 1},/turf/open/floor,/area/away_mission/example)

@@ -3370,7 +3370,7 @@
 	pixel_x = 7;
 	pixel_y = 4
 	},
-/obj/item/reagent_holder/syringe/inaprovaline{
+/obj/item/reagent_holder/syringe/preloaded/inaprovaline{
 	pixel_y = -3
 	},
 /obj/effect/decal/floor/coloured/light_red/corner{
@@ -23145,7 +23145,7 @@
 "hWK" = (
 /obj/structure/table,
 /obj/item/reagent_holder/spray/cleaner,
-/obj/item/reagent_holder/syringe/antiviral,
+/obj/item/reagent_holder/syringe/preloaded/antiviral,
 /obj/machinery/light,
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_x = -30
@@ -48549,15 +48549,15 @@
 /area/station/maintenance/central)
 "qPP" = (
 /obj/structure/table,
-/obj/item/reagent_holder/syringe/inaprovaline{
+/obj/item/reagent_holder/syringe/preloaded/inaprovaline{
 	pixel_x = 1;
 	pixel_y = -2
 	},
-/obj/item/reagent_holder/syringe/inaprovaline{
+/obj/item/reagent_holder/syringe/preloaded/inaprovaline{
 	pixel_x = 1;
 	pixel_y = 6
 	},
-/obj/item/reagent_holder/syringe/inaprovaline{
+/obj/item/reagent_holder/syringe/preloaded/inaprovaline{
 	pixel_y = 2
 	},
 /obj/item/stack/medical/ointment{
