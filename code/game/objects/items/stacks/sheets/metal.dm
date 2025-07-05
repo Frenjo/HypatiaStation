@@ -42,7 +42,8 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/steel_recipes, list(
 		new /datum/stack_recipe("dark chapel floor tiles", /obj/item/stack/tile/metal/dark_chapel, 1, 4, 20),
 		new /datum/stack_recipe("freezer floor tiles", /obj/item/stack/tile/metal/freezer, 1, 4, 20),
 		new /datum/stack_recipe("showroom floor tiles", /obj/item/stack/tile/metal/showroom, 1, 4, 20),
-		new /datum/stack_recipe("hydroponics floor tiles", /obj/item/stack/tile/metal/hydroponics, 1, 4, 20)
+		new /datum/stack_recipe("hydroponics floor tiles", /obj/item/stack/tile/metal/hydroponics, 1, 4, 20),
+		new /datum/stack_recipe("cafeteria floor tiles", /obj/item/stack/tile/metal/cafeteria, 1, 4, 20)
 	)),
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60),
 	null,

@@ -797,10 +797,7 @@
 "apW" = (
 /obj/structure/closet/secure/rd,
 /obj/effect/decal/floor/industrial/warning/border,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "aql" = (
 /obj/structure/stool/bed/chair,
@@ -1228,10 +1225,7 @@
 /obj/item/folder/white,
 /obj/item/clothing/glasses/welding/superior,
 /obj/effect/decal/floor/industrial/warning/corner,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "ayF" = (
 /obj/machinery/door/poddoor{
@@ -1376,10 +1370,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "aAd" = (
 /obj/structure/sign/nosmoking_2{
@@ -2280,10 +2271,7 @@
 "aQw" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "aQK" = (
 /obj/structure/disposalpipe/segment{
@@ -3040,10 +3028,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "beH" = (
 /obj/structure/cable{
@@ -3876,10 +3861,7 @@
 	pixel_x = 24;
 	throw_range = 15
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "btI" = (
 /obj/machinery/deployable/barrier,
@@ -3925,10 +3907,7 @@
 "buz" = (
 /obj/machinery/light,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "buA" = (
 /turf/open/floor/shuttle/blue,
@@ -4521,10 +4500,7 @@
 "bDV" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "bEu" = (
 /turf/open/floor/carpet,
@@ -4990,10 +4966,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen/fridge)
 "bJy" = (
 /obj/structure/sign/nosmoking_2{
@@ -7436,10 +7409,7 @@
 /area/station/hallway/primary/aft)
 "cyH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "cyM" = (
 /obj/structure/stool/bed/chair{
@@ -7473,18 +7443,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "cyR" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/decal/floor/industrial/warning/border,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "czi" = (
 /obj/structure/table/reinforced,
@@ -7790,10 +7754,7 @@
 /turf/open/floor/airless,
 /area/station/research/toxins/test_area)
 "cFG" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "cFI" = (
 /obj/machinery/atmospherics/mains_pipe/manifold/hidden{
@@ -7842,10 +7803,7 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "cGC" = (
 /obj/structure/table/woodentable,
@@ -7864,10 +7822,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "cHh" = (
 /obj/structure/disposalpipe/segment{
@@ -9185,10 +9140,7 @@
 	name = "north bump";
 	pixel_y = 24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "deW" = (
 /obj/structure/table,
@@ -10510,10 +10462,7 @@
 	layer = 4;
 	pixel_y = 32
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "dBY" = (
 /obj/structure/cable{
@@ -10656,10 +10605,7 @@
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "dEu" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "dEw" = (
 /turf/closed/wall/shuttle/corner/exterior/white/se,
@@ -10954,12 +10900,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/escape)
-"dKf" = (
-/obj/structure/table,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
-/area/station/crew/kitchen)
 "dKk" = (
 /obj/machinery/door/poddoor{
 	density = FALSE;
@@ -12154,10 +12094,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "edN" = (
 /obj/machinery/mech_bay_recharge_port,
@@ -13248,10 +13185,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "eCY" = (
 /obj/machinery/door/firedoor/border_only{
@@ -14609,10 +14543,7 @@
 	icon_state = "2-4"
 	},
 /obj/structure/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "fak" = (
 /obj/structure/extinguisher_cabinet{
@@ -14926,10 +14857,7 @@
 	name = "Scientist"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "ffZ" = (
 /obj/machinery/door/airlock/maintenance{
@@ -15231,10 +15159,7 @@
 "fml" = (
 /obj/structure/table,
 /obj/item/folder,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "fmm" = (
 /turf/closed/wall/reinforced,
@@ -16346,10 +16271,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "fIy" = (
 /obj/structure/window/reinforced{
@@ -17247,10 +17169,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "fWr" = (
 /obj/machinery/door/airlock/external{
@@ -17497,10 +17416,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "gaO" = (
 /obj/structure/disposalpipe/segment{
@@ -17626,10 +17542,7 @@
 "gdi" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "gdz" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -17802,10 +17715,7 @@
 /area/station/crew/locker_room)
 "ggx" = (
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "ggH" = (
 /obj/machinery/computer/scan_consolenew,
@@ -18140,10 +18050,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "glx" = (
 /obj/machinery/computer/card,
@@ -18245,10 +18152,7 @@
 	network = list("SS13","Medical");
 	pixel_y = -22
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "gnB" = (
 /obj/structure/table/woodentable,
@@ -18588,10 +18492,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -25
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "grT" = (
 /obj/machinery/suit_storage_unit/soghun,
@@ -19478,9 +19379,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 23
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "gGX" = (
 /obj/effect/decal/floor/industrial/warning/border{
@@ -19557,10 +19456,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock east"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "gIt" = (
 /obj/structure/cable{
@@ -19587,10 +19483,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "gIS" = (
 /obj/structure/rack,
@@ -19828,10 +19721,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "gMF" = (
 /obj/structure/disposalpipe/segment{
@@ -20462,10 +20352,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "haJ" = (
 /obj/machinery/camera{
@@ -20777,10 +20664,7 @@
 	name = "east bump";
 	pixel_x = 24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "hgQ" = (
 /obj/machinery/computer/crew,
@@ -21417,10 +21301,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "hsF" = (
 /obj/structure/cable{
@@ -21557,10 +21438,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "hud" = (
 /obj/structure/table,
@@ -21907,10 +21785,7 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 28
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "hBv" = (
 /obj/machinery/light{
@@ -22449,10 +22324,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "hJp" = (
 /obj/machinery/field_generator{
@@ -22543,10 +22415,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "hKI" = (
 /turf/open/floor/tiled/white,
@@ -23067,10 +22936,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "hSU" = (
 /obj/structure/cable{
@@ -24672,10 +24538,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "iua" = (
 /obj/structure/table/reinforced{
@@ -25094,10 +24957,7 @@
 /area/ai_monitored/storage/eva)
 "iAu" = (
 /obj/structure/stool,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "iAw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -25800,10 +25660,7 @@
 	name = "firelock north"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "iMB" = (
 /obj/structure/cable{
@@ -25883,9 +25740,7 @@
 /obj/item/reagent_holder/food/condiment/enzyme{
 	layer = 5
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "iOp" = (
 /obj/structure/cable{
@@ -26456,10 +26311,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "iXt" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -27004,10 +26856,7 @@
 	name = "north bump";
 	pixel_y = 24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "jhi" = (
 /obj/machinery/newscaster{
@@ -27422,10 +27271,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "jpb" = (
 /obj/machinery/air_alarm{
@@ -28445,9 +28291,7 @@
 	departmentType = 2;
 	pixel_x = 30
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "jMi" = (
 /obj/structure/sign/nosmoking_2{
@@ -28504,10 +28348,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "jNH" = (
 /obj/effect/window_spawner/reinforced,
@@ -29394,10 +29235,7 @@
 	name = "east bump";
 	pixel_x = 24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "kfC" = (
 /obj/structure/closet/wardrobe/robotics,
@@ -30294,10 +30132,7 @@
 "ksu" = (
 /obj/structure/stool,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "ksw" = (
 /obj/structure/window/reinforced,
@@ -30404,10 +30239,7 @@
 	name = "south bump";
 	pixel_y = -24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "ktA" = (
 /obj/structure/shuttle/engine/propulsion/burst/left{
@@ -30888,10 +30720,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "kCn" = (
 /obj/machinery/power/smes{
@@ -30976,10 +30805,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "kDz" = (
 /obj/effect/decal/floor/industrial/warning/border{
@@ -31474,10 +31300,7 @@
 /obj/effect/landmark/start{
 	name = "Scientist"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "kNs" = (
 /obj/effect/landmark{
@@ -33336,10 +33159,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "lyc" = (
 /obj/machinery/door/poddoor{
@@ -34049,10 +33869,7 @@
 /turf/open/floor/tiled/white,
 /area/station/research/telescience)
 "lLv" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "lLw" = (
 /turf/open/floor/tiled/dark,
@@ -35180,10 +34997,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "mha" = (
 /obj/structure/disposalpipe/segment{
@@ -35290,10 +35104,7 @@
 	},
 /obj/structure/table,
 /obj/item/storage/box/cups,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "mid" = (
 /obj/structure/table,
@@ -35328,10 +35139,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "miI" = (
 /obj/structure/rack{
@@ -35356,10 +35164,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "mjn" = (
 /obj/effect/decal/floor/industrial/warning/corner{
@@ -36091,10 +35896,7 @@
 	dir = 4;
 	pixel_x = 26
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "mvP" = (
 /obj/structure/cable{
@@ -36230,10 +36032,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "myj" = (
 /obj/structure/stool,
@@ -37364,10 +37163,7 @@
 /obj/machinery/faxmachine{
 	department = "Research Director"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "mQJ" = (
 /obj/structure/disposalpipe/segment{
@@ -37618,10 +37414,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "mUb" = (
 /obj/machinery/light/small{
@@ -38198,10 +37991,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "ngn" = (
 /obj/structure/table,
@@ -38859,10 +38649,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "nqC" = (
 /obj/structure/rack{
@@ -39587,10 +39374,7 @@
 /area/station/research/hallway)
 "nCM" = (
 /obj/structure/stool,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "nCO" = (
 /obj/machinery/light_switch{
@@ -40279,9 +40063,7 @@
 /obj/item/reagent_holder/food/condiment/peppermill{
 	pixel_x = 3
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "nPh" = (
 /obj/machinery/computer/security,
@@ -40721,10 +40503,7 @@
 "nYc" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "nYd" = (
 /turf/closed/wall/reinforced,
@@ -42079,10 +41858,7 @@
 	req_access = list(47)
 	},
 /obj/machinery/computer/skills,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "ovT" = (
 /obj/machinery/atmospherics/unary/portables_connector{
@@ -42161,10 +41937,7 @@
 "oxH" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "oxK" = (
 /obj/structure/cable{
@@ -42379,10 +42152,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "oDj" = (
 /obj/machinery/light/small,
@@ -42409,10 +42179,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "oDS" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -42490,10 +42257,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "oFH" = (
 /obj/structure/closet/emergency,
@@ -42585,10 +42349,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "oHS" = (
 /obj/machinery/disposal,
@@ -43016,10 +42777,7 @@
 /area/station/crew/library)
 "oPy" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "oPC" = (
 /obj/effect/decal/floor/industrial/delivery,
@@ -43259,9 +43017,7 @@
 "oVv" = (
 /obj/structure/table,
 /obj/item/reagent_holder/food/snacks/mint,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "oVy" = (
 /obj/structure/cable{
@@ -43811,9 +43567,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "pcI" = (
 /obj/structure/cable,
@@ -44461,10 +44215,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock west"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "pnF" = (
 /obj/machinery/camera{
@@ -44883,10 +44634,7 @@
 	name = "west bump";
 	pixel_x = -24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "pvc" = (
 /obj/structure/stool,
@@ -45181,10 +44929,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "pyR" = (
 /obj/machinery/door/airlock/hatch/maintenance{
@@ -45377,10 +45122,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "pBs" = (
 /obj/machinery/atmospherics/binary/valve/digital{
@@ -45478,10 +45220,7 @@
 	pixel_y = -24
 	},
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "pDs" = (
 /obj/structure/disposalpipe/segment{
@@ -45568,10 +45307,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "pEH" = (
 /obj/item/radio/intercom{
@@ -46007,10 +45743,7 @@
 	name = "south bump";
 	pixel_y = -24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "pPI" = (
 /obj/machinery/door/airlock/external{
@@ -46220,10 +45953,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "pUi" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "pUk" = (
 /obj/structure/cable{
@@ -46694,10 +46424,7 @@
 	name = "Station Intercom (General)";
 	pixel_x = 28
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "qdV" = (
 /obj/machinery/door/firedoor/border_only,
@@ -46836,10 +46563,7 @@
 "qfP" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/soda,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "qfZ" = (
 /obj/machinery/requests_console{
@@ -46986,10 +46710,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "qhJ" = (
 /obj/effect/decal/floor/industrial/warning/border,
@@ -47122,10 +46843,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "qko" = (
 /obj/structure/stool/bed/chair/office/light{
@@ -47645,10 +47363,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "qsz" = (
 /obj/machinery/portable_atmospherics/canister,
@@ -48369,10 +48084,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "qHi" = (
 /obj/machinery/light/small{
@@ -48919,10 +48631,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "qRi" = (
 /obj/structure/disposalpipe/segment{
@@ -50544,10 +50253,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "rqN" = (
 /obj/item/radio/intercom{
@@ -50698,9 +50404,7 @@
 	name = "east bump";
 	pixel_x = 24
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "rum" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -51953,10 +51657,7 @@
 /obj/effect/landmark/start{
 	name = "Research Director"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "rOv" = (
 /obj/structure/cable{
@@ -52416,10 +52117,7 @@
 	name = "firelock east"
 	},
 /obj/effect/decal/floor/industrial/delivery,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/plating/metal,
 /area/station/medical/exam_room)
 "rVy" = (
 /obj/structure/sign/vacuum,
@@ -52591,10 +52289,7 @@
 	name = "Scientist"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "rZc" = (
 /obj/structure/disposalpipe/segment,
@@ -53169,10 +52864,7 @@
 /obj/effect/landmark/start{
 	name = "Scientist"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "sia" = (
 /obj/structure/stool/bed/chair,
@@ -53211,9 +52903,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "siW" = (
 /obj/machinery/door/poddoor{
@@ -53279,10 +52969,7 @@
 	dir = 8;
 	pixel_x = 28
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "skB" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -55171,10 +54858,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/floor/industrial/warning/border,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "sYj" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
@@ -55508,10 +55192,7 @@
 	network = list("SS13","Medical");
 	pixel_y = -22
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "tfs" = (
 /obj/machinery/door/firedoor/border_only,
@@ -55568,10 +55249,7 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_y = 30
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "thl" = (
 /obj/machinery/computer/station_alert,
@@ -57445,10 +57123,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "tQB" = (
 /obj/effect/decal/floor/industrial/warning/border{
@@ -57822,10 +57497,7 @@
 /area/station/crew/library)
 "tWS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "tWY" = (
 /obj/effect/decal/floor/industrial/bot,
@@ -58006,10 +57678,7 @@
 	pixel_y = 2
 	},
 /obj/structure/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "uby" = (
 /obj/structure/grille,
@@ -59003,10 +58672,7 @@
 /area/station/research/xenobiology)
 "usM" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "usN" = (
 /turf/closed/wall/steel,
@@ -59293,10 +58959,7 @@
 /area/station/medical/virology)
 "uxm" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "uxw" = (
 /obj/structure/cable{
@@ -59428,10 +59091,7 @@
 /area/station/hallway/primary/central)
 "uzo" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "uzE" = (
 /obj/structure/table/woodentable,
@@ -60930,10 +60590,7 @@
 /area/station/maintenance/aft/port)
 "vey" = (
 /obj/structure/filingcabinet/filingcabinet,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "veQ" = (
 /obj/structure/closet/wardrobe/red,
@@ -61107,10 +60764,7 @@
 	name = "north bump";
 	pixel_y = 24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "vhH" = (
 /obj/machinery/door/airlock/maintenance{
@@ -62809,10 +62463,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "vQy" = (
 /obj/machinery/status_display,
@@ -63446,10 +63097,7 @@
 	req_access = list(5);
 	throw_range = 15
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "vYu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -63788,10 +63436,7 @@
 /obj/effect/landmark/start{
 	name = "Scientist"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "weI" = (
 /obj/structure/cable{
@@ -63854,10 +63499,7 @@
 /area/station/engineering/engine/singularity)
 "wfw" = (
 /obj/structure/closet/secure/freezer/fridge,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "wfD" = (
 /obj/machinery/door_control{
@@ -63962,10 +63604,7 @@
 /area/station/maintenance/central/port)
 "whG" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "wie" = (
 /obj/structure/sign/securearea,
@@ -65300,10 +64939,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "wGJ" = (
 /obj/structure/cable{
@@ -65434,10 +65070,7 @@
 	name = "west bump";
 	pixel_x = -24
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "wJx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -65872,10 +65505,7 @@
 /obj/structure/stool/bed/chair/comfy/black{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "wQc" = (
 /obj/structure/stool/bed/chair/office/dark,
@@ -66490,9 +66120,7 @@
 /obj/item/reagent_holder/glass/beaker{
 	pixel_x = 5
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "xaE" = (
 /obj/machinery/light{
@@ -66533,10 +66161,7 @@
 	pixel_y = 5
 	},
 /obj/item/pen,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "xbs" = (
 /obj/structure/disposalpipe/segment{
@@ -67663,10 +67288,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "xtP" = (
 /obj/machinery/light{
@@ -68619,10 +68241,7 @@
 "xJJ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "xKi" = (
 /obj/machinery/vending/snack,
@@ -68915,10 +68534,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "xQF" = (
 /obj/machinery/door/airlock/medical{
@@ -68930,10 +68546,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock east"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "xQQ" = (
 /obj/machinery/camera{
@@ -69255,10 +68868,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "xWn" = (
 /obj/structure/table/woodentable,
@@ -69274,10 +68884,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
 "xWy" = (
 /obj/structure/sink{
@@ -69368,10 +68975,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/station/medical/exam_room)
 "xYs" = (
 /obj/structure/disposalpipe/segment{
@@ -108560,7 +108164,7 @@ fKg
 iMv
 gdi
 qkn
-dKf
+oPy
 xaz
 vQx
 dEu

@@ -274,9 +274,7 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 28
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/syndicate/mothership)
 "bd" = (
 /obj/effect/window_spawner/reinforced,
@@ -454,9 +452,7 @@
 "bD" = (
 /obj/structure/rack,
 /obj/item/toy/sword,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "bE" = (
 /obj/machinery/camera{
@@ -535,9 +531,7 @@
 /obj/machinery/processor{
 	pixel_y = 10
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/control)
 "bZ" = (
 /obj/machinery/mass_driver{
@@ -686,9 +680,7 @@
 "cB" = (
 /obj/structure/rack,
 /obj/item/toy/gun,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "cC" = (
 /obj/structure/table/woodentable,
@@ -767,9 +759,7 @@
 /area/centcom/rescue_shuttle/one)
 "cQ" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "cR" = (
 /obj/structure/table/reinforced,
@@ -1109,9 +1099,7 @@
 "eg" = (
 /obj/structure/rack,
 /obj/item/storage/fancy/crayons,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "ek" = (
 /obj/structure/rack,
@@ -1221,9 +1209,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "eO" = (
 /obj/machinery/door/airlock/centcom{
@@ -1568,9 +1554,7 @@
 "gF" = (
 /obj/structure/rack,
 /obj/item/camera,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "gH" = (
 /obj/structure/shuttle/engine/propulsion/burst/right{
@@ -1776,9 +1760,7 @@
 /area/shuttle/supply/centcom)
 "hF" = (
 /obj/structure/closet/secure/freezer/meat,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/control)
 "hG" = (
 /obj/structure/table/holotable,
@@ -1941,9 +1923,7 @@
 /obj/structure/stool{
 	pixel_y = 8
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "iG" = (
 /obj/structure/stool/bed/chair{
@@ -2458,9 +2438,7 @@
 	},
 /area/special/holodeck/source/snow_field)
 "lJ" = (
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "lM" = (
 /turf/open/floor/holofloor{
@@ -2852,9 +2830,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "nS" = (
 /obj/machinery/sleep_console,
@@ -3468,9 +3444,7 @@
 /area/special/holodeck/source/snow_field)
 "qN" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "qO" = (
 /turf/closed/wall/reinforced/riveted{
@@ -3630,9 +3604,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/specops)
 "rO" = (
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/control)
 "rP" = (
 /obj/structure/flora/tree/dead,
@@ -3751,9 +3723,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "sp" = (
 /obj/effect/decal/floor/coloured/red,
@@ -4353,9 +4323,7 @@
 	},
 /obj/item/clothing/under/suit_jacket,
 /obj/item/clothing/suit/wcoat,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "vz" = (
 /obj/structure/mirror{
@@ -4659,9 +4627,7 @@
 /area/shuttle/administration/centcom)
 "xn" = (
 /obj/machinery/vending/dinnerware,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "xo" = (
 /obj/machinery/atmospherics/unary/portables_connector,
@@ -5058,9 +5024,7 @@
 /turf/space,
 /area/space)
 "zr" = (
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "zs" = (
 /obj/machinery/door/airlock/external{
@@ -5264,9 +5228,7 @@
 /area/shuttle/syndicate/mercenary/start)
 "Aw" = (
 /obj/structure/closet/secure/bar,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "Ay" = (
 /turf/open/floor/holofloor{
@@ -5424,9 +5386,7 @@
 /area/centcom/control)
 "By" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "BA" = (
 /obj/structure/stool{
@@ -5669,9 +5629,7 @@
 "CK" = (
 /obj/structure/table,
 /obj/item/reagent_holder/food/drinks/shaker,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "CO" = (
 /obj/structure/rack,
@@ -6042,9 +6000,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "Eq" = (
 /obj/structure/rack,
@@ -6200,9 +6156,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/syndicate/mothership)
 "Fb" = (
 /obj/structure/table,
@@ -6226,9 +6180,7 @@
 /area/special/holodeck/source/thunderdome_court)
 "Fh" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "Fi" = (
 /obj/structure/stool{
@@ -6287,9 +6239,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/control)
 "Fx" = (
 /obj/machinery/light/small{
@@ -6490,9 +6440,7 @@
 	pixel_y = 3
 	},
 /obj/item/kitchen/rollingpin,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "Gt" = (
 /obj/structure/shuttle/engine/propulsion/right,
@@ -6568,9 +6516,7 @@
 /obj/structure/stool{
 	pixel_y = 8
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "GS" = (
 /obj/structure/stool/bed/chair{
@@ -7488,9 +7434,7 @@
 	icon_state = "entertainment";
 	name = "entertainment monitor"
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/holding)
 "LD" = (
 /turf/open/floor{
@@ -7541,9 +7485,7 @@
 /area/shuttle/syndicate/mercenary/start)
 "LP" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/control)
 "LR" = (
 /obj/structure/table/woodentable,
@@ -7906,9 +7848,7 @@
 /obj/machinery/processor{
 	pixel_y = 10
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "NS" = (
 /obj/structure/stool/bed/chair,
@@ -8322,9 +8262,7 @@
 /area/centcom/rescue_shuttle/two)
 "PP" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "PR" = (
 /obj/effect/decal/floor/coloured/green/corner,
@@ -8848,9 +8786,7 @@
 /area/centcom/rescue_shuttle/two)
 "Sx" = (
 /obj/structure/closet/crate/freezer,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/syndicate/mothership)
 "Sy" = (
 /turf/closed/wall/shuttle{
@@ -8886,9 +8822,7 @@
 	},
 /area/special/holodeck/source/thunderdome_court)
 "SF" = (
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/syndicate/mothership)
 "SG" = (
 /obj/structure/closet/secure/personal/standard,
@@ -9071,9 +9005,7 @@
 "TC" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/syndicate/mothership)
 "TD" = (
 /obj/structure/table,
@@ -9607,9 +9539,7 @@
 	name = "Kitchen";
 	req_access = list(150)
 	},
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/syndicate/mothership)
 "WV" = (
 /obj/structure/table/woodentable{
@@ -10192,9 +10122,7 @@
 /obj/structure/table,
 /obj/item/reagent_holder/glass/beaker,
 /obj/item/reagent_holder/food/condiment/enzyme,
-/turf/open/floor{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "ZM" = (
 /turf/closed/wall/shuttle{

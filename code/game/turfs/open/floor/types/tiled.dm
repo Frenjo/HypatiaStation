@@ -85,3 +85,8 @@
 /turf/open/floor/tiled/hydroponics
 	icon_state = "hydrofloor"
 	tile_path = /obj/item/stack/tile/metal/hydroponics
+
+// Cafeteria Tiles - The kitchen ones.
+/turf/open/floor/tiled/cafeteria
+	icon_state = "cafeteria"
+	tile_path = /obj/item/stack/tile/metal/cafeteria

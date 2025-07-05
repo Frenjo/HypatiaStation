@@ -65,3 +65,10 @@
 	singular_name = "hydroponics floor tile"
 	icon_state = "hydroponics"
 	turf_path = /turf/open/floor/tiled/hydroponics
+
+// Cafeteria
+/obj/item/stack/tile/metal/cafeteria
+	name = "cafeteria floor tile"
+	singular_name = "cafeteria floor tile"
+	icon_state = "cafeteria"
+	turf_path = /turf/open/floor/tiled/cafeteria

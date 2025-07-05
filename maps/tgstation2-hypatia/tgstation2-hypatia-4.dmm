@@ -613,10 +613,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "gp" = (
 /obj/structure/cable{
@@ -851,10 +848,7 @@
 	},
 /obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "ig" = (
 /obj/structure/cable,
@@ -928,10 +922,7 @@
 	listening = 0;
 	name = "Pirate Radio Broadcast Channel"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "iS" = (
 /obj/structure/table,
@@ -996,10 +987,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "jv" = (
 /obj/structure/grille,
@@ -1323,10 +1311,7 @@
 	dir = 8;
 	pixel_x = -26
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "ne" = (
 /obj/structure/girder,
@@ -1482,10 +1467,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "pt" = (
 /obj/machinery/light/small{
@@ -1536,10 +1518,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "pJ" = (
 /obj/machinery/door/airlock/security{
@@ -1678,10 +1657,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "qT" = (
 /turf/open/floor/plating/metal/airless,
@@ -1880,10 +1856,7 @@
 	pixel_y = -22;
 	req_one_access = list(13)
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "sR" = (
 /obj/structure/disposalpipe/trunk{
@@ -2079,10 +2052,7 @@
 /area/space)
 "vs" = (
 /obj/structure/stool/bed/chair/office/light,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "vA" = (
 /turf/open/floor/airless{
@@ -2101,10 +2071,7 @@
 /area/space)
 "vM" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "vS" = (
 /obj/structure/window/reinforced{
@@ -2349,10 +2316,7 @@
 "yw" = (
 /obj/structure/closet/emergency,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "yA" = (
 /obj/structure/cable{
@@ -2419,10 +2383,7 @@
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/derelict/hallway/primary)
 "zm" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "zn" = (
 /turf/open/floor/airless{
@@ -2539,10 +2500,7 @@
 /area/external/abandoned/derelict/teleporter)
 "AC" = (
 /obj/machinery/computer/shuttle_control/engineering,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "AE" = (
 /obj/structure/stool/bed,
@@ -2603,10 +2561,7 @@
 /obj/item/paper/djstation{
 	info = "<B>Welcome new owner!</B><BR><BR>You have purchased the latest in listening equipment. The telecommunication setup we created is the best in listening to common and private radio fequencies. Here is a step by step guide to start listening in on those saucy radio channels:<br><ol><li>Equip yourself with a multi-tool</li><li>Use the multitool on each machine, that is the broadcaster, receiver and the relay.</li><li>Turn all the machines on, it has already been configured for you to listen on.</li></ol> Simple as that. Now to listen to the private channels, you'll have to configure the intercoms, located on the front desk. Here is a list of frequencies for you to listen on.<br><ul><li>145.7 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.7 - Supply Channel</li>"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "Bn" = (
 /obj/machinery/door/airlock/glass,
@@ -2739,10 +2694,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "Cm" = (
 /obj/structure/window/basic{
@@ -2833,10 +2785,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "Do" = (
 /obj/structure/window/reinforced{
@@ -2942,10 +2891,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "El" = (
 /obj/structure/cable{
@@ -3860,10 +3806,7 @@
 /area/external/abandoned/derelict/bridge)
 "OG" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "OH" = (
 /obj/structure/cable{
@@ -4122,10 +4065,7 @@
 	freerange = 1;
 	name = "Pirate Radio Listening Channel"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "Rq" = (
 /obj/effect/decal/floor/chapel/red{
@@ -4135,10 +4075,7 @@
 /area/external/abandoned/derelict/medical/chapel)
 "Rw" = (
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "RF" = (
 /obj/machinery/atmospherics/unary/portables_connector,
@@ -4169,10 +4106,7 @@
 /area/external/abandoned/derelict/solar_control)
 "RW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "Sb" = (
 /obj/structure/cable{
@@ -4469,10 +4403,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "UB" = (
 /obj/structure/grille,
@@ -4643,10 +4574,7 @@
 	dir = 1
 	},
 /obj/machinery/space_heater,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "VZ" = (
 /obj/structure/cable{
@@ -4793,10 +4721,7 @@
 	dir = 1;
 	pixel_y = 31
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "Xx" = (
 /turf/open/floor/airless,
@@ -4944,10 +4869,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock East"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tiled/cafeteria,
 /area/external/djstation)
 "YC" = (
 /turf/open/floor/airless{
