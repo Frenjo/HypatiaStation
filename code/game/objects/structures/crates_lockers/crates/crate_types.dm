@@ -159,8 +159,8 @@
  * Radiation
  */
 /obj/structure/closet/crate/radiation
-	desc = "A crate with a radiation sign on it."
 	name = "radioactive gear crate"
+	desc = "A crate with a radiation sign on it. For the love of god, use protection."
 	icon_state = "radiation"
 	icon_opened = "radiationopen"
 	icon_closed = "radiation"

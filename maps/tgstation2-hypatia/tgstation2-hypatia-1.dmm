@@ -4916,7 +4916,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/closet/crate/freezer{
-	name = "Blood Packs"
+	name = "blood packs"
 	},
 /obj/item/reagent_holder/blood/OPlus{
 	pixel_x = 4;
@@ -9071,7 +9071,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 23
 	},
-/obj/structure/closet/athletic_mixed,
+/obj/structure/closet/wardrobe/athletic_mixed,
 /obj/effect/decal/floor/coloured/neutral{
 	dir = 1
 	},
@@ -32039,9 +32039,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "lcZ" = (
-/obj/structure/closet/emergency{
-	anchored = TRUE
-	},
+/obj/structure/closet/emergency,
 /obj/item/tank/emergency/oxygen{
 	pixel_x = -8
 	},
@@ -36661,7 +36659,7 @@
 	pixel_y = 2
 	},
 /obj/structure/closet/crate/freezer{
-	name = "Blood Packs"
+	name = "blood packs"
 	},
 /obj/effect/decal/floor/coloured/green{
 	dir = 4
@@ -41307,11 +41305,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/closet/crate/radiation{
-	desc = "A crate with a radiation sign on it. For the love of god, use protection.";
-	name = "Radiation Suit Crate";
-	req_access = list(56)
-	},
+/obj/structure/closet/crate/radiation,
 /turf/open/floor/plating/metal,
 /area/station/engineering/storage/hard)
 "onT" = (
@@ -65434,7 +65428,7 @@
 /area/station/command/bridge)
 "wPD" = (
 /obj/structure/closet/crate{
-	name = "materials"
+	name = "materials crate"
 	},
 /obj/item/stack/sheet/steel{
 	amount = 50

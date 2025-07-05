@@ -1,7 +1,7 @@
 /*
  * Mixed Athletic
  */
-/obj/structure/closet/athletic_mixed
+/obj/structure/closet/wardrobe/athletic_mixed
 	name = "athletic wardrobe"
 	desc = "It's a storage unit for athletic wear."
 	icon_state = "mixed"

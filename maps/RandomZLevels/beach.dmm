@@ -14,7 +14,7 @@
 "n" = (/turf/closed/wall/reinforced/riveted{icon_state = "sandstone6"; tag = "icon-sandstone6"},/area/away_mission/beach)
 "o" = (/turf/closed/wall/reinforced/riveted{icon_state = "sandstone12"; tag = "icon-sandstone12"},/area/away_mission/beach)
 "p" = (/turf/closed/wall/reinforced/riveted{icon_state = "sandstone10"; tag = "icon-sandstone10"},/area/away_mission/beach)
-"q" = (/obj/structure/closet/athletic_mixed,/turf/open/floor/beach/sand,/area/away_mission/beach)
+"q" = (/obj/structure/closet/wardrobe/athletic_mixed,/turf/open/floor/beach/sand,/area/away_mission/beach)
 "r" = (/obj/item/clothing/shoes/sandal,/obj/item/clothing/shoes/sandal,/obj/item/clothing/shoes/sandal,/obj/structure/closet/crate,/turf/open/floor/beach/sand,/area/away_mission/beach)
 "s" = (/turf/closed/wall/reinforced/riveted{icon_state = "sandstone3"; tag = "icon-sandstone3"},/area/away_mission/beach)
 "t" = (/obj/structure/closet/formal,/turf/open/floor/wood,/area/away_mission/beach)

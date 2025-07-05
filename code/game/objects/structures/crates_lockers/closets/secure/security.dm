@@ -64,7 +64,7 @@
  * Head of Personnel Attire
  */
 /obj/structure/closet/secure/hop2
-	name = "Head of Personnel's Attire"
+	name = "head of personnel's attire"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -233,7 +233,7 @@
  * Detective
  */
 /obj/structure/closet/secure/detective
-	name = "Detective's Cabinet"
+	name = "detective's cabinet"
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
 	icon_state = "cabinetdetective_locked"
 	icon_closed = "cabinetdetective"
@@ -281,7 +281,7 @@
  * Lethal Injections
  */
 /obj/structure/closet/secure/injection
-	name = "Lethal Injections"
+	name = "lethal injections"
 	req_access = list(ACCESS_CAPTAIN)
 
 	starts_with = list(
