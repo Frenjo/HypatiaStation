@@ -30,34 +30,35 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
 
+	color = COLOR_RED
+
 	var/datum/powernet/powernet
 
 	var/d1 = 0
 	var/d2 = 1
 
-	var/cable_color = COLOR_RED
 	var/obj/structure/powerswitch/power_switch
 
 /obj/structure/cable/yellow
-	cable_color = COLOR_YELLOW
+	color = COLOR_YELLOW
 
 /obj/structure/cable/green
-	cable_color = COLOR_GREEN
+	color = COLOR_GREEN
 
 /obj/structure/cable/blue
-	cable_color = COLOR_BLUE
+	color = COLOR_BLUE
 
 /obj/structure/cable/pink
-	cable_color = COLOR_PINK
+	color = COLOR_PINK
 
 /obj/structure/cable/orange
-	cable_color = COLOR_ORANGE
+	color = COLOR_ORANGE
 
 /obj/structure/cable/cyan
-	cable_color = COLOR_CYAN
+	color = COLOR_CYAN
 
 /obj/structure/cable/white
-	cable_color = COLOR_WHITE
+	color = COLOR_WHITE
 
 /obj/structure/cable/New()
 	..()
@@ -130,9 +131,9 @@ By design, d1 is the smallest direction and d2 is the highest
 			return
 
 		if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
-			new/obj/item/stack/cable_coil(T, 2, cable_color)
+			new/obj/item/stack/cable_coil(T, 2, color)
 		else
-			new/obj/item/stack/cable_coil(T, 1, cable_color)
+			new/obj/item/stack/cable_coil(T, 1, color)
 
 		for(var/mob/O in viewers(src, null))
 			O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
@@ -192,12 +193,12 @@ By design, d1 is the smallest direction and d2 is the highest
 			qdel(src)
 		if(2.0)
 			if(prob(50))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, cable_color)
+				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
 				qdel(src)
 
 		if(3.0)
 			if(prob(25))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, cable_color)
+				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
 				qdel(src)
 	return
 
@@ -458,6 +459,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	amount = MAXCOIL
 	max_amount = MAXCOIL
+	color = COLOR_RED
 	item_color = COLOR_RED
 	throwforce = 10
 	w_class = 2.0
@@ -766,7 +768,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			use(1)
 			if(NC.shock(user, 50))
 				if(prob(50)) //fail
-					new/obj/item/stack/cable_coil(NC.loc, 1, NC.cable_color)
+					new/obj/item/stack/cable_coil(NC.loc, 1, NC.color)
 					qdel(NC)
 
 			return
@@ -811,7 +813,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		use(1)
 		if(C.shock(user, 50))
 			if(prob(50)) //fail
-				new/obj/item/stack/cable_coil(C.loc, 2, C.cable_color)
+				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
 				qdel(C)
 				return
 
@@ -833,28 +835,35 @@ By design, d1 is the smallest direction and d2 is the highest
 	update_icon()
 
 /obj/item/stack/cable_coil/yellow
+	color = COLOR_YELLOW
 	item_color = COLOR_YELLOW
 
 /obj/item/stack/cable_coil/blue
+	color = COLOR_BLUE
 	item_color = COLOR_BLUE
 
 /obj/item/stack/cable_coil/green
+	color = COLOR_GREEN
 	item_color = COLOR_GREEN
 
 /obj/item/stack/cable_coil/pink
+	color = COLOR_PINK
 	item_color = COLOR_PINK
 
 /obj/item/stack/cable_coil/orange
+	color = COLOR_ORANGE
 	item_color = COLOR_ORANGE
 
 /obj/item/stack/cable_coil/cyan
+	color = COLOR_CYAN
 	item_color = COLOR_CYAN
 
 /obj/item/stack/cable_coil/white
+	color = COLOR_WHITE
 	item_color = COLOR_WHITE
 
 /obj/item/stack/cable_coil/random/New()
 	item_color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
-	..()
+	. = ..()
 
 #undef MAXCOIL
