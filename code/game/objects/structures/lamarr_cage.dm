@@ -52,7 +52,7 @@
 			playsound(src, "shatter", 70, 1)
 			Break()
 	else
-		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/glass/glass_hit.ogg', 75, 1)
 	return
 
 /obj/structure/lamarr/update_icon()

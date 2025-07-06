@@ -49,7 +49,7 @@
 
 	origin_tech = alist(/decl/tech/combat = 3)
 
-	fire_sound = 'sound/effects/Explosion1.ogg'
+	fire_sound = 'sound/effects/explosion/explosion1.ogg'
 
 	ammo_type = /obj/item/ammo_casing/a75
 	calibre = "75"

@@ -43,13 +43,13 @@
 						update_icon()
 				return
 			else
-				playsound(user, 'sound/effects/Glasshit.ogg', 100, 1) //We don't want this playing every time
+				playsound(user, 'sound/effects/glass/glass_hit.ogg', 100, 1) //We don't want this playing every time
 			if(W.force < 15)
 				to_chat(user, SPAN_INFO("The cabinet's protective glass glances off the hit."))
 			else
 				src.hitstaken++
 				if(src.hitstaken == 4)
-					playsound(user, 'sound/effects/Glassbr3.ogg', 100, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
+					playsound(user, 'sound/effects/glass/glass_break3.ogg', 100, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
 					src.smashed = 1
 					src.locked = 0
 					src.localopened = 1

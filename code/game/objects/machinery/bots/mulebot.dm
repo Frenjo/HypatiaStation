@@ -95,7 +95,7 @@
 	locked = !locked
 	FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 	flick("mulebot-emagged", src)
-	playsound(src, 'sound/effects/sparks1.ogg', 100, 0)
+	playsound(src, 'sound/effects/sparks/sparks1.ogg', 100, 0)
 	return TRUE
 
 /obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user)

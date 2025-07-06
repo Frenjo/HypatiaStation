@@ -153,7 +153,7 @@
 		to_chat(user, SPAN_WARNING("\The [src]'s security protocols have already been disabled!"))
 		return FALSE
 	to_chat(user, SPAN_WARNING("You disable \the [src]'s security protocols."))
-	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 75, 1)
 	emagged = TRUE
 	updateUsrDialog()
 	return TRUE

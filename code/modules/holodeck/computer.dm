@@ -180,7 +180,7 @@
 		return FALSE
 	to_chat(user, SPAN_WARNING("You vastly increase projector power and override the safety and security protocols."))
 	to_chat(user, SPAN_WARNING("Warning. Automatic shutoff and derezzing protocols have been corrupted. Please call NanoTrasen maintenance and do not use the simulator."))
-	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 75, 1)
 	emagged = TRUE
 	log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 	updateUsrDialog()

@@ -1377,7 +1377,7 @@ It is possible to destroy the net by the occupant or someone else.
 			M.drop_from_inventory(W)
 
 		spawn(0)
-			playsound(M.loc, 'sound/effects/sparks4.ogg', 50, 1)
+			playsound(M.loc, 'sound/effects/sparks/sparks4.ogg', 50, 1)
 			anim(M.loc,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
 		M.forceMove(pick(GLOBL.holdingfacility)) // Throw mob in to the holding facility.
@@ -1386,7 +1386,7 @@ It is possible to destroy the net by the occupant or someone else.
 		spawn(0)
 			make_sparks(5, FALSE, M.loc)
 			playsound(M.loc, 'sound/effects/phasein.ogg', 25, 1)
-			playsound(M.loc, 'sound/effects/sparks2.ogg', 50, 1)
+			playsound(M.loc, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 			anim(M.loc,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 			qdel(src)//Wait for everything to finish, delete the net. Else it will stop everything once net is deleted, including the spawn(0).
 

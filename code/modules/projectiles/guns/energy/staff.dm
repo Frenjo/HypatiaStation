@@ -31,7 +31,7 @@
 		)
 	else
 		visible_message("*fizzle*")
-	playsound(src, 'sound/effects/sparks1.ogg', 100, 1)
+	playsound(src, 'sound/effects/sparks/sparks1.ogg', 100, 1)
 
 /obj/item/gun/energy/staff/animate
 	name = "staff of animation"

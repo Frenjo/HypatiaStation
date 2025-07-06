@@ -45,7 +45,7 @@
 		src.shatter()
 	else
 		if(sound_effect)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
+			playsound(loc, 'sound/effects/glass/glass_hit.ogg', 100, 1)
 		if(src.health < src.maxhealth / 4 && initialhealth >= src.maxhealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
 		else if(src.health < src.maxhealth / 2 && initialhealth >= src.maxhealth / 2)
@@ -132,7 +132,7 @@
 
 /obj/structure/window/attack_tk(mob/user)
 	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
-	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
+	playsound(loc, 'sound/effects/glass/glass_hit.ogg', 50, 1)
 
 /obj/structure/window/attack_hand(mob/user)
 	if(MUTATION_HULK in user.mutations)
@@ -146,14 +146,14 @@
 				attack_generic(H, 25)
 				return
 
-			playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
+			playsound(src, 'sound/effects/glass/glass_knock.ogg', 80, 1)
 			user.visible_message(
 				SPAN_WARNING("[user.name] bangs against the [src.name]!"),
 				SPAN_WARNING("You bang against the [src.name]!"),
 				"You hear a banging sound."
 			)
 		else
-			playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
+			playsound(src, 'sound/effects/glass/glass_knock.ogg', 80, 1)
 			user.visible_message(
 				"[user.name] knocks on the [src.name].",
 				"You knock on the [src.name].",
@@ -241,7 +241,7 @@
 				update_nearby_icons()
 				step(src, get_dir(user, src))
 		else
-			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(loc, 'sound/effects/glass/glass_hit.ogg', 75, 1)
 		..()
 	return
 

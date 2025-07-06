@@ -637,7 +637,7 @@
 				screen=2*/  //Obsolete after autorecognition
 
 	if(isbroken)
-		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 100, 1)
+		playsound(src, 'sound/effects/glass/hit_on_shattered_glass.ogg', 100, 1)
 		for(var/mob/O in hearers(5, loc))
 			O.show_message("<EM>[user.name]</EM> further abuses the shattered [name].")
 	else
@@ -646,18 +646,18 @@
 			if(W.force < 15)
 				for(var/mob/O in hearers(5, loc))
 					O.show_message("[user.name] hits the [name] with the [W.name] with no visible effect.")
-					playsound(src, 'sound/effects/Glasshit.ogg', 100, 1)
+					playsound(src, 'sound/effects/glass/glass_hit.ogg', 100, 1)
 			else
 				hitstaken++
 				if(hitstaken == 3)
 					for(var/mob/O in hearers(5, loc))
 						O.show_message("[user.name] smashes the [name]!")
 					isbroken = 1
-					playsound(src, 'sound/effects/Glassbr3.ogg', 100, 1)
+					playsound(src, 'sound/effects/glass/glass_break3.ogg', 100, 1)
 				else
 					for(var/mob/O in hearers(5, loc))
 						O.show_message("[user.name] forcefully slams the [name] with the [I.name]!")
-					playsound(src, 'sound/effects/Glasshit.ogg', 100, 1)
+					playsound(src, 'sound/effects/glass/glass_hit.ogg', 100, 1)
 		else
 			to_chat(user, SPAN_INFO("This does nothing."))
 	update_icon()

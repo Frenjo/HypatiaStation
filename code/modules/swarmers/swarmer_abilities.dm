@@ -66,7 +66,7 @@
 		return
 
 	make_sparks(4, FALSE, GET_TURF(target))
-	playsound(user, 'sound/effects/sparks4.ogg', 50, TRUE)
+	playsound(user, 'sound/effects/sparks/sparks4.ogg', 50, TRUE)
 	do_teleport(target, safe_turf)
 
 /mob/living/simple/hostile/swarmer/proc/contact_swarmers()

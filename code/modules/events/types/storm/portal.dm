@@ -17,7 +17,7 @@
 		// Creates the new hostile mob and teleports it in.
 		var/mob/new_hostile = new hostile_type(safe_turf)
 		make_sparks(4, FALSE, safe_turf)
-		playsound(new_hostile, 'sound/effects/sparks4.ogg', 50, TRUE)
+		playsound(new_hostile, 'sound/effects/sparks/sparks4.ogg', 50, TRUE)
 		do_teleport(new_hostile, safe_turf)
 
 		// Increments the total hostiles list and checks for event completion.

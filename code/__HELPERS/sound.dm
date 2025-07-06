@@ -1,10 +1,15 @@
-GLOBAL_GLOBL_LIST_INIT(shatter_sound, list('sound/effects/Glassbr1.ogg', 'sound/effects/Glassbr2.ogg', 'sound/effects/Glassbr3.ogg'))
-GLOBAL_GLOBL_LIST_INIT(explosion_sound, list('sound/effects/Explosion1.ogg', 'sound/effects/Explosion2.ogg'))
-GLOBAL_GLOBL_LIST_INIT(spark_sound, list('sound/effects/sparks1.ogg', 'sound/effects/sparks2.ogg', 'sound/effects/sparks3.ogg', 'sound/effects/sparks4.ogg'))
+GLOBAL_GLOBL_LIST_INIT(shatter_sound, list(
+	'sound/effects/glass/glass_break1.ogg', 'sound/effects/glass/glass_break2.ogg', 'sound/effects/glass/glass_break3.ogg'
+))
+GLOBAL_GLOBL_LIST_INIT(explosion_sound, list('sound/effects/explosion/explosion1.ogg', 'sound/effects/explosion/explosion2.ogg'))
+GLOBAL_GLOBL_LIST_INIT(spark_sound, list(
+	'sound/effects/sparks/sparks1.ogg', 'sound/effects/sparks/sparks2.ogg',
+	'sound/effects/sparks/sparks3.ogg', 'sound/effects/sparks/sparks4.ogg'
+))
 GLOBAL_GLOBL_LIST_INIT(rustle_sound, list(
-	'sound/effects/rustle1.ogg', 'sound/effects/rustle2.ogg',
-	'sound/effects/rustle3.ogg', 'sound/effects/rustle4.ogg',
-	'sound/effects/rustle5.ogg'
+	'sound/effects/rustle/rustle1.ogg', 'sound/effects/rustle/rustle2.ogg',
+	'sound/effects/rustle/rustle3.ogg', 'sound/effects/rustle/rustle4.ogg',
+	'sound/effects/rustle/rustle5.ogg'
 ))
 GLOBAL_GLOBL_LIST_INIT(punch_sound, list('sound/weapons/melee/punch1.ogg', 'sound/weapons/melee/punch2.ogg', 'sound/weapons/melee/punch3.ogg','sound/weapons/melee/punch4.ogg'))
 GLOBAL_GLOBL_LIST_INIT(clown_sound, list('sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'))

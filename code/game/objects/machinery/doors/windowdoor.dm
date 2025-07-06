@@ -161,7 +161,7 @@
 		tforce = 40
 	else
 		tforce = AM:throwforce
-	playsound(src, 'sound/effects/Glasshit.ogg', 100, 1)
+	playsound(src, 'sound/effects/glass/glass_hit.ogg', 100, 1)
 	take_damage(tforce)
 	//..() //Does this really need to be here twice? The parent proc doesn't even do anything yet. - Nodrak
 	return
@@ -173,7 +173,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src, 'sound/effects/glass/glass_hit.ogg', 75, 1)
 			visible_message(SPAN_DANGER("[user] smashes against the [name]."), 1)
 			take_damage(25)
 			return
@@ -240,7 +240,7 @@
 	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
 	if(density && isitem(I) && !istype(I, /obj/item/card))
 		var/aforce = I.force
-		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/glass/glass_hit.ogg', 75, 1)
 		visible_message(SPAN_DANGER("[src] was hit by [I]."))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)

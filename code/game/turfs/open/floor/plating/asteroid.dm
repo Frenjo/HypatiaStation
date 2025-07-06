@@ -64,7 +64,7 @@
 		return FALSE
 
 	to_chat(digger, SPAN_WARNING("You start [drill_verb] \the [src]."))
-	playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) // Rustling sounds sounded better.
+	playsound(loc, 'sound/effects/rustle/rustle1.ogg', 50, 1) // Rustling sounds sounded better.
 	if(do_after(digger, time, src, TRUE))
 		to_chat(digger, SPAN_INFO("You finish [drill_verb] \the [src]."))
 		get_dug()

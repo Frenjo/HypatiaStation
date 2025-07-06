@@ -16,7 +16,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.a_intent == "hurt")
 			if(shattered)
-				playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+				playsound(src, 'sound/effects/glass/hit_on_shattered_glass.ogg', 70, 1)
 				return
 			if(prob(30) || H.species.can_shred(H))
 				user.visible_message(SPAN_DANGER("[user] smashes [src]!"))
@@ -79,13 +79,13 @@
 			if(!shattered)
 				shatter()
 			else
-				playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+				playsound(src, 'sound/effects/glass/hit_on_shattered_glass.ogg', 70, 1)
 	..()
 
 
 /obj/structure/mirror/attackby(obj/item/I, mob/user)
 	if(shattered)
-		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/glass/hit_on_shattered_glass.ogg', 70, 1)
 		return
 
 	if(prob(I.force * 2))
@@ -93,7 +93,7 @@
 		shatter()
 	else
 		visible_message(SPAN_WARNING("[user] hits [src] with [I]!"))
-		playsound(src, 'sound/effects/Glasshit.ogg', 70, 1)
+		playsound(src, 'sound/effects/glass/glass_hit.ogg', 70, 1)
 
 
 /obj/structure/mirror/attack_animal(mob/user)
@@ -103,7 +103,7 @@
 	if(M.melee_damage_upper <= 0 || (M.melee_damage_type != BRUTE && M.melee_damage_type != BURN))
 		return
 	if(shattered)
-		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/glass/hit_on_shattered_glass.ogg', 70, 1)
 		return
 	user.visible_message(SPAN_DANGER("[user] smashes [src]!"))
 	shatter()
@@ -113,7 +113,7 @@
 	if(!isslimeadult(user))
 		return
 	if(shattered)
-		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/glass/hit_on_shattered_glass.ogg', 70, 1)
 		return
 	user.visible_message(SPAN_DANGER("[user] smashes [src]!"))
 	shatter()

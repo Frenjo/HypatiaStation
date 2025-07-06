@@ -123,17 +123,17 @@ Gunshots/explosions/opening doors/less rare audio (done)
 						src << 'sound/machines/airlock.ogg'
 					if(2)
 						if(prob(50))
-							src << 'sound/effects/Explosion1.ogg'
+							src << 'sound/effects/explosion/explosion1.ogg'
 						else
-							src << 'sound/effects/Explosion2.ogg'
+							src << 'sound/effects/explosion/explosion2.ogg'
 					if(3)
-						src << 'sound/effects/explosionfar.ogg'
+						src << 'sound/effects/explosion/explosionfar.ogg'
 					if(4)
-						src << 'sound/effects/Glassbr1.ogg'
+						src << 'sound/effects/glass/glass_break1.ogg'
 					if(5)
-						src << 'sound/effects/Glassbr2.ogg'
+						src << 'sound/effects/glass/glass_break2.ogg'
 					if(6)
-						src << 'sound/effects/Glassbr3.ogg'
+						src << 'sound/effects/glass/glass_break3.ogg'
 					if(7)
 						src << 'sound/machines/twobeep.ogg'
 					if(8)

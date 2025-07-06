@@ -311,7 +311,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		to_chat(M, SPAN_DANGER("You step in the broken glass!"))
-		playsound(src, 'sound/effects/glass_step.ogg', 50, 1)
+		playsound(src, 'sound/effects/glass/glass_step.ogg', 50, 1)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 

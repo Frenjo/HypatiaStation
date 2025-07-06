@@ -769,7 +769,7 @@
 			SPAN_INFO("You begin to play a spooky refrain on your ribcage."),
 			SPAN_WARNING("You hear a spooky xylophone melody.")
 		)
-		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
+		var/song = pick('sound/effects/xylophone/xylophone1.ogg','sound/effects/xylophone/xylophone2.ogg','sound/effects/xylophone/xylophone3.ogg')
 		playsound(loc, song, 50, 1, -1)
 		xylophone = 1
 		spawn(1200)

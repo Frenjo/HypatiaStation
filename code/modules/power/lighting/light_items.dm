@@ -143,5 +143,5 @@
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = 1
-		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/glass/glass_hit.ogg', 75, 1)
 		update_icon()

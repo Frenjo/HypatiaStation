@@ -79,7 +79,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 		var/turf/mobloc = GET_TURF(U)	//To make sure that certain things work properly below.
 		if(!T.density && isturf(mobloc))
 			spawn(0)
-				playsound(U.loc, 'sound/effects/sparks4.ogg', 50, 1)
+				playsound(U.loc, 'sound/effects/sparks/sparks4.ogg', 50, 1)
 				anim(mobloc, src, 'icons/mob/mob.dmi', , "phaseout", , U.dir)
 
 			cell.use(C * 10)
@@ -89,7 +89,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 			spawn(0)
 				spark_system.start()
 				playsound(U.loc, 'sound/effects/phasein.ogg', 25, 1)
-				playsound(U.loc, 'sound/effects/sparks2.ogg', 50, 1)
+				playsound(U.loc, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 				anim(U.loc, U, 'icons/mob/mob.dmi', , "phasein", , U.dir)
 		else
 			to_chat(U, SPAN_WARNING("You cannot teleport into solid walls or from solid matter."))

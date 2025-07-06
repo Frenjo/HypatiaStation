@@ -77,7 +77,7 @@
 					var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
 					T.autoclose = TRUE
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-					playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
+					playsound(target, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 	return TRUE
 
 /obj/item/mecha_equipment/tool/rcd/Topic(href, href_list)
