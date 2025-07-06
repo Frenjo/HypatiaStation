@@ -1,7 +1,7 @@
 /mob/living/simple/construct
 	name = "Construct"
-	real_name = "Construct"
-	desc = ""
+	icon = 'icons/mob/simple/construct.dmi'
+
 	speak_emote = list("hisses")
 	emote_hear = list("wails", "screeches")
 	response_help = "thinks better of touching"
@@ -13,7 +13,7 @@
 	stop_automated_movement = TRUE
 	status_flags = CANPUSH
 	universal_speak = 0
-	universal_understand = 1
+	universal_understand = TRUE
 	attack_sound = 'sound/weapons/melee/punch1.ogg'
 
 	min_oxy = 0
@@ -28,17 +28,17 @@
 	var/list/construct_spells = list()
 
 /mob/living/simple/construct/New()
-	..()
+	. = ..()
 	name = "[initial(name)] ([rand(1, 1000)])"
 	real_name = name
 	add_language("Cult")
 	add_language("Occult")
 	for(var/spell in construct_spells)
-		spell_list += new spell(src)
+		spell_list.Add(new spell(src))
 	updateicon()
 
 /mob/living/simple/construct/death()
-	new /obj/item/ectoplasm(src.loc)
+	new /obj/item/ectoplasm(loc)
 	..(null, "collapses in a shattered heap.")
 	ghostize()
 	qdel(src)
@@ -101,11 +101,11 @@
 /////////////////Juggernaut///////////////
 /mob/living/simple/construct/armoured
 	name = "Juggernaut"
-	real_name = "Juggernaut"
-	desc = "A possessed suit of armour driven by the will of the restless dead"
-	icon = 'icons/mob/mob.dmi'
-	icon_state = "behemoth"
-	icon_living = "behemoth"
+	desc = "A possessed suit of armour driven by the will of the restless dead."
+
+	icon_state = "armour"
+	icon_living = "armour"
+
 	maxHealth = 250
 	health = 250
 	response_harm = "harmlessly punches"
@@ -155,11 +155,11 @@
 ////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple/construct/wraith
 	name = "Wraith"
-	real_name = "Wraith"
-	desc = "A wicked bladed shell contraption piloted by a bound spirit"
-	icon = 'icons/mob/mob.dmi'
+	desc = "A wicked bladed shell contraption piloted by a bound spirit."
+
 	icon_state = "floating"
 	icon_living = "floating"
+
 	maxHealth = 75
 	health = 75
 	melee_damage_lower = 25
@@ -174,9 +174,8 @@
 /////////////////////////////Artificer/////////////////////////
 /mob/living/simple/construct/builder
 	name = "Artificer"
-	real_name = "Artificer"
-	desc = "A bulbous construct dedicated to building and maintaining The Cult of Nar-Sie's armies"
-	icon = 'icons/mob/mob.dmi'
+	desc = "A bulbous construct dedicated to building and maintaining The Cult of Nar-Sie's armies."
+
 	icon_state = "artificer"
 	icon_living = "artificer"
 	maxHealth = 50
@@ -200,15 +199,15 @@
 /////////////////////////////Behemoth/////////////////////////
 /mob/living/simple/construct/behemoth
 	name = "Behemoth"
-	real_name = "Behemoth"
 	desc = "The pinnacle of occult technology, Behemoths are the ultimate weapon in the Cult of Nar-Sie's arsenal."
-	icon = 'icons/mob/mob.dmi'
+
 	icon_state = "behemoth"
 	icon_living = "behemoth"
+
 	maxHealth = 750
 	health = 750
 	speak_emote = list("rumbles")
-	response_harm   = "harmlessly punches"
+	response_harm = "harmlessly punches"
 	harm_intent_damage = 0
 	melee_damage_lower = 50
 	melee_damage_upper = 50

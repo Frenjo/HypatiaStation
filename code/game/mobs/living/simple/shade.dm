@@ -1,11 +1,12 @@
 /mob/living/simple/shade
 	name = "Shade"
-	real_name = "Shade"
-	desc = "A bound spirit"
-	icon = 'icons/mob/mob.dmi'
+	desc = "A bound spirit."
+	icon = 'icons/mob/simple/construct.dmi'
+
 	icon_state = "shade"
 	icon_living = "shade"
 	icon_dead = "shade_dead"
+
 	maxHealth = 50
 	health = 50
 	universal_speak = 1
@@ -29,15 +30,15 @@
 	status_flags = CANPUSH
 
 /mob/living/simple/shade/Life()
-	..()
+	. = ..()
 	if(stat == DEAD)
-		new /obj/item/ectoplasm(src.loc)
-		for(var/mob/M in viewers(src, null))
-			if((M.client && !M.blinded))
-				M.show_message(SPAN_WARNING("[src] lets out a contented sigh as their form unwinds."))
-				ghostize()
-		del src
-		return
+		new /obj/item/ectoplasm(loc)
+		visible_message(
+			"[src] lets out a contented sigh as their form unwinds.",
+			blind_message = "You hear a sigh."
+		)
+		ghostize()
+		qdel(src)
 
 /mob/living/simple/shade/attack_by(obj/item/I, mob/user) //Marker -Agouri
 	if(istype(I, /obj/item/soulstone))
