@@ -233,7 +233,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	FOR_MACHINES_TYPED(lever, /obj/machinery/conveyor_switch)
+	FOR_MACHINES_SUBTYPED(lever, /obj/machinery/conveyor_switch)
 		if(lever.id == src.id)
 			lever.position = position
 			lever.update()
@@ -256,7 +256,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	FOR_MACHINES_TYPED(lever, /obj/machinery/conveyor_switch)
+	FOR_MACHINES_SUBTYPED(lever, /obj/machinery/conveyor_switch)
 		if(lever.id == src.id)
 			lever.position = position
 			lever.update()
