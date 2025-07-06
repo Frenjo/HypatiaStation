@@ -2537,16 +2537,14 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = TRUE
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/structure/sign/nosmoking_1{
 	pixel_y = 32
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
@@ -3389,8 +3387,8 @@
 /obj/machinery/power/terminal{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/cable/yellow,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
 "pw" = (
@@ -3519,12 +3517,11 @@
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/atmos)
 "qh" = (
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/power/port_gen/pacman{
 	anchored = TRUE
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/port_wing)
@@ -3911,12 +3908,11 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = TRUE
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
@@ -4205,15 +4201,13 @@
 /obj/machinery/power/terminal{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/cable{
-	d2 = 8;
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
 "tx" = (
@@ -4605,16 +4599,14 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/harvesting)
 "vx" = (
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/machinery/power/port_gen/pacman{
 	anchored = TRUE
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/port_wing)
@@ -6827,12 +6819,11 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = TRUE
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
@@ -7625,9 +7616,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/shuttle_dock)
 "Ip" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal,
@@ -7848,12 +7837,11 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/machinery/power/terminal{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/gutlunch_farm)
@@ -8539,12 +8527,11 @@
 /area/external/research_outpost/power)
 "MU" = (
 /obj/machinery/light/small,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/machinery/power/terminal{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/port_wing)
@@ -8702,16 +8689,15 @@
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
 "NK" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/power/port_gen/pacman{
 	anchored = TRUE
 	},
 /obj/machinery/camera{
 	c_tag = "Gutlunch Farm North";
 	network = list("MINE")
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/gutlunch_farm)
@@ -10992,12 +10978,11 @@
 	dir = 4
 	},
 /obj/machinery/light/small,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
