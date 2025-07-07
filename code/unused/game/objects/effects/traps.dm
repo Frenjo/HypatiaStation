@@ -215,11 +215,11 @@
 				if(!T.density || include_dense)
 					targets += T
 		if("mob")
-			for(var/mob/living/M in src.loc.loc)
+			for(var/mob/living/M in GET_AREA(src))
 				if(!M.density || include_dense)
 					targets += M
 		if("obj")
-			for(var/obj/O in src.loc.loc)
+			for(var/obj/O in GET_AREA(src))
 				if(!O.density || include_dense)
 					targets += O
 
