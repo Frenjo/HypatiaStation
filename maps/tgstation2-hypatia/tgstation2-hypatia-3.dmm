@@ -40,8 +40,7 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /turf/open/floor/tiled/grey,
@@ -109,15 +108,11 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "aZ" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/fore)
@@ -141,9 +136,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal,
@@ -174,9 +167,7 @@
 	},
 /area/space)
 "bL" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal,
@@ -237,9 +228,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "da" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -328,9 +317,7 @@
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "ez" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -405,9 +392,7 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "fL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -434,9 +419,7 @@
 /turf/open/floor/plating/metal,
 /area/turret_protected/tcomsat)
 "gb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -535,8 +518,7 @@
 /area/external/tcomsat/computer)
 "hC" = (
 /obj/machinery/power/tracker,
-/obj/structure/cable{
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -564,17 +546,13 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/lounge)
 "hU" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/fore)
 "ib" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -614,18 +592,14 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
@@ -634,9 +608,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "iq" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -655,9 +627,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "iK" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -692,9 +662,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "jf" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -718,13 +686,9 @@
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "jw" = (
-/obj/machinery/power/solar{
-	id = "tcommsforesolar";
-	name = "telecoms fore solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable{
-	d2 = 4;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -741,19 +705,6 @@
 "jz" = (
 /turf/closed/wall/reinforced,
 /area/external/tcomsat/lounge)
-"jD" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating/metal/airless,
-/area/external/tcomsat/solar/port)
 "jN" = (
 /obj/structure/window/reinforced,
 /turf/space,
@@ -789,9 +740,7 @@
 /turf/open/floor/circuit_grid/blue/mainframe,
 /area/external/tcomsat/chamber)
 "kX" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -800,23 +749,8 @@
 /obj/item/cell,
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/ai_satellite_teleporter)
-"ld" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/metal/airless,
-/area/external/tcomsat/solar/starboard)
 "lf" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -906,12 +840,9 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "mq" = (
-/obj/machinery/power/solar{
-	id = "tcommsstarboardsolar";
-	name = "telecoms starboard solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable,
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow,
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/starboard)
 "mJ" = (
@@ -985,9 +916,7 @@
 	},
 /area/external/tcomsat/chamber)
 "nT" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -1011,9 +940,7 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "od" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal,
@@ -1074,14 +1001,10 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "pl" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -1120,20 +1043,14 @@
 /turf/open/floor/tiled/dark/mainframe,
 /area/external/tcomsat/chamber)
 "qi" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/starboard)
@@ -1241,36 +1158,14 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "rM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/starboard)
-"rP" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/metal/airless,
-/area/external/tcomsat/solar/port)
 "rX" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
@@ -1329,9 +1224,7 @@
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "sy" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -1341,22 +1234,19 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/lounge)
 "sG" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/port)
 "sI" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -1370,9 +1260,7 @@
 /turf/open/floor/circuit_grid/blue/mainframe,
 /area/external/tcomsat/chamber)
 "sV" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -1500,9 +1388,7 @@
 	name = "External Access";
 	req_access = list(10,13)
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal,
@@ -1639,23 +1525,17 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "vD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal,
 /area/external/tcomsat/solar/aft)
 "vI" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/exterior)
@@ -1767,9 +1647,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "wW" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -1884,24 +1762,17 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "yz" = (
-/obj/machinery/power/solar{
-	id = "tcommsportsolar";
-	name = "telecoms port solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable,
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow,
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/port)
 "yC" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/exterior)
@@ -2147,20 +2018,14 @@
 	pixel_y = 25;
 	req_access = list(13)
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/exterior)
@@ -2264,26 +2129,18 @@
 /turf/open/floor/plating/metal/airless,
 /area/turret_protected/tcomsat)
 "Co" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/aft)
 "Cp" = (
-/obj/machinery/power/solar{
-	id = "tcommsforesolar";
-	name = "telecoms fore solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable{
-	d2 = 8;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2292,9 +2149,7 @@
 /turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/external/abandoned/ship)
 "Cw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2323,9 +2178,7 @@
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/ai_satellite_teleporter)
 "CQ" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2364,25 +2217,17 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "De" = (
-/obj/machinery/power/solar{
-	id = "tcommsaftsolar";
-	name = "telecoms aft solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable{
-	d2 = 4;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/aft)
 "Dh" = (
-/obj/machinery/power/solar{
-	id = "tcommsaftsolar";
-	name = "telecoms aft solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable{
-	d2 = 8;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2420,14 +2265,10 @@
 /turf/space,
 /area/space)
 "DO" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2538,9 +2379,7 @@
 	pixel_y = -25
 	},
 /obj/machinery/light/small,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal,
@@ -2608,9 +2447,7 @@
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "Hk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2753,9 +2590,7 @@
 /turf/open/floor/plating/metal,
 /area/external/tcomsat/chamber)
 "Jh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2791,9 +2626,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -2824,13 +2657,11 @@
 /turf/open/floor/plating/metal/shuttle/airless,
 /area/external/abandoned/ship)
 "Kx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
@@ -2921,9 +2752,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3025,9 +2854,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3047,11 +2874,10 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 9
 	},
-/obj/structure/cable{
-	d2 = 2;
+/obj/machinery/power/solar_control/tracking,
+/obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/solar_control/tracking,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "Nt" = (
@@ -3295,15 +3121,11 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "Ra" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/exterior)
@@ -3352,14 +3174,10 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "Sf" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3392,13 +3210,9 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "SJ" = (
-/obj/machinery/power/solar{
-	id = "tcommsportsolar";
-	name = "telecoms port solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable{
-	d2 = 2;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3418,9 +3232,7 @@
 	},
 /area/external/tcomsat/chamber)
 "Th" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3526,9 +3338,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "Ux" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal,
@@ -3560,13 +3370,9 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "UM" = (
-/obj/machinery/power/solar{
-	id = "tcommsstarboardsolar";
-	name = "telecoms starboard solar array"
-	},
 /obj/effect/decal/floor/solar_panel,
-/obj/structure/cable{
-	d2 = 2;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3581,19 +3387,13 @@
 /turf/open/floor/circuit_grid/blue/mainframe,
 /area/external/tcomsat/chamber)
 "UT" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -3613,20 +3413,14 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "Vk" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/fore)
@@ -3787,9 +3581,7 @@
 	},
 /area/external/abandoned/ship)
 "Xx" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/metal/airless,
@@ -28025,13 +27817,13 @@ vy
 mJ
 vy
 SJ
-jD
+pl
 yz
 vy
 Sp
 vy
 SJ
-jD
+pl
 yz
 vy
 mJ
@@ -28282,13 +28074,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -28539,13 +28331,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -28796,13 +28588,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 Sp
 Sp
 Sp
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -29053,13 +28845,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -29310,13 +29102,13 @@ vy
 ci
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -29567,7 +29359,7 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
@@ -29824,13 +29616,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -30081,13 +29873,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 Sp
 Sp
 Sp
 SJ
-rP
+sG
 yz
 vy
 ci
@@ -30338,13 +30130,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -30595,13 +30387,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -30852,13 +30644,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -31109,13 +30901,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -31366,13 +31158,13 @@ vy
 mJ
 vy
 SJ
-rP
+sG
 yz
 vy
 Sp
 vy
 SJ
-rP
+sG
 yz
 vy
 mJ
@@ -45244,13 +45036,13 @@ vy
 ci
 vy
 UM
-ld
+rM
 mq
 vy
 Sp
 vy
 UM
-ld
+rM
 mq
 vy
 mJ
