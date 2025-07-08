@@ -17,7 +17,7 @@
 	damage_absorption = list("brute" = 0.7, "fire" = 0.7, "bullet" = 0.7, "laser" = 0.7, "energy" = 0.7, "bomb" = 0.7)
 	internal_damage_threshold = 25
 
-	mecha_flag = MECHA_FLAG_PHAZON
+	mecha_type = MECHA_TYPE_PHAZON
 
 	wreckage = /obj/structure/mecha_wreckage/phazon
 

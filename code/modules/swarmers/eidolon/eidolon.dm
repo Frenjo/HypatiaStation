@@ -18,7 +18,7 @@
 	step_sound = 'sound/mecha/movement/eidolon/sbdwalk0.ogg'
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
-	mecha_flag = MECHA_FLAG_EIDOLON
+	mecha_type = MECHA_TYPE_EIDOLON
 	starts_with = list(/obj/item/mecha_equipment/weapon/energy/disabler/rapid)
 
 	wreckage = /obj/structure/mecha_wreckage/eidolon

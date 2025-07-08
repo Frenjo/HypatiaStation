@@ -8,7 +8,7 @@
 	max_temperature = 22500
 	internal_damage_threshold = 50
 
-	mecha_flag = MECHA_FLAG_DREADNOUGHT
+	mecha_type = MECHA_TYPE_DREADNOUGHT
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/dreadnought
 
@@ -24,7 +24,7 @@
 	step_in = 7
 	max_temperature = 25000
 
-	mecha_flag = MECHA_FLAG_BULWARK
+	mecha_type = MECHA_TYPE_BULWARK
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/dreadnought/bulwark
 

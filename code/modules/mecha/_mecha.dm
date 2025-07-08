@@ -1,12 +1,3 @@
-#define MECHA_INT_FIRE 1
-#define MECHA_INT_TEMP_CONTROL 2
-#define MECHA_INT_SHORT_CIRCUIT 4
-#define MECHA_INT_TANK_BREACH 8
-#define MECHA_INT_CONTROL_LOST 16
-
-#define MECHA_EQUIP_MELEE BITFLAG(0)
-#define MECHA_EQUIP_RANGED BITFLAG(1)
-
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -67,7 +58,7 @@
 	var/datum/global_iterator/pr_inertial_movement //controls inertial movement in spesss
 
 	// Equipment
-	var/mecha_flag = null // This exosuit's type bitflag.
+	var/mecha_type = null // This exosuit's type bitflag.
 	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip, even if their type bitflags match.
 	var/obj/item/cell/cell
 	var/list/obj/item/mecha_equipment/equipment = list()

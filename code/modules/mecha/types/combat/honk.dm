@@ -13,7 +13,7 @@
 	operation_req_access = list(ACCESS_CLOWN)
 	add_req_access = FALSE
 
-	mecha_flag = MECHA_FLAG_HONK
+	mecha_type = MECHA_TYPE_HONK
 	excluded_equipment = list(
 		/obj/item/mecha_equipment/melee_armour_booster,
 		/obj/item/mecha_equipment/melee_defence_shocker,

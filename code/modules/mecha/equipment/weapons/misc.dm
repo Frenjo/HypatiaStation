@@ -5,7 +5,7 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/honker::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/honker::req_tech
 
-	mecha_flags = MECHA_FLAG_HONK
+	mecha_types = MECHA_TYPE_HONK
 
 	energy_drain = 200
 	equip_cooldown = 15 SECONDS
@@ -47,7 +47,7 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/paddy_claw::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/paddy_claw::req_tech
 
-	mecha_flags = MECHA_FLAG_PADDY
+	mecha_types = MECHA_TYPE_PADDY
 
 	energy_drain = 10
 	equip_cooldown = 1.5 SECONDS

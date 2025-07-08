@@ -11,7 +11,7 @@
 	damage_absorption = list("brute" = 0.75, "fire" = 1, "bullet" = 0.8, "laser" = 0.7, "energy" = 0.85, "bomb" = 1)
 	internal_damage_threshold = 35
 
-	mecha_flag = MECHA_FLAG_GYGAX
+	mecha_type = MECHA_TYPE_GYGAX
 
 	wreckage = /obj/structure/mecha_wreckage/gygax
 
@@ -119,6 +119,6 @@
 	step_sound_volume = 25
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
-	mecha_flag = MECHA_FLAG_SERENITY
+	mecha_type = MECHA_TYPE_SERENITY
 
 	wreckage = /obj/structure/mecha_wreckage/gygax/serenity

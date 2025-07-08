@@ -18,7 +18,7 @@
 	add_req_access = FALSE
 
 	max_equip = 5
-	mecha_flag = MECHA_FLAG_MARAUDER
+	mecha_type = MECHA_TYPE_MARAUDER
 
 	wreckage = /obj/structure/mecha_wreckage/marauder
 

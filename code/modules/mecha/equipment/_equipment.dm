@@ -17,7 +17,7 @@
 
 	var/obj/mecha/chassis = null
 
-	var/mecha_flags = null // Bitflags which determine which exosuits this equipment can be fitted to.
+	var/mecha_types = null // Bitflags which determine which exosuits this equipment can be fitted to.
 
 	var/equip_ready = TRUE
 	var/equip_cooldown = 0
@@ -52,7 +52,7 @@
 /obj/item/mecha_equipment/proc/can_attach(obj/mecha/mech)
 	if(!istype(mech))
 		return FALSE
-	if(isnotnull(mecha_flags) && !(mecha_flags & mech.mecha_flag)) // If we have flags and they aren't right, not allowed!
+	if(isnotnull(mecha_types) && !(mecha_types & mech.mecha_type)) // If we have flags and they aren't right, not allowed!
 		return FALSE
 	if(is_type_in_list(src, mech.excluded_equipment)) // If it's in the special exclusions list then it's also not allowed!
 		return FALSE

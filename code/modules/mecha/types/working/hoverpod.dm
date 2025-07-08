@@ -13,7 +13,7 @@
 	max_temperature = 20000
 	internal_damage_threshold = 80
 
-	mecha_flag = MECHA_FLAG_HOVERPOD
+	mecha_type = MECHA_TYPE_HOVERPOD
 
 	wreckage = /obj/structure/mecha_wreckage/hoverpod
 
@@ -102,7 +102,7 @@
 
 	max_equip = 2
 
-	mecha_flag = MECHA_FLAG_COMBAT_HOVERPOD
+	mecha_type = MECHA_TYPE_COMBAT_HOVERPOD
 	starts_with = list(/obj/item/mecha_equipment/weapon/energy/laser, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack)
 
 	cargo_capacity = 2

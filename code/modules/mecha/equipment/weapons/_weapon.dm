@@ -2,7 +2,7 @@
 	name = "mecha weapon"
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3)
 
-	mecha_flags = MECHA_FLAG_COMBAT
+	mecha_types = MECHA_TYPE_COMBAT
 
 	equip_range = MECHA_EQUIP_RANGED
 

@@ -7,7 +7,7 @@
 	step_in = 6
 	max_temperature = 20000
 
-	mecha_flag = MECHA_FLAG_RIPLEY
+	mecha_type = MECHA_TYPE_RIPLEY
 
 	wreckage = /obj/structure/mecha_wreckage/ripley
 
@@ -102,7 +102,7 @@
 	step_in = 2
 	step_energy_drain = 0
 
-	mecha_flag = MECHA_FLAG_DEATH_RIPLEY
+	mecha_type = MECHA_TYPE_DEATH_RIPLEY
 	starts_with = list(
 		/obj/item/mecha_equipment/tool/hydraulic_clamp/safety
 	)
@@ -131,7 +131,7 @@
 	health = 175
 	step_in = 5
 
-	mecha_flag = MECHA_FLAG_RESCUE_RANGER
+	mecha_type = MECHA_TYPE_RESCUE_RANGER
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
 
@@ -153,7 +153,7 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
-	mecha_flag = MECHA_FLAG_SINDY
+	mecha_type = MECHA_TYPE_SINDY
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
 
@@ -185,7 +185,7 @@
 	step_in = 4 // Faster than a Ripley because it's less armoured, but slower than the more specialised Gygax.
 	damage_absorption = list("brute" = 1, "fire" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1)
 
-	mecha_flag = MECHA_FLAG_PADDY
+	mecha_type = MECHA_TYPE_PADDY
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/paddy
 

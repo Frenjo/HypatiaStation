@@ -31,7 +31,7 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_laser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_laser::req_tech
 
-	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+	mecha_types = MECHA_TYPE_WORKING | MECHA_TYPE_COMBAT
 
 	equip_cooldown = 1.6 SECONDS
 	energy_drain = 60
@@ -59,7 +59,7 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_xray::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_xray::req_tech
 
-	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+	mecha_types = MECHA_TYPE_WORKING | MECHA_TYPE_COMBAT
 
 	equip_cooldown = 1.2 SECONDS
 	energy_drain = 175

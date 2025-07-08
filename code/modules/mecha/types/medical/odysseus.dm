@@ -10,7 +10,7 @@
 	deflect_chance = 15
 	internal_damage_threshold = 35
 
-	mecha_flag = MECHA_FLAG_ODYSSEUS
+	mecha_type = MECHA_TYPE_ODYSSEUS
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus
 
@@ -84,7 +84,7 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
-	mecha_flag = MECHA_FLAG_EURYMACHUS
+	mecha_type = MECHA_TYPE_EURYMACHUS
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 

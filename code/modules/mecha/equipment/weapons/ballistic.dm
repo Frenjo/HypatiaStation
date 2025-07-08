@@ -135,7 +135,7 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/banana_mortar::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/banana_mortar::req_tech
 
-	mecha_flags = MECHA_FLAG_HONK
+	mecha_types = MECHA_TYPE_HONK
 
 	equip_cooldown = 2 SECONDS
 

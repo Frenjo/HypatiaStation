@@ -6,7 +6,7 @@
 
 	force = 15
 
-	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+	mecha_types = MECHA_TYPE_WORKING | MECHA_TYPE_COMBAT
 
 	equip_cooldown = 3 SECONDS
 	energy_drain = 10
