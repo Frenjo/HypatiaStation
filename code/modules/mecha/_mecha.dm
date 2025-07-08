@@ -49,7 +49,6 @@
 	var/list/log = list()
 	var/last_message = 0
 	var/dna	//dna-locking the mech
-	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect/system/spark_spread/spark_system = null
 
 	// Lights

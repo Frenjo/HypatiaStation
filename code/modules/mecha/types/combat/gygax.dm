@@ -23,9 +23,10 @@
 	if(href_list["toggle_leg_overload"])
 		toggle_actuator_overload()
 
-/obj/mecha/combat/gygax/dyndomove(direction)
-	if(!..())
-		return
+/obj/mecha/combat/gygax/do_move(direction)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(overload)
 		health--
 		if(health < initial(health) - initial(health) / 3)

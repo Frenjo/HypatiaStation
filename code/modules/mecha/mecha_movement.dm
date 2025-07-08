@@ -14,19 +14,16 @@
 		return FALSE
 	if(state)
 		occupant_message(SPAN_WARNING("Maintenance protocols in effect."))
-		return
-	return domove(direction)
+		return FALSE
+	return do_move(direction)
 
-/obj/mecha/proc/domove(direction)
-	return call((proc_res["dyndomove"] || src), "dyndomove")(direction)
-
-/obj/mecha/proc/dyndomove(direction)
+/obj/mecha/proc/do_move(direction)
 	if(!can_move)
-		return 0
+		return FALSE
 	if(pr_inertial_movement.active())
-		return 0
+		return FALSE
 	if(!has_charge(step_energy_drain))
-		return 0
+		return FALSE
 	var/move_result = 0
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		move_result = mechsteprand()
@@ -43,8 +40,8 @@
 				log_message("Movement control lost. Inertial movement started.")
 		if(do_after(occupant, step_in, src, FALSE, FALSE))
 			can_move = TRUE
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/handle_equipment_movement()
 	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)

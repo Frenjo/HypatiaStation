@@ -1578,6 +1578,7 @@
 #include "code\modules\mecha\equipment\_equipment.dm"
 #include "code\modules\mecha\equipment\armour.dm"
 #include "code\modules\mecha\equipment\conversion_kit.dm"
+#include "code\modules\mecha\equipment\dynamic_procs.dm"
 #include "code\modules\mecha\equipment\general.dm"
 #include "code\modules\mecha\equipment\passenger.dm"
 #include "code\modules\mecha\equipment\shield.dm"
