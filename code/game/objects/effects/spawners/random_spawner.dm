@@ -3,26 +3,22 @@
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
 
+	var/alist/possible_items = null
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 
 // creates a new object and deletes itself
-/obj/effect/random_spawner/New()
+/obj/effect/random_spawner/initialise()
 	. = ..()
 	if(!prob(spawn_nothing_percentage))
 		spawn_item()
-
-/obj/effect/random_spawner/initialise()
-	. = ..()
 	qdel(src)
-
-// this function should return a specific item to spawn
-/obj/effect/random_spawner/proc/item_to_spawn()
-	return 0
 
 // creates the random item
 /obj/effect/random_spawner/proc/spawn_item()
-	var/path = item_to_spawn()
-	new path(loc)
+	var/item_type = pickweight(possible_items)
+	if(isnull(item_type))
+		return
+	new item_type(loc)
 
 // Tool
 /obj/effect/random_spawner/tool
@@ -31,14 +27,14 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 
-/obj/effect/random_spawner/tool/item_to_spawn()
-	return pick( \
-		/obj/item/screwdriver, \
-		/obj/item/wirecutters, \
-		/obj/item/weldingtool, \
-		/obj/item/crowbar, \
-		/obj/item/wrench, \
-		/obj/item/flashlight \
+	possible_items = alist(
+		/obj/item/screwdriver,
+		/obj/item/wirecutters,
+		/obj/item/weldingtool,
+		/obj/item/crowbar,
+		/obj/item/wrench,
+		/obj/item/flashlight,
+		/obj/item/multitool
 	)
 
 // Technology Scanner
@@ -48,11 +44,10 @@
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "atmos"
 
-/obj/effect/random_spawner/technology_scanner/item_to_spawn()
-	return pick( \
-		prob(5); /obj/item/t_scanner, \
-		prob(2); /obj/item/radio, \
-		prob(5); /obj/item/gas_analyser \
+	possible_items = alist(
+		/obj/item/t_scanner = 5,
+		/obj/item/gas_analyser = 5,
+		/obj/item/radio = 2
 	)
 
 // Power Cell
@@ -62,13 +57,12 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 
-/obj/effect/random_spawner/power_cell/item_to_spawn()
-	return pick( \
-		prob(10); /obj/item/cell/crap, \
-		prob(40); /obj/item/cell, \
-		prob(40); /obj/item/cell/high, \
-		prob(9); /obj/item/cell/super, \
-		prob(1); /obj/item/cell/hyper \
+	possible_items = alist(
+		/obj/item/cell = 40,
+		/obj/item/cell/high = 40,
+		/obj/item/cell/crap = 10,
+		/obj/item/cell/super = 9,
+		/obj/item/cell/hyper = 1
 	)
 
 // Bomb Supply
@@ -78,12 +72,10 @@
 	icon = 'icons/obj/items/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 
-/obj/effect/random_spawner/bomb_supply/item_to_spawn()
-	return pick( \
-		/obj/item/assembly/igniter, \
-		/obj/item/assembly/prox_sensor, \
-		/obj/item/assembly/signaler, \
-		/obj/item/multitool \
+	possible_items = alist(
+		/obj/item/assembly/igniter,
+		/obj/item/assembly/prox_sensor,
+		/obj/item/assembly/signaler
 	)
 
 // Toolbox
@@ -93,11 +85,10 @@
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "red"
 
-/obj/effect/random_spawner/toolbox/item_to_spawn()
-	return pick( \
-		prob(3); /obj/item/storage/toolbox/mechanical, \
-		prob(2); /obj/item/storage/toolbox/electrical, \
-		prob(1); /obj/item/storage/toolbox/emergency \
+	possible_items = alist(
+		/obj/item/storage/toolbox/mechanical = 3,
+		/obj/item/storage/toolbox/electrical = 3,
+		/obj/item/storage/toolbox/emergency = 1
 	)
 
 // Tech Supply
@@ -106,18 +97,33 @@
 	desc = "This spawns a random technology supply."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
+
+	possible_items = alist(
+		/obj/effect/random_spawner/tool = 5,
+		/obj/effect/random_spawner/power_cell = 3,
+		/obj/item/stack/cable_coil = 3,
+		/obj/effect/random_spawner/technology_scanner = 2,
+		/obj/effect/random_spawner/bomb_supply = 2,
+		/obj/effect/random_spawner/toolbox = 2,
+		/obj/item/storage/belt/utility = 2,
+		/obj/item/package_wrap = 1,
+		/obj/item/fire_extinguisher = 1,
+		/obj/item/clothing/gloves/fyellow = 1
+	)
 	spawn_nothing_percentage = 50
 
-/obj/effect/random_spawner/tech_supply/item_to_spawn()
-	return pick( \
-		prob(3); /obj/effect/random_spawner/power_cell, \
-		prob(2); /obj/effect/random_spawner/technology_scanner, \
-		prob(1); /obj/item/package_wrap, \
-		prob(2); /obj/effect/random_spawner/bomb_supply, \
-		prob(1); /obj/item/fire_extinguisher, \
-		prob(1); /obj/item/clothing/gloves/fyellow, \
-		prob(3); /obj/item/stack/cable_coil, \
-		prob(2); /obj/effect/random_spawner/toolbox, \
-		prob(2); /obj/item/storage/belt/utility, \
-		prob(5); /obj/effect/random_spawner/tool \
+// Internals Mask
+/obj/effect/random_spawner/internals_mask
+	name = "random internals mask spawner"
+	desc = "This spawns a random internals mask."
+	icon = 'icons/obj/items/clothing/masks.dmi'
+	icon_state = "breath"
+
+	possible_items = alist(
+		/obj/item/clothing/mask/breath = 10,
+		/obj/item/clothing/mask/gas = 8,
+		/obj/item/clothing/mask/breath/medical = 5,
+		/obj/item/clothing/mask/gas/plaguedoctor = 5,
+		/obj/item/clothing/mask/gas/clown_hat = 4,
+		/obj/item/clothing/mask/gas/mime = 4
 	)

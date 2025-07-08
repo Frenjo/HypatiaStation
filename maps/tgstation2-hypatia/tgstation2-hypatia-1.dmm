@@ -727,7 +727,7 @@
 /obj/effect/random_spawner/tool,
 /obj/effect/random_spawner/tool,
 /obj/effect/random_spawner/bomb_supply,
-/obj/item/flashlight,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "anv" = (
@@ -3276,8 +3276,8 @@
 /area/station/engineering/engine/supermatter)
 "bjV" = (
 /obj/structure/rack,
-/obj/item/clothing/mask/gas,
-/obj/item/flashlight,
+/obj/effect/random_spawner/internals_mask,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "bka" = (
@@ -7240,7 +7240,7 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/flashlight,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "cxy" = (
@@ -12021,7 +12021,7 @@
 	dir = 1
 	},
 /obj/item/storage/box/lights/mixed,
-/obj/item/flashlight,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "efj" = (
@@ -16521,10 +16521,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/medical/main)
-"fNX" = (
-/obj/item/flashlight,
-/turf/open/floor/plating/metal,
-/area/station/maintenance/central/port)
 "fOb" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -21406,9 +21402,9 @@
 /area/station/crew/kitchen)
 "hvK" = (
 /obj/structure/closet/crate,
-/obj/item/clothing/mask/gas,
-/obj/item/flashlight,
-/obj/item/flashlight,
+/obj/effect/random_spawner/internals_mask,
+/obj/effect/random_spawner/tool,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
 "hwb" = (
@@ -25362,7 +25358,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/rack,
-/obj/item/clothing/mask/gas,
+/obj/effect/random_spawner/internals_mask,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
@@ -35370,7 +35366,7 @@
 	icon_state = "2-8"
 	},
 /obj/structure/closet,
-/obj/item/flashlight,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard)
 "mrN" = (
@@ -38472,13 +38468,6 @@
 	},
 /turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
-"nqC" = (
-/obj/structure/rack{
-	dir = 1
-	},
-/obj/item/flashlight,
-/turf/open/floor/plating/metal,
-/area/station/maintenance/aft/port)
 "nqM" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -41758,12 +41747,12 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/flashlight,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/random_spawner/internals_mask,
+/obj/item/clothing/glasses/sunglasses,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "oxH" = (
@@ -44795,8 +44784,8 @@
 /area/station/crew/law_office)
 "pyZ" = (
 /obj/structure/closet/crate,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/effect/random_spawner/internals_mask,
+/obj/effect/random_spawner/internals_mask,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "pze" = (
@@ -45274,8 +45263,8 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/item/fire_extinguisher,
-/obj/item/clothing/mask/gas,
+/obj/effect/random_spawner/tech_supply,
+/obj/effect/random_spawner/internals_mask,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "pHY" = (
@@ -52007,7 +51996,7 @@
 /obj/structure/rack{
 	dir = 4
 	},
-/obj/item/clothing/mask/gas,
+/obj/effect/random_spawner/internals_mask,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
 "rXI" = (
@@ -62194,9 +62183,9 @@
 /area/station/hallway/primary/central)
 "vQb" = (
 /obj/structure/rack,
-/obj/item/fire_extinguisher,
-/obj/item/storage/belt/utility,
-/obj/item/clothing/mask/gas,
+/obj/effect/random_spawner/tech_supply,
+/obj/effect/random_spawner/tech_supply,
+/obj/effect/random_spawner/internals_mask,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "vQw" = (
@@ -65182,7 +65171,7 @@
 /area/external/prison/cell_block/B)
 "wPi" = (
 /obj/structure/rack,
-/obj/item/clothing/mask/gas,
+/obj/effect/random_spawner/internals_mask,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
@@ -65358,8 +65347,8 @@
 /area/turret_protected/ai_chamber)
 "wRK" = (
 /obj/structure/rack,
-/obj/item/clothing/mask/gas,
 /obj/effect/decal/floor/industrial/warning/corner,
+/obj/effect/random_spawner/internals_mask,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "wRX" = (
@@ -65500,7 +65489,7 @@
 	dir = 1
 	},
 /obj/effect/random_spawner/tech_supply,
-/obj/item/flashlight,
+/obj/effect/random_spawner/tool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "wUy" = (
@@ -87825,7 +87814,7 @@ dyb
 hOw
 bfb
 sjz
-fNX
+nJf
 xdb
 vTX
 rdA
@@ -94275,7 +94264,7 @@ wyq
 wyq
 wyq
 fzf
-nqC
+fzf
 kQa
 kAv
 nHo
