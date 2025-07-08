@@ -12,14 +12,15 @@
 	QDEL_NULL(hud)
 	return ..()
 
-/obj/mecha/medical/moved_inside(mob/living/carbon/human/H)
-	if(..())
-		if(isnotnull(H.glasses))
-			occupant_message(SPAN_WARNING("\The [H.glasses] prevent you from using \the [hud] on \the [src]."))
-		else
-			H.glasses = hud
-		return TRUE
-	return FALSE
+/obj/mecha/medical/moved_inside(mob/living/carbon/human/pilot)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(isnotnull(pilot.glasses))
+		occupant_message(SPAN_WARNING("\The [pilot.glasses] prevent you from using \the [hud] on \the [src]."))
+	else
+		pilot.glasses = hud
 
 /obj/mecha/medical/go_out()
 	if(ishuman(occupant))

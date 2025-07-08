@@ -70,7 +70,7 @@
 
 	return ..()
 
-/obj/mecha/working/hoverpod/moved_inside(mob/living/carbon/human/H)
+/obj/mecha/working/hoverpod/moved_inside(mob/living/carbon/human/pilot)
 	. = ..()
 	if(.)
 		start_floating_animation()

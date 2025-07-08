@@ -1,13 +1,11 @@
 // Entering an exosuit via drag-and-drop.
-/obj/mecha/MouseDrop_T(atom/dropping, mob/user)
-	if(user.stat || !ishuman(user))
+/obj/mecha/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
+	if(user.stat || !istype(user))
 		return
 	log_message("[user] tries to move in.")
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		if(C.handcuffed)
-			to_chat(user, SPAN_WARNING("Kinda hard to climb in while handcuffed, don't you think?"))
-			return
+	if(user.handcuffed)
+		to_chat(user, SPAN_WARNING("Kinda hard to climb in while handcuffed, don't you think?"))
+		return
 	if(isnotnull(occupant))
 		to_chat(user, SPAN_WARNING("\The [src] is already occupied!"))
 		log_append_to_last("Permission denied.")
@@ -42,23 +40,24 @@
 	else
 		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
 
-/obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
-	if(isnotnull(H?.client) && (H in range(1)))
-		H.reset_view(src)
+// This will always be a /mob/living/carbon/human UNLESS it's a Swarmer entering an Eidolon.
+/obj/mecha/proc/moved_inside(mob/living/pilot)
+	if(isnotnull(pilot?.client) && (pilot in range(1)))
+		pilot.reset_view(src)
 		/*
-		H.client.perspective = EYE_PERSPECTIVE
-		H.client.eye = src
+		pilot.client.perspective = EYE_PERSPECTIVE
+		pilot.client.eye = src
 		*/
-		H.stop_pulling()
-		H.forceMove(src)
-		occupant = H
-		add_fingerprint(H)
+		pilot.stop_pulling()
+		pilot.forceMove(src)
+		occupant = pilot
+		add_fingerprint(pilot)
 		forceMove(loc)
-		log_append_to_last("[H] moved in as pilot.")
+		log_append_to_last("[pilot] moved in as pilot.")
 		icon_state = initial(icon_state)
 		set_dir(entry_direction)
-		H.visible_message(
-			SPAN_INFO("[H] climbs into \the [src]."),
+		pilot.visible_message(
+			SPAN_INFO("[pilot] climbs into \the [src]."),
 			SPAN_INFO("You climb into \the [src].")
 		)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)

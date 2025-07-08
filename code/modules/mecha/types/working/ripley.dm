@@ -47,7 +47,7 @@
 		return TRUE
 	return ..()
 
-/obj/mecha/working/ripley/moved_inside(mob/living/carbon/human/H)
+/obj/mecha/working/ripley/moved_inside(mob/living/carbon/human/pilot)
 	. = ..()
 	if(!.)
 		return FALSE

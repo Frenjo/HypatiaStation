@@ -239,19 +239,22 @@
 		onclose(occupant, "sam", src)
 	return
 */
-/obj/mecha/combat/moved_inside(mob/living/carbon/human/H)
-	if(..())
-		if(isnotnull(H.client))
-			H.client.mouse_pointer_icon = file("icons/obj/mecha/mecha_mouse.dmi")
-		return TRUE
-	return FALSE
+// This will always be a /mob/living/carbon/human UNLESS it's a Swarmer entering an Eidolon.
+/obj/mecha/combat/moved_inside(mob/living/pilot)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(isnotnull(pilot.client))
+		pilot.client.mouse_pointer_icon = file("icons/obj/mecha/mecha_mouse.dmi")
 
 /obj/mecha/combat/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
-	if(..())
-		if(isnotnull(occupant.client))
-			occupant.client.mouse_pointer_icon = file("icons/obj/mecha/mecha_mouse.dmi")
-		return TRUE
-	return FALSE
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(isnotnull(occupant.client))
+		occupant.client.mouse_pointer_icon = file("icons/obj/mecha/mecha_mouse.dmi")
 
 /obj/mecha/combat/go_out()
 	if(isnotnull(occupant?.client))

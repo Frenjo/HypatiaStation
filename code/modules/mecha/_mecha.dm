@@ -11,7 +11,7 @@
 
 	var/entry_direction = SOUTH // Which direction the exosuit faces when entered. I only recently realised some are entered from the back not the front!
 	var/can_move = TRUE
-	var/mob/living/carbon/occupant = null
+	var/mob/living/occupant = null // This will always be a /mob/living/carbon/human UNLESS it's a Swarmer in an Eidolon.
 
 	// Stats
 	var/health = 300
