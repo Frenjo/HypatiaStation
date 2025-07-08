@@ -6305,6 +6305,11 @@
 	},
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
+"Ce" = (
+/obj/effect/window_spawner/reinforced,
+/obj/structure/sign/greencross,
+/turf/open/floor/plating/metal,
+/area/external/research_outpost/infirmary)
 "Cf" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -6998,7 +7003,6 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
 "FA" = (
-/obj/structure/sign/greencross,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -9877,6 +9881,10 @@
 	},
 /turf/open/floor/tiled/showroom,
 /area/external/research_outpost/hallway)
+"Ti" = (
+/obj/structure/sign/greencross,
+/turf/closed/wall/steel,
+/area/external/mining_outpost/port_wing)
 "Tp" = (
 /obj/structure/closet/secure/xenoarchaeologist{
 	req_access = list(47)
@@ -44694,7 +44702,7 @@ BK
 fQ
 Rk
 fQ
-fQ
+Ti
 jC
 AR
 yT
@@ -50740,7 +50748,7 @@ NU
 NU
 NU
 IO
-XU
+Ce
 jg
 FA
 XU

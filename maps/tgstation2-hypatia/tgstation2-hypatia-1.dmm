@@ -399,7 +399,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "ahe" = (
 /turf/open/floor/plating/metal,
 /area/station/engineering/storage/hard)
@@ -975,7 +975,7 @@
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "ate" = (
 /obj/effect/decal/floor/coloured/light_red/corner{
 	dir = 4
@@ -1028,7 +1028,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "auO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/open/floor/tiled/white,
@@ -5729,7 +5729,7 @@
 "bYU" = (
 /obj/structure/sign/biohazard,
 /turf/closed/wall/steel,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "bZb" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -9993,7 +9993,7 @@
 	name = "firelock south"
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "duO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -14624,7 +14624,7 @@
 	dir = 6
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "fdZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
@@ -16084,7 +16084,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/manifold4w/hidden,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "fHF" = (
 /turf/open/floor/plating/metal,
 /area/station/storage/tech)
@@ -18710,7 +18710,7 @@
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "gyj" = (
 /obj/structure/stool/bed/chair{
 	dir = 1
@@ -22903,7 +22903,7 @@
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "hVK" = (
 /obj/structure/stool/bed/chair/comfy/beige{
 	dir = 1
@@ -40525,7 +40525,7 @@
 /obj/effect/decal/floor/coloured/light_green,
 /obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "oaz" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -42145,7 +42145,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "oHy" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -46816,7 +46816,7 @@
 /obj/effect/decal/floor/coloured/light_green,
 /obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "qnJ" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -49888,10 +49888,6 @@
 /obj/effect/decal/floor/coloured/red,
 /turf/open/floor/tiled/grey,
 /area/station/security/post/starboard)
-"rnz" = (
-/obj/structure/sign/securearea,
-/turf/closed/wall/steel,
-/area/station/research/xenobiology)
 "rnH" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -56973,7 +56969,7 @@
 	name = "firelock south"
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "tSX" = (
 /obj/machinery/door/poddoor{
 	density = FALSE;
@@ -57070,7 +57066,7 @@
 /obj/effect/decal/floor/coloured/light_green,
 /obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "tUi" = (
 /obj/machinery/camera{
 	c_tag = "Fore Starboard Solars";
@@ -60364,7 +60360,7 @@
 	dir = 8
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "vfo" = (
 /obj/machinery/status_display{
 	dir = 1;
@@ -61842,7 +61838,7 @@
 	name = "firelock south"
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "vIC" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -65258,7 +65254,7 @@
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
-/area/station/research/xenobiology)
+/area/station/research/hallway)
 "wQL" = (
 /obj/machinery/atmospherics/pipe/tank/oxygen{
 	volume = 3200
@@ -115839,7 +115835,7 @@ hIA
 bVS
 wQv
 tSN
-rnz
+hCE
 agM
 asX
 oay
