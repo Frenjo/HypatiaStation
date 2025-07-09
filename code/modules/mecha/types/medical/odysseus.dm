@@ -48,7 +48,7 @@
 	step_energy_drain = 3
 	max_temperature = 35000
 	deflect_chance = 25
-	damage_absorption = list("brute" = 0.65, "fire" = 1, "bullet" = 0.7, "laser" = 0.8, "energy" = 0.8, "bomb" = 0.8)
+	damage_resistance = list("brute" = 35, "fire" = 20, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 20)
 
 	max_equip = 4
 
@@ -79,7 +79,7 @@
 	step_energy_drain = 4.5
 	max_temperature = 25000
 	deflect_chance = 20
-	damage_absorption = list("brute" = 0.725, "fire" = 1.1, "bullet" = 0.8, "laser" = 0.9, "energy" = 0.9, "bomb" = 0.9)
+	damage_resistance = list("brute" = 27.5, "fire" = 10, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10)
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE

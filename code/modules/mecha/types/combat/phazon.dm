@@ -14,7 +14,7 @@
 	step_in = 2
 	step_energy_drain = 3
 	deflect_chance = 30
-	damage_absorption = list("brute" = 0.7, "fire" = 0.7, "bullet" = 0.7, "laser" = 0.7, "energy" = 0.7, "bomb" = 0.7)
+	damage_resistance = list("brute" = 30, "fire" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30)
 	internal_damage_threshold = 25
 
 	mecha_type = MECHA_TYPE_PHAZON
@@ -133,7 +133,7 @@
 	step_energy_drain = 1.5
 	max_temperature = 45000
 	deflect_chance = 40
-	damage_absorption = list("brute" = 0.65, "fire" = 0.75, "bullet" = 0.65, "laser" = 0.6, "energy" = 0.675, "bomb" = 0.75)
+	damage_resistance = list("brute" = 35, "fire" = 25, "bullet" = 35, "laser" = 40, "energy" = 32.5, "bomb" = 25)
 
 	max_equip = 4
 

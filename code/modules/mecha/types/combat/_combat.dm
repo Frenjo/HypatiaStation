@@ -1,7 +1,7 @@
 /obj/mecha/combat
 	force = 30
 
-	damage_absorption = list("brute" = 0.7, "fire" = 1, "bullet" = 0.7, "laser" = 0.85, "energy" = 1, "bomb" = 0.8)
+	damage_resistance = list("brute" = 30, "fire" = 0, "bullet" = 30, "laser" = 15, "energy" = 0, "bomb" = 20)
 
 	maint_access = FALSE
 

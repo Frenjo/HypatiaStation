@@ -33,17 +33,17 @@
 
 /obj/mecha/proc/take_damage(amount, type = "brute")
 	if(amount)
-		var/damage = absorb_damage(amount, type)
+		var/damage = resist_damage(amount, type)
 		health -= damage
 		update_health()
 		occupant_message(SPAN_DANGER("Taking damage!"))
 		log_append_to_last("Took [damage] points of damage. Damage type: \"[type]\".", 1)
 
-/obj/mecha/proc/absorb_damage(damage, damage_type)
-	var/coefficient = 1
-	if(damage_absorption[damage_type])
-		coefficient = damage_absorption[damage_type]
-	return damage * coefficient
+/obj/mecha/proc/resist_damage(damage, damage_type)
+	var/resistance_percentage = 0
+	if(damage_resistance[damage_type])
+		resistance_percentage = damage_resistance[damage_type]
+	return round(damage * (100 - resistance_percentage) / 100, 0.1)
 
 /obj/mecha/proc/update_health()
 	if(src.health > 0)

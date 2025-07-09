@@ -11,7 +11,7 @@
 	step_in = 5
 	max_temperature = 60000
 	deflect_chance = 25
-	damage_absorption = list("brute" = 0.5, "fire" = 0.7, "bullet" = 0.45, "laser" = 0.6, "energy" = 0.7, "bomb" = 0.7)
+	damage_resistance = list("brute" = 50, "fire" = 30, "bullet" = 55, "laser" = 40, "energy" = 30, "bomb" = 30)
 	internal_damage_threshold = 25
 
 	operation_req_access = list(ACCESS_CENT_SPECOPS)

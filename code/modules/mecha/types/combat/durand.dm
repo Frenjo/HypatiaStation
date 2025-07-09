@@ -12,7 +12,7 @@
 	step_in = 4
 	max_temperature = 30000
 	deflect_chance = 20
-	damage_absorption = list("brute" = 0.5, "fire" = 1.1, "bullet" = 0.65, "laser" = 0.85, "energy" = 0.9, "bomb" = 0.8)
+	damage_resistance = list("brute" = 50, "fire" = 0, "bullet" = 35, "laser" = 15, "energy" = 10, "bomb" = 20)
 
 	mecha_type = MECHA_TYPE_DURAND
 
@@ -79,7 +79,7 @@
 	step_energy_drain = 15
 	max_temperature = 25000
 	deflect_chance = 20
-	damage_absorption = list("brute" = 0.6, "fire" = 0.9, "bullet" = 0.675, "laser" = 0.775, "energy" = 0.8, "bomb" = 0.75)
+	damage_resistance = list("brute" = 40, "fire" = 20, "bullet" = 32.5, "laser" = 22.5, "energy" = 20, "bomb" = 25)
 	internal_damage_threshold = 35
 
 	wreckage = /obj/structure/mecha_wreckage/durand/archambeau

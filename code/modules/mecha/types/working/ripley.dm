@@ -20,7 +20,7 @@
 /obj/mecha/working/ripley/Destroy()
 	for(var/i = 1, i <= goliath_hides, i++)
 		new /obj/item/stack/goliath_hide(loc)
-	damage_absorption["brute"] = initial(damage_absorption["brute"])
+	damage_resistance["brute"] = initial(damage_resistance["brute"])
 	return ..()
 
 /obj/mecha/working/ripley/attack_by(obj/item/I, mob/user)
@@ -33,7 +33,7 @@
 			if(!hide.use(1))
 				return TRUE
 
-			damage_absorption["brute"] -= 0.1
+			damage_resistance["brute"] += 10 // 10% increased resistance per plate.
 			to_chat(user, SPAN_INFO("You strengthen the armour on \the [src], improving its resistance against melee attacks."))
 			goliath_hides++
 
@@ -90,7 +90,7 @@
 
 	health = 250
 	max_temperature = 65000
-	damage_absorption = list("fire" = 0.5, "bullet" = 0.8, "bomb" = 0.5)
+	damage_resistance = list("fire" = 50, "bullet" = 20, "bomb" = 50)
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 
@@ -148,7 +148,7 @@
 	health = 225
 	step_in = 5
 	max_temperature = 42500
-	damage_absorption = list("brute" = 0.8, "fire" = 0.85, "bullet" = 0.85, "laser" = 1, "energy" = 1, "bomb" = 0.75)
+	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 0, "energy" = 0, "bomb" = 25)
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
@@ -183,7 +183,7 @@
 
 	health = 225
 	step_in = 4 // Faster than a Ripley because it's less armoured, but slower than the more specialised Gygax.
-	damage_absorption = list("brute" = 1, "fire" = 1, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1)
+	damage_resistance = list("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
 
 	mecha_type = MECHA_TYPE_PADDY
 

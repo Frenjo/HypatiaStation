@@ -19,8 +19,8 @@
 	var/step_energy_drain = 10
 	var/max_temperature = 25000
 	var/deflect_chance = 10 // Chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.
-	// The values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list("brute" = 0.8, "fire" = 1.2, "bullet" = 0.9, "laser" = 1, "energy" = 1, "bomb" = 1)
+	// The values in this list are percentage damage reduction.
+	var/list/damage_resistance = list("brute" = 20, "fire" = 0, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0)
 	var/internal_damage_threshold = 50 // Health percentage below which internal damage is possible.
 	var/internal_damage = 0 // Contains bitflags.
 
