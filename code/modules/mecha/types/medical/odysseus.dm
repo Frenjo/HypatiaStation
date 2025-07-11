@@ -44,7 +44,6 @@
 	icon_state = "dark_odysseus"
 
 	health = 220
-	move_delay = 0.15 SECONDS
 	step_energy_drain = 3
 	max_temperature = 35000
 	deflect_chance = 25

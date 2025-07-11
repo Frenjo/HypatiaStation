@@ -8,7 +8,7 @@
 	turn_sound = null
 
 	health = 140
-	move_delay = 0.2 SECONDS
+	move_delay = 0.3 SECONDS
 	deflect_chance = 60
 	damage_resistance = list("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
 	internal_damage_threshold = 60

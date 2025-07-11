@@ -127,7 +127,6 @@
 	icon_state = "dark_phazon"
 
 	health = 300
-	move_delay = 0.1 SECONDS
 	step_energy_drain = 1.5
 	max_temperature = 45000
 	deflect_chance = 40
