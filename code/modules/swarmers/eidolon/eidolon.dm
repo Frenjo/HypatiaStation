@@ -56,10 +56,10 @@
 
 /obj/mecha/combat/eidolon/play_step_sound() // No strafing when rolling, also looping movement sound.
 	if(rolling)
+		playsound(src, 'sound/mecha/movement/eidolon/mechball.ogg', 100, TRUE)
+	else
 		step_loop = (step_loop++) % 3
 		playsound(src, "sound/mecha/movement/eidolon/sbdwalk[step_loop].ogg", step_sound_volume, TRUE)
-	else
-		playsound(src, 'sound/mecha/movement/eidolon/mechball.ogg', 100, TRUE)
 
 /obj/mecha/combat/eidolon/get_stats_part()
 	. = ..()
@@ -93,7 +93,7 @@
 	if(rolling)
 		icon_state = "eidolon-ball"
 		deflect_chance += 40
-		move_delay = 0.05 SECONDS
+		move_delay = 0.15 SECONDS
 		turn_sound = null
 	else
 		icon_state = initial(icon_state)
