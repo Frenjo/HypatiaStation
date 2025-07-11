@@ -30,20 +30,24 @@
 
 /obj/mecha/combat/phazon/mechstep(direction)
 	. = ..()
-	if(phasing && get_charge() >= phasing_energy_drain)
-		handle_phasing_step(!.)
+	if(phasing)
+		. = . || handle_phasing_step(.)
 
 /obj/mecha/combat/phazon/mechsteprand()
 	. = ..()
-	if(phasing && get_charge() >= phasing_energy_drain)
-		handle_phasing_step(!.)
+	if(phasing)
+		. = . || handle_phasing_step(.)
 
-/obj/mecha/combat/phazon/proc/handle_phasing_step(phasing_needed)
+/obj/mecha/combat/phazon/proc/handle_phasing_step(movement_result)
 	do_phasing_effects()
-	if(phasing_needed)
-		forceMove(get_step(src, dir))
-		use_power(phasing_energy_drain)
-		COOLDOWN_INCREMENT(src, cooldown_mecha_move, move_delay * 3)
+	if(movement_result) // If the movement was initially successful then we don't need to "actually" phase as we weren't blocked.
+		return FALSE
+	if(get_charge() <= phasing_energy_drain)
+		return FALSE
+	forceMove(get_step(src, dir))
+	use_power(phasing_energy_drain)
+	COOLDOWN_INCREMENT(src, cooldown_mecha_move, move_delay * 3)
+	return TRUE
 
 /obj/mecha/combat/phazon/proc/do_phasing_effects()
 	// This mostly replicates the original appearance of the manual method as closely as I possibly can.
