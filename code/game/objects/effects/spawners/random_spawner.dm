@@ -3,7 +3,7 @@
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
 
-	var/alist/possible_items = null
+	var/list/possible_items = null
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 
 // creates a new object and deletes itself
@@ -27,7 +27,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/item/screwdriver,
 		/obj/item/wirecutters,
 		/obj/item/weldingtool,
@@ -44,7 +44,7 @@
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "atmos"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/item/t_scanner = 5,
 		/obj/item/gas_analyser = 5,
 		/obj/item/radio = 2
@@ -57,7 +57,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/item/cell = 40,
 		/obj/item/cell/high = 40,
 		/obj/item/cell/crap = 10,
@@ -72,7 +72,7 @@
 	icon = 'icons/obj/items/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/item/assembly/igniter,
 		/obj/item/assembly/prox_sensor,
 		/obj/item/assembly/signaler
@@ -85,7 +85,7 @@
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "red"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/item/storage/toolbox/mechanical = 3,
 		/obj/item/storage/toolbox/electrical = 3,
 		/obj/item/storage/toolbox/emergency = 1
@@ -98,7 +98,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/effect/random_spawner/tool = 5,
 		/obj/effect/random_spawner/power_cell = 3,
 		/obj/item/stack/cable_coil = 3,
@@ -119,7 +119,7 @@
 	icon = 'icons/obj/items/clothing/masks.dmi'
 	icon_state = "breath"
 
-	possible_items = alist(
+	possible_items = list(
 		/obj/item/clothing/mask/breath = 10,
 		/obj/item/clothing/mask/gas = 8,
 		/obj/item/clothing/mask/breath/medical = 5,
