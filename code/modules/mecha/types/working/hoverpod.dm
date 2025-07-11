@@ -9,7 +9,7 @@
 	turn_sound = null
 
 	health = 150
-	step_in = 4
+	move_delay = 0.4 SECONDS
 	max_temperature = 20000
 	internal_damage_threshold = 80
 

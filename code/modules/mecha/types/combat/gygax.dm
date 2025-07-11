@@ -6,7 +6,7 @@
 
 	entry_direction = NORTH
 
-	step_in = 3
+	move_delay = 0.3 SECONDS
 	deflect_chance = 15
 	damage_resistance = list("brute" = 25, "fire" = 10, "bullet" = 20, "laser" = 30, "energy" = 15, "bomb" = 0)
 	internal_damage_threshold = 35
@@ -27,13 +27,16 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(overload)
-		health--
-		if(health < initial(health) - initial(health) / 3)
-			overload = FALSE
-			step_in = initial(step_in)
-			step_energy_drain = initial(step_energy_drain)
-			occupant_message(SPAN_WARNING("Leg actuator damage threshold exceded. Disabling overload."))
+	if(!overload)
+		return FALSE
+
+	health--
+	var/initial_health = initial(health)
+	if(health < initial_health - (initial_health / 3))
+		overload = FALSE
+		move_delay = initial(move_delay)
+		step_energy_drain = initial(step_energy_drain)
+		occupant_message(SPAN_WARNING("Leg actuator damage threshold exceded. Disabling overload."))
 
 /obj/mecha/combat/gygax/get_stats_part()
 	. = ..()
@@ -60,10 +63,10 @@
 
 	overload = !overload
 	if(overload)
-		step_in = min(1, round(step_in / 2))
+		move_delay = min(1, round(move_delay / 2))
 		step_energy_drain = step_energy_drain * overload_coeff
 	else
-		step_in = initial(step_in)
+		move_delay = initial(move_delay)
 		step_energy_drain = initial(step_energy_drain)
 	balloon_alert(occupant, "[overload ? "en" : "dis"]abled leg overload")
 	send_byjax(occupant, "exosuit.browser", "leg_overload_command", "[overload ? "Dis" : "En"]able Leg Actuator Overload")
@@ -111,7 +114,7 @@
 	force = 15
 
 	health = 210
-	step_in = 2.5
+	move_delay = 0.25 SECONDS
 	step_energy_drain = 8
 	max_temperature = 20000
 	damage_resistance = list("brute" = 22.5, "fire" = 0, "bullet" = 15, "laser" = 15, "energy" = 7.5, "bomb" = 0)

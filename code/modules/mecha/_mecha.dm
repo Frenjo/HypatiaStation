@@ -10,12 +10,12 @@
 	obj_flags = OBJ_FLAG_UNACIDABLE // And no deleting hoomans inside.
 
 	var/entry_direction = SOUTH // Which direction the exosuit faces when entered. I only recently realised some are entered from the back not the front!
-	var/can_move = TRUE
 	var/mob/living/occupant = null // This will always be a /mob/living/carbon/human UNLESS it's a Swarmer in an Eidolon.
 
 	// Stats
 	var/health = 300
-	var/step_in = 10 // Makes a step every (step_in / 10) sec.
+	COOLDOWN_DECLARE(cooldown_mecha_move) // The mecha's movement cooldown.
+	var/move_delay = 1 SECOND
 	var/step_energy_drain = 10
 	var/max_temperature = 25000
 	var/deflect_chance = 10 // Chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.

@@ -10,7 +10,7 @@
 	force = 35
 
 	health = 250
-	step_in = 3
+	move_delay = 0.3 SECONDS
 	max_temperature = 30000
 	deflect_chance = 30
 	damage_resistance = list("brute" = 15, "fire" = 90, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 20)
@@ -92,14 +92,14 @@
 	if(rolling)
 		icon_state = "eidolon-ball"
 		deflect_chance += 40
-		step_in = 0.5
+		move_delay = 0.05 SECONDS
 		step_sound = 'sound/mecha/movement/eidolon/mechball.ogg'
 		step_sound_volume = 100
 		turn_sound = null
 	else
 		icon_state = initial(icon_state)
 		deflect_chance -= 40
-		step_in = initial(step_in)
+		move_delay = initial(move_delay)
 		step_sound = initial(step_sound)
 		step_sound_volume = initial(step_sound_volume)
 		turn_sound = initial(turn_sound)
@@ -115,7 +115,7 @@
 
 	force = 26
 
-	step_in = 5
+	move_delay = 0.5 SECONDS
 	deflect_chance = 20
 	damage_resistance = list("brute" = 15, "fire" = 90, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 80)
 

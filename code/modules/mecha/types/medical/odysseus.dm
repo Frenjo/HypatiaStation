@@ -4,7 +4,7 @@
 	icon_state = "odysseus"
 
 	health = 120
-	step_in = 2
+	move_delay = 0.2 SECONDS
 	step_energy_drain = 6
 	max_temperature = 15000
 	deflect_chance = 15
@@ -44,7 +44,7 @@
 	icon_state = "dark_odysseus"
 
 	health = 220
-	step_in = 1.5
+	move_delay = 0.15 SECONDS
 	step_energy_drain = 3
 	max_temperature = 35000
 	deflect_chance = 25
@@ -75,7 +75,7 @@
 	icon_state = "eurymachus"
 
 	health = 170
-	step_in = 1.75
+	move_delay = 0.175 SECONDS
 	step_energy_drain = 4.5
 	max_temperature = 25000
 	deflect_chance = 20

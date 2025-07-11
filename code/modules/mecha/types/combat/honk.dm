@@ -5,7 +5,7 @@
 	infra_luminosity = 5
 
 	health = 140
-	step_in = 2
+	move_delay = 0.2 SECONDS
 	deflect_chance = 60
 	damage_resistance = list("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
 	internal_damage_threshold = 60

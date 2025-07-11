@@ -4,7 +4,7 @@
 	icon_state = "ripley"
 
 	health = 200
-	step_in = 6
+	move_delay = 0.6 SECONDS
 	max_temperature = 20000
 
 	mecha_type = MECHA_TYPE_RIPLEY
@@ -99,7 +99,7 @@
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
 	icon_state = "deathripley"
 
-	step_in = 2
+	move_delay = 0.2 SECONDS
 	step_energy_drain = 0
 
 	mecha_type = MECHA_TYPE_DEATH_RIPLEY
@@ -129,7 +129,7 @@
 	icon_state = "rescue_ranger"
 
 	health = 175
-	step_in = 5
+	move_delay = 0.5 SECONDS
 
 	mecha_type = MECHA_TYPE_RESCUE_RANGER
 
@@ -146,7 +146,7 @@
 	icon_state = "sindy"
 
 	health = 225
-	step_in = 5
+	move_delay = 0.5 SECONDS
 	max_temperature = 42500
 	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 0, "energy" = 0, "bomb" = 25)
 
@@ -182,7 +182,7 @@
 	icon_state = "paddy"
 
 	health = 225
-	step_in = 4 // Faster than a Ripley because it's less armoured, but slower than the more specialised Gygax.
+	move_delay = 0.4 SECONDS // Faster than a Ripley because it's less armoured, but slower than the more specialised Gygax.
 	damage_resistance = list("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
 
 	mecha_type = MECHA_TYPE_PADDY

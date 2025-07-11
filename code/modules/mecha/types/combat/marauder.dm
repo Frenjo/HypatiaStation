@@ -8,7 +8,7 @@
 	force = 45
 
 	health = 500
-	step_in = 5
+	move_delay = 0.5 SECONDS
 	max_temperature = 60000
 	deflect_chance = 25
 	damage_resistance = list("brute" = 50, "fire" = 30, "bullet" = 55, "laser" = 40, "energy" = 30, "bomb" = 30)
@@ -158,7 +158,7 @@
 
 	force = 55
 
-	step_in = 3
+	move_delay = 0.3 SECONDS
 	health = 550
 	internal_damage_threshold = 20
 

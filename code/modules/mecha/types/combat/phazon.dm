@@ -11,7 +11,7 @@
 	force = 15
 
 	health = 200
-	step_in = 2
+	move_delay = 0.2 SECONDS
 	step_energy_drain = 3
 	deflect_chance = 30
 	damage_resistance = list("brute" = 30, "fire" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30)
@@ -28,30 +28,22 @@
 	. = ..()
 	add_filter("phasing", list(type = "blur", size = 0))
 
-/obj/mecha/combat/phazon/Bump(atom/obstacle)
-	if(phasing && get_charge() >= phasing_energy_drain)
-		phase()
-	else
-		. = ..()
-
 /obj/mecha/combat/phazon/mechstep(direction)
 	. = ..()
-	if(. && phasing)
-		do_phasing_effects()
+	if(phasing && get_charge() >= phasing_energy_drain)
+		handle_phasing_step(!.)
 
 /obj/mecha/combat/phazon/mechsteprand()
 	. = ..()
-	if(. && phasing)
-		do_phasing_effects()
+	if(phasing && get_charge() >= phasing_energy_drain)
+		handle_phasing_step(!.)
 
-/obj/mecha/combat/phazon/proc/phase()
-	if(can_move)
-		can_move = FALSE
-		do_phasing_effects()
+/obj/mecha/combat/phazon/proc/handle_phasing_step(phasing_needed)
+	do_phasing_effects()
+	if(phasing_needed)
 		forceMove(get_step(src, dir))
 		use_power(phasing_energy_drain)
-		sleep(step_in * 3)
-		can_move = TRUE
+		COOLDOWN_INCREMENT(src, cooldown_mecha_move, move_delay * 3)
 
 /obj/mecha/combat/phazon/proc/do_phasing_effects()
 	// This mostly replicates the original appearance of the manual method as closely as I possibly can.
@@ -129,7 +121,7 @@
 	icon_state = "dark_phazon"
 
 	health = 300
-	step_in = 1
+	move_delay = 0.1 SECONDS
 	step_energy_drain = 1.5
 	max_temperature = 45000
 	deflect_chance = 40

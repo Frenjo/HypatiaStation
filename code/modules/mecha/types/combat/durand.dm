@@ -9,7 +9,7 @@
 	force = 40
 
 	health = 400
-	step_in = 4
+	move_delay = 0.4 SECONDS
 	max_temperature = 30000
 	deflect_chance = 20
 	damage_resistance = list("brute" = 50, "fire" = 0, "bullet" = 35, "laser" = 15, "energy" = 10, "bomb" = 20)
@@ -26,7 +26,7 @@
 		if(world.time - last_message > 20)
 			occupant_message(SPAN_WARNING("Unable to move while in defence mode."))
 			last_message = world.time
-		return 0
+		return FALSE
 	. = ..()
 
 /obj/mecha/combat/durand/get_stats_part()
@@ -75,7 +75,7 @@
 
 	force = 25
 
-	step_in = 3
+	move_delay = 0.3 SECONDS
 	step_energy_drain = 15
 	max_temperature = 25000
 	deflect_chance = 20

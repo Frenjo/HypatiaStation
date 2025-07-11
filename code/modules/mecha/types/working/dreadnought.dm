@@ -4,7 +4,7 @@
 	icon_state = "dreadnought"
 
 	health = 250
-	step_in = 6
+	move_delay = 0.6 SECONDS
 	max_temperature = 22500
 	internal_damage_threshold = 50
 
@@ -21,7 +21,7 @@
 	icon_state = "bulwark"
 
 	health = 300
-	step_in = 7
+	move_delay = 0.7 SECONDS
 	max_temperature = 25000
 
 	mecha_type = MECHA_TYPE_BULWARK
