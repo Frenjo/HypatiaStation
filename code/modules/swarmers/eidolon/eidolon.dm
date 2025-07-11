@@ -54,11 +54,12 @@
 	if(rolling)
 		toggle_ball_mode()
 
-/obj/mecha/combat/eidolon/mechstep(direction) // No strafing when rolling, also looping movement sound.
-	if(!rolling)
+/obj/mecha/combat/eidolon/play_step_sound() // No strafing when rolling, also looping movement sound.
+	if(rolling)
 		step_loop = (step_loop++) % 3
-		step_sound = "sound/mecha/movement/eidolon/sbdwalk[step_loop].ogg"
-	. = ..()
+		playsound(src, "sound/mecha/movement/eidolon/sbdwalk[step_loop].ogg", step_sound_volume, TRUE)
+	else
+		playsound(src, 'sound/mecha/movement/eidolon/mechball.ogg', 100, TRUE)
 
 /obj/mecha/combat/eidolon/get_stats_part()
 	. = ..()
@@ -93,15 +94,11 @@
 		icon_state = "eidolon-ball"
 		deflect_chance += 40
 		move_delay = 0.05 SECONDS
-		step_sound = 'sound/mecha/movement/eidolon/mechball.ogg'
-		step_sound_volume = 100
 		turn_sound = null
 	else
 		icon_state = initial(icon_state)
 		deflect_chance -= 40
 		move_delay = initial(move_delay)
-		step_sound = initial(step_sound)
-		step_sound_volume = initial(step_sound_volume)
 		turn_sound = initial(turn_sound)
 	balloon_alert(occupant, "[rolling ? "en" : "dis"]abled ball mode")
 	send_byjax(occupant, "exosuit.browser", "ball_mode_command", "[rolling ? "Dis" : "En"]able Ball Mode")

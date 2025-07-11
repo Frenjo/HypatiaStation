@@ -32,14 +32,12 @@
 	if(ismob(target))
 		step_away(target, src, 15)
 
-/obj/mecha/combat/honk/mechstep(direction)
-	. = step(src, direction)
-	if(.)
-		if(!squeak)
-			playsound(src, "clownstep", 70, 1)
-			squeak = TRUE
-		else
-			squeak = FALSE
+/obj/mecha/combat/honk/play_step_sound()
+	if(!squeak)
+		playsound(src, "clownstep", 70, 1)
+		squeak = TRUE
+	else
+		squeak = FALSE
 
 /obj/mecha/combat/honk/wreck()
 	. = ..()

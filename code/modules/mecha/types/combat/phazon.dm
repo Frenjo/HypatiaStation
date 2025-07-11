@@ -31,12 +31,12 @@
 /obj/mecha/combat/phazon/mechstep(direction)
 	. = ..()
 	if(phasing)
-		. = . || handle_phasing_step(.)
+		. = handle_phasing_step(.) || .
 
 /obj/mecha/combat/phazon/mechsteprand()
 	. = ..()
 	if(phasing)
-		. = . || handle_phasing_step(.)
+		. = handle_phasing_step(.) || .
 
 /obj/mecha/combat/phazon/proc/handle_phasing_step(movement_result)
 	do_phasing_effects()
@@ -47,6 +47,8 @@
 	forceMove(get_step(src, dir))
 	use_power(phasing_energy_drain)
 	COOLDOWN_INCREMENT(src, cooldown_mecha_move, move_delay * 3)
+	play_step_sound()
+	handle_equipment_movement()
 	return TRUE
 
 /obj/mecha/combat/phazon/proc/do_phasing_effects()

@@ -48,20 +48,30 @@
 
 /obj/mecha/proc/mechturn(direction)
 	. = set_dir(direction)
-	if(. && isnotnull(turn_sound))
-		playsound(src, turn_sound, turn_sound_volume, 1)
+	if(.)
+		play_turn_sound()
+
+/obj/mecha/proc/play_turn_sound()
+	if(isnull(turn_sound))
+		return
+	playsound(src, turn_sound, turn_sound_volume, 1)
 
 /obj/mecha/proc/mechstep(direction)
 	. = step(src, direction)
-	if(. && isnotnull(step_sound))
-		playsound(src, step_sound, step_sound_volume, 1)
+	if(.)
+		play_step_sound()
 		handle_equipment_movement()
 
 /obj/mecha/proc/mechsteprand()
 	. = step_rand(src)
-	if(. && isnotnull(step_sound))
-		playsound(src, step_sound, step_sound_volume, 1)
+	if(.)
+		play_step_sound()
 		handle_equipment_movement()
+
+/obj/mecha/proc/play_step_sound()
+	if(isnull(step_sound))
+		return
+	playsound(src, step_sound, step_sound_volume, 1)
 
 /obj/mecha/Bump(atom/obstacle)
 //	src.inertia_dir = null
