@@ -125,11 +125,14 @@
 
 /obj/mecha/working/ripley/rescue_ranger
 	name = "\improper APLU \"Rescue Ranger\""
-	desc = "A standard APLU chassis fitted with mounting hardpoints for basic medical equipment. It is painted in the Vey-Med(&copy; all rights reserved) livery."
+	desc = "A modified APLU chassis fitted with mounting hardpoints for basic medical equipment. It is painted in the Vey-Med(&copy; all rights reserved) livery."
 	icon_state = "rescue_ranger"
 
 	health = 175
 	move_delay = 0.5 SECONDS
+
+	step_sound_volume = 25
+	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
 	mecha_type = MECHA_TYPE_RESCUE_RANGER
 
@@ -148,7 +151,7 @@
 	health = 225
 	move_delay = 0.5 SECONDS
 	max_temperature = 42500
-	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 0, "energy" = 0, "bomb" = 25)
+	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 25)
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
