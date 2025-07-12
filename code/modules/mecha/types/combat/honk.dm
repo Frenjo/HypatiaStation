@@ -23,7 +23,7 @@
 
 	wreckage = /obj/structure/mecha_wreckage/honk
 
-	var/squeak = FALSE
+	var/squeak = TRUE
 
 /obj/mecha/combat/honk/melee_action(target)
 	if(!melee_can_hit)
@@ -33,11 +33,9 @@
 		step_away(target, src, 15)
 
 /obj/mecha/combat/honk/play_step_sound()
-	if(!squeak)
+	if(squeak)
 		playsound(src, "clownstep", 70, 1)
-		squeak = TRUE
-	else
-		squeak = FALSE
+	squeak = !squeak
 
 /obj/mecha/combat/honk/wreck()
 	. = ..()
