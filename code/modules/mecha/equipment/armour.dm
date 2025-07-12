@@ -103,6 +103,8 @@
 		This variant sports improved shielding at the cost of being permanently integrated into the exosuit's chassis. \
 		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 
+	salvageable = FALSE
+
 	allow_detach = FALSE // It's stuck on the suits it comes with.
 
 	severity_modifier = 0.75

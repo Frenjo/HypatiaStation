@@ -132,7 +132,7 @@
 	deflect_chance = 40
 	damage_resistance = list("brute" = 35, "fire" = 25, "bullet" = 35, "laser" = 40, "energy" = 32.5, "bomb" = 25)
 
-	max_equip = 4
+	max_equip = 5
 
 	wreckage = /obj/structure/mecha_wreckage/phazon/dark
 
@@ -149,5 +149,6 @@
 /obj/mecha/combat/phazon/dark/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/tool/rcd, /obj/item/mecha_equipment/gravcatapult,
-		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay,
+		/obj/item/mecha_equipment/emp_insulation/hardened
 	)

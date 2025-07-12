@@ -49,7 +49,7 @@
 	deflect_chance = 25
 	damage_resistance = list("brute" = 35, "fire" = 20, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 20)
 
-	max_equip = 4
+	max_equip = 5
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus/dark
 
@@ -64,7 +64,8 @@
 /obj/mecha/medical/odysseus/dark/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/medical/sleeper, /obj/item/mecha_equipment/medical/syringe_gun,
-		/obj/item/mecha_equipment/melee_armour_booster, /obj/item/mecha_equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/melee_armour_booster, /obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
 // Eurymachus
@@ -79,6 +80,8 @@
 	max_temperature = 25000
 	deflect_chance = 20
 	damage_resistance = list("brute" = 27.5, "fire" = 10, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10)
+
+	max_equip = 4
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
@@ -186,5 +189,5 @@
 /obj/mecha/medical/odysseus/eurymachus/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/weapon/energy/taser, /obj/item/mecha_equipment/medical/sleeper,
-		/obj/item/mecha_equipment/medical/syringe_gun
+		/obj/item/mecha_equipment/medical/syringe_gun, /obj/item/mecha_equipment/emp_insulation
 	)

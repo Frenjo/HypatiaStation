@@ -153,6 +153,8 @@
 	max_temperature = 42500
 	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 25)
 
+	max_equip = 4
+
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
@@ -175,7 +177,7 @@
 /obj/mecha/working/ripley/sindy/equipped
 	starts_with = list(
 		/obj/item/mecha_equipment/weapon/energy/laser/heavy, /obj/item/mecha_equipment/tool/hydraulic_clamp,
-		/obj/item/mecha_equipment/melee_armour_booster
+		/obj/item/mecha_equipment/melee_armour_booster, /obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
 // Paddy
