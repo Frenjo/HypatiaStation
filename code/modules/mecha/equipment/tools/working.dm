@@ -112,6 +112,19 @@
 
 	is_safety_clamp = TRUE
 
+// Rescue Jaw
+// A special variant of the hydraulic clamp for medical exosuits, it doesn't have cargo loading functionality.
+/obj/item/mecha_equipment/tool/hydraulic_clamp/rescue
+	name = "rescue jaw"
+	desc = "An exosuit-mounted jaws of life used to extricate casualties from dangerous areas. (Can be attached to: Any Medical exosuit except Rescue Ranger)"
+	icon_state = "rescue_jaw"
+
+	mecha_types = MECHA_TYPE_MEDICAL
+
+	energy_drain = 5 // Half the energy drain of the regular clamp.
+
+	dam_force = 10 // Half as forceful as the regular clamp.
+
 // Extinguisher
 /obj/item/mecha_equipment/tool/extinguisher
 	name = "extinguisher"

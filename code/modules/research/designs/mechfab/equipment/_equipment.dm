@@ -185,3 +185,10 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 2.5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_path = /obj/item/mecha_equipment/medical/sleeper
 	categories = list("Medical Exosuit Equipment")
+
+/datum/design/mechfab/equipment/rescue_jaw
+	name = "Rescue Jaw"
+	desc = "An exosuit-mounted jaws of life used to extricate casualties from dangerous areas."
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 2.5, /decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET * 2.5)
+	build_path = /obj/item/mecha_equipment/tool/hydraulic_clamp/rescue
+	categories = list("Medical Exosuit Equipment")

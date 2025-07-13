@@ -135,6 +135,9 @@
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
 	mecha_type = MECHA_TYPE_RESCUE_RANGER
+	excluded_equipment = list(
+		/obj/item/mecha_equipment/tool/hydraulic_clamp/rescue
+	) // This can fit the regular hydraulic clamp since it has cargo capacity.
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
 
