@@ -108,10 +108,9 @@
 	var/obj/item/stack/cable_coil/cable
 	var/max_cable = 1000
 
-/obj/item/mecha_equipment/tool/cable_layer/New()
+/obj/item/mecha_equipment/tool/cable_layer/initialise()
 	. = ..()
-	cable = new /obj/item/stack/cable_coil(src)
-	cable.amount = 0
+	cable = new /obj/item/stack/cable_coil(src, 0)
 
 /obj/item/mecha_equipment/tool/cable_layer/Destroy()
 	last_piece = null

@@ -64,7 +64,7 @@
 
 	var/datum/global_iterator/mech_bay_recharger/pr_recharger
 
-/obj/machinery/mech_bay_recharge_port/New()
+/obj/machinery/mech_bay_recharge_port/initialise()
 	. = ..()
 	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, FALSE)
 

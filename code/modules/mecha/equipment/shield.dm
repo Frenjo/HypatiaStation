@@ -12,7 +12,7 @@
 	var/shield_type
 	var/icon/drone_overlay
 
-/obj/item/mecha_equipment/shield_droid/New()
+/obj/item/mecha_equipment/shield_droid/initialise()
 	. = ..()
 	shield = new shield_type(src)
 	shield.shield_regen_delay = equip_cooldown

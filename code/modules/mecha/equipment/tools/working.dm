@@ -135,10 +135,10 @@
 	energy_drain = 0
 	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
 
-/obj/item/mecha_equipment/tool/extinguisher/New()
+/obj/item/mecha_equipment/tool/extinguisher/initialise()
+	. = ..()
 	create_reagents(200)
 	reagents.add_reagent("water", 200)
-	. = ..()
 
 /obj/item/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 	if(!..() || get_dist(chassis, target) > 3)

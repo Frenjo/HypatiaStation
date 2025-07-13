@@ -72,7 +72,7 @@
 		/obj/item/mecha_part/part/honk/right_leg
 	)
 
-/obj/structure/mecha_wreckage/honk/New()
+/obj/structure/mecha_wreckage/honk/initialise()
 	. = ..()
 	crowbar_salvage.Add(new /obj/item/mecha_part/chassis/honk(src))
 
@@ -89,6 +89,6 @@
 		/obj/item/mecha_part/part/reticence/right_leg
 	)
 
-/obj/structure/mecha_wreckage/reticence/New()
+/obj/structure/mecha_wreckage/reticence/initialise()
 	. = ..()
 	crowbar_salvage.Add(new /obj/item/mecha_part/chassis/reticence(src))

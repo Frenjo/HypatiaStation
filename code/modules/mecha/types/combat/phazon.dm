@@ -24,7 +24,7 @@
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200
 
-/obj/mecha/combat/phazon/New()
+/obj/mecha/combat/phazon/initialise()
 	. = ..()
 	add_filter("phasing", list(type = "blur", size = 0))
 

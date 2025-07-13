@@ -68,7 +68,7 @@
 
 	var/wreckage
 
-/obj/mecha/New()
+/obj/mecha/initialise()
 	. = ..()
 	icon_state += "-open"
 	add_radio()
@@ -86,8 +86,6 @@
 	log_message("[name] created.")
 	GLOBL.mechas_list.Add(src) //global mech list
 
-/obj/mecha/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src) // Adds the mech to the processing objects list.
 	if(isnotnull(starts_with)) // Equips any pre-loaded equipment if applicable.
 		for(var/equipment_path in starts_with)

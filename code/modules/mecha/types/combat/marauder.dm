@@ -29,7 +29,7 @@
 	var/smoke_cooldown = 100
 	var/datum/effect/system/smoke_spread/smoke_system
 
-/obj/mecha/combat/marauder/New()
+/obj/mecha/combat/marauder/initialise()
 	. = ..()
 	smoke_system = new /datum/effect/system/smoke_spread(src)
 	smoke_system.set_up(3, 0, src)

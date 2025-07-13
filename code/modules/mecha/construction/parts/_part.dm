@@ -18,7 +18,7 @@
 	var/construct_type
 	var/target_icon = null
 
-/obj/item/mecha_part/chassis/New()
+/obj/item/mecha_part/chassis/initialise()
 	. = ..()
 	if(isnotnull(construct_type))
 		construct = new construct_type(src)

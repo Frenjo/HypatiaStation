@@ -15,22 +15,19 @@
 
 	var/coeff = 100
 	var/obj/item/stack/sheet/fuel
+	var/fuel_type = /obj/item/stack/sheet/plasma
 	var/max_fuel = 150000
 	var/fuel_per_cycle_idle = 100
 	var/fuel_per_cycle_active = 500
 	var/power_per_cycle = 20
 
-/obj/item/mecha_equipment/generator/New()
+/obj/item/mecha_equipment/generator/initialise()
 	. = ..()
-	init()
+	fuel = new fuel_type(src, 0)
 
 /obj/item/mecha_equipment/generator/Destroy()
 	STOP_PROCESSING(PCobj, src)
 	return ..()
-
-/obj/item/mecha_equipment/generator/proc/init()
-	fuel = new /obj/item/stack/sheet/plasma(src)
-	fuel.amount = 0
 
 /obj/item/mecha_equipment/generator/detach()
 	STOP_PROCESSING(PCobj, src)
@@ -151,16 +148,13 @@
 	reliability = 1000
 	origin_tech = /datum/design/mechfab/equipment/general/nuclear_generator::req_tech
 
+	fuel_type = /obj/item/stack/sheet/uranium
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50
 
 	var/rad_per_cycle = 0.3
-
-/obj/item/mecha_equipment/generator/nuclear/init()
-	fuel = new /obj/item/stack/sheet/uranium(src)
-	fuel.amount = 0
 
 /obj/item/mecha_equipment/generator/nuclear/critfail()
 	return

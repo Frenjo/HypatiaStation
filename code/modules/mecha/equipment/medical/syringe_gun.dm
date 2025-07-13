@@ -20,7 +20,7 @@
 
 	var/mode = 0 //0 - fire syringe, 1 - analyse reagents.
 
-/obj/item/mecha_equipment/medical/syringe_gun/New()
+/obj/item/mecha_equipment/medical/syringe_gun/initialise()
 	. = ..()
 	SET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
 	syringes = list()
@@ -44,6 +44,8 @@
 	UNSET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
 
 /obj/item/mecha_equipment/medical/syringe_gun/get_equip_info()
+	if(isnull(reagents))
+		return ""
 	. = "[..()] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode ? "Analyse" : "Launch"]</a>\]<br>\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
 
 /obj/item/mecha_equipment/medical/syringe_gun/action(atom/movable/target)

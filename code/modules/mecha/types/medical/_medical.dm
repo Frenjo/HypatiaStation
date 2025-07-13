@@ -4,7 +4,7 @@
 
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
-/obj/mecha/medical/New()
+/obj/mecha/medical/initialise()
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 

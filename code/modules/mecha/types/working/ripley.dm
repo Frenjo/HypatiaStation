@@ -115,7 +115,7 @@
 
 	starts_with = list(/obj/item/mecha_equipment/tool/hydraulic_clamp)
 
-/obj/mecha/working/ripley/mining/New()
+/obj/mecha/working/ripley/mining/initialise()
 	// Chance for different drill types.
 	if(prob(25)) // Possible diamond drill... Feeling lucky?
 		starts_with.Add(/obj/item/mecha_equipment/tool/drill/diamond)

@@ -22,7 +22,7 @@
 	var/list/crowbar_salvage = list()
 	var/salvage_num = 5
 
-/obj/structure/mecha_wreckage/New()
+/obj/structure/mecha_wreckage/initialise()
 	. = ..()
 	for(var/i = 0; i < 2; i++)
 		if(!isemptylist(part_salvage) && prob(40))

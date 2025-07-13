@@ -22,7 +22,7 @@
 	var/datum/effect/system/ion_trail_follow/ion_trail
 	var/stabilisation = TRUE
 
-/obj/mecha/working/hoverpod/New()
+/obj/mecha/working/hoverpod/initialise()
 	. = ..()
 	initial_pixel_y = pixel_y
 	ion_trail = new /datum/effect/system/ion_trail_follow()
