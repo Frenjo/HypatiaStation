@@ -11,6 +11,11 @@
 	possible_transfer_amounts = list(5, 10, 25)
 	volume = 50
 
+/obj/item/reagent_holder/food/drinks/initialise()
+	. = ..()
+	pixel_x = rand(-10.0, 10)
+	pixel_y = rand(-10.0, 10)
+
 /obj/item/reagent_holder/food/drinks/on_reagent_change()
 	if(gulp_size < 5)
 		gulp_size = 5
@@ -155,13 +160,7 @@
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
-
-/obj/item/reagent_holder/food/drinks/milk/New()
-	..()
-	reagents.add_reagent("milk", 50)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("milk" = 50)
 
 /* Flour is no longer a reagent
 /obj/item/reagent_holder/food/drinks/flour
@@ -177,81 +176,44 @@
 		src.pixel_y = rand(-10.0, 10)
 */
 
-
 /obj/item/reagent_holder/food/drinks/soymilk
 	name = "soy milk"
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
-
-/obj/item/reagent_holder/food/drinks/soymilk/New()
-	..()
-	reagents.add_reagent("soymilk", 50)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("soymilk" = 50)
 
 /obj/item/reagent_holder/food/drinks/coffee
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
-
-/obj/item/reagent_holder/food/drinks/coffee/New()
-	..()
-	reagents.add_reagent("coffee", 30)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("coffee" = 30)
 
 /obj/item/reagent_holder/food/drinks/tea
 	name = "Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
 	item_state = "coffee"
-
-/obj/item/reagent_holder/food/drinks/tea/New()
-	..()
-	reagents.add_reagent("tea", 30)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("tea" = 30)
 
 /obj/item/reagent_holder/food/drinks/ice
 	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
-
-/obj/item/reagent_holder/food/drinks/ice/New()
-	..()
-	reagents.add_reagent("ice", 30)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("ice" = 30)
 
 /obj/item/reagent_holder/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
-
-/obj/item/reagent_holder/food/drinks/h_chocolate/New()
-	..()
-	reagents.add_reagent("hot_coco", 30)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("hot_coco" = 30)
 
 /obj/item/reagent_holder/food/drinks/dry_ramen
 	name = "cup ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
-
-/obj/item/reagent_holder/food/drinks/dry_ramen/New()
-	..()
-	reagents.add_reagent("dry_ramen", 30)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
+	starting_reagents = alist("dry_ramen" = 30)
 
 /obj/item/reagent_holder/food/drinks/sillycup
 	name = "paper cup"
@@ -260,23 +222,16 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-/obj/item/reagent_holder/food/drinks/sillycup/New()
-	..()
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
-
 /obj/item/reagent_holder/food/drinks/sillycup/on_reagent_change()
 	if(reagents.total_volume)
 		icon_state = "water_cup"
 	else
 		icon_state = "water_cup_e"
 
-
 //////////////////////////drinkingglass and shaker//
 //Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink
 //	itself), in Chemistry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
 //	icon states.
-
 /obj/item/reagent_holder/food/drinks/shaker
 	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
@@ -284,13 +239,11 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 
-
 /obj/item/reagent_holder/food/drinks/flask
 	name = "captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
-
 
 /obj/item/reagent_holder/food/drinks/flask/detflask
 	name = "detective's flask"
@@ -298,20 +251,17 @@
 	icon_state = "detflask"
 	volume = 60
 
-
 /obj/item/reagent_holder/food/drinks/flask/barflask
 	name = "flask"
 	desc = "For those who can't be bothered to hang out at the bar to drink."
 	icon_state = "barflask"
 	volume = 60
 
-
 /obj/item/reagent_holder/food/drinks/flask/vacuumflask
 	name = "vacuum flask"
 	desc = "Keeping your drinks at the perfect temperature since 1892."
 	icon_state = "vacuumflask"
 	volume = 60
-
 
 /obj/item/reagent_holder/food/drinks/britcup
 	name = "cup"

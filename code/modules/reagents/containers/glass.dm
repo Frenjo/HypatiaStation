@@ -44,8 +44,8 @@
 		/obj/machinery/constructable_frame
 	)
 
-/obj/item/reagent_holder/glass/New()
-	..()
+/obj/item/reagent_holder/glass/initialise()
+	. = ..()
 	base_name = name
 
 /obj/item/reagent_holder/glass/examine()
@@ -250,27 +250,14 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25)
 
-
 /obj/item/reagent_holder/glass/beaker/cryoxadone
-
-/obj/item/reagent_holder/glass/beaker/cryoxadone/New()
-	..()
-	reagents.add_reagent("cryoxadone", 30)
-	update_icon()
+	starting_reagents = alist("cryoxadone" = 30)
 
 /obj/item/reagent_holder/glass/beaker/sulphuric
-
-/obj/item/reagent_holder/glass/beaker/sulphuric/New()
-	..()
-	reagents.add_reagent("sacid", 50)
-	update_icon()
+	starting_reagents = alist("sacid" = 50)
 
 /obj/item/reagent_holder/glass/beaker/slime
-
-/obj/item/reagent_holder/glass/beaker/slime/New()
-	..()
-	reagents.add_reagent("slimejelly", 50)
-	update_icon()
+	starting_reagents = alist("slimejelly" = 50)
 
 /obj/item/reagent_holder/glass/bucket
 	desc = "It's a bucket."

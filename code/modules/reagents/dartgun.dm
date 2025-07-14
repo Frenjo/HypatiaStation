@@ -49,8 +49,8 @@
 	..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
-			var/obj/B = new container_type(src)
-			B.reagents.add_reagent(chem, 50)
+			var/obj/item/reagent_holder/B = new container_type(src)
+			LAZYASET(B.starting_reagents, chem, 50)
 			beakers += B
 	cartridge = new /obj/item/dart_cartridge(src)
 	update_icon()

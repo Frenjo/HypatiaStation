@@ -362,13 +362,7 @@
 	icon_state = "asher_spock_1"
 	amount_per_transfer_from_this = 5
 	volume = 15
-
-/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/New()
-	..()
-	reagents.remove_reagent("tricordrazine", 30)
-	reagents.add_reagent("oxycodone", 15)
-	update_icon()
-	return
+	starting_reagents = alist("tricordrazine" = 30, "oxycodone" = 15)
 
 /obj/item/reagent_holder/hypospray/fluff/asher_spock_1/attack_self(mob/user)
 	user << "\blue You click \the [src] but get no reaction. Must be dead."

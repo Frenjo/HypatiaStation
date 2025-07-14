@@ -14,7 +14,7 @@
 	var/list/allowed_containers = list(/obj/item/reagent_holder/glass/beaker, /obj/item/reagent_holder/glass/bottle)
 	var/affected_area = 3
 
-/obj/item/grenade/chemical/New()
+/obj/item/grenade/chemical/initialise()
 	. = ..()
 	create_reagents(1000)
 
@@ -184,16 +184,14 @@
 	path = 1
 	stage = 2
 
-/obj/item/grenade/chemical/large/New()
+/obj/item/grenade/chemical/metalfoam/initialise()
 	. = ..()
-	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new /obj/item/reagent_holder/glass/beaker(src)
+	B1.starting_reagents = alist("aluminum" = 30)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new /obj/item/reagent_holder/glass/beaker(src)
+	B2.starting_reagents = alist("foaming_agent" = 10, "pacid" = 10)
 
-	B1.reagents.add_reagent("aluminum", 30)
-	B2.reagents.add_reagent("foaming_agent", 10)
-	B2.reagents.add_reagent("pacid", 10)
-
-	detonator = new/obj/item/assembly_holder/timer_igniter(src)
+	detonator = new /obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -205,18 +203,14 @@
 	path = 1
 	stage = 2
 
-/obj/item/grenade/chemical/incendiary/New()
+/obj/item/grenade/chemical/incendiary/initialise()
 	. = ..()
-	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new /obj/item/reagent_holder/glass/beaker(src)
+	B1.starting_reagents = alist("aluminium" = 15, "fuel" = 20)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new /obj/item/reagent_holder/glass/beaker(src)
+	B2.starting_reagents = alist("plasma" = 15, "sacid" = 15)
 
-	B1.reagents.add_reagent("aluminum", 15)
-	B1.reagents.add_reagent("fuel", 20)
-	B2.reagents.add_reagent("plasma", 15)
-	B2.reagents.add_reagent("sacid", 15)
-	B1.reagents.add_reagent("fuel", 20)
-
-	detonator = new/obj/item/assembly_holder/timer_igniter(src)
+	detonator = new /obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -228,17 +222,14 @@
 	path = 1
 	stage = 2
 
-/obj/item/grenade/chemical/antiweed/New()
+/obj/item/grenade/chemical/antiweed/initialise()
 	. = ..()
-	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new /obj/item/reagent_holder/glass/beaker(src)
+	B1.starting_reagents = alist("plantbgone" = 25, "potassium" = 25)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new /obj/item/reagent_holder/glass/beaker(src)
+	B2.starting_reagents = alist("phosphorus" = 25, "sugar" = 25)
 
-	B1.reagents.add_reagent("plantbgone", 25)
-	B1.reagents.add_reagent("potassium", 25)
-	B2.reagents.add_reagent("phosphorus", 25)
-	B2.reagents.add_reagent("sugar", 25)
-
-	detonator = new/obj/item/assembly_holder/timer_igniter(src)
+	detonator = new /obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
@@ -250,16 +241,14 @@
 	stage = 2
 	path = 1
 
-/obj/item/grenade/chemical/cleaner/New()
+/obj/item/grenade/chemical/cleaner/initialise()
 	. = ..()
-	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new /obj/item/reagent_holder/glass/beaker(src)
+	B1.starting_reagents = alist("fluorosurfactant" = 40)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new /obj/item/reagent_holder/glass/beaker(src)
+	B2.starting_reagents = alist("water" = 40, "cleaner" = 10)
 
-	B1.reagents.add_reagent("fluorosurfactant", 40)
-	B2.reagents.add_reagent("water", 40)
-	B2.reagents.add_reagent("cleaner", 10)
-
-	detonator = new/obj/item/assembly_holder/timer_igniter(src)
+	detonator = new /obj/item/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2

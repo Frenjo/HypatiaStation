@@ -17,8 +17,8 @@
 	var/list/spray_sizes = list(1,3)
 	volume = 250
 
-/obj/item/reagent_holder/spray/New()
-	..()
+/obj/item/reagent_holder/spray/initialise()
+	. = ..()
 	src.verbs -= /obj/item/reagent_holder/verb/set_APTFT
 
 /obj/item/reagent_holder/spray/afterattack(atom/A, mob/user)
@@ -117,26 +117,17 @@
 /obj/item/reagent_holder/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
-
-/obj/item/reagent_holder/spray/cleaner/New()
-	..()
-	reagents.add_reagent("cleaner", 250)
+	starting_reagents = alist("cleaner" = 250)
 
 // Lube
 /obj/item/reagent_holder/spray/lube
 	name = "lube spray"
-
-/obj/item/reagent_holder/spray/lube/New()
-	. = ..()
-	reagents.add_reagent("lube", 250)
+	starting_reagents = alist("lube" = 250)
 
 // Polyacid
 /obj/item/reagent_holder/spray/polyacid
 	name = "polyacid spray"
-
-/obj/item/reagent_holder/spray/polyacid/New()
-	. = ..()
-	reagents.add_reagent("pacid", 250)
+	starting_reagents = alist("pacid" = 250)
 
 //pepperspray
 /obj/item/reagent_holder/spray/pepper
@@ -147,11 +138,10 @@
 	item_state = "pepperspray"
 	possible_transfer_amounts = null
 	volume = 40
-	var/safety = 1
 
-/obj/item/reagent_holder/spray/pepper/New()
-	..()
-	reagents.add_reagent("condensedcapsaicin", 40)
+	starting_reagents = alist("condensedcapsaicin" = 40)
+
+	var/safety = 1
 
 /obj/item/reagent_holder/spray/pepper/examine()
 	..()
@@ -168,7 +158,6 @@
 		return
 	..()
 
-
 //water flower
 /obj/item/reagent_holder/spray/waterflower
 	name = "water flower"
@@ -180,10 +169,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-/obj/item/reagent_holder/spray/waterflower/New()
-	..()
-	reagents.add_reagent("water", 10)
-
+	starting_reagents = alist("water" = 10)
 
 //chemsprayer
 /obj/item/reagent_holder/spray/chemsprayer
@@ -249,9 +235,7 @@
 	item_state = "plantbgone"
 	volume = 100
 
-/obj/item/reagent_holder/spray/plantbgone/New()
-	..()
-	reagents.add_reagent("plantbgone", 100)
+	starting_reagents = alist("plantbgone" = 100)
 
 /obj/item/reagent_holder/spray/plantbgone/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)

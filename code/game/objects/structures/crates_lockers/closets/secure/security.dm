@@ -285,8 +285,8 @@
 	req_access = list(ACCESS_CAPTAIN)
 
 	starts_with = list(
-		/obj/item/reagent_holder/ld50_syringe/choral,
-		/obj/item/reagent_holder/ld50_syringe/choral
+		/obj/item/reagent_holder/ld50_syringe/chloral,
+		/obj/item/reagent_holder/ld50_syringe/chloral
 	)
 
 /*

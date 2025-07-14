@@ -492,16 +492,15 @@
 
 // for /obj/machinery/vending/sovietsoda
 /obj/item/reagent_holder/food/drinks/drinkingglass/soda
+	starting_reagents = alist("sodawater" = 50)
 
-/obj/item/reagent_holder/food/drinks/drinkingglass/soda/New()
-	..()
-	reagents.add_reagent("sodawater", 50)
+/obj/item/reagent_holder/food/drinks/drinkingglass/soda/initialise()
+	. = ..()
 	on_reagent_change()
 
-
 /obj/item/reagent_holder/food/drinks/drinkingglass/cola
+	starting_reagents = alist("cola" = 50)
 
-/obj/item/reagent_holder/food/drinks/drinkingglass/cola/New()
-	..()
-	reagents.add_reagent("cola", 50)
+/obj/item/reagent_holder/food/drinks/drinkingglass/cola/initialise()
+	. = ..()
 	on_reagent_change()

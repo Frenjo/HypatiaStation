@@ -7,8 +7,8 @@
 
 	var/blood_type = null
 
-/obj/item/reagent_holder/blood/New()
-	..()
+/obj/item/reagent_holder/blood/initialise()
+	. = ..()
 	if(blood_type != null)
 		name = "\improper BloodPack [blood_type]"
 		reagents.add_reagent("blood", 200, list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = blood_type, "resistances" = null, "trace_chem" = null))

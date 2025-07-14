@@ -18,13 +18,10 @@
 	//var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
 	var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
 
-/obj/item/reagent_holder/borghypo/New()
+/obj/item/reagent_holder/borghypo/initialise()
 	. = ..()
 	for(var/id in reagent_ids)
 		add_reagent(id)
-
-/obj/item/reagent_holder/borghypo/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/item/reagent_holder/borghypo/Destroy()

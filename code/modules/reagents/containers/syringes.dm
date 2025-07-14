@@ -369,9 +369,11 @@
 		icon_state = "[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 
-/obj/item/reagent_holder/ld50_syringe/choral/New()
+/obj/item/reagent_holder/ld50_syringe/chloral
+	starting_reagents = alist("chloralhydrate" = 50)
+
+/obj/item/reagent_holder/ld50_syringe/chloral/initialise()
 	. = ..()
-	reagents.add_reagent("chloralhydrate", 50)
 	mode = SYRINGE_INJECT
 	update_icon()
 
@@ -379,36 +381,31 @@
 /// Syringes. END
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_holder/syringe/preloaded
-	var/starting_reagent_id = null
-	var/starting_reagent_amount = 15
-
-/obj/item/reagent_holder/syringe/preloaded/New()
+/obj/item/reagent_holder/syringe/preloaded/initialise()
 	. = ..()
-	reagents.add_reagent(starting_reagent_id, starting_reagent_amount)
 	mode = SYRINGE_INJECT
 	update_icon()
 
 /obj/item/reagent_holder/syringe/preloaded/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	starting_reagent_id = "inaprovaline"
+	starting_reagents = alist("inaprovaline" = 15)
 
 /obj/item/reagent_holder/syringe/preloaded/antitoxin
 	name = "syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
-	starting_reagent_id = "anti_toxin"
+	starting_reagents = alist("anti_toxin" = 15)
 
 /obj/item/reagent_holder/syringe/preloaded/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
-	starting_reagent_id = "spaceacillin"
+	starting_reagents = alist("spaceacillin" = 15)
 
 // Added to go with the radiation first aid kit. -Frenjo
 /obj/item/reagent_holder/syringe/preloaded/hyronalin
 	name = "syringe (hyronalin)"
 	desc = "Contains hyronalin - used to treat radiation."
-	starting_reagent_id = "hyronalin"
+	starting_reagents = alist("hyronalin" = 15)
 
 #undef SYRINGE_DRAW
 #undef SYRINGE_INJECT

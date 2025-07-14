@@ -18,10 +18,9 @@
 /obj/item/reagent_holder/hypospray/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/item/reagent_holder/hypospray/New() //comment this to make hypos start off empty
-	..()
+/obj/item/reagent_holder/hypospray/initialise() //comment this to make hypos start off empty
+	. = ..()
 	//reagents.add_reagent("tricordrazine", 30) // Commented this, planning on adding hypos to the RnD protolathe. -Frenjo
-	return
 
 /obj/item/reagent_holder/hypospray/attack(mob/M, mob/user)
 	if(!reagents.total_volume)
@@ -57,12 +56,11 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 
-/obj/item/reagent_holder/hypospray/autoinjector/New()
-	..()
-	reagents.remove_reagent("tricordrazine", 30)
-	reagents.add_reagent("inaprovaline", 5)
+	starting_reagents = alist("inaprovaline" = 5)
+
+/obj/item/reagent_holder/hypospray/autoinjector/initialise()
+	. = ..()
 	update_icon()
-	return
 
 /obj/item/reagent_holder/hypospray/autoinjector/attack(mob/M, mob/user)
 	..()

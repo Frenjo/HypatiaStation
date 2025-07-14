@@ -9,6 +9,8 @@
 	var/possible_transfer_amounts = list(5, 10, 15, 25, 30)
 	var/volume = 30
 
+	var/alist/starting_reagents = null
+
 /obj/item/reagent_holder/verb/set_APTFT() //set amount_per_transfer_from_this
 	set category = PANEL_OBJECT
 	set name = "Set transfer amount"
@@ -18,11 +20,15 @@
 	if(isnotnull(N))
 		amount_per_transfer_from_this = N
 
-/obj/item/reagent_holder/New()
+/obj/item/reagent_holder/initialise()
 	. = ..()
 	if(!possible_transfer_amounts)
 		verbs.Remove(/obj/item/reagent_holder/verb/set_APTFT)
 	create_reagents(volume)
+	if(isnotnull(starting_reagents))
+		for(var/id in starting_reagents)
+			reagents.add_reagent(id, starting_reagents[id])
+		update_icon()
 
 /obj/item/reagent_holder/attack_self(mob/user)
 	return

@@ -27,12 +27,12 @@ GLOBAL_GLOBL_ALIST_NEW(cached_icons)
 	else
 		return ..()
 
-/obj/item/reagent_holder/glass/paint/New()
+/obj/item/reagent_holder/glass/paint/initialise()
+	. = ..()
 	if(paint_type == "remover")
 		name = "paint remover bucket"
 	else if(paint_type && length(paint_type) > 0)
 		name = paint_type + " " + name
-	..()
 	reagents.add_reagent("paint_[paint_type]", volume)
 
 /obj/item/reagent_holder/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can

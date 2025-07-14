@@ -96,65 +96,26 @@
 		/obj/item/reagent_holder/glass/solution_tray = 7
 	)
 
-
 /obj/item/reagent_holder/glass/beaker/tungsten
 	name = "beaker 'tungsten'"
-
-/obj/item/reagent_holder/glass/beaker/tungsten/New()
-	..()
-	reagents.add_reagent("tungsten", 50)
-	update_icon()
-
+	starting_reagents = alist("tungsten" = 50)
 
 /obj/item/reagent_holder/glass/beaker/oxygen
 	name = "beaker 'oxygen'"
-
-/obj/item/reagent_holder/glass/beaker/oxygen/New()
-	..()
-	reagents.add_reagent("oxygen", 50)
-	update_icon()
-
+	starting_reagents = alist("oxygen" = 50)
 
 /obj/item/reagent_holder/glass/beaker/sodium
 	name = "beaker 'sodium'"
-
-/obj/item/reagent_holder/glass/beaker/sodium/New()
-		..()
-		reagents.add_reagent("sodium", 50)
-		update_icon()
-
+	starting_reagents = alist("sodium" = 50)
 
 /obj/item/reagent_holder/glass/beaker/lithium
 	name = "beaker 'lithium'"
-
-/obj/item/reagent_holder/glass/beaker/lithium/New()
-	..()
-	reagents.add_reagent("lithium",50)
-	update_icon()
-
+	starting_reagents = alist("lithium" = 50)
 
 /obj/item/reagent_holder/glass/beaker/water
 	name = "beaker 'water'"
-
-/obj/item/reagent_holder/glass/beaker/water/New()
-	..()
-	reagents.add_reagent("water",50)
-	update_icon()
-
-
-/obj/item/reagent_holder/glass/beaker/water
-	name = "beaker 'water'"
-
-/obj/item/reagent_holder/glass/beaker/water/New()
-	..()
-	reagents.add_reagent("water",50)
-	update_icon()
-
+	starting_reagents = alist("water" = 50)
 
 /obj/item/reagent_holder/glass/beaker/fuel
 	name = "beaker 'fuel'"
-
-/obj/item/reagent_holder/glass/beaker/fuel/New()
-	..()
-	reagents.add_reagent("fuel",50)
-	update_icon()
+	starting_reagents = alist("fuel" = 50)
