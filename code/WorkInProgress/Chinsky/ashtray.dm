@@ -7,11 +7,10 @@
 	var/icon_full  	= ""
 	var/icon_broken	= ""
 
-/obj/item/ashtray/New()
-	..()
-	src.pixel_y = rand(-5, 5)
-	src.pixel_x = rand(-6, 6)
-	return
+/obj/item/ashtray/initialise()
+	. = ..()
+	pixel_y = rand(-5, 5)
+	pixel_x = rand(-6, 6)
 
 /obj/item/ashtray/attackby(obj/item/W as obj, mob/user as mob)
 	if(health < 1)

@@ -12,10 +12,9 @@
 	var/last_scan_time = 0
 	var/scan_delay = 25
 
-/obj/item/ano_scanner/New()
-	..()
-	spawn(0)
-		scan()
+/obj/item/ano_scanner/initialise()
+	. = ..()
+	scan()
 
 /obj/item/ano_scanner/attack_self(mob/user)
 	return src.interact(user)
@@ -26,11 +25,11 @@
 		message = "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m"
 	to_chat(user, SPAN_INFO("[message]"))
 	if(world.time - last_scan_time >= scan_delay)
-		spawn(0)
-			scan()
+		scan()
 
 /obj/item/ano_scanner/proc/scan()
 	set background = BACKGROUND_ENABLED
+	set waitfor = FALSE
 
 	last_scan_time = world.time
 	nearest_artifact_distance = -1

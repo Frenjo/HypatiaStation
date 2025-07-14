@@ -22,7 +22,7 @@
 
 	var/datum/material_container/materials
 
-/obj/machinery/r_n_d/New()
+/obj/machinery/r_n_d/initialise()
 	. = ..()
 	wires["Red"] = 0
 	wires["Blue"] = 0

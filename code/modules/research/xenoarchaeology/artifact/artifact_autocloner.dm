@@ -38,8 +38,8 @@
 		/mob/living/carbon/monkey
 	)
 
-/obj/machinery/auto_cloner/New()
-	..()
+/obj/machinery/auto_cloner/initialise()
+	. = ..()
 
 	ticks_required_to_spawn = rand(240, 1440)
 

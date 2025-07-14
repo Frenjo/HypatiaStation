@@ -25,7 +25,7 @@
 	var/source_rock = "/turf/closed/rock/"
 	var/datum/geosample/geological_data
 
-/obj/item/rocksliver/New()
+/obj/item/rocksliver/initialise()
 	. = ..()
 	icon_state = "sliver[rand(1, 3)]"
 	pixel_x = rand(0, 16) - 8

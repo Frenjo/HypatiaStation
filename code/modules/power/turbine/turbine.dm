@@ -9,13 +9,9 @@
 	var/turf/open/outturf
 	var/lastgen = 0
 
-/obj/machinery/power/turbine/New()
-	..()
-
-	outturf = get_step(src, dir)
-
 /obj/machinery/power/turbine/initialise()
 	. = ..()
+	outturf = get_step(src, dir)
 	compressor = locate() in get_step(src, get_dir(outturf, src))
 	if(!compressor)
 		stat |= BROKEN

@@ -14,7 +14,7 @@
 	var/indestructible = 0
 	var/stump = 0
 
-/obj/structure/bush/New()
+/obj/structure/bush/initialise()
 	. = ..()
 	if(prob(20))
 		set_opacity(1)
@@ -93,7 +93,7 @@ var/jungle_plants_init = 0
 	var/fruit_b
 
 
-/obj/structure/jungle_plant/New()
+/obj/structure/jungle_plant/initialise()
 	. = ..()
 	if(!jungle_plants_init)
 		init_jungle_plants()

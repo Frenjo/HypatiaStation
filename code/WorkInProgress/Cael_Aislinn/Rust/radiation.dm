@@ -4,9 +4,6 @@
 	var/time_alive = 0
 	var/source_alive = 2
 
-/obj/machinery/rust/rad_source/New()
-	..()
-
 /obj/machinery/rust/rad_source/process()
 	..()
 	//fade away over time

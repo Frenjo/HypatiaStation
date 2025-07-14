@@ -24,7 +24,7 @@
 
 /obj/machinery/r_n_d/server/initialise()
 	. = ..()
-	if(!files)
+	if(isnull(files))
 		files = new /datum/research(src)
 	var/list/temp_list
 	if(!length(id_with_upload))

@@ -23,7 +23,7 @@
 															// For reference, a fully pressurized oxy tank at 50% gas release firing a health
 															// analyser with a force_divisor of 10 hit with a damage multiplier of 3000+.
 
-/obj/item/storage/pneumatic/New()
+/obj/item/storage/pneumatic/initialise()
 	. = ..()
 	tank_container = new /obj/item/storage(src)
 

@@ -5,9 +5,6 @@
 	icon_state = "engine"
 	var/updating = 1
 
-/obj/machinery/computer/rust_gyrotron_controller/New()
-	..()
-
 /obj/machinery/computer/rust_gyrotron_controller/Topic(href, href_list)
 	..()
 	if(href_list["close"])

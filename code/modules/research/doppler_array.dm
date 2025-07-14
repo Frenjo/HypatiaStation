@@ -9,7 +9,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/doppler_array/doppler_arrays)
 	density = TRUE
 	anchored = TRUE
 
-/obj/machinery/doppler_array/New()
+/obj/machinery/doppler_array/initialise()
 	. = ..()
 	GLOBL.doppler_arrays.Add(src)
 

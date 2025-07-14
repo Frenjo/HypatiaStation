@@ -9,7 +9,7 @@
 	opacity = FALSE
 	mouse_opacity = FALSE
 
-/obj/machinery/mineral/input/New()
+/obj/machinery/mineral/input/initialise()
 	. = ..()
 	icon_state = "blank"
 
@@ -21,6 +21,6 @@
 	opacity = FALSE
 	mouse_opacity = FALSE
 
-/obj/machinery/mineral/output/New()
+/obj/machinery/mineral/output/initialise()
 	. = ..()
 	icon_state = "blank"

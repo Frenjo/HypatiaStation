@@ -24,11 +24,11 @@ var/list/alldepartments = list("Central Command")
 
 	var/dpt = "Central Command" // the department we're sending to
 
-/obj/machinery/faxmachine/New()
-	..()
+/obj/machinery/faxmachine/initialise()
+	. = ..()
 	allfaxes += src
 
-	if( !("[department]" in alldepartments) )
+	if(!("[department]" in alldepartments))
 		alldepartments += department
 
 /obj/machinery/faxmachine/process()

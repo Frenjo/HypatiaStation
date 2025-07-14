@@ -8,9 +8,9 @@
 	var/const/max_health = 200
 	var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
 
-/obj/effect/shield/New()
-	set_dir(pick(GLOBL.cardinal))
+/obj/effect/shield/initialise()
 	. = ..()
+	set_dir(pick(GLOBL.cardinal))
 	update_nearby_tiles(need_rebuild = 1)
 
 /obj/effect/shield/Destroy()

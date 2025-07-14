@@ -33,11 +33,8 @@
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.01	//how many renwicks per watt?
 
-/obj/machinery/shield_gen/New()
-	field = list()
-	..()
-
 /obj/machinery/shield_gen/initialise()
+	field = list()
 	. = ..()
 	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
 		if(get_dir(possible_cap, src) == possible_cap.dir)

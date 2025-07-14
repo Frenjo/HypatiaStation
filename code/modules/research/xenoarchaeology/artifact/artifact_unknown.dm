@@ -12,7 +12,7 @@
 	var/icon_num = 0
 	var/being_used = 0
 
-/obj/machinery/artifact/New()
+/obj/machinery/artifact/initialise()
 	. = ..()
 
 	//setup primary effect - these are the main ones (mixed)

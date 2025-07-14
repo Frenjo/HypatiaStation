@@ -14,7 +14,7 @@
 
 /datum/disease2/disease/New()
 	uniqueID = rand(0, 10000)
-	..()
+	. = ..()
 
 /datum/disease2/disease/proc/makerandom(greater = 0)
 	for(var/i = 1 ; i <= max_stage ; i++)

@@ -20,11 +20,11 @@
 	. = ..()
 	gen_primary = A
 	gen_secondary = B
-	if(isnotnull(A) && isnotnull(B))
-		needs_power = 1
 
 /obj/effect/shield_wall/initialise()
 	. = ..()
+	if(isnotnull(gen_primary) && isnotnull(gen_secondary))
+		needs_power = 1
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/shield_wall/Destroy()

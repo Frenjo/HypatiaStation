@@ -7,7 +7,7 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/shard/plasma/New()
+/obj/item/shard/plasma/initialise()
 	. = ..()
 	icon_state = pick("plasmalarge", "plasmamedium", "plasmasmall")
 	switch(icon_state)
@@ -45,7 +45,7 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crystal"
 
-/obj/machinery/crystal/New()
+/obj/machinery/crystal/initialise()
 	. = ..()
 	if(prob(50))
 		icon_state = "crystal2"

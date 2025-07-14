@@ -16,13 +16,10 @@
 	var/comp_id = 0
 
 // the inlet stage of the gas turbine electricity generator
-/obj/machinery/compressor/New()
-	..()
-	gas_contained = new
-	inturf = get_step(src, dir)
-
 /obj/machinery/compressor/initialise()
 	. = ..()
+	gas_contained = new /datum/gas_mixture()
+	inturf = get_step(src, dir)
 	turbine = locate() in get_step(src, get_dir(inturf, src))
 	if(!turbine)
 		stat |= BROKEN

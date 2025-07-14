@@ -40,10 +40,10 @@
 /obj/item/virusdish/random
 	name = "virus sample"
 
-/obj/item/virusdish/random/New()
-	..()
-	src.virus2 = new /datum/disease2/disease
-	src.virus2.makerandom()
+/obj/item/virusdish/random/initialise()
+	. = ..()
+	virus2 = new /datum/disease2/disease()
+	virus2.makerandom()
 	growth = rand(5, 50)
 
 /obj/item/virusdish/attack_by(obj/item/I, mob/user)
@@ -78,9 +78,9 @@
 	var/datum/disease2/effectholder/effect = null
 	var/stage = 1
 
-/obj/item/diseasedisk/premade/New()
+/obj/item/diseasedisk/premade/initialise()
+	. = ..()
 	effect = new /datum/disease2/effectholder()
 	effect.effect = new /datum/disease2/effect/invisible()
 	effect.stage = stage
-	. = ..()
 	name = "blank GNA disk (stage: [5-stage])"

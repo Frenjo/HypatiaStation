@@ -3,14 +3,10 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
 
-	var/datum/artifact_effect/battery_effect
+	var/datum/artifact_effect/battery_effect = new /datum/artifact_effect()
 	var/capacity = 200
 	var/stored_charge = 0
 	var/effect_id = ""
-
-/obj/item/anobattery/New()
-	battery_effect = new /datum/artifact_effect()
-	. = ..()
 
 /obj/item/anobattery/proc/UpdateSprite()
 	var/p = (stored_charge/capacity) * 100

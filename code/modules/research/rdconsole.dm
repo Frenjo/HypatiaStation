@@ -50,12 +50,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/id = 0 // ID of the computer (for server restrictions).
 	var/sync = TRUE // If sync = FALSE, it doesn't show up on Server Control Console
 
-/obj/machinery/computer/rdconsole/New()
-	. = ..()
-	files = new /datum/research(src) //Setup the research data holder.
-
 /obj/machinery/computer/rdconsole/initialise()
 	. = ..()
+	files = new /datum/research(src) // Sets up the research data holder.
 	if(!id)
 		FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server/centcom)
 			server.initialise()

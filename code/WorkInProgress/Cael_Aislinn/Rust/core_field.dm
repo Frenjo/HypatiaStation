@@ -34,8 +34,8 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 
 	var/emp_overload = 0
 
-/obj/effect/rust_em_field/New()
-	..()
+/obj/effect/rust_em_field/initialise()
+	. = ..()
 	//create radiator
 	for(var/obj/machinery/rust/rad_source/rad in range(0))
 		radiator = rad
@@ -113,8 +113,6 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 	minor_radius = field_strength * 0.2125// max = 8.625
 	volume_covered = PI * major_radius * minor_radius * 2.5 * 2.5 * 1000
 
-/obj/effect/rust_em_field/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/rust_em_field/Destroy()

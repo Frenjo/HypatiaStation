@@ -34,7 +34,7 @@
 	var/method = 0// 0 = fire, 1 = brush, 2 = pick
 
 /obj/item/ore/strangerock/New(loc, inside_item_type = 0)
-	..(loc)
+	. = ..(loc)
 
 	//method = rand(0,2)
 	if(inside_item_type)

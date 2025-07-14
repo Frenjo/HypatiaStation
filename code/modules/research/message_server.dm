@@ -62,12 +62,11 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 	var/active = 1
 	var/decryptkey = "password"
 
-/obj/machinery/message_server/New()
+/obj/machinery/message_server/initialise()
+	. = ..()
 	GLOBL.message_servers.Add(src)
 	decryptkey = GenerateKey()
 	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
-	..()
-	return
 
 /obj/machinery/message_server/Destroy()
 	GLOBL.message_servers.Remove(src)
@@ -201,12 +200,12 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 	var/list/datum/feedback_variable/feedback = new()
 
 //Only one can exsist in the world!
-/obj/machinery/blackbox_recorder/New()
+/obj/machinery/blackbox_recorder/initialise()
+	. = ..()
 	if(blackbox)
 		if(istype(blackbox, /obj/machinery/blackbox_recorder))
 			qdel(src)
 	blackbox = src
-	. = ..()
 
 /obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1, 1, 2)

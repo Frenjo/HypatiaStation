@@ -25,13 +25,12 @@
 	var/charge_rate = 100
 	var/obj/machinery/shield_gen/owned_gen
 
-/obj/machinery/shield_capacitor/New()
-	spawn(10)
-		for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
-			if(get_dir(src, possible_gen) == src.dir)
-				possible_gen.owned_capacitor = src
-				break
-	..()
+/obj/machinery/shield_capacitor/initialise()
+	. = ..()
+	for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
+		if(get_dir(src, possible_gen) == dir)
+			possible_gen.owned_capacitor = src
+			break
 
 /obj/machinery/shield_capacitor/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(prob(75))

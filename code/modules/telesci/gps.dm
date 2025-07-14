@@ -12,7 +12,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	var/gpstag = "COM0"
 	var/emped = FALSE
 
-/obj/item/gps/New()
+/obj/item/gps/initialise()
 	. = ..()
 	GLOBL.gps_list.Add(src)
 	name = "global positioning system ([gpstag])"

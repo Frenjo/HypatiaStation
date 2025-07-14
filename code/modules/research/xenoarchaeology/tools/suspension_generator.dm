@@ -16,13 +16,14 @@
 	var/obj/effect/suspension_field/suspension_field
 	var/list/secured_mobs = list()
 
-/obj/machinery/suspension_gen/New()
-	src.cell = new/obj/item/cell/high(src)
-	..()
+/obj/machinery/suspension_gen/initialise()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
 
 /obj/machinery/suspension_gen/Destroy()
 	//safety checks: clear the field and drop anything it's holding
 	deactivate()
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/machinery/suspension_gen/process()

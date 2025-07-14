@@ -8,7 +8,7 @@
 
 	var/max_fuel = 350
 
-/obj/item/weldpack/New()
+/obj/item/weldpack/initialise()
 	. = ..()
 	create_reagents(max_fuel)
 	reagents.add_reagent("fuel", max_fuel)

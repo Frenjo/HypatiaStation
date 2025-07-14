@@ -12,7 +12,7 @@
 	)
 	salvage_num = 10
 
-/obj/structure/mecha_wreckage/eidolon/New()
+/obj/structure/mecha_wreckage/eidolon/initialise()
 	. = ..()
 	wirecutters_salvage.Add(
 		/obj/item/circuitboard/mecha/eidolon/main,

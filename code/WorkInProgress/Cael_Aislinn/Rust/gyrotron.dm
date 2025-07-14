@@ -24,8 +24,8 @@
 	var/on = 1
 	var/remoteenabled = 1
 
-/obj/machinery/rust/gyrotron/New()
-	..()
+/obj/machinery/rust/gyrotron/initialise()
+	. = ..()
 	//pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 	//pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
@@ -162,8 +162,8 @@
 
 	var/obj/machinery/rust/gyrotron/owned_gyrotron
 
-/obj/machinery/rust/gyrotron/control_panel/New()
-	..()
+/obj/machinery/rust/gyrotron/control_panel/initialise()
+	. = ..()
 	pixel_x = -pixel_x
 	pixel_y = -pixel_y
 

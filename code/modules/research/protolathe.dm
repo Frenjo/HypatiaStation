@@ -12,7 +12,7 @@ Note: Must be placed west/left of and R&D console to function.
 	icon_state = "protolathe"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
-/obj/machinery/r_n_d/protolathe/New()
+/obj/machinery/r_n_d/protolathe/initialise()
 	materials = new /datum/material_container(src, list(
 		/decl/material/iron, /decl/material/steel, /decl/material/plastic, /decl/material/glass,
 		/decl/material/silver, /decl/material/gold, /decl/material/diamond, /decl/material/uranium,

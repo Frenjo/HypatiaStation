@@ -6,17 +6,13 @@
 	var/mob/living/spawned_animal
 	invisibility = INVISIBILITY_MAXIMUM
 
-/obj/effect/landmark/animal_spawner/New()
+/obj/effect/landmark/animal_spawner/initialise()
 	. = ..()
 	if(!spawn_type)
 		var/new_type = pick(SUBTYPESOF(/obj/effect/landmark/animal_spawner))
 		new new_type(GET_TURF(src))
 		qdel(src)
-
 	spawned_animal = new spawn_type(GET_TURF(src))
-
-/obj/effect/landmark/animal_spawner/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/landmark/animal_spawner/Destroy()

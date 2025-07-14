@@ -8,8 +8,8 @@
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/bluespace = 4)
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 
-/obj/item/bluespace_crystal/New()
-	..()
+/obj/item/bluespace_crystal/initialise()
+	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
 

@@ -13,7 +13,7 @@
 
 	var/uses = 1 // uses before it goes inert
 
-/obj/item/slime_extract/New()
+/obj/item/slime_extract/initialise()
 	. = ..()
 	create_reagents(100)
 

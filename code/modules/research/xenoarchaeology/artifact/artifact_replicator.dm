@@ -15,8 +15,8 @@
 	var/list/construction = list()
 	var/list/spawning_types = list()
 
-/obj/machinery/replicator/New()
-	..()
+/obj/machinery/replicator/initialise()
+	. = ..()
 
 	var/list/viables = list(
 		/obj/item/roller,

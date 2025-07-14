@@ -14,7 +14,7 @@
 	var/string_attached = FALSE
 	var/sides = 2
 
-/obj/item/coin/New()
+/obj/item/coin/initialise()
 	if(isnotnull(material))
 		material = GET_DECL_INSTANCE(material)
 	. = ..()

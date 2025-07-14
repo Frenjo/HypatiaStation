@@ -51,9 +51,9 @@
 	var/list/internal_log = list()
 	var/mode = 0  // 0 - making pass, 1 - viewing logs
 
-/obj/machinery/computer/guestpass/New()
-	..()
-	uid = "[rand(100,999)]-G[rand(10,99)]"
+/obj/machinery/computer/guestpass/initialise()
+	. = ..()
+	uid = "[rand(100, 999)]-G[rand(10, 99)]"
 
 /obj/machinery/computer/guestpass/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
