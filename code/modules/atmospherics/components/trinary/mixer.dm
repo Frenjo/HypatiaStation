@@ -29,7 +29,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/trinary/mixer/New()
+/obj/machinery/atmospherics/trinary/mixer/initialise()
 	. = ..()
 	air3.volume = 300
 

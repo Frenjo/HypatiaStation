@@ -33,7 +33,7 @@
 		/obj/item/clothing/glasses/meson
 	)
 
-/obj/structure/closet/secure/miner/New()
+/obj/structure/closet/secure/miner/initialise()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else

@@ -58,8 +58,8 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	strength = 1
 	life = 40
 
-/obj/effect/space_dust/New()
-	..()
+/obj/effect/space_dust/initialise()
+	. = ..()
 	var/startx = 0
 	var/starty = 0
 	var/endy = 0

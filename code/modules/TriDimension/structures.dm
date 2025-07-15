@@ -213,8 +213,8 @@
 	var/obj/multiz/stairs/connected
 	var/turf/target
 
-/obj/multiz/stairs/New()
-	..()
+/obj/multiz/stairs/initialise()
+	. = ..()
 	var/turf/cl = locate(1, 1, src.z)
 	for(var/obj/effect/landmark/zcontroller/c in cl)
 		if(c.up)
@@ -222,8 +222,6 @@
 			if(isspace(O))
 				O.ChangeTurf(/turf/open/floor/open)
 
-/obj/multiz/stairs/initialise()
-	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		var/turf/T = get_step(loc, dir)
 		for(var/obj/multiz/stairs/S in T)

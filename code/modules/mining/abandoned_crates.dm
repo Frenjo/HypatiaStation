@@ -13,7 +13,7 @@
 	var/min = 1
 	var/max = 10
 
-/obj/structure/closet/crate/secure/loot/New()
+/obj/structure/closet/crate/secure/loot/initialise()
 	code = rand(min, max)
 	create_loot()
 	. = ..()

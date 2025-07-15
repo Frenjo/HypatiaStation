@@ -43,7 +43,7 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/circuit_grid/blue/airless/New()
+/turf/open/floor/circuit_grid/blue/airless/initialise()
 	. = ..()
 	name = "blue circuit grid floor"
 
@@ -69,6 +69,6 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/circuit_grid/green/airless/New()
+/turf/open/floor/circuit_grid/green/airless/initialise()
 	. = ..()
 	name = "green circuit grid floor"

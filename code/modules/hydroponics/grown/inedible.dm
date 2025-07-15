@@ -17,7 +17,7 @@
 	var/potency = 1
 	var/plant_type = 0
 
-/obj/item/grown/New()
+/obj/item/grown/initialise()
 	. = ..()
 	create_reagents(50)
 

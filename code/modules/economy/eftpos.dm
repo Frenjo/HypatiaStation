@@ -13,7 +13,7 @@
 	var/access_code = 0
 	var/datum/money_account/linked_account
 
-/obj/item/eftpos/New()
+/obj/item/eftpos/initialise()
 	. = ..()
 	access_code = rand(1111, 111111)
 

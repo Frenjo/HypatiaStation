@@ -5,7 +5,7 @@
 	name = "iron sand"
 	icon_state = "ironsand1"
 
-/turf/open/floor/plating/iron_sand/New()
+/turf/open/floor/plating/iron_sand/initialise()
 	. = ..()
 	icon_state = "ironsand[rand(1, 15)]"
 

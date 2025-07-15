@@ -2,12 +2,7 @@
 
 /obj/item/implanter/exile
 	name = "implanter-exile"
-
-/obj/item/implanter/exile/New()
-	..()
-	src.imp = new /obj/item/implant/exile(src)
-	update()
-
+	imp_type = /obj/item/implant/exile
 
 /obj/item/implant/exile
 	name = "exile"
@@ -20,17 +15,13 @@
 <b>Implant Details:</b> The onboard gateway system has been modified to reject entry by individuals containing this implant.<BR>"}
 	return dat
 
-
 /obj/item/implantcase/exile
 	name = "Glass Case - 'Exile'"
 	desc = "A case containing an exile implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-r"
 
-/obj/item/implantcase/exile/New()
-	..()
-	src.imp = new /obj/item/implant/exile(src)
-
+	imp_type = /obj/item/implant/exile
 
 /obj/structure/closet/secure/exile
 	name = "exile implants"

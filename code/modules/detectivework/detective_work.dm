@@ -79,10 +79,9 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
 
-/obj/machinery/computer/forensic_scanning/New()
-	..()
+/obj/machinery/computer/forensic_scanning/initialise()
+	. = ..()
 	new /obj/item/book/manual/detective(GET_TURF(src))
-	return
 
 /obj/machinery/computer/forensic_scanning/attack_ai(mob/user)
 	return attack_hand(user)

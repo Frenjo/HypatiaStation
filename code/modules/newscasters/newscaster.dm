@@ -47,13 +47,10 @@
 	name = "security newscaster"
 	securityCaster = 1
 
-/obj/machinery/newscaster/New()			//Constructor, ho~
-	. = ..()								//I just realised the newscasters weren't in the global machines list. The superconstructor call will tend to that
-	GLOBL.all_newscasters.Add(src)
-	paper_remaining = 15			// Will probably change this to something better
-
 /obj/machinery/newscaster/initialise()
 	. = ..()
+	GLOBL.all_newscasters.Add(src)
+	paper_remaining = 15			// Will probably change this to something better
 	update_icon() //for any custom ones on the map...
 	unit_no = ++static_unit_no // Let's give it an appropriate unit number.
 

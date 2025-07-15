@@ -8,7 +8,7 @@
 
 	current_heat_capacity = 1000
 
-/obj/machinery/atmospherics/unary/cold_sink/freezer/New()
+/obj/machinery/atmospherics/unary/cold_sink/freezer/initialise()
 	. = ..()
 	initialize_directions = dir
 

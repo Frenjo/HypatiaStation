@@ -52,7 +52,7 @@
 /*
  * Vault Money Bag
  */
-/obj/item/moneybag/vault/New()
+/obj/item/moneybag/vault/initialise()
 	. = ..()
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)

@@ -36,7 +36,7 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
-/obj/machinery/atmospherics/unary/vent_pump/New()
+/obj/machinery/atmospherics/unary/vent_pump/initialise()
 	. = ..()
 	air_contents.volume = 200
 	initial_loc = GET_AREA(src)
@@ -339,7 +339,7 @@
 	name = "large air vent (off)"
 	power_channel = EQUIP
 
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/initialise()
 	. = ..()
 	air_contents.volume = 1000
 

@@ -8,7 +8,7 @@
 
 	current_heat_capacity = 1000
 
-/obj/machinery/atmospherics/unary/heat_reservoir/heater/New()
+/obj/machinery/atmospherics/unary/heat_reservoir/heater/initialise()
 	. = ..()
 	initialize_directions = dir
 

@@ -178,7 +178,7 @@
 /obj/machinery/atmospherics/trinary/tvalve/mirrored
 	icon_state = "tvalvem0"
 
-/obj/machinery/atmospherics/trinary/tvalve/mirrored/New()
+/obj/machinery/atmospherics/trinary/tvalve/mirrored/initialise()
 	. = ..()
 	switch(dir)
 		if(NORTH)

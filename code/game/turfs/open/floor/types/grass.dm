@@ -7,9 +7,9 @@
 	icon_state = "grass1"
 	tile_path = /obj/item/stack/tile/grass
 
-/turf/open/floor/grass/New()
-	icon_state = "grass[pick("1","2","3","4")]"
+/turf/open/floor/grass/initialise()
 	. = ..()
+	icon_state = "grass[pick("1","2","3","4")]"
 
 /turf/open/floor/grass/attack_tool(obj/item/tool, mob/user)
 	if(istype(tool, /obj/item/shovel))

@@ -12,7 +12,7 @@
 
 	var/worth = 0
 
-/obj/item/cash/New()
+/obj/item/cash/initialise()
 	. = ..()
 	desc = "It's worth [worth] credit\s."
 

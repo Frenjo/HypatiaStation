@@ -11,7 +11,7 @@
 	var/turf/floorbelow
 	var/list/overlay_references
 
-/turf/open/floor/open/New()
+/turf/open/floor/open/initialise()
 	. = ..()
 	getbelow()
 

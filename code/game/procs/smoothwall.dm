@@ -78,9 +78,9 @@
 		W.relativewall()
 		W.update_icon()//Refreshes the wall to make sure the icons don't desync
 
-/turf/closed/wall/New()
+/turf/closed/wall/initialise()
+	. = ..()
 	relativewall_neighbours()
-	..()
 
 /*/turf/closed/wall/shuttle/New()
 

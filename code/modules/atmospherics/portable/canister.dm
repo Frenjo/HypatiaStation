@@ -318,7 +318,7 @@
 	canister_color = "bluews"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/oxygen/New()
+/obj/machinery/portable_atmospherics/canister/oxygen/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/oxygen, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
@@ -330,7 +330,7 @@
 	canister_color = "red"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/nitrogen/New()
+/obj/machinery/portable_atmospherics/canister/nitrogen/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/nitrogen, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
@@ -342,7 +342,7 @@
 	canister_color = "grey"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/air/New()
+/obj/machinery/portable_atmospherics/canister/air/initialise()
 	. = ..()
 	air_contents.adjust_multi(
 		/decl/xgm_gas/oxygen, (O2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature),
@@ -357,7 +357,7 @@
 	canister_color = "green"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/hydrogen/New()
+/obj/machinery/portable_atmospherics/canister/hydrogen/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/hydrogen, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
@@ -369,7 +369,7 @@
 	canister_color = "black"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/carbon_dioxide, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
@@ -381,7 +381,7 @@
 	canister_color = "orange"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/toxins/New()
+/obj/machinery/portable_atmospherics/canister/toxins/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/plasma, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
@@ -394,7 +394,7 @@
 	canister_color = "orangews2"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/oxygen_toxins/New()
+/obj/machinery/portable_atmospherics/canister/oxygen_toxins/initialise()
 	. = ..()
 	// This has a 75/25 plasma/oxygen mixture. -Frenjo
 	air_contents.adjust_multi(
@@ -411,7 +411,7 @@
 	canister_color = "orangebs"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
+/obj/machinery/portable_atmospherics/canister/oxygen_agent_b/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/oxygen_agent_b, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
@@ -423,7 +423,7 @@
 	canister_color = "redws2"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide/New()
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/initialise()
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/nitrous_oxide, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()

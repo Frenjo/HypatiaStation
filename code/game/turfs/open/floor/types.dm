@@ -7,7 +7,7 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/airless/New()
+/turf/open/floor/airless/initialise()
 	. = ..()
 	name = "floor"
 

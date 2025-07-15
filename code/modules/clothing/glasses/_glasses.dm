@@ -50,7 +50,7 @@
 	toggleable = TRUE
 	vision_flags = SEE_TURFS
 
-/obj/item/clothing/glasses/meson/New()
+/obj/item/clothing/glasses/meson/initialise()
 	. = ..()
 	overlay = GLOBL.global_hud.meson
 
@@ -58,7 +58,6 @@
 	name = "prescription mesons"
 	desc = "An optical meson scanner with prescription lenses."
 	prescription = TRUE
-
 
 /obj/item/clothing/glasses/science
 	name = "science goggles"
@@ -68,10 +67,9 @@
 	icon_action_button = "action_science"
 	toggleable = TRUE
 
-/obj/item/clothing/glasses/science/New()
+/obj/item/clothing/glasses/science/initialise()
 	. = ..()
 	overlay = GLOBL.global_hud.science
-
 
 /obj/item/clothing/glasses/night
 	name = "night vision goggles"
@@ -81,10 +79,9 @@
 	origin_tech = alist(/decl/tech/magnets = 2)
 	darkness_view = 7
 
-/obj/item/clothing/glasses/night/New()
+/obj/item/clothing/glasses/night/initialise()
 	. = ..()
 	overlay = GLOBL.global_hud.nvg
-
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
@@ -92,13 +89,11 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
-
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
-
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"
@@ -109,7 +104,6 @@
 	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/engineering = 3)
 	toggleable = TRUE
 	vision_flags = SEE_OBJS
-
 
 /obj/item/clothing/glasses/regular
 	name = "prescription glasses"
@@ -124,20 +118,17 @@
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
 
-
 /obj/item/clothing/glasses/threedglasses
 	name = "3D glasses"
 	desc = "A long time ago, people used these glasses to makes images from screens three-dimensional."
 	icon_state = "3d"
 	item_state = "3d"
 
-
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-
 
 /obj/item/clothing/glasses/sunglasses
 	name = "sunglasses"
@@ -169,7 +160,7 @@
 
 	var/obj/item/clothing/glasses/hud/security/hud = null
 
-/obj/item/clothing/glasses/sunglasses/sechud/New()
+/obj/item/clothing/glasses/sunglasses/sechud/initialise()
 	. = ..()
 	hud = new/obj/item/clothing/glasses/hud/security(src)
 
@@ -177,7 +168,6 @@
 	name = "tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
-
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -211,7 +201,6 @@
 	item_state = "rwelding-g"
 	icon_action_button = "action_welding_g"
 
-
 /obj/item/clothing/glasses/thermal
 	name = "optical thermal scanner"
 	desc = "Thermals in the shape of glasses."
@@ -223,7 +212,7 @@
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 
-/obj/item/clothing/glasses/thermal/New()
+/obj/item/clothing/glasses/thermal/initialise()
 	. = ..()
 	overlay = GLOBL.global_hud.thermal
 

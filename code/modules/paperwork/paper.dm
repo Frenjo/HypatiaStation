@@ -38,14 +38,13 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/paper/New()
-	..()
+/obj/item/paper/initialise()
+	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	spawn(2)
 		update_icon()
 		updateinfolinks()
-		return
 
 /obj/item/paper/update_icon()
 	if(icon_state == "paper_talisman")

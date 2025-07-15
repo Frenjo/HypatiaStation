@@ -6,10 +6,10 @@
 	icon_state = "carpet"
 	tile_path = /obj/item/stack/tile/carpet
 
-/turf/open/floor/carpet/New()
+/turf/open/floor/carpet/initialise()
+	. = ..()
 	if(!icon_state)
 		icon_state = "carpet"
-	. = ..()
 
 /turf/open/floor/carpet/update_special()
 	for(var/direction in GLOBL.alldirs)

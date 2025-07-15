@@ -14,7 +14,7 @@
 	var/datum/pipe_network/network2
 	var/datum/pipe_network/network3
 
-/obj/machinery/atmospherics/trinary/New()
+/obj/machinery/atmospherics/trinary/initialise()
 	. = ..()
 	switch(dir)
 		if(NORTH)

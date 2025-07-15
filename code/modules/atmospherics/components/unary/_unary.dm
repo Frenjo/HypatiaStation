@@ -9,7 +9,7 @@
 
 	var/datum/pipe_network/network
 
-/obj/machinery/atmospherics/unary/New()
+/obj/machinery/atmospherics/unary/initialise()
 	. = ..()
 	initialize_directions = dir
 	air_contents = new /datum/gas_mixture()

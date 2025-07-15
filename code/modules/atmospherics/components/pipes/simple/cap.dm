@@ -13,7 +13,7 @@
 
 	var/obj/machinery/atmospherics/node
 
-/obj/machinery/atmospherics/pipe/cap/New()
+/obj/machinery/atmospherics/pipe/cap/initialise()
 	. = ..()
 	switch(dir)
 		if(SOUTH)

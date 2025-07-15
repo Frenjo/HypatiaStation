@@ -14,8 +14,8 @@
 	name = "cyborgification waiver"
 	desc = "It's some kind of official-looking contract."
 
-/obj/item/paper/fluff/sue_donem/New()
-	..()
+/obj/item/paper/fluff/sue_donem/initialise()
+	. = ..()
 
 	info = "<B>Organic Carrier AIA and Standard Cyborgification Agreement</B><BR>\n<BR>\nUnder the authority of NanoTrasen Synthetic Intelligence Division, this document hereby authorizes an accredited Roboticist of the NSS Exodus or a deputized authority to perform a regulation lobotomisation upon the person of one '<I>Sue Donem</I>' (hereafter referred to as the Subject) with intent to enact a live Artificial Intelligence Assimilation (AIA) or live Cyborgification proceedure.<BR>\n<BR>\nNo further station authorisation is required, and the Subject waives all rights as a human under NanoTrasen internal and external legal protocol. This document is subject to amendment under NanoTrasen internal protocol \[REDACTED\].<BR>\n<BR>\nSigned: <I>Sue Donem</I><BR>\n"
 
@@ -322,26 +322,21 @@
 	name = "Pill bottle (anti-depressants)"
 	desc = "Contains pills used to deal with depression. They appear to be prescribed to Lister Black"
 
-/obj/item/storage/pill_bottle/fluff/listermedbottle/New()
-	..()
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
-	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+/obj/item/storage/pill_bottle/fluff/listermedbottle/initialise()
+	. = ..()
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
+	new /obj/item/reagent_holder/pill/fluff/listermed(src)
 
 /obj/item/reagent_holder/pill/fluff/listermed
 	name = "anti-depressant pill"
 	desc = "Used to deal with depression."
 	icon_state = "pill9"
-
-/obj/item/reagent_holder/pill/fluff/listermed/New()
-	..()
-	reagents.add_reagent("stoxin", 5)
-	reagents.add_reagent("sugar", 10)
-	reagents.add_reagent("ethanol", 5)
+	starting_reagents = alist("stoxin" = 5, "sugar" = 10, "ethanol" = 5)
 
 /obj/item/clothing/mask/fluff/electriccig //CubeJackal: Barry Sharke
 	name = "Electronic cigarette"
@@ -946,8 +941,8 @@
 	icon_state = "nashi_belt"
 	item_state = "fluff_rbelt"
 
-/obj/item/storage/belt/medical/fluff/nashi_belt/New()
-	..()
+/obj/item/storage/belt/medical/fluff/nashi_belt/initialise()
+	. = ..()
 	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
 	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
 	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
@@ -960,10 +955,10 @@
 	icon = 'icons/obj/chemical.dmi'
 	//Starting them with lids on them.  Safety first!
 
-/obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle/New(loc, var/color, var/labeled)
+/obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle/New(loc, color, labeled)
 	..()
 	name = "[labeled] bottle"
-	desc = "A small bottle.  Contains [labeled]"
+	desc = "A small bottle. Contains [labeled]"
 	icon_state = "bottle[color]"
 
 /obj/item/reagent_holder/food/drinks/flask/fluff/yuri_kornienkovich_flask

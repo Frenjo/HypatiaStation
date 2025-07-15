@@ -26,8 +26,8 @@
 		var/maximum_pressure = 70 * ONE_ATMOSPHERE
 		var/fatigue_pressure = 55 * ONE_ATMOSPHERE
 
-/obj/machinery/atmospherics/pipe/zpipe/New()
-	..()
+/obj/machinery/atmospherics/pipe/zpipe/initialise()
+	. = ..()
 	switch(dir)
 		if(SOUTH)
 			initialize_directions = SOUTH

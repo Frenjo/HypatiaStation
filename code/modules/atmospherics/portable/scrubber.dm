@@ -152,7 +152,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 	var/static/gid = 1
 	var/id = 0
 
-/obj/machinery/portable_atmospherics/scrubber/huge/New()
+/obj/machinery/portable_atmospherics/scrubber/huge/initialise()
 	. = ..()
 	id = gid
 	gid++

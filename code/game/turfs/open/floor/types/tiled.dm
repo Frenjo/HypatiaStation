@@ -42,7 +42,7 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/tiled/grey/asteroid/airless/New()
+/turf/open/floor/tiled/grey/asteroid/airless/initialise()
 	. = ..()
 	name = "dust-covered tiled floor"
 

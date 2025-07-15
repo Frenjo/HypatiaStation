@@ -170,13 +170,10 @@
 	filling_color = "#FCF695"
 	trash = /obj/item/bananapeel
 
-/obj/item/reagent_holder/food/snacks/grown/banana/New()
-	..()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
-
 /obj/item/reagent_holder/food/snacks/grown/banana/initialise()
 	. = ..()
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 	reagents.add_reagent("banana", 1 + round((potency / 10), 1))
 	bitesize = 5
 

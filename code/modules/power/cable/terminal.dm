@@ -13,12 +13,11 @@
 	anchored = TRUE
 	layer = 2.6 // a bit above wires
 
-/obj/machinery/power/terminal/New()
-	..()
-	var/turf/T = src.loc
+/obj/machinery/power/terminal/initialise()
+	. = ..()
+	var/turf/T = GET_TURF(src)
 	if(level == 1)
 		hide(T.intact)
-	return
 
 /obj/machinery/power/terminal/Destroy()
 	if(isnotnull(master))

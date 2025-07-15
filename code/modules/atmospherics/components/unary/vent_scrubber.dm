@@ -25,13 +25,13 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
-/obj/machinery/atmospherics/unary/vent_scrubber/New()
+/obj/machinery/atmospherics/unary/vent_scrubber/initialise()
+	. = ..()
 	initial_loc = GET_AREA(src)
 	area_uid = initial_loc.uid
 	if(!id_tag)
 		uid = ++static_uid
 		id_tag = num2text(uid)
-	. = ..()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/atmos_initialise()
 	. = ..()

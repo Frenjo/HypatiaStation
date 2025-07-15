@@ -12,16 +12,15 @@
 	siemens_coefficient = 0.8
 	var/list/clothing_choices = list()
 
-/obj/item/clothing/under/chameleon/New()
-	..()
-	for(var/U in SUBTYPESOF(/obj/item/clothing/under/color))
-		var/obj/item/clothing/under/V = new U
-		src.clothing_choices += V
+/obj/item/clothing/under/chameleon/initialise()
+	. = ..()
+	for(var/path in SUBTYPESOF(/obj/item/clothing/under/color))
+		var/obj/item/clothing/under/new_under = new path()
+		clothing_choices.Add(new_under)
 
-	for(var/U in SUBTYPESOF(/obj/item/clothing/under/rank))
-		var/obj/item/clothing/under/V = new U
-		src.clothing_choices += V
-	return
+	for(var/path in SUBTYPESOF(/obj/item/clothing/under/rank))
+		var/obj/item/clothing/under/new_under = new path()
+		clothing_choices.Add(new_under)
 
 /obj/item/clothing/under/chameleon/attackby(obj/item/clothing/under/U, mob/user)
 	..()

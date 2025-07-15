@@ -79,7 +79,7 @@
 	var/corner_overlay_state = "diagonalWall"
 	var/image/corner_overlay
 
-/turf/closed/wall/shuttle/corner/exterior/New()
+/turf/closed/wall/shuttle/corner/exterior/initialise()
 	. = ..()
 	reset_base_appearance()
 	reset_overlay()

@@ -42,9 +42,9 @@
 	)
 
 /turf/closed/rock/random_ore/New()
+	. = ..()
 	if(prob(ore_chance))
 		ore = GET_DECL_INSTANCE(pickweight(ore_spawn_chance_list))
-	. = ..()
 
 /turf/closed/rock/random_ore/high_chance
 	icon_state = "rock_high_chance"

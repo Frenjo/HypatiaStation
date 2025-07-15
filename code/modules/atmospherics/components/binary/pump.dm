@@ -36,7 +36,7 @@ Thus, the two variables affect pump operation are set in New():
 	on = TRUE
 	icon_state = "intact_on"
 
-/obj/machinery/atmospherics/binary/pump/New()
+/obj/machinery/atmospherics/binary/pump/initialise()
 	. = ..()
 	air1.volume = 200
 	air2.volume = 200

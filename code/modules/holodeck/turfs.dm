@@ -19,9 +19,9 @@
 	icon_state = "grass1"
 	tile_path = /obj/item/stack/tile/grass
 
-/turf/open/floor/holofloor/grass/New()
+/turf/open/floor/holofloor/grass/initialise()
+	. = ..()
 	icon_state = "grass[pick("1", "2", "3", "4")]"
-	..()
 	spawn(4)
 		update_icon()
 		for(var/direction in GLOBL.cardinal)

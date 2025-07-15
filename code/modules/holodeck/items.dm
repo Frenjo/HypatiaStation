@@ -24,7 +24,7 @@
 
 	var/active = 0
 
-/obj/item/holo/esword/New()
+/obj/item/holo/esword/initialise()
 	. = ..()
 	item_color = pick("red", "blue", "green", "purple")
 
@@ -56,10 +56,10 @@
 		return 1
 	return 0
 
-/obj/item/holo/esword/green/New()
+/obj/item/holo/esword/green/initialise()
 	. = ..()
 	item_color = "green"
 
-/obj/item/holo/esword/red/New()
+/obj/item/holo/esword/red/initialise()
 	. = ..()
 	item_color = "red"

@@ -15,7 +15,7 @@
 	var/points = 0
 	var/menustat = "menu"
 
-/obj/machinery/biogenerator/New()
+/obj/machinery/biogenerator/initialise()
 	. = ..()
 	create_reagents(1000)
 	beaker = new /obj/item/reagent_holder/glass/beaker/large(src)

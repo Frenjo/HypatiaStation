@@ -21,7 +21,7 @@
 
 		on = FALSE
 
-/obj/machinery/atmospherics/unary/oxygen_generator/New()
+/obj/machinery/atmospherics/unary/oxygen_generator/initialise()
 	. = ..()
 	air_contents.volume = 50
 

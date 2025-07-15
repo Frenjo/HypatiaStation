@@ -10,7 +10,7 @@
 	var/damaged = 0
 	var/last_change = 0
 
-/obj/machinery/computer/holodeck_control/New()
+/obj/machinery/computer/holodeck_control/initialise()
 	. = ..()
 	linked_holodeck = locate(/area/special/holodeck/alpha)
 	//if(linkedholodeck)

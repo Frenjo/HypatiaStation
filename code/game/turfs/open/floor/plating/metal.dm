@@ -36,7 +36,7 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/plating/metal/airless/New()
+/turf/open/floor/plating/metal/airless/initialise()
 	. = ..()
 	name = "metal plating"
 
@@ -56,7 +56,7 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/plating/metal/asteroid/airless/New()
+/turf/open/floor/plating/metal/asteroid/airless/initialise()
 	. = ..()
 	name = "dust-covered metal plating"
 
@@ -76,6 +76,6 @@
 
 	explosion_resistance = 1
 
-/turf/open/floor/plating/metal/shuttle/airless/New()
+/turf/open/floor/plating/metal/shuttle/airless/initialise()
 	. = ..()
 	name = "shuttle plating"

@@ -18,10 +18,9 @@
 
 	item_color = "yellow"
 
-/obj/item/clothing/gloves/fyellow/New()
+/obj/item/clothing/gloves/fyellow/initialise()
 	. = ..()
 	siemens_coefficient = pick(0, 0.5, 0.5, 0.5, 0.5, 0.75, 1.5)
-
 
 /obj/item/clothing/gloves/black
 	desc = "These gloves are fire-resistant."

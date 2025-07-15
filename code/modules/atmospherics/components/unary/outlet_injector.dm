@@ -15,7 +15,7 @@
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/unary/outlet_injector/New()
+/obj/machinery/atmospherics/unary/outlet_injector/initialise()
 	. = ..()
 	name = "air injector"
 

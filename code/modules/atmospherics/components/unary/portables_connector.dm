@@ -12,9 +12,6 @@
 
 	var/on = FALSE
 
-/obj/machinery/atmospherics/unary/portables_connector/New()
-	. = ..()
-
 /obj/machinery/atmospherics/unary/portables_connector/atmos_initialise()
 	. = ..()
 	if(isnotnull(node))

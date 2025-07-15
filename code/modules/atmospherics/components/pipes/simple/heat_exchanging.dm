@@ -13,7 +13,7 @@
 	var/icon_temperature = T20C //stop small changes in temperature causing an icon refresh
 
 // BubbleWrap
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialise()
 	. = ..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 // BubbleWrap END
@@ -89,7 +89,7 @@
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
 // BubbleWrap
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/New()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/initialise()
 	. = ..()
 	switch(dir)
 		if(SOUTH)

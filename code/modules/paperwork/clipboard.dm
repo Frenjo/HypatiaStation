@@ -11,7 +11,7 @@
 	var/obj/item/toppaper	//The topmost piece of paper.
 	slot_flags = SLOT_BELT
 
-/obj/item/clipboard/New()
+/obj/item/clipboard/initialise()
 	. = ..()
 	update_icon()
 

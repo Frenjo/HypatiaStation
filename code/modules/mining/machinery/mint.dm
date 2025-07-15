@@ -14,17 +14,14 @@
 	var/decl/material/chosen = /decl/material/iron	//which material will be used to make coins
 	var/coinsToProduce = 10
 
-/obj/machinery/mineral/mint/New()
+/obj/machinery/mineral/mint/initialise()
+	. = ..()
 	materials = new /datum/material_container(src, list(
 		/decl/material/iron, /decl/material/steel, /decl/material/silver,
 		/decl/material/gold, /decl/material/diamond, /decl/material/uranium,
 		/decl/material/plasma, /decl/material/bananium, /decl/material/tranquilite,
 		/decl/material/adamantine, /decl/material/mythril
 	))
-	. = ..()
-
-/obj/machinery/mineral/mint/initialise()
-	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(isnotnull(input))

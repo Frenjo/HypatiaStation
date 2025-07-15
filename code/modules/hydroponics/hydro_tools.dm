@@ -140,7 +140,7 @@
 	var/toxicity = 0
 	var/strength = 0
 
-/obj/item/pestkiller/New()
+/obj/item/pestkiller/initialise()
 	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
@@ -218,7 +218,7 @@
 	var/mutmod = 0
 	var/yieldmod = 0
 
-/obj/item/nutrient/New()
+/obj/item/nutrient/initialise()
 	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)

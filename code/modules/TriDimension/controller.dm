@@ -15,7 +15,7 @@
 	var/normal_time
 	var/fast_time
 
-/obj/effect/landmark/zcontroller/New()
+/obj/effect/landmark/zcontroller/initialise()
 	. = ..()
 	for(var/turf/T in world)
 		if(T.z == z)
@@ -23,9 +23,6 @@
 	slow_time = world.time + 3000
 	normal_time = world.time + 600
 	fast_time = world.time + 10
-
-/obj/effect/landmark/zcontroller/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 	initialized = TRUE
 

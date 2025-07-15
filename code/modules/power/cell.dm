@@ -2,12 +2,9 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/New()
-	..()
-	charge = maxcharge
-
 /obj/item/cell/initialise()
 	. = ..()
+	charge = maxcharge
 	updateicon()
 
 /obj/item/cell/proc/updateicon()

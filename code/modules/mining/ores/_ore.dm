@@ -5,7 +5,7 @@
 
 	var/datum/geosample/geologic_data
 
-/obj/item/ore/New()
+/obj/item/ore/initialise()
 	. = ..()
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8

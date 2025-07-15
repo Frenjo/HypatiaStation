@@ -22,7 +22,7 @@
 	var/maximum_pressure = 70 * ONE_ATMOSPHERE
 	var/fatigue_pressure = 55 * ONE_ATMOSPHERE
 
-/obj/machinery/atmospherics/pipe/simple/New()
+/obj/machinery/atmospherics/pipe/simple/initialise()
 	. = ..()
 	alpha = 255
 	switch(dir)

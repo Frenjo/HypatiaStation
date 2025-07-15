@@ -20,9 +20,9 @@
 	desc = "A larger, high-volume passive air vent."
 	volume = 1000
 
-/obj/machinery/atmospherics/pipe/vent/New()
-	initialize_directions = dir
+/obj/machinery/atmospherics/pipe/vent/initialise()
 	. = ..()
+	initialize_directions = dir
 
 /obj/machinery/atmospherics/pipe/vent/atmos_initialise()
 	var/connect_direction = dir

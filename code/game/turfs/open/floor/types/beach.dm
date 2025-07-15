@@ -18,7 +18,7 @@
 	name = "water"
 	icon_state = "water"
 
-/turf/open/floor/beach/water/New()
+/turf/open/floor/beach/water/initialise()
 	. = ..()
 	var/image/water = image(icon = 'icons/misc/beach.dmi', icon_state = "water5")
 	water.plane = DEFAULT_PLANE

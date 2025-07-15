@@ -10,13 +10,10 @@
 	var/time_per_sheet = 40
 	var/heat = 0
 
-/obj/machinery/power/port_gen/pacman/New()
-	if(isnotnull(fuel_material))
-		fuel_material = GET_DECL_INSTANCE(fuel_material)
-	. = ..()
-
 /obj/machinery/power/port_gen/pacman/initialise()
 	. = ..()
+	if(isnotnull(fuel_material))
+		fuel_material = GET_DECL_INSTANCE(fuel_material)
 	if(anchored)
 		connect_to_network()
 

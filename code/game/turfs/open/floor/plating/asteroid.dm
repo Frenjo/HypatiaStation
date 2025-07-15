@@ -8,18 +8,13 @@
 
 	var/dug = FALSE
 
-/turf/open/floor/plating/asteroid/New()
-	var/proper_name = name
+/turf/open/floor/plating/asteroid/initialise()
 	. = ..()
-	name = proper_name
 	//if (prob(50))
 	//	seedName = pick(list("1","2","3","4"))
 	//	seedAmt = rand(1,4)
 	if(prob(20))
 		icon_state = "asteroid[rand(0, 12)]"
-
-/turf/open/floor/plating/asteroid/initialise()
-	. = ..()
 	update_mineral_overlays()
 
 /turf/open/floor/plating/asteroid/ex_act(severity)
@@ -106,7 +101,7 @@
 	initial_gases = null
 	temperature = TCMB
 
-/turf/open/floor/plating/asteroid/airless/New()
+/turf/open/floor/plating/asteroid/airless/initialise()
 	. = ..()
 	name = "asteroid"
 

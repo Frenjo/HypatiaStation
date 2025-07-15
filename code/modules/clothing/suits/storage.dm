@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/storage
 	var/obj/item/storage/internal/pockets
 
-/obj/item/clothing/suit/storage/New()
+/obj/item/clothing/suit/storage/initialise()
 	. = ..()
 	pockets = new /obj/item/storage/internal(src)
 	pockets.storage_slots = 2	//two slots

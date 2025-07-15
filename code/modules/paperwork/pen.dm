@@ -62,12 +62,10 @@
 	slot_flags = SLOT_BELT
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/syndicate = 5)
 
-
-/obj/item/pen/sleepypen/New()
+/obj/item/pen/sleepypen/initialise()
+	. = ..()
 	create_reagents(30) // Used to be 300.
 	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
-	. = ..()
-
 
 /obj/item/pen/sleepypen/attack(mob/M, mob/user)
 	if(!(ismob(M)))
@@ -77,7 +75,6 @@
 		if(M.reagents) reagents.trans_to(M, 50) //used to be 150
 	return
 
-
 /*
  * Parapens
  */
@@ -86,6 +83,12 @@
 	slot_flags = SLOT_BELT
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/syndicate = 5)
 
+/obj/item/pen/paralysis/initialise()
+	. = ..()
+	create_reagents(50)
+	reagents.add_reagent("zombiepowder", 10)
+	reagents.add_reagent("impedrezene", 25)
+	reagents.add_reagent("cryptobiolin", 15)
 
 /obj/item/pen/paralysis/attack(mob/M, mob/user)
 	if(!(ismob(M)))
@@ -94,11 +97,3 @@
 	if(reagents.total_volume)
 		if(M.reagents) reagents.trans_to(M, 50)
 	return
-
-
-/obj/item/pen/paralysis/New()
-	create_reagents(50)
-	reagents.add_reagent("zombiepowder", 10)
-	reagents.add_reagent("impedrezene", 25)
-	reagents.add_reagent("cryptobiolin", 15)
-	. = ..()

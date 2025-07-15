@@ -17,7 +17,7 @@
 	var/obj/machinery/atmospherics/node2
 	var/obj/machinery/atmospherics/node3
 
-/obj/machinery/atmospherics/pipe/manifold/New()
+/obj/machinery/atmospherics/pipe/manifold/initialise()
 	. = ..()
 	alpha = 255
 	switch(dir)
@@ -258,7 +258,7 @@
 	var/obj/machinery/atmospherics/node3
 	var/obj/machinery/atmospherics/node4
 
-/obj/machinery/atmospherics/pipe/manifold4w/New()
+/obj/machinery/atmospherics/pipe/manifold4w/initialise()
 	. = ..()
 	alpha = 255
 

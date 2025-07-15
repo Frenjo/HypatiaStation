@@ -35,9 +35,9 @@
 	var/temp
 	var/list/part_sets = list() //set names must be unique
 
-/obj/machinery/robotics_fabricator/New()
-	materials = new /datum/material_container(src, accepted_materials)
+/obj/machinery/robotics_fabricator/initialise()
 	. = ..()
+	materials = new /datum/material_container(src, accepted_materials)
 	files = new /datum/research(src) // Sets up the research data holder.
 
 /obj/machinery/robotics_fabricator/Destroy()

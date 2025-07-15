@@ -16,7 +16,7 @@
 	var/last_pressure_delta = 0
 	var/last_worldtime_transfer = 0
 
-/obj/machinery/atmospherics/binary/circulator/New()
+/obj/machinery/atmospherics/binary/circulator/initialise()
 	. = ..()
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 
