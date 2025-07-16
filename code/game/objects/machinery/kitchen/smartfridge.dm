@@ -32,9 +32,7 @@
 
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_holder/food/snacks/grown/) || istype(O,/obj/item/seeds/))
-		return 1
-	return 0
+	return istype(O, /obj/item/reagent_holder/food/snacks/grown) || istype(O, /obj/item/seeds)
 
 /obj/machinery/smartfridge/seeds
 	name = "\improper MegaSeed Servitor"
@@ -45,13 +43,11 @@
 	icon_off = "seeds-off"
 
 /obj/machinery/smartfridge/seeds/accept_check(obj/item/O)
-	if(istype(O,/obj/item/seeds/))
-		return 1
-	return 0
+	return istype(O, /obj/item/seeds)
 
 /obj/machinery/smartfridge/secure/extract
-	name = "\improper Slime Extract Storage"
-	desc = "A refrigerated storage unit for slime extracts"
+	name = "slime extract storage"
+	desc = "A refrigerated storage unit for slime extracts."
 	req_access = list(ACCESS_RESEARCH)
 
 /obj/machinery/smartfridge/secure/extract/accept_check(obj/item/O)
@@ -60,23 +56,17 @@
 	return 0
 
 /obj/machinery/smartfridge/secure/medbay
-	name = "\improper Refrigerated Medicine Storage"
+	name = "refrigerated medicine storage"
 	desc = "A refrigerated storage unit for storing medicine and chemicals."
 	icon_state = "smartfridge" //To fix the icon in the map editor.
 	icon_on = "smartfridge_chem"
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY)
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_holder/glass/))
-		return 1
-	if(istype(O,/obj/item/storage/pill_bottle/))
-		return 1
-	if(istype(O,/obj/item/reagent_holder/pill/))
-		return 1
-	return 0
+	return istype(O, /obj/item/reagent_holder/glass) || istype(O, /obj/item/storage/pill_bottle) || istype(O, /obj/item/reagent_holder/pill)
 
 /obj/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
+	name = "refrigerated virus storage"
 	desc = "A refrigerated storage unit for storing viral material."
 	req_access = list(ACCESS_VIROLOGY)
 	icon_state = "smartfridge_virology"
@@ -84,33 +74,25 @@
 	icon_off = "smartfridge_virology-off"
 
 /obj/machinery/smartfridge/secure/virology/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_holder/glass/beaker/vial/))
-		return 1
-	if(istype(O,/obj/item/virusdish/))
-		return 1
-	return 0
+	return istype(O, /obj/item/reagent_holder/glass/beaker/vial) || istype(O, /obj/item/virusdish)
 
 /obj/machinery/smartfridge/chemistry
-	name = "\improper Smart Chemical Storage"
+	name = "smart chemical storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
-	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_holder))
-		return 1
-	return 0
+	return istype(O, /obj/item/storage/pill_bottle) || istype(O, /obj/item/reagent_holder)
 
 /obj/machinery/smartfridge/chemistry/virology
-	name = "\improper Smart Virus Storage"
+	name = "smart virus storage"
 	desc = "A refrigerated storage unit for volatile sample storage."
 
-
 /obj/machinery/smartfridge/drinks
-	name = "\improper Drink Showcase"
+	name = "drink showcase"
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_holder/glass) || istype(O,/obj/item/reagent_holder/food/drinks) || istype(O,/obj/item/reagent_holder/food/condiment))
-		return 1
+	return istype(O, /obj/item/reagent_holder/glass) || istype(O, /obj/item/reagent_holder/food/drinks) || istype(O, /obj/item/reagent_holder/food/condiment)
 
 /obj/machinery/smartfridge/process()
 	if(!src.ispowered)

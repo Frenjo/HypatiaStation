@@ -27630,7 +27630,7 @@
 /obj/item/storage/firstaid/purple,
 /obj/item/reagent_holder/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner"
+	name = "surgery cleaner"
 	},
 /turf/open/floor/tiled/white,
 /area/station/medical/surgery/one)
@@ -53385,7 +53385,7 @@
 /obj/structure/table,
 /obj/item/reagent_holder/spray/cleaner{
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
-	name = "Chemistry Cleaner"
+	name = "chemistry cleaner"
 	},
 /obj/effect/decal/floor/coloured/light_yellow{
 	dir = 1
@@ -59293,7 +59293,7 @@
 /obj/item/storage/firstaid/purple,
 /obj/item/reagent_holder/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner"
+	name = "surgery cleaner"
 	},
 /obj/machinery/status_display{
 	layer = 4;

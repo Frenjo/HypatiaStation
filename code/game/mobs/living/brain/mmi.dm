@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/item/mmi
-	name = "Man-Machine Interface"
+	name = "man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "mmi_empty"
@@ -48,7 +48,7 @@
 		user.drop_item()
 		qdel(brain)
 
-		name = "Man-Machine Interface: [brainmob.real_name]"
+		name = "man-machine interface: [brainmob.real_name]"
 		icon_state = "mmi_full"
 
 		locked = TRUE
@@ -88,7 +88,7 @@
 	brainmob = null // Set mmi brainmob var to null
 
 	icon_state = "mmi_empty"
-	name = "Man-Machine Interface"
+	name = initial(name)
 
 /obj/item/mmi/emp_act(severity)
 	if(isnull(brainmob))
@@ -110,7 +110,7 @@
 	brainmob.dna = H.dna
 	brainmob.container = src
 
-	name = "Man-Machine Interface: [brainmob.real_name]"
+	name = "man-machine interface: [brainmob.real_name]"
 	icon_state = "mmi_full"
 	locked = TRUE
 
