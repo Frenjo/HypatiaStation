@@ -285,12 +285,4 @@
 	item_state = "syringe_kit"
 	max_combined_w_class = 21
 
-/obj/item/storage/briefcase/inflatable/New()
-	..()
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable(src)
-	new /obj/item/inflatable(src)
-	new /obj/item/inflatable(src)
-	new /obj/item/inflatable(src)
+	starts_with = list(/obj/item/inflatable/door = 3, /obj/item/inflatable = 4)

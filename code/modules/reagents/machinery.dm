@@ -29,33 +29,8 @@
 	var/list/broken_requirements = list()
 	var/broken_on_spawn = 0
 
-/obj/machinery/chem_dispenser/proc/recharge()
-	if(stat & (BROKEN|NOPOWER))
-		return
-	var/addenergy = 1
-	var/oldenergy = energy
-	energy = min(energy + addenergy, max_energy)
-	if(energy != oldenergy)
-		use_power(1500) // This thing uses up alot of power (this is still low as shit for creating reagents from thin air)
-		global.PCnanoui.update_uis(src) // update all UIs attached to src
-
-/obj/machinery/chem_dispenser/power_change()
-	if(powered())
-		stat &= ~NOPOWER
-	else
-		spawn(rand(0, 15))
-			stat |= NOPOWER
-	global.PCnanoui.update_uis(src) // update all UIs attached to src
-
-/obj/machinery/chem_dispenser/process()
-	if(recharged <= 0)
-		recharge()
-		recharged = 15
-	else
-		recharged -= 1
-
-/obj/machinery/chem_dispenser/New()
-	..()
+/obj/machinery/chem_dispenser/initialise()
+	. = ..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 
@@ -80,6 +55,31 @@
 			var/index = pick(options)
 			broken_requirements[index] = options[index]
 			options -= index
+
+/obj/machinery/chem_dispenser/proc/recharge()
+	if(stat & (BROKEN|NOPOWER))
+		return
+	var/addenergy = 1
+	var/oldenergy = energy
+	energy = min(energy + addenergy, max_energy)
+	if(energy != oldenergy)
+		use_power(1500) // This thing uses up alot of power (this is still low as shit for creating reagents from thin air)
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
+
+/obj/machinery/chem_dispenser/power_change()
+	if(powered())
+		stat &= ~NOPOWER
+	else
+		spawn(rand(0, 15))
+			stat |= NOPOWER
+	global.PCnanoui.update_uis(src) // update all UIs attached to src
+
+/obj/machinery/chem_dispenser/process()
+	if(recharged <= 0)
+		recharge()
+		recharged = 15
+	else
+		recharged -= 1
 
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
@@ -303,7 +303,7 @@
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 
-/obj/machinery/chem_master/New()
+/obj/machinery/chem_master/initialise()
 	. = ..()
 	create_reagents(100)
 
@@ -916,10 +916,9 @@
 
 	var/list/holdingitems = list()
 
-/obj/machinery/reagentgrinder/New()
-	..()
+/obj/machinery/reagentgrinder/initialise()
+	. = ..()
 	beaker = new /obj/item/reagent_holder/glass/beaker/large(src)
-	return
 
 /obj/machinery/reagentgrinder/update_icon()
 	icon_state = "juicer" + num2text(isnotnull(beaker))

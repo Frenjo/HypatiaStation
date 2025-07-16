@@ -41,7 +41,7 @@
 		/decl/ore/tranquilite = 1
 	)
 
-/turf/closed/rock/random_ore/New()
+/turf/closed/rock/random_ore/initialise()
 	. = ..()
 	if(prob(ore_chance))
 		ore = GET_DECL_INSTANCE(pickweight(ore_spawn_chance_list))

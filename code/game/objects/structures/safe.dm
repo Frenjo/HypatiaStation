@@ -21,7 +21,7 @@ FLOOR SAFES
 	var/space = 0		//the combined w_class of everything in the safe
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
-/obj/structure/safe/New()
+/obj/structure/safe/initialise()
 	. = ..()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
@@ -29,8 +29,6 @@ FLOOR SAFES
 	tumbler_2_pos = rand(0, 72)
 	tumbler_2_open = rand(0, 72)
 
-/obj/structure/safe/initialise()
-	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return

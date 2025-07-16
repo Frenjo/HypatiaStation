@@ -71,10 +71,10 @@
 	usr.update_inv_wear_uniform()	//so our overlays update.
 
 
-/obj/item/clothing/under/chameleon/all/New()
-	..()
+/obj/item/clothing/under/chameleon/all/initialise()
+	. = ..()
 	var/blocked = list(/obj/item/clothing/under/chameleon, /obj/item/clothing/under/chameleon/all)
 	//to prevent an infinite loop
-	for(var/U in typesof(/obj/item/clothing/under)-blocked)
-		var/obj/item/clothing/under/V = new U
-		src.clothing_choices += V
+	for(var/path in typesof(/obj/item/clothing/under) - blocked)
+		var/obj/item/clothing/under/new_under = new path()
+		clothing_choices.Add(new_under)

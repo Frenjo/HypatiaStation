@@ -8,9 +8,9 @@
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	var/amount_per_transfer_from_this = 5	//shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
-/obj/structure/mopbucket/New()
+/obj/structure/mopbucket/initialise()
+	. = ..()
 	create_reagents(100)
-	..()
 
 /obj/structure/mopbucket/examine()
 	set src in usr

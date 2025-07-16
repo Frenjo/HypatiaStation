@@ -13,12 +13,13 @@
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/initialise()
+/obj/machinery/portable_atmospherics/New()
 	. = ..()
-	air_contents = new /datum/gas_mixture()
-	air_contents.volume = volume
+	air_contents = new /datum/gas_mixture(volume)
 	air_contents.temperature = T20C
 
+/obj/machinery/portable_atmospherics/initialise()
+	. = ..()
 	var/obj/machinery/atmospherics/unary/portables_connector/port = locate() in loc
 	if(isnotnull(port))
 		connect(port)

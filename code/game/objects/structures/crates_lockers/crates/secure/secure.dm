@@ -12,7 +12,7 @@
 	var/broken = 0
 	var/locked = 1
 
-/obj/structure/closet/crate/secure/New()
+/obj/structure/closet/crate/secure/initialise()
 	. = ..()
 	if(locked)
 		cut_overlays()

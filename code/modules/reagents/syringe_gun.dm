@@ -133,6 +133,6 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/effect/syringe_gun_dummy/New()
+/obj/effect/syringe_gun_dummy/initialise()
 	. = ..()
 	create_reagents(15)

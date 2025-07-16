@@ -33,7 +33,7 @@
 	desc = "A warning sign which reads 'HARD VACUUM AHEAD'."
 	icon_state = "space"
 
-/obj/structure/sign/vacuum/New()
+/obj/structure/sign/vacuum/initialise()
 	. = ..()
 	if(prob(50)) // Since I couldn't decide which I liked better, it's a 50% chance.
 		name = "\improper EXTERNAL AIRLOCK"

@@ -180,12 +180,9 @@
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
 
-/obj/machinery/conveyor_switch/New()
-	..()
-	update()
-
 /obj/machinery/conveyor_switch/initialise()		// allow map load
 	. = ..()
+	update()
 	conveyors = list()
 	for_no_type_check(var/obj/machinery/conveyor/C, GLOBL.conveyors_list)
 		if(C.id == id)

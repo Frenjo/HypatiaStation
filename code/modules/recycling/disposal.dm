@@ -651,10 +651,9 @@
 	var/base_icon_state	// initial icon state on map
 
 // new pipe, set the icon_state as on map
-/obj/structure/disposalpipe/New()
-	..()
+/obj/structure/disposalpipe/initialise()
+	. = ..()
 	base_icon_state = icon_state
-	return
 
 // pipe is deleted
 // ensure if holder is present, it is expelled
@@ -906,25 +905,23 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-/obj/structure/disposalpipe/segment/New()
-	..()
+/obj/structure/disposalpipe/segment/initialise()
+	. = ..()
 	if(icon_state == "pipe-s")
 		dpdir = dir | turn(dir, 180)
 	else
 		dpdir = dir | turn(dir, -90)
 
 	update()
-	return
 
 ///// Z-Level stuff
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-/obj/structure/disposalpipe/up/New()
-	..()
+/obj/structure/disposalpipe/up/initialise()
+	. = ..()
 	dpdir = dir
 	update()
-	return
 
 /obj/structure/disposalpipe/up/nextdir(fromdir)
 	var/nextdir
@@ -973,11 +970,10 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-/obj/structure/disposalpipe/down/New()
-	..()
+/obj/structure/disposalpipe/down/initialise()
+	. = ..()
 	dpdir = dir
 	update()
-	return
 
 /obj/structure/disposalpipe/down/nextdir(fromdir)
 	var/nextdir
@@ -1028,8 +1024,8 @@
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-/obj/structure/disposalpipe/junction/New()
-	..()
+/obj/structure/disposalpipe/junction/initialise()
+	. = ..()
 	if(icon_state == "pipe-j1")
 		dpdir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
@@ -1037,7 +1033,6 @@
 	else // pipe-y
 		dpdir = dir | turn(dir,90) | turn(dir, -90)
 	update()
-	return
 
 // next direction to move
 // if coming in from secondary dirs, then next is primary dir
@@ -1092,12 +1087,11 @@
 
 	dpdir = sortdir | posdir | negdir
 
-/obj/structure/disposalpipe/sortjunction/New()
-	..()
+/obj/structure/disposalpipe/sortjunction/initialise()
+	. = ..()
 	updatedir()
 	updatedesc()
 	update()
-	return
 
 /obj/structure/disposalpipe/sortjunction/attackby(obj/item/I, mob/user)
 	if(..())
@@ -1157,8 +1151,8 @@
 	var/negdir = 0
 	var/sortdir = 0
 
-/obj/structure/disposalpipe/wrapsortjunction/New()
-	..()
+/obj/structure/disposalpipe/wrapsortjunction/initialise()
+	. = ..()
 	posdir = dir
 	if(icon_state == "pipe-j1s")
 		sortdir = turn(posdir, -90)
@@ -1170,7 +1164,6 @@
 	dpdir = sortdir | posdir | negdir
 
 	update()
-	return
 
 // next direction to move
 // if coming in from negdir, then next is primary dir or sortdir
@@ -1213,14 +1206,13 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/New()
-	..()
+/obj/structure/disposalpipe/trunk/initialise()
+	. = ..()
 	dpdir = dir
 	spawn(1)
 		getlinked()
 
 	update()
-	return
 
 /obj/structure/disposalpipe/trunk/proc/getlinked()
 	linked = null
@@ -1315,10 +1307,9 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-/obj/structure/disposalpipe/broken/New()
-	..()
+/obj/structure/disposalpipe/broken/initialise()
+	. = ..()
 	update()
-	return
 
 // called when welded
 // for broken pipe, remove and turn into scrap

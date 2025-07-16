@@ -15,7 +15,7 @@
 	var/obj/item/lightreplacer/myreplacer = null
 	var/signs = 0	//maximum capacity hardcoded below
 
-/obj/structure/janitorialcart/New()
+/obj/structure/janitorialcart/initialise()
 	. = ..()
 	create_reagents(100)
 
@@ -172,7 +172,7 @@
 	var/obj/item/storage/bag/trash/mybag	= null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 
-/obj/structure/stool/bed/chair/janicart/New()
+/obj/structure/stool/bed/chair/janicart/initialise()
 	. = ..()
 	handle_rotation()
 	create_reagents(100)

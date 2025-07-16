@@ -20,10 +20,10 @@
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
-/turf/closed/wall/New()
+/turf/closed/wall/initialise()
+	. = ..()
 	if(isnotnull(material))
 		material = GET_DECL_INSTANCE(material)
-	. = ..()
 
 /turf/closed/wall/Destroy()
 	for(var/obj/effect/E in src)

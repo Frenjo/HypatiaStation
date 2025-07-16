@@ -28,7 +28,7 @@
 
 	tile_path = /obj/item/stack/tile/circuit_grid/blue
 
-/turf/open/floor/circuit_grid/blue/New()
+/turf/open/floor/circuit_grid/blue/initialise()
 	. = ..()
 	if(iscontactlevel(z))
 		GLOBL.contactable_blue_grid_turfs.Add(src)

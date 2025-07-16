@@ -14,7 +14,7 @@
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
-/obj/structure/door_assembly/New()
+/obj/structure/door_assembly/initialise()
 	. = ..()
 	update_state()
 
@@ -115,14 +115,14 @@
 	airlock_type = /obj/machinery/door/airlock/multi_tile/glass
 	glass = -1 //To prevent bugs in deconstruction process.
 
-/obj/structure/door_assembly/multi_tile/New()
+/obj/structure/door_assembly/multi_tile/initialise()
+	. = ..()
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size
 		bound_height = world.icon_size
 	else
 		bound_width = world.icon_size
 		bound_height = width * world.icon_size
-	. = ..()
 
 /obj/structure/door_assembly/multi_tile/Move()
 	. = ..()

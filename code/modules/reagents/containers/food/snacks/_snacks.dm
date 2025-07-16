@@ -853,7 +853,7 @@
 	name = "plump pie"
 	desc = "I bet you love stuff made out of plump helmets!"
 	icon_state = "plump_pie"
-	starting_reagents = alist()
+	starting_reagents = alist("nutriment" = 8)
 	filling_color = "#B8279B"
 	bitesize = 2
 
@@ -862,10 +862,7 @@
 	if(prob(10))
 		name = "exceptional plump pie"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
-		starting_reagents["nutriment"] = 8
 		starting_reagents["tricordrazine"] = 5
-	else
-		starting_reagents["nutriment"] = 8
 
 /obj/item/reagent_holder/food/snacks/xemeatpie
 	name = "Xeno-pie"

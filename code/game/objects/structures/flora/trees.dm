@@ -13,7 +13,7 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 
-/obj/structure/flora/tree/pine/New()
+/obj/structure/flora/tree/pine/initialise()
 	. = ..()
 	icon_state = "pine_[rand(1, 3)]"
 
@@ -22,7 +22,7 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_c"
 
-/obj/structure/flora/tree/pine/xmas/New()
+/obj/structure/flora/tree/pine/xmas/initialise()
 	. = ..()
 	icon_state = "pine_c"
 
@@ -30,6 +30,6 @@
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_1"
 
-/obj/structure/flora/tree/dead/New()
+/obj/structure/flora/tree/dead/initialise()
 	. = ..()
 	icon_state = "tree_[rand(1, 6)]"

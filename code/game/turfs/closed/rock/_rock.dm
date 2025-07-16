@@ -26,13 +26,10 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find = null
 
-/turf/closed/rock/New()
+/turf/closed/rock/initialise()
 	. = ..()
 	icon_state = "rock"
 	GLOBL.all_rock_turfs.Add(src)
-
-/turf/closed/rock/initialise()
-	. = ..()
 	update_and_spread_mineral()
 
 	// I've tidied this up but I still hate it.

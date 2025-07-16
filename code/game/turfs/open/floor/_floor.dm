@@ -19,12 +19,9 @@
 	var/mineral = /decl/material/steel
 	var/tile_path = null
 
-/turf/open/floor/New()
-	. = ..()
-	icon_regular_floor = icon_state
-
 /turf/open/floor/initialise()
 	. = ..()
+	icon_regular_floor = icon_state
 	update_special()
 	update_icon()
 

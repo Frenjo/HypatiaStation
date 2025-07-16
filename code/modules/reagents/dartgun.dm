@@ -46,12 +46,12 @@
 	return 1
 
 /obj/item/gun/dartgun/New()
-	..()
+	. = ..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
 			var/obj/item/reagent_holder/B = new container_type(src)
 			LAZYASET(B.starting_reagents, chem, 50)
-			beakers += B
+			beakers.Add(B)
 	cartridge = new /obj/item/dart_cartridge(src)
 	update_icon()
 

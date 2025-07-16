@@ -956,7 +956,7 @@
 	//Starting them with lids on them.  Safety first!
 
 /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle/New(loc, color, labeled)
-	..()
+	. = ..()
 	name = "[labeled] bottle"
 	desc = "A small bottle. Contains [labeled]"
 	icon_state = "bottle[color]"

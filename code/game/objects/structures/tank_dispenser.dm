@@ -16,7 +16,7 @@
 /obj/structure/dispenser/plasma
 	oxygentanks = 0
 
-/obj/structure/dispenser/New()
+/obj/structure/dispenser/initialise()
 	. = ..()
 	update_icon()
 

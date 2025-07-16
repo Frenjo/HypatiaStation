@@ -9,11 +9,11 @@
 	var/decl/material/material
 	var/opening = 0
 
-/obj/structure/falsewall/New()
+/obj/structure/falsewall/initialise()
+	. = ..()
 	if(isnotnull(material))
 		material = GET_DECL_INSTANCE(material)
 	relativewall_neighbours()
-	. = ..()
 
 /obj/structure/falsewall/Destroy()
 	var/list/range_list = orange(src, 1)

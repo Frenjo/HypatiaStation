@@ -13,11 +13,11 @@
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user)
 	return
 
-/obj/structure/reagent_dispensers/New()
+/obj/structure/reagent_dispensers/initialise()
+	. = ..()
 	create_reagents(1000)
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	. = ..()
 
 /obj/structure/reagent_dispensers/examine()
 	set src in view()
@@ -63,7 +63,6 @@
 		new /obj/effect/water(src.loc)
 		qdel(src)
 
-
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
@@ -72,10 +71,9 @@
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/watertank/New()
-	..()
+/obj/structure/reagent_dispensers/watertank/initialise()
+	. = ..()
 	reagents.add_reagent("water", 1000)
-
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
@@ -86,8 +84,8 @@
 	var/modded = 0
 	var/obj/item/assembly_holder/rig = null
 
-/obj/structure/reagent_dispensers/fueltank/New()
-	..()
+/obj/structure/reagent_dispensers/fueltank/initialise()
+	. = ..()
 	reagents.add_reagent("fuel", 1000)
 
 /obj/structure/reagent_dispensers/fueltank/examine()
@@ -192,7 +190,6 @@
 	reagents.remove_reagent("fuel", amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount)
 
-
 /obj/structure/reagent_dispensers/peppertank
 	name = "pepper spray refiller"
 	desc = "Refill pepper spray canisters."
@@ -202,10 +199,9 @@
 	density = FALSE
 	amount_per_transfer_from_this = 45
 
-/obj/structure/reagent_dispensers/peppertank/New()
-	..()
+/obj/structure/reagent_dispensers/peppertank/initialise()
+	. = ..()
 	reagents.add_reagent("condensedcapsaicin", 1000)
-
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
@@ -216,10 +212,9 @@
 	possible_transfer_amounts = null
 	anchored = TRUE
 
-/obj/structure/reagent_dispensers/water_cooler/New()
-	..()
+/obj/structure/reagent_dispensers/water_cooler/initialise()
+	. = ..()
 	reagents.add_reagent("water", 500)
-
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
@@ -228,14 +223,13 @@
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/beerkeg/New()
-	..()
+/obj/structure/reagent_dispensers/beerkeg/initialise()
+	. = ..()
 	reagents.add_reagent("beer", 1000)
 
 /obj/structure/reagent_dispensers/beerkeg/blob_act()
 	explosion(src.loc, 0, 3, 5, 7, 10)
 	qdel(src)
-
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "virus food dispenser"
@@ -245,6 +239,6 @@
 	amount_per_transfer_from_this = 10
 	anchored = TRUE
 
-/obj/structure/reagent_dispensers/virusfood/New()
-	..()
+/obj/structure/reagent_dispensers/virusfood/initialise()
+	. = ..()
 	reagents.add_reagent("virusfood", 1000)
