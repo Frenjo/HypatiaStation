@@ -6,22 +6,16 @@
 
 /area/station/medical/main
 	name = "\improper Medical Bay Main"
-	ambience = list(
-		'sound/ambience/signal.ogg'
-	)
+	ambience = list('sound/ambience/signal.ogg')
 
 /area/station/medical/aft
 	name = "\improper Medical Bay Aft"
 	icon_state = "medbay2"
-	ambience = list(
-		'sound/ambience/signal.ogg'
-	)
+	ambience = list('sound/ambience/signal.ogg')
 
 /area/station/medical/reception
 	name = "\improper Medical Bay Reception"
-	ambience = list(
-		'sound/ambience/signal.ogg'
-	)
+	ambience = list('sound/ambience/signal.ogg')
 
 /area/station/medical/treatment
 	name = "\improper Medical Treatment Centre"
@@ -36,16 +30,12 @@
 /area/station/medical/psych
 	name = "\improper Psychiatrist's Office"
 	icon_state = "medbay3"
-	ambience = list(
-		'sound/ambience/signal.ogg'
-	)
+	ambience = list('sound/ambience/signal.ogg')
 
 /area/station/medical/break_room
 	name = "\improper Medical Break Room"
 	icon_state = "medbay3"
-	ambience = list(
-		'sound/ambience/signal.ogg'
-	)
+	ambience = list('sound/ambience/signal.ogg')
 
 /area/station/medical/ward
 	name = "\improper Medical Patient Ward"

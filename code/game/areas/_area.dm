@@ -74,6 +74,7 @@
 	 */
 	var/list/ambience = list(
 		'sound/ambience/ambigen1.ogg',
+		'sound/ambience/ambigen2.ogg',
 		'sound/ambience/ambigen3.ogg',
 		'sound/ambience/ambigen4.ogg',
 		'sound/ambience/ambigen5.ogg',

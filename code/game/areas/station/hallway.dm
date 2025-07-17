@@ -43,10 +43,44 @@
 	name = "\improper Arrival Shuttle Hallway"
 	icon_state = "entry"
 	ambience = list(
+		// Standard station ambience
+		'sound/ambience/ambigen1.ogg',
+		'sound/ambience/ambigen2.ogg',
+		'sound/ambience/ambigen3.ogg',
+		'sound/ambience/ambigen4.ogg',
+		'sound/ambience/ambigen5.ogg',
+		'sound/ambience/ambigen6.ogg',
+		'sound/ambience/ambigen7.ogg',
+		'sound/ambience/ambigen8.ogg',
+		'sound/ambience/ambigen9.ogg',
+		'sound/ambience/ambigen10.ogg',
+		'sound/ambience/ambigen11.ogg',
+		'sound/ambience/ambigen12.ogg',
+		'sound/ambience/ambigen14.ogg',
+		// Some extras specific to arrivals/departures.
 		'sound/ambience/ambiruntime.ogg',
-		'sound/music/title2.ogg'
+		'sound/ambience/ambigen13.ogg'
 	)
 
 /area/station/hallway/secondary/escape
 	name = "\improper Escape Shuttle Hallway"
 	icon_state = "escape"
+	ambience = list(
+		// Standard station ambience
+		'sound/ambience/ambigen1.ogg',
+		'sound/ambience/ambigen2.ogg',
+		'sound/ambience/ambigen3.ogg',
+		'sound/ambience/ambigen4.ogg',
+		'sound/ambience/ambigen5.ogg',
+		'sound/ambience/ambigen6.ogg',
+		'sound/ambience/ambigen7.ogg',
+		'sound/ambience/ambigen8.ogg',
+		'sound/ambience/ambigen9.ogg',
+		'sound/ambience/ambigen10.ogg',
+		'sound/ambience/ambigen11.ogg',
+		'sound/ambience/ambigen12.ogg',
+		'sound/ambience/ambigen14.ogg',
+		// Some extras specific to arrivals/departures.
+		'sound/ambience/ambiruntime.ogg',
+		'sound/ambience/ambigen13.ogg'
+	)
