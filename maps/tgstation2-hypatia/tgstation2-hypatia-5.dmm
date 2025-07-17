@@ -247,7 +247,7 @@
 /turf/space,
 /area/space)
 "be" = (
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 1
 	},
 /turf/open/floor/tiled/white,
@@ -1239,7 +1239,7 @@
 /obj/item/reagent_holder/glass/beaker/sulphuric{
 	name = "beaker 'sulphuric acid'"
 	},
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 6
 	},
 /turf/open/floor/tiled/white,
@@ -1286,7 +1286,8 @@
 	pixel_y = -24
 	},
 /turf/open/floor{
-	icon_state = "cmo"
+	dir = 8;
+	icon_state = "barber"
 	},
 /area/external/research_outpost/shuttle_dock)
 "fP" = (
@@ -2143,8 +2144,7 @@
 	name = "Firelock East"
 	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
+	icon_state = "cmo"
 	},
 /area/external/research_outpost/hallway)
 "jP" = (
@@ -2315,7 +2315,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/effect/decal/floor/coloured/light_blue,
+/obj/effect/decal/floor/coloured/light_yellow,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/sample)
 "kF" = (
@@ -2507,7 +2507,7 @@
 	name = "Sample Preparation Loading";
 	req_access = list(65)
 	},
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 1
 	},
 /turf/open/floor/tiled/white,
@@ -4016,7 +4016,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/light_yellow/corner{
 	dir = 1
 	},
 /turf/open/floor/tiled/grey,
@@ -4082,8 +4082,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
+	icon_state = "cmo"
 	},
 /area/external/research_outpost/hallway)
 "sZ" = (
@@ -4234,7 +4233,7 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_y = 32
 	},
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 1
 	},
 /turf/open/floor/tiled/white,
@@ -4742,7 +4741,7 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 9
 	},
 /turf/open/floor/tiled/white,
@@ -4751,12 +4750,12 @@
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 4
 	},
-/obj/effect/decal/floor/coloured/light_blue,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/decal/floor/coloured/light_yellow,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/sample)
 "wl" = (
@@ -5115,7 +5114,7 @@
 /area/external/mining_outpost/eva)
 "xC" = (
 /obj/machinery/chem_master,
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 10
 	},
 /turf/open/floor/tiled/white,
@@ -5309,7 +5308,7 @@
 	on = 1
 	},
 /obj/machinery/reagentgrinder,
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 9
 	},
 /turf/open/floor/tiled/white,
@@ -5787,7 +5786,7 @@
 /area/external/research_outpost/shuttle_dock)
 "At" = (
 /obj/machinery/chem_dispenser,
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 8
 	},
 /turf/open/floor/tiled/white,
@@ -6607,8 +6606,7 @@
 	dir = 4
 	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
+	icon_state = "cmo"
 	},
 /area/external/research_outpost/hallway)
 "Dv" = (
@@ -6806,8 +6804,7 @@
 	dir = 4
 	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
+	icon_state = "cmo"
 	},
 /area/external/research_outpost/hallway)
 "Ev" = (
@@ -8084,7 +8081,7 @@
 /obj/item/reagent_holder/dropper{
 	pixel_y = -4
 	},
-/obj/effect/decal/floor/coloured/light_blue,
+/obj/effect/decal/floor/coloured/light_yellow,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/sample)
 "KU" = (
@@ -8866,8 +8863,7 @@
 	dir = 1
 	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
+	icon_state = "cmo"
 	},
 /area/external/research_outpost/hallway)
 "Ow" = (
@@ -9073,8 +9069,7 @@
 	dir = 8
 	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
+	icon_state = "cmo"
 	},
 /area/external/research_outpost/hallway)
 "PH" = (
@@ -9402,7 +9397,7 @@
 "QV" = (
 /obj/structure/table,
 /obj/item/storage/box/solution_trays,
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 5
 	},
 /turf/open/floor/tiled/white,
@@ -9411,7 +9406,7 @@
 /obj/structure/table,
 /obj/machinery/bunsen_burner,
 /obj/machinery/atmospherics/mains_pipe/cap/hidden,
-/obj/effect/decal/floor/coloured/light_blue{
+/obj/effect/decal/floor/coloured/light_yellow{
 	dir = 6
 	},
 /turf/open/floor/tiled/white,
