@@ -1930,7 +1930,7 @@
 "iN" = (
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -2143,9 +2143,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock East"
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/external/research_outpost/hallway)
 "jP" = (
 /turf/closed/wall/steel,
@@ -4081,9 +4079,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/external/research_outpost/hallway)
 "sZ" = (
 /obj/effect/decal/floor/industrial/warning/asteroid{
@@ -6453,7 +6449,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
 "CE" = (
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -6605,9 +6601,7 @@
 /obj/effect/decal/floor/industrial/warning/corner{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/external/research_outpost/hallway)
 "Dv" = (
 /obj/structure/cable{
@@ -6803,9 +6797,7 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/external/research_outpost/hallway)
 "Ev" = (
 /obj/machinery/radiocarbon_spectrometer,
@@ -7327,11 +7319,6 @@
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/research_outpost/expedition_prep)
 "Hb" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "Firelock East"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -7340,8 +7327,13 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "Firelock East"
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
@@ -8862,9 +8854,7 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/external/research_outpost/hallway)
 "Ow" = (
 /obj/item/table_parts,
@@ -9068,9 +9058,7 @@
 /obj/effect/decal/floor/industrial/warning/corner{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/external/research_outpost/hallway)
 "PH" = (
 /obj/structure/cable{
@@ -10719,15 +10707,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/decal/floor/coloured/purple/corner{
+	dir = 4
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
-/obj/effect/decal/floor/coloured/light_blue/corner{
-	dir = 4
-	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
 "Xh" = (

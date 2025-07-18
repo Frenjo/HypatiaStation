@@ -3866,9 +3866,7 @@
 	pixel_y = -25;
 	req_access = list(65)
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/station/research/shuttle_dock)
 "buz" = (
 /obj/machinery/light,
@@ -6405,7 +6403,7 @@
 	name = "Biohazard Shutter";
 	opacity = FALSE
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -9803,9 +9801,7 @@
 	c_tag = "Research Dock";
 	network = list("SS13","Research")
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/station/research/shuttle_dock)
 "dsD" = (
 /obj/structure/cable{
@@ -20465,7 +20461,7 @@
 	pixel_x = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -26865,7 +26861,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -27119,7 +27115,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -30071,7 +30067,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -30203,7 +30199,7 @@
 /area/station/research/miscellaneous)
 "kvT" = (
 /obj/machinery/computer/shuttle_control/research,
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -32167,7 +32163,7 @@
 /area/station/hallway/primary/central)
 "lic" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -32581,9 +32577,7 @@
 	dir = 4;
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/open/floor{
-	icon_state = "cmo"
-	},
+/turf/open/floor/tiled/science,
 /area/station/research/shuttle_dock)
 "lrL" = (
 /obj/structure/stool/bed/roller,
@@ -33794,7 +33788,7 @@
 	dir = 4;
 	tag = "icon-intact-f (EAST)"
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,
@@ -65865,7 +65859,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/decal/floor/coloured/light_blue/corner{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/tiled/white,

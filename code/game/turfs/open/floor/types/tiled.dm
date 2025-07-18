@@ -90,3 +90,8 @@
 /turf/open/floor/tiled/cafeteria
 	icon_state = "cafeteria"
 	tile_path = /obj/item/stack/tile/metal/cafeteria
+
+// Science Tiles - The purple and white ones.
+/turf/open/floor/tiled/science
+	icon_state = "science"
+	tile_path = /obj/item/stack/tile/metal/science
