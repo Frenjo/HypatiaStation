@@ -138,11 +138,19 @@
 	build_path = /obj/item/robot_upgrade/tasercooler
 
 /datum/design/robofab/robot_upgrade/jetpack
-	name = "Mining Jetpack Module"
-	desc = "Allows for the construction of jetpack modules for mining robots."
+	name = "Miner Jetpack Module"
+	desc = "Allows for the construction of jetpack modules for miner robots."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2)
 	materials = alist(/decl/material/steel = 10000, /decl/material/uranium = 20000, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 8)
 	build_path = /obj/item/robot_upgrade/jetpack
+
+/datum/design/robofab/robot_upgrade/holding_satchel
+	name = "Miner Holding Satchel Module"
+	desc = "Allows for the construction of holding satchel modules for miner robots."
+	req_tech = /datum/design/bluespace/mining_satchel_holding::req_tech
+	materials = /datum/design/bluespace/mining_satchel_holding::materials
+	reliability_base = /datum/design/bluespace/mining_satchel_holding::reliability_base
+	build_path = /obj/item/robot_upgrade/holding_satchel
 
 /datum/design/robofab/robot_upgrade/syndicate
 	name = "Scrambled Equipment Module"
