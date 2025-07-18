@@ -38,4 +38,4 @@
 		spray.reagents.add_reagent("pacid", 2)
 
 /obj/item/robot_model/peacekeeper/get_playstyle_string()
-	. = SPAN_DANGER("Remember: You are an enforcer of the PEACE and preventer of HARM. You are NOT a security officer and must follow your laws above all else.")
+	. = SPAN_DANGER("Remember: You are an enforcer of the PEACE and preventer of HARM. You are NOT a security officer and MUST follow your LAWS above all else.")
