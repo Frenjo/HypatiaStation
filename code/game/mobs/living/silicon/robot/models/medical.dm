@@ -15,7 +15,7 @@
 		/obj/item/reagent_holder/robodropper,
 		/obj/item/reagent_holder/syringe
 	)
-	emag_modules = list(/obj/item/reagent_holder/spray/polyacid)
+	emag_modules = list(/obj/item/reagent_holder/spray/polyacid, /obj/item/reagent_holder/borghypo/emagged)
 
 	channels = list(CHANNEL_MEDICAL)
 	camera_networks = list("Medical")

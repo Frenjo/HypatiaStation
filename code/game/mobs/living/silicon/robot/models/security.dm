@@ -11,7 +11,8 @@
 		/obj/item/handcuffs/cyborg,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/taser/cyborg,
-		/obj/item/taperoll/police
+		/obj/item/taperoll/police,
+		/obj/item/crowbar
 	)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 

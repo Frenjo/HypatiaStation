@@ -102,3 +102,9 @@
 	name = "peace hypospray"
 
 	reagent_ids = list("cryptobiolin")
+
+// Emagged (poison) hypospray
+/obj/item/reagent_holder/borghypo/emagged
+	icon_state = "hypo_s"
+
+	reagent_ids = list("chloralhydrate", "cyanide", "lexorin", "stoxin", "toxin")

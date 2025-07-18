@@ -15,7 +15,8 @@
 		/obj/item/pickaxe/plasmacutter,
 		/obj/item/robot_module/combat_shield,
 		/obj/item/robot_module/combat_mobility,
-		/obj/item/wrench // Is a combat android really going to be stopped by a chair?
+		/obj/item/wrench, // Is a combat android really going to be stopped by a chair?
+		/obj/item/crowbar
 	)
 	emag_modules = list(/obj/item/gun/energy/lasercannon/cyborg)
 
