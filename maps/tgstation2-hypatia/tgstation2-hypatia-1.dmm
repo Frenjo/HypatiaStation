@@ -1129,9 +1129,10 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/hydroponics)
 "axp" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall3"
+/obj/machinery/light/small{
+	dir = 1
 	},
+/turf/open/floor/shuttle/blue,
 /area/shuttle/research/station)
 "axs" = (
 /obj/structure/rack,
@@ -1855,13 +1856,11 @@
 /obj/effect/decal/floor/coloured/blue/corner{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/area/station/hallway/primary/fore)
 "aIh" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -1950,9 +1949,12 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/atmospherics)
 "aKd" = (
-/obj/machinery/computer/shuttle_control/research,
-/turf/open/floor/shuttle/blue,
-/area/shuttle/research/station)
+/obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
+	},
+/turf/open/floor/tiled/grey,
+/area/station/hallway/primary/fore)
 "aKq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
@@ -2791,10 +2793,8 @@
 /turf/open/floor/tiled/dark,
 /area/station/security/evidence_storage)
 "ban" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
@@ -2856,21 +2856,12 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "bbL" = (
-/obj/machinery/door/poddoor{
-	density = FALSE;
-	icon_state = "pdoor0";
-	id = "Biohazard";
-	name = "Biohazard Shutter";
-	opacity = FALSE
-	},
-/obj/machinery/atmospherics/mains_pipe/simple/hidden{
-	dir = 4
-	},
 /obj/structure/cable{
-	d1 = 4;
+	d1 = 2;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "2-8"
 	},
+/obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden,
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
 "bbR" = (
@@ -3858,15 +3849,10 @@
 	},
 /area/station/crew/bunker)
 "bul" = (
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	master_tag = "researchshuttle_dock_airlock";
-	name = "interior access button";
-	pixel_x = 25;
-	pixel_y = -25;
-	req_access = list(65)
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 5
 	},
-/turf/open/floor/tiled/science,
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "buz" = (
 /obj/machinery/light,
@@ -5054,10 +5040,6 @@
 /obj/effect/decal/floor/coloured/blue/corner{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
-	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "bNL" = (
@@ -5196,9 +5178,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "bPD" = (
-/obj/structure/stool/bed/chair{
-	dir = 4
-	},
+/obj/structure/table,
 /turf/open/floor/shuttle/blue,
 /area/shuttle/research/station)
 "bPI" = (
@@ -5272,11 +5252,13 @@
 /area/station/maintenance/fore/starboard_central)
 "bQM" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/effect/decal/floor/coloured/yellow/corner{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 2;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock north"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
@@ -5927,12 +5909,6 @@
 /obj/item/stack/sheet/glass/reinforced,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
-"caN" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/shuttle/blue,
-/area/shuttle/research/station)
 "caY" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -6396,15 +6372,11 @@
 /turf/open/floor/tiled/grey,
 /area/station/cargo/bay)
 "cib" = (
-/obj/machinery/door/poddoor{
-	density = FALSE;
-	icon_state = "pdoor0";
-	id = "Biohazard";
-	name = "Biohazard Shutter";
-	opacity = FALSE
-	},
 /obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
@@ -6983,8 +6955,16 @@
 /turf/open/floor/plating/metal,
 /area/external/prison/cell_block/B)
 "ctJ" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
-/area/shuttle/research/station)
+/obj/machinery/atmospherics/mains_pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock east"
+	},
+/turf/open/floor/tiled/grey,
+/area/station/hallway/primary/port)
 "ctZ" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 6
@@ -8000,10 +7980,12 @@
 /turf/open/floor/plating/metal,
 /area/station/security/post/arrivals)
 "cLx" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/effect/decal/floor/coloured/yellow/corner,
+/obj/machinery/door/firedoor/border_only{
+	dir = 2;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock north"
+	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
 "cLO" = (
@@ -8112,10 +8094,6 @@
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=CHW";
 	location = "Lockers"
-	},
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
@@ -8964,13 +8942,14 @@
 /turf/open/floor/wood,
 /area/station/crew/bar)
 "ddB" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
+/obj/machinery/atmospherics/mains_pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/port)
+/area/station/hallway/primary/starboard)
 "ddW" = (
 /obj/item/radio/intercom{
 	dir = 1;
@@ -9029,10 +9008,12 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "deL" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
+	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/fore)
 "deU" = (
@@ -9797,11 +9778,14 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
 "dsj" = (
-/obj/machinery/camera{
-	c_tag = "Research Dock";
-	network = list("SS13","Research")
+/obj/machinery/airlock_sensor{
+	id_tag = "researchshuttle_dock_sensor";
+	pixel_y = 25
 	},
-/turf/open/floor/tiled/science,
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 9
+	},
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "dsD" = (
 /obj/structure/cable{
@@ -9817,16 +9801,8 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/locker_room)
 "dsH" = (
-/obj/effect/decal/floor/coloured/red/corner{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
-	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/fore)
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/area/shuttle/research/station)
 "dsN" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -11271,11 +11247,8 @@
 /turf/closed/wall/reinforced,
 /area/station/command/vault)
 "dSh" = (
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 5
-	},
-/turf/open/floor/plating/metal,
-/area/station/research/shuttle_dock)
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/area/shuttle/research/station)
 "dSi" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -11343,24 +11316,9 @@
 /turf/open/floor/plating/metal,
 /area/station/research/telescience)
 "dTv" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "researchshuttle_dock_airlock_exterior";
-	locked = 1;
-	name = "Shuttle Airlock";
-	req_access = list(65)
-	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	master_tag = "researchshuttle_dock_airlock";
-	name = "exterior access button";
-	pixel_x = 23;
-	pixel_y = 10;
-	req_access = list(65)
-	},
-/turf/open/floor/plating/metal,
-/area/station/research/shuttle_dock)
+/obj/structure/closet/crate,
+/turf/open/floor/shuttle/blue,
+/area/shuttle/research/station)
 "dTK" = (
 /obj/item/roller,
 /obj/machinery/air_alarm{
@@ -11784,11 +11742,6 @@
 /obj/machinery/light{
 	dir = 1;
 	on = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/open/floor/tiled/grey,
@@ -13265,14 +13218,11 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "eFP" = (
-/obj/effect/decal/floor/coloured/blue/corner,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock south"
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 4
 	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/fore)
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/shuttle/research/station)
 "eFU" = (
 /obj/machinery/camera{
 	c_tag = "Research Division Server Room";
@@ -13525,12 +13475,18 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/dormitories)
 "eJB" = (
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/port)
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/metal/shuttle/airless,
+/area/shuttle/research/station)
 "eJO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -13890,8 +13846,10 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/fitness)
 "eQk" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock east"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
@@ -13976,17 +13934,9 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/dormitories)
 "eSv" = (
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/obj/machinery/computer/shuttle_control/research,
+/turf/open/floor/shuttle/blue,
+/area/shuttle/research/station)
 "eSH" = (
 /obj/machinery/computer/secure_data,
 /obj/effect/decal/floor/coloured/red{
@@ -14221,8 +14171,9 @@
 /turf/open/floor/linoleum,
 /area/station/crew/chapel/office)
 "eVO" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
+/obj/machinery/door/firedoor/border_only{
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/starboard)
@@ -15108,13 +15059,11 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "foT" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
@@ -15183,11 +15132,12 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/main)
 "fpu" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
@@ -15550,16 +15500,11 @@
 /turf/open/floor/tiled/white,
 /area/station/research/robotics/lab)
 "fxp" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/machinery/atmospherics/mains_pipe/simple/hidden{
-	dir = 4
-	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/port)
+/turf/open/floor/shuttle/blue,
+/area/shuttle/research/station)
 "fxB" = (
 /turf/closed/wall/steel,
 /area/station/medical/dormitories)
@@ -15629,15 +15574,14 @@
 	},
 /area/station/engineering/foyer)
 "fzd" = (
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
+	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/area/station/hallway/primary/port)
 "fzf" = (
 /obj/structure/rack{
 	dir = 1
@@ -15752,10 +15696,12 @@
 /turf/open/floor/circuit_grid/blue,
 /area/turret_protected/ai_upload)
 "fBL" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/effect/decal/floor/coloured/blue/corner,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
+	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/fore)
 "fBV" = (
@@ -16944,8 +16890,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
+/obj/machinery/door/firedoor/border_only{
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
@@ -18496,13 +18443,20 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock east"
 	},
-/obj/machinery/atmospherics/mains_pipe/simple/hidden{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor{
+	density = FALSE;
+	icon_state = "pdoor0";
+	id = "Biohazard";
+	name = "Biohazard Shutter";
+	opacity = FALSE
+	},
+/obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
+	dir = 1
 	},
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
@@ -20023,13 +19977,15 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "gXi" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/standard/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -24
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	master_tag = "researchshuttle_dock_airlock";
+	name = "interior access button";
+	pixel_x = 25;
+	pixel_y = -25;
+	req_access = list(65)
 	},
-/turf/open/floor/tiled/white,
+/turf/open/floor/tiled/science,
 /area/station/research/shuttle_dock)
 "gXt" = (
 /obj/structure/table,
@@ -20455,16 +20411,13 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/starboard)
 "hgo" = (
-/obj/machinery/air_alarm{
-	dir = 8;
-	name = "east bump";
-	pixel_x = 24
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/decal/floor/coloured/purple/corner{
-	dir = 4
-	},
-/turf/open/floor/tiled/white,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "hgz" = (
 /obj/structure/table,
@@ -20618,9 +20571,6 @@
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape_pod/four/station)
-"hhW" = (
-/turf/open/floor/shuttle/blue,
-/area/shuttle/research/station)
 "hhY" = (
 /obj/item/folder/blue,
 /obj/structure/table/woodentable,
@@ -21517,12 +21467,11 @@
 /turf/open/floor/plating/metal,
 /area/station/crew/kitchen)
 "hzH" = (
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/area/station/hallway/primary/port)
 "hzR" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -21889,10 +21838,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
-"hFe" = (
-/obj/structure/closet/crate,
-/turf/open/floor/shuttle/blue,
-/area/shuttle/research/station)
 "hFj" = (
 /obj/machinery/light{
 	dir = 4
@@ -23125,16 +23070,18 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "hZW" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "researchshuttle_dock_airlock_interior";
-	locked = 1;
-	name = "Shuttle Airlock";
-	req_access = list(65)
+/obj/structure/table,
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "research_shuttle";
+	pixel_y = -25;
+	req_one_access = list(13,65);
+	tag_door = "researchshuttle_hatch"
 	},
-/turf/open/floor/plating/metal,
-/area/station/research/shuttle_dock)
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/shuttle/blue,
+/area/shuttle/research/station)
 "hZY" = (
 /obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1;
@@ -25059,11 +25006,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
-	},
 /obj/effect/decal/floor/coloured/yellow/corner,
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
@@ -25090,6 +25032,16 @@
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock east"
+	},
+/obj/machinery/door/poddoor{
+	density = FALSE;
+	icon_state = "pdoor0";
+	id = "Biohazard";
+	name = "Biohazard Shutter";
+	opacity = FALSE
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
@@ -25381,11 +25333,12 @@
 /turf/open/floor/wood,
 /area/station/command/office/captain)
 "iLx" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/starboard)
@@ -25627,19 +25580,22 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
 "iPO" = (
-/obj/machinery/light/small{
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1379;
-	id_tag = "researchshuttle_dock_pump"
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 6
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/turf/open/floor/plating/metal,
-/area/station/research/shuttle_dock)
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/turf/open/floor/plating/metal/shuttle,
+/area/shuttle/research/station)
 "iQd" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
@@ -26163,11 +26119,6 @@
 	c_tag = "Central Primary Hallway South-West";
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -26219,14 +26170,12 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/main)
 "iYZ" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
-	},
 /obj/machinery/light{
 	dir = 1;
 	on = 1
+	},
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
@@ -26855,16 +26804,6 @@
 	},
 /turf/open/floor/linoleum,
 /area/station/crew/bar)
-"jla" = (
-/obj/structure/closet/emergency,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/effect/decal/floor/coloured/purple/corner{
-	dir = 4
-	},
-/turf/open/floor/tiled/white,
-/area/station/research/shuttle_dock)
 "jlc" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -27111,13 +27050,16 @@
 /turf/open/floor/tiled/grey,
 /area/external/prison/rec_room)
 "jpG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/effect/decal/floor/coloured/purple/corner{
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tiled/white,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "jpH" = (
 /obj/structure/cable{
@@ -27228,7 +27170,15 @@
 /turf/open/floor/tiled/freezer,
 /area/station/crew/dormitories/toilet)
 "jsa" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "researchshuttle_hatch";
+	locked = 1;
+	name = "Shuttle Airlock";
+	req_access = list(65)
+	},
+/turf/open/floor/plating/metal/shuttle,
 /area/shuttle/research/station)
 "jsc" = (
 /obj/machinery/light/small{
@@ -27460,10 +27410,12 @@
 /turf/open/floor/reinforced,
 /area/station/research/miscellaneous)
 "jxJ" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/firedoor/border_only{
+	dir = 2;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock north"
+	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
 "jyo" = (
@@ -28530,15 +28482,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/post/arrivals)
 "jTO" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "researchshuttle_hatch";
-	locked = 1;
-	name = "Shuttle Airlock";
-	req_access = list(65)
-	},
-/turf/open/floor/plating/metal/shuttle,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/research/station)
 "jUq" = (
 /obj/structure/table,
@@ -30063,13 +30007,15 @@
 /turf/open/floor/tiled/grey,
 /area/station/maintenance/fore/port_central)
 "ktP" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "researchshuttle_dock_airlock_interior";
+	locked = 1;
+	name = "Shuttle Airlock";
+	req_access = list(65)
 	},
-/obj/effect/decal/floor/coloured/purple/corner{
-	dir = 4
-	},
-/turf/open/floor/tiled/white,
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "ktS" = (
 /obj/structure/disposalpipe/segment{
@@ -30197,10 +30143,15 @@
 /turf/open/floor/tiled/white,
 /area/station/research/miscellaneous)
 "kvT" = (
-/obj/machinery/computer/shuttle_control/research,
-/obj/effect/decal/floor/coloured/purple/corner{
-	dir = 4
+/obj/machinery/power/apc/standard/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -24
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable,
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
 "kvZ" = (
@@ -30404,17 +30355,10 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/treatment)
 "kAh" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
+/obj/structure/stool/bed/chair{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating/metal/shuttle/airless,
+/turf/open/floor/shuttle/blue,
 /area/shuttle/research/station)
 "kAr" = (
 /obj/structure/stool/bed/chair/office/dark{
@@ -31765,9 +31709,11 @@
 /turf/open/floor/tiled/grey,
 /area/station/cargo/office)
 "lcC" = (
-/turf/closed/wall/shuttle{
-	icon_state = "swall12"
+/obj/effect/window_spawner/reinforced,
+/obj/structure/window/reinforced{
+	dir = 5
 	},
+/turf/open/floor/plating/metal/shuttle,
 /area/shuttle/research/station)
 "lcL" = (
 /obj/structure/cable{
@@ -31910,11 +31856,13 @@
 	},
 /area/station/research/hallway)
 "let" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/effect/decal/floor/coloured/blue/corner{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/fore)
@@ -32161,7 +32109,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "lic" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
@@ -32576,7 +32523,19 @@
 	dir = 4;
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/open/floor/tiled/science,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	id_tag = "researchshuttle_dock_airlock";
+	pixel_y = -25;
+	req_one_access = list(10,13,65);
+	tag_airpump = "researchshuttle_dock_pump";
+	tag_chamber_sensor = "researchshuttle_dock_sensor";
+	tag_exterior_door = "researchshuttle_dock_airlock_exterior";
+	tag_interior_door = "researchshuttle_dock_airlock_interior"
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 10
+	},
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "lrL" = (
 /obj/structure/stool/bed/roller,
@@ -33159,9 +33118,6 @@
 /obj/structure/sign/fire,
 /turf/closed/wall/reinforced,
 /area/station/maintenance/incinerator)
-"lCf" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
-/area/shuttle/research/station)
 "lCD" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -33783,14 +33739,12 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "lMW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
-	},
-/obj/effect/decal/floor/coloured/purple/corner{
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/window_spawner/reinforced,
+/obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/turf/open/floor/tiled/white,
+/turf/open/floor/plating/metal/shuttle,
 /area/station/research/shuttle_dock)
 "lNg" = (
 /obj/effect/decal/floor/industrial/warning/border{
@@ -34351,13 +34305,11 @@
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "lYI" = (
-/obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
-	dir = 1
+/obj/effect/decal/floor/coloured/purple/corner{
+	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/atmospherics/mains_pipe/cap/hidden{
+	dir = 8
 	},
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
@@ -34483,15 +34435,16 @@
 /turf/open/floor/tiled/showroom,
 /area/station/crew/kitchen/fridge)
 "maC" = (
-/obj/machinery/atmospherics/mains_pipe/cap/hidden{
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/tiled/white,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "maD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -35309,16 +35262,14 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/thermoelectric)
 "mqk" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
-/obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
-	dir = 1
+/obj/effect/decal/floor/coloured/purple/corner{
+	dir = 4
 	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/turf/open/floor/tiled/white,
+/area/station/research/shuttle_dock)
 "mqG" = (
 /obj/machinery/status_display{
 	layer = 4
@@ -35405,11 +35356,13 @@
 /turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/engineering/station)
 "msI" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock east"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
@@ -35832,12 +35785,11 @@
 /turf/open/floor/carpet,
 /area/station/security/detective)
 "mxO" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/window_spawner/reinforced,
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 4
+/obj/machinery/camera{
+	c_tag = "Research Dock";
+	network = list("SS13","Research")
 	},
-/turf/open/floor/plating/metal/shuttle,
+/turf/open/floor/tiled/science,
 /area/station/research/shuttle_dock)
 "mxR" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -36269,16 +36221,16 @@
 /turf/open/floor/wood,
 /area/station/command/bridge/meeting_room)
 "mFX" = (
-/obj/effect/decal/floor/coloured/blue/corner{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock south"
+/obj/machinery/fire_alarm{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -24
 	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/fore)
+/turf/open/floor/tiled/white,
+/area/station/research/shuttle_dock)
 "mGf" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/tiled/dark,
@@ -36851,13 +36803,11 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "mOQ" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/area/station/hallway/primary/starboard)
 "mPc" = (
 /obj/structure/table,
 /obj/item/dest_tagger{
@@ -37411,10 +37361,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/fore)
 "mYR" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 4
-	},
-/turf/open/floor/plating/metal/shuttle/airless,
+/turf/open/floor/shuttle/blue,
 /area/shuttle/research/station)
 "mZs" = (
 /obj/machinery/door/airlock/glass{
@@ -38217,11 +38164,6 @@
 /turf/open/floor/tiled/grey,
 /area/external/prison/cell_block/B)
 "noh" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
-	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
@@ -38452,15 +38394,22 @@
 /turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "nqM" = (
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "researchshuttle_dock_airlock_exterior";
+	locked = 1;
+	name = "Shuttle Airlock";
+	req_access = list(65)
 	},
-/obj/structure/window/reinforced,
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	master_tag = "researchshuttle_dock_airlock";
+	name = "exterior access button";
+	pixel_x = 23;
+	pixel_y = 10;
+	req_access = list(65)
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "nqP" = (
@@ -39545,18 +39494,15 @@
 /turf/open/floor/plating/metal,
 /area/ai_monitored/storage/eva)
 "nLh" = (
-/obj/structure/table,
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	id_tag = "research_shuttle";
-	pixel_y = -25;
-	req_one_access = list(13,65);
-	tag_door = "researchshuttle_hatch"
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4;
+	tag = "icon-intact-f (EAST)"
 	},
-/obj/machinery/light/small{
+/obj/effect/decal/floor/coloured/purple/corner{
 	dir = 4
 	},
-/turf/open/floor/shuttle/blue,
-/area/shuttle/research/station)
+/turf/open/floor/tiled/white,
+/area/station/research/shuttle_dock)
 "nLl" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -40049,18 +39995,16 @@
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "nTP" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
+	dir = 4;
+	tag = "icon-intact-f (EAST)"
 	},
-/obj/machinery/fire_alarm{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -24
+/obj/machinery/air_alarm{
+	dir = 1;
+	name = "south bump";
+	pixel_y = -24
 	},
-/turf/open/floor/tiled/white,
+/turf/open/floor/tiled/science,
 /area/station/research/shuttle_dock)
 "nTW" = (
 /obj/machinery/light{
@@ -42202,16 +42146,12 @@
 /turf/open/floor/plating/metal,
 /area/ai_monitored/storage/eva)
 "oIo" = (
-/obj/effect/decal/floor/coloured/red/corner{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4;
+	tag = "icon-intact-f (EAST)"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
-	},
-/turf/open/floor/tiled/grey,
-/area/station/hallway/primary/fore)
+/turf/open/floor/tiled/science,
+/area/station/research/shuttle_dock)
 "oIt" = (
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
 	dir = 4
@@ -42243,12 +42183,16 @@
 /turf/closed/wall/reinforced,
 /area/station/engineering/atmospherics)
 "oIZ" = (
-/obj/machinery/airlock_sensor{
-	id_tag = "researchshuttle_dock_sensor";
-	pixel_y = 25
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1379;
+	id_tag = "researchshuttle_dock_pump"
 	},
 /obj/effect/decal/floor/industrial/warning/border{
-	dir = 9
+	dir = 6
 	},
 /turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
@@ -45122,13 +45066,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tiled/white,
 /area/station/research/development)
-"pEP" = (
-/obj/effect/window_spawner/reinforced,
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/turf/open/floor/plating/metal/shuttle,
-/area/shuttle/research/station)
 "pER" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -46592,23 +46529,12 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "qjP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4;
-	tag = "icon-intact-f (EAST)"
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 1
 	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	id_tag = "researchshuttle_dock_airlock";
-	pixel_y = -25;
-	req_one_access = list(10,13,65);
-	tag_airpump = "researchshuttle_dock_pump";
-	tag_chamber_sensor = "researchshuttle_dock_sensor";
-	tag_exterior_door = "researchshuttle_dock_airlock_exterior";
-	tag_interior_door = "researchshuttle_dock_airlock_interior"
-	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 10
-	},
-/turf/open/floor/plating/metal,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/bot,
+/turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
 "qjU" = (
 /obj/machinery/door/airlock/external{
@@ -47264,8 +47190,9 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "qvv" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
+/obj/machinery/door/firedoor/border_only{
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
@@ -48238,11 +48165,6 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
-	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
 "qNw" = (
@@ -48377,15 +48299,11 @@
 /turf/open/floor/tiled/white,
 /area/station/security/brig)
 "qQa" = (
+/obj/machinery/computer/shuttle_control/research,
+/obj/effect/decal/floor/coloured/purple/corner{
+	dir = 4
+	},
 /obj/machinery/light,
-/obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
-	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tiled/white,
 /area/station/research/shuttle_dock)
 "qQq" = (
@@ -48806,11 +48724,13 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/incinerator)
 "qVR" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/effect/decal/floor/industrial/warning/corner{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock east"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
@@ -49165,9 +49085,13 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/treatment)
 "rcT" = (
-/obj/structure/table,
-/turf/open/floor/shuttle/blue,
-/area/shuttle/research/station)
+/obj/machinery/status_display{
+	layer = 4;
+	pixel_y = -32
+	},
+/obj/structure/closet/emergency,
+/turf/open/floor/tiled/science,
+/area/station/research/shuttle_dock)
 "rcZ" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -51192,10 +51116,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -31
 	},
@@ -51687,13 +51607,11 @@
 /area/station/engineering/storage/hard)
 "rSf" = (
 /obj/machinery/door/firedoor/border_only{
-	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
+	name = "firelock west"
 	},
-/obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/fore)
+/area/station/hallway/primary/central)
 "rSM" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/effect/decal/floor/industrial/warning/border,
@@ -52081,13 +51999,11 @@
 /area/station/engineering/engine/supermatter)
 "rZD" = (
 /obj/effect/decal/floor/coloured/blue/corner,
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/area/station/hallway/primary/fore)
 "rZF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/open/floor/plating/metal,
@@ -52391,13 +52307,11 @@
 /area/station/security/main)
 "sed" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock south"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/central)
+/area/station/hallway/primary/aft)
 "seq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -52484,13 +52398,12 @@
 /turf/open/floor/tiled/grey,
 /area/external/prison/rec_room)
 "sfA" = (
-/obj/structure/disposalpipe/segment{
+/obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock east"
+	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
@@ -54237,8 +54150,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
+	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
 "sQE" = (
@@ -54405,10 +54322,9 @@
 /turf/open/floor/linoleum,
 /area/station/crew/bar)
 "sTW" = (
-/obj/machinery/light/small{
-	dir = 1
+/turf/closed/wall/shuttle{
+	icon_state = "swall3"
 	},
-/turf/open/floor/shuttle/blue,
 /area/shuttle/research/station)
 "sUe" = (
 /obj/machinery/disposal,
@@ -55639,14 +55555,9 @@
 /turf/open/floor/tiled/grey,
 /area/station/research/xenobiology)
 "ttz" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock north"
-	},
-/obj/effect/decal/floor/coloured/yellow/corner{
-	dir = 8
+/obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
@@ -55987,12 +55898,11 @@
 /turf/open/floor/plating/metal/airless,
 /area/station/solar/fore/starboard)
 "tzM" = (
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
+/obj/machinery/door/airlock/glass{
+	name = "Central Access"
 	},
 /turf/open/floor/tiled/grey,
-/area/station/hallway/primary/starboard)
+/area/station/hallway/primary/aft)
 "tzR" = (
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 4
@@ -56422,18 +56332,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
-"tHK" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating/metal,
-/area/station/research/shuttle_dock)
 "tHP" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -58239,9 +58137,6 @@
 /turf/space,
 /area/space)
 "uoZ" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/structure/sign/directions/science{
 	dir = 4;
 	pixel_y = -25
@@ -58253,6 +58148,11 @@
 /obj/structure/sign/directions/security{
 	dir = 4;
 	pixel_y = -39
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock east"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
@@ -58518,13 +58418,15 @@
 /turf/open/floor/tiled/dark,
 /area/station/research/server)
 "uuv" = (
-/obj/machinery/door/airlock/glass{
-	name = "Central Access"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock east"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
@@ -58653,15 +58555,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/ai_monitored/storage/eva)
-"uwz" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating/metal,
-/area/station/research/shuttle_dock)
 "uxa" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
@@ -58976,7 +58869,11 @@
 /area/station/security/main)
 "uBA" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
+	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
 "uBJ" = (
@@ -59850,7 +59747,6 @@
 	c_tag = "Aft Primary Hallway 2";
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only,
 /obj/effect/decal/floor/coloured/yellow/corner{
 	dir = 8
 	},
@@ -59858,6 +59754,11 @@
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = -28
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "firelock south"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
@@ -60004,9 +59905,6 @@
 	icon_state = "L8alt"
 	},
 /area/station/hallway/primary/central)
-"uYl" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
-/area/shuttle/research/station)
 "uYp" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -60173,10 +60071,6 @@
 /obj/machinery/newscaster{
 	dir = 1;
 	pixel_y = 31
-	},
-/obj/machinery/door/firedoor/border_only{
-	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "firelock west"
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
@@ -65854,14 +65748,8 @@
 	},
 /area/station/command/office/cmo)
 "xbo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/decal/floor/coloured/purple/corner{
-	dir = 4
-	},
-/turf/open/floor/tiled/white,
-/area/station/research/shuttle_dock)
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/area/shuttle/research/station)
 "xbr" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin{
@@ -67364,10 +67252,6 @@
 	icon_state = "vault"
 	},
 /area/station/command/vault)
-"xAm" = (
-/obj/machinery/status_display,
-/turf/closed/wall/steel,
-/area/station/research/shuttle_dock)
 "xAJ" = (
 /obj/machinery/light,
 /obj/machinery/newscaster{
@@ -67421,21 +67305,9 @@
 /turf/open/floor/circuit_grid/blue,
 /area/turret_protected/ai_chamber)
 "xBu" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
+/turf/closed/wall/shuttle{
+	icon_state = "swall12"
 	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/turf/open/floor/plating/metal/shuttle,
 /area/shuttle/research/station)
 "xBx" = (
 /turf/closed/wall/steel,
@@ -69089,14 +68961,6 @@
 	},
 /turf/open/floor/tiled/freezer,
 /area/station/crew/dormitories/toilet)
-"ygj" = (
-/obj/machinery/atmospherics/unary/portables_connector{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/decal/floor/industrial/bot,
-/turf/open/floor/tiled/white,
-/area/station/research/shuttle_dock)
 "ygt" = (
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
@@ -85458,7 +85322,7 @@ xTK
 naL
 vbo
 cOI
-eJB
+lQa
 sjz
 tYL
 cii
@@ -93167,9 +93031,9 @@ nGF
 cWZ
 khI
 qNn
-fxp
-ddB
-gzm
+ijb
+lQa
+lQa
 rgk
 dyM
 eXg
@@ -93424,7 +93288,7 @@ gpu
 sBe
 nzL
 qVR
-fpu
+ctJ
 uoZ
 gzm
 rgk
@@ -95766,7 +95630,7 @@ nFT
 ckR
 tyP
 ebD
-mqk
+fzG
 iYG
 wyq
 ciU
@@ -96280,8 +96144,8 @@ jcL
 waC
 tyP
 bNf
-fzd
-eSv
+npX
+nHp
 srn
 gXt
 sDp
@@ -98032,7 +97896,7 @@ mAw
 tGa
 oko
 uMN
-dsH
+mIM
 mIM
 mIM
 mIM
@@ -98044,7 +97908,7 @@ ycY
 ycY
 ycY
 ycY
-mFX
+ycY
 let
 aHY
 nGU
@@ -98083,7 +97947,7 @@ lKX
 qYm
 sed
 bQM
-ttz
+ufO
 ufO
 edo
 ufO
@@ -98289,7 +98153,7 @@ lQe
 mYI
 hOj
 kuF
-rSf
+kuF
 kuF
 kuF
 kuF
@@ -98301,9 +98165,9 @@ kuF
 kuF
 kuF
 kuF
-hOj
+kuF
 deL
-eHc
+aKd
 eIC
 eIC
 isI
@@ -98338,7 +98202,7 @@ ljV
 lNg
 fRY
 mmj
-iha
+ttz
 jxJ
 noh
 lOc
@@ -98546,7 +98410,7 @@ vka
 hLh
 pfR
 fNC
-oIo
+fNC
 ucz
 fNC
 fNC
@@ -98558,7 +98422,7 @@ wjL
 rWo
 sul
 sul
-eFP
+sul
 fBL
 rZD
 rxj
@@ -98595,7 +98459,7 @@ xsd
 pqE
 vVE
 kaI
-dqp
+tzM
 cLx
 iFy
 rxC
@@ -100391,9 +100255,9 @@ iAF
 mbs
 isC
 upP
-mOQ
-fEv
-sfA
+shc
+npX
+iYu
 pfo
 jZv
 rGW
@@ -100648,8 +100512,8 @@ uhs
 ioc
 wSx
 upP
-eQk
-msI
+rSf
+sfA
 fUX
 pfo
 sjl
@@ -100905,8 +100769,8 @@ mpR
 tQB
 nrX
 upP
-hzH
-fzd
+shc
+npX
 rKM
 pfo
 mKE
@@ -102945,7 +102809,7 @@ aIn
 rhS
 rhS
 mOQ
-fEv
+ddB
 mOQ
 fMF
 fMF
@@ -103458,9 +103322,9 @@ gYh
 iQq
 tjW
 rhS
-tzM
-ddm
-tzM
+kcW
+pvn
+kcW
 fMF
 xcZ
 vNT
@@ -118636,8 +118500,8 @@ qKj
 iGB
 guP
 rZd
-xUH
-xUH
+rZd
+rZd
 rZd
 rZd
 waN
@@ -118888,13 +118752,13 @@ qKj
 qKj
 qKj
 qKj
-ciU
+eMU
 iuL
 cib
 bbL
-iuL
-eMU
-ciU
+kvT
+mFX
+qjP
 rZd
 anu
 lTh
@@ -119142,16 +119006,16 @@ hkx
 ciU
 ciU
 ciU
+eMU
 ciU
 ciU
-ciU
-ciU
+eMU
 iuL
 lic
 lYI
-iuL
-eMU
-ciU
+mqk
+nLh
+qQa
 rZd
 vQb
 lTh
@@ -119399,16 +119263,16 @@ ciU
 ciU
 ciU
 ciU
-ciU
-ciU
-ciU
-ciU
-iuL
-jpG
-qQa
+eMU
+eMU
+eMU
+eMU
 ayK
+inE
 ayK
-ayK
+mxO
+oIo
+rcT
 rZd
 vQb
 xDj
@@ -119656,16 +119520,16 @@ ciU
 ciU
 ciU
 ciU
-ciU
-ciU
-ciU
-ciU
-iuL
+eMU
+dsH
+sTW
+eFP
+sTW
 xbo
 maC
 gXi
 nTP
-ygj
+ayK
 rZd
 rZd
 xUH
@@ -119913,19 +119777,19 @@ ciU
 ciU
 ciU
 ciU
-ciU
-ciU
-ciU
-ciU
-iuL
-jla
+eMU
+xBu
+dTv
+eJB
+fxp
+xBu
 hgo
 ktP
 lMW
-kvT
 ayK
 eMU
-ciU
+eMU
+eMU
 ced
 tDi
 tDi
@@ -120171,16 +120035,16 @@ tCi
 tCi
 ciU
 eMU
-eMU
-eMU
-eMU
-ayK
-inE
-ayK
+lcC
+kAh
+kAh
+kAh
+iPO
+jpG
 dsj
 lrK
-xAm
 ayK
+ciU
 eMU
 ciU
 ced
@@ -120428,14 +120292,14 @@ tCi
 tCi
 tCi
 eMU
-lCf
+xBu
 axp
 mYR
-axp
+mYR
 jsa
 nqM
 bul
-lrK
+oIZ
 inE
 ciU
 eMU
@@ -120686,17 +120550,17 @@ tCi
 tCi
 eMU
 lcC
-hFe
+mYR
 kAh
-caN
+mYR
 lcC
-uwz
-hZW
-mxO
 ayK
-ciU
+iuL
+iuL
+ayK
 eMU
-ciU
+eMU
+eMU
 ced
 vzb
 tAz
@@ -120942,18 +120806,18 @@ tCi
 tCi
 tCi
 eMU
-pEP
-bPD
-bPD
-bPD
 xBu
-tHK
-oIZ
-qjP
-ayK
+bPD
+eSv
+hZW
+xBu
+ciU
+ciU
+ciU
+ciU
+ciU
 eMU
-eMU
-eMU
+ciU
 ced
 tDi
 pqJ
@@ -121199,15 +121063,15 @@ tCi
 tCi
 tCi
 eMU
+dSh
+sTW
 lcC
 sTW
-hhW
-hhW
 jTO
-dTv
-dSh
-iPO
-inE
+ciU
+ciU
+ciU
+ciU
 ciU
 eMU
 ciU
@@ -121456,18 +121320,18 @@ tCi
 tCi
 tCi
 eMU
-pEP
-hhW
-bPD
-hhW
-pEP
-ayK
-iuL
-iuL
-ayK
-ciU
 eMU
-ciU
+eMU
+eMU
+eMU
+eMU
+eMU
+eMU
+eMU
+eMU
+eMU
+eMU
+eMU
 ced
 ciU
 eMU
@@ -121712,12 +121576,12 @@ tCi
 tCi
 tCi
 tCi
-eMU
-lcC
-rcT
-aKd
-nLh
-lcC
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
 ciU
 ciU
 ciU
@@ -121969,12 +121833,12 @@ tCi
 tCi
 tCi
 tCi
-eMU
-ctJ
-axp
-pEP
-axp
-uYl
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
 ciU
 ciU
 ciU
@@ -122226,19 +122090,19 @@ tCi
 tCi
 tCi
 tCi
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
-eMU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
+ciU
 ced
 ciU
 eMU
