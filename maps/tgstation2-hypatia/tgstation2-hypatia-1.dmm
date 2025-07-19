@@ -60770,13 +60770,6 @@
 /turf/open/floor/plating/metal/airless,
 /area/space)
 "voX" = (
-/obj/machinery/door/poddoor{
-	density = FALSE;
-	icon_state = "pdoor0";
-	id = "atmos";
-	name = "Atmos Blast Door";
-	opacity = FALSE
-	},
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics Control";
 	req_access = list(24)
@@ -91057,11 +91050,11 @@ ciU
 ciU
 ciU
 eMU
-kQa
+sjh
 qZO
 idf
 qZO
-wyq
+xex
 ciU
 ciU
 ciU
@@ -102796,7 +102789,7 @@ jpZ
 jWC
 aIM
 ciU
-gkx
+xBx
 bIb
 mjO
 lPc
@@ -103053,11 +103046,11 @@ vcd
 mFs
 mFs
 ciU
-gkx
+xBx
 usj
 mlq
 usj
-gkx
+xBx
 ciU
 eMU
 ciU
@@ -103310,11 +103303,11 @@ qUA
 mFs
 rNJ
 ciU
-gkx
+xBx
 sPa
 kdi
 sPa
-gkx
+xBx
 ciU
 ciU
 ciU
