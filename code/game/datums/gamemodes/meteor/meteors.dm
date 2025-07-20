@@ -94,7 +94,7 @@
 /obj/effect/meteor/small
 	name = "small meteor"
 	icon_state = "smallf"
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
+	pass_flags = parent_type::pass_flags | PASS_FLAG_GRILLE
 
 /obj/effect/meteor/Destroy()
 	walk(src, 0) //this cancels the walk_towards() proc

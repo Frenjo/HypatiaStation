@@ -227,7 +227,7 @@
 	origin_tech = /datum/design/medical/noreactbeaker::req_tech
 	volume = 50
 	amount_per_transfer_from_this = 10
-	atom_flags = ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
+	atom_flags = parent_type::atom_flags | ATOM_FLAG_NO_REACT
 
 
 /obj/item/reagent_holder/glass/beaker/bluespace

@@ -2,7 +2,7 @@
 	name = "laser"
 	icon_state = "laser"
 
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
+	pass_flags = parent_type::pass_flags | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 	damage = 40
 	flag = "laser"
@@ -37,7 +37,7 @@
 	name = "disabler pulse"
 	icon_state = "bluespark"
 
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_SWARMER
+	pass_flags = parent_type::pass_flags | PASS_FLAG_SWARMER
 
 	damage_type = HALLOSS
 	nodamage = TRUE

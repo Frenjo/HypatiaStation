@@ -161,7 +161,7 @@
 	name = "distortion"
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "particle"
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
+	pass_flags = parent_type::pass_flags | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 	damage = 60
 	damage_type = BRUTE

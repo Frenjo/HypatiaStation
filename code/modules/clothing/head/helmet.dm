@@ -34,7 +34,6 @@
 	icon_state = "swat"
 	item_state = "swat"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
-	inv_flags = INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
@@ -54,7 +53,7 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
-	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
+	item_flags = parent_type::item_flags | ITEM_FLAG_COVERS_MOUTH
 	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 1
 

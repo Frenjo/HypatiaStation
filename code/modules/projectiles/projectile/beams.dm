@@ -1,6 +1,6 @@
 /obj/item/projectile/energy/beam
 	invisibility = INVISIBILITY_MAXIMUM
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
+	pass_flags = parent_type::pass_flags | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 	damage = 40
 	damage_type = BURN
