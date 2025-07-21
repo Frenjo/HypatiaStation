@@ -55,7 +55,7 @@
  *	The Actual PDA
  */
 /obj/item/pda/New()
-	..()
+	. = ..()
 	GLOBL.pda_list.Add(src)
 	GLOBL.pda_list = sortAtom(GLOBL.pda_list)
 	if(default_cartridge)

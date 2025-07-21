@@ -67,7 +67,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
 
-/obj/item/beezeez/New()
+/obj/item/beezeez/initialise()
 	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
@@ -76,12 +76,7 @@
 	name = "honeycomb"
 	icon_state = "honeycomb"
 	desc = "Dripping with sugary sweetness."
-
-/obj/item/reagent_holder/food/snacks/honeycomb/New()
-	..()
-	reagents.add_reagent("honey",10)
-	reagents.add_reagent("nutriment", 0.5)
-	reagents.add_reagent("sugar", 2)
+	starting_reagents = alist("honey" = 10, "nutriment" = 0.5, "sugar" = 2)
 	bitesize = 2
 
 /datum/reagent/honey

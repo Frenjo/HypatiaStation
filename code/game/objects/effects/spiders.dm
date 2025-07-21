@@ -83,13 +83,10 @@
 
 	var/amount_grown = 0
 
-/obj/effect/spider/eggcluster/New()
+/obj/effect/spider/eggcluster/initialise()
 	. = ..()
 	pixel_x = rand(3, -3)
 	pixel_y = rand(3, -3)
-
-/obj/effect/spider/eggcluster/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/spider/eggcluster/Destroy()
@@ -117,16 +114,13 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = FALSE
 
-/obj/effect/spider/spiderling/New()
+/obj/effect/spider/spiderling/initialise()
 	. = ..()
 	pixel_x = rand(6, -6)
 	pixel_y = rand(6, -6)
 	//50% chance to grow up
 	if(prob(50))
 		amount_grown = 1
-
-/obj/effect/spider/spiderling/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/spider/spiderling/Destroy()
@@ -230,7 +224,7 @@
 	icon_state = "cocoon1"
 	health = 60
 
-/obj/effect/spider/cocoon/New()
+/obj/effect/spider/cocoon/initialise()
 	. = ..()
 	icon_state = pick("cocoon1", "cocoon2", "cocoon3")
 

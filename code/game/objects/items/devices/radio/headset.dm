@@ -18,8 +18,8 @@
 	var/ks1type = /obj/item/encryptionkey
 	var/ks2type = null
 
-/obj/item/radio/headset/New()
-	..()
+/obj/item/radio/headset/initialise()
+	. = ..()
 	if(ks1type)
 		keyslot1 = new ks1type(src)
 	if(ks2type)

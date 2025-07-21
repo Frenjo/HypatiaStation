@@ -107,15 +107,12 @@
 	//What this does is that instead of having the grow minimum of 1, required to start growing, the minimum will be 0,
 	//meaning if you get the spacevines' size to something less than 20 plots, it won't grow anymore.
 
-/obj/effect/spacevine_controller/New()
+/obj/effect/spacevine_controller/initialise()
 	. = ..()
 	if(!isfloorturf(src.loc))
 		qdel(src)
 
 	spawn_spacevine_piece(src.loc)
-
-/obj/effect/spacevine_controller/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/spacevine_controller/Destroy()

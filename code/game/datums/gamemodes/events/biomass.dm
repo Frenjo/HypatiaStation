@@ -66,15 +66,12 @@
 	//What this does is that instead of having the grow minimum of 1, required to start growing, the minimum will be 0,
 	//meaning if you get the biomasssss..s' size to something less than 20 plots, it won't grow anymore.
 
-/obj/effect/biomass_controller/New()
+/obj/effect/biomass_controller/initialise()
 	. = ..()
 	if(!isfloorturf(src.loc))
 		qdel(src)
 
 	spawn_biomass_piece(src.loc)
-
-/obj/effect/biomass_controller/initialise()
-	. = ..()
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/biomass_controller/Destroy()

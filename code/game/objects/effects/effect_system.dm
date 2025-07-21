@@ -122,16 +122,14 @@ steam.start() -- spawns the effect
 
 	var/amount = 6.0
 
-/obj/effect/sparks/New()
-	..()
+/obj/effect/sparks/initialise()
+	. = ..()
 	playsound(src, "sparks", 100, 1)
 	var/turf/T = src.loc
 	if(isturf(T))
-		T.hotspot_expose(1000,100)
+		T.hotspot_expose(1000, 100)
 
-/obj/effect/sparks/initialise()
-	. = ..()
-	spawn(100)
+	spawn(10 SECONDS)
 		qdel(src)
 
 /obj/effect/sparks/Destroy()
@@ -144,7 +142,7 @@ steam.start() -- spawns the effect
 	..()
 	var/turf/T = src.loc
 	if(isturf(T))
-		T.hotspot_expose(1000,100)
+		T.hotspot_expose(1000, 100)
 
 /datum/effect/system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
@@ -614,8 +612,8 @@ steam.start() -- spawns the effect
 
 	var/metal = 1		// 1=aluminum, 2=iron
 
-/obj/structure/foamedmetal/New()
-	..()
+/obj/structure/foamedmetal/initialise()
+	. = ..()
 	update_nearby_tiles(1)
 
 /obj/structure/foamedmetal/Destroy()

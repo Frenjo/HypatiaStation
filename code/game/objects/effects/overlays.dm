@@ -11,9 +11,9 @@
 
 	var/tmp/atom/BeamSource
 
-/obj/effect/overlay/beam/New()
-	..()
-	spawn(10)
+/obj/effect/overlay/beam/initialise()
+	. = ..()
+	spawn(1 SECOND)
 		qdel(src)
 
 

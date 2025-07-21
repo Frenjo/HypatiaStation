@@ -81,7 +81,7 @@
 	var/obj/item/robot_part/head/head = null
 	var/created_name = ""
 
-/obj/item/robot_part/chassis/New()
+/obj/item/robot_part/chassis/initialise()
 	. = ..()
 	updateicon()
 

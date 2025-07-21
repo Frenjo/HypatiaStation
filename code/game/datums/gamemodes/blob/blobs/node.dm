@@ -7,12 +7,12 @@
 	fire_resist = 2
 
 /obj/effect/blob/node/New(loc, h = 100)
-	GLOBL.blobs.Add(src)
-	GLOBL.blob_nodes.Add(src)
 	. = ..(loc, h)
 
 /obj/effect/blob/node/initialise()
 	. = ..()
+	GLOBL.blobs.Add(src)
+	GLOBL.blob_nodes.Add(src)
 	START_PROCESSING(PCobj, src)
 
 /obj/effect/blob/node/Destroy()

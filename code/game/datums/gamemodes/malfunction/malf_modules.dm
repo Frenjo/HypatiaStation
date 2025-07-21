@@ -247,6 +247,7 @@ rcd light flash thingy on matter drain
 	var/list/possible_modules = null
 
 /datum/malf_module/module_picker/New()
+	. = ..()
 	possible_modules = list(
 		new /datum/malf_module/large/fireproof_core(),
 		new /datum/malf_module/large/upgrade_turrets(),

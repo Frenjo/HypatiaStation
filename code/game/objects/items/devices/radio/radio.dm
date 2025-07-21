@@ -39,7 +39,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
-/obj/item/radio/New()
+/obj/item/radio/initialise()
 	. = ..()
 	wires = new /datum/wires/radio(src)
 

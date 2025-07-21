@@ -11,7 +11,7 @@
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 
-/obj/item/paicard/New()
+/obj/item/paicard/initialise()
 	. = ..()
 	add_overlay("pai-off")
 

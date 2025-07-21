@@ -4,31 +4,12 @@
 /obj/item/storage/pill_bottle/happy
 	name = "bottle of happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
-
-/obj/item/storage/pill_bottle/happy/New()
-	..()
-	new /obj/item/reagent_holder/pill/happy(src)
-	new /obj/item/reagent_holder/pill/happy(src)
-	new /obj/item/reagent_holder/pill/happy(src)
-	new /obj/item/reagent_holder/pill/happy(src)
-	new /obj/item/reagent_holder/pill/happy(src)
-	new /obj/item/reagent_holder/pill/happy(src)
-	new /obj/item/reagent_holder/pill/happy(src)
-
+	starts_with = list(/obj/item/reagent_holder/pill/happy = 7)
 
 /obj/item/storage/pill_bottle/zoom
 	name = "bottle of zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."
-
-/obj/item/storage/pill_bottle/zoom/New()
-	..()
-	new /obj/item/reagent_holder/pill/zoom(src)
-	new /obj/item/reagent_holder/pill/zoom(src)
-	new /obj/item/reagent_holder/pill/zoom(src)
-	new /obj/item/reagent_holder/pill/zoom(src)
-	new /obj/item/reagent_holder/pill/zoom(src)
-	new /obj/item/reagent_holder/pill/zoom(src)
-	new /obj/item/reagent_holder/pill/zoom(src)
+	starts_with = list(/obj/item/reagent_holder/pill/zoom = 7)
 
 //########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
 /obj/item/contraband

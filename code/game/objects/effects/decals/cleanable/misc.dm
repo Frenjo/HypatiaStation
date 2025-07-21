@@ -23,9 +23,9 @@
 		F.dirt += 4
 	qdel(src)
 
-/obj/effect/decal/cleanable/greenglow/New()
-	..()
-	spawn(1200)// 2 minutes
+/obj/effect/decal/cleanable/greenglow/initialise()
+	. = ..()
+	spawn(2 MINUTES)
 		qdel(src)
 
 /obj/effect/decal/cleanable/dirt

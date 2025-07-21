@@ -12,7 +12,7 @@ GLOBAL_GLOBL_LIST_NEW(bump_teleporters)
 	var/id = null			//id of this bump_teleporter.
 	var/id_target = null	//id of bump_teleporter which this moves you to.
 
-/obj/effect/bump_teleporter/New()
+/obj/effect/bump_teleporter/initialise()
 	. = ..()
 	GLOBL.bump_teleporters.Add(src)
 

@@ -24,11 +24,14 @@
 		*/
 
 /obj/effect/blob/New(loc, h = 30)
-	GLOBL.blobs.Add(src)
-	src.health = h
-	src.set_dir(pick(1, 2, 4, 8))
-	src.update_icon()
 	. = ..(loc)
+	health = h
+
+/obj/effect/blob/initialise()
+	. = ..()
+	GLOBL.blobs.Add(src)
+	set_dir(pick(1, 2, 4, 8))
+	update_icon()
 
 /obj/effect/blob/Destroy()
 	GLOBL.blobs.Remove(src)
@@ -188,7 +191,16 @@
 
 /obj/effect/blob/idle/New(loc, h = 10)
 	. = ..(loc, h)
+
+/obj/effect/blob/idle/initialise()
+	. = ..()
 	update_idle()
+
+/obj/effect/blob/idle/Destroy()
+	var/obj/effect/blob/B = new /obj/effect/blob(loc)
+	spawn(30)
+		B.Life()
+	return ..()
 
 /obj/effect/blob/idle/proc/update_idle()
 	if(health <= 0)
@@ -201,9 +213,3 @@
 		icon_state = "blobb0"
 		return
 	icon_state = "blobidle0"
-
-/obj/effect/blob/idle/Destroy()
-	var/obj/effect/blob/B = new /obj/effect/blob(loc)
-	spawn(30)
-		B.Life()
-	return ..()
