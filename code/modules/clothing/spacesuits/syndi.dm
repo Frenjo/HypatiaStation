@@ -14,7 +14,7 @@
 	item_state = "space_suit_syndicate"
 	desc = "Has a tag on it: Totally not property of of a hostile corporation, honest!"
 	w_class = 3
-	allowed = list(
+	can_store = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/melee/energy/sword, /obj/item/handcuffs,
 		/obj/item/tank/emergency/oxygen

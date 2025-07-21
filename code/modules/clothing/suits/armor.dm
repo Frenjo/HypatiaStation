@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/armor
-	allowed = list(
+	can_store = list(
 		/obj/item/gun/energy, /obj/item/reagent_holder/spray/pepper, /obj/item/gun/projectile,
 		/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/handcuffs
 	)
@@ -72,7 +72,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(
+	can_store = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency/oxygen
 	)
@@ -148,7 +148,7 @@
 	item_state = "centcom"
 	w_class = 4//bulky item
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(
+	can_store = list(
 		/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/handcuffs,
 		/obj/item/tank/emergency/oxygen
 	)

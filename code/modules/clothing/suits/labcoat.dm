@@ -5,7 +5,7 @@
 	item_state = "labcoat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
-	allowed = list(
+	can_store = list(
 		/obj/item/gas_analyser, /obj/item/stack/medical, /obj/item/dnainjector,
 		/obj/item/reagent_holder/dropper, /obj/item/reagent_holder/syringe, /obj/item/reagent_holder/hypospray,
 		/obj/item/health_analyser, /obj/item/flashlight/pen, /obj/item/reagent_holder/glass/bottle,

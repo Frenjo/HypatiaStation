@@ -55,7 +55,7 @@
 	item_state = "eng_hardsuit"
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
-	allowed = list(
+	can_store = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/storage/bag/ore,
 		/obj/item/t_scanner, /obj/item/pickaxe, /obj/item/rcd,
 		/obj/item/suit_cooling_unit
@@ -345,7 +345,7 @@
 	slowdown = 1
 	w_class = 3
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 60)
-	allowed = list(
+	can_store = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/gun,
 		/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/melee/baton,
 		/obj/item/melee/energy/sword, /obj/item/handcuffs, /obj/item/suit_cooling_unit
@@ -390,7 +390,7 @@
 	name = "medical hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_hardsuit"
-	allowed = list(
+	can_store = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/storage/firstaid,
 		/obj/item/health_analyser, /obj/item/stack/medical, /obj/item/suit_cooling_unit
 	)
@@ -415,7 +415,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
 	item_state = "sec_hardsuit"
 	armor = list(melee = 60, bullet = 10, laser = 30, energy = 5, bomb = 45, bio = 100, rad = 10)
-	allowed = list(
+	can_store = list(
 		/obj/item/gun, /obj/item/flashlight, /obj/item/tank,
 		/obj/item/melee/baton, /obj/item/suit_cooling_unit
 	)

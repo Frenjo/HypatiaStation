@@ -19,7 +19,7 @@
 	permeability_coefficient = 0.02
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
-	allowed = list(
+	can_store = list(
 		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs
@@ -64,7 +64,7 @@
 	item_state = "santa"
 	slowdown = 0
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_ONE_SIZE_FITS_ALL
-	allowed = list(/obj/item) //for stuffing exta special presents
+	can_store = list(/obj/item) //for stuffing exta special presents
 
 
 //Space pirate outfit
@@ -84,7 +84,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	w_class = 3
-	allowed = list(
+	can_store = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency/oxygen
 	)
@@ -99,7 +99,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the clown. HONK!"
 	icon_state = "clownspace_suit"
 	item_state = "clownspace_suit"
-	allowed = list(/obj/item/flashlight, /obj/item/tank)
+	can_store = list(/obj/item/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/clown
 	name = "clown's EVA helmet"
@@ -113,7 +113,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the mime. ..."
 	icon_state = "mimespace_suit"
 	item_state = "mimespace_suit"
-	allowed = list(/obj/item/flashlight, /obj/item/tank)
+	can_store = list(/obj/item/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/mime
 	name = "mime's EVA helmet"

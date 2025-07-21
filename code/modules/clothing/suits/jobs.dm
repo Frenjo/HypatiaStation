@@ -10,7 +10,7 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	allowed = list(
+	can_store = list(
 		/obj/item/reagent_holder/spray/plantbgone, /obj/item/plant_analyser, /obj/item/seeds,
 		/obj/item/nutrient, /obj/item/minihoe
 	)
@@ -58,7 +58,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
-	allowed = list(/obj/item/kitchenknife, /obj/item/butch)
+	can_store = list(/obj/item/kitchenknife, /obj/item/butch)
 
 //Chef
 /obj/item/clothing/suit/chef/classic
@@ -77,7 +77,7 @@
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	allowed = list(
+	can_store = list(
 		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/storage/fancy/cigarettes,
@@ -94,7 +94,7 @@
 	desc = "A forensics technician jacket."
 	item_state = "det_suit"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
-	allowed = list(
+	can_store = list(
 		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/detective_scanner,
@@ -119,7 +119,7 @@
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
-	allowed = list(
+	can_store = list(
 		/obj/item/gas_analyser, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter,
 		/obj/item/radio, /obj/item/t_scanner, /obj/item/crowbar, /obj/item/screwdriver,
 		/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency/oxygen,
@@ -179,7 +179,7 @@
 	icon_state = "fr_jacket_open"
 	item_state = "fr_jacket"
 	blood_overlay_type = "armor"
-	allowed = list(
+	can_store = list(
 		/obj/item/stack/medical, /obj/item/reagent_holder/dropper, /obj/item/reagent_holder/hypospray,
 		/obj/item/reagent_holder/syringe, /obj/item/health_analyser, /obj/item/flashlight,
 		/obj/item/radio, /obj/item/tank/emergency/oxygen

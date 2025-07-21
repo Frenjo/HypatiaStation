@@ -19,7 +19,7 @@
 	icon_state = "bluetag"
 	item_state = "bluetag"
 
-	allowed = list(/obj/item/gun/energy/laser/tag/blue)
+	can_store = list(/obj/item/gun/energy/laser/tag/blue)
 
 /obj/item/clothing/suit/laser_tag/red
 	name = "red laser tag armour"
@@ -27,7 +27,7 @@
 	icon_state = "redtag"
 	item_state = "redtag"
 
-	allowed = list(/obj/item/gun/energy/laser/tag/red)
+	can_store = list(/obj/item/gun/energy/laser/tag/red)
 
 /*
  * Costume
@@ -85,7 +85,7 @@
 	icon_state = "judge"
 	item_state = "judge"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	allowed = list(/obj/item/storage/fancy/cigarettes, /obj/item/cash)
+	can_store = list(/obj/item/storage/fancy/cigarettes, /obj/item/cash)
 	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 
 
@@ -112,7 +112,7 @@
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the Syndicate space suit, you'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = 3
-	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/toy)
+	can_store = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/toy)
 	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 
 

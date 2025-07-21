@@ -52,7 +52,7 @@
 	icon_state = "cultrobes"
 	item_state = "cultrobes"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
+	can_store = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
 	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 	siemens_coefficient = 0
@@ -73,7 +73,7 @@
 	icon_state = "magusred"
 	item_state = "magusred"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
+	can_store = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
 	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 	siemens_coefficient = 0
@@ -92,7 +92,7 @@
 	item_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space proof."
 	w_class = 3
-	allowed = list(
+	can_store = list(
 		/obj/item/tome,
 		/obj/item/melee/cultblade,
 		/obj/item/tank/emergency/oxygen,

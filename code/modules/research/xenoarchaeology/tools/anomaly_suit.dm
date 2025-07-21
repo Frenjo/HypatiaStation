@@ -21,7 +21,7 @@
 	icon_state = "cespace_suit"
 	item_state = "cespace_suit"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 5, bomb = 0, bio = 100, rad = 100)
-	allowed = list(/obj/item/flashlight, /obj/item/tank, /obj/item/suit_cooling_unit)
+	can_store = list(/obj/item/flashlight, /obj/item/tank, /obj/item/suit_cooling_unit)
 
 /obj/item/clothing/head/helmet/space/anomaly
 	name = "excavation hood"

@@ -9,7 +9,7 @@
 	flags = FPRINT | TABLEPASS
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	armor = list(melee = 40, bullet = 30, laser = 20, energy = 15, bomb = 25, bio = 10, rad = 10)
-	allowed = list(/obj/item/flashlight,/obj/item/gun,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
+	can_store = list(/obj/item/flashlight,/obj/item/gun,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 9
 	var/fuel = 0
 

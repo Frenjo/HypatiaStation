@@ -17,7 +17,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/fire_extinguisher)
+	can_store = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/fire_extinguisher)
 	slowdown = 1.0
 	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES | INV_FLAG_HIDE_TAIL
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
@@ -72,7 +72,7 @@
 /obj/item/clothing/suit/bomb_suit/security
 	icon_state = "bombsuitsec"
 	item_state = "bombsuitsec"
-	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/handcuffs)
+	can_store = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/handcuffs)
 
 /*
  * Radiation protection
@@ -94,7 +94,7 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/clothing/head/radiation, /obj/item/clothing/mask/gas)
+	can_store = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/clothing/head/radiation, /obj/item/clothing/mask/gas)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 60, rad = 100)
 	inv_flags = INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_TAIL

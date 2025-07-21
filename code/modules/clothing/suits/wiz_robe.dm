@@ -50,7 +50,7 @@
 	permeability_coefficient = 0.01
 	body_parts_covered = FULL_BODY //It's magic, I ain't gotta explain shit. --NEO
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 20, bio = 20, rad = 20)
-	allowed = list(/obj/item/teleportation_scroll)
+	can_store = list(/obj/item/teleportation_scroll)
 	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 	siemens_coefficient = 0.8
 

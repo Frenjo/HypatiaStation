@@ -28,7 +28,7 @@
 	permeability_coefficient = 0.02
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/suit_cooling_unit)
+	can_store = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/suit_cooling_unit)
 	slowdown = 3
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 50)
 	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES | INV_FLAG_HIDE_TAIL

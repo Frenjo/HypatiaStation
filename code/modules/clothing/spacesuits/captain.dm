@@ -20,7 +20,7 @@
 	permeability_coefficient = 0.02
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
-	allowed = list(
+	can_store = list(
 		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton,/obj/item/handcuffs
