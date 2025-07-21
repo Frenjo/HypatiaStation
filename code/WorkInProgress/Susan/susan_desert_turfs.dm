@@ -251,7 +251,7 @@ Alien plants should do something if theres a lot of poison
 	icon_state = "wardendnavyclothes"
 	item_state = "wardendnavyclothes"
 	item_color = "wardendnavyclothes"
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/navysecurity
 	name = "security officer's jumpsuit"
@@ -259,7 +259,7 @@ Alien plants should do something if theres a lot of poison
 	icon_state = "officerdnavyclothes"
 	item_state = "officerdnavyclothes"
 	item_color = "officerdnavyclothes"
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/navyhead_of_security
 	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
@@ -267,7 +267,7 @@ Alien plants should do something if theres a lot of poison
 	icon_state = "hosdnavyclothes"
 	item_state = "hosdnavyclothes"
 	item_color = "hosdnavyclothes"
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/hosnavycoat
 	name = "armored coat"

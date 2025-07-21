@@ -19,7 +19,7 @@
 	item_state = "welding"
 	matter_amounts = /datum/design/autolathe/welding_helmet::materials
 
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9

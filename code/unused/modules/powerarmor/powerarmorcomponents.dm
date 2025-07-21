@@ -90,7 +90,7 @@
 /obj/item/powerarmor/reactive
 	name = "Adminbus power armor reactive plating"
 	desc = "Made with the rare Badminium molecule."
-	var/list/togglearmor = list(melee = 250, bullet = 100, laser = 100,energy = 100, bomb = 100, bio = 100, rad = 100)
+	var/list/togglearmor = list(melee = 250, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
 	 //Good lord an active energy axe does 150 damage a swing? Anyway, barring var editing, this armor loadout should be impervious to anything. Enjoy, badmins~ --NEO
 
 	toggle(sudden = 0)
@@ -116,7 +116,7 @@
 	centcom
 		name = "CentCom power armor reactive plating"
 		desc = "Pretty effective against everything, not perfect though."
-		togglearmor = list(melee = 90, bullet = 70, laser = 60,energy = 40, bomb = 75, bio = 75, rad = 75)
+		togglearmor = list(melee = 90, bullet = 70, laser = 60, energy = 40, bomb = 75, bio = 75, rad = 75)
 		slowdown = 2
 
 
@@ -241,6 +241,3 @@
 			name = "Adminbus togglable power armor atmospheric seals"
 			desc = "Made with the rare Badminium molecule."
 			slowdown = 0
-
-
-

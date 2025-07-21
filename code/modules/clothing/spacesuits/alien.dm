@@ -48,7 +48,7 @@
 
 //Soghun space gear. Huge and restrictive.
 /obj/item/clothing/head/helmet/space/soghun
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 50)
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	var/up = 0 //So Soghun helmets play nicely with the weldervision check.

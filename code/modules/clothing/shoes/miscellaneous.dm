@@ -19,7 +19,7 @@
 	name = "\improper SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = ITEM_FLAG_NO_SLIP
 	siemens_coefficient = 0.6
 
@@ -27,7 +27,7 @@
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"
 	icon_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	item_flags = ITEM_FLAG_NO_SLIP
 	siemens_coefficient = 0.6
 
@@ -42,7 +42,7 @@
 	icon_state = "s-ninja"
 	permeability_coefficient = 0.01
 	item_flags = ITEM_FLAG_NO_SLIP
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.2
 
 	cold_protection = FEET
