@@ -45,12 +45,12 @@
 
 /datum/design/circuit/mecha/odysseus/main
 	name = "\"Odysseus\" Central Control module"
-	desc = "Allows for the construction of a \"Odysseus\" Central Control module."
+	desc = "Allows for the construction of an \"Odysseus\" Central Control module."
 	build_path = /obj/item/circuitboard/mecha/odysseus/main
 
 /datum/design/circuit/mecha/odysseus/peri
 	name = "\"Odysseus\" Peripherals Control module"
-	desc = "Allows for the construction of a \"Odysseus\" Peripheral Control module."
+	desc = "Allows for the construction of an \"Odysseus\" Peripheral Control module."
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 
 // Gygax
@@ -115,7 +115,7 @@
 
 /datum/design/circuit/mecha/archambeau_targ
 	name = "\"Archambeau\" Weapon Control & Targeting module"
-	desc = "Allows for the construction of a \"Archambeau\" Weapon Control & Targeting module."
+	desc = "Allows for the construction of an \"Archambeau\" Weapon Control & Targeting module."
 	req_tech = alist(/decl/tech/combat = 4, /decl/tech/engineering = 6, /decl/tech/programming = 5)
 	build_path = /obj/item/circuitboard/mecha/archambeau/targeting
 
