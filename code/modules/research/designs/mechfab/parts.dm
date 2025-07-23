@@ -241,7 +241,7 @@
 	)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/torso
-	categories = list("Durand", "Archambeau")
+	categories = list("Durand", "Archambeau", "Brigand")
 
 /datum/design/mechfab/part/durand_head
 	name = "\"Durand\" Head"
@@ -251,12 +251,12 @@
 		/decl/tech/programming = 2
 	)
 	materials = alist(
-		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, MATERIAL_AMOUNT_PER_SHEET * 5,
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5,
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/head
-	categories = list("Durand", "Archambeau")
+	categories = list("Durand", "Archambeau", "Brigand")
 
 /datum/design/mechfab/part/durand_left_arm
 	name = "\"Durand\" Left Arm"
@@ -265,7 +265,7 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/left_arm
-	categories = list("Durand", "Archambeau")
+	categories = list("Durand", "Archambeau", "Brigand")
 
 /datum/design/mechfab/part/durand_right_arm
 	name = "\"Durand\" Right Arm"
@@ -274,7 +274,7 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/right_arm
-	categories = list("Durand", "Archambeau")
+	categories = list("Durand", "Archambeau", "Brigand")
 
 /datum/design/mechfab/part/durand_left_leg
 	name = "\"Durand\" Left Leg"
@@ -283,7 +283,7 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/left_leg
-	categories = list("Durand", "Archambeau")
+	categories = list("Durand", "Archambeau", "Brigand")
 
 /datum/design/mechfab/part/durand_right_leg
 	name = "\"Durand\" Right Leg"
@@ -292,7 +292,7 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/right_leg
-	categories = list("Durand", "Archambeau")
+	categories = list("Durand", "Archambeau", "Brigand")
 
 /datum/design/mechfab/part/durand_armour
 	name = "\"Durand\" Armour"
@@ -323,6 +323,27 @@
 	build_time = 60 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/armour/archambeau
 	categories = list("Archambeau")
+
+// Brigand
+/datum/design/mechfab/part/brigand_chassis
+	name = "\"Brigand\" Chassis"
+	desc = "The chassis of a Brigand-type exosuit."
+	req_tech = alist(/decl/tech/materials = 6, /decl/tech/combat = 5, /decl/tech/engineering = 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12.5)
+	build_path = /obj/item/mecha_part/chassis/brigand
+	categories = list("Brigand")
+
+/datum/design/mechfab/part/brigand_armour
+	name = "\"Brigand\" Armour"
+	desc = "A set of armour plates for a Brigand-type exosuit."
+	req_tech = alist(/decl/tech/materials = 6, /decl/tech/combat = 5, /decl/tech/engineering = 6)
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 9,
+		/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 9, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 15
+	)
+	build_time = 60 SECONDS
+	build_path = /obj/item/mecha_part/part/durand/armour/brigand
+	categories = list("Brigand")
 
 // Phazon
 /datum/design/mechfab/part/phazon_chassis

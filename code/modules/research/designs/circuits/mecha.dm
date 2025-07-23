@@ -119,6 +119,25 @@
 	req_tech = alist(/decl/tech/combat = 4, /decl/tech/engineering = 6, /decl/tech/programming = 5)
 	build_path = /obj/item/circuitboard/mecha/archambeau/targeting
 
+// Brigand
+/datum/design/circuit/mecha/brigand_main
+	name = "\"Brigand\" Central Control module"
+	desc = "Allows for the construction of a \"Brigand\" Central Control module."
+	req_tech = alist(/decl/tech/materials = 6, /decl/tech/power_storage = 5, /decl/tech/programming = 6)
+	build_path = /obj/item/circuitboard/mecha/brigand/main
+
+/datum/design/circuit/mecha/brigand_peri
+	name = "\"Brigand\" Peripherals Control module"
+	desc = "Allows for the construction of a \"Brigand\" Peripheral Control module."
+	req_tech = alist(/decl/tech/engineering = 6, /decl/tech/programming = 6)
+	build_path = /obj/item/circuitboard/mecha/brigand/peripherals
+
+/datum/design/circuit/mecha/brigand_targ
+	name = "\"Brigand\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Brigand\" Weapon Control & Targeting module."
+	req_tech = alist(/decl/tech/combat = 5, /decl/tech/engineering = 6, /decl/tech/programming = 6)
+	build_path = /obj/item/circuitboard/mecha/brigand/targeting
+
 // Phazon
 /datum/design/circuit/mecha/phazon_main
 	name = "\"Phazon\" Central Control module"

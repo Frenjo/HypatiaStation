@@ -163,7 +163,7 @@
 		holder.icon_state = step["icon_state"]
 
 /datum/construction/reversible/proc/on_step()
-	if(index > length(steps))
+	if(index >= length(steps))
 		spawn_result()
 	else
 		update_holder()

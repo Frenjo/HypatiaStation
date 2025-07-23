@@ -63,3 +63,23 @@
 
 	equip_cooldown = 1.2 SECONDS
 	energy_drain = 175
+
+// Emitter
+/obj/item/mecha_equipment/weapon/energy/brigand_emitter
+	name = "\improper NT-EM \"BR1-G4ND\" mounted emitter"
+	desc = "An engineering-grade emitter fitted with a specially-designed mounting socket compatible with Brigand-type exosuits. \
+		(Can be attached to: Brigand)"
+	icon_state = "xray" // Temporary sprite, but should basically never be seen anyway.
+
+	mecha_types = MECHA_TYPE_BRIGAND
+
+	equip_cooldown = 3 SECONDS
+	energy_drain = 300
+
+	salvageable = FALSE
+
+	allow_duplicates = FALSE
+	allow_detach = FALSE
+
+	projectile = /obj/item/projectile/energy/beam/emitter
+	fire_sound = 'sound/weapons/gun/emitter.ogg'

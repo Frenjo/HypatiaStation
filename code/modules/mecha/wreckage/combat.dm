@@ -36,6 +36,10 @@
 	name = "Archambeau wreckage"
 	icon_state = "archambeau-broken"
 
+/obj/structure/mecha_wreckage/durand/brigand
+	name = "Brigand wreckage"
+	icon_state = "brigand-broken"
+
 // Marauder
 /obj/structure/mecha_wreckage/marauder
 	name = "Marauder wreckage"

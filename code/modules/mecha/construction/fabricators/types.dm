@@ -47,7 +47,7 @@
 		"Ripley", "Firefighter", "Rescue Ranger", "Dreadnought", "Bulwark",
 		"Odysseus",
 		"Gygax", "Serenity",
-		"Durand", "Archambeau",
+		"Durand", "Archambeau", "Brigand",
 		"Phazon",
 		"H.O.N.K",
 		"Reticence",
