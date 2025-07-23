@@ -10,6 +10,23 @@
 	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/closed/wall)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
 
+	// Zoom function.
+	var/zoom_capable = FALSE
+	var/zoom_mode = FALSE
+	var/zoom_sound = 'sound/mecha/voice/image_enh.ogg'
+
+	// Defence mode function.
+	var/defence_mode_capable = FALSE
+	var/defence_mode = FALSE
+	var/defence_mode_deflect = 35
+
+/obj/mecha/combat/New()
+	. = ..()
+	if(!zoom_capable)
+		verbs.Remove(/obj/mecha/combat/verb/toggle_zoom_mode)
+	if(!defence_mode_capable)
+		verbs.Remove(/obj/mecha/combat/verb/toggle_defence_mode)
+
 /*
 /obj/mecha/combat/range_action(atom/target)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
@@ -259,6 +276,8 @@
 /obj/mecha/combat/go_out()
 	if(isnotnull(occupant?.client))
 		occupant.client.mouse_pointer_icon = initial(occupant.client.mouse_pointer_icon)
+		occupant.client.view = world.view
+		zoom_mode = FALSE
 	. = ..()
 
 /obj/mecha/combat/Topic(href, href_list)
@@ -267,6 +286,12 @@
 	if(topic_filter.get("close"))
 		am = null
 		return
+	if(topic_filter.get("zoom"))
+		toggle_zoom_mode()
+		return
+	if(topic_filter.get("defence_mode"))
+		toggle_defence_mode()
+		return
 	/*
 	if(filter.get("saminput"))
 		if(md5(filter.get("saminput")) == am)
@@ -274,3 +299,55 @@
 		am = null
 	return
 	*/
+
+/obj/mecha/combat/relaymove(mob/user, direction)
+	if(zoom_mode)
+		if(COOLDOWN_FINISHED(src, cooldown_mecha_message))
+			occupant_message(SPAN_WARNING("Unable to move while in zoom mode."))
+			COOLDOWN_START(src, cooldown_mecha_message, MECHA_MESSAGE_COOLDOWN)
+		return FALSE
+	if(defence_mode)
+		if(COOLDOWN_FINISHED(src, cooldown_mecha_message))
+			occupant_message(SPAN_WARNING("Unable to move while in defence mode."))
+			COOLDOWN_START(src, cooldown_mecha_message, MECHA_MESSAGE_COOLDOWN)
+		return FALSE
+	return ..()
+
+/obj/mecha/combat/verb/toggle_zoom_mode()
+	set category = "Exosuit Interface"
+	set name = "Toggle Zoom Mode"
+	set popup_menu = FALSE
+	set src = usr.loc
+
+	if(usr != occupant)
+		return
+	if(isnull(occupant?.client))
+		return
+
+	zoom_mode = !zoom_mode
+	balloon_alert(occupant, "[zoom_mode ? "en" : "dis"]abled zoom mode")
+	send_byjax(occupant, "exosuit.browser", "zoom_command", "[zoom_mode ? "Dis" : "En"]able Zoom Mode")
+	log_message("Toggled zoom mode.")
+	if(zoom_mode)
+		occupant.client.view = 12
+		occupant << sound(zoom_sound, volume = 50)
+	else
+		occupant.client.view = world.view//world.view - default mob view size
+
+/obj/mecha/combat/verb/toggle_defence_mode()
+	set category = "Exosuit Interface"
+	set name = "Toggle Defence Mode"
+	set popup_menu = FALSE
+	set src = usr.loc
+
+	if(usr != occupant)
+		return
+
+	defence_mode = !defence_mode
+	if(defence_mode)
+		deflect_chance = defence_mode_deflect
+	else
+		deflect_chance = initial(deflect_chance)
+	balloon_alert(occupant, "[defence_mode ? "en" : "dis"]abled defence mode")
+	send_byjax(occupant, "exosuit.browser", "defence_mode_command", "[defence_mode ? "Dis" : "En"]able Defence Mode")
+	log_message("Toggled defence mode.")

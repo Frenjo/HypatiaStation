@@ -17,9 +17,9 @@
 	if(!has_charge(step_energy_drain))
 		return FALSE
 	if(isnotnull(connected_port))
-		if(world.time - last_message > 20)
+		if(COOLDOWN_FINISHED(src, cooldown_mecha_message))
 			occupant_message(SPAN_WARNING("Unable to move while connected to the air system port."))
-			last_message = world.time
+			COOLDOWN_START(src, cooldown_mecha_message, MECHA_MESSAGE_COOLDOWN)
 		return FALSE
 	if(state)
 		occupant_message(SPAN_WARNING("Maintenance protocols in effect."))

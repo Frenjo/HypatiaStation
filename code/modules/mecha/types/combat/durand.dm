@@ -18,53 +18,21 @@
 
 	wreckage = /obj/structure/mecha_wreckage/durand
 
-	var/defence = 0
-	var/defence_deflect = 35
-
-/obj/mecha/combat/durand/relaymove(mob/user, direction)
-	if(defence)
-		if(world.time - last_message > 20)
-			occupant_message(SPAN_WARNING("Unable to move while in defence mode."))
-			last_message = world.time
-		return FALSE
-	. = ..()
+	defence_mode_capable = TRUE
 
 /obj/mecha/combat/durand/get_stats_part()
 	. = ..()
-	. += "<b>Defence Mode: [defence ? "enabled" : "disabled"]</b>"
+	. += "<b>Defence Mode: [defence_mode ? "enabled" : "disabled"]</b>"
 
 /obj/mecha/combat/durand/get_commands()
 	. = {"<div class='wr'>
 		<div class='header'>Special</div>
 		<div class='links'>
-		<a href='byond://?src=\ref[src];defence_mode=1'><span id="defence_mode_command">[defence ? "Dis" : "En"]able Defence Mode</span></a>
+		<a href='byond://?src=\ref[src];defence_mode=1'><span id="defence_mode_command">[defence_mode ? "Dis" : "En"]able Defence Mode</span></a>
 		</div>
 		</div>
 	"}
 	. += ..()
-
-/obj/mecha/combat/durand/Topic(href, href_list)
-	. = ..()
-	if(href_list["defence_mode"])
-		defence_mode()
-
-/obj/mecha/combat/durand/verb/defence_mode()
-	set category = "Exosuit Interface"
-	set name = "Toggle Defence Mode"
-	set popup_menu = FALSE
-	set src = usr.loc
-
-	if(usr != occupant)
-		return
-
-	defence = !defence
-	if(defence)
-		deflect_chance = defence_deflect
-	else
-		deflect_chance = initial(deflect_chance)
-	balloon_alert(occupant, "[defence ? "en" : "dis"]abled defence mode")
-	send_byjax(occupant, "exosuit.browser", "defence_mode_command", "[defence ? "Dis" : "En"]able Defence Mode")
-	log_message("Toggled defence mode.")
 
 // Archambeau
 /obj/mecha/combat/durand/archambeau

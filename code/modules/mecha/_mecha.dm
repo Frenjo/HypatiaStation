@@ -38,7 +38,7 @@
 
 	var/state = 0
 	var/list/log = list()
-	var/last_message = 0
+	COOLDOWN_DECLARE(cooldown_mecha_message) // The mecha's occupant message cooldown.
 	var/dna	//dna-locking the mech
 	var/datum/effect/system/spark_spread/spark_system = null
 
