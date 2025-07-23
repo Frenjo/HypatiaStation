@@ -146,11 +146,15 @@
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
 	icon_state = "mauler"
 
+	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
+	activation_sound_volume = 90
+
 	operation_req_access = list(ACCESS_SYNDICATE)
 
 	wreckage = /obj/structure/mecha_wreckage/mauler
 
 	zoom_sound = 'sound/mecha/voice/image_enhsyndi.ogg'
+	zoom_sound_volume = 90.5
 
 // Equipped variant
 /obj/mecha/combat/marauder/mauler/equipped

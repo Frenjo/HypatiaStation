@@ -14,6 +14,7 @@
 	var/zoom_capable = FALSE
 	var/zoom_mode = FALSE
 	var/zoom_sound = 'sound/mecha/voice/image_enh.ogg'
+	var/zoom_sound_volume = 50
 
 	// Defence mode function.
 	var/defence_mode_capable = FALSE
@@ -330,7 +331,7 @@
 	log_message("Toggled zoom mode.")
 	if(zoom_mode)
 		occupant.client.view = 12
-		occupant << sound(zoom_sound, volume = 50)
+		occupant << sound(zoom_sound, volume = zoom_sound_volume)
 	else
 		occupant.client.view = world.view//world.view - default mob view size
 

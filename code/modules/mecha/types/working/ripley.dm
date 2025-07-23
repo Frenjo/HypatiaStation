@@ -156,12 +156,14 @@
 	max_temperature = 42500
 	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 25)
 
-	max_equip = 4
+	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
+	activation_sound_volume = 90
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
 	mecha_type = MECHA_TYPE_SINDY
+	max_equip = 4
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
 

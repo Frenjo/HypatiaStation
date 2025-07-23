@@ -25,6 +25,8 @@
 	var/internal_damage = 0 // Contains bitflags.
 
 	// Sounds
+	var/activation_sound = 'sound/mecha/voice/nominal.ogg'
+	var/activation_sound_volume = 50
 	var/step_sound = 'sound/mecha/movement/mechstep.ogg'
 	var/step_sound_volume = 40
 	var/turn_sound = 'sound/mecha/movement/mechturn.ogg'

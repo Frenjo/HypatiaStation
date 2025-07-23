@@ -81,12 +81,14 @@
 	deflect_chance = 20
 	damage_resistance = list("brute" = 27.5, "fire" = 10, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10)
 
-	max_equip = 4
+	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
+	activation_sound_volume = 90
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
 	mecha_type = MECHA_TYPE_EURYMACHUS
+	max_equip = 4
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
