@@ -15,6 +15,7 @@ GLOBAL_GLOBL_LIST_INIT(reverse_dir, list(	// reverse_dir[dir] = reverse of dir
 // Areas
 GLOBAL_GLOBL_LIST_NEW(area/area_list) // A list of all areas in the world.
 GLOBAL_GLOBL_LIST_NEW(turf/open/open_turf_list) // A list of all open turfs in the world.
+GLOBAL_GLOBL_LIST_NEW(turf/closed/closed_turf_list) // A list of all closed turfs in the world.
 
 // Landmarks
 GLOBAL_GLOBL_LIST_NEW(obj/effect/landmark/landmark_list) // A list of all created landmarks.

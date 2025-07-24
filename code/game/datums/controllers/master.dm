@@ -247,7 +247,7 @@ CONTROLLER_DEF(master)
 	for_no_type_check(var/turf/open/turf, GLOBL.open_turf_list)
 		if(!GC_DESTROYED(turf))
 			turf.initialise()
-	for_no_type_check(var/turf/closed/rock/turf, GLOBL.all_rock_turfs)
+	for_no_type_check(var/turf/closed/turf, GLOBL.closed_turf_list)
 		if(!GC_DESTROYED(turf))
 			turf.initialise()
 	WAIT_FOR_BACKLOG
