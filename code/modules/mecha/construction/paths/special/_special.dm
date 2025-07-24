@@ -4,10 +4,8 @@
 	var/optional_circuit = null
 	var/optional_circuit_name = "targeting" // This will basically never change but is here for future-proofing.
 
-	var/scanning_module = null
-	var/scanning_module_name = null
-	var/capacitor = null
-	var/capacitor_name = null
+	var/obj/item/stock_part/scanning_module/scanning_module = null
+	var/obj/item/stock_part/capacitor/capacitor = null
 
 	var/internal_armour = null
 	var/external_armour = null
@@ -39,31 +37,31 @@
 			"desc" = "The [optional_circuit_name] module is secured.",
 			"key" = scanning_module,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"message" = "installed [scanning_module_name]",
+			"message" = "installed [scanning_module::name]",
 			"back_key" = /obj/item/screwdriver,
 			"back_message" = "unfastened [optional_circuit_name] module"
 		),
 		list(
-			"desc" = "\A [scanning_module_name] is installed.",
+			"desc" = "\A [scanning_module::name] is installed.",
 			"key" = /obj/item/screwdriver,
-			"message" = "secured [scanning_module_name]",
+			"message" = "secured [scanning_module::name]",
 			"back_key" = /obj/item/crowbar,
-			"back_message" = "removed [scanning_module_name]"
+			"back_message" = "removed [scanning_module::name]"
 		),
 		list(
-			"desc" = "The [scanning_module_name] is secured.",
+			"desc" = "The [scanning_module::name] is secured.",
 			"key" = capacitor,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"message" = "installed [capacitor_name]",
+			"message" = "installed [capacitor::name]",
 			"back_key" = /obj/item/screwdriver,
-			"back_message" = "unfastened [scanning_module_name]"
+			"back_message" = "unfastened [scanning_module::name]"
 		),
 		list(
-			"desc" = "\A [capacitor_name] is installed.",
+			"desc" = "\A [capacitor::name] is installed.",
 			"key" = /obj/item/screwdriver,
-			"message" = "secured [capacitor_name]",
+			"message" = "secured [capacitor::name]",
 			"back_key" = /obj/item/crowbar,
-			"back_message" = "removed [capacitor_name]"
+			"back_message" = "removed [capacitor::name]"
 		)
 	)
 
@@ -71,12 +69,12 @@
 	. = ..()
 	. += list(
 		list(
-			"desc" = "The [capacitor_name] is secured.",
+			"desc" = "The [capacitor::name] is secured.",
 			"key" = /obj/item/bluespace_crystal/artificial,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed artificial bluespace crystal",
 			"back_key" = /obj/item/screwdriver,
-			"back_message" = "unfastened [capacitor_name]"
+			"back_message" = "unfastened [capacitor::name]"
 		),
 		list(
 			"desc" = "An artificial bluespace crystal is installed.",

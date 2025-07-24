@@ -21,9 +21,7 @@
 	optional_circuit = /obj/item/circuitboard/mecha/gygax/targeting
 
 	scanning_module = /obj/item/stock_part/scanning_module/adv
-	scanning_module_name = /obj/item/stock_part/scanning_module/adv::name
 	capacitor = /obj/item/stock_part/capacitor/adv
-	capacitor_name = /obj/item/stock_part/capacitor/adv::name
 
 	internal_armour = /obj/item/stack/sheet/steel
 	external_armour = /obj/item/mecha_part/part/gygax/armour

@@ -2,10 +2,8 @@
 	var/optional_circuit = null
 	var/optional_circuit_name = "targeting" // This should either be "targeting" or "medical".
 
-	var/scanning_module = null
-	var/scanning_module_name = null // I have to do this manually on each subtype because I can't dynamically do scanning_module::name.
-	var/capacitor = null
-	var/capacitor_name = null // See above.
+	var/obj/item/stock_part/scanning_module/scanning_module = null
+	var/obj/item/stock_part/capacitor/capacitor = null
 
 	var/internal_armour = null
 	var/external_armour = null
@@ -38,31 +36,31 @@
 			"desc" = "The [optional_circuit_name] module is secured.",
 			"key" = scanning_module,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"message" = "installed [scanning_module_name]",
+			"message" = "installed [scanning_module::name]",
 			"back_key" = /obj/item/screwdriver,
 			"back_message" = "unfastened [optional_circuit_name] module"
 		),
 		list(
-			"desc" = "\A [scanning_module_name] is installed.",
+			"desc" = "\A [scanning_module::name] is installed.",
 			"key" = /obj/item/screwdriver,
-			"message" = "secured [scanning_module_name]",
+			"message" = "secured [scanning_module::name]",
 			"back_key" = /obj/item/crowbar,
-			"back_message" = "removed [scanning_module_name]"
+			"back_message" = "removed [scanning_module::name]"
 		),
 		list(
-			"desc" = "The [scanning_module_name] is secured.",
+			"desc" = "The [scanning_module::name] is secured.",
 			"key" = capacitor,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"message" = "installed [capacitor_name]",
+			"message" = "installed [capacitor::name]",
 			"back_key" = /obj/item/screwdriver,
-			"back_message" = "unfastened [scanning_module_name]"
+			"back_message" = "unfastened [scanning_module::name]"
 		),
 		list(
-			"desc" = "\A [capacitor_name] is installed.",
+			"desc" = "\A [capacitor::name] is installed.",
 			"key" = /obj/item/screwdriver,
-			"message" = "secured [capacitor_name]",
+			"message" = "secured [capacitor::name]",
 			"back_key" = /obj/item/crowbar,
-			"back_message" = "removed [capacitor_name]"
+			"back_message" = "removed [capacitor::name]"
 		)
 	)
 
@@ -70,12 +68,12 @@
 	. = ..()
 	. += list(
 		list(
-			"desc" = "The [capacitor_name] is secured.",
+			"desc" = "The [capacitor::name] is secured.",
 			"key" = internal_armour,
 			"amount" = 5,
 			"message" = "installed internal armour layer",
 			"back_key" = /obj/item/screwdriver,
-			"back_message" = "unfastened [capacitor_name]"
+			"back_message" = "unfastened [capacitor::name]"
 		),
 		list(
 			"desc" = "The internal armour layer is installed.",
@@ -100,7 +98,7 @@
 			"back_message" = "cut away internal armour layer"
 		),
 		list(
-			"desc" = "The external [is_external_carapace ? "carapace is " : "armour plates are "]installed.",
+			"desc" = "The external [is_external_carapace ? "carapace is" : "armour plates are"] installed.",
 			"key" = /obj/item/wrench,
 			"message" = "wrenched external [is_external_carapace ? "carapace" : "armour plates"]",
 			"back_key" = /obj/item/crowbar,

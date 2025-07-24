@@ -13,9 +13,7 @@
 	optional_circuit = /obj/item/circuitboard/mecha/brigand/targeting
 
 	scanning_module = /obj/item/stock_part/scanning_module/phasic
-	scanning_module_name = /obj/item/stock_part/scanning_module/phasic::name
 	capacitor = /obj/item/stock_part/capacitor/super
-	capacitor_name = /obj/item/stock_part/capacitor/super::name
 
 	internal_armour = /obj/item/stack/sheet/plasteel
 	external_armour = /obj/item/mecha_part/part/durand/armour/brigand

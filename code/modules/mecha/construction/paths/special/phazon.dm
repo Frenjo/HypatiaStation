@@ -21,9 +21,7 @@
 	optional_circuit = /obj/item/circuitboard/mecha/phazon/targeting
 
 	scanning_module = /obj/item/stock_part/scanning_module/hyperphasic
-	scanning_module_name = /obj/item/stock_part/scanning_module/hyperphasic::name
 	capacitor = /obj/item/stock_part/capacitor/hyper
-	capacitor_name = /obj/item/stock_part/capacitor/hyper::name
 
 	internal_armour = /obj/item/stack/sheet/plasteel
 	external_armour = /obj/item/mecha_part/part/phazon/armour
