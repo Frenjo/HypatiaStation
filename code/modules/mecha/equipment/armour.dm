@@ -108,3 +108,16 @@
 	allow_detach = FALSE // It's stuck on the suits it comes with.
 
 	severity_modifier = 0.75
+
+// "Alien" version for future use.
+/obj/item/mecha_equipment/emp_insulation/alien
+	name = "armour module (non-ablative magnetic/EMP shielding)"
+	desc = "An exosuit module that boosts internal systems against energy, magnetic and EMP-based interference. \
+		This variant appears to be constructed from \"alien\" technology, being significantly more advanced than even military models \
+		at the cost of requiring particularly large amounts of energy to operate. \
+		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	icon_state = "emp_insulation_alien"
+
+	energy_drain = 200 // Takes 4x the energy of the regular version.
+
+	severity_modifier = 0.5
