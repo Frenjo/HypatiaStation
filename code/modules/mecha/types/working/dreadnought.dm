@@ -5,7 +5,7 @@
 
 	health = 250
 	move_delay = 0.6 SECONDS
-	max_temperature = 22500
+	max_temperature = 35000
 	internal_damage_threshold = 50
 
 	mecha_type = MECHA_TYPE_DREADNOUGHT
@@ -22,7 +22,7 @@
 
 	health = 300
 	move_delay = 0.7 SECONDS
-	max_temperature = 25000
+	max_temperature = 30000
 
 	mecha_type = MECHA_TYPE_BULWARK
 
