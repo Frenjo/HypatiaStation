@@ -165,6 +165,16 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3.25)
 	build_path = /obj/item/mecha_equipment/tool/drill/diamond
 
+/datum/design/mechfab/equipment/working/cleaner_grenade_launcher
+	name = "CCL-6 Grenade Launcher" // CCL-6 = Custodial Cleaner Launcher with a 6 shot magazine.
+	desc = "Allows for the construction of CCL-6 grenade launchers."
+	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 2)
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2,
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET
+	)
+	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/cleaner
+
 // Medical
 /datum/design/mechfab/equipment/syringe_gun
 	name = "Syringe Gun"

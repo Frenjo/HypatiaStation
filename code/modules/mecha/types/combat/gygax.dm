@@ -100,7 +100,7 @@
 // Equipped variant
 /obj/mecha/combat/gygax/dark/equipped
 	starts_with = list(
-		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster,
+		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/flashbang/cluster,
 		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/emp_insulation/hardened
 	)
 

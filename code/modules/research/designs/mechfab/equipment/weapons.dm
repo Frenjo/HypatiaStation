@@ -104,7 +104,7 @@
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 4,
 		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
-	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang
+	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/flashbang
 
 /datum/design/mechfab/equipment/weapon/clusterbang_launcher
 	name = "SOP-6 Clusterbang Launcher"
@@ -114,7 +114,7 @@
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 5,
 		/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 5
 	)
-	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster/limited
+	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/flashbang/cluster/limited
 
 // Clown
 /datum/design/mechfab/equipment/weapon/honker
