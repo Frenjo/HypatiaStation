@@ -8,7 +8,6 @@
 	icon_state = "tesla"
 
 	matter_amounts = /datum/design/mechfab/equipment/general/plasma_generator::materials
-	reliability = 1000
 	origin_tech = /datum/design/mechfab/equipment/general/plasma_generator::req_tech
 
 	equip_cooldown = 1 SECOND
@@ -145,7 +144,6 @@
 	icon_state = "tesla"
 
 	matter_amounts = /datum/design/mechfab/equipment/general/nuclear_generator::materials
-	reliability = 1000
 	origin_tech = /datum/design/mechfab/equipment/general/nuclear_generator::req_tech
 
 	fuel_type = /obj/item/stack/sheet/uranium

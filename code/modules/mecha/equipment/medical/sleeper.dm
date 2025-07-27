@@ -6,7 +6,6 @@
 	icon_state = "sleeper_0"
 	matter_amounts = /datum/design/mechfab/equipment/sleeper::materials
 	origin_tech = /datum/design/mechfab/equipment/sleeper::req_tech
-	reliability = 1000
 
 	equip_cooldown = 2 SECONDS
 	energy_drain = 20
