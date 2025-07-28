@@ -57,7 +57,7 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
 "ao" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
+/turf/closed/wall/shuttle/corner/exterior/white/northwest,
 /area/shuttle/supply/centcom)
 "ap" = (
 /obj/structure/holostool,
@@ -110,7 +110,7 @@
 	},
 /area/special/holodeck/source/theatre)
 "az" = (
-/turf/closed/wall/shuttle/corner/interior/inverted/ne{
+/turf/closed/wall/shuttle/corner/interior/inverted/southwest{
 	icon_state = "swall_inv_floor3"
 	},
 /area/shuttle/administration/centcom)
@@ -277,7 +277,7 @@
 /turf/space,
 /area/space)
 "bb" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/turf/closed/wall/shuttle/corner/exterior/white/southwest,
 /area/centcom/rescue_shuttle/one)
 "bc" = (
 /obj/structure/sink/kitchen{
@@ -369,7 +369,7 @@
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/one)
 "bo" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/turf/closed/wall/shuttle/corner/exterior/white/southeast,
 /area/shuttle/transport/centcom)
 "bp" = (
 /obj/structure/table,
@@ -387,7 +387,7 @@
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/one)
 "br" = (
-/turf/closed/wall/shuttle/corner/interior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/centcom/rescue_shuttle/one)
 "bs" = (
 /obj/structure/closet/walllocker/emerglocker/east,
@@ -408,7 +408,7 @@
 	},
 /area/centcom/control)
 "bv" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne{
+/turf/closed/wall/shuttle/corner/interior/white/southwest{
 	icon_state = "swall_plating"
 	},
 /area/centcom/rescue_shuttle/one)
@@ -472,7 +472,7 @@
 /turf/open/floor/circuit_grid/blue,
 /area/centcom/tdome)
 "bF" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/ne,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southwest,
 /area/shuttle/syndicate/mercenary/start)
 "bG" = (
 /obj/structure/stool/bed/chair{
@@ -659,7 +659,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/shuttle_dock/emergency)
 "ct" = (
-/turf/closed/wall/shuttle/corner/interior/white/se,
+/turf/closed/wall/shuttle/corner/interior/white/northwest,
 /area/centcom/rescue_shuttle/one)
 "cw" = (
 /obj/machinery/computer/arcade,
@@ -957,20 +957,20 @@
 /turf/open/floor/plating/metal,
 /area/centcom/tdome/team_two)
 "dy" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/turf/closed/wall/shuttle/corner/exterior/white/southeast,
 /area/centcom/rescue_shuttle/two)
 "dz" = (
 /turf/open/floor/shuttle/yellow,
 /area/centcom/rescue_shuttle/two)
 "dA" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
+/turf/closed/wall/shuttle/corner/exterior/white/northwest,
 /area/centcom/rescue_shuttle/one)
 "dB" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/two)
 "dE" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/centcom/rescue_shuttle/one)
 "dF" = (
 /obj/effect/decal/floor/industrial/warning/border{
@@ -1231,7 +1231,7 @@
 	},
 /area/centcom/tdome/admin)
 "eJ" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/shuttle/escape/centcom)
 "eK" = (
 /obj/machinery/vending/cola,
@@ -1351,7 +1351,7 @@
 /turf/open/floor/shuttle/red/brig,
 /area/shuttle/vox/start)
 "fi" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/turf/closed/wall/shuttle/corner/exterior/white/southwest,
 /area/space)
 "fk" = (
 /obj/effect/decal/floor/industrial/loadingarea{
@@ -1718,7 +1718,7 @@
 	},
 /area/special/holodeck/source/empty_court)
 "hp" = (
-/turf/closed/wall/shuttle/corner/interior/inverted/sw{
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast{
 	icon_state = "swall_inv_floor2"
 	},
 /area/shuttle/administration/centcom)
@@ -1747,7 +1747,7 @@
 	},
 /area/special/holodeck/source/boxing_court)
 "hw" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/ne,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southwest,
 /area/shuttle/specops/centcom)
 "hx" = (
 /turf/open/floor/tiled/grey,
@@ -1797,7 +1797,7 @@
 /turf/open/floor/shuttle/blue,
 /area/shuttle/transport/centcom)
 "hD" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne,
+/turf/closed/wall/shuttle/corner/interior/white/southwest,
 /area/shuttle/supply/centcom)
 "hF" = (
 /obj/structure/closet/secure/freezer/meat,
@@ -1857,7 +1857,7 @@
 /turf/open/floor/holofloor/grass,
 /area/special/holodeck/source/picnic_area)
 "hT" = (
-/turf/closed/wall/shuttle/corner/interior/white/nw,
+/turf/closed/wall/shuttle/corner/interior/white/southeast,
 /area/shuttle/transport/centcom)
 "hU" = (
 /obj/structure/mirror{
@@ -2030,7 +2030,7 @@
 	},
 /area/special/holodeck/source/thunderdome_court)
 "iY" = (
-/turf/closed/wall/shuttle/corner/interior/white/nw,
+/turf/closed/wall/shuttle/corner/interior/white/southeast,
 /area/centcom/rescue_shuttle/two)
 "jd" = (
 /obj/structure/table,
@@ -2360,7 +2360,7 @@
 	},
 /area/special/holodeck/source/basketball_court)
 "kX" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
+/turf/closed/wall/shuttle/corner/exterior/white/northwest,
 /area/shuttle/escape/centcom)
 "kY" = (
 /obj/machinery/r_n_d/server/centcom,
@@ -2409,7 +2409,7 @@
 	},
 /area/enemy/syndicate/mothership)
 "ln" = (
-/turf/closed/wall/shuttle/corner/interior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/shuttle/transport/centcom)
 "lo" = (
 /obj/structure/shuttle/engine/propulsion/burst/left{
@@ -2533,7 +2533,7 @@
 /turf/open/floor/shuttle/blue,
 /area/shuttle/administration/centcom)
 "lV" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/se,
+/turf/closed/wall/shuttle/corner/exterior/inverted/northwest,
 /area/shuttle/syndicate/mercenary/start)
 "lX" = (
 /turf/closed/wall/reinforced/riveted{
@@ -3271,7 +3271,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "pA" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/ne,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southwest,
 /area/shuttle/administration/centcom)
 "pB" = (
 /obj/structure/table,
@@ -3584,7 +3584,7 @@
 	},
 /area/centcom/tdome/observation)
 "qY" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/turf/closed/wall/shuttle/corner/exterior/white/southwest,
 /area/shuttle/supply/centcom)
 "rb" = (
 /turf/open/floor/beach/water{
@@ -3643,7 +3643,7 @@
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/administration)
 "rm" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/sw,
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast,
 /area/shuttle/administration/centcom)
 "rp" = (
 /obj/structure/window/reinforced,
@@ -3661,10 +3661,10 @@
 	},
 /area/special/holodeck/source/meeting_hall)
 "ru" = (
-/turf/closed/wall/shuttle/corner/interior/white/se,
+/turf/closed/wall/shuttle/corner/interior/white/northwest,
 /area/shuttle/transport/centcom)
 "rv" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/turf/closed/wall/shuttle/corner/exterior/white/southeast,
 /area/centcom/rescue_shuttle/one)
 "ry" = (
 /obj/item/storage/box/donkpockets{
@@ -3926,7 +3926,7 @@
 /turf/open/floor/beach/sand,
 /area/special/beach)
 "sA" = (
-/turf/closed/wall/shuttle/corner/interior/white/nw,
+/turf/closed/wall/shuttle/corner/interior/white/southeast,
 /area/shuttle/supply/centcom)
 "sD" = (
 /obj/structure/rack,
@@ -4080,7 +4080,7 @@
 	},
 /area/centcom/solitary)
 "tx" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
+/turf/closed/wall/shuttle/corner/exterior/white/northwest,
 /area/shuttle/transport/centcom)
 "ty" = (
 /turf/open/floor/shuttle/red,
@@ -4318,7 +4318,7 @@
 	},
 /area/centcom/tdome)
 "uT" = (
-/turf/closed/wall/shuttle/corner/interior/white/nw{
+/turf/closed/wall/shuttle/corner/interior/white/southeast{
 	icon_state = "swall_plating"
 	},
 /area/centcom/rescue_shuttle/one)
@@ -4539,10 +4539,10 @@
 	},
 /area/space)
 "vM" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/turf/closed/wall/shuttle/corner/exterior/white/southwest,
 /area/shuttle/transport/centcom)
 "vN" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/se,
+/turf/closed/wall/shuttle/corner/exterior/inverted/northwest,
 /area/shuttle/vox/start)
 "vO" = (
 /obj/machinery/computer/card,
@@ -4582,7 +4582,7 @@
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/supply)
 "wc" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/shuttle/supply/centcom)
 "wf" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -4595,10 +4595,10 @@
 /turf/open/floor/plating/snow,
 /area/enemy/syndicate/mothership)
 "wi" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/sw,
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast,
 /area/shuttle/syndicate/elite/mothership)
 "wj" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/sw,
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast,
 /area/shuttle/syndicate/mercenary/start)
 "wk" = (
 /obj/structure/ai_core,
@@ -4644,7 +4644,7 @@
 /turf/open/floor/plating/metal/shuttle/airless,
 /area/shuttle/specops/centcom)
 "wu" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/ne,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southwest,
 /area/shuttle/vox/start)
 "wv" = (
 /obj/machinery/sleeper,
@@ -4660,7 +4660,7 @@
 /turf/open/floor/shuttle/yellow,
 /area/centcom/rescue_shuttle/two)
 "wB" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/nw,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southeast,
 /area/shuttle/syndicate/elite/mothership)
 "wE" = (
 /obj/machinery/sleeper,
@@ -4761,7 +4761,7 @@
 	},
 /area/centcom/tdome)
 "xh" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne,
+/turf/closed/wall/shuttle/corner/interior/white/southwest,
 /area/shuttle/transport/centcom)
 "xi" = (
 /obj/structure/table,
@@ -5042,7 +5042,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/tdome)
 "yk" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne,
+/turf/closed/wall/shuttle/corner/interior/white/southwest,
 /area/centcom/rescue_shuttle/one)
 "yn" = (
 /turf/open/floor/holofloor{
@@ -5122,12 +5122,12 @@
 /turf/open/floor/tiled/dark_chapel,
 /area/shuttle/administration/centcom)
 "yK" = (
-/turf/closed/wall/shuttle/corner/interior/inverted/sw{
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast{
 	icon_state = "swall_inv_floor4"
 	},
 /area/shuttle/administration/centcom)
 "yM" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/nw,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southeast,
 /area/shuttle/syndicate/mercenary/start)
 "yN" = (
 /turf/closed/wall/reinforced/riveted{
@@ -5314,7 +5314,7 @@
 /turf/open/floor/linoleum,
 /area/centcom/creed)
 "zL" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
+/turf/closed/wall/shuttle/corner/exterior/white/northwest,
 /area/space)
 "zN" = (
 /obj/structure/window/reinforced,
@@ -5983,7 +5983,7 @@
 /turf/space,
 /area/space)
 "Do" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/turf/closed/wall/shuttle/corner/exterior/white/southwest,
 /area/shuttle/escape/centcom)
 "Dp" = (
 /obj/structure/bookcase{
@@ -6157,7 +6157,7 @@
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/escape/centcom)
 "DU" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/se,
+/turf/closed/wall/shuttle/corner/exterior/inverted/northwest,
 /area/shuttle/syndicate/elite/mothership)
 "DV" = (
 /obj/effect/decal/floor/coloured/green{
@@ -6226,7 +6226,7 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/escape/centcom)
 "El" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/se,
+/turf/closed/wall/shuttle/corner/exterior/inverted/northwest,
 /area/shuttle/administration/centcom)
 "Em" = (
 /obj/structure/stool/bed/chair{
@@ -6701,7 +6701,7 @@
 /turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
 "Gv" = (
-/turf/closed/wall/shuttle/corner/interior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/centcom/rescue_shuttle/two)
 "Gw" = (
 /obj/machinery/door/airlock/centcom{
@@ -6826,7 +6826,7 @@
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/escape/centcom)
 "Hi" = (
-/turf/closed/wall/shuttle/corner/exterior/white/ne,
+/turf/closed/wall/shuttle/corner/exterior/white/southwest,
 /area/centcom/rescue_shuttle/two)
 "Ho" = (
 /obj/structure/table/reinforced,
@@ -6869,7 +6869,7 @@
 /turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "Ht" = (
-/turf/closed/wall/shuttle/corner/interior/white/se{
+/turf/closed/wall/shuttle/corner/interior/white/northwest{
 	icon_state = "swall_plating"
 	},
 /area/centcom/rescue_shuttle/two)
@@ -6938,7 +6938,7 @@
 	},
 /area/special/holodeck/source/theatre)
 "HG" = (
-/turf/closed/wall/shuttle/corner/interior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/shuttle/escape/centcom)
 "HH" = (
 /obj/machinery/access_button{
@@ -7253,7 +7253,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/shuttle_dock/arrival)
 "Jo" = (
-/turf/closed/wall/shuttle/corner/exterior/white/se,
+/turf/closed/wall/shuttle/corner/exterior/white/northwest,
 /area/centcom/rescue_shuttle/two)
 "Jq" = (
 /obj/machinery/light/small{
@@ -7265,7 +7265,7 @@
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/escape/centcom)
 "Jt" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/nw,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southeast,
 /area/shuttle/vox/start)
 "Jw" = (
 /obj/effect/landmark{
@@ -7274,7 +7274,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/solitary)
 "Jx" = (
-/turf/closed/wall/shuttle/corner/interior/white/sw{
+/turf/closed/wall/shuttle/corner/interior/white/northeast{
 	icon_state = "swall_plating"
 	},
 /area/centcom/rescue_shuttle/two)
@@ -7390,7 +7390,7 @@
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "Ka" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne,
+/turf/closed/wall/shuttle/corner/interior/white/southwest,
 /area/shuttle/escape/centcom)
 "Kb" = (
 /turf/closed/wall/shuttle{
@@ -7550,7 +7550,7 @@
 	},
 /area/special/holodeck/source/basketball_court)
 "KP" = (
-/turf/closed/wall/shuttle/corner/interior/inverted/se,
+/turf/closed/wall/shuttle/corner/interior/inverted/northwest,
 /area/shuttle/administration/centcom)
 "KR" = (
 /obj/machinery/door/window/westright{
@@ -7618,7 +7618,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "Lg" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/turf/closed/wall/shuttle/corner/exterior/white/southeast,
 /area/shuttle/supply/centcom)
 "Lh" = (
 /obj/structure/window/basic{
@@ -7640,7 +7640,7 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
 "Lo" = (
-/turf/closed/wall/shuttle/corner/interior/inverted/nw,
+/turf/closed/wall/shuttle/corner/interior/inverted/southeast,
 /area/shuttle/administration/centcom)
 "Lp" = (
 /obj/machinery/vending/cigarette,
@@ -7791,7 +7791,7 @@
 /turf/open/floor/shuttle/red,
 /area/centcom/rescue_shuttle/two)
 "LX" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/shuttle/transport/centcom)
 "LY" = (
 /obj/effect/landmark{
@@ -7907,7 +7907,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
 "MA" = (
-/turf/closed/wall/shuttle/corner/interior/white/se,
+/turf/closed/wall/shuttle/corner/interior/white/northwest,
 /area/shuttle/escape/centcom)
 "MC" = (
 /obj/structure/stool/bed/chair{
@@ -7967,7 +7967,7 @@
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/administration)
 "MO" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/space)
 "MQ" = (
 /obj/machinery/light/small{
@@ -8063,7 +8063,7 @@
 /turf/open/floor/tiled/dark,
 /area/enemy/syndicate/mothership)
 "Nw" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/turf/closed/wall/shuttle/corner/exterior/white/southeast,
 /area/shuttle/escape/centcom)
 "Nx" = (
 /turf/open/floor/holofloor{
@@ -8479,7 +8479,7 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/two)
 "Pt" = (
-/turf/closed/wall/shuttle/corner/exterior/white/sw,
+/turf/closed/wall/shuttle/corner/interior/white/northeast,
 /area/centcom/rescue_shuttle/two)
 "Pw" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -8706,7 +8706,7 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/administration/centcom)
 "Qz" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/se,
+/turf/closed/wall/shuttle/corner/exterior/inverted/northwest,
 /area/shuttle/specops/centcom)
 "QA" = (
 /obj/machinery/computer/pod{
@@ -8903,7 +8903,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/tdome)
 "Rq" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/sw,
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast,
 /area/shuttle/vox/start)
 "Rr" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -9112,7 +9112,7 @@
 	},
 /area/shuttle/administration/centcom)
 "Sz" = (
-/turf/closed/wall/shuttle/corner/interior/white/ne,
+/turf/closed/wall/shuttle/corner/interior/white/southwest,
 /area/centcom/rescue_shuttle/two)
 "SA" = (
 /obj/machinery/light/small,
@@ -9168,7 +9168,7 @@
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "SM" = (
-/turf/closed/wall/shuttle/corner/exterior/dark_old/nw,
+/turf/closed/wall/shuttle/corner/exterior/dark_old/southeast,
 /area/enemy/syndicate/mothership/elite_squad)
 "SN" = (
 /obj/effect/decal/floor/coloured/red{
@@ -9652,13 +9652,13 @@
 /turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "VK" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/ne,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southwest,
 /area/shuttle/syndicate/elite/mothership)
 "VM" = (
-/turf/closed/wall/shuttle/corner/exterior/inverted/nw,
+/turf/closed/wall/shuttle/corner/exterior/inverted/southeast,
 /area/shuttle/administration/centcom)
 "VO" = (
-/turf/closed/wall/shuttle/corner/exterior/white/nw,
+/turf/closed/wall/shuttle/corner/exterior/white/southeast,
 /area/space)
 "VP" = (
 /obj/machinery/computer/syndicate_elite_shuttle,
@@ -10456,7 +10456,7 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/transport/centcom)
 "ZI" = (
-/turf/closed/wall/shuttle/corner/interior/white/nw,
+/turf/closed/wall/shuttle/corner/interior/white/southeast,
 /area/shuttle/escape/centcom)
 "ZJ" = (
 /turf/open/floor{

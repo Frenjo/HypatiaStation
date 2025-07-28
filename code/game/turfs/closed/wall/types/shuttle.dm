@@ -15,61 +15,61 @@
 // Smooth white
 /turf/closed/wall/shuttle/corner/interior/white
 	icon_state = "swall_floor" //for mapping preview
-/turf/closed/wall/shuttle/corner/interior/white/ne
+/turf/closed/wall/shuttle/corner/interior/white/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/interior/white/nw
+/turf/closed/wall/shuttle/corner/interior/white/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/interior/white/se
+/turf/closed/wall/shuttle/corner/interior/white/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/interior/white/sw
+/turf/closed/wall/shuttle/corner/interior/white/southwest
 	dir = SOUTH|WEST
 
 // Smooth inverted
 /turf/closed/wall/shuttle/corner/interior/inverted
 	icon_state = "swall_inv_floor" //for mapping preview
-/turf/closed/wall/shuttle/corner/interior/inverted/ne
+/turf/closed/wall/shuttle/corner/interior/inverted/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/interior/inverted/nw
+/turf/closed/wall/shuttle/corner/interior/inverted/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/interior/inverted/se
+/turf/closed/wall/shuttle/corner/interior/inverted/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/interior/inverted/sw
+/turf/closed/wall/shuttle/corner/interior/inverted/southwest
 	dir = SOUTH|WEST
 
 // Blocky white
 /turf/closed/wall/shuttle/corner/interior/white_old
 	icon_state = "wall_floor"
-/turf/closed/wall/shuttle/corner/interior/white_old/ne
+/turf/closed/wall/shuttle/corner/interior/white_old/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/interior/white_old/nw
+/turf/closed/wall/shuttle/corner/interior/white_old/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/interior/white_old/se
+/turf/closed/wall/shuttle/corner/interior/white_old/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/interior/white_old/sw
+/turf/closed/wall/shuttle/corner/interior/white_old/southwest
 	dir = SOUTH|WEST
 
 // Blocky orange
 /turf/closed/wall/shuttle/corner/interior/orange_old
 	icon_state = "wall2_floor"
-/turf/closed/wall/shuttle/corner/interior/orange_old/ne
+/turf/closed/wall/shuttle/corner/interior/orange_old/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/interior/orange_old/nw
+/turf/closed/wall/shuttle/corner/interior/orange_old/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/interior/orange_old/se
+/turf/closed/wall/shuttle/corner/interior/orange_old/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/interior/orange_old/sw
+/turf/closed/wall/shuttle/corner/interior/orange_old/southwest
 	dir = SOUTH|WEST
 
 // Dark
 /turf/closed/wall/shuttle/corner/interior/dark_old
 	icon_state = "gwall_floor"
-/turf/closed/wall/shuttle/corner/interior/dark_old/ne
+/turf/closed/wall/shuttle/corner/interior/dark_old/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/interior/dark_old/nw
+/turf/closed/wall/shuttle/corner/interior/dark_old/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/interior/dark_old/se
+/turf/closed/wall/shuttle/corner/interior/dark_old/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/interior/dark_old/sw
+/turf/closed/wall/shuttle/corner/interior/dark_old/southwest
 	dir = SOUTH|WEST
 
 /*
@@ -107,63 +107,63 @@
 /turf/closed/wall/shuttle/corner/exterior/white
 	icon_state = "swall_c" //for mapping preview
 	corner_overlay_state = "swall_c"
-/turf/closed/wall/shuttle/corner/exterior/white/ne
+/turf/closed/wall/shuttle/corner/exterior/white/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/white/nw
+/turf/closed/wall/shuttle/corner/exterior/white/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/exterior/white/se
+/turf/closed/wall/shuttle/corner/exterior/white/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/white/sw
+/turf/closed/wall/shuttle/corner/exterior/white/southwest
 	dir = SOUTH|WEST
 
 // Smooth inverted
 /turf/closed/wall/shuttle/corner/exterior/inverted
 	icon_state = "swall_cinv" //for mapping preview
 	corner_overlay_state = "swall_cinv"
-/turf/closed/wall/shuttle/corner/exterior/inverted/ne
+/turf/closed/wall/shuttle/corner/exterior/inverted/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/inverted/nw
+/turf/closed/wall/shuttle/corner/exterior/inverted/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/exterior/inverted/se
+/turf/closed/wall/shuttle/corner/exterior/inverted/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/inverted/sw
+/turf/closed/wall/shuttle/corner/exterior/inverted/southwest
 	dir = SOUTH|WEST
 
 // Blocky white
 /turf/closed/wall/shuttle/corner/exterior/white_old
 	icon_state = "diagonalWall"
 	corner_overlay_state = "diagonalWall"
-/turf/closed/wall/shuttle/corner/exterior/white_old/ne
+/turf/closed/wall/shuttle/corner/exterior/white_old/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/white_old/nw
+/turf/closed/wall/shuttle/corner/exterior/white_old/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/exterior/white_old/se
+/turf/closed/wall/shuttle/corner/exterior/white_old/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/white_old/sw
+/turf/closed/wall/shuttle/corner/exterior/white_old/southwest
 	dir = SOUTH|WEST
 
 // Blocky orange
 /turf/closed/wall/shuttle/corner/exterior/orange_old
 	icon_state = "diagonalWall2"
 	corner_overlay_state = "diagonalWall2"
-/turf/closed/wall/shuttle/corner/exterior/orange_old/ne
+/turf/closed/wall/shuttle/corner/exterior/orange_old/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/orange_old/nw
+/turf/closed/wall/shuttle/corner/exterior/orange_old/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/exterior/orange_old/se
+/turf/closed/wall/shuttle/corner/exterior/orange_old/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/orange_old/sw
+/turf/closed/wall/shuttle/corner/exterior/orange_old/southwest
 	dir = SOUTH|WEST
 
 // Dark
 /turf/closed/wall/shuttle/corner/exterior/dark_old
 	icon_state = "diagonalWall3"
 	corner_overlay_state = "diagonalWall3"
-/turf/closed/wall/shuttle/corner/exterior/dark_old/ne
+/turf/closed/wall/shuttle/corner/exterior/dark_old/northeast
 	dir = NORTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/dark_old/nw
+/turf/closed/wall/shuttle/corner/exterior/dark_old/northwest
 	dir = NORTH|WEST
-/turf/closed/wall/shuttle/corner/exterior/dark_old/se
+/turf/closed/wall/shuttle/corner/exterior/dark_old/southeast
 	dir = SOUTH|EAST
-/turf/closed/wall/shuttle/corner/exterior/dark_old/sw
+/turf/closed/wall/shuttle/corner/exterior/dark_old/southwest
 	dir = SOUTH|WEST
