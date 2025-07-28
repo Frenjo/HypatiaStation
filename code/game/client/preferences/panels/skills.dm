@@ -30,7 +30,7 @@
 	html += "<hr>"
 	html += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
 
-	var/datum/browser/panel = new /datum/browser(user, "show_skills", "", 600, 760)
+	var/datum/browser/panel = new /datum/browser(user, "show_skills", "", 640, 780)
 	panel.set_content(html)
 	panel.open()
 

@@ -32,7 +32,7 @@
 	html += "<a href='byond://?src=\ref[user];preference=uipreferences;task=close'>\[Done\]</a>"
 	html += "</div>"
 
-	var/datum/browser/panel = new /datum/browser(user, "uipreferences", "", 300, 360)
+	var/datum/browser/panel = new /datum/browser(user, "uipreferences", "", 300, 380)
 	panel.set_content(html)
 	panel.open()
 
