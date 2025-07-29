@@ -1580,6 +1580,7 @@
 #include "code\modules\mecha\construction\paths\special\phazon.dm"
 #include "code\modules\mecha\equipment\_equipment.dm"
 #include "code\modules\mecha\equipment\armour.dm"
+#include "code\modules\mecha\equipment\cargo.dm"
 #include "code\modules\mecha\equipment\conversion_kit.dm"
 #include "code\modules\mecha\equipment\dynamic_procs.dm"
 #include "code\modules\mecha\equipment\general.dm"
