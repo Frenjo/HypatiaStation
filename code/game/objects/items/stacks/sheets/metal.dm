@@ -1,7 +1,7 @@
 // Iron
 /obj/item/stack/sheet/iron
 	name = "iron"
-	desc = "Sheets made out of iron. They have been dubbed iron sheets."
+	desc = "Sheets made from iron. They have been dubbed iron sheets."
 	singular_name = "iron sheet"
 	icon_state = "iron"
 
@@ -85,7 +85,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/steel_recipes, list(
 
 /obj/item/stack/sheet/steel
 	name = "steel"
-	desc = "Sheets made out of steel, an alloy of iron and carbon. They have been dubbed steel sheets."
+	desc = "Sheets made from an alloy of iron and carbon. They have been dubbed steel sheets."
 	singular_name = "steel sheet"
 	icon_state = "steel"
 	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
@@ -112,7 +112,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/plasteel_recipes, list(
 /obj/item/stack/sheet/plasteel
 	name = "plasteel"
 	singular_name = "plasteel sheet"
-	desc = "This sheet is an alloy of iron, carbon and plasma."
+	desc = "Sheets made from an alloy of iron, carbon and plasma."
 	icon_state = "plasteel"
 	item_state = "sheet-metal"
 	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))

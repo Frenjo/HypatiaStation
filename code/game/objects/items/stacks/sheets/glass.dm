@@ -134,7 +134,7 @@
  */
 /obj/item/stack/sheet/glass/reinforced
 	name = "reinforced glass"
-	desc = "Glass which seems to have rods or something stuck in them."
+	desc = "Glass which seems to have rods or something stuck in it."
 	singular_name = "reinforced glass sheet"
 	icon_state = "rglass"
 	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2), /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
@@ -365,7 +365,7 @@
  */
 /obj/item/stack/sheet/glass/plasma/reinforced
 	name = "reinforced plasma glass"
-	desc = "Plasma glass which seems to have rods or something stuck in them."
+	desc = "Plasma glass which seems to have rods or something stuck in it."
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "plasmarglass"
 	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2), /decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET * 2))

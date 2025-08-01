@@ -52,11 +52,11 @@
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user. This one looks like it's meant for Tajara."
 	target_species = list(SPECIES_TAJARAN)
 
-/obj/item/modkit/examine()
-	..()
-	to_chat(usr, "It looks as though it modifies hardsuits to fit the following users:")
+/obj/item/modkit/get_examine_text()
+	. = ..()
+	. += "It looks as though it modifies hardsuits to fit the following users:"
 	for(var/species in target_species)
-		to_chat(usr, "- [species]")
+		. += "- [species]"
 
 #undef MODKIT_HELMET
 #undef MODKIT_SUIT

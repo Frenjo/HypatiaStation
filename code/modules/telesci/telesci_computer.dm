@@ -34,9 +34,9 @@
 	eject()
 	return ..()
 
-/obj/machinery/computer/telescience/examine()
-	..()
-	to_chat(usr, "There are [length(crystals)] bluespace crystals in the crystal ports.")
+/obj/machinery/computer/telescience/get_examine_text()
+	. = ..()
+	. += "There are [length(crystals)] bluespace crystals in the crystal ports."
 
 /obj/machinery/computer/telescience/initialise()
 	. = ..()

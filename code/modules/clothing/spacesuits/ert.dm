@@ -17,10 +17,10 @@
 		camera.c_tag = user.name
 		to_chat(user, SPAN_INFO("User scanned as [camera.c_tag]. Camera activated."))
 
-/obj/item/clothing/head/helmet/space/rig/ert/examine()
-	..()
-	if(get_dist(usr, src) <= 1)
-		to_chat(usr, "This helmet has a built-in camera. It's [camera ? "" : "in"]active.")
+/obj/item/clothing/head/helmet/space/rig/ert/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "This helmet has a built-in camera. It's [isnotnull(camera) ? "" : "in"]active."
 
 /obj/item/clothing/suit/space/rig/ert
 	name = "emergency response team suit"

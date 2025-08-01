@@ -640,17 +640,15 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(range > -1)
 		return get_mobs_in_view(canhear_range, src)
 
+/obj/item/radio/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user) && loc != user)
+		return
 
-/obj/item/radio/examine()
-	set src in view()
-
-	..()
-	if((in_range(src, usr) || loc == usr))
-		if(b_stat)
-			usr.show_message(SPAN_INFO("\the [src] can be attached and modified!"))
-		else
-			usr.show_message(SPAN_INFO("\the [src] can not be modified or attached!"))
-	return
+	if(b_stat)
+		. += SPAN_INFO("It can be attached and modified!")
+	else
+		. += SPAN_INFO("It cannot be modified or attached!")
 
 /obj/item/radio/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))

@@ -101,19 +101,19 @@
 /obj/item/reagent_holder/food/snacks/afterattack(obj/target, mob/user, proximity)
 	return
 
-/obj/item/reagent_holder/food/snacks/examine()
-	set src in view()
-	..()
-	if(!(usr in range(0)) && usr != src.loc)
+/obj/item/reagent_holder/food/snacks/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
-	if(bitecount == 0)
+	if(!bitecount)
 		return
-	else if(bitecount == 1)
-		to_chat(usr, SPAN_INFO("\The [src] was bitten by someone!"))
+
+	if(bitecount == 1)
+		. += SPAN_INFO("It was bitten by someone!")
 	else if(bitecount <= 3)
-		to_chat(usr, SPAN_INFO("\The [src] was bitten [bitecount] times!"))
+		. += SPAN_INFO("It was bitten [bitecount] times!")
 	else
-		to_chat(usr, SPAN_INFO("\The [src] was bitten multiple times!"))
+		. += SPAN_INFO("It was bitten multiple times!")
 
 /obj/item/reagent_holder/food/snacks/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/storage))

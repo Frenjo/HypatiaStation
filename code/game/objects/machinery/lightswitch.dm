@@ -37,10 +37,9 @@
 		icon_state = "light[on]"
 		set_light(1, 1, on ? "#82FF4C" : "#F86060")
 
-/obj/machinery/light_switch/examine()
-	set src in oview(1)
-	if(usr && !usr.stat)
-		usr << "A light switch. It is [on? "on" : "off"]."
+/obj/machinery/light_switch/get_examine_text()
+	. = ..()
+	. += "It is switched [on ? "on" : "off"]."
 
 /obj/machinery/light_switch/attack_paw(mob/user)
 	src.attack_hand(user)

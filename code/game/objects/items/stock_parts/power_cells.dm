@@ -82,6 +82,7 @@
 
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
+	desc = "A rechargeable electrochemical power cell. This one has an exciting chrome finish, as it is an uber-capacity cell type!"
 	icon_state = "hpcell"
 	matter_amounts = /datum/design/power_cell/hyper::materials
 	origin_tech = /datum/design/power_cell/hyper::req_tech

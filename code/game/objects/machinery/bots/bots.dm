@@ -63,14 +63,13 @@
 	if(!locked && open)
 		emagged = 2
 
-/obj/machinery/bot/examine()
-	set src in view()
+/obj/machinery/bot/get_examine_text()
 	. = ..()
 	if(health < maxhealth)
 		if(health > maxhealth / 3)
-			to_chat(usr, SPAN_WARNING("[src]'s parts look loose."))
+			. += SPAN_WARNING("Its parts look loose.")
 		else
-			to_chat(usr, SPAN_DANGER("[src]'s parts look very loose!"))
+			. += SPAN_DANGER("Its parts look very loose!")
 
 /obj/machinery/bot/attack_animal(mob/living/simple/M)
 	if(M.melee_damage_upper == 0)

@@ -258,11 +258,10 @@
 		else
 			return 1
 
-/obj/machinery/atmospherics/unary/vent_pump/examine()
-	set src in oview(1)
-	..()
+/obj/machinery/atmospherics/unary/vent_pump/get_examine_text()
+	. = ..()
 	if(welded)
-		to_chat(usr, "It seems welded shut.")
+		. += "It seems welded shut."
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	if(powered(power_channel))

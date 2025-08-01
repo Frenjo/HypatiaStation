@@ -27,16 +27,14 @@
 	var/total_contents = length(contents) - itemremoved
 	icon_state = "[icon_type]box[total_contents]"
 
-/obj/item/storage/fancy/examine()
-	set src in oview(1)
-
-	..()
+/obj/item/storage/fancy/get_examine_text()
+	. = ..()
 	if(length(contents) <= 0)
-		usr << "There are no [icon_type]s left in the box."
+		. += "There are no [icon_type]s left in the box."
 	else if(length(contents) == 1)
-		usr << "There is one [icon_type] left in the box."
+		. += "There is one [icon_type] left in the box."
 	else
-		usr << "There are [length(contents)] [icon_type]s in the box."
+		. += "There are [length(contents)] [icon_type]s in the box."
 
 /*
  * Donut Box

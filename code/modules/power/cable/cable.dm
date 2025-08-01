@@ -519,22 +519,15 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(amount == 1)
 		icon_state = "coil1"
 		name = "cable piece"
+		desc = "A short piece of power cable."
 	else if(amount == 2)
 		icon_state = "coil2"
 		name = "cable piece"
+		desc = "A piece of power cable."
 	else
 		icon_state = "coil"
 		name = "cable coil"
-
-/obj/item/stack/cable_coil/examine()
-	set src in view(1)
-
-	if(amount == 1)
-		to_chat(usr, "A short piece of power cable.")
-	else if(amount == 2)
-		to_chat(usr, "A piece of power cable.")
-	else
-		to_chat(usr, "A coil of power cable. There are [amount] lengths of cable in the coil.")
+		desc = "A coil of power cable. There are [amount] lengths of cable in the coil."
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set category = PANEL_OBJECT

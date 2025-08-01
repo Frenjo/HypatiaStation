@@ -72,9 +72,7 @@
 
 	var/owner_name = "" // So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
-/obj/item/cash/charge_card/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != src.loc)
-		return
-	to_chat(usr, SPAN_INFO("Charge card's owner: [owner_name]. Credits remaining: [worth]."))
+/obj/item/cash/charge_card/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += SPAN_INFO("Owner: [owner_name]. Credits remaining: [worth].")

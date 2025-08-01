@@ -103,11 +103,10 @@
 			else
 				to_chat(user, SPAN_WARNING("\the [W] is empty."))
 
-/obj/item/grenade/chemical/examine()
-	set src in usr
-	usr << desc
+/obj/item/grenade/chemical/get_examine_text()
+	. = ..()
 	if(detonator)
-		usr << "With attached [detonator.name]"
+		. += "It has an attached [detonator.name]."
 
 /obj/item/grenade/chemical/activate(mob/user)
 	if(active)

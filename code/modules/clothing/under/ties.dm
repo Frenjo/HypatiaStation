@@ -261,13 +261,12 @@
 		holstered.emp_act(severity)
 	..()
 
-/obj/item/clothing/tie/holster/examine()
-	set src in view()
-	..()
-	if(holstered)
-		to_chat(usr, "A [holstered] is holstered here.")
+/obj/item/clothing/tie/holster/get_examine_text()
+	. = ..()
+	if(isnotnull(holstered))
+		. += "A [holstered] is holstered here."
 	else
-		to_chat(usr, "It is empty.")
+		. += "It is empty."
 
 /obj/item/clothing/tie/holster/on_attached(obj/item/clothing/under/S, mob/user)
 	..()

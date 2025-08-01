@@ -17,6 +17,6 @@
 /obj/item/pipe_painter/attack_self(mob/user)
 	mode = input("Which colour do you want to use?", "Pipe painter") in modes
 
-/obj/item/pipe_painter/examine()
-	..()
-	to_chat(usr, "It is in [mode] mode.")
+/obj/item/pipe_painter/get_examine_text()
+	. = ..()
+	. += "It is in [mode] mode."

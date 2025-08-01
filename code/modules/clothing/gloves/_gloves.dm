@@ -17,10 +17,6 @@
 	var/obj/item/cell/cell = 0
 	var/clipped = FALSE
 
-/obj/item/clothing/gloves/examine()
-	set src in usr
-	return ..()
-
 /obj/item/clothing/gloves/emp_act(severity)
 	if(isnotnull(cell))
 		//why is this not part of the powercell code?

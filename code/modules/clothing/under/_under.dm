@@ -61,20 +61,19 @@
 			add_fingerprint(usr)
 			return
 
-/obj/item/clothing/under/examine()
-	set src in view()
-	..()
+/obj/item/clothing/under/get_examine_text()
+	. = ..()
 	switch(sensor_mode)
 		if(0)
-			to_chat(usr, "Its sensors appear to be disabled.")
+			. += "Its sensors appear to be disabled."
 		if(1)
-			to_chat(usr, "Its binary life sensors appear to be enabled.")
+			. += "Its binary life sensors appear to be enabled."
 		if(2)
-			to_chat(usr, "Its vital tracker appears to be enabled.")
+			. += "Its vital tracker appears to be enabled."
 		if(3)
-			to_chat(usr, "Its vital tracker and tracking beacon appear to be enabled.")
+			. += "Its vital tracker and tracking beacon appear to be enabled."
 	if(isnotnull(hastie))
-		to_chat(usr, "\A [hastie] is clipped to it.")
+		. += "\A [hastie] is clipped to it."
 
 /obj/item/clothing/under/verb/toggle()
 	set category = PANEL_OBJECT

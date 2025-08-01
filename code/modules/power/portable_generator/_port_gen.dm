@@ -44,6 +44,6 @@
 	if(!anchored)
 		return TRUE
 
-/obj/machinery/power/port_gen/examine()
-	set src in oview(1)
-	to_chat(usr, SPAN_INFO("The generator is [active ? "on" : "off"]."))
+/obj/machinery/power/port_gen/get_examine_text()
+	. = ..()
+	. += SPAN_INFO("The generator is [active ? "on" : "off"].")

@@ -152,19 +152,17 @@
 	mode = !mode
 	usr << "The IV drip is now [mode ? "injecting" : "taking blood"]."
 
-/obj/machinery/iv_drip/examine()
-	set src in view()
-	..()
-	if (!(usr in view(2)) && usr!=src.loc) return
+/obj/machinery/iv_drip/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
+		return
 
-	usr << "The IV drip is [mode ? "injecting" : "taking blood"]."
-
-	if(beaker)
-		if(beaker.reagents && length(beaker.reagents.reagent_list))
-			usr << "\blue Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid."
+	. += "It is [mode ? "injecting" : "taking blood"]."
+	if(isnotnull(beaker))
+		if(length(beaker.reagents?.reagent_list))
+			. += SPAN_INFO("Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.")
 		else
-			usr << "\blue Attached is an empty [beaker]."
+			. += SPAN_INFO("Attached is an empty [beaker].")
 	else
-		usr << "\blue No chemicals are attached."
-
-	usr << "\blue [attached ? attached : "No one"] is attached."
+		. += SPAN_INFO("No beaker is attached.")
+	. += SPAN_INFO("It is attached to [attached ? attached : "no one"].")

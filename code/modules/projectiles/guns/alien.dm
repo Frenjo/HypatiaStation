@@ -48,9 +48,9 @@
 		last_regen = world.time
 		update_icon()
 
-/obj/item/spikethrower/examine()
-	..()
-	to_chat(usr, "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining.")
+/obj/item/spikethrower/get_examine_text()
+	. = ..()
+	. += "It has [spikes] spike\s remaining."
 
 /obj/item/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"

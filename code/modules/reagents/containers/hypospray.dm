@@ -75,9 +75,9 @@
 	else
 		icon_state = "[initial(icon_state)]0"
 
-/obj/item/reagent_holder/hypospray/autoinjector/examine()
-	..()
+/obj/item/reagent_holder/hypospray/autoinjector/get_examine_text()
+	. = ..()
 	if(reagents && length(reagents.reagent_list))
-		to_chat(usr, SPAN_INFO("It is currently loaded."))
+		. += SPAN_INFO("It is currently loaded.")
 	else
-		to_chat(usr, SPAN_INFO("It is spent."))
+		. += SPAN_INFO("It is spent.")

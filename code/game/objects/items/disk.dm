@@ -70,10 +70,10 @@
 	read_only = !read_only
 	to_chat(user, "You flip the write-protect tab to [read_only ? "protected" : "unprotected"].")
 
-/obj/item/disk/cloning_data/examine()
-	set src in oview(5)
+/obj/item/disk/cloning_data/get_examine_text(mob/user)
 	. = ..()
-	to_chat(usr, "The write-protect tab is set to [read_only ? "protected" : "unprotected"].")
+	if(in_range(src, user))
+		. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
 
 // God Emperor Of Mankind disk
 /obj/item/disk/cloning_data/demo

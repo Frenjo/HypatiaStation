@@ -111,15 +111,15 @@
 /obj/item/assembly/process()
 	return PROCESS_KILL
 
-/obj/item/assembly/examine()
-	set src in view()
-	..()
-	if((in_range(src, usr) || loc == usr))
-		if(secured)
-			to_chat(usr, "\The [src] is ready!")
-		else
-			to_chat(usr, "\The [src] can be attached!")
-	return
+/obj/item/assembly/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user) && loc != user)
+		return
+
+	if(secured)
+		. += "It is ready!"
+	else
+		. += "It can be attached!"
 
 /obj/item/assembly/attack_self(mob/user)
 	if(!user)

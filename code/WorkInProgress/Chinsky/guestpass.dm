@@ -13,12 +13,12 @@
 /obj/item/card/id/guest/get_access()
 	return (world.time > expiration_time) ? access : temp_access
 
-/obj/item/card/id/guest/examine()
-	..()
-	if (world.time < expiration_time)
-		usr << "\blue This pass expires at [worldtime2text(expiration_time)]."
+/obj/item/card/id/guest/get_examine_text()
+	. = ..()
+	if(world.time < expiration_time)
+		. += SPAN_INFO("This pass expires at [worldtime2text(expiration_time)].")
 	else
-		usr << "\red It expired at [worldtime2text(expiration_time)]."
+		. += SPAN_WARNING("It expired at [worldtime2text(expiration_time)].")
 
 /obj/item/card/id/guest/read()
 	if (world.time > expiration_time)

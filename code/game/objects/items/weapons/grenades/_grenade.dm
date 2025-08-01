@@ -42,15 +42,12 @@
 		walk_towards(src, t, 3)
 	return*/
 
-
-/obj/item/grenade/examine()
-	set src in usr
-	to_chat(usr, desc)
+/obj/item/grenade/get_examine_text()
+	. = ..()
 	if(det_time > 1)
-		to_chat(usr, "The timer is set to [det_time / 10] seconds.")
+		. += "The timer is set to [det_time / 10] seconds."
 		return
-	to_chat(usr, "\The [src] is set for instant detonation.")
-
+	. += "It is set for instant detonation."
 
 /obj/item/grenade/attack_self(mob/user)
 	if(!active)

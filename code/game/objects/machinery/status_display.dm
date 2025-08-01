@@ -76,12 +76,13 @@
 	set_picture("ai_bsod")
 	..(severity)
 
-/obj/machinery/status_display/examine()
-	set src in view()
+/obj/machinery/status_display/get_examine_text()
 	. = ..()
 	switch(mode)
 		if(STATUS_MODE_EVAC_SHUTTLE, STATUS_MODE_MESSAGE, STATUS_MODE_SUPPLY_SHUTTLE)
-			usr << "The display says:<br>\t<xmp>[message1]</xmp><br>\t<xmp>[message2]</xmp>"
+			. += "The display says:"
+			. += "\t<xmp>[message1]</xmp>"
+			. += "\t<xmp>[message2]</xmp>"
 
 /obj/machinery/status_display/receive_signal(datum/signal/signal)
 	if(!..())

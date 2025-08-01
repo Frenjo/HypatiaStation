@@ -228,10 +228,6 @@
 		magpulse = 1
 		to_chat(user, "You dig your claws deeply into the flooring, bracing yourself.")
 
-/obj/item/clothing/shoes/magboots/vox/examine()
-	set src in view()
-	..()
-
 // Plasmalin gear.
 /obj/item/clothing/head/helmet/space/plasmalin
 	name = "envirohelmet"

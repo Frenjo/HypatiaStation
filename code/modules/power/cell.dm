@@ -56,19 +56,12 @@
 	charge += amount_used
 	return amount_used
 
-
-/obj/item/cell/examine()
-	set src in view(1)
-	if(usr /*&& !usr.stat*/)
-		if(maxcharge <= 2500)
-			to_chat(usr, desc)
-			to_chat(usr, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-			to_chat(usr, "The charge meter reads [round(src.percent())]%.")
-		else
-			to_chat(usr, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!")
-			to_chat(usr, "The charge meter reads [round(src.percent())]%.")
+/obj/item/cell/get_examine_text()
+	. = ..()
+	. += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it."
+	. += "The charge meter reads [round(src.percent())]%."
 	if(crit_fail)
-		to_chat(usr, SPAN_WARNING("This power cell seems to be faulty."))
+		. += SPAN_WARNING("This power cell seems to be faulty.")
 
 /obj/item/cell/attack_self(mob/user)
 	src.add_fingerprint(user)

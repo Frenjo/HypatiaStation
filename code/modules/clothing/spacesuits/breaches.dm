@@ -206,8 +206,8 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 		return
 	..()
 
-/obj/item/clothing/suit/space/examine()
-	..()
+/obj/item/clothing/suit/space/get_examine_text()
+	. = ..()
 	if(can_breach && length(breaches))
 		for_no_type_check(var/datum/breach/B, breaches)
-			to_chat(usr, SPAN_DANGER("It has \a [B.descriptor]."))
+			. += SPAN_DANGER("It has \a [B.descriptor].")

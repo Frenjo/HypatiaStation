@@ -43,10 +43,19 @@
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
 
-/obj/machinery/drone_fabricator/examine()
-	..()
-	if(produce_drones && drone_progress >= 100 && istype(usr,/mob/dead) && CONFIG_GET(/decl/configuration_entry/allow_drone_spawn) && count_drones() < CONFIG_GET(/decl/configuration_entry/max_maint_drones))
-		usr << "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
+/obj/machinery/drone_fabricator/get_examine_text(mob/user)
+	. = ..()
+	if(!produce_drones)
+		return
+	if(drone_progress < 100)
+		return
+	if(!istype(user, /mob/dead))
+		return
+	if(!CONFIG_GET(/decl/configuration_entry/allow_drone_spawn))
+		return
+	if(count_drones() >= CONFIG_GET(/decl/configuration_entry/max_maint_drones))
+		return
+	. += "<B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 
 /obj/machinery/drone_fabricator/proc/count_drones()
 	var/drones = 0

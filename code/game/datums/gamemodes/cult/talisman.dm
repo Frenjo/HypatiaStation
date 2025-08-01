@@ -3,11 +3,6 @@
 	var/imbue = null
 	var/uses = 0
 
-/obj/item/paper/talisman/examine()
-	set src in view(2)
-	..()
-	return
-
 /obj/item/paper/talisman/attack_self(mob/living/user)
 	if(iscultist(user))
 		var/delete = 1

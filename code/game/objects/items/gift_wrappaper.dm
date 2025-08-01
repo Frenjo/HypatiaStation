@@ -163,11 +163,10 @@
 		to_chat(user, SPAN_INFO("The object is FAR too large!"))
 	return
 
-/obj/item/wrapping_paper/examine()
-	set src in oview(1)
-	..()
-	to_chat(usr, "There is about [src.amount] square units of paper left!")
-	return
+/obj/item/wrapping_paper/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "There are about [amount] square units of paper left!"
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
 	if(!ishuman(target))

@@ -28,10 +28,10 @@
 	var/emagged = 0
 	var/open = 0
 
-/obj/item/storage/secure/examine()
-	set src in oview(1)
-	..()
-	usr << "The service panel is [open ? "open" : "closed"]."
+/obj/item/storage/secure/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "The service panel is [open ? "open" : "closed"]."
 
 /obj/item/storage/secure/attack_paw(mob/user)
 	return attack_hand(user)

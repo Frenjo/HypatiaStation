@@ -37,12 +37,10 @@
 	reagents.add_reagent("water", max_water)
 	..()
 
-/obj/item/fire_extinguisher/examine()
-	set src in usr
-
-	usr << "\icon[src] [name] contains [reagents.total_volume] units of water left!"
-	..()
-	return
+/obj/item/fire_extinguisher/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "It has [reagents.total_volume] units of water left!"
 
 /obj/item/fire_extinguisher/attack_self(mob/user)
 	safety = !safety

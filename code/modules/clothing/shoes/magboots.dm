@@ -23,13 +23,13 @@
 		to_chat(user, "You enable the mag-pulse traction system.")
 	user.update_inv_shoes()	//so our mob-overlays update
 
-/obj/item/clothing/shoes/magboots/examine()
-	set src in view()
-	..()
+/obj/item/clothing/shoes/magboots/get_examine_text()
+	. = ..()
+	var/is_advanced = istype(src, /obj/item/clothing/shoes/magboots/advanced)
 	var/state = "disabled"
 	if(HAS_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP))
 		state = "enabled"
-	to_chat(usr, "Its mag-pulse traction system appears to be [state].")
+	. += "Its [is_advanced ? "advanced " : ""]mag-pulse traction system appears to be [state]."
 
 // Added advanced magboots for the CE, they're even that weird off-white colour like the hardsuit. -Frenjo
 /obj/item/clothing/shoes/magboots/advanced
@@ -51,11 +51,3 @@
 		icon_state = "advmagboots1"
 		to_chat(user, "You enable the advanced mag-pulse traction system.")
 	user.update_inv_shoes()
-
-/obj/item/clothing/shoes/magboots/advanced/examine()
-	set src in view()
-	..()
-	var/state = "disabled"
-	if(HAS_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP))
-		state = "enabled"
-	to_chat(usr, "Its advanced mag-pulse traction system appears to be [state].")

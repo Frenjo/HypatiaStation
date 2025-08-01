@@ -65,10 +65,9 @@
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 
-/obj/item/lightreplacer/examine()
-	set src in view(2)
-	..()
-	to_chat(usr, "It has [uses] lights remaining.")
+/obj/item/lightreplacer/get_examine_text()
+	. = ..()
+	. += "It has [uses] lights remaining."
 
 /obj/item/lightreplacer/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)

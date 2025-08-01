@@ -19,17 +19,17 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 
-/obj/structure/reagent_dispensers/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != src.loc)
+/obj/structure/reagent_dispensers/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
-	to_chat(usr, SPAN_INFO("It contains:"))
-	if(reagents && length(reagents.reagent_list))
+
+	. += "It contains:"
+	if(length(reagents?.reagent_list))
 		for(var/datum/reagent/R in reagents.reagent_list)
-			to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
+			. += SPAN_INFO("[R.volume] units of [R.name]")
 	else
-		to_chat(usr, SPAN_INFO("Nothing."))
+		. += "Nothing."
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set category = PANEL_OBJECT
@@ -88,15 +88,15 @@
 	. = ..()
 	reagents.add_reagent("fuel", 1000)
 
-/obj/structure/reagent_dispensers/fueltank/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != src.loc)
+/obj/structure/reagent_dispensers/fueltank/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
+
 	if(modded)
-		to_chat(usr, SPAN_WARNING("The faucet is wrenched open, leaking the fuel!"))
+		. += SPAN_WARNING("The faucet is wrenched open, leaking the fuel!")
 	if(rig)
-		to_chat(usr, SPAN_NOTICE("There is some kind of device rigged to the tank."))
+		. += SPAN_NOTICE("There is some kind of device rigged to the tank.")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if(rig)

@@ -22,11 +22,15 @@
 	thing_to_find = null
 	return ..()
 
-/obj/item/pinpointer/examine()
+/obj/item/pinpointer/get_examine_text(mob/user)
 	. = ..()
+	if(!in_range(src, user))
+		return
+
 	FOR_MACHINES_TYPED(bomb, /obj/machinery/nuclearbomb)
 		if(bomb.timing)
-			to_chat(usr, SPAN_DANGER("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft]."))
+			. += SPAN_DANGER("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft].")
+			return
 
 /obj/item/pinpointer/attack_self()
 	active = !active

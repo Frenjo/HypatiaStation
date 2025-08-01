@@ -85,15 +85,13 @@
 				add_overlay(O)
 */
 
-/obj/item/assembly_holder/examine()
-	set src in view()
-	..()
-	if((in_range(src, usr) || src.loc == usr))
-		if(src.secured)
-			to_chat(usr, "\The [src] is ready!")
+/obj/item/assembly_holder/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		if(secured)
+			. += "It is ready!"
 		else
-			to_chat(usr, "\The [src] can be attached!")
-	return
+			. += "It can be attached!"
 
 /obj/item/assembly_holder/HasProximity(atom/movable/AM)
 	if(a_left)

@@ -1,6 +1,6 @@
 /obj/machinery/meter
 	name = "meter"
-	desc = "It measures something."
+	desc = "A gas flow meter. It measures something."
 	icon = 'icons/obj/atmospherics/meter.dmi'
 	icon_state = "meterX"
 	anchored = TRUE
@@ -67,12 +67,9 @@
 		)
 		radio_connection.post_signal(src, signal)
 
-/obj/machinery/meter/examine()
-	set src in view(3)
-
-	var/t = "A gas flow meter. "
-	t += status()
-	to_chat(usr, t)
+/obj/machinery/meter/get_examine_text()
+	. = ..()
+	. += status()
 
 /obj/machinery/meter/Click()
 	if(stat & (NOPOWER | BROKEN))

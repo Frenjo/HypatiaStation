@@ -43,8 +43,7 @@
 		to_chat(user, SPAN_INFO("The pack is already full!"))
 		return
 
-/obj/item/weldpack/examine()
-	set src in usr
-	to_chat(usr, "\icon[src] [src.reagents.total_volume] units of fuel left!")
-	..()
-	return
+/obj/item/weldpack/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "It has [reagents.total_volume] units of fuel left!"

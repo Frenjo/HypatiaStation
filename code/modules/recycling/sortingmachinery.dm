@@ -158,11 +158,10 @@
 		return
 	return
 
-/obj/item/package_wrap/examine()
-	if(src in usr)
-		to_chat(usr, SPAN_INFO("There are [amount] units of package wrap left!"))
-	..()
-	return
+/obj/item/package_wrap/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += SPAN_INFO("There are [amount] units of package wrap left!")
 
 
 /obj/item/dest_tagger

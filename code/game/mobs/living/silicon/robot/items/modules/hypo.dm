@@ -80,22 +80,20 @@
 	to_chat(user, SPAN_INFO("Synthesizer is now producing '[R.name]'."))
 	return
 
-/obj/item/reagent_holder/borghypo/examine()
-	set src in view()
+/obj/item/reagent_holder/borghypo/get_examine_text(mob/user)
 	. = ..()
-	if(!(usr in view(2)) && usr != src.loc)
+	if(!in_range(src, user))
 		return
 
-	var/empty = 1
-
+	var/empty = TRUE
 	for(var/datum/reagents/holder in reagent_list)
 		var/datum/reagent/reagent = locate() in holder.reagent_list
-		if(reagent)
-			to_chat(usr, SPAN_INFO("It currently has [reagent.volume] units of [reagent.name] stored."))
-			empty = 0
+		if(isnotnull(reagent))
+			. += SPAN_INFO("It currently has [reagent.volume] units of [reagent.name] stored.")
+			empty = FALSE
 
 	if(empty)
-		to_chat(usr, SPAN_INFO("It is currently empty. Allow some time for the internal syntheszier to produce more."))
+		. += SPAN_INFO("It is currently empty. Allow some time for the internal syntheszier to produce more.")
 
 // Peace hypospray
 /obj/item/reagent_holder/borghypo/peace

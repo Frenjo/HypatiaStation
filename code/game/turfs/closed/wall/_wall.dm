@@ -55,22 +55,21 @@
 	return ..(type_path)
 
 //Appearance
-/turf/closed/wall/examine()
+/turf/closed/wall/get_examine_text()
 	. = ..()
-
 	if(!damage)
-		to_chat(usr, SPAN_NOTICE("It looks fully intact."))
+		. += SPAN_NOTICE("It looks fully intact.")
 	else
 		var/dam = damage / damage_cap
 		if(dam <= 0.3)
-			to_chat(usr, SPAN_WARNING("It looks slightly damaged."))
+			. += SPAN_WARNING("It looks slightly damaged.")
 		else if(dam <= 0.6)
-			to_chat(usr, SPAN_WARNING("It looks moderately damaged."))
+			. += SPAN_WARNING("It looks moderately damaged.")
 		else
-			to_chat(usr, SPAN_DANGER("It looks heavily damaged."))
+			. += SPAN_DANGER("It looks heavily damaged.")
 
 	if(rotting)
-		to_chat(usr, SPAN_WARNING("There is fungus growing on [src]."))
+		. += SPAN_WARNING("There is fungus growing on it.")
 
 /turf/closed/wall/proc/update_icon()
 	if(!damage_overlays[1]) //list hasn't been populated

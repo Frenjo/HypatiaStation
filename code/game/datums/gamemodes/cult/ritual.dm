@@ -71,24 +71,19 @@ var/engwords = list(
 	for(var/mob/living/silicon/ai/AI in GLOBL.player_list)
 		AI.client.images += blood
 
-/obj/effect/rune/examine()
-	set src in view(2)
-	if(!iscultist(usr))
-		to_chat(usr, "A strange collection of symbols drawn in blood.")
+/obj/effect/rune/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
-		/* Explosions... really?
-		if(desc && !usr.stat)
-			to_chat(usr, "It reads: <i>[desc]</i>.")
-			sleep(30)
-			explosion(src.loc, 0, 2, 5, 5)
-			if(src)
-				qdel(src)
-		*/
+
+	if(!iscultist(user))
+		. += "A strange collection of symbols drawn in blood."
+		return
+
 	if(!desc)
-		to_chat(usr, "A spell circle drawn in blood. It reads: <i>[word1] [word2] [word3]</i>.")
+		. += "A spell circle drawn in blood. It reads: <i>[word1] [word2] [word3]</i>."
 	else
-		to_chat(usr, "Explosive Runes inscription in blood. It reads: <i>[desc]</i>.")
-	return
+		. += "Explosive Runes inscription in blood. It reads: <i>[desc]</i>."
 
 /obj/effect/rune/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tome) && iscultist(user))
@@ -493,13 +488,12 @@ var/engwords = list(
 
 	return ..()
 
-/obj/item/tome/examine()
-	set src in usr
-	if(!iscultist(usr))
-		to_chat(usr, "An old, dusty tome with frayed edges and a sinister looking cover.")
+/obj/item/tome/get_examine_text(mob/user)
+	. = ..()
+	if(!iscultist(user))
+		. += "An old, dusty tome with frayed edges and a sinister looking cover."
 	else
-		to_chat(usr, "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though.")
-
+		. += "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
 
 /obj/item/tome/imbued //admin tome, spawns working runes without waiting
 	w_class = 2.0

@@ -112,10 +112,10 @@
 		else
 			playsound(GET_TURF(src), 'sound/machines/defibrillator/safety_off.ogg', 75, 0)
 
-/obj/item/shield_projector/examine(mob/user)
-	..()
-	if(get_dist(src, user) <= 1)
-		to_chat(user, "\The [src]'s shield matrix is at [round( (shield_health / max_shield_health) * 100, 0.01)]% strength.")
+/obj/item/shield_projector/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "\The [src]'s shield matrix is at [round((shield_health / max_shield_health) * 100, 0.01)]% strength."
 
 /obj/item/shield_projector/emp_act(severity)
 	adjust_health(-max_shield_health / severity) // A strong EMP will kill the shield instantly, but weaker ones won't on the first hit.

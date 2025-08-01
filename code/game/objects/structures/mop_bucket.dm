@@ -12,10 +12,9 @@
 	. = ..()
 	create_reagents(100)
 
-/obj/structure/mopbucket/examine()
-	set src in usr
-	to_chat(usr, "[src] \icon[src] contains [reagents.total_volume] unit\s of water!")
-	..()
+/obj/structure/mopbucket/get_examine_text()
+	. = ..()
+	. += "It contains [reagents.total_volume] unit\s of water!"
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))

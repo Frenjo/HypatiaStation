@@ -40,13 +40,13 @@
 			scribble = txt
 	..()
 
-/obj/item/photo/examine()
-	set src in oview(1)
-	if(in_range(usr, src))
-		show(usr)
-		usr << desc
+/obj/item/photo/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		show(user)
+		. += desc
 	else
-		to_chat(usr, SPAN_NOTICE("It is too far away."))
+		. += SPAN_NOTICE("It is too far away.")
 
 /obj/item/photo/proc/show(mob/user)
 	user << browse_rsc(img, "tmp_photo.png")

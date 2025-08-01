@@ -34,27 +34,25 @@
 		return TRUE
 	return FALSE
 
-/obj/mecha/examine(mob/user)
-	set src in view()
-
+/obj/mecha/get_examine_text(mob/user)
 	. = ..()
 	var/integrity = health / initial(health) * 100
 	switch(integrity)
 		if(85 to 100)
-			to_chat(user, SPAN_INFO("It's fully intact."))
+			. += SPAN_INFO("It's fully intact.")
 		if(65 to 85)
-			to_chat(user, SPAN_INFO("It's slightly damaged."))
+			. += SPAN_INFO("It's slightly damaged.")
 		if(45 to 65)
-			to_chat(user, SPAN_INFO("It's badly damaged."))
+			. += SPAN_INFO("It's badly damaged.")
 		if(25 to 45)
-			to_chat(user, SPAN_WARNING("It's heavily damaged."))
+			. += SPAN_WARNING("It's heavily damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It's falling apart."))
+			. += SPAN_DANGER("It's falling apart.")
 
 	if(length(equipment))
-		to_chat(user, SPAN_INFO_B("It's equipped with:"))
+		. += SPAN_INFO_B("It's equipped with:")
 		for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
-			to_chat(user, SPAN_INFO("\icon[equip] [equip]"))
+			. += SPAN_INFO("\icon[equip] [equip]")
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return

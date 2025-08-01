@@ -48,17 +48,17 @@
 	. = ..()
 	base_name = name
 
-/obj/item/reagent_holder/glass/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != src.loc)
+/obj/item/reagent_holder/glass/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
-	if(reagents && length(reagents.reagent_list))
-		to_chat(usr, SPAN_INFO("It contains [src.reagents.total_volume] units of liquid."))
+
+	if(length(reagents?.reagent_list))
+		. += SPAN_INFO("It contains [reagents.total_volume] units of liquid.")
 	else
-		to_chat(usr, SPAN_INFO("It is empty."))
+		. += SPAN_INFO("It is empty.")
 	if(!is_open_container())
-		to_chat(usr, SPAN_INFO("Airtight lid seals it completely."))
+		. += SPAN_INFO("It is sealed with an airtight lid.")
 
 /obj/item/reagent_holder/glass/attack_self()
 	..()

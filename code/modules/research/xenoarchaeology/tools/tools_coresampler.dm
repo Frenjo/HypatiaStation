@@ -28,15 +28,11 @@
 	var/num_stored_bags = 10
 	var/obj/item/evidencebag/sample/filled_bag
 
-/obj/item/core_sampler/examine()
-	set src in orange(1)
-	if(!usr)
+/obj/item/core_sampler/get_examine_text(mob/user)
+	. = ..()
+	if(get_dist(src, user) > 2)
 		return
-	if(get_dist(src, usr) < 2)
-		to_chat(usr, "That's \a [src].")
-		to_chat(usr, SPAN_INFO("Used to extract geological core samples - this one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag[num_stored_bags != 1 ? "s" : ""] remaining."))
-	else
-		return ..()
+	. += SPAN_INFO("This one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag\s remaining.")
 
 /obj/item/core_sampler/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/evidencebag/sample))

@@ -70,16 +70,15 @@
 	papers.Add(i)
 	amount++
 
-
-/obj/item/paper_bin/examine()
-	set src in oview(1)
+/obj/item/paper_bin/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
+		return
 
 	if(amount)
-		to_chat(usr, SPAN_NOTICE("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin."))
+		. += SPAN_NOTICE("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.")
 	else
-		to_chat(usr, SPAN_NOTICE("There are no papers in the bin."))
-	return
-
+		. += SPAN_NOTICE("There are no papers in the bin.")
 
 /obj/item/paper_bin/update_icon()
 	if(amount < 1)

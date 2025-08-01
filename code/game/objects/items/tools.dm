@@ -179,10 +179,10 @@
 	reagents.add_reagent("fuel", max_fuel)
 	. = ..()
 
-/obj/item/weldingtool/examine()
-	set src in usr
-	to_chat(usr, "\icon[src] \The [src] contains [get_fuel()]/[max_fuel] units of fuel!")
-	return
+/obj/item/weldingtool/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "It has [get_fuel()]/[max_fuel] units of fuel left!"
 
 /obj/item/weldingtool/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))

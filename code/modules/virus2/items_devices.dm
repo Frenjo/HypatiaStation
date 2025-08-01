@@ -63,11 +63,12 @@
 
 	return ..()
 
-/obj/item/virusdish/examine()
-	usr << "This is a virus containment dish"
-	if(src.info)
-		usr << "It has the following information about its contents"
-		usr << src.info
+/obj/item/virusdish/get_examine_text()
+	. = ..()
+	. += "This is a virus containment dish."
+	if(info)
+		. += "It has the following information about its contents:"
+		. += info
 
 ///////////////GNA DISK///////////////
 

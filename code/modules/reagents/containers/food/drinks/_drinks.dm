@@ -113,21 +113,21 @@
 
 	return
 
-/obj/item/reagent_holder/food/drinks/examine()
-	set src in view()
-	..()
-	if(!(usr in range(0)) && usr != src.loc)
+/obj/item/reagent_holder/food/drinks/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
-	if(!reagents || reagents.total_volume == 0)
-		to_chat(usr, SPAN_INFO("\The [src] is empty!"))
+
+	if(isnull(reagents) || reagents.total_volume == 0)
+		. += SPAN_INFO("It is empty!")
 	else if(reagents.total_volume <= src.volume / 4)
-		to_chat(usr, SPAN_INFO("\The [src] is almost empty!"))
+		. += SPAN_INFO("\The [src] is almost empty!")
 	else if(reagents.total_volume <= src.volume * 0.66)
-		to_chat(usr, SPAN_INFO("\The [src] is half full!"))
+		. += SPAN_INFO("\The [src] is half full!")
 	else if(reagents.total_volume <= src.volume * 0.90)
-		to_chat(usr, SPAN_INFO("\The [src] is almost full!"))
+		. += SPAN_INFO("\The [src] is almost full!")
 	else
-		to_chat(usr, SPAN_INFO("\The [src] is full!"))
+		. += SPAN_INFO("\The [src] is full!")
 
 
 ////////////////////////////////////////////////////////////////////////////////

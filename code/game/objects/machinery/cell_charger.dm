@@ -30,12 +30,11 @@
 	else
 		cut_overlays()
 
-/obj/machinery/cell_charger/examine()
-	set src in oview(5)
-	..()
-	to_chat(usr, "There's [charging ? "a" : "no"] cell in the charger.")
+/obj/machinery/cell_charger/get_examine_text()
+	. = ..()
+	. += "There's [charging ? "a" : "no"] cell in the charger."
 	if(isnotnull(charging))
-		to_chat(usr, "Current charge: [charging.charge].")
+		. += "Current charge: [charging.charge]."
 
 /obj/machinery/cell_charger/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))

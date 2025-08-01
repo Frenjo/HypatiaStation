@@ -28,11 +28,10 @@
 	recipes = null
 	return ..()
 
-/obj/item/stack/examine()
-	set src in view(1)
-	..()
-	to_chat(usr, "There are [src.amount] [src.singular_name]\s in the stack.")
-	return
+/obj/item/stack/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "There are [amount] [singular_name]\s in the stack."
 
 /obj/item/stack/attack_self(mob/user)
 	list_recipes(user)

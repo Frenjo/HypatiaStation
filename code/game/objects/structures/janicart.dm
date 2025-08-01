@@ -19,10 +19,9 @@
 	. = ..()
 	create_reagents(100)
 
-/obj/structure/janitorialcart/examine()
-	set src in usr
-	to_chat(usr, "[src] \icon[src] contains [reagents.total_volume] unit\s of liquid!")
-	..()
+/obj/structure/janitorialcart/get_examine_text()
+	. = ..()
+	. += "It contains [reagents.total_volume] unit\s of liquid!"
 	//everything else is visible, so doesn't need to be mentioned
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
@@ -177,11 +176,11 @@
 	handle_rotation()
 	create_reagents(100)
 
-/obj/structure/stool/bed/chair/janicart/examine()
-	set src in usr
-	to_chat(usr, "\icon[src] This [callme] contains [reagents.total_volume] unit\s of water!")
-	if(mybag)
-		to_chat(usr, "\A [mybag] is hanging on the [callme].")
+/obj/structure/stool/bed/chair/janicart/get_examine_text()
+	. = ..()
+	. += "It contains [reagents.total_volume] unit\s of water!"
+	if(isnotnull(mybag))
+		. += "\A [mybag] is hanging on the [callme]."
 
 /obj/structure/stool/bed/chair/janicart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))

@@ -116,9 +116,9 @@
 	STOP_PROCESSING(PCobj, src)
 	return ..()
 
-/obj/item/rcs/examine()
-	desc = "Use this to send crates and closets to cargo telepads. There are [rcharges] charges left."
-	..()
+/obj/item/rcs/get_examine_text()
+	. = ..()
+	. += "There are [rcharges] charges left."
 
 /obj/item/rcs/process()
 	if(rcharges > 10)

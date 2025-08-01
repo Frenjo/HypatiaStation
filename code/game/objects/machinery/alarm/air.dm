@@ -1118,9 +1118,9 @@ table tr:first-child th:first-child { border: none;}
 	spawn(rand(0, 15))
 		update_icon()
 
-/obj/machinery/air_alarm/examine()
+/obj/machinery/air_alarm/get_examine_text()
 	. = ..()
 	if(buildstage < 2)
-		to_chat(usr, "It is not wired.")
+		. += "It is not wired."
 	if(buildstage < 1)
-		to_chat(usr, "The circuit is missing.")
+		. += "It is missing a circuit."

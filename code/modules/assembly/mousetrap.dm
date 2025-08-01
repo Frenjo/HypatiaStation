@@ -7,10 +7,10 @@
 
 	var/armed = 0
 
-/obj/item/assembly/mousetrap/examine()
-	..()
+/obj/item/assembly/mousetrap/get_examine_text()
+	. = ..()
 	if(armed)
-		to_chat(usr, "It looks like it's armed.")
+		. += "It looks like it's armed."
 
 /obj/item/assembly/mousetrap/update_icon()
 	if(armed)

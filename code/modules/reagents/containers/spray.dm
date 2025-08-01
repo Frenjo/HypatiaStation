@@ -93,12 +93,9 @@
 	spray_size = next_in_list(spray_size, spray_sizes)
 	to_chat(user, SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
-
-/obj/item/reagent_holder/spray/examine()
-	set src in usr
-	..()
-	to_chat(usr, "[round(src.reagents.total_volume)] units left.")
-	return
+/obj/item/reagent_holder/spray/get_examine_text()
+	. = ..()
+	. += "It has [round(reagents.total_volume)] units left."
 
 /obj/item/reagent_holder/spray/verb/empty()
 	set category = PANEL_OBJECT
@@ -143,10 +140,10 @@
 
 	var/safety = 1
 
-/obj/item/reagent_holder/spray/pepper/examine()
-	..()
-	if(get_dist(usr, src) <= 1)
-		to_chat(usr, "The safety is [safety ? "on" : "off"].")
+/obj/item/reagent_holder/spray/pepper/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += "The safety is [safety ? "on" : "off"]."
 
 /obj/item/reagent_holder/spray/pepper/attack_self(mob/user)
 	safety = !safety

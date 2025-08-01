@@ -49,13 +49,12 @@
 	else
 		icon_state = "[initial(name)]"
 
-/obj/item/melee/baton/examine()
-	set src in view(1)
-	..()
-	if(bcell)
-		to_chat(usr, SPAN_NOTICE("The baton is [round(bcell.percent())]% charged."))
+/obj/item/melee/baton/get_examine_text()
+	. = ..()
+	if(isnotnull(bcell))
+		. += SPAN_NOTICE("The baton is [round(bcell.percent())]% charged.")
 	else
-		to_chat(usr, SPAN_WARNING("The baton does not have a power source installed."))
+		. += SPAN_WARNING("The baton does not have a power source installed.")
 
 /obj/item/melee/baton/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool) && isnotnull(bcell))
