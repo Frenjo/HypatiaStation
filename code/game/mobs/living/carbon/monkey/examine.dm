@@ -1,39 +1,40 @@
-/mob/living/carbon/monkey/examine()
-	set src in oview()
+/mob/living/carbon/monkey/get_examine_header()
+	. = list()
+	. += SPAN_INFO_B("*---------*")
+	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
+	if(desc)
+		. += SPAN_INFO(desc)
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+/mob/living/carbon/monkey/get_examine_text()
+	. = ..()
+	if(isnotnull(wear_mask))
+		. += SPAN_INFO("It has \icon[wear_mask] \a [wear_mask] on its head.")
+	if(isnotnull(back))
+		. += SPAN_INFO("It has \icon[back] \a [back] on its back.")
+	if(isnotnull(l_hand))
+		. += SPAN_INFO("It has \icon[l_hand] \a [l_hand] in its left hand.")
+	if(isnotnull(r_hand))
+		. += SPAN_INFO("It has \icon[r_hand] \a [r_hand] in its right hand.")
+	if(isnotnull(handcuffed))
+		. += SPAN_WARNING("It is \icon[handcuffed] handcuffed!")
 
-	if(handcuffed)
-		msg += "It is \icon[handcuffed] handcuffed!\n"
-	if(wear_mask)
-		msg += "It has \icon[wear_mask] \a [wear_mask] on its head.\n"
-	if(l_hand)
-		msg += "It has \icon[l_hand] \a [l_hand] in its left hand.\n"
-	if(r_hand)
-		msg += "It has \icon[r_hand] \a [r_hand] in its right hand.\n"
-	if(back)
-		msg += "It has \icon[back] \a [back] on its back.\n"
+	if(getBruteLoss())
+		if(getBruteLoss() < 30)
+			. += SPAN_WARNING("It has minor bruising.")
+		else
+			. += SPAN_DANGER("It has severe bruising!")
+	if(getFireLoss())
+		if(getFireLoss() < 30)
+			. += SPAN_WARNING("It has minor burns.")
+		else
+			. += SPAN_DANGER("It has severe burns!")
+
 	if(stat == DEAD)
-		msg += "<span class='deadsay'>It is limp and unresponsive, with no signs of life.</span>\n"
-	else
-		msg += "<span class='warning'>"
-		if(getBruteLoss())
-			if(getBruteLoss() < 30)
-				msg += "It has minor bruising.\n"
-			else
-				msg += "<B>It has severe bruising!</B>\n"
-		if(getFireLoss())
-			if(getFireLoss() < 30)
-				msg += "It has minor burns.\n"
-			else
-				msg += "<B>It has severe burns!</B>\n"
-		if(stat == UNCONSCIOUS)
-			msg += "It isn't responding to anything around it; it seems to be asleep.\n"
-		msg += "</span>"
+		. += SPAN("deadsay", "It is limp and unresponsive, with no signs of life.")
+	else if(stat == UNCONSCIOUS)
+		. += SPAN_WARNING("It isn't responding to anything around it; it seems to be asleep.")
 
 	if(digitalcamo)
-		msg += "It is repulsively uncanny!\n"
+		. += SPAN_INFO("It is repulsively uncanny!")
 
-	msg += "*---------*</span>"
-
-	to_chat(usr, msg)
+	. += SPAN_INFO_B("*---------*")

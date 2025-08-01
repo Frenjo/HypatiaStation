@@ -21,6 +21,6 @@
 	if(stat == DEAD)
 		. += SPAN("deadsay", "It appears to be powered-down.")
 	else if(stat == UNCONSCIOUS)
-		. += SPAN("deadsay", "It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".")
+		. += SPAN_WARNING("It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".")
 
 	. += SPAN_INFO_B("*---------*")
