@@ -51,7 +51,7 @@
 	var/users_to_open_string = users_to_open[1]
 	if(length(users_to_open) >= 2)
 		for(var/i = 2 to length(users_to_open))
-			users_to_open_string += ", [users_to_open[i]]"
+			users_to_open_string += ", <em>[users_to_open[i]]</em>"
 	. += "These people have opened \the [src] during an alert: [users_to_open_string]."
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)

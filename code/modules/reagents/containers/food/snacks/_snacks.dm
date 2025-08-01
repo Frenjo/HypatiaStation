@@ -111,7 +111,7 @@
 	if(bitecount == 1)
 		. += SPAN_INFO("It was bitten by someone!")
 	else if(bitecount <= 3)
-		. += SPAN_INFO("It was bitten [bitecount] times!")
+		. += SPAN_INFO("It was bitten <em>[bitecount]</em> times!")
 	else
 		. += SPAN_INFO("It was bitten multiple times!")
 

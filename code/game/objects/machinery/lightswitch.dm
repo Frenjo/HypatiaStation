@@ -39,7 +39,7 @@
 
 /obj/machinery/light_switch/get_examine_text()
 	. = ..()
-	. += "It is switched [on ? "on" : "off"]."
+	. += SPAN_INFO("It is switched <em>[on ? "on" : "off"]</em>.")
 
 /obj/machinery/light_switch/attack_paw(mob/user)
 	src.attack_hand(user)

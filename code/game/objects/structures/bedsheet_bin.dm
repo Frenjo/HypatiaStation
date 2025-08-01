@@ -103,12 +103,12 @@ LINEN BINS
 /obj/structure/bedsheetbin/get_examine_text()
 	. = ..()
 	if(amount < 1)
-		. += "There are no bed sheets in the bin."
+		. += SPAN_INFO("There are <em>no bed sheets</em> in the bin.")
 		return
 	if(amount == 1)
-		. += "There is one bed sheet in the bin."
+		. += SPAN_INFO("There is <em>one bed sheet</em> in the bin.")
 		return
-	. += "There are [amount] bed sheets in the bin."
+	. += SPAN_INFO("There are <em>[amount] bed sheets</em> in the bin.")
 
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)

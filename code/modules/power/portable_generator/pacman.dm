@@ -47,7 +47,7 @@
 
 /obj/machinery/power/port_gen/pacman/get_examine_text()
 	. = ..()
-	. += SPAN_INFO("The generator has [sheets] units of [lowertext(fuel_material.name)] fuel left, producing [power_gen] per cycle.")
+	. += SPAN_INFO("The generator has <em>[sheets]</em> units of [lowertext(fuel_material.name)] fuel left, producing <em>[power_gen]</em> per cycle.")
 	if(crit_fail)
 		. += SPAN_WARNING("The generator seems to have broken down.")
 

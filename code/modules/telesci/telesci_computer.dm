@@ -36,7 +36,7 @@
 
 /obj/machinery/computer/telescience/get_examine_text()
 	. = ..()
-	. += "There are [length(crystals)] bluespace crystals in the crystal ports."
+	. += SPAN_INFO("There are <em>[length(crystals)]</em> bluespace crystals in the crystal ports.")
 
 /obj/machinery/computer/telescience/initialise()
 	. = ..()

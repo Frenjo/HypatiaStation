@@ -24,12 +24,12 @@
 	if(!in_range(src, user))
 		return
 
-	. += "It contains:"
+	. += SPAN_INFO("It contains:")
 	if(length(reagents?.reagent_list))
 		for(var/datum/reagent/R in reagents.reagent_list)
-			. += SPAN_INFO("[R.volume] units of [R.name]")
+			. += SPAN_INFO("<em>[R.volume]</em> units of <em>[R.name]</em>")
 	else
-		. += "Nothing."
+		. += SPAN_INFO("Nothing.")
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set category = PANEL_OBJECT

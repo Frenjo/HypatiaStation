@@ -117,9 +117,9 @@
 		return
 
 	if(secured)
-		. += "It is ready!"
+		. += SPAN_INFO("It is ready!")
 	else
-		. += "It can be attached!"
+		. += SPAN_INFO("It can be attached!")
 
 /obj/item/assembly/attack_self(mob/user)
 	if(!user)

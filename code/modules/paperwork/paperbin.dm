@@ -76,9 +76,9 @@
 		return
 
 	if(amount)
-		. += SPAN_NOTICE("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.")
+		. += SPAN_NOTICE("There " + (amount > 1 ? "are <em>[amount]</em> papers" : "is <em>one</em> paper") + " in the bin.")
 	else
-		. += SPAN_NOTICE("There are no papers in the bin.")
+		. += SPAN_NOTICE("There are <em>no</em> papers in the bin.")
 
 /obj/item/paper_bin/update_icon()
 	if(amount < 1)

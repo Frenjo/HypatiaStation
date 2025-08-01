@@ -21,7 +21,7 @@
 
 /obj/structure/janitorialcart/get_examine_text()
 	. = ..()
-	. += "It contains [reagents.total_volume] unit\s of liquid!"
+	. += SPAN_INFO("It contains <em>[reagents.total_volume]</em> unit\s of liquid!")
 	//everything else is visible, so doesn't need to be mentioned
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
@@ -178,9 +178,9 @@
 
 /obj/structure/stool/bed/chair/janicart/get_examine_text()
 	. = ..()
-	. += "It contains [reagents.total_volume] unit\s of water!"
+	. += SPAN_INFO("It contains <em>[reagents.total_volume]</em> unit\s of water!")
 	if(isnotnull(mybag))
-		. += "\A [mybag] is hanging on the [callme]."
+		. += SPAN_INFO("\A [mybag] is hanging on the [callme].")
 
 /obj/structure/stool/bed/chair/janicart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))

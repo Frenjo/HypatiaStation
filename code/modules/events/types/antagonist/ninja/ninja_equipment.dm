@@ -911,13 +911,13 @@ ________________________________________________________________________________
 	if(!s_initialized)
 		return
 	if(s_control)
-		. += "All systems operational. Current energy capacity: <B>[cell.charge]</B>."
+		. += "All systems operational. Current energy capacity: <em>[cell.charge]</em>."
 		if(!kamikaze)
-			. += "The CLOAK-tech device is <B>[s_active ? "active" : "inactive"]</B>."
+			. += "The CLOAK-tech device is <em>[s_active ? "active" : "inactive"]</em>."
 		else
 			. += SPAN_WARNING("KAMIKAZE MODE ENGAGED!")
-		. += "There are <B>[s_bombs]</B> smoke bombs remaining."
-		. += "There are <B>[a_boost]</B> adrenaline boosters remaining."
+		. += "There are <em>[s_bombs]</em> smoke bombs remaining."
+		. += "There are <em>[a_boost]</em> adrenaline boosters remaining."
 	else
 		. += "�rr�R �a��a�� No-�-� f��N� 3RR�r"
 
@@ -1165,7 +1165,7 @@ ________________________________________________________________________________
 	if(user != loc)
 		return
 	if(!can_remove)
-		. += "The energy drain mechanism is: <B>[candrain ? "active" : "inactive"]</B>."
+		. += "The energy drain mechanism is <em>[candrain ? "active" : "inactive"]</em>."
 
 /*
 ===================================================================================
@@ -1303,8 +1303,8 @@ ________________________________________________________________________________
 
 /obj/item/clothing/mask/gas/voice/space_ninja/get_examine_text()
 	. = ..()
-	. += "<B>[ninja_vision.mode]</B> is active."
-	. += "Voice mimicking algorithm is <B>[!vchange ? "inactive" : "active"]</B>."
+	. += "<em>[ninja_vision.mode]</em> is active."
+	. += "Voice mimicking algorithm is <em>[!vchange ? "inactive" : "active"]</em>."
 
 /*
 ===================================================================================

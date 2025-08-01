@@ -42,11 +42,10 @@
 
 /obj/item/photo/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		show(user)
-		. += desc
-	else
-		. += SPAN_NOTICE("It is too far away.")
+	if(!in_range(src, user))
+		. += SPAN_WARNING("It is too far away.")
+		return
+	show(user)
 
 /obj/item/photo/proc/show(mob/user)
 	user << browse_rsc(img, "tmp_photo.png")

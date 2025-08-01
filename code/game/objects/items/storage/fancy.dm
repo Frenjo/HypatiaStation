@@ -30,11 +30,11 @@
 /obj/item/storage/fancy/get_examine_text()
 	. = ..()
 	if(length(contents) <= 0)
-		. += "There are no [icon_type]s left in the box."
+		. += SPAN_INFO("There are <em>no</em> [icon_type]s left in the box.")
 	else if(length(contents) == 1)
-		. += "There is one [icon_type] left in the box."
+		. += "There is <em>one</em> [icon_type] left in the box."
 	else
-		. += "There are [length(contents)] [icon_type]s in the box."
+		. += "There are <em>[length(contents)]</em> [icon_type]s in the box."
 
 /*
  * Donut Box

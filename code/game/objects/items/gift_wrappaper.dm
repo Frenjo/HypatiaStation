@@ -166,7 +166,7 @@
 /obj/item/wrapping_paper/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += "There are about [amount] square units of paper left!"
+		. += SPAN_INFO("There are about <em>[amount]</em> square units of paper left!")
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
 	if(!ishuman(target))

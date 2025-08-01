@@ -65,7 +65,7 @@
 	for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
 		if(length(B.reagents?.reagent_list))
 			for(var/datum/reagent/R in B.reagents.reagent_list)
-				. += SPAN_INFO("[R.volume] units of [R.name]")
+				. += SPAN_INFO("<em>[R.volume]</em> units of <em>[R.name]</em>")
 
 /obj/item/gun/dartgun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dart_cartridge))

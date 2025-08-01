@@ -32,7 +32,7 @@
 	. = ..()
 	if(get_dist(src, user) > 2)
 		return
-	. += SPAN_INFO("This one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag\s remaining.")
+	. += SPAN_INFO("This one is <em>[sampled_turf ? "full" : "empty"]</em>, and has <em>[num_stored_bags]</em> bag\s remaining.")
 
 /obj/item/core_sampler/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/evidencebag/sample))

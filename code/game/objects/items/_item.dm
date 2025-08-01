@@ -115,7 +115,7 @@
 		if(5)
 			size = "huge"
 	//if((MUTATION_CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
-	. += "It is a <b>[size]</b> item."
+	. += SPAN_INFO("It is a <em>[size]</em> item.")
 
 /obj/item/attack_hand(mob/user)
 	if(isnull(user))

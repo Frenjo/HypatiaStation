@@ -50,7 +50,7 @@
 
 /obj/item/spikethrower/get_examine_text()
 	. = ..()
-	. += "It has [spikes] spike\s remaining."
+	. += SPAN_INFO("It has <em>[spikes]</em> spike\s remaining.")
 
 /obj/item/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"

@@ -46,4 +46,4 @@
 
 /obj/machinery/power/port_gen/get_examine_text()
 	. = ..()
-	. += SPAN_INFO("The generator is [active ? "on" : "off"].")
+	. += SPAN_INFO("The generator is <em>[active ? "on" : "off"]</em>.")

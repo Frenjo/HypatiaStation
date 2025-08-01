@@ -65,15 +65,15 @@
 	. = ..()
 	switch(sensor_mode)
 		if(0)
-			. += "Its sensors appear to be disabled."
+			. += SPAN_INFO("Its sensors appear to be disabled.")
 		if(1)
-			. += "Its binary life sensors appear to be enabled."
+			. += SPAN_INFO("Its binary life sensors appear to be enabled.")
 		if(2)
-			. += "Its vital tracker appears to be enabled."
+			. += SPAN_INFO("Its vital tracker appears to be enabled.")
 		if(3)
-			. += "Its vital tracker and tracking beacon appear to be enabled."
+			. += SPAN_INFO("Its vital tracker and tracking beacon appear to be enabled.")
 	if(isnotnull(hastie))
-		. += "\A [hastie] is clipped to it."
+		. += SPAN_INFO("\A [hastie] is clipped to it.")
 
 /obj/item/clothing/under/verb/toggle()
 	set category = PANEL_OBJECT

@@ -36,11 +36,11 @@
 
 	switch(stage)
 		if(LIGHT_STAGE_ONE)
-			. += "It is empty."
+			. += SPAN_INFO("It is empty.")
 		if(LIGHT_STAGE_TWO)
-			. += "It is wired."
+			. += SPAN_INFO("It is wired.")
 		if(LIGHT_STAGE_THREE)
-			. += "The casing is closed."
+			. += SPAN_INFO("The casing is closed.")
 
 /obj/machinery/light_frame/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)

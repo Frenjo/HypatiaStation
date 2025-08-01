@@ -52,7 +52,7 @@
 /obj/item/melee/baton/get_examine_text()
 	. = ..()
 	if(isnotnull(bcell))
-		. += SPAN_NOTICE("The baton is [round(bcell.percent())]% charged.")
+		. += SPAN_NOTICE("The baton is <em>[round(bcell.percent())]%</em> charged.")
 	else
 		. += SPAN_WARNING("The baton does not have a power source installed.")
 

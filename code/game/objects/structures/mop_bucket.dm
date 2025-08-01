@@ -14,7 +14,7 @@
 
 /obj/structure/mopbucket/get_examine_text()
 	. = ..()
-	. += "It contains [reagents.total_volume] unit\s of water!"
+	. += SPAN_INFO("It contains <em>[reagents.total_volume]</em> unit\s of water!")
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop))

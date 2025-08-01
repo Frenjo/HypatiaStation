@@ -27,11 +27,11 @@
 
 /obj/machinery/space_heater/get_examine_text()
 	. = ..()
-	. += "It is [on ? "on" : "off"] and the hatch is [open ? "open" : "closed"]."
+	. += SPAN_INFO("It is <em>[on ? "on" : "off"]</em> and the hatch is <em>[open ? "open" : "closed"]</em>.")
 	if(open)
-		. += "The power cell is [cell ? "installed" : "missing"]."
+		. += SPAN_INFO("The power cell is <em>[cell ? "installed" : "missing"]</em>.")
 	else
-		. += "The charge meter reads [cell ? round(cell.percent(), 1) : 0]%."
+		. += SPAN_INFO("The charge meter reads <em>[cell ? round(cell.percent(), 1) : 0]%</em>.")
 
 /obj/machinery/space_heater/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))

@@ -54,7 +54,7 @@
 				t_his = "her"
 				t_him = "her"
 
-	msg += "</EM>[src.name]</EM>, a </EM>[src.species]</EM>!\n" // Edited this a bit to show species alongside their name.
+	msg += "</em>[name]</em>, a </em>[species]</em>!\n" // Edited this a bit to show species alongside their name.
 
 	//uniform
 	if(!skipjumpsuit && isnotnull(wear_uniform))

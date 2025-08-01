@@ -73,7 +73,7 @@
 /obj/item/disk/cloning_data/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
+		. += SPAN_INFO("The write-protect tab is set to <em>[read_only ? "protected" : "unprotected"]</em>.")
 
 // God Emperor Of Mankind disk
 /obj/item/disk/cloning_data/demo

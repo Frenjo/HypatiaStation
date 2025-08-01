@@ -80,7 +80,7 @@
 /obj/item/reagent_holder/food/snacks/csandwich/get_examine_text()
 	. = ..()
 	var/obj/item/O = pick(contents)
-	. += SPAN_INFO("You think you can see [O.name] in there.")
+	. += SPAN_INFO("You think you can see <em>[O.name]</em> in there.")
 
 /obj/item/reagent_holder/food/snacks/csandwich/attack(mob/M, mob/user, def_zone)
 	var/obj/item/shard

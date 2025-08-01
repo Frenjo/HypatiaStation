@@ -118,7 +118,7 @@
 
 /obj/item/rcs/get_examine_text()
 	. = ..()
-	. += "There are [rcharges] charges left."
+	. += SPAN_INFO("There are <em>[rcharges]</em> charges left.")
 
 /obj/item/rcs/process()
 	if(rcharges > 10)

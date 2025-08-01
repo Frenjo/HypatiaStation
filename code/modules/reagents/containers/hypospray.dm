@@ -80,4 +80,4 @@
 	if(reagents && length(reagents.reagent_list))
 		. += SPAN_INFO("It is currently loaded.")
 	else
-		. += SPAN_INFO("It is spent.")
+		. += SPAN_WARNING("It is spent.")

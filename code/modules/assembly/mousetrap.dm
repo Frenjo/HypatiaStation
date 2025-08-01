@@ -10,7 +10,7 @@
 /obj/item/assembly/mousetrap/get_examine_text()
 	. = ..()
 	if(armed)
-		. += "It looks like it's armed."
+		. += SPAN_WARNING("It looks like it's armed.")
 
 /obj/item/assembly/mousetrap/update_icon()
 	if(armed)

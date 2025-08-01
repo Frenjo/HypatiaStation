@@ -113,13 +113,13 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	. = ..()
 	switch(construction_state)
 		if(0)
-			. += "It looks like it's not attached to the flooring."
+			. += SPAN_INFO("It looks like it's not attached to the flooring.")
 		if(1)
-			. += "It is missing some cables."
+			. += SPAN_INFO("It is missing some cables.")
 		if(2)
-			. += "Its panel is open."
+			. += SPAN_INFO("Its panel is open.")
 		if(3)
-			. += "It looks assembled."
+			. += SPAN_INFO("It looks assembled.")
 			if(powered)
 				desc = desc_holder
 
@@ -315,13 +315,13 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	. = ..()
 	switch(construction_state)
 		if(0)
-			. += "It looks like it's not attached to the flooring."
+			. += SPAN_INFO("It looks like it's not attached to the flooring.")
 		if(1)
-			. += "It is missing some cables."
+			. += SPAN_INFO("It is missing some cables.")
 		if(2)
-			. += "Its panel is open."
+			. += SPAN_INFO("Its panel is open.")
 		if(3)
-			. += "It looks assembled."
+			. += SPAN_INFO("It looks assembled.")
 			if(powered)
 				desc = desc_holder
 

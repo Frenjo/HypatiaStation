@@ -87,11 +87,12 @@
 
 /obj/item/assembly_holder/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		if(secured)
-			. += "It is ready!"
-		else
-			. += "It can be attached!"
+	if(!in_range(src, user))
+		return
+	if(secured)
+		. += SPAN_INFO("It is ready!")
+	else
+		. += SPAN_INFO("It can be attached!")
 
 /obj/item/assembly_holder/HasProximity(atom/movable/AM)
 	if(a_left)

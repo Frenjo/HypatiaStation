@@ -32,9 +32,9 @@
 
 /obj/machinery/cell_charger/get_examine_text()
 	. = ..()
-	. += "There's [charging ? "a" : "no"] cell in the charger."
+	. += SPAN_INFO("There's [charging ? "a" : "no"] cell in the charger.")
 	if(isnotnull(charging))
-		. += "Current charge: [charging.charge]."
+		. += SPAN_INFO("Current charge: <em>[charging.charge]</em>.")
 
 /obj/machinery/cell_charger/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))

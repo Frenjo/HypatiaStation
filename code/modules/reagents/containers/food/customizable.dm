@@ -124,7 +124,7 @@
 /obj/item/reagent_holder/food/snacks/customizable/get_examine_text()
 	. = ..()
 	var/whatsinside = pick(ingredients)
-	. += SPAN_NOTICE("You think you can see [whatsinside] in there.")
+	. += SPAN_INFO("You think you can see <em>[whatsinside]</em> in there.")
 
 /obj/item/reagent_holder/food/snacks/customizable/attack(mob/M, mob/user, def_zone)
 	var/obj/item/shard

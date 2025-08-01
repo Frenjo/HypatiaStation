@@ -119,15 +119,15 @@
 		return
 
 	if(isnull(reagents) || reagents.total_volume == 0)
-		. += SPAN_INFO("It is empty!")
+		. += SPAN_WARNING("It is empty!")
 	else if(reagents.total_volume <= src.volume / 4)
-		. += SPAN_INFO("\The [src] is almost empty!")
+		. += SPAN_WARNING("It is almost empty!")
 	else if(reagents.total_volume <= src.volume * 0.66)
-		. += SPAN_INFO("\The [src] is half full!")
+		. += SPAN_INFO("It is half full!")
 	else if(reagents.total_volume <= src.volume * 0.90)
-		. += SPAN_INFO("\The [src] is almost full!")
+		. += SPAN_INFO("It is almost full!")
 	else
-		. += SPAN_INFO("\The [src] is full!")
+		. += SPAN_INFO("It is full!")
 
 
 ////////////////////////////////////////////////////////////////////////////////

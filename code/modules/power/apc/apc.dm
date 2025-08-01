@@ -111,25 +111,25 @@
 /obj/machinery/power/apc/get_examine_text()
 	. = ..()
 	if(stat & BROKEN)
-		. += SPAN_WARNING("It looks broken.")
+		. += SPAN_WARNING("It looks broken...")
 		return
 
 	if(opened)
 		if(has_electronics && isnotnull(terminal))
-			. += "The cover is [opened == 2 ? "removed" : "open"] and the power cell is [isnotnull(cell) ? "installed" : "missing"]."
+			. += SPAN_INFO("The cover is <em>[opened == 2 ? "removed" : "open"]</em> and the power cell is <em>[isnotnull(cell) ? "installed" : "missing"]</em>.")
 		else if(!has_electronics && isnotnull(terminal))
-			. += "It is wired but has no electronics installed."
+			. += SPAN_INFO("It is <em>wired</em> but has <em>no electronics</em> installed.")
 		else if(has_electronics && isnull(terminal))
-			. += "It has electronics installed but is not wired."
+			. += SPAN_INFO("It <em>has electronics</em> installed but is not <em>wired</em>.")
 		else
-			. += "It has no electronics or wires installed."
+			. += SPAN_INFO("It has <em>no electronics or wires</em> installed.")
 	else
 		if(stat & MAINT)
-			. += "The cover is closed, but something is wrong with it."
+			. += SPAN_WARNING("The cover is closed, but something is wrong with it.")
 		else if(malfhack)
-			. += "The cover is broken, and it may be hard to force it open."
+			. += SPAN_WARNING("The cover is broken, and it may be hard to force it open.")
 		else
-			. += "The cover is closed."
+			. += SPAN_INFO("The cover is closed.")
 
 /obj/machinery/power/apc/Topic(href, href_list)
 	if(..())

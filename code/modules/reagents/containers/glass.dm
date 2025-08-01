@@ -54,7 +54,7 @@
 		return
 
 	if(length(reagents?.reagent_list))
-		. += SPAN_INFO("It contains [reagents.total_volume] units of liquid.")
+		. += SPAN_INFO("It contains <em>[reagents.total_volume]</em> units of liquid.")
 	else
 		. += SPAN_INFO("It is empty.")
 	if(!is_open_container())

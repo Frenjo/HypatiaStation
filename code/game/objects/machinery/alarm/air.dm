@@ -1121,6 +1121,6 @@ table tr:first-child th:first-child { border: none;}
 /obj/machinery/air_alarm/get_examine_text()
 	. = ..()
 	if(buildstage < 2)
-		. += "It is not wired."
+		. += SPAN_INFO("It is <em>not wired</em>.")
 	if(buildstage < 1)
-		. += "It is missing a circuit."
+		. += SPAN_INFO("It is <em>missing a circuit</em>.")

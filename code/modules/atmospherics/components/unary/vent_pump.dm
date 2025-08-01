@@ -261,7 +261,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/get_examine_text()
 	. = ..()
 	if(welded)
-		. += "It seems welded shut."
+		. += SPAN_WARNING("It seems welded shut.")
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	if(powered(power_channel))

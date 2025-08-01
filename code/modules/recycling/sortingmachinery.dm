@@ -161,7 +161,7 @@
 /obj/item/package_wrap/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += SPAN_INFO("There are [amount] units of package wrap left!")
+		. += SPAN_INFO("There are <em>[amount]</em> units of package wrap left!")
 
 
 /obj/item/dest_tagger

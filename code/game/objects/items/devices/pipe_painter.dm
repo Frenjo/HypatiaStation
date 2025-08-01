@@ -19,4 +19,4 @@
 
 /obj/item/pipe_painter/get_examine_text()
 	. = ..()
-	. += "It is in [mode] mode."
+	. += SPAN_INFO("It is in <em>[mode]</em> mode.")

@@ -157,12 +157,12 @@
 	if(!in_range(src, user))
 		return
 
-	. += "It is [mode ? "injecting" : "taking blood"]."
+	. += SPAN_INFO("It is <em>[mode ? "injecting" : "taking blood"]</em>.")
 	if(isnotnull(beaker))
 		if(length(beaker.reagents?.reagent_list))
-			. += SPAN_INFO("Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.")
+			. += SPAN_INFO("Attached is <em>\a [beaker]</em> with <em>[beaker.reagents.total_volume]</em> units of liquid.")
 		else
-			. += SPAN_INFO("Attached is an empty [beaker].")
+			. += SPAN_INFO("Attached is an <em>empty [beaker]</em>.")
 	else
 		. += SPAN_INFO("No beaker is attached.")
-	. += SPAN_INFO("It is attached to [attached ? attached : "no one"].")
+	. += SPAN_INFO("It is attached to <em>[attached ? attached : "no one"]</em>.")

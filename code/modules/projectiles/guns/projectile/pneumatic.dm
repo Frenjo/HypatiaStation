@@ -72,9 +72,9 @@
 	if(!in_range(src, user))
 		return
 
-	. += "The valve is dialed to [pressure_setting]%."
+	. += "The valve is dialed to <em>[pressure_setting]%</em>."
 	if(isnotnull(tank))
-		. += "The tank dial reads [tank.air_contents.return_pressure()] kPa."
+		. += "The tank dial reads <em>[tank.air_contents.return_pressure()]</em> kPa."
 	else
 		. += "Nothing is attached to the tank valve!"
 

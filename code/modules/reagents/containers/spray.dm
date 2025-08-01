@@ -95,7 +95,7 @@
 
 /obj/item/reagent_holder/spray/get_examine_text()
 	. = ..()
-	. += "It has [round(reagents.total_volume)] units left."
+	. += SPAN_INFO("It has <em>[round(reagents.total_volume)]</em> units left.")
 
 /obj/item/reagent_holder/spray/verb/empty()
 	set category = PANEL_OBJECT
@@ -143,7 +143,7 @@
 /obj/item/reagent_holder/spray/pepper/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += "The safety is [safety ? "on" : "off"]."
+		. += SPAN_INFO("The safety is <em>[safety ? "on" : "off"]</em>.")
 
 /obj/item/reagent_holder/spray/pepper/attack_self(mob/user)
 	safety = !safety

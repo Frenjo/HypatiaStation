@@ -264,9 +264,9 @@
 /obj/item/clothing/tie/holster/get_examine_text()
 	. = ..()
 	if(isnotnull(holstered))
-		. += "A [holstered] is holstered here."
+		. += "A <em>[holstered]</em> is holstered here."
 	else
-		. += "It is empty."
+		. += "It is <em>empty</em>."
 
 /obj/item/clothing/tie/holster/on_attached(obj/item/clothing/under/S, mob/user)
 	..()

@@ -106,7 +106,7 @@
 /obj/item/grenade/chemical/get_examine_text()
 	. = ..()
 	if(detonator)
-		. += "It has an attached [detonator.name]."
+		. += SPAN_INFO("It has an attached [detonator.name].")
 
 /obj/item/grenade/chemical/activate(mob/user)
 	if(active)

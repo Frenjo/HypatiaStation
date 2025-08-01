@@ -115,7 +115,7 @@
 
 /obj/item/gun/projectile/get_examine_text()
 	. = ..()
-	. += "Has [getAmmo()] round\s remaining."
+	. += SPAN_INFO("It has <em>[getAmmo()]</em> round\s remaining.")
 	/*
 	if(in_chamber && !length(loaded))
 		. += "However, it has a round chambered."

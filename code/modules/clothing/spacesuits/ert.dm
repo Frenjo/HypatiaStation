@@ -20,7 +20,7 @@
 /obj/item/clothing/head/helmet/space/rig/ert/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += "This helmet has a built-in camera. It's [isnotnull(camera) ? "" : "in"]active."
+		. += "It has a built-in camera. It's <em>[isnotnull(camera) ? "" : "in"]active</em>."
 
 /obj/item/clothing/suit/space/rig/ert
 	name = "emergency response team suit"

@@ -67,7 +67,7 @@
 
 /obj/item/lightreplacer/get_examine_text()
 	. = ..()
-	. += "It has [uses] lights remaining."
+	. += SPAN_INFO("It has <em>[uses]</em> lights remaining.")
 
 /obj/item/lightreplacer/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)

@@ -40,7 +40,7 @@
 /obj/item/brain/get_examine_text()
 	. = ..()
 	if(isnotnull(brainmob?.client))
-		. += "You can feel the small spark of life still left in this one."
+		. += SPAN_INFO("You can feel the small spark of life still left in this one.")
 	else
 		. += SPAN("deadsay", "This one seems particularly lifeless. Perhaps it will regain some of its luster later...")
 

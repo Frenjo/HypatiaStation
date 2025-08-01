@@ -115,7 +115,7 @@
 /obj/item/shield_projector/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += "\The [src]'s shield matrix is at [round((shield_health / max_shield_health) * 100, 0.01)]% strength."
+		. += SPAN_INFO("The shield matrix is at <em>[round((shield_health / max_shield_health) * 100, 0.01)]%</em> strength.")
 
 /obj/item/shield_projector/emp_act(severity)
 	adjust_health(-max_shield_health / severity) // A strong EMP will kill the shield instantly, but weaker ones won't on the first hit.

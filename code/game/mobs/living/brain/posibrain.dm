@@ -106,7 +106,7 @@
 	if(brainmob?.key)
 		switch(brainmob.stat)
 			if(CONSCIOUS)
-				. += "It appears to be in stand-by mode."
+				. += SPAN_INFO("It appears to be in stand-by mode.")
 			if(UNCONSCIOUS)
 				. += SPAN_WARNING("It doesn't seem to be responsive.")
 			if(DEAD)

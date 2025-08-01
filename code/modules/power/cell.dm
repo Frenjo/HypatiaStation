@@ -58,10 +58,10 @@
 
 /obj/item/cell/get_examine_text()
 	. = ..()
-	. += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it."
-	. += "The charge meter reads [round(src.percent())]%."
+	. += SPAN_INFO("The manufacturer's label states this cell has a power rating of <em>[maxcharge]</em>, and that you should not swallow it.")
+	. += SPAN_INFO("The charge meter reads <em>[round(percent())]%</em>.")
 	if(crit_fail)
-		. += SPAN_WARNING("This power cell seems to be faulty.")
+		. += SPAN_WARNING("It seems to be faulty...")
 
 /obj/item/cell/attack_self(mob/user)
 	src.add_fingerprint(user)

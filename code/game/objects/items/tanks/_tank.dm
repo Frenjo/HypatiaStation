@@ -78,7 +78,7 @@
 		descriptive = "hot"
 	else
 		descriptive = "furiously hot"
-	. += SPAN_INFO("It feels [descriptive].")
+	. += SPAN_INFO("It feels <em>[descriptive]</em>.")
 
 	if(loc != usr || isnull(alert_gas_type) || isnull(alert_gas_amount))
 		return

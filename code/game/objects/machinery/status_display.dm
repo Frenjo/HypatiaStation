@@ -80,9 +80,9 @@
 	. = ..()
 	switch(mode)
 		if(STATUS_MODE_EVAC_SHUTTLE, STATUS_MODE_MESSAGE, STATUS_MODE_SUPPLY_SHUTTLE)
-			. += "The display says:"
-			. += "\t<xmp>[message1]</xmp>"
-			. += "\t<xmp>[message2]</xmp>"
+			. += SPAN_INFO("The display says:")
+			. += SPAN_INFO("\t<xmp>[message1]</xmp>")
+			. += SPAN_INFO("\t<xmp>[message2]</xmp>")
 
 /obj/machinery/status_display/receive_signal(datum/signal/signal)
 	if(!..())

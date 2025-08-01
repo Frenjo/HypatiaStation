@@ -31,7 +31,7 @@
 /obj/item/storage/secure/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += "The service panel is [open ? "open" : "closed"]."
+		. += SPAN_INFO("The service panel is <em>[open ? "open" : "closed"]</em>.")
 
 /obj/item/storage/secure/attack_paw(mob/user)
 	return attack_hand(user)

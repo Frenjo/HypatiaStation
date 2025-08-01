@@ -28,6 +28,7 @@
 
 /obj/item/virusdish
 	name = "virus containment/growth dish"
+	desc = "It's a dish for containing and growing virus samples."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
 	var/datum/disease2/disease/virus2 = null
@@ -65,10 +66,10 @@
 
 /obj/item/virusdish/get_examine_text()
 	. = ..()
-	. += "This is a virus containment dish."
-	if(info)
-		. += "It has the following information about its contents:"
-		. += info
+	if(!info)
+		return
+	. += SPAN_INFO("It has the following information about its contents:")
+	. += SPAN_INFO(info)
 
 ///////////////GNA DISK///////////////
 

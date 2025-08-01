@@ -102,13 +102,13 @@
 	var/fitting = get_fitting_name()
 	switch(status)
 		if(LIGHT_OK)
-			. += "It is turned [on ? "on" : "off"]."
+			. += SPAN_INFO("It is switched <em>[on ? "on" : "off"]</em>.")
 		if(LIGHT_EMPTY)
-			. += "The [fitting] has been removed."
+			. += SPAN_INFO("The [fitting] has been removed.")
 		if(LIGHT_BURNED)
-			. += "The [fitting] is burnt out."
+			. += SPAN_INFO("The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
-			. += "The [fitting] has been smashed."
+			. += SPAN_INFO("The [fitting] has been smashed.")
 
 // attack with item - insert light (if right type), otherwise try to break the light
 /obj/machinery/light/attackby(obj/item/W, mob/user)

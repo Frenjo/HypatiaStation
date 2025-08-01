@@ -54,9 +54,9 @@
 
 /obj/item/modkit/get_examine_text()
 	. = ..()
-	. += "It looks as though it modifies hardsuits to fit the following users:"
+	. += SPAN_INFO("It looks as though it modifies hardsuits to fit the following users:")
 	for(var/species in target_species)
-		. += "- [species]"
+		. += SPAN_INFO("- <em>[species]</em>")
 
 #undef MODKIT_HELMET
 #undef MODKIT_SUIT

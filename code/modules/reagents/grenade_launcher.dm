@@ -13,7 +13,7 @@
 /obj/item/gun/grenadelauncher/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += SPAN_INFO("It contains [grenades]/[max_grenades] grenades.")
+		. += SPAN_INFO("It contains <em>[grenades]/[max_grenades]</em> grenades.")
 
 /obj/item/gun/grenadelauncher/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/grenade)))

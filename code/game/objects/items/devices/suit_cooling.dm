@@ -176,19 +176,19 @@
 
 	if(on)
 		if(attached_to_suit(loc))
-			. += "It's switched on and running."
+			. += SPAN_INFO("It's switched on and running.")
 		else
-			. += "It's switched on, but not attached to anything."
+			. += SPAN_INFO("It's switched on, <em>but not attached to anything</em>.")
 	else
-		. += "It is switched off."
+		. += SPAN_WARNING("It is switched off.")
 
 	if(cover_open)
 		if(isnotnull(cell))
-			. += "The panel is open, exposing \the [cell]."
+			. += SPAN_INFO("The panel is <em>open</em>, exposing <em>\the [cell]</em>.")
 		else
-			. += "The panel is open."
+			. += SPAN_INFO("The panel is <em>open</em>.")
 
 	if(isnotnull(cell))
-		. += "The charge meter reads [round(cell.percent())]%."
+		. += SPAN_INFO("The charge meter reads <em>[round(cell.percent())]%</em>.")
 	else
-		. += "It doesn't have a power cell installed."
+		. += SPAN_WARNING("It doesn't have a power cell installed.")

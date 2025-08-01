@@ -131,7 +131,7 @@
 
 /obj/item/toy/gun/get_examine_text()
 	. = ..()
-	. += "There are [bullets] cap\s left."
+	. += SPAN_INFO("There are <em>[bullets]</em> cap\s left.")
 
 /obj/item/toy/gun/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/toy/ammo/gun))
@@ -205,7 +205,7 @@
 /obj/item/toy/crossbow/get_examine_text()
 	. = ..()
 	if(bullets)
-		. += SPAN_INFO("It is loaded with [bullets] foam darts!")
+		. += SPAN_INFO("It is loaded with <em>[bullets]</em> foam darts!")
 
 /obj/item/toy/crossbow/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/toy/ammo/crossbow))
@@ -473,7 +473,7 @@
 
 /obj/item/toy/waterflower/get_examine_text()
 	. = ..()
-	. += "It has [reagents.total_volume] units of water left!"
+	. += SPAN_INFO("It has <em>[reagents.total_volume]</em> units of water left!")
 
 /*
  * Mech prizes

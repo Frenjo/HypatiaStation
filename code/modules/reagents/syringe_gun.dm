@@ -14,7 +14,7 @@
 /obj/item/gun/syringe/get_examine_text(mob/user)
 	. = ..()
 	if(in_range(src, user))
-		. += SPAN_INFO("It has [length(syringes)]/[max_syringes] syringes.")
+		. += SPAN_INFO("It has <em>[length(syringes)]/[max_syringes]</em> syringes.")
 
 /obj/item/gun/syringe/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_holder/syringe))

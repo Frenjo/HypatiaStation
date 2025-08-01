@@ -16,9 +16,9 @@
 /obj/item/card/id/guest/get_examine_text()
 	. = ..()
 	if(world.time < expiration_time)
-		. += SPAN_INFO("This pass expires at [worldtime2text(expiration_time)].")
+		. += SPAN_INFO("This pass expires at <em>[worldtime2text(expiration_time)]</em>.")
 	else
-		. += SPAN_WARNING("It expired at [worldtime2text(expiration_time)].")
+		. += SPAN_WARNING("It expired at <em>[worldtime2text(expiration_time)]</em>.")
 
 /obj/item/card/id/guest/read()
 	if (world.time > expiration_time)
