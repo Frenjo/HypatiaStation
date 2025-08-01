@@ -1,46 +1,51 @@
-/mob/living/silicon/robot/examine()
-	set src in oview()
+/mob/living/silicon/robot/get_examine_header()
+	. = list()
+	. += SPAN_INFO_B("*---------*")
+	. += SPAN_INFO("This is \icon[src] <em>[src]</em>, a [model.display_name] [braintype]!")
+	if(desc)
+		. += SPAN_INFO(desc)
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>[custom_name ? ", [model.display_name] [braintype]" : ""]!\n"
-	msg += "<span class='warning'>"
+/mob/living/silicon/robot/get_examine_text()
+	. = ..()
 	if(getBruteLoss())
 		if(getBruteLoss() < 75)
-			msg += "It looks slightly dented.\n"
+			. += SPAN_WARNING("It looks slightly dented.")
 		else
-			msg += "<B>It looks severely dented!</B>\n"
+			. += SPAN_DANGER("It looks severely dented!")
+
 	if(getFireLoss())
 		if(getFireLoss() < 75)
-			msg += "It looks slightly charred.\n"
+			. += SPAN_WARNING("It looks slightly charred.")
 		else
-			msg += "<B>It looks severely burnt and heat-warped!</B>\n"
+			. += SPAN_DANGER("It looks severely burnt and heat-warped!")
+
 	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_crit)) // If it's in the "critically damaged" state.
-		msg += "It looks barely operational.\n"
-	msg += "</span>"
+		. += SPAN_WARNING("It looks barely operational.")
 
 	if(opened)
-		msg += "[SPAN_WARNING("Its cover is open and the power cell is [cell ? "installed" : "missing"].")]\n"
+		. += SPAN_WARNING("Its cover is open and the power cell is [cell ? "installed" : "missing"].")
 	else
-		msg += "Its cover is closed.\n"
+		. += SPAN_INFO("Its cover is closed.")
 
 	if(!has_power)
-		msg += "[SPAN_WARNING("It appears to be running on backup power.")]\n"
+		. += SPAN_WARNING("It appears to be running on backup power.")
 
 	switch(stat)
 		if(CONSCIOUS)
 			if(isnull(client))
-				msg += "It appears to be in stand-by mode.\n" //afk
+				. += "It appears to be in stand-by mode." // AFK
 		if(UNCONSCIOUS)
-			msg += "[SPAN_WARNING("It doesn't seem to be responding.")]\n"
+			. += SPAN_WARNING("It doesn't seem to be responding.")
 		if(DEAD)
-			msg += "<span class='deadsay'>It looks completely unsalvageable.</span>\n"
-	msg += "*---------*</span>"
+			. += SPAN("deadsay", "It looks completely unsalvageable.")
 
-	if(print_flavor_text())
-		msg += "\n[print_flavor_text()]\n"
+	. += SPAN_INFO_B("*---------*")
+
+	var/flavour_text = print_flavor_text()
+	if(flavour_text)
+		. += SPAN_INFO(flavour_text)
 
 	if(isnotnull(pose))
 		if(findtext(pose, ".", length(pose)) == 0 && findtext(pose, "!", length(pose)) == 0 && findtext(pose, "?", length(pose)) == 0)
-			pose = addtext(pose, ".") //Makes sure all emotes end with a period.
-		msg += "\nIt is [pose]"
-
-	to_chat(usr, msg)
+			pose = addtext(pose, ".") // Makes sure all emotes end with a period.
+		. += SPAN_INFO("It is [pose]")

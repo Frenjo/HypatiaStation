@@ -277,7 +277,12 @@
 	src << "\red There is nothing of interest to take."
 	return 0
 
-/mob/living/simple/spiderbot/examine()
-	..()
-	if(src.held_item)
-		usr << "It is carrying \a [src.held_item] \icon[src.held_item]."
+/mob/living/simple/spiderbot/get_examine_header()
+	. = list()
+	. += SPAN_INFO_B("*---------*")
+	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
+
+/mob/living/simple/spiderbot/get_examine_text()
+	. = ..()
+	if(isnotnull(held_item))
+		. += "It is carrying \icon[held_item] \a [held_item]."

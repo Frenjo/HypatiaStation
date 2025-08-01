@@ -43,19 +43,19 @@
 	ghostize()
 	qdel(src)
 
-/mob/living/simple/construct/examine()
-	set src in oview()
-	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
-	if(health < maxHealth)
-		msg += "<span class='warning'>"
-		if(health >= maxHealth / 2)
-			msg += "It looks slightly dented.\n"
-		else
-			msg += "<B>It looks severely dented!</B>\n"
-		msg += "</span>"
-	msg += "*---------*</span>"
+/mob/living/simple/construct/get_examine_header()
+	. = list()
+	. += SPAN_INFO_B("*---------*")
+	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
 
-	to_chat(usr, msg)
+/mob/living/simple/construct/get_examine_text()
+	. = ..()
+	if(health < maxHealth)
+		if(health >= maxHealth / 2)
+			. += SPAN_WARNING("It looks slightly dented.")
+		else
+			. += SPAN_DANGER("It looks severely dented.")
+	. += SPAN_INFO_B("*---------*")
 
 /mob/living/simple/construct/attack_animal(mob/living/M)
 	if(istype(M, /mob/living/simple/construct/builder))

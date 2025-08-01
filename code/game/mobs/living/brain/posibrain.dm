@@ -94,7 +94,7 @@
 
 /obj/item/mmi/posibrain/get_examine_header()
 	. = list()
-	. += SPAN_INFO("*---------*")
+	. += SPAN_INFO_B("*---------*")
 	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
 	if(desc)
 		. += SPAN_INFO(desc)
@@ -114,4 +114,4 @@
 	else
 		. += SPAN("deadsay", "It appears to be completely inactive.")
 
-	. += SPAN_INFO("*---------*")
+	. += SPAN_INFO_B("*---------*")
