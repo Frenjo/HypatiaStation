@@ -176,10 +176,6 @@ Works together with spawning an observer, noted above.
 	for(var/obj/effect/step_trigger/S in locate(x, y, z))	//<-- this is dumb
 		S.Crossed(src)
 
-/mob/dead/ghost/examine()
-	if(usr)
-		to_chat(usr, desc)
-
 /mob/dead/ghost/is_active()
 	return 0
 

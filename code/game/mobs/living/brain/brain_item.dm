@@ -37,16 +37,12 @@
 	brainmob << "\blue You feel slightly disoriented. That's normal when you're just a brain."
 	return
 
-/obj/item/brain/examine() // -- TLE
-	set src in oview(12)
-	if(!(usr))
-		return
-	usr << "This is \icon[src] \an [name]."
-
-	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		usr << "You can feel the small spark of life still left in this one."
+/obj/item/brain/get_examine_text()
+	. = ..()
+	if(isnotnull(brainmob?.client))
+		. += "You can feel the small spark of life still left in this one."
 	else
-		usr << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+		. += SPAN("deadsay", "This one seems particularly lifeless. Perhaps it will regain some of its luster later...")
 
 /obj/item/brain/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!ismob(M))

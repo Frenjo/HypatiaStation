@@ -386,14 +386,16 @@
 			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in \the [src]."
 	return
 
-/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/examine(mob/user)
-	..()
-	if(user.ckey != "nerezza") return //Only the owner knows how to examine the contents.
-	if(reagents && reagents.reagent_list.len)
+/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/get_examine_text(mob/user)
+	. = ..()
+	if(user.ckey != "nerezza")
+		return // Only the owner knows how to examine the contents.
+	if(length(reagents?.reagent_list))
+		. += SPAN_INFO("It contains:")
 		for(var/datum/reagent/R in reagents.reagent_list)
-			usr << "\blue You examine the penlight closely and see that it has [R.volume] units of [R.name] stored."
+			. += SPAN_INFO("[R.volume] units of [R.name] stored.")
 	else
-		usr << "\blue You examine the penlight closely and see that it is currently empty."
+		. += SPAN_INFO("It is currently empty.")
 
 //End strange penlight
 

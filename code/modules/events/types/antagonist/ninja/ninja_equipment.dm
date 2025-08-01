@@ -906,21 +906,20 @@ ________________________________________________________________________________
 				U.drop_item()
 	return 0
 
-/obj/item/clothing/suit/space/space_ninja/examine()
-	set src in view()
-	..()
-	if(s_initialized)
-		var/mob/living/carbon/human/U = affecting
-		if(s_control)
-			to_chat(U, "All systems operational. Current energy capacity: <B>[cell.charge]</B>.")
-			if(!kamikaze)
-				to_chat(U, "The CLOAK-tech device is <B>[s_active ? "active" : "inactive"]</B>.")
-			else
-				to_chat(U, SPAN_WARNING("KAMIKAZE MODE ENGAGED!"))
-			to_chat(U, "There are <B>[s_bombs]</B> smoke bombs remaining.")
-			to_chat(U, "There are <B>[a_boost]</B> adrenaline boosters remaining.")
+/obj/item/clothing/suit/space/space_ninja/get_examine_text()
+	. = ..()
+	if(!s_initialized)
+		return
+	if(s_control)
+		. += "All systems operational. Current energy capacity: <B>[cell.charge]</B>."
+		if(!kamikaze)
+			. += "The CLOAK-tech device is <B>[s_active ? "active" : "inactive"]</B>."
 		else
-			to_chat(U, "�rr�R �a��a�� No-�-� f��N� 3RR�r")
+			. += SPAN_WARNING("KAMIKAZE MODE ENGAGED!")
+		. += "There are <B>[s_bombs]</B> smoke bombs remaining."
+		. += "There are <B>[a_boost]</B> adrenaline boosters remaining."
+	else
+		. += "�rr�R �a��a�� No-�-� f��N� 3RR�r"
 
 /*
 ===================================================================================
@@ -1161,12 +1160,12 @@ ________________________________________________________________________________
 	to_chat(U, "You <b>[candrain ? "disable" : "enable"]</b> special interaction.")
 	candrain=!candrain
 
-/obj/item/clothing/gloves/space_ninja/examine()
-	set src in view()
-	..()
+/obj/item/clothing/gloves/space_ninja/get_examine_text(mob/user)
+	. = ..()
+	if(user != loc)
+		return
 	if(!can_remove)
-		var/mob/living/carbon/human/U = loc
-		to_chat(U, "The energy drain mechanism is: <B>[candrain ? "active" : "inactive"]</B>.")
+		. += "The energy drain mechanism is: <B>[candrain ? "active" : "inactive"]</B>."
 
 /*
 ===================================================================================
@@ -1302,12 +1301,10 @@ ________________________________________________________________________________
 	var/mob/U = loc
 	to_chat(U, "Switching mode to <B>[ninja_vision.mode]</B>.")
 
-/obj/item/clothing/mask/gas/voice/space_ninja/examine()
-	set src in view()
-	..()
-
-	to_chat(usr, "<B>[ninja_vision.mode]</B> is active.")//Leaving usr here since it may be on the floor or on a person.
-	to_chat(usr, "Voice mimicking algorithm is set <B>[!vchange ? "inactive" : "active"]</B>.")
+/obj/item/clothing/mask/gas/voice/space_ninja/get_examine_text()
+	. = ..()
+	. += "<B>[ninja_vision.mode]</B> is active."
+	. += "Voice mimicking algorithm is <B>[!vchange ? "inactive" : "active"]</B>."
 
 /*
 ===================================================================================

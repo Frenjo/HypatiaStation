@@ -92,25 +92,26 @@
 	var/turf/T = GET_TURF(src)
 	T.visible_message(SPAN_INFO("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
-/obj/item/mmi/posibrain/examine()
-	set src in oview()
+/obj/item/mmi/posibrain/get_examine_header()
+	. = list()
+	. += SPAN_INFO("*---------*")
+	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
+	if(desc)
+		. += SPAN_INFO(desc)
 
-	if(!usr || !src)	return
-	if((usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !isghost(usr))
-		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
-		return
+/obj/item/mmi/posibrain/get_examine_text()
+	SHOULD_CALL_PARENT(FALSE)
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
-
-	if(src.brainmob && src.brainmob.key)
-		switch(src.brainmob.stat)
+	. = list()
+	if(brainmob?.key)
+		switch(brainmob.stat)
 			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+				. += "It appears to be in stand-by mode."
+			if(UNCONSCIOUS)
+				. += SPAN_WARNING("It doesn't seem to be responsive.")
+			if(DEAD)
+				. += SPAN("deadsay", "It appears to be completely inactive.")
 	else
-		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "<span class='info'>*---------*</span>"
-	usr << msg
-	return
+		. += SPAN("deadsay", "It appears to be completely inactive.")
+
+	. += SPAN_INFO("*---------*")

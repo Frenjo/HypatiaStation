@@ -1,12 +1,6 @@
 /mob/living/carbon/human/examine()
 	set src in view()
 
-	if(!usr || !src)
-		return
-	if(usr.sdisabilities & BLIND || usr.blinded || usr.stat == UNCONSCIOUS)
-		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
-		return
-
 	var/skipgloves = FALSE
 	var/skipsuitstorage = FALSE
 	var/skipjumpsuit = FALSE

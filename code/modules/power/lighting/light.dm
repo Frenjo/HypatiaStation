@@ -97,18 +97,18 @@
 	return
 
 // examine verb
-/obj/machinery/light/examine()
+/obj/machinery/light/get_examine_text()
+	. = ..()
 	var/fitting = get_fitting_name()
-	if(isnotnull(usr) && !usr.stat)
-		switch(status)
-			if(LIGHT_OK)
-				to_chat(usr, "[desc] It is turned [on? "on" : "off"].")
-			if(LIGHT_EMPTY)
-				to_chat(usr, "[desc] The [fitting] has been removed.")
-			if(LIGHT_BURNED)
-				to_chat(usr, "[desc] The [fitting] is burnt out.")
-			if(LIGHT_BROKEN)
-				to_chat(usr, "[desc] The [fitting] has been smashed.")
+	switch(status)
+		if(LIGHT_OK)
+			. += "It is turned [on ? "on" : "off"]."
+		if(LIGHT_EMPTY)
+			. += "The [fitting] has been removed."
+		if(LIGHT_BURNED)
+			. += "The [fitting] is burnt out."
+		if(LIGHT_BROKEN)
+			. += "The [fitting] has been smashed."
 
 // attack with item - insert light (if right type), otherwise try to break the light
 /obj/machinery/light/attackby(obj/item/W, mob/user)

@@ -53,17 +53,18 @@
 	air_contents.react()
 	check_status()
 
-/obj/item/tank/examine()
-	var/obj/icon = src
+/obj/item/tank/get_examine_text(mob/user)
+	. = ..()
+	var/obj/holder = src
 	if(istype(loc, /obj/item/assembly))
-		icon = loc
-	if(!in_range(src, usr))
-		if(icon == src)
-			to_chat(usr, SPAN_INFO("It's \a \icon[icon][src]! If you want any more information you'll need to get closer."))
+		holder = loc
+	if(!in_range(src, user))
+		if(holder == src)
+			. += SPAN_INFO("If you want any more information you'll need to get closer.")
 		return
 
 	var/celsius_temperature = air_contents.temperature-T0C
-	var/descriptive
+	var/descriptive = ""
 
 	if(celsius_temperature < 20)
 		descriptive = "cold"
@@ -77,13 +78,12 @@
 		descriptive = "hot"
 	else
 		descriptive = "furiously hot"
-
-	to_chat(usr, SPAN_INFO("\The \icon[icon][src] feels [descriptive]."))
+	. += SPAN_INFO("It feels [descriptive].")
 
 	if(loc != usr || isnull(alert_gas_type) || isnull(alert_gas_amount))
 		return
 	if(air_contents.gas[alert_gas_type] < alert_gas_amount)
-		to_chat(usr, SPAN_DANGER("The meter on the [name] indicates you are almost out of air!"))
+		. += SPAN_DANGER("The meter indicates you are almost out of air!")
 		usr << sound('sound/effects/alert.ogg')
 
 /obj/item/tank/blob_act()

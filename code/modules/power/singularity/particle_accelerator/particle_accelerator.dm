@@ -109,20 +109,19 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	src.set_dir(turn(src.dir, 90))
 	return 1
 
-/obj/structure/particle_accelerator/examine()
-	switch(src.construction_state)
+/obj/structure/particle_accelerator/get_examine_text()
+	. = ..()
+	switch(construction_state)
 		if(0)
-			src.desc = "A [src], looks like it's not attached to the flooring."
+			. += "It looks like it's not attached to the flooring."
 		if(1)
-			src.desc = "A [src], it is missing some cables."
+			. += "It is missing some cables."
 		if(2)
-			src.desc = "A [src], the panel is open."
+			. += "Its panel is open."
 		if(3)
-			src.desc = "The [src] is assembled."
+			. += "It looks assembled."
 			if(powered)
-				src.desc = src.desc_holder
-	..()
-	return
+				desc = desc_holder
 
 /obj/structure/particle_accelerator/attack_tool(obj/item/tool, mob/user)
 	if(istool(tool))
@@ -312,20 +311,19 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/machinery/particle_accelerator/update_icon()
 	return
 
-/obj/machinery/particle_accelerator/examine()
-	switch(src.construction_state)
+/obj/machinery/particle_accelerator/get_examine_text()
+	. = ..()
+	switch(construction_state)
 		if(0)
-			src.desc = "A [src], looks like it's not attached to the flooring."
+			. += "It looks like it's not attached to the flooring."
 		if(1)
-			src.desc = "A [src], it is missing some cables."
+			. += "It is missing some cables."
 		if(2)
-			src.desc = "A [src], the panel is open."
+			. += "Its panel is open."
 		if(3)
-			src.desc = "The [src] is assembled."
+			. += "It looks assembled."
 			if(powered)
-				src.desc = src.desc_holder
-	..()
-	return
+				desc = desc_holder
 
 /obj/machinery/particle_accelerator/attack_tool(obj/item/tool, mob/user)
 	if(istool(tool))

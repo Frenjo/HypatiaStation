@@ -54,22 +54,20 @@
 		return
 	icon_state = "paper"
 
-/obj/item/paper/examine()
-	set src in oview(1)
-
-//	..()	//We don't want them to see the dumb "this is a paper" thing every time.
 // I didn't like the idea that people can read tiny pieces of paper from across the room.
 // Now you need to be next to the paper in order to read it.
-	if(in_range(usr, src))
-		if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
-			onclose(usr, "[name]")
-		else
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
-			onclose(usr, "[name]")
+/obj/item/paper/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
+		. += SPAN_WARNING("It is too far away to read.")
+		return
+
+	if(ishuman(user) || isghost(user) || issilicon(user))
+		usr << browse("<html><head><title>[name]</title></head><body>[info][stamps]</body></html>", "window=[name]")
+		onclose(usr, "[name]")
 	else
-		to_chat(usr, SPAN_NOTICE("It is too far away."))
-	return
+		usr << browse("<html><head><title>[name]</title></head><body>[stars(info)][stamps]</body></html>", "window=[name]")
+		onclose(usr, "[name]")
 
 /obj/item/paper/verb/rename()
 	set category = PANEL_OBJECT

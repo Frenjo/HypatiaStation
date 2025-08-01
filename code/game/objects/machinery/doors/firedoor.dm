@@ -44,15 +44,15 @@
 		A.doors_list.Remove(src)
 	return ..()
 
-/obj/machinery/door/firedoor/examine()
-	set src in view()
+/obj/machinery/door/firedoor/get_examine_text()
 	. = ..()
-	if(length(users_to_open))
-		var/users_to_open_string = users_to_open[1]
-		if(length(users_to_open) >= 2)
-			for(var/i = 2 to length(users_to_open))
-				users_to_open_string += ", [users_to_open[i]]"
-		to_chat(usr, "These people have opened \the [src] during an alert: [users_to_open_string].")
+	if(!length(users_to_open))
+		return
+	var/users_to_open_string = users_to_open[1]
+	if(length(users_to_open) >= 2)
+		for(var/i = 2 to length(users_to_open))
+			users_to_open_string += ", [users_to_open[i]]"
+	. += "These people have opened \the [src] during an alert: [users_to_open_string]."
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(p_open || operating)

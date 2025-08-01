@@ -113,13 +113,15 @@
 		mag.update_icon()
 		to_chat(user, SPAN_INFO("You unload the magazine from \the [src]!"))
 
-/obj/item/gun/projectile/examine()
-	..()
-	to_chat(usr, "Has [getAmmo()] round\s remaining.")
-//		if(in_chamber && !length(loaded))
-//			usr << "However, it has a chambered round."
-//		if(in_chamber && length(loaded))
-//			usr << "It also has a chambered round." {R}
+/obj/item/gun/projectile/get_examine_text()
+	. = ..()
+	. += "Has [getAmmo()] round\s remaining."
+	/*
+	if(in_chamber && !length(loaded))
+		. += "However, it has a round chambered."
+	else if(in_chamber && length(loaded))
+		. += "It also has a round chambered."
+	*/
 
 /obj/item/gun/projectile/proc/getAmmo()
 	var/bullets = 0

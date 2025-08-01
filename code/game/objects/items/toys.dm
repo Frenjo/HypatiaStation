@@ -117,7 +117,7 @@
  */
 /obj/item/toy/gun
 	name = "cap gun"
-	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
+	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "revolver"
 	item_state = "gun"
@@ -129,11 +129,9 @@
 
 	var/bullets = 7.0
 
-/obj/item/toy/gun/examine()
-	set src in usr
-	src.desc = "There are [src.bullets] caps\s left. Looks almost like the real thing! Ages 8 and up."
-	..()
-	return
+/obj/item/toy/gun/get_examine_text()
+	. = ..()
+	. += "There are [bullets] cap\s left."
 
 /obj/item/toy/gun/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/toy/ammo/gun))
@@ -204,11 +202,10 @@
 	attack_verb = list("attacked", "struck", "hit")
 	var/bullets = 5
 
-/obj/item/toy/crossbow/examine()
-	set src in view(2)
-	..()
+/obj/item/toy/crossbow/get_examine_text()
+	. = ..()
 	if(bullets)
-		to_chat(usr, SPAN_INFO("It is loaded with [bullets] foam darts!"))
+		. += SPAN_INFO("It is loaded with [bullets] foam darts!")
 
 /obj/item/toy/crossbow/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/toy/ammo/crossbow))
@@ -474,11 +471,9 @@
 
 		return
 
-/obj/item/toy/waterflower/examine()
-	set src in usr
-	to_chat(usr, "\icon[src] [src.reagents.total_volume] units of water left!")
-	..()
-	return
+/obj/item/toy/waterflower/get_examine_text()
+	. = ..()
+	. += "It has [reagents.total_volume] units of water left!"
 
 /*
  * Mech prizes

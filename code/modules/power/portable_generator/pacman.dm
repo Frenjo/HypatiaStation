@@ -45,11 +45,11 @@
 	reliability = min(round(temp_reliability / 4), 100)
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
-/obj/machinery/power/port_gen/pacman/examine()
-	..()
-	to_chat(usr, SPAN_INFO("The generator has [sheets] units of [lowertext(fuel_material.name)] fuel left, producing [power_gen] per cycle."))
+/obj/machinery/power/port_gen/pacman/get_examine_text()
+	. = ..()
+	. += SPAN_INFO("The generator has [sheets] units of [lowertext(fuel_material.name)] fuel left, producing [power_gen] per cycle.")
 	if(crit_fail)
-		to_chat(usr, SPAN_WARNING("The generator seems to have broken down."))
+		. += SPAN_WARNING("The generator seems to have broken down.")
 
 /obj/machinery/power/port_gen/pacman/has_fuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)

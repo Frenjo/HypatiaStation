@@ -121,10 +121,10 @@
 		qdel(O)
 	return ..()
 
-/obj/item/reagent_holder/food/snacks/customizable/examine()
-	..()
+/obj/item/reagent_holder/food/snacks/customizable/get_examine_text()
+	. = ..()
 	var/whatsinside = pick(ingredients)
-	to_chat(usr, SPAN_NOTICE("You think you can see [whatsinside] in there."))
+	. += SPAN_NOTICE("You think you can see [whatsinside] in there.")
 
 /obj/item/reagent_holder/food/snacks/customizable/attack(mob/M, mob/user, def_zone)
 	var/obj/item/shard

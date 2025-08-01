@@ -1,12 +1,6 @@
 /mob/living/silicon/ai/examine()
 	set src in oview()
 
-	if(isnull(usr) || isnull(src))
-		return
-	if((usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !isghost(usr))
-		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
-		return
-
 	var/msg = "<span class='info'>*---------*\nThis is \icon[src] <EM>[src]</EM>!\n"
 	if(stat == DEAD)
 		msg += "<span class='deadsay'>It appears to be powered-down.</span>\n"

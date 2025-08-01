@@ -51,9 +51,7 @@
 			A.clean_blood()
 	return
 
-/obj/item/reagent_holder/glass/rag/examine()
-	if(!usr)
-		return
-	to_chat(usr, "That's \a [src].")
-	to_chat(usr, desc)
-	return
+/obj/item/reagent_holder/glass/rag/get_examine_text()
+	SHOULD_CALL_PARENT(FALSE)
+
+	. = list()

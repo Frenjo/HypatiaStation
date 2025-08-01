@@ -22,8 +22,6 @@
 	set popup_menu = 0
 	set src = usr.contents
 
-/mob/dead/ai_eye/examine(mob/user)
-
 // Use this when setting the aiEye's location.
 // It will also stream the chunk that the new loc is in.
 /mob/dead/ai_eye/proc/setLoc(T)

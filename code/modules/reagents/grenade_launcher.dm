@@ -10,13 +10,10 @@
 	var/list/grenades = list()
 	var/max_grenades = 3
 
-/obj/item/gun/grenadelauncher/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != src.loc)
-		return
-	to_chat(usr, "[src] Grenade launcher:")
-	to_chat(usr, SPAN_INFO("[grenades] / [max_grenades] Grenades."))
+/obj/item/gun/grenadelauncher/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += SPAN_INFO("It contains [grenades]/[max_grenades] grenades.")
 
 /obj/item/gun/grenadelauncher/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/grenade)))

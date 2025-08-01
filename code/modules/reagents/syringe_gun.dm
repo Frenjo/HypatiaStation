@@ -11,12 +11,10 @@
 	var/list/syringes = list()
 	var/max_syringes = 1
 
-/obj/item/gun/syringe/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != src.loc)
-		return
-	to_chat(usr, SPAN_INFO("[length(syringes)] / [max_syringes] syringes."))
+/obj/item/gun/syringe/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += SPAN_INFO("It has [length(syringes)]/[max_syringes] syringes.")
 
 /obj/item/gun/syringe/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_holder/syringe))

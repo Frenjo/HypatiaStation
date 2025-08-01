@@ -25,19 +25,13 @@
 		overlays  += "sheater-open"
 	return
 
-/obj/machinery/space_heater/examine()
-	set src in oview(12)
-	if(!usr)
-		return
-	to_chat(usr, "This is \icon[src] \an [src.name].")
-	to_chat(usr, src.desc)
-
-	to_chat(usr, "The heater is [on ? "on" : "off"] and the hatch is [open ? "open" : "closed"].")
+/obj/machinery/space_heater/get_examine_text()
+	. = ..()
+	. += "It is [on ? "on" : "off"] and the hatch is [open ? "open" : "closed"]."
 	if(open)
-		to_chat(usr, "The power cell is [cell ? "installed" : "missing"].")
+		. += "The power cell is [cell ? "installed" : "missing"]."
 	else
-		to_chat(usr, "The charge meter reads [cell ? round(cell.percent(), 1) : 0]%")
-	return
+		. += "The charge meter reads [cell ? round(cell.percent(), 1) : 0]%."
 
 /obj/machinery/space_heater/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))

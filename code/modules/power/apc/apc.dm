@@ -108,31 +108,28 @@
 		QDEL_NULL(terminal)
 	return ..()
 
-/obj/machinery/power/apc/examine(mob/user)
-	if(user /*&& !usr.stat*/)
-		to_chat(user, "A control terminal for the area electrical systems.")
-		..()
-		if(stat & BROKEN)
-			to_chat(user, "Looks broken.")
-			return
+/obj/machinery/power/apc/get_examine_text()
+	. = ..()
+	if(stat & BROKEN)
+		. += SPAN_WARNING("It looks broken.")
+		return
 
-		if(opened)
-			if(has_electronics && terminal)
-				to_chat(user, "The cover is [opened == 2 ? "removed" : "open"] and the power cell is [cell ? "installed" : "missing"].")
-			else if(!has_electronics && terminal)
-				to_chat(user, "There are some wires but no any electronics.")
-			else if(has_electronics && !terminal)
-				to_chat(user, "Electronics installed but not wired.")
-			else /* if (!has_electronics && !terminal) */
-				to_chat(user, "There is no electronics nor connected wires.")
-
+	if(opened)
+		if(has_electronics && isnotnull(terminal))
+			. += "The cover is [opened == 2 ? "removed" : "open"] and the power cell is [isnotnull(cell) ? "installed" : "missing"]."
+		else if(!has_electronics && isnotnull(terminal))
+			. += "It is wired but has no electronics installed."
+		else if(has_electronics && isnull(terminal))
+			. += "It has electronics installed but is not wired."
 		else
-			if(stat & MAINT)
-				to_chat(user, "The cover is closed. Something wrong with it: it doesn't work.")
-			else if(malfhack)
-				to_chat(user, "The cover is broken. It may be hard to force it open.")
-			else
-				to_chat(user, "The cover is closed.")
+			. += "It has no electronics or wires installed."
+	else
+		if(stat & MAINT)
+			. += "The cover is closed, but something is wrong with it."
+		else if(malfhack)
+			. += "The cover is broken, and it may be hard to force it open."
+		else
+			. += "The cover is closed."
 
 /obj/machinery/power/apc/Topic(href, href_list)
 	if(..())

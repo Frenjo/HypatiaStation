@@ -55,18 +55,17 @@
 	cartridge = new /obj/item/dart_cartridge(src)
 	update_icon()
 
-/obj/item/gun/dartgun/examine()
-	set src in view()
-	update_icon()
-	..()
-	if(!(usr in view(2)) && usr!=src.loc)
+/obj/item/gun/dartgun/get_examine_text(mob/user)
+	. = ..()
+	if(!in_range(src, user))
 		return
-	if(length(beakers))
-		to_chat(usr, SPAN_INFO("[src] contains:"))
-		for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
-			if(B.reagents && length(B.reagents.reagent_list))
-				for(var/datum/reagent/R in B.reagents.reagent_list)
-					to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
+	if(!length(beakers))
+		return
+	. += SPAN_INFO("It contains:")
+	for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
+		if(length(B.reagents?.reagent_list))
+			for(var/datum/reagent/R in B.reagents.reagent_list)
+				. += SPAN_INFO("[R.volume] units of [R.name]")
 
 /obj/item/gun/dartgun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dart_cartridge))

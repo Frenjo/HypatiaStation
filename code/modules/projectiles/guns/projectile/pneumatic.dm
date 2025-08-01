@@ -67,16 +67,16 @@
 	else
 		. = ..()
 
-/obj/item/storage/pneumatic/examine()
-	set src in view()
+/obj/item/storage/pneumatic/get_examine_text(mob/user)
 	. = ..()
-	if(!(usr in view(2)) && usr != loc)
+	if(!in_range(src, user))
 		return
-	to_chat(usr, "The valve is dialed to [pressure_setting]%.")
+
+	. += "The valve is dialed to [pressure_setting]%."
 	if(isnotnull(tank))
-		to_chat(usr, "The tank dial reads [tank.air_contents.return_pressure()] kPa.")
+		. += "The tank dial reads [tank.air_contents.return_pressure()] kPa."
 	else
-		to_chat(usr, "Nothing is attached to the tank valve!")
+		. += "Nothing is attached to the tank valve!"
 
 /obj/item/storage/pneumatic/afterattack(atom/target, mob/living/user, flag, params)
 	if(istype(target, /obj/item/storage/backpack))

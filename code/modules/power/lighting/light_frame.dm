@@ -29,17 +29,18 @@
 		if(LIGHT_STAGE_THREE)
 			icon_state = "tube-empty"
 
-/obj/machinery/light_frame/examine()
+/obj/machinery/light_frame/get_examine_text(mob/user)
 	. = ..()
-	if(!(usr in view(2)))
+	if(!in_range(src, user))
 		return
+
 	switch(stage)
 		if(LIGHT_STAGE_ONE)
-			to_chat(usr, "It's an empty frame.")
+			. += "It is empty."
 		if(LIGHT_STAGE_TWO)
-			to_chat(usr, "It's wired.")
+			. += "It is wired."
 		if(LIGHT_STAGE_THREE)
-			to_chat(usr, "The casing is closed.")
+			. += "The casing is closed."
 
 /obj/machinery/light_frame/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)

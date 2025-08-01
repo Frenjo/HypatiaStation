@@ -20,12 +20,10 @@
 
 	var/projectile = /obj/item/missile
 
-/obj/item/gun/rocketlauncher/examine()
-	set src in view()
-	..()
-	if(!(usr in view(2)) && usr != loc)
-		return
-	to_chat(usr, SPAN_INFO("[length(rockets)] / [max_rockets] rockets."))
+/obj/item/gun/rocketlauncher/get_examine_text(mob/user)
+	. = ..()
+	if(in_range(src, user))
+		. += SPAN_INFO("It has [length(rockets)]/[max_rockets] rockets.")
 
 /obj/item/gun/rocketlauncher/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/ammo_casing/rocket))

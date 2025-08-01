@@ -53,16 +53,15 @@ var/const/MAX_ACTIVE_TIME = 400
 	else
 		qdel(src)
 
-/obj/item/clothing/mask/facehugger/examine()
-	..()
+/obj/item/clothing/mask/facehugger/get_examine_text()
+	. = ..()
 	switch(stat)
-		if(DEAD,UNCONSCIOUS)
-			usr << "\red \b [src] is not moving."
+		if(DEAD, UNCONSCIOUS)
+			. += SPAN_DANGER("It is not moving.")
 		if(CONSCIOUS)
-			usr << "\red \b [src] seems to be active."
-	if (sterile)
-		usr << "\red \b It looks like the proboscis has been removed."
-	return
+			. += SPAN_DANGER("It seems to be active.")
+	if(sterile)
+		. += SPAN_DANGER("It looks like the proboscis has been removed.")
 
 /obj/item/clothing/mask/facehugger/attackby()
 	Die()
