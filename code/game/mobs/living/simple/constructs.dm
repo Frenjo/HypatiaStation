@@ -43,11 +43,6 @@
 	ghostize()
 	qdel(src)
 
-/mob/living/simple/construct/get_examine_header()
-	. = list()
-	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
-
 /mob/living/simple/construct/get_examine_text()
 	. = ..()
 	if(health < maxHealth)

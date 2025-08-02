@@ -11,13 +11,13 @@
 
 	. = list()
 	// This reformats names to get a/an properly working on item descriptions when they are bloody.
-	var/f_name = "\a [src]."
+	var/f_name = "<em>\a [src]</em>."
 	if(blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
-			f_name = "some "
+			f_name = "<em>some</em> "
 		else
-			f_name = "a "
-		f_name += "[SPAN_DANGER("blood-stained")] [name]!"
+			f_name = "<em>a</em> "
+		f_name += "[SPAN_DANGER("blood-stained")] <em>[name]</em>!"
 
 	. += "This is \icon[src] [f_name]"
 

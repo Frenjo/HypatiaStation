@@ -277,12 +277,7 @@
 	src << "\red There is nothing of interest to take."
 	return 0
 
-/mob/living/simple/spiderbot/get_examine_header()
-	. = list()
-	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
-
 /mob/living/simple/spiderbot/get_examine_text()
 	. = ..()
 	if(isnotnull(held_item))
-		. += SPAN_INFO("It is carrying \icon[held_item] \a [held_item].")
+		. += SPAN_INFO("It is carrying \icon[held_item] <em>\a [held_item]</em>.")

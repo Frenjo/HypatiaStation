@@ -1,10 +1,3 @@
-/mob/living/carbon/monkey/get_examine_header()
-	. = list()
-	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is \icon[src] \a <em>[src]</em>!")
-	if(desc)
-		. += SPAN_INFO(desc)
-
 /mob/living/carbon/monkey/get_examine_text()
 	. = ..()
 	if(isnotnull(wear_mask))

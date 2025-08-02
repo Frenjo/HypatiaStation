@@ -532,6 +532,7 @@
 #include "code\game\mobs\dead\new_player\verbs.dm"
 #include "code\game\mobs\living\damage_procs.dm"
 #include "code\game\mobs\living\death.dm"
+#include "code\game\mobs\living\examine.dm"
 #include "code\game\mobs\living\internals.dm"
 #include "code\game\mobs\living\life.dm"
 #include "code\game\mobs\living\living.dm"
