@@ -181,8 +181,9 @@
 
 /obj/item/weldingtool/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("It has <em>[get_fuel()]/[max_fuel]</em> units of fuel left!")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("It has <em>[get_fuel()]/[max_fuel]</em> units of fuel left!")
 
 /obj/item/weldingtool/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))

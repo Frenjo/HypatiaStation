@@ -29,7 +29,7 @@
 	var/state = "disabled"
 	if(HAS_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP))
 		state = "enabled"
-	. += "Its [is_advanced ? "advanced " : ""]mag-pulse traction system appears to be <em>[state]</em>."
+	. += SPAN_INFO("Its [is_advanced ? "advanced " : ""]mag-pulse traction system appears to be <em>[state]</em>.")
 
 // Added advanced magboots for the CE, they're even that weird off-white colour like the hardsuit. -Frenjo
 /obj/item/clothing/shoes/magboots/advanced

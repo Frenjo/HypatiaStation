@@ -32,7 +32,7 @@
 
 /obj/machinery/cell_charger/get_examine_text()
 	. = ..()
-	. += SPAN_INFO("There's [charging ? "a" : "no"] cell in the charger.")
+	. += SPAN_INFO("There's <em>[charging ? "\a [charging]" : "no cell"]</em> in the charger.")
 	if(isnotnull(charging))
 		. += SPAN_INFO("Current charge: <em>[charging.charge]</em>.")
 

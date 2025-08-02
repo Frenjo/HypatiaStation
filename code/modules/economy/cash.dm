@@ -74,5 +74,6 @@
 
 /obj/item/cash/charge_card/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("Owner: [owner_name]. Credits remaining: [worth].")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("Owner: [owner_name]. Credits remaining: [worth].")

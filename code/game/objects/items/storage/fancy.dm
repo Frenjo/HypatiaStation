@@ -32,9 +32,9 @@
 	if(length(contents) <= 0)
 		. += SPAN_INFO("There are <em>no</em> [icon_type]s left in the box.")
 	else if(length(contents) == 1)
-		. += "There is <em>one</em> [icon_type] left in the box."
+		. += SPAN_INFO("There is <em>one</em> [icon_type] left in the box.")
 	else
-		. += "There are <em>[length(contents)]</em> [icon_type]s in the box."
+		. += SPAN_INFO("There are <em>[length(contents)]</em> [icon_type]s in the box.")
 
 /*
  * Donut Box

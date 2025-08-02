@@ -47,7 +47,7 @@
 	if(det_time > 1)
 		. += SPAN_INFO("The timer is set to <em>[det_time / 10]</em> seconds.")
 		return
-	. += SPAN_INFO("It is set for instant detonation.")
+	. += SPAN_INFO("It is set for <em>instant</em> detonation.")
 
 /obj/item/grenade/attack_self(mob/user)
 	if(!active)

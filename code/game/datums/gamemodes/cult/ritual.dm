@@ -81,9 +81,9 @@ var/engwords = list(
 		return
 
 	if(!desc)
-		. += "A spell circle drawn in blood. It reads: <i>[word1] [word2] [word3]</i>."
+		. += SPAN_WARNING("A spell circle drawn in blood. It reads: <i>[word1] [word2] [word3]</i>.")
 	else
-		. += "Explosive Runes inscription in blood. It reads: <i>[desc]</i>."
+		. += SPAN_WARNING("Explosive Runes inscription in blood. It reads: <i>[desc]</i>.")
 
 /obj/effect/rune/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tome) && iscultist(user))
@@ -493,7 +493,7 @@ var/engwords = list(
 	if(!iscultist(user))
 		. += "An old, dusty tome with frayed edges and a sinister looking cover."
 	else
-		. += "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
+		. += SPAN_WARNING("The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though.")
 
 /obj/item/tome/imbued //admin tome, spawns working runes without waiting
 	w_class = 2.0

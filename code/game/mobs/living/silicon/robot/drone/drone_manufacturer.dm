@@ -49,7 +49,7 @@
 		return
 	if(drone_progress < 100)
 		return
-	if(!istype(user, /mob/dead))
+	if(!isghost(user))
 		return
 	if(!CONFIG_GET(/decl/configuration_entry/allow_drone_spawn))
 		return

@@ -22,8 +22,9 @@
 
 /obj/item/gun/rocketlauncher/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("It has [length(rockets)]/[max_rockets] rockets.")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("It has [length(rockets)]/[max_rockets] rockets.")
 
 /obj/item/gun/rocketlauncher/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/ammo_casing/rocket))

@@ -39,8 +39,9 @@
 
 /obj/item/fire_extinguisher/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("It has <em>[reagents.total_volume]</em> units of water left!")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("It has <em>[reagents.total_volume]</em> units of water left!")
 
 /obj/item/fire_extinguisher/attack_self(mob/user)
 	safety = !safety

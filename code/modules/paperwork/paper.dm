@@ -63,11 +63,11 @@
 		return
 
 	if(ishuman(user) || isghost(user) || issilicon(user))
-		usr << browse("<html><head><title>[name]</title></head><body>[info][stamps]</body></html>", "window=[name]")
-		onclose(usr, "[name]")
+		user << browse("<html><head><title>[name]</title></head><body>[info][stamps]</body></html>", "window=[name]")
+		onclose(user, "[name]")
 	else
-		usr << browse("<html><head><title>[name]</title></head><body>[stars(info)][stamps]</body></html>", "window=[name]")
-		onclose(usr, "[name]")
+		user << browse("<html><head><title>[name]</title></head><body>[stars(info)][stamps]</body></html>", "window=[name]")
+		onclose(user, "[name]")
 
 /obj/item/paper/verb/rename()
 	set category = PANEL_OBJECT

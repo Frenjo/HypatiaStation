@@ -30,8 +30,9 @@
 
 /obj/item/stack/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("There are <em>[amount]</em> [singular_name]\s in the stack.")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("There are <em>[amount]</em> [singular_name]\s in the stack.")
 
 /obj/item/stack/attack_self(mob/user)
 	list_recipes(user)

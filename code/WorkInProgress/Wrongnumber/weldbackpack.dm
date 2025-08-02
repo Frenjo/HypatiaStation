@@ -45,5 +45,6 @@
 
 /obj/item/weldpack/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("It has <em>[reagents.total_volume]</em> units of fuel left!")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("It has <em>[reagents.total_volume]</em> units of fuel left!")

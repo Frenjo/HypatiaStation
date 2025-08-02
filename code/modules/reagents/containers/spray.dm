@@ -142,8 +142,9 @@
 
 /obj/item/reagent_holder/spray/pepper/get_examine_text(mob/user)
 	. = ..()
-	if(in_range(src, user))
-		. += SPAN_INFO("The safety is <em>[safety ? "on" : "off"]</em>.")
+	if(!in_range(src, user))
+		return
+	. += SPAN_INFO("The safety is <em>[safety ? "on" : "off"]</em>.")
 
 /obj/item/reagent_holder/spray/pepper/attack_self(mob/user)
 	safety = !safety

@@ -911,15 +911,15 @@ ________________________________________________________________________________
 	if(!s_initialized)
 		return
 	if(s_control)
-		. += "All systems operational. Current energy capacity: <em>[cell.charge]</em>."
+		. += SPAN_INFO("All systems operational. Current energy capacity: <em>[cell.charge]</em>.")
 		if(!kamikaze)
-			. += "The CLOAK-tech device is <em>[s_active ? "active" : "inactive"]</em>."
+			. += SPAN_INFO("The CLOAK-tech device is <em>[s_active ? "active" : "inactive"]</em>.")
 		else
-			. += SPAN_WARNING("KAMIKAZE MODE ENGAGED!")
-		. += "There are <em>[s_bombs]</em> smoke bombs remaining."
-		. += "There are <em>[a_boost]</em> adrenaline boosters remaining."
+			. += SPAN_DANGER("KAMIKAZE MODE ENGAGED!")
+		. += SPAN_INFO("There are <em>[s_bombs]</em> smoke bombs remaining.")
+		. += SPAN_INFO("There are <em>[a_boost]</em> adrenaline boosters remaining.")
 	else
-		. += "�rr�R �a��a�� No-�-� f��N� 3RR�r"
+		. += SPAN_WARNING("�rr�R �a��a�� No-�-� f��N� 3RR�r")
 
 /*
 ===================================================================================
@@ -1165,7 +1165,7 @@ ________________________________________________________________________________
 	if(user != loc)
 		return
 	if(!can_remove)
-		. += "The energy drain mechanism is <em>[candrain ? "active" : "inactive"]</em>."
+		. += SPAN_INFO("The energy drain mechanism is <em>[candrain ? "active" : "inactive"]</em>.")
 
 /*
 ===================================================================================
@@ -1303,8 +1303,8 @@ ________________________________________________________________________________
 
 /obj/item/clothing/mask/gas/voice/space_ninja/get_examine_text()
 	. = ..()
-	. += "<em>[ninja_vision.mode]</em> is active."
-	. += "Voice mimicking algorithm is <em>[!vchange ? "inactive" : "active"]</em>."
+	. += SPAN_INFO("<em>[ninja_vision.mode]</em> is active.")
+	. += SPAN_INFO("Voice mimicking algorithm is <em>[!vchange ? "inactive" : "active"]</em>.")
 
 /*
 ===================================================================================
