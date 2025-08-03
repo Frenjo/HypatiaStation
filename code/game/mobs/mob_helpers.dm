@@ -86,9 +86,9 @@
 						return "l_arm"
 					if(3)
 						return "r_arm"
-					if(4) 
+					if(4)
 						return "chest"
-					if(5) 
+					if(5)
 						return "l_foot"
 					if(6)
 						return "r_foot"
@@ -230,7 +230,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/oldeye = M.client.eye
 		var/x
 		M.shakecamera = TRUE
-		for(x = 0; x < duration, x++)
+		for(x = 0; x < duration; x++)
 			M.client.eye = locate(dd_range(1, M.loc.x + rand(-strength, strength), world.maxx), dd_range(1, M.loc.y + rand(-strength, strength), world.maxy), M.loc.z)
 			sleep(1)
 		M.shakecamera = FALSE

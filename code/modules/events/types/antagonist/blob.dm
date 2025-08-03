@@ -16,7 +16,7 @@
 		kill()
 		return
 	blob = new /obj/effect/blob/core(T, 120)
-	for(var/i = 1; i < rand(3, 4), i++)
+	for(var/i = 1; i < rand(3, 4); i++)
 		blob.process()
 
 /datum/round_event/blob/tick()
