@@ -27,7 +27,7 @@
 	. += SPAN_INFO("It contains:")
 	if(length(reagents?.reagent_list))
 		for(var/datum/reagent/R in reagents.reagent_list)
-			. += SPAN_INFO("<em>[R.volume]</em> units of <em>[R.name]</em>")
+			. += SPAN_INFO("<em>[R.volume]</em> units of <em>[R.name]</em>.")
 	else
 		. += SPAN_INFO("Nothing.")
 
@@ -66,7 +66,7 @@
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
-	desc = "A watertank"
+	desc = "A portable tank presumably containing water."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
@@ -77,7 +77,7 @@
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
-	desc = "A fueltank"
+	desc = "A portable tank presumably containing welding fuel."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
@@ -192,7 +192,7 @@
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "pepper spray refiller"
-	desc = "Refill pepper spray canisters."
+	desc = "A refiller for pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
 	anchored = TRUE
@@ -218,7 +218,7 @@
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
-	desc = "A beer keg"
+	desc = "A beer keg."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
@@ -233,7 +233,7 @@
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "virus food dispenser"
-	desc = "A dispenser of virus food."
+	desc = "A dispenser for virus food."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10

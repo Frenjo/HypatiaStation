@@ -3,6 +3,7 @@
 //////////////////////////////
 /obj/machinery/robotics_fabricator/robotic
 	name = "robotic fabricator"
+	desc = "A machine that fabricates robot parts, internal components, upgrade modules and power cells."
 	icon = 'icons/obj/machines/fabricators/robotic.dmi'
 
 	accepted_materials = list(
@@ -31,6 +32,7 @@
 ////////////////////////////
 /obj/machinery/robotics_fabricator/mecha
 	name = "exosuit fabricator"
+	desc = "A machine that fabricates exosuit parts, equipment and power cells."
 	icon = 'icons/obj/machines/fabricators/mecha.dmi'
 
 	accepted_materials = list(

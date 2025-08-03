@@ -649,7 +649,7 @@
 	color = "#A8A8A8" // rgb: 168, 168, 168
 
 /datum/reagent/fuel
-	name = "Welding fuel"
+	name = "Welding Fuel"
 	id = "fuel"
 	description = "Required for welders. Flamable."
 	reagent_state = REAGENT_LIQUID

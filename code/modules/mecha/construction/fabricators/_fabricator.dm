@@ -2,7 +2,6 @@
 ///// Base Robotics Fabricator /////
 ////////////////////////////////////
 /obj/machinery/robotics_fabricator
-	desc = "Nothing is being built."
 	icon_state = "fab-idle"
 	density = TRUE
 	anchored = TRUE
@@ -156,10 +155,16 @@
 			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.max_capacity];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
 
+/obj/machinery/robotics_fabricator/get_examine_text()
+	. = ..()
+	if(isnotnull(being_built))
+		var/obj/part = being_built.build_path
+		. += SPAN_INFO("It's building \a [initial(part.name)].")
+	else
+		. += SPAN_INFO("Nothing is being built.")
+
 /obj/machinery/robotics_fabricator/proc/build_part(datum/design/D)
-	var/obj/part = D.build_path
 	being_built = D
-	desc = "It's building \a [initial(part.name)]."
 	remove_materials(D)
 	add_overlay("fab-active")
 	update_power_state(USE_POWER_ACTIVE)
@@ -167,7 +172,6 @@
 	sleep(get_construction_time_w_coeff(D))
 	update_power_state(USE_POWER_IDLE)
 	remove_overlay("fab-active")
-	desc = initial(desc)
 
 	var/obj/item/output = new D.build_path()
 	output.forceMove(get_step(src, SOUTH))
