@@ -70,9 +70,9 @@ var/const/max_assembly_amount = 300
 			compressed_matter -= 10
 			ejected = 1
 		if(ejected)
-			usr << "\blue \icon[src] [src] ejects some compressed matter units."
+			usr << "\blue [html_icon(src)] [src] ejects some compressed matter units."
 		else
-			usr << "\red \icon[src] there are no more compressed matter units in [src]."
+			usr << "\red [html_icon(src)] there are no more compressed matter units in [src]."
 
 	if( href_list["activate"] )
 		//to_world("\blue New fuel rod assembly")
@@ -96,7 +96,7 @@ var/const/max_assembly_amount = 300
 		if(fail)
 			qdel(F)
 			compressed_matter = old_matter
-			usr << "\red \icon[src] [src] flashes red: \'Out of matter.\'"
+			usr << "\red [html_icon(src)] [src] flashes red: \'Out of matter.\'"
 		else
 			F.forceMove(loc)//get_step(GET_TURF(src), src.dir)
 			F.percent_depleted = 0

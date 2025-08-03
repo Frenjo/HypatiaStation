@@ -88,7 +88,7 @@
 		plaque_contents = input("What would you like to write on the plaque:", "Skeleton plaque", "")
 		user.visible_message(
 			"[user] writes something on the base of [src].",
-			"You relabel the plaque on the base of \icon[src] [src]."
+			"You relabel the plaque on the base of [html_icon(src)] [src]."
 		)
 		if(contents.Find(/obj/item/fossil/skull/horned))
 			desc = "A creature made of [length(contents) - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."

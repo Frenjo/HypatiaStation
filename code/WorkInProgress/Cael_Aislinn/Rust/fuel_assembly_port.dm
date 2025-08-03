@@ -31,16 +31,16 @@
 
 	if(cur_assembly)
 		if(try_insert_assembly())
-			user << "\blue \icon[src] [src] inserts it's fuel rod assembly into an injector."
+			user << "\blue [html_icon(src)] [src] inserts it's fuel rod assembly into an injector."
 		else
 			if(eject_assembly())
-				user << "\red \icon[src] [src] ejects it's fuel assembly. Check the fuel injector status."
+				user << "\red [html_icon(src)] [src] ejects it's fuel assembly. Check the fuel injector status."
 			else if(try_draw_assembly())
-				user << "\blue \icon[src] [src] draws a fuel rod assembly from an injector."
+				user << "\blue [html_icon(src)] [src] draws a fuel rod assembly from an injector."
 	else if(try_draw_assembly())
-		user << "\blue \icon[src] [src] draws a fuel rod assembly from an injector."
+		user << "\blue [html_icon(src)] [src] draws a fuel rod assembly from an injector."
 	else
-		user << "\red \icon[src] [src] was unable to draw a fuel rod assembly from an injector."
+		user << "\red [html_icon(src)] [src] was unable to draw a fuel rod assembly from an injector."
 
 /obj/machinery/rust_fuel_assembly_port/proc/try_insert_assembly()
 	var/success = 0

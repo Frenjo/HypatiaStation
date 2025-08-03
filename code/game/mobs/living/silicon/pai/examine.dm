@@ -2,7 +2,7 @@
 /mob/living/silicon/pai/examine() //removed as it was pointless...moved to the pai-card instead.
 	set src in oview()
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+	var/msg = "<span class='info'>*---------*\nThis is [html_icon(src)] \a <EM>[src]</EM>!\n"
 	if (src.stat == DEAD)
 		msg += "<span class='deadsay'>It appears to be offline.</span>\n"
 	else

@@ -101,8 +101,8 @@
 		if(cooldown <= 0)
 			cooldown = 0
 			visible_message(
-				SPAN_INFO("\icon[src] [src] chimes."),
-				SPAN_INFO("\icon[src] You hear something chime.")
+				SPAN_INFO("[html_icon(src)] [src] chimes."),
+				SPAN_INFO("[html_icon(src)] You hear something chime.")
 			)
 	else if(activated)
 		if(inserted_battery && inserted_battery.battery_effect)
@@ -140,8 +140,8 @@
 		activated = 0
 		timing = 0
 		visible_message(
-			SPAN_INFO("\icon[src] [src] buzzes."),
-			SPAN_INFO("\icon[src] You hear something buzz.")
+			SPAN_INFO("[html_icon(src)] [src] buzzes."),
+			SPAN_INFO("[html_icon(src)] You hear something buzz.")
 		)
 
 		cooldown = archived_time / 2

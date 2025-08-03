@@ -31,7 +31,7 @@
 		fingerprint_hash = md5(human.dna.uni_identity)
 
 /obj/item/card/id/attack_self(mob/user)
-	visible_message("[user] shows you: \icon[src] [name]: assignment: [assignment]")
+	visible_message("[user] shows you: [html_icon(src)] [name]: assignment: [assignment]")
 	add_fingerprint(user)
 
 /obj/item/card/id/get_access()
@@ -56,7 +56,7 @@
 	set name = "Read ID Card"
 	set src in usr
 
-	to_chat(usr, "\icon[src] [name]: The current assignment on the card is [assignment].")
+	to_chat(usr, "[html_icon(src)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")

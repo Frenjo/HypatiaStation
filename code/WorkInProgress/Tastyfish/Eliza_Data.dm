@@ -393,7 +393,7 @@
 			if (!pda.silent)
 				playsound(pda.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				for (var/mob/O in hearers(3, pda.loc))
-					O.show_message(text("\icon[pda] *[pda.ttone]*"))
+					O.show_message("[html_icon(pda)] *[pda.ttone]*")
 
 			pda.cut_overlays()
 			pda.add_overlay(image('icons/obj/items/devices/pda.dmi', "pda-r"))

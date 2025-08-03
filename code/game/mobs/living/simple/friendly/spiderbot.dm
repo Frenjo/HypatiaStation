@@ -280,4 +280,4 @@
 /mob/living/simple/spiderbot/get_examine_text()
 	. = ..()
 	if(isnotnull(held_item))
-		. += SPAN_INFO("It is carrying \icon[held_item] <em>\a [held_item]</em>.")
+		. += SPAN_INFO("It is carrying [html_icon(held_item)] <em>\a [held_item]</em>.")

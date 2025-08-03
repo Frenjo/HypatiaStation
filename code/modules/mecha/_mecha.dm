@@ -294,7 +294,7 @@
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(src.occupant && src.occupant.client)
-			src.occupant << "\icon[src] [message]"
+			src.occupant << "[html_icon(src)] [message]"
 	return
 
 /obj/mecha/proc/log_message(message as text, red = null)

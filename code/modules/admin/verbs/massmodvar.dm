@@ -75,7 +75,7 @@
 
 	else if(isicon(var_value))
 		to_chat(usr, "Variable appears to be <b>ICON</b>.")
-		var_value = "\icon[var_value]"
+		var_value = "[html_icon(var_value)]"
 		default = "icon"
 
 	else if(isatom(var_value) || isdatum(var_value))

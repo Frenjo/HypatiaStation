@@ -1,10 +1,4 @@
 /*
- * Generic Chat Macros
-*/
-#define to_chat(target, message)	target << message
-#define to_world(message)			to_chat(world, message)
-
-/*
  * SPAN_X Macros
 */
 #define SPAN(class, text)		"<span class='[class]'>[text]</span>"

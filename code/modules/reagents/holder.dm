@@ -321,7 +321,7 @@
 						for(var/S in C.secondary_results)
 							add_reagent(S, C.result_amount * C.secondary_results[S] * multiplier)
 
-					my_atom.visible_message(SPAN_INFO("\icon[my_atom] The solution begins to bubble."))
+					my_atom.visible_message(SPAN_INFO("[html_icon(my_atom)] The solution begins to bubble."))
 
 				/*
 					if(istype(my_atom, /obj/item/slime_core))
@@ -329,14 +329,14 @@
 						ME.Uses--
 						if(ME.Uses <= 0) // give the notification that the slime core is dead
 							for(var/mob/M in viewers(4, GET_TURF(my_atom)))
-								M << "\blue \icon[my_atom] The innards begin to boil!"
+								M << "\blue [html_icon(my_atom)] The innards begin to boil!"
 				*/
 
 					if(istype(my_atom, /obj/item/slime_extract))
 						var/obj/item/slime_extract/ME2 = my_atom
 						ME2.uses--
 						if(ME2.uses <= 0) // give the notification that the slime core is dead
-							my_atom.visible_message(SPAN_INFO("\icon[my_atom] The [my_atom]'s power is consumed in the reaction."))
+							my_atom.visible_message(SPAN_INFO("[html_icon(my_atom)] The [my_atom]'s power is consumed in the reaction."))
 							ME2.name = "used slime extract"
 							ME2.desc = "This extract has been used up."
 

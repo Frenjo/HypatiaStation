@@ -1,6 +1,6 @@
 /mob/living/get_examine_header()
 	. = list()
 	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is \icon[src] <em>\a [src]</em>!")
+	. += SPAN_INFO("This is [html_icon(src)] <em>\a [src]</em>!")
 	if(desc)
 		. += SPAN_INFO(desc)

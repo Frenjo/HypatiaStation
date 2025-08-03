@@ -59,8 +59,8 @@
 	if(iswrench(tool))
 		anchored = !anchored
 		user.visible_message(
-			SPAN_NOTICE("\icon[src] [user] [anchored ? "secures" : "unsecures"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
-			SPAN_NOTICE("\icon[src] You [anchored ? "secure" : "unsecure"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
+			SPAN_NOTICE("[html_icon(src)] [user] [anchored ? "secures" : "unsecures"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
+			SPAN_NOTICE("[html_icon(src)] You [anchored ? "secure" : "unsecure"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
 			SPAN_INFO("You hear a ratchet.")
 		)
 		for(var/obj/machinery/shield_gen/gen in range(1, src))
@@ -277,14 +277,14 @@
 		covered_turfs = null
 
 		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning start up."
+			M << "[html_icon(src)] You hear heavy droning start up."
 	else
 		for_no_type_check(var/obj/effect/energy_field/D, field)
 			field.Remove(D)
 			qdel(D)
 
 		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning fade out."
+			M << "[html_icon(src)] You hear heavy droning fade out."
 
 //grab the border tiles in a circle around this machine
 /obj/machinery/shield_gen/proc/get_shielded_turfs()

@@ -271,7 +271,7 @@
 			for(var/mob/living/carbon/C in T)
 				C.weakened += 5
 				C.visible_message(
-					SPAN_INFO("\icon[C] [C] begins to float in the air!"),
+					SPAN_INFO("[html_icon(C)] [C] begins to float in the air!"),
 					"You feel tingly and light, but it is difficult to move."
 				)
 		if("nitrogen")
@@ -297,7 +297,7 @@
 			for(var/mob/living/silicon/R in T)
 				R.weakened += 5
 				R.visible_message(
-					SPAN_INFO("\icon[R] [R] begins to float in the air!"),
+					SPAN_INFO("[html_icon(R)] [R] begins to float in the air!"),
 					"You feel tingly and light, but it is difficult to move."
 				)
 			//
@@ -307,7 +307,7 @@
 
 	for(var/mob/living/simple/C in T)
 		C.visible_message(
-			SPAN_INFO("\icon[C] [C] begins to float in the air!"),
+			SPAN_INFO("[html_icon(C)] [C] begins to float in the air!"),
 			"You feel tingly and light, but it is difficult to move."
 		)
 		C.weakened += 5
@@ -315,7 +315,7 @@
 	suspension_field = new(T)
 	suspension_field.plane = UNLIT_EFFECTS_PLANE
 	suspension_field.field_type = field_type
-	visible_message(SPAN_INFO("\icon[src] [src] activates with a low hum."))
+	visible_message(SPAN_INFO("[html_icon(src)] [src] activates with a low hum."))
 	icon_state = "suspension3"
 
 	for(var/obj/item/I in T)
@@ -325,7 +325,7 @@
 	if(collected)
 		suspension_field.icon_state = "energynet"
 		suspension_field.add_overlay("shield2")
-		visible_message(SPAN_INFO("\icon[suspension_field] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
+		visible_message(SPAN_INFO("[html_icon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
 		if(istype(T, /turf/closed/rock) || istype(T, /turf/closed/wall))
 			suspension_field.icon_state = "shieldsparkles"
@@ -340,7 +340,7 @@
 		to_chat(M, SPAN_INFO("You no longer feel like floating."))
 		M.weakened = min(M.weakened, 3)
 
-	visible_message(SPAN_INFO("\icon[src] [src] deactivates with a gentle shudder."))
+	visible_message(SPAN_INFO("[html_icon(src)] [src] deactivates with a gentle shudder."))
 	QDEL_NULL(suspension_field)
 	icon_state = "suspension2"
 

@@ -11,6 +11,7 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "code\___macros.dm"
+#include "code\__output.dm"
 #include "code\__spaceman_dmm.dm"
 #include "code\_debugger.dm"
 #include "code\_global_init.dm"

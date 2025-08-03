@@ -23,7 +23,7 @@
 
 	if(ishuman(AM) || ismonkey(AM))
 		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[AM] triggered the \icon[src] [src]</font>")
+			to_chat(O, "<font color='red'>[AM] triggered the [html_icon(src)] [src]</font>")
 		triggered = TRUE
 		call(src, triggerproc)(AM)
 

@@ -84,7 +84,7 @@
 
 	//repair a bit of damage
 	if(prob(1))
-		src.visible_message(SPAN_WARNING("\icon[src] [src] shudders and shakes as some of it's damaged systems come back online."))
+		src.visible_message(SPAN_WARNING("[html_icon(src)] [src] shudders and shakes as some of it's damaged systems come back online."))
 		make_sparks(3, TRUE, src)
 		health += rand(25,100)
 
@@ -95,10 +95,10 @@
 	//sometimes our targetting sensors malfunction, and we attack anyone nearby
 	if(prob(disabled ? 0 : 1))
 		if(hostile_drone)
-			src.visible_message(SPAN_INFO("\icon[src] [src] retracts several targetting vanes, and dulls it's running lights."))
+			src.visible_message(SPAN_INFO("[html_icon(src)] [src] retracts several targetting vanes, and dulls it's running lights."))
 			hostile_drone = 0
 		else
-			src.visible_message(SPAN_WARNING("\icon[src] [src] suddenly lights up, and additional targetting vanes slide into place."))
+			src.visible_message(SPAN_WARNING("[html_icon(src)] [src] suddenly lights up, and additional targetting vanes slide into place."))
 			hostile_drone = 1
 
 	if(health / maxHealth > 0.9)
@@ -119,17 +119,17 @@
 		exploding = 0
 		if(!disabled)
 			if(prob(50))
-				src.visible_message(SPAN_INFO("\icon[src] [src] suddenly shuts down!"))
+				src.visible_message(SPAN_INFO("[html_icon(src)] [src] suddenly shuts down!"))
 			else
-				src.visible_message(SPAN_INFO("\icon[src] [src] suddenly lies still and quiet."))
+				src.visible_message(SPAN_INFO("[html_icon(src)] [src] suddenly lies still and quiet."))
 			disabled = rand(150, 600)
 			walk(src, 0)
 
 	if(exploding && prob(20))
 		if(prob(50))
-			src.visible_message(SPAN_WARNING("\icon[src] [src] begins to spark and shake violenty!"))
+			src.visible_message(SPAN_WARNING("[html_icon(src)] [src] begins to spark and shake violenty!"))
 		else
-			src.visible_message(SPAN_WARNING("\icon[src] [src] sparks and shakes like it's about to explode!"))
+			src.visible_message(SPAN_WARNING("[html_icon(src)] [src] sparks and shakes like it's about to explode!"))
 		make_sparks(3, TRUE, src)
 
 	if(!exploding && !disabled && prob(explode_chance))

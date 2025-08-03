@@ -65,7 +65,7 @@
 	if(!..())
 		return
 
-	visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+	visible_message("[html_icon(src)] *beep* *beep*", "*beep* *beep*")
 	sleep(10)
 	if(!src)
 		return

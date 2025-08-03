@@ -44,7 +44,7 @@
 			positive_locations.Add(D)
 
 			for(var/mob/L in range(src, 1))
-				to_chat(L, SPAN_INFO("\icon[src] [src] pings."))
+				to_chat(L, SPAN_INFO("[html_icon(src)] [src] pings."))
 
 	else if(istype(A,/obj/structure/boulder))
 		var/obj/structure/boulder/B = A
@@ -63,7 +63,7 @@
 			positive_locations.Add(D)
 
 			for(var/mob/L in range(src, 1))
-				to_chat(L, SPAN_INFO("\icon[src] [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
+				to_chat(L, SPAN_INFO("[html_icon(src)] [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
 
 /obj/item/depth_scanner/attack_self(mob/user)
 	return src.interact(user)

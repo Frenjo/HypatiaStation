@@ -6,7 +6,7 @@
 	if(isnotnull(CONFIG_GET(/decl/configuration_entry/wikiurl)))
 		if(alert("This will open the wiki in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		to_chat(src, link(CONFIG_GET(/decl/configuration_entry/wikiurl)))
+		OPEN_LINK(src, CONFIG_GET(/decl/configuration_entry/wikiurl))
 	else
 		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
 	return
@@ -18,7 +18,7 @@
 	if(isnotnull(CONFIG_GET(/decl/configuration_entry/forumurl)))
 		if(alert("This will open the forum in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		to_chat(src, link(CONFIG_GET(/decl/configuration_entry/forumurl)))
+		OPEN_LINK(src, CONFIG_GET(/decl/configuration_entry/forumurl))
 	else
 		to_chat(src, SPAN_WARNING("The forum URL is not set in the server configuration."))
 	return
@@ -51,7 +51,7 @@
 	if(isnotnull(CONFIG_GET(/decl/configuration_entry/donateurl)))
 		if(alert("This will open the donation URL in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		to_chat(src, link(CONFIG_GET(/decl/configuration_entry/donateurl)))
+		OPEN_LINK(src, CONFIG_GET(/decl/configuration_entry/donateurl))
 	else
 		to_chat(src, SPAN_WARNING("The donation URL is not set in the server configuration."))
 	return

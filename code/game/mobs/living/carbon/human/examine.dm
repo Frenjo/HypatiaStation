@@ -8,7 +8,7 @@
 	//var/skip_face = (isnotnull(head) && HAS_INV_FLAGS(head, INV_FLAG_HIDE_FACE)) || (isnotnull(wear_mask) && HAS_INV_FLAGS(wear_mask, INV_FLAG_HIDE_FACE))
 	//if(!skip_jumpsuit || !skip_face)
 	//	if(icon) // Fucking BYOND: This should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated.
-	//		name_line += " \icon[src]"
+	//		name_line += " [html_icon(src)]"
 	name_line += " <em>[name]</em>, a <em>[species]</em>!" // Edited this a bit to show species alongside their name.
 	. += SPAN_INFO(name_line)
 
@@ -71,101 +71,101 @@
 		//Ties
 		var/tie_msg
 		if(isnotnull(wear_uniform.hastie))
-			tie_msg += " with \icon[wear_uniform.hastie] <em>\a [wear_uniform.hastie]</em>"
+			tie_msg += " with [html_icon(wear_uniform.hastie)] <em>\a [wear_uniform.hastie]</em>"
 
 		if(wear_uniform.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_is] wearing \icon[wear_uniform] <em>[SOME_OR_A(wear_uniform)] blood-stained [wear_uniform.name]</em>[tie_msg]!")
+			. += SPAN_WARNING("[t_He] [t_is] wearing [html_icon(wear_uniform)] <em>[SOME_OR_A(wear_uniform)] blood-stained [wear_uniform.name]</em>[tie_msg]!")
 		else
-			. += SPAN_INFO("[t_He] [t_is] wearing \icon[wear_uniform] <em>\a [wear_uniform]</em>[tie_msg].")
+			. += SPAN_INFO("[t_He] [t_is] wearing [html_icon(wear_uniform)] <em>\a [wear_uniform]</em>[tie_msg].")
 
 	//head
 	if(isnotnull(head))
 		if(head.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_is] wearing \icon[head] <em>[SOME_OR_A(head)] blood-stained [head.name]</em> on [t_his] head!")
+			. += SPAN_WARNING("[t_He] [t_is] wearing [html_icon(head)] <em>[SOME_OR_A(head)] blood-stained [head.name]</em> on [t_his] head!")
 		else
-			. += SPAN_INFO("[t_He] [t_is] wearing \icon[head] <em>\a [head]</em> on [t_his] head.")
+			. += SPAN_INFO("[t_He] [t_is] wearing [html_icon(head)] <em>\a [head]</em> on [t_his] head.")
 
 	//suit/armour
 	if(isnotnull(wear_suit))
 		if(wear_suit.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_is] wearing \icon[wear_suit] <em>[SOME_OR_A(wear_suit)] blood-stained [wear_suit.name]</em>!")
+			. += SPAN_WARNING("[t_He] [t_is] wearing [html_icon(wear_suit)] <em>[SOME_OR_A(wear_suit)] blood-stained [wear_suit.name]</em>!")
 		else
-			. += SPAN_INFO("[t_He] [t_is] wearing \icon[wear_suit] <em>\a [wear_suit]</em>.")
+			. += SPAN_INFO("[t_He] [t_is] wearing [html_icon(wear_suit)] <em>\a [wear_suit]</em>.")
 
 		//suit/armour storage
 		if(!skipsuitstorage && isnotnull(suit_store))
 			if(suit_store.blood_DNA)
-				. += SPAN_WARNING("[t_He] [t_is] carrying \icon[suit_store] <em>[SOME_OR_A(suit_store)] blood-stained [suit_store.name]</em> on [t_his] [wear_suit.name]!")
+				. += SPAN_WARNING("[t_He] [t_is] carrying [html_icon(suit_store)] <em>[SOME_OR_A(suit_store)] blood-stained [suit_store.name]</em> on [t_his] [wear_suit.name]!")
 			else
-				. += SPAN_INFO("[t_He] [t_is] carrying \icon[suit_store] <em>\a [suit_store]</em> on [t_his] [wear_suit.name].")
+				. += SPAN_INFO("[t_He] [t_is] carrying [html_icon(suit_store)] <em>\a [suit_store]</em> on [t_his] [wear_suit.name].")
 
 	//back
 	if(isnotnull(back))
 		if(back.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_has] \icon[back] <em>[SOME_OR_A(back)] blood-stained [back]</em> on [t_his] back.")
+			. += SPAN_WARNING("[t_He] [t_has] [html_icon(back)] <em>[SOME_OR_A(back)] blood-stained [back]</em> on [t_his] back.")
 		else
-			. += SPAN_INFO("[t_He] [t_has] \icon[back] <em>\a [back]</em> on [t_his] back.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(back)] <em>\a [back]</em> on [t_his] back.")
 
 	//left hand
 	if(isnotnull(l_hand))
 		if(l_hand.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_is] holding \icon[l_hand] <em>[SOME_OR_A(l_hand)] blood-stained [l_hand.name]</em> in [t_his] left hand!")
+			. += SPAN_WARNING("[t_He] [t_is] holding [html_icon(l_hand)] <em>[SOME_OR_A(l_hand)] blood-stained [l_hand.name]</em> in [t_his] left hand!")
 		else
-			. += SPAN_INFO("[t_He] [t_is] holding \icon[l_hand] <em>\a [l_hand]</em> in [t_his] left hand.")
+			. += SPAN_INFO("[t_He] [t_is] holding [html_icon(l_hand)] <em>\a [l_hand]</em> in [t_his] left hand.")
 
 	//right hand
 	if(isnotnull(r_hand))
 		if(r_hand.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_is] holding \icon[r_hand] <em>[SOME_OR_A(r_hand)] blood-stained [r_hand.name]</em> in [t_his] right hand!")
+			. += SPAN_WARNING("[t_He] [t_is] holding [html_icon(r_hand)] <em>[SOME_OR_A(r_hand)] blood-stained [r_hand.name]</em> in [t_his] right hand!")
 		else
-			. += SPAN_INFO("[t_He] [t_is] holding \icon[r_hand] <em>\a [r_hand]</em> in [t_his] right hand.")
+			. += SPAN_INFO("[t_He] [t_is] holding [html_icon(r_hand)] <em>\a [r_hand]</em> in [t_his] right hand.")
 
 	//gloves
 	if(!skipgloves && isnotnull(gloves))
 		if(gloves.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_has] \icon[gloves] <em>[SOME_OR_A(gloves)] blood-stained [gloves.name]</em> on [t_his] hands!")
+			. += SPAN_WARNING("[t_He] [t_has] [html_icon(gloves)] <em>[SOME_OR_A(gloves)] blood-stained [gloves.name]</em> on [t_his] hands!")
 		else
-			. += SPAN_INFO("[t_He] [t_has] \icon[gloves] <em>\a [gloves]</em> on [t_his] hands.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(gloves)] <em>\a [gloves]</em> on [t_his] hands.")
 	else if(blood_DNA)
 		. += SPAN_WARNING("[t_He] [t_has] blood-stained hands!")
 
 	//belt
 	if(isnotnull(belt))
 		if(belt.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_has] \icon[belt] <em>[SOME_OR_A(belt)] blood-stained [belt.name]</em> about [t_his] waist!")
+			. += SPAN_WARNING("[t_He] [t_has] [html_icon(belt)] <em>[SOME_OR_A(belt)] blood-stained [belt.name]</em> about [t_his] waist!")
 		else
-			. += SPAN_INFO("[t_He] [t_has] \icon[belt] <em>\a [belt]</em> about [t_his] waist.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(belt)] <em>\a [belt]</em> about [t_his] waist.")
 
 	//shoes
 	if(!skipshoes && isnotnull(shoes))
 		if(shoes.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_is] wearing \icon[shoes] <em>[SOME_OR_A(shoes)] blood-stained [shoes.name]</em> on [t_his] feet!")
+			. += SPAN_WARNING("[t_He] [t_is] wearing [html_icon(shoes)] <em>[SOME_OR_A(shoes)] blood-stained [shoes.name]</em> on [t_his] feet!")
 		else
-			. += SPAN_INFO("[t_He] [t_is] wearing \icon[shoes] <em>\a [shoes]</em> on [t_his] feet.")
+			. += SPAN_INFO("[t_He] [t_is] wearing [html_icon(shoes)] <em>\a [shoes]</em> on [t_his] feet.")
 	else if(feet_blood_DNA)
 		. += SPAN_WARNING("[t_He] [t_has] blood-stained feet!")
 
 	//mask
 	if(!skipmask && isnotnull(wear_mask))
 		if(wear_mask.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_has] \icon[wear_mask] <em>[SOME_OR_A(wear_mask)] blood-stained [wear_mask.name]</em> on [t_his] face!")
+			. += SPAN_WARNING("[t_He] [t_has] [html_icon(wear_mask)] <em>[SOME_OR_A(wear_mask)] blood-stained [wear_mask.name]</em> on [t_his] face!")
 		else
-			. += SPAN_INFO("[t_He] [t_has] \icon[wear_mask] <em>\a [wear_mask]</em> on [t_his] face.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(wear_mask)] <em>\a [wear_mask]</em> on [t_his] face.")
 
 	//eyes
 	if(!skipeyes && isnotnull(glasses))
 		if(glasses.blood_DNA)
-			. += SPAN_WARNING("[t_He] [t_has] \icon[glasses] <em>[SOME_OR_A(glasses)] blood-stained [glasses]</em> covering [t_his] eyes!")
+			. += SPAN_WARNING("[t_He] [t_has] [html_icon(glasses)] <em>[SOME_OR_A(glasses)] blood-stained [glasses]</em> covering [t_his] eyes!")
 		else
-			. += SPAN_INFO("[t_He] [t_has] \icon[glasses] <em>\a [glasses]</em> covering [t_his] eyes.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(glasses)] <em>\a [glasses]</em> covering [t_his] eyes.")
 
 	if(!skipears)
 		//left ear
 		if(isnotnull(l_ear))
-			. += SPAN_INFO("[t_He] [t_has] \icon[l_ear] <em>\a [l_ear]</em> on [t_his] left ear.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(l_ear)] <em>\a [l_ear]</em> on [t_his] left ear.")
 		//right ear
 		if(isnotnull(r_ear))
-			. += SPAN_INFO("[t_He] [t_has] \icon[r_ear] <em>\a [r_ear]</em> on [t_his] right ear.")
+			. += SPAN_INFO("[t_He] [t_has] [html_icon(r_ear)] <em>\a [r_ear]</em> on [t_his] right ear.")
 
 	//ID
 	if(id_store)
@@ -177,16 +177,16 @@
 			var/obj/item/card/id/idcard = id_store
 			id = idcard.registered_name
 		if(id && (id != real_name) && in_range(src, user) && prob(10))
-			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[id_store] \a [id_store] yet something doesn't seem right...</span>"
+			msg += "<span class='warning'>[t_He] [t_is] wearing [html_icon(id_store)] \a [id_store] yet something doesn't seem right...</span>"
 		else*/
-		. += SPAN_INFO("[t_He] [t_is] wearing \icon[id_store] <em>\a [id_store]</em>.")
+		. += SPAN_INFO("[t_He] [t_is] wearing [html_icon(id_store)] <em>\a [id_store]</em>.")
 
 	//handcuffed?
 	if(isnotnull(handcuffed))
 		if(istype(handcuffed, /obj/item/handcuffs/cable))
-			. += SPAN_WARNING("[t_He] [t_is] \icon[handcuffed] restrained with cable!")
+			. += SPAN_WARNING("[t_He] [t_is] [html_icon(handcuffed)] restrained with cable!")
 		else
-			. += SPAN_WARNING("[t_He] [t_is] \icon[handcuffed] handcuffed!")
+			. += SPAN_WARNING("[t_He] [t_is] [html_icon(handcuffed)] handcuffed!")
 
 	//Jitters
 	if(is_jittery)

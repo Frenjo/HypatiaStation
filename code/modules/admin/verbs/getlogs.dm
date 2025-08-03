@@ -50,7 +50,7 @@
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
-	to_chat(src, run(file(path)))
+	OPEN_FILE(src, file(path))
 	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
@@ -69,7 +69,7 @@
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
-	to_chat(src, run(file(path)))
+	OPEN_FILE(src, file(path))
 	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
@@ -83,7 +83,7 @@
 
 	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")].log"
 	if(fexists(path))
-		to_chat(src, run(file(path)))
+		OPEN_FILE(src, file(path))
 	else
 		to_chat(src, "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>")
 		return
@@ -98,10 +98,9 @@
 
 	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")] Attack.log"
 	if(fexists(path))
-		to_chat(src, run(file(path)))
+		OPEN_FILE(src, file(path))
 	else
 		to_chat(src, "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>")
 		return
-	to_chat(usr, run(file(path)))
 	feedback_add_details("admin_verb", "SSAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return

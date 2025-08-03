@@ -431,15 +431,15 @@
 						vend(currently_vending, usr)
 						currently_vending = null
 				else
-					to_chat(usr, SPAN_WARNING("\icon[src]You don't have that much money!"))
+					to_chat(usr, SPAN_WARNING("[html_icon(src)] You don't have that much money!"))
 			else
-				to_chat(usr, SPAN_WARNING("\icon[src]Unable to access account. Check security settings and try again."))
+				to_chat(usr, SPAN_WARNING("[html_icon(src)] Unable to access account. Check security settings and try again."))
 		else
 			//Just Vend it.
 			vend(currently_vending, usr)
 			currently_vending = null
 	else
-		to_chat(usr, SPAN_WARNING("\icon[src]Unable to access vendor account. Please record the machine ID and call CentCom Support."))
+		to_chat(usr, SPAN_WARNING("[html_icon(src)] Unable to access vendor account. Please record the machine ID and call CentCom Support."))
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if(!allowed(user) && !emagged && (wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH

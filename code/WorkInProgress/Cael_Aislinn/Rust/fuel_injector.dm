@@ -306,10 +306,10 @@
 
 		break
 	if(success)
-		src.visible_message("\blue \icon[src] a green light flashes on [src].")
+		src.visible_message("\blue [html_icon(src)] a green light flashes on [src].")
 		updateDialog()
 	else
-		src.visible_message("\red \icon[src] a red light flashes on [src].")
+		src.visible_message("\red [html_icon(src)] a red light flashes on [src].")
 
 /obj/machinery/power/rust_fuel_injector/verb/rotate_clock()
 	set category = PANEL_OBJECT
