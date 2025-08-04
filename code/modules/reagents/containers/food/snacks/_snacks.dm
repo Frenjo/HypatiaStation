@@ -425,11 +425,11 @@
 		var/obj/item/toy/crayon/C = W
 		var/clr = C.colourName
 
-		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			usr << "\blue The egg refuses to take on this color!"
+		if(!(clr in list("blue", "green", "mime", "orange", "purple", "rainbow", "red", "yellow")))
+			to_chat(usr, SPAN_WARNING("The egg refuses to take on this color!"))
 			return
 
-		usr << "\blue You colour \the [src] [clr]"
+		to_chat(usr, SPAN_INFO("You colour \the [src] [clr]."))
 		icon_state = "egg-[clr]"
 		item_color = clr
 	else
@@ -731,7 +731,7 @@
 /obj/item/reagent_holder/food/snacks/omelette/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/kitchen/utensil/fork))
 		if(W.icon_state == "forkloaded")
-			user << "\red You already have omelette on your fork."
+			to_chat(user, SPAN_WARNING("You already have omelette on your fork."))
 			return
 		//W.icon = 'icons/obj/kitchen.dmi'
 		W.icon_state = "forkloaded"
@@ -935,7 +935,7 @@
 
 /obj/item/reagent_holder/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		usr << "\red You bite down on an un-popped kernel!"
+		to_chat(usr, SPAN_WARNING("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped - 1)
 	..()
 
@@ -1236,8 +1236,8 @@
 
 /obj/item/reagent_holder/food/snacks/monkeycube/afterattack(obj/O, mob/user, proximity)
 	if(!proximity) return
-	if(istype(O,/obj/structure/sink) && !wrapped)
-		user << "You place \the [name] under a stream of water..."
+	if(istype(O, /obj/structure/sink) && !wrapped)
+		to_chat(user, SPAN_INFO("You place \the [src] under a stream of water..."))
 		loc = GET_TURF(O)
 		return Expand()
 	..()
@@ -1248,7 +1248,7 @@
 
 /obj/item/reagent_holder/food/snacks/monkeycube/proc/Expand()
 	for(var/mob/M in viewers(src,7))
-		M << "\red \The [src] expands!"
+		to_chat(M, SPAN_WARNING("\The [src] expands!"))
 	if(monkey_type)
 		switch(monkey_type)
 			if("tajara")
@@ -1264,7 +1264,7 @@
 /obj/item/reagent_holder/food/snacks/monkeycube/proc/Unwrap(mob/user)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
-	user << "You unwrap the cube."
+	to_chat(user, SPAN_INFO("You unwrap the cube."))
 	wrapped = 0
 	return
 
@@ -2141,7 +2141,7 @@
 	if(open && pizza)
 		user.put_in_hands(pizza)
 
-		user << "\red You take the [src.pizza] out of the [src]."
+		to_chat(user, SPAN_INFO("You take \the [pizza] out of \the [src]."))
 		src.pizza = null
 		update_icon()
 		return
@@ -2155,7 +2155,7 @@
 		boxes -= box
 
 		user.put_in_hands(box)
-		user << "\red You remove the topmost [src] from your hand."
+		to_chat(user, SPAN_INFO("You remove the topmost [src] from your hand."))
 		box.update_icon()
 		update_icon()
 		return
@@ -2193,11 +2193,11 @@
 				box.update_icon()
 				update_icon()
 
-				user << "\red You put the [box] ontop of the [src]!"
+				to_chat(user, SPAN_INFO("You put \the [box] ontop of \the [src]!"))
 			else
-				user << "\red The stack is too high!"
+				to_chat(user, SPAN_WARNING("The stack is too high!"))
 		else
-			user << "\red Close the [box] first!"
+			to_chat(user, SPAN_WARNING("Close \the [box] first!"))
 
 		return
 
@@ -2209,9 +2209,9 @@
 
 			update_icon()
 
-			user << "\red You put the [I] in the [src]!"
+			to_chat(user, SPAN_WARNING("You put the [I] in the [src]!"))
 		else
-			user << "\red You try to push the [I] through the lid but it doesn't work!"
+			to_chat(user, SPAN_WARNING("You try to push \the [I] through the lid but it doesn't work!"))
 		return
 
 	if(istype(I, /obj/item/pen))
@@ -2268,7 +2268,7 @@
 /obj/item/reagent_holder/food/snacks/flour/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/reagent_holder/food/snacks/egg))
 		new /obj/item/reagent_holder/food/snacks/dough(src)
-		user << "You make some dough."
+		to_chat(user, SPAN_INFO("You make some dough."))
 		qdel(W)
 		qdel(src)
 
@@ -2276,7 +2276,7 @@
 /obj/item/reagent_holder/food/snacks/egg/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/reagent_holder/food/snacks/flour))
 		new /obj/item/reagent_holder/food/snacks/dough(src)
-		user << "You make some dough."
+		to_chat(user, SPAN_INFO("You make some dough."))
 		qdel(W)
 		qdel(src)
 
@@ -2293,7 +2293,7 @@
 /obj/item/reagent_holder/food/snacks/dough/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/kitchen/rollingpin))
 		new /obj/item/reagent_holder/food/snacks/sliceable/flatdough(src)
-		user << "You flatten the dough."
+		to_chat(user, SPAN_INFO("You flatten the dough."))
 		qdel(src)
 
 
@@ -2327,21 +2327,21 @@
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/reagent_holder/food/snacks/meatball))
 		new /obj/item/reagent_holder/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, SPAN_INFO("You make a burger."))
 		qdel(W)
 		qdel(src)
 
 	// Bun + cutlet = hamburger
 	else if(istype(W,/obj/item/reagent_holder/food/snacks/cutlet))
 		new /obj/item/reagent_holder/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, SPAN_INFO("You make a burger."))
 		qdel(W)
 		qdel(src)
 
 	// Bun + sausage = hotdog
 	else if(istype(W,/obj/item/reagent_holder/food/snacks/sausage))
 		new /obj/item/reagent_holder/food/snacks/hotdog(src)
-		user << "You make a hotdog."
+		to_chat(user, SPAN_INFO("You make a hotdog."))
 		qdel(W)
 		qdel(src)
 
@@ -2349,7 +2349,7 @@
 /obj/item/reagent_holder/food/snacks/monkeyburger/attackby(obj/item/reagent_holder/food/snacks/cheesewedge/W, mob/user)
 	if(istype(W))// && !istype(src,/obj/item/reagent_holder/food/snacks/cheesewedge))
 		new /obj/item/reagent_holder/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, SPAN_INFO("You make a cheeseburger."))
 		qdel(W)
 		qdel(src)
 		return
@@ -2360,7 +2360,7 @@
 /obj/item/reagent_holder/food/snacks/human/burger/attackby(obj/item/reagent_holder/food/snacks/cheesewedge/W, mob/user)
 	if(istype(W))
 		new /obj/item/reagent_holder/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, SPAN_INFO("You make a cheeseburger."))
 		qdel(W)
 		qdel(src)
 		return
@@ -2416,7 +2416,7 @@
 /obj/item/reagent_holder/food/snacks/grown/potato/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/kitchen/utensil/knife))
 		new /obj/item/reagent_holder/food/snacks/rawsticks(src)
-		user << "You cut the potato."
+		to_chat(user, SPAN_INFO("You cut \the [src]."))
 		qdel(src)
 	else
 		..()

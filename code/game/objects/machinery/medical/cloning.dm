@@ -76,7 +76,7 @@
 		return
 	if((isnotnull(src.occupant)) && (src.occupant.stat != DEAD))
 		var/completion = (100 * ((src.occupant.health + 100) / (src.heal_level + 100)))
-		user << "Current clone cycle is [round(completion)]% complete."
+		to_chat(user, SPAN_INFO("Current clone cycle is [round(completion)]% complete."))
 	return
 
 //Clonepod

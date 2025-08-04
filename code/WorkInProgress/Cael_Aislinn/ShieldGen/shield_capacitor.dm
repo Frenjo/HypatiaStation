@@ -172,7 +172,6 @@
 	set src in oview(1)
 
 	if(src.anchored)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, SPAN_WARNING("It is fastened to the floor!"))
 		return
-	src.set_dir(turn(src.dir, 270))
-	return
+	set_dir(turn(dir, 270))

@@ -5,13 +5,13 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 
 /client/proc/strike_team()
 	if(!global.PCticker)
-		usr << "<font color='red'>The game hasn't started yet!</font>"
+		to_chat(usr, SPAN_WARNING("The game hasn't started yet!"))
 		return
 	if(world.time < 6000)
-		usr << "<font color='red'>There are [(6000-world.time)/10] seconds remaining before it may be called.</font>"
+		to_chat(usr, SPAN_WARNING("There are [(6000-world.time)/10] seconds remaining before it may be called."))
 		return
 	if(GLOBL.sent_strike_team)
-		usr << "<font color='red'>CentCom is already sending a team.</font>"
+		to_chat(usr, SPAN_WARNING("CentCom is already sending a team."))
 		return
 	if(alert("Do you want to send in the CentCom death squad? Once enabled, this is irreversible.",,"Yes","No")!="Yes")
 		return
@@ -25,7 +25,7 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 				return
 
 	if(GLOBL.sent_strike_team)
-		usr << "Looks like someone beat you to it."
+		to_chat(usr, SPAN_WARNING("Looks like someone beat you to it."))
 		return
 
 	GLOBL.sent_strike_team = 1
@@ -76,7 +76,8 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 				new_commando.mind.store_memory("<B>Nuke Code:</B> \red [nuke_code].")
 			new_commando.mind.store_memory("<B>Mission:</B> \red [input].")
 
-			new_commando << "\blue You are a Special Ops. [!leader_selected?"commando":"<B>LEADER</B>"] in the service of Central Command. Check the table ahead for detailed instructions.\nYour current mission is: \red<B>[input]</B>"
+			to_chat(new_commando, SPAN_INFO("You are a Special Ops. [!leader_selected?"commando":"<B>LEADER</B>"] in the service of Central Command. Check the table ahead for detailed instructions."))
+			to_chat(new_commando, "Your current mission is: " + SPAN_DANGER(input))
 
 			commando_number--
 

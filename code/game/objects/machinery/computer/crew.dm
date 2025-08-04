@@ -42,7 +42,7 @@
 	if(..())
 		return
 	if(src.z > 6)
-		to_chat(usr, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+		to_chat(usr, SPAN_WARNING("<b>Unable to establish a connection</b>: ") + "\black You're too far away from the station!")
 		return 0
 	if(href_list["close"])
 		var/mob/user = usr

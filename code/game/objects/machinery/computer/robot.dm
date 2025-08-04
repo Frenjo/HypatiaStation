@@ -25,7 +25,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+		to_chat(user, SPAN_WARNING("<b>Unable to establish a connection</b>: ") + "\black You're too far away from the station!")
 		return
 	user.set_machine(src)
 	var/dat
@@ -158,7 +158,7 @@
 					if(choice == "Confirm")
 						if(R && istype(R))
 							if(R.mind && R.mind.special_role && R.emagged)
-								R << "Extreme danger. Termination codes detected. Scrambling security codes and automatic AI unlink triggered."
+								to_chat(R, SPAN_DANGER("Extreme danger. Termination codes detected. Automatic security code scrambling and AI unlink triggered."))
 								R.reset_identity_codes()
 
 							else
@@ -181,11 +181,11 @@
 							if (R.lockcharge)
 							//	R.cell.charge = R.lockcharge
 								R.lockcharge = !R.lockcharge
-								R << "Your lockdown has been lifted!"
+								to_chat(R, SPAN_WARNING("Your lockdown has been lifted!"))
 							else
 								R.lockcharge = !R.lockcharge
 						//		R.cell.charge = 0
-								R << "You have been locked down!"
+								to_chat(R, SPAN_INFO("You have been locked down!"))
 
 			else
 				FEEDBACK_ACCESS_DENIED(usr)

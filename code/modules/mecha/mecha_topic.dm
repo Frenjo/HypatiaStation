@@ -103,10 +103,10 @@
 		if(user)
 			if(state == 0)
 				state = 1
-				user << "The securing bolts are now exposed."
+				to_chat(user, SPAN_INFO("The securing bolts are now exposed."))
 			else if(state == 1)
 				state = 0
-				user << "The securing bolts are now hidden."
+				to_chat(user, SPAN_INFO("The securing bolts are now hidden."))
 			output_maintenance_dialog(topic_filter.getObj("id_card"), user)
 		return
 
@@ -118,7 +118,7 @@
 			var/new_pressure = input(user, "Input new output pressure", "Pressure setting", internal_tank_valve) as num
 			if(new_pressure)
 				internal_tank_valve = new_pressure
-				user << "The internal pressure valve has been set to [internal_tank_valve]kPa."
+				to_chat(user, SPAN_INFO("The internal pressure valve has been set to [internal_tank_valve]kPa."))
 
 	if(href_list["add_req_access"] && add_req_access && topic_filter.getObj("id_card"))
 		if(!in_range(src, usr))

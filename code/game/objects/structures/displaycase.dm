@@ -81,18 +81,18 @@
 	return src.attack_hand(user)
 
 /obj/structure/displaycase/attack_hand(mob/user)
-	if (src.destroyed && src.occupied)
+	if(src.destroyed && src.occupied)
 		new /obj/item/gun/energy/laser/captain( src.loc )
-		user << "\b You deactivate the hover field built into the case."
+		to_chat(user, SPAN_INFO("You deactivate the hover field built into the case."))
 		src.occupied = 0
 		src.add_fingerprint(user)
 		update_icon()
 		return
 	else
-		usr << text("\blue You kick the display case.")
+		to_chat(user, SPAN_WARNING("You kick the display case."))
 		for(var/mob/O in oviewers())
-			if ((O.client && !( O.blinded )))
-				O << text("\red [] kicks the display case.", usr)
+			if((O.client && !( O.blinded )))
+				to_chat(O, SPAN_WARNING("[user] kicks the display case."))
 		src.health -= 2
 		healthcheck()
 		return

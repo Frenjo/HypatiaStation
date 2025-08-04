@@ -57,15 +57,15 @@
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/reagent_holder))
-		if(isnotnull(src.beaker))
-			user << "There is already a reagent container loaded!"
+	if(istype(W, /obj/item/reagent_holder))
+		if(isnotnull(beaker))
+			to_chat(user, SPAN_WARNING("There is already a reagent container loaded!"))
 			return
 
 		user.drop_item()
 		W.forceMove(src)
 		src.beaker = W
-		user << "You attach \the [W] to \the [src]."
+		to_chat(user, SPAN_INFO("You attach \the [W] to \the [src]."))
 		src.update_icon()
 		return
 	else
@@ -143,14 +143,14 @@
 	set src in view(1)
 
 	if(!isliving(usr))
-		usr << "\red You can't do that."
+		to_chat(usr, SPAN_WARNING("You can't do that."))
 		return
 
 	if(usr.stat)
 		return
 
 	mode = !mode
-	usr << "The IV drip is now [mode ? "injecting" : "taking blood"]."
+	to_chat(usr, SPAN_INFO("The IV drip is now [mode ? "injecting" : "taking blood"]."))
 
 /obj/machinery/iv_drip/get_examine_text(mob/user)
 	. = ..()

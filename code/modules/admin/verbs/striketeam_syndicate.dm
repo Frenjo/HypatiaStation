@@ -82,7 +82,8 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 				new_syndicate_commando.mind.store_memory("<B>Nuke Code:</B> \red [nuke_code].")
 			new_syndicate_commando.mind.store_memory("<B>Mission:</B> \red [input].")
 
-			new_syndicate_commando << "\blue You are an Elite Syndicate. [!syndicate_leader_selected?"commando":"<B>LEADER</B>"] in the service of the Syndicate. \nYour current mission is: \red<B>[input]</B>"
+			to_chat(new_syndicate_commando, SPAN_INFO("You are an Elite Syndicate. [!syndicate_leader_selected ? "commando" : "<B>LEADER</B>"] in the service of the Syndicate."))
+			to_chat(new_syndicate_commando, "Your current mission is: \red<B>[input]</B>")
 
 			syndicate_commando_number--
 

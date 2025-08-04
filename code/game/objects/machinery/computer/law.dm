@@ -17,15 +17,11 @@
 		return
 
 	opened = !opened
-	if(opened)
-		usr << "\blue The access panel is now open."
-	else
-		usr << "\blue The access panel is now closed."
-	return
+	to_chat(usr, SPAN_INFO("The access panel is now [opened ? "open" : "closed"]."))
 
 /obj/machinery/computer/aiupload/attack_by(obj/item/I, mob/user)
 	if(isnotcontactlevel(user.z))
-		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+		to_chat(user, SPAN_WARNING("<b>Unable to establish a connection</b>: ") + "\black You're too far away from the station!")
 		return TRUE
 
 	if(istype(I, /obj/item/ai_module))
@@ -35,20 +31,19 @@
 	return ..()
 
 /obj/machinery/computer/aiupload/attack_hand(mob/user)
-	if(src.stat & NOPOWER)
-		usr << "The upload computer has no power!"
+	if(stat & NOPOWER)
+		to_chat(user, SPAN_WARNING("\The [src] has no power!"))
 		return
-	if(src.stat & BROKEN)
-		usr << "The upload computer is broken!"
+	if(stat & BROKEN)
+		to_chat(user, SPAN_WARNING("\The [src] is broken!"))
 		return
 
-	src.current = select_active_ai(user)
+	current = select_active_ai(user)
 
-	if (!src.current)
-		usr << "No active AIs detected."
+	if(!current)
+		to_chat(user, SPAN_WARNING("No active AIs detected."))
 	else
-		usr << "[src.current.name] selected for law changes."
-	return
+		to_chat(user, SPAN_INFO("[current.name] selected for law changes."))
 
 
 /obj/machinery/computer/borgupload
@@ -66,17 +61,16 @@
 	return ..()
 
 /obj/machinery/computer/borgupload/attack_hand(mob/user)
-	if(src.stat & NOPOWER)
-		usr << "The upload computer has no power!"
+	if(stat & NOPOWER)
+		to_chat(user, SPAN_WARNING("\The [src] has no power!"))
 		return
-	if(src.stat & BROKEN)
-		usr << "The upload computer is broken!"
+	if(stat & BROKEN)
+		to_chat(user, SPAN_WARNING("\The [src] is broken!"))
 		return
 
-	src.current = freeborg()
+	current = freeborg()
 
-	if (!src.current)
-		usr << "No free cyborgs detected."
+	if(!current)
+		to_chat(user, SPAN_WARNING("No free cyborgs detected."))
 	else
-		usr << "[src.current.name] selected for law changes."
-	return
+		to_chat(user, SPAN_INFO("[current.name] selected for law changes."))
