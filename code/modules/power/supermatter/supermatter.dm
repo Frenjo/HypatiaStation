@@ -110,7 +110,7 @@
 			if(damage > emergency_point)
 				shift_light(7, emergency_color)
 				radio.autosay(addtext(emergency_alert, " Instability: ", stability, "%"), "Supermatter Monitor")
-				world << sound('sound/effects/siren_shortened.ogg', volume = 100) // Play a sound if shit's fucked, yo. -Frenjo
+				SOUND_TO(world, 'sound/effects/siren_shortened.ogg') // Play a sound if shit's fucked, yo. -Frenjo
 				lastwarning = world.timeofday
 
 			else if(damage >= damage_archived)	// The damage is still going up

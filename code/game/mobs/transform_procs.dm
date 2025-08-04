@@ -77,7 +77,7 @@
 
 /mob/proc/AIize()
 	if(client)
-		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
+		SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // Stop the jams for AIs.
 	var/mob/living/silicon/ai/O = new(loc, BASE_LAW_TYPE, , 1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = AI_POWER_RESTORATION_OFF

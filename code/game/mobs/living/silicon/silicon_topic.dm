@@ -7,7 +7,7 @@
 				lawcheck[L + 1] = "No"
 			if("No")
 				lawcheck[L + 1] = "Yes"
-//		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
+		//to_chat(src, "Switching Law [L]'s report status to [lawcheck[L+1]]")
 		state_laws_verb()
 		return
 
@@ -18,7 +18,7 @@
 				ioncheck[L] = "No"
 			if("No")
 				ioncheck[L] = "Yes"
-//		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
+		//to_chat(src, "Switching Law [L]'s report status to []lawcheck[L+1]")
 		state_laws_verb()
 		return
 

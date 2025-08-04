@@ -22,5 +22,5 @@
 		msg += "</span>"
 	msg += "*---------*</span>"
 
-	usr << msg
+	to_chat(usr, msg)
 */

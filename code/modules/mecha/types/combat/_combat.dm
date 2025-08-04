@@ -331,7 +331,7 @@
 	log_message("Toggled zoom mode.")
 	if(zoom_mode)
 		occupant.client.view = 12
-		occupant << sound(zoom_sound, volume = zoom_sound_volume)
+		SOUND_TO(occupant, sound(zoom_sound, volume = zoom_sound_volume))
 	else
 		occupant.client.view = world.view//world.view - default mob view size
 

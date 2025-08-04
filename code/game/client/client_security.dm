@@ -46,7 +46,7 @@
 
 	//Logs all hrefs
 	if(CONFIG_GET(/decl/configuration_entry/log_hrefs) && isnotnull(GLOBL.href_logfile))
-		GLOBL.href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
+		TO_FILE(GLOBL.href_logfile, "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
 
 	switch(href_list["_src_"])
 		if("holder")

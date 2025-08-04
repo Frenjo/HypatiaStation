@@ -96,7 +96,7 @@
 	else
 		to_chat(src, "You will no longer hear music in the game lobby.")
 		if(isnewplayer(mob))
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stop the jamsz.
+			SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // Stop the jamsz.
 	feedback_add_details("admin_verb", "TLobby") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/togglemidis()
@@ -111,7 +111,7 @@
 		to_chat(src, "You will now hear any sounds uploaded by admins.")
 		var/sound/break_sound = sound(null, repeat = 0, wait = 0, channel = 777)
 		break_sound.priority = 250
-		src << break_sound // Breaks the client's sound output on channel 777.
+		SOUND_TO(src, break_sound) // Breaks the client's sound output on channel 777.
 	else
 		to_chat(src, "You will no longer hear sounds uploaded by admins; any currently playing midis have been disabled.")
 	feedback_add_details("admin_verb", "TMidi") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -150,8 +150,8 @@
 		to_chat(src, "You will now hear ambient sounds.")
 	else
 		to_chat(src, "You will no longer hear ambient sounds.")
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
+		SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 0, channel = 1))
+		SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 0, channel = 2))
 	feedback_add_details("admin_verb", "TAmbi") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //be special

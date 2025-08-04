@@ -101,7 +101,7 @@
 			var/mob/dead/ghost/observer = new /mob/dead/ghost()
 
 			spawning = TRUE
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+			SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // MAD JAMS cant last forever yo
 
 			observer.started_as_observer = TRUE
 			close_spawn_windows()
@@ -403,7 +403,7 @@
 	else
 		client.prefs.copy_to(new_character)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+	SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // MAD JAMS cant last forever yo
 
 	if(isnotnull(mind))
 		mind.active = FALSE				//we wish to transfer the key manually

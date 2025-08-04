@@ -39,7 +39,7 @@
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.client)
 			if(M.client.midis)
-				M << 'cubanpetetime.ogg'
+				SOUND_TO(M, 'cubanpetetime.ogg')
 
 	for(var/mob/living/carbon/human/CP in GLOBL.mob_list)
 		if(CP.real_name=="Cuban Pete" && CP.key!="Rosham")
@@ -55,7 +55,7 @@
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.client)
 			if(M.client.midis)
-				M << 'bananaphone.ogg'
+				SOUND_TO(M, 'bananaphone.ogg')
 
 
 client/proc/space_asshole()
@@ -66,7 +66,7 @@ client/proc/space_asshole()
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.client)
 			if(M.client.midis)
-				M << 'sound/music/space_asshole.ogg'
+				SOUND_TO(M, 'sound/music/space_asshole.ogg')
 
 
 client/proc/honk_theme()
@@ -77,4 +77,5 @@ client/proc/honk_theme()
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.client)
 			if(M.client.midis)
-				M << 'honk_theme.ogg'*/
+				SOUND_TO(M, 'honk_theme.ogg')
+*/

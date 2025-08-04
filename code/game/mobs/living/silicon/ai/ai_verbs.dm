@@ -71,9 +71,6 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 		if("Triumvirate") icon_state = "ai-triumvirate"
 		if("Triumvirate Static") icon_state = "ai-triumvirate-malf"
 		else icon_state = "ai"
-	//else
-			//usr <<"You can only change your display once!"
-			//return
 
 /*
  * Call Emergency Shuttle

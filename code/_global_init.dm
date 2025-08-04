@@ -25,9 +25,9 @@
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	GLOBL.href_logfile = file("data/logs/[date_string] hrefs.htm")
 	GLOBL.diary = file("data/logs/[date_string].log")
+	TO_FILE(GLOBL.diary, "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]")
 	GLOBL.diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	GLOBL.diary << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
-	GLOBL.diaryofmeanpeople << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
+	TO_FILE(GLOBL.diaryofmeanpeople, "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]")
 
 	// Used for telling if the changelog has changed recently.
 	GLOBL.changelog_hash = md5('html/changelog/changelog.html')

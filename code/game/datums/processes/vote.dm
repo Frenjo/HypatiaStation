@@ -235,14 +235,14 @@ PROCESS_DEF(vote)
 			text += "\n[question]"
 
 		log_vote(text)
-		to_world("<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [CONFIG_GET(/decl/configuration_entry/vote_period) / 10] seconds to vote.</font>")
+		to_world("<font color='purple'><b>[text]</b><br>Type vote to place your votes.<br>You have [CONFIG_GET(/decl/configuration_entry/vote_period) / 10] seconds to vote.</font>")
 		switch(vote_type)
 			if("crew_transfer")
-				world << sound('sound/ambience/alarm4.ogg')
+				SOUND_TO(world, 'sound/ambience/alarm4.ogg')
 			if("gamemode")
-				world << sound('sound/ambience/alarm4.ogg')
+				SOUND_TO(world, 'sound/ambience/alarm4.ogg')
 			if("custom")
-				world << sound('sound/ambience/alarm4.ogg')
+				SOUND_TO(world, 'sound/ambience/alarm4.ogg')
 		if(mode == "gamemode" && global.PCticker.roundstart_progressing)
 			global.PCticker.roundstart_progressing = FALSE
 			to_world(SPAN_DANGER("Round start has been delayed."))

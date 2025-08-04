@@ -2,6 +2,8 @@
  * Output Macros
  */
 #define TO_WORLD_LOG(X) world.log << X
+#define SOUND_TO(TARGET, SOUND) TARGET << SOUND
+#define TO_FILE(FILE, VAR) FILE << VAR
 #define SHOW_BROWSER(TARGET, CONTENT, OPTIONS) TARGET << browse(CONTENT, OPTIONS)
 #define CLOSE_BROWSER(TARGET, NAME) TARGET << browse(null, NAME)
 #define SEND_RSC(TARGET, CONTENT, NAME) TARGET << browse_rsc(CONTENT, NAME)

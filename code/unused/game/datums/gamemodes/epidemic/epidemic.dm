@@ -180,7 +180,7 @@
 	ticker.mode:explosion_in_progress = 1
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.client)
-			M << 'sound/machines/Alarm.ogg'
+			SOUND_TO(M, 'sound/machines/Alarm.ogg')
 	to_world("\blue<b>Incoming missile detected.. Impact in 10..</b>")
 	for (var/i=9 to 1 step -1)
 		sleep(10)

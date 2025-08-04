@@ -97,9 +97,9 @@ var/const/VOX_DELAY = 100 // 10 seconds
 			for_no_type_check(var/mob/M, GLOBL.player_list)
 				if(isnotnull(M.client))
 					if(GET_TURF_Z(M) == z_level)
-						M << voice
+						SOUND_TO(M, voice)
 		else
-			only_listener << voice
+			SOUND_TO(only_listener, voice)
 		return 1
 	return 0
 

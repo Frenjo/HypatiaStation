@@ -30,7 +30,7 @@
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!M.ear_deaf)
 			to_chat(M, announcement)
-			M << sound(sound)
+			SOUND_TO(M, sound)
 
 	// Sends the announcement to the corresponding news channel.
 	if(isnotnull(author) && isnotnull(message) && isnotnull(channel_name))
@@ -44,7 +44,7 @@
 		if(!M.ear_deaf)
 			to_chat(M, "<b><font size=3><font color=red>[title]</font color><br>[message]</font size></b>")
 			if(!silent)
-				M << sound('sound/misc/minor_announce.ogg')
+				SOUND_TO(M, 'sound/misc/minor_announce.ogg')
 
 /proc/print_command_report(text = "", title = "CentCom Status Summary", silent = FALSE)
 	for_no_type_check(var/obj/machinery/computer/communications/console, GLOBL.communications_consoles)

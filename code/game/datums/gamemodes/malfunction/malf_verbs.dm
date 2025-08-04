@@ -50,7 +50,7 @@
 		ai_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/ai_win)
 	malf.explosion_in_progress = TRUE
 	for_no_type_check(var/mob/M, GLOBL.player_list)
-		M << 'sound/machines/Alarm.ogg'
+		SOUND_TO(M, 'sound/machines/Alarm.ogg')
 	to_world("Self-destructing in 10...")
 	for(var/i = 9 to 1 step -1)
 		sleep(10)

@@ -1,6 +1,6 @@
 /world/Reboot(reason)
 	spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
+		SOUND_TO(world, pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 
 	// Stops the master controller's process scheduling.
 	global.CTmaster.stop()

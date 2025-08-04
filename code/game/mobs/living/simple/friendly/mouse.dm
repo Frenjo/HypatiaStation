@@ -33,7 +33,7 @@
 	..()
 	if(!stat && prob(speak_chance))
 		for(var/mob/M in view())
-			M << 'sound/effects/mousesqueek.ogg'
+			SOUND_TO(M, 'sound/effects/mousesqueek.ogg')
 
 	if(!ckey && stat == CONSCIOUS && prob(0.5))
 		stat = UNCONSCIOUS
@@ -77,7 +77,7 @@
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, SPAN_INFO("[icon2html(src, M)] Squeek!"))
-			M << 'sound/effects/mousesqueek.ogg'
+			SOUND_TO(M, 'sound/effects/mousesqueek.ogg')
 	..()
 
 /mob/living/simple/mouse/Die()

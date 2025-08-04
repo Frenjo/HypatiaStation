@@ -319,7 +319,7 @@
 			var/mob/living/silicon/ai/A = src
 			oldname = null//don't bother with the records update crap
 			//to_world("<b>[newname] is the AI!</b>")
-			//world << sound('sound/AI/newAI.ogg')
+			//SOUND_TO(world, 'sound/AI/newAI.ogg')
 			// Set eyeobj name
 			A.eyeobj?.name = "[newname] (AI Eye)"
 

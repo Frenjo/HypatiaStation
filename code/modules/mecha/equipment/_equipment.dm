@@ -40,7 +40,7 @@
 		update_chassis_page()
 		chassis.occupant_message(SPAN_DANGER("The [src] is destroyed!"))
 		chassis.log_append_to_last("[src] is destroyed.", 1)
-		chassis.occupant << sound(destruction_sound, volume = 50)
+		SOUND_TO(chassis.occupant, sound(destruction_sound, volume = 50))
 		chassis = null
 	return ..()
 

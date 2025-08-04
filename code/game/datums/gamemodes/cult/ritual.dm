@@ -348,7 +348,7 @@ var/engwords = list(
 //			[words[9]] is <a href='byond://?src=\ref[src];number=9;action=change'>[words[words[9]]]</A> <A href='byond://?src=\ref[src];number=9;action=clear'>Clear</A><BR>
 //			[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 //					"}
-//		usr << "whatev"
+//		to_chat(usr, "whatev")
 //		CLOSE_BROWSER(usr, "window=tank")
 
 /obj/item/tome/attack(mob/living/M, mob/living/user)

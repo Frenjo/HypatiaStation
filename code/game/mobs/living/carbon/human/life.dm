@@ -942,7 +942,7 @@
 		discomfort *= TEMPERATURE_DAMAGE_COEFFICIENT * 2 //I don't like magic numbers. I'll make mutantraces a datum with vars sometime later. -- Urist
 	else
 		discomfort *= TEMPERATURE_DAMAGE_COEFFICIENT //Dangercon 2011 - now with less magic numbers!
-	//world <<"[discomfort]"
+	//to_world(discomfort)
 
 	switch(body_part)
 		if(HEAD)

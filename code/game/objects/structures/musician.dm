@@ -205,7 +205,6 @@
 		if("Cn9")	soundfile = 'sound/instruments/piano/Cn9.ogg'
 		else		return
 
-	//hearers(15, src) << sound(soundfile)
 	var/turf/source = GET_TURF(src)
 	for(var/mob/M in hearers(15, source))
 		M.playsound_local(source, file(soundfile), 100, falloff = 5)
