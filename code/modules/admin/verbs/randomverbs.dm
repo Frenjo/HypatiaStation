@@ -156,7 +156,7 @@
 		M.client.prefs.muted |= mute_type
 		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(M)] from [mute_string]")
 		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-		M << "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin."
+		to_chat(M, SPAN_WARNING("You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin."))
 		feedback_add_details("admin_verb","AUTOMUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return
 
@@ -169,7 +169,7 @@
 
 	log_admin("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string]")
 	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-	M << "You have been [muteunmute] from [mute_string]."
+	to_chat(M, SPAN_WARNING("You have been [muteunmute] from [mute_string]."))
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -351,7 +351,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 
 	if(!G_found)//If a ghost was not found.
-		usr << "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>"
+		to_chat(usr, SPAN_WARNING("There is no active key like that in the game or the person is not currently a ghost."))
 		return
 
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
@@ -361,7 +361,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				var/mob/living/carbon/monkey/new_monkey = new(pick(GLOBL.latejoin))
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
-				new_monkey << "You have been fully respawned. Enjoy the game."
+				to_chat(new_monkey, SPAN_NOTICE("You have been fully respawned. Enjoy the game."))
 				message_admins("\blue [key_name_admin(usr)] has respawned [new_monkey.key] as a filthy xeno.", 1)
 				return	//all done. The ghost is auto-deleted
 
@@ -449,16 +449,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new_character.internal = new_character.suit_store
 			new_character.internals.icon_state = "internal1"
 			if(!length(GLOBL.ninjastart))
-				new_character << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
-				new_character << "<B>\red Attempting to place at a carpspawn.</B>"
+				to_chat(new_character, SPAN_DANGER("A proper starting location for you could not be found, please report this bug!"))
+				to_chat(new_character, SPAN_DANGER("Attempting to place at a carpspawn..."))
 				for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 					if(L.name == "carpspawn")
 						GLOBL.ninjastart.Add(L)
 				if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
-					new_character << "<B>\red Still no spawneable locations could be found. Defaulting to latejoin.</B>"
+					to_chat(new_character, SPAN_DANGER("Still no spawnable locations could be found. Defaulting to latejoin."))
 					new_character.forceMove(pick(GLOBL.latejoin))
 				else if(!length(GLOBL.ninjastart))
-					new_character << "<B>\red Still no spawneable locations could be found. Aborting.</B>"
+					to_chat(new_character, SPAN_DANGER("Still no spawnable locations could be found. Aborting."))
 
 		if("Death Commando")//Leaves them at late-join spawn.
 			new_character.equip_outfit(/decl/hierarchy/outfit/death_commando/standard)
@@ -490,7 +490,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
 
-	new_character << "You have been fully respawned. Enjoy the game."
+	to_chat(new_character, SPAN_NOTICE("You have been fully respawned. Enjoy the game."))
 
 	feedback_add_details("admin_verb", "RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
@@ -507,13 +507,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	for(var/mob/living/silicon/ai/M in GLOBL.mob_list)
 		if(M.stat == DEAD)
-			usr << "Upload failed. No signal is being detected from the AI."
+			to_chat(usr, SPAN_WARNING("Upload failed. No signal is being detected from the AI."))
 		else if(M.see_in_dark == 0)
-			usr << "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power."
+			to_chat(usr, SPAN_WARNING("Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power."))
 		else
 			M.add_ion_law(input)
 			for(var/mob/living/silicon/ai/O in GLOBL.mob_list)
-				O << "\red " + input + "\red...LAWS UPDATED"
+				to_chat(O, "\red " + input + "\red...LAWS UPDATED")
 
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]", 1)
@@ -896,7 +896,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(global.PCticker.random_players)
 		global.PCticker.random_players = FALSE
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
-		usr << "Disabled."
+		to_chat(usr, SPAN_INFO("Disabled."))
 		return
 
 
@@ -910,7 +910,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(notifyplayers == "Yes")
 		to_world("\blue <b>Admin [usr.key] has forced the players to have completely random identities!")
 
-	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
+	to_chat(usr, SPAN_INFO("<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."))
 
 	global.PCticker.random_players = TRUE
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -925,10 +925,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!CONFIG_GET(/decl/configuration_entry/allow_random_events))
 		CONFIG_SET(/decl/configuration_entry/allow_random_events, TRUE)
-		usr << "Random events enabled"
+		to_chat(usr, SPAN_INFO("Random events enabled."))
 		message_admins("Admin [key_name_admin(usr)] has enabled random events.", 1)
 	else
 		CONFIG_SET(/decl/configuration_entry/allow_random_events, FALSE)
-		usr << "Random events disabled"
+		to_chat(usr, SPAN_INFO("Random events disabled."))
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
