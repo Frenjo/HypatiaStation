@@ -24,12 +24,12 @@
 			else
 				message = text
 
-	announcement += "[SPAN_ALERT("[html_encode(text)]")]<br>"
+	announcement += "[SPAN_ALERT(html_encode(text))]"
 
 	// Actually does the announcement.
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!M.ear_deaf)
-			to_chat(M, announcement)
+			to_chat(M, "<div class='priority_announce'>[announcement]</div>")
 			SOUND_TO(M, sound)
 
 	// Sends the announcement to the corresponding news channel.
@@ -42,7 +42,8 @@
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!M.ear_deaf)
-			to_chat(M, "<b><font size=3><font color=red>[title]</font color><br>[message]</font size></b>")
+			var/announcement = "<b><font size=3><font color=red>[title]</font color><br>[message]</font size></b>"
+			to_chat(M, "<div class='minor_announce'>[announcement]</div>")
 			if(!silent)
 				SOUND_TO(M, 'sound/misc/minor_announce.ogg')
 
