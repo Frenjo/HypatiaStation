@@ -100,7 +100,7 @@
 		dat += "Strange rocks: [amt_strange]<br>"
 
 	dat += "<br><br><A href='byond://?src=\ref[src];removeall=1'>Empty Box</A>"
-	user << browse(dat, "window=orebox")
+	SHOW_BROWSER(user, dat, "window=orebox")
 
 /obj/structure/ore_box/Topic(href, href_list)
 	if(..())

@@ -120,7 +120,7 @@
 				dat += " <A href='byond://?src=\ref[src];make=[D.type];multiplier=[max_multiplier]'>x[max_multiplier]</A>"
 		dat += "<br>"
 	dat += "</tt></body></html>"
-	user << browse(dat, "window=autolathe_regular;size=600x800")
+	SHOW_BROWSER(user, dat, "window=autolathe_regular;size=600x800")
 	onclose(user, "autolathe_regular")
 
 /obj/machinery/autolathe/proc/shock(mob/user, prb)

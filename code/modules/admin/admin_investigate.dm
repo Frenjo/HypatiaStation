@@ -34,12 +34,12 @@
 			if(!F)
 				src << "<font color='red'>Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.</font>"
 				return
-			src << browse(F,"window=investigate[subject];size=800x300")
+			SHOW_BROWSER(src, F, "window=investigate[subject];size=800x300")
 
 		if("hrefs")				//persistant logs and stuff
 			if(CONFIG_GET(/decl/configuration_entry/log_hrefs))
 				if(isnotnull(GLOBL.href_logfile))
-					src << browse(GLOBL.href_logfile,"window=investigate[subject];size=800x300")
+					SHOW_BROWSER(src, GLOBL.href_logfile, "window=investigate[subject];size=800x300")
 				else
 					src << "<font color='red'>Error: admin_investigate: No href logfile found.</font>"
 					return

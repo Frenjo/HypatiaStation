@@ -360,7 +360,7 @@
 			else
 				dat += "I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-		human_or_robot_user << browse(dat, "window=newscaster_main;size=400x600")
+		SHOW_BROWSER(human_or_robot_user, dat, "window=newscaster_main;size=400x600")
 		onclose(human_or_robot_user, "newscaster_main")
 
 	/*if(isbroken) //debugging shit
@@ -773,7 +773,7 @@
 				dat += "I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
 		dat += "<BR><HR><div align='center'>[curr_page+1]</div>"
-		human_user << browse(dat, "window=newspaper_main;size=300x400")
+		SHOW_BROWSER(human_user, dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
 		to_chat(user, "The paper is full of intelligible symbols!")

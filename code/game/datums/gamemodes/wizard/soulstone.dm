@@ -47,14 +47,14 @@
 		dat += {"<A href='byond://?src=\ref[src];choice=Summon'>Summon Shade</A>"}
 		dat += "<br>"
 		dat += {"<a href='byond://?src=\ref[src];choice=Close'> Close</a>"}
-	user << browse(dat, "window=aicard")
+	SHOW_BROWSER(user, dat, "window=aicard")
 	onclose(user, "aicard")
 	return
 
 /obj/item/soulstone/Topic(href, href_list)
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)
-		U << browse(null, "window=aicard")
+		CLOSE_BROWSER(U, "window=aicard")
 		U.unset_machine()
 		return
 
@@ -63,7 +63,7 @@
 
 	switch(href_list["choice"])//Now we switch based on choice.
 		if("Close")
-			U << browse(null, "window=aicard")
+			CLOSE_BROWSER(U, "window=aicard")
 			U.unset_machine()
 			return
 

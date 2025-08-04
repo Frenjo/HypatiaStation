@@ -35,7 +35,7 @@
 /datum/preferences/proc/process_special_roles_panel(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("close")
-			user << browse(null, "window=specialroles")
+			CLOSE_BROWSER(user, "window=specialroles")
 			character_setup_panel(user)
 			return
 

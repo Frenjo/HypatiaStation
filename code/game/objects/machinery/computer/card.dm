@@ -187,7 +187,7 @@
 			body = "<a href='byond://?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
 			body += "<a href='byond://?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
-	user << browse(dat, "window=id_com;size=900x520")
+	SHOW_BROWSER(user, dat, "window=id_com;size=900x520")
 	onclose(user, "id_com")
 	return
 

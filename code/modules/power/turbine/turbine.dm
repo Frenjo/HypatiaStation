@@ -62,7 +62,7 @@
 /obj/machinery/power/turbine/interact(mob/user)
 	if(!in_range(src, user) || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
 		user.machine = null
-		user << browse(null, "window=turbine")
+		CLOSE_BROWSER(user, "window=turbine")
 		return
 
 	user.machine = src
@@ -78,7 +78,7 @@
 	t += "</PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</TT>"
-	user << browse(t, "window=turbine")
+	SHOW_BROWSER(user, t, "window=turbine")
 	onclose(user, "turbine")
 
 	return
@@ -96,7 +96,7 @@
 
 	if((usr.machine == src && (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		if(href_list["close"])
-			usr << browse(null, "window=turbine")
+			CLOSE_BROWSER(usr, "window=turbine")
 			usr.machine = null
 			return
 
@@ -109,7 +109,7 @@
 					src.interact(M)
 
 	else
-		usr << browse(null, "window=turbine")
+		CLOSE_BROWSER(usr, "window=turbine")
 		usr.machine = null
 
 	return

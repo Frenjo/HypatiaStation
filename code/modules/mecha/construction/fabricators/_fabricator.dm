@@ -360,7 +360,7 @@
 				</table>
 				</body>
 				</html>"}
-	user << browse(dat, "window=[ui_id];size=1000x600")
+	SHOW_BROWSER(user, dat, "window=[ui_id];size=1000x600")
 	onclose(user, ui_id)
 
 /obj/machinery/robotics_fabricator/Topic(href, href_list)

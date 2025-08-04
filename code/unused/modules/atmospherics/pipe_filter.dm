@@ -160,7 +160,7 @@
 
 /obj/machinery/pipefilter/attack_hand(mob/user as mob)
 /*	if(stat & NOPOWER)
-		user << browse(null, "window=pipefilter")
+		CLOSE_BROWSER(user, "window=pipefilter")
 		user.machine = null
 		return
 
@@ -183,7 +183,7 @@
 		dat += "<BR>Gas Levels: <BR>\nPressure: 0%<BR>\nNitrogen: 0%<BR>\nOxygen: 0%<BR>\nPlasma: 0%<BR>\nCO2: 0%<BR>\nN2O: 0%<BR>\n"
 	dat += "<BR>\n<A href='byond://?src=\ref[src];close=1'>Close</A><BR>\n"
 
-	user << browse(dat, "window=pipefilter;size=300x365")*/ //TODO: FIX
+	SHOW_BROWSER(user, dat, "window=pipefilter;size=300x365")*/ //TODO: FIX
 	//onclose(user, "pipefilter")
 
 /obj/machinery/pipefilter/Topic(href, href_list)
@@ -193,7 +193,7 @@
 	if(((in_range(src, usr) || usr.telekinesis == 1) || issilicon(usr)) && isturf(loc))
 		usr.machine = src
 		if (href_list["close"])
-			usr << browse(null, "window=pipefilter;")
+			CLOSE_BROWSER(usr, "window=pipefilter;")
 			usr.machine = null
 			return
 		if (src.allowed(usr) || src.emagged || src.bypassed)
@@ -209,7 +209,7 @@
 		src.updateUsrDialog()
 		src.add_fingerprint(usr)
 	else
-		usr << browse(null, "window=pipefilter")
+		CLOSE_BROWSER(usr, "window=pipefilter")
 		usr.machine = null
 		return
 

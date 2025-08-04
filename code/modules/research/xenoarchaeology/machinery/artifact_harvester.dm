@@ -68,7 +68,7 @@
 	//
 	dat += "<HR>"
 	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A> <A href='byond://?src=\ref[src];close=1'>Close<BR>"
-	user << browse(dat, "window=artharvester;size=450x500")
+	SHOW_BROWSER(user, dat, "window=artharvester;size=450x500")
 	onclose(user, "artharvester")
 
 /obj/machinery/artifact_harvester/process()
@@ -213,7 +213,7 @@
 			visible_message("<b>[src]</b> states, \"Cannot dump energy. No battery inserted.\"")
 
 	if(href_list["close"])
-		usr << browse(null, "window=artharvester")
+		CLOSE_BROWSER(usr, "window=artharvester")
 		usr.unset_machine(src)
 
 	updateDialog()

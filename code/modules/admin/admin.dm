@@ -175,7 +175,7 @@ var/global/floorIsLava = 0
 		</body></html>
 	"}
 
-	usr << browse(body, "window=adminplayeropts;size=550x515")
+	SHOW_BROWSER(usr, body, "window=adminplayeropts;size=550x515")
 	feedback_add_details("admin_verb","SPP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -233,7 +233,7 @@ var/global/floorIsLava = 0
 			if(index == page)
 				dat += "</b>"
 
-	usr << browse(dat, "window=player_notes;size=400x400")
+	SHOW_BROWSER(usr, dat, "window=player_notes;size=400x400")
 #undef PLAYER_NOTES_ENTRIES_PER_PAGE
 
 /datum/admins/proc/player_has_info(var/key as text)
@@ -283,7 +283,7 @@ var/global/floorIsLava = 0
 	dat += "<A href='byond://?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
 
 	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+	SHOW_BROWSER(usr, dat, "window=adminplayerinfo;size=480x480")
 
 
 
@@ -528,7 +528,7 @@ var/global/floorIsLava = 0
 
 	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
 	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
-	usr << browse(dat, "window=admincaster_main;size=400x600")
+	SHOW_BROWSER(usr, dat, "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
 
 
@@ -543,7 +543,7 @@ var/global/floorIsLava = 0
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
+	SHOW_BROWSER(usr, dat, "window=ban;size=400x400")
 
 /datum/admins/proc/game_panel()
 	if(!check_rights(0))

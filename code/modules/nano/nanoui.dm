@@ -337,7 +337,7 @@ nanoui is used to open and update nano browser uis
 	if(width && height)
 		window_size = "size=[width]x[height];"
 	update_status(FALSE)
-	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
+	SHOW_BROWSER(user, get_html(), "window=[window_id];[window_size][window_options]")
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
 	on_close_winset()
 	//onclose(user, window_id)
@@ -351,7 +351,7 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/close()
 	is_auto_updating = FALSE
 	global.PCnanoui.ui_closed(src)
-	user << browse(null, "window=[window_id]")
+	CLOSE_BROWSER(user, "window=[window_id]")
 
  /**
   * Set the UI window to call the nanoclose verb when the window is closed

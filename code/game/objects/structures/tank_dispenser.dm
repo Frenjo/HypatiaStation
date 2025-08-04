@@ -38,7 +38,7 @@
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='byond://?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
 	dat += "Plasma tanks: [plasmatanks] - [plasmatanks ? "<A href='byond://?src=\ref[src];plasma=1'>Dispense</A>" : "empty"]"
-	user << browse(dat, "window=dispenser")
+	SHOW_BROWSER(user, dat, "window=dispenser")
 	onclose(user, "dispenser")
 	return
 
@@ -106,6 +106,6 @@
 		add_fingerprint(usr)
 		updateUsrDialog()
 	else
-		usr << browse(null, "window=dispenser")
+		CLOSE_BROWSER(usr, "window=dispenser")
 		return
 	return

@@ -55,7 +55,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 
 	html += "<br>Stacking: [machine.max_stack_amount]<br><br>"
 
-	user << browse(html, "window=console_stacking_machine")
+	SHOW_BROWSER(user, html, "window=console_stacking_machine")
 	onclose(user, "console_stacking_machine")
 #undef ADD_MATERIAL
 

@@ -326,7 +326,7 @@
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, "window=mob[name];size=340x480")
+	SHOW_BROWSER(user, dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")
 	return
 
@@ -424,7 +424,7 @@
 	if(href_list["mach_close"])
 		var/t1 = "window=[href_list["mach_close"]]"
 		unset_machine()
-		src << browse(null, t1)
+		CLOSE_BROWSER(src, t1)
 
 	if(href_list["item"] && !usr.stat && usr.canmove && !usr.restrained() && in_range(src, usr) && global.PCticker) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()

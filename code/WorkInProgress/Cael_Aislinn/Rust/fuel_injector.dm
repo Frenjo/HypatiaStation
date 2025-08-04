@@ -157,12 +157,12 @@
 /obj/machinery/power/rust_fuel_injector/interact(mob/user)
 	if(stat & BROKEN)
 		user.unset_machine()
-		user << browse(null, "window=fuel_injector")
+		CLOSE_BROWSER(user, "window=fuel_injector")
 		return
 	if(!in_range(src, user))
 		if(!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=fuel_injector")
+			CLOSE_BROWSER(user, "window=fuel_injector")
 			return
 
 	var/dat = ""
@@ -192,7 +192,7 @@
 		dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A> "
 		dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(dat, "window=fuel_injector;size=500x300")
+	SHOW_BROWSER(user, dat, "window=fuel_injector;size=500x300")
 	onclose(user, "fuel_injector")
 	user.set_machine(src)
 
@@ -238,7 +238,7 @@
 			C.updateDialog()
 
 	if( href_list["close"] )
-		usr << browse(null, "window=fuel_injector")
+		CLOSE_BROWSER(usr, "window=fuel_injector")
 		usr.unset_machine()
 
 	updateDialog()

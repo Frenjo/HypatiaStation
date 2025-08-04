@@ -110,7 +110,7 @@
 		t1 += "<br>\n[(src.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]<br>\n[(src.connected_ai ? "The AI link light is on." : "The AI link light is off.")]"
 		t1 += "<br>\n[((isnotnull(src.camera) && src.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]<br>\n"
 		t1 += "<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p>\n"
-		user << browse(t1, "window=borgwires")
+		SHOW_BROWSER(user, t1, "window=borgwires")
 		onclose(user, "borgwires")
 
 /mob/living/silicon/robot/Topic(href, href_list)
@@ -137,7 +137,7 @@
 			else
 				src.pulse(t1)
 		else if (href_list["close2"])
-			usr << browse(null, "window=borgwires")
+			CLOSE_BROWSER(usr, "window=borgwires")
 			usr.unset_machine()
 			return
 

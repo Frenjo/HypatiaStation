@@ -128,4 +128,4 @@
 		else
 			dat += "[obj]: <A href='byond://?src=\ref[src];act=\ref[obj]'>Activate</A><BR>"
 
-	src << browse(dat, "window=robotmod&can_close=0")
+	SHOW_BROWSER(src, dat, "window=robotmod&can_close=0")

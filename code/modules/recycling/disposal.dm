@@ -261,7 +261,7 @@
 	dat += "Pressure: [round(per, 1)]%<BR></body>"
 
 	user.set_machine(src)
-	user << browse(dat, "window=disposal;size=360x170")
+	SHOW_BROWSER(user, dat, "window=disposal;size=360x170")
 	onclose(user, "disposal")
 
 // handle machine interaction
@@ -285,7 +285,7 @@
 
 		if(href_list["close"])
 			usr.unset_machine()
-			usr << browse(null, "window=disposal")
+			CLOSE_BROWSER(usr, "window=disposal")
 			return
 
 		if(href_list["pump"])
@@ -302,7 +302,7 @@
 		if(href_list["eject"])
 			eject()
 	else
-		usr << browse(null, "window=disposal")
+		CLOSE_BROWSER(usr, "window=disposal")
 		usr.unset_machine()
 		return
 	return

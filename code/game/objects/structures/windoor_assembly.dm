@@ -223,7 +223,7 @@
 				if(!src.electronics)
 					to_chat(user, SPAN_WARNING("The assembly is missing electronics."))
 					return
-				usr << browse(null, "window=windoor_access")
+				CLOSE_BROWSER(usr, "window=windoor_access")
 				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 				user.visible_message(
 					"[user] pries the windoor into the frame.",

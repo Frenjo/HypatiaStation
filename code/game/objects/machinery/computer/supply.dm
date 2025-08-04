@@ -71,7 +71,7 @@
 		<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
 		<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=575x450")
+	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")
 	return
 
@@ -211,7 +211,7 @@
 		\n<A href='byond://?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
 		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=575x450")
+	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")
 	return
 

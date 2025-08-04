@@ -651,7 +651,7 @@
 
 		body = "<body>[jobs]</body>"
 		dat = "<tt>[header][body]</tt>"
-		usr << browse(dat, "window=jobban2;size=800x490")
+		SHOW_BROWSER(usr, dat, "window=jobban2;size=800x490")
 		return
 
 	//JOBBAN'S INNARDS
@@ -968,7 +968,7 @@
 		dat += {"<A href='byond://?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];c_mode2=random'>Random</A><br>"}
 		dat += {"Now: [global.PCticker.master_mode]"}
-		usr << browse(dat, "window=c_mode")
+		SHOW_BROWSER(usr, dat, "window=c_mode")
 
 	else if(href_list["f_secret"])
 		if(!check_rights(R_ADMIN))	return
@@ -982,7 +982,7 @@
 			dat += {"<A href='byond://?src=\ref[src];f_secret2=[mode]'>[global.CTconfiguration.mode_names[mode]]</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
 		dat += {"Now: [global.PCticker.secret_force_mode]"}
-		usr << browse(dat, "window=f_secret")
+		SHOW_BROWSER(usr, dat, "window=f_secret")
 
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
@@ -1319,7 +1319,7 @@
 				foo += text("<A href='byond://?src=\ref[];forcespeech=\ref[]'>Say</A> \]", src, M)
 			dat += text("N: [] R: [] (K: []) (IP: []) []<BR>", M.name, M.real_name, (M.client ? M.client : "No client"), M.lastKnownIP, foo)
 
-		usr << browse(dat, "window=players;size=900x480")
+		SHOW_BROWSER(usr, dat, "window=players;size=900x480")
 
 *****************AFTER******************/
 
@@ -1514,7 +1514,7 @@
 	else if(href_list["CentComFaxView"])
 		var/info = locate(href_list["CentComFaxView"])
 
-		usr << browse("<HTML><HEAD><TITLE>CentCom Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=CentCom Fax Message")
+		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>CentCom Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=CentCom Fax Message")
 
 	else if(href_list["CentComFaxReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentComFaxReply"])
@@ -2395,17 +2395,17 @@
 				var/dat = "<B>Bombing List<HR>"
 				for(var/l in GLOBL.bombers)
 					dat += text("[l]<BR>")
-				usr << browse(dat, "window=bombers")
+				SHOW_BROWSER(usr, dat, "window=bombers")
 			if("list_signalers")
 				var/dat = "<B>Showing last [length(GLOBL.lastsignalers)] signalers.</B><HR>"
 				for(var/sig in GLOBL.lastsignalers)
 					dat += "[sig]<BR>"
-				usr << browse(dat, "window=lastsignalers;size=800x500")
+				SHOW_BROWSER(usr, dat, "window=lastsignalers;size=800x500")
 			if("list_lawchanges")
 				var/dat = "<B>Showing last [length(GLOBL.lawchanges)] law changes.</B><HR>"
 				for(var/sig in GLOBL.lawchanges)
 					dat += "[sig]<BR>"
-				usr << browse(dat, "window=lawchanges;size=800x500")
+				SHOW_BROWSER(usr, dat, "window=lawchanges;size=800x500")
 			if("list_job_debug")
 				var/dat = "<B>Job Debug info.</B><HR>"
 				if(global.CTjobs)
@@ -2415,7 +2415,7 @@
 					for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
 						if(!job)	continue
 						dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
-					usr << browse(dat, "window=jobdebug;size=600x500")
+					SHOW_BROWSER(usr, dat, "window=jobdebug;size=600x500")
 			if("showailaws")
 				output_ai_laws()
 			if("showgm")
@@ -2431,7 +2431,7 @@
 					if(H.ckey)
 						dat += text("<tr><td>[]</td><td>[]</td></tr>", H.name, H.get_assignment())
 				dat += "</table>"
-				usr << browse(dat, "window=manifest;size=440x410")
+				SHOW_BROWSER(usr, dat, "window=manifest;size=440x410")
 			if("check_antagonist")
 				check_antagonists()
 			if("DNA")
@@ -2441,7 +2441,7 @@
 					if(H.dna && H.ckey)
 						dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.b_type]</td></tr>"
 				dat += "</table>"
-				usr << browse(dat, "window=DNA;size=440x410")
+				SHOW_BROWSER(usr, dat, "window=DNA;size=440x410")
 			if("fingerprints")
 				var/dat = "<B>Showing Fingerprints.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
@@ -2454,7 +2454,7 @@
 						else if(!H.dna)
 							dat += "<tr><td>[H]</td><td>H.dna = null</td></tr>"
 				dat += "</table>"
-				usr << browse(dat, "window=fingerprints;size=440x410")
+				SHOW_BROWSER(usr, dat, "window=fingerprints;size=440x410")
 			else
 		if (usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsadmin"]]")
@@ -2471,7 +2471,7 @@
 					dat += "<li>[l]</li>"
 				if(!length(GLOBL.admin_log))
 					dat += "No-one has done anything this round!"
-				usr << browse(dat, "window=admin_log")
+				SHOW_BROWSER(usr, dat, "window=admin_log")
 			if("maint_access_brig")
 				for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
 					if(ACCESS_MAINT_TUNNELS in M.req_access)

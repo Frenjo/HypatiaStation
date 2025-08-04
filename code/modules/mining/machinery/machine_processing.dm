@@ -170,7 +170,7 @@
 	else
 		html += "---No Materials Loaded---"
 
-	user << browse(html, "window=console_processing_unit")
+	SHOW_BROWSER(user, html, "window=console_processing_unit")
 	onclose(user, "console_processing_unit")
 
 /obj/machinery/mineral/processing_unit_console/Topic(href, href_list)

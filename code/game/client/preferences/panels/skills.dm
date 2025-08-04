@@ -36,14 +36,14 @@
 
 /datum/preferences/proc/process_set_skills_panel(mob/user, list/href_list)
 	if(href_list["cancel"])
-		user << browse(null, "window=show_skills")
+		CLOSE_BROWSER(user, "window=show_skills")
 		character_setup_panel(user)
 		return
 
 	if(href_list["skillinfo"])
 		var/decl/hierarchy/skill/S = locate(href_list["skillinfo"])
 		var/HTML = "<b>[S.name]</b><br>[S.desc]"
-		user << browse(HTML, "window=\ref[user]skillinfo")
+		SHOW_BROWSER(user, HTML, "window=\ref[user]skillinfo")
 
 	else if(href_list["setskill"])
 		var/decl/hierarchy/skill/S = locate(href_list["setskill"])

@@ -117,8 +117,8 @@
 	dat += "<a href=\"byond://?src=\ref[user];preferences=1;disabilities=-2\">\[Done\]</a>"
 	dat += "</center></tt>"
 
-	user << browse(null, "window=preferences")
-	user << browse(dat, "window=disabil;size=350x300")
+	CLOSE_BROWSER(user, "window=preferences")
+	SHOW_BROWSER(user, dat, "window=disabil;size=350x300")
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
 	if(be_random_name)

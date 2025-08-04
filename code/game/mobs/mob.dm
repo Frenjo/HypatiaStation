@@ -226,7 +226,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, "window=mob[name];size=325x500")
+	SHOW_BROWSER(user, dat, "window=mob[name];size=325x500")
 	onclose(user, "mob[name]")
 
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
@@ -391,7 +391,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 /*
 /mob/verb/help()
 	set name = "Help"
-	src << browse('html/misc/help.html', "window=help")
+	SHOW_BROWSER(src, 'html/misc/help.html', "window=help")
 	return
 */
 
@@ -478,7 +478,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		'html/changelog/changelog.js',
 		'html/changelog/changelog.html'
 	)
-	src << browse('html/changelog/changelog.html', "window=changes;size=675x650")
+	SHOW_BROWSER(src, 'html/changelog/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOBL.changelog_hash)
 		prefs.lastchangelog = GLOBL.changelog_hash
 		prefs.save_preferences()
@@ -570,10 +570,10 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	if(href_list["mach_close"])
 		var/t1 = "window=[href_list["mach_close"]]"
 		unset_machine()
-		src << browse(null, t1)
+		CLOSE_BROWSER(src, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><TT>[replacetext(flavor_text, "\n", "<BR>")]</TT></BODY></HTML>", "window=[name];size=500x200")
+		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><TT>[replacetext(flavor_text, "\n", "<BR>")]</TT></BODY></HTML>", "window=[name];size=500x200")
 		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()

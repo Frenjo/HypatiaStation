@@ -80,7 +80,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=powcomp")
+			CLOSE_BROWSER(user, "window=powcomp")
 			return
 
 
@@ -118,14 +118,14 @@
 
 		t += "</FONT></PRE></TT>"
 
-	user << browse(t, "window=powcomp;size=420x900")
+	SHOW_BROWSER(user, t, "window=powcomp;size=420x900")
 	onclose(user, "powcomp")
 
 
 /obj/machinery/power/monitor/Topic(href, href_list)
 	..()
 	if( href_list["close"] )
-		usr << browse(null, "window=powcomp")
+		CLOSE_BROWSER(usr, "window=powcomp")
 		usr.unset_machine()
 		return
 	if( href_list["update"] )

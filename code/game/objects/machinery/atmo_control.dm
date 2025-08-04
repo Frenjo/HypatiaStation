@@ -129,7 +129,7 @@
 /obj/machinery/computer/general_air_control/attack_hand(mob/user)
 	if(..(user))
 		return
-	user << browse(return_text(), "window=computer")
+	SHOW_BROWSER(user, return_text(), "window=computer")
 	user.set_machine(src)
 	onclose(user, "computer")
 

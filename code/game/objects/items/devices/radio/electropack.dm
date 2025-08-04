@@ -73,7 +73,7 @@
 					if(M.client)
 						attack_self(M)
 	else
-		usr << browse(null, "window=radio")
+		CLOSE_BROWSER(usr, "window=radio")
 		return
 	return
 
@@ -119,6 +119,6 @@ Code:
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
 </TT>"}
-	user << browse(dat, "window=radio")
+	SHOW_BROWSER(user, dat, "window=radio")
 	onclose(user, "radio")
 	return

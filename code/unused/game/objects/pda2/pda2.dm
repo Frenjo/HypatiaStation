@@ -119,7 +119,7 @@
 					//To-do: System recovery shit (maybe have a dedicated computer for this kind of thing)
 
 
-	user << browse(dat,"window=pda2")
+	SHOW_BROWSER(user, dat,"window=pda2")
 	onclose(user,"pda2")
 	return
 
@@ -146,7 +146,7 @@
 			src.updateSelfDialog()
 
 		else if (href_list["close"])
-			usr << browse(null, "window=pda2")
+			CLOSE_BROWSER(usr, "window=pda2")
 			usr.machine = null
 
 		src.updateSelfDialog()

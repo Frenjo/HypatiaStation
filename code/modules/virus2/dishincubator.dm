@@ -126,7 +126,7 @@
 	dat += "<BR><BR>"
 	dat += "<A href='byond://?src=\ref[src];flush=1'>Flush system</a><BR>"
 	dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse("<TITLE>Pathogenic incubator</TITLE>incubator menu:<BR><BR>[dat]", "window=incubator;size=575x400")
+	SHOW_BROWSER(user, "<TITLE>Pathogenic incubator</TITLE>incubator menu:<BR><BR>[dat]", "window=incubator;size=575x400")
 	onclose(user, "incubator")
 	return
 

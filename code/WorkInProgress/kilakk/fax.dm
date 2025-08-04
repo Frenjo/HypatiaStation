@@ -87,7 +87,7 @@ var/list/alldepartments = list("Central Command")
 		if(tofax)
 			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
 
-	user << browse(dat, "window=copier")
+	SHOW_BROWSER(user, dat, "window=copier")
 	onclose(user, "copier")
 	return
 

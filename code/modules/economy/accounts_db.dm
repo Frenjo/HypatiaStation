@@ -80,9 +80,9 @@
 						dat += "</tr>"
 					dat += "</table>"
 
-		user << browse(dat, "window=account_db;size=700x650")
+		SHOW_BROWSER(user, dat, "window=account_db;size=700x650")
 	else
-		user << browse(null, "window=account_db")
+		CLOSE_BROWSER(user, "window=account_db")
 
 /obj/machinery/account_database/attackby(obj/item/O, mob/user)//TODO:SANITY
 	if(istype(O, /obj/item/card))

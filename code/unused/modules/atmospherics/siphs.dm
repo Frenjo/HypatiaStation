@@ -410,7 +410,7 @@
 	if (src.t_status == 4)
 		at = text("Automatic On <A href='byond://?src=\ref[];t=3'>Stop</A>", src)
 	var/dat = text("<TT><B>Canister Valves</B> []<BR>\n\t<FONT color = 'blue'><B>Contains/Capacity</B> [] / []</FONT><BR>\n\tUpper Valve Status: [] []<BR>\n\t\t<A href='byond://?src=\ref[];tp=-[]'>M</A> <A href='byond://?src=\ref[];tp=-10000'>-</A> <A href='byond://?src=\ref[];tp=-1000'>-</A> <A href='byond://?src=\ref[];tp=-100'>-</A> <A href='byond://?src=\ref[];tp=-1'>-</A> [] <A href='byond://?src=\ref[];tp=1'>+</A> <A href='byond://?src=\ref[];tp=100'>+</A> <A href='byond://?src=\ref[];tp=1000'>+</A> <A href='byond://?src=\ref[];tp=10000'>+</A> <A href='byond://?src=\ref[];tp=[]'>M</A><BR>\n\tPipe Valve Status: []<BR>\n\t\t<A href='byond://?src=\ref[];cp=-[]'>M</A> <A href='byond://?src=\ref[];cp=-10000'>-</A> <A href='byond://?src=\ref[];cp=-1000'>-</A> <A href='byond://?src=\ref[];cp=-100'>-</A> <A href='byond://?src=\ref[];cp=-1'>-</A> [] <A href='byond://?src=\ref[];cp=1'>+</A> <A href='byond://?src=\ref[];cp=100'>+</A> <A href='byond://?src=\ref[];cp=1000'>+</A> <A href='byond://?src=\ref[];cp=10000'>+</A> <A href='byond://?src=\ref[];cp=[]'>M</A><BR>\n<BR>\n\n<A href='byond://?src=\ref[];mach_close=siphon'>Close</A><BR>\n\t</TT>", (!( src.alterable ) ? "<B>Valves are locked. Unlock with wrench!</B>" : "You can lock this interface with a wrench."), num2text(src.gas.return_pressure(), 10), num2text(src.maximum, 10), (src.t_status == 4 ? text("[]", at) : text("[]", tt)), (src.holding ? text("<BR>(<A href='byond://?src=\ref[];tank=1'>Tank ([]</A>)", src, src.holding.air_contents.return_pressure()) : null), src, num2text(max_valve, 7), src, src, src, src, src.t_per, src, src, src, src, src, num2text(max_valve, 7), ct, src, num2text(max_valve, 7), src, src, src, src, src.c_per, src, src, src, src, src, num2text(max_valve, 7), user)
-	user << browse(dat, "window=siphon;size=600x300")
+	SHOW_BROWSER(user, dat, "window=siphon;size=600x300")
 	onclose(user, "siphon")
 	return
 
@@ -471,7 +471,7 @@
 
 		src.add_fingerprint(usr)
 	else
-		usr << browse(null, "window=canister")
+		CLOSE_BROWSER(usr, "window=canister")
 		return
 	return
 

@@ -235,7 +235,7 @@
 		dat += "The red light is [safeties ? "blinking" : "off"].<BR>"
 		dat += "The yellow light is [locked ? "on" : "off"].<BR>"
 
-	user << browse(dat, "window=suit_cycler")
+	SHOW_BROWSER(user, dat, "window=suit_cycler")
 	onclose(user, "suit_cycler")
 
 /obj/machinery/suit_cycler/Topic(href, href_list)

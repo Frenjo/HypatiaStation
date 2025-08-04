@@ -313,7 +313,7 @@
 	</body></html>
 	"}
 
-	usr << browse(dat, "window=players;size=600x480")
+	SHOW_BROWSER(usr, dat, "window=players;size=600x480")
 
 //The old one
 /datum/admins/proc/player_panel_old()
@@ -372,7 +372,7 @@
 
 	dat += "</table></body></html>"
 
-	usr << browse(dat, "window=players;size=640x480")
+	SHOW_BROWSER(usr, dat, "window=players;size=640x480")
 
 
 
@@ -519,6 +519,6 @@
 			dat += "</table>"
 
 		dat += "</body></html>"
-		usr << browse(dat, "window=roundstatus;size=400x500")
+		SHOW_BROWSER(usr, dat, "window=roundstatus;size=400x500")
 	else
 		alert("The game hasn't started yet!")

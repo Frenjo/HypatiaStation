@@ -87,11 +87,11 @@
 	// Ignore input if we are broken or a non-silicon guy can't touch us.
 	if(stat & (BROKEN|NOPOWER) || (!in_range(src, usr) && !issilicon(usr)))
 		usr.unset_machine()
-		usr << browse(null, "window=pacontrol")
+		CLOSE_BROWSER(usr, "window=pacontrol")
 		return
 
 	if(href_list["close"])
-		usr << browse(null, "window=pacontrol")
+		CLOSE_BROWSER(usr, "window=pacontrol")
 		usr.unset_machine()
 		return
 
@@ -233,7 +233,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=pacontrol")
+			CLOSE_BROWSER(user, "window=pacontrol")
 			return
 	user.set_machine(src)
 
@@ -255,6 +255,6 @@
 		dat += "Particle Strength: [src.strength] "
 		dat += "<A href='byond://?src=\ref[src];strengthdown=1'>--</A>|<A href='byond://?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 
-	user << browse(dat, "window=pacontrol;size=420x500")
+	SHOW_BROWSER(user, dat, "window=pacontrol;size=420x500")
 	onclose(user, "pacontrol")
 	return

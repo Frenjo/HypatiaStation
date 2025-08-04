@@ -190,7 +190,7 @@
 			dat += "<b><a href='byond://?src=\ref[src];menu=3'>No</a></b>"
 
 
-	user << browse(dat, "window=cloning")
+	SHOW_BROWSER(user, dat, "window=cloning")
 	onclose(user, "cloning")
 	return
 

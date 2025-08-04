@@ -94,7 +94,7 @@
 				dat += "Contained reagents:<BR>"
 				for(var/datum/reagent/blood/G in R.reagent_list)
 					dat += "    [G.name]: <A href='byond://?src=\ref[src];isolate=[G.id]'>Isolate</a>"
-		user << browse("<TITLE>Pathogenic Isolator</TITLE>Isolator menu:<BR><BR>[dat]", "window=isolator;size=575x400")
+		SHOW_BROWSER(user, "<TITLE>Pathogenic Isolator</TITLE>Isolator menu:<BR><BR>[dat]", "window=isolator;size=575x400")
 		onclose(user, "isolator")
 		return
 

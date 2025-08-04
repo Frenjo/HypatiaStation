@@ -104,7 +104,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 	<a href='byond://?src=\ref[src];mining=1'>Mining Asteroid</a><br>
 	<a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"}
 
-	user << browse(dat, "window=computer;size=575x450")
+	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")
 
 /obj/machinery/computer/vox_station/Topic(href, href_list)

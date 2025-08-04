@@ -39,7 +39,7 @@
 /datum/preferences/proc/process_character_records_panel(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("close")
-			user << browse(null, "window=records")
+			CLOSE_BROWSER(user, "window=records")
 			return
 
 		if("med_record")

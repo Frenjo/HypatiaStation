@@ -20,7 +20,7 @@
 	for(var/material_path in num_coins_by_material)
 		var/decl/material/material = GET_DECL_INSTANCE(material_path)
 		dat += "[material.name] coins: [num_coins_by_material[material_path]] <A href='byond://?src=\ref[src];remove=[material_path]'>Remove one</A><br>"
-	user << browse(dat, "window=moneybag")
+	SHOW_BROWSER(user, dat, "window=moneybag")
 
 /obj/item/moneybag/attackby(obj/item/W, mob/user)
 	. = ..()

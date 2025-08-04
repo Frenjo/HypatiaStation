@@ -101,7 +101,7 @@
 	for(var/index = 1, index <= length(construction), index++)
 		dat += "<A href='byond://?src=\ref[src];activate=[index]'>\[[construction[index]]\]</a><br>"
 
-	user << browse(dat, "window=alien_replicator")
+	SHOW_BROWSER(user, dat, "window=alien_replicator")
 
 /obj/machinery/replicator/Topic(href, href_list)
 	if(href_list["activate"])

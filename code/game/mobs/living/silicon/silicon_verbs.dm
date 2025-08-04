@@ -46,7 +46,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	src << browse(dat, "window=aialerts&can_close=0")
+	SHOW_BROWSER(src, dat, "window=aialerts&can_close=0")
 
 // Robot
 /mob/living/silicon/robot/verb/robot_alerts()
@@ -71,7 +71,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	src << browse(dat, "window=robotalerts&can_close=0")
+	SHOW_BROWSER(src, dat, "window=robotalerts&can_close=0")
 
 /*
  * Show Station Manifest
@@ -156,4 +156,4 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 			list += {"<A href='byond://?src=\ref[src];lawc=[number]'>[lawcheck[number + 1]] [number]:</A> [law]<BR>"}
 			number++
 	list += {"<br><br><A href='byond://?src=\ref[src];laws=1'>State Laws</A>"}
-	usr << browse(list, "window=laws")
+	SHOW_BROWSER(usr, list, "window=laws")

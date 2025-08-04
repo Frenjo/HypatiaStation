@@ -47,7 +47,7 @@
 
 	dat += text("<br><br>Message: [message]")
 
-	user << browse("[dat]", "window=purifier")
+	SHOW_BROWSER(user, dat, "window=purifier")
 
 /obj/machinery/mineral/gasextractor/Topic(href, href_list)
 	if(..())

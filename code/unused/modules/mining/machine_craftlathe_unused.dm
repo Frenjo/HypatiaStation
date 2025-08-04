@@ -100,7 +100,7 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 		dat += text("nothing useful")
 
 	dat += text("</td></tr></table>")
-	user << browse("[dat]", "window=craft")
+	SHOW_BROWSER(user, dat, "window=craft")
 
 /obj/machinery/autolathe2/Topic(href, href_list)
 	if(..())

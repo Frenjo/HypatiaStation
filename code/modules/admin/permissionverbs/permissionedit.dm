@@ -48,7 +48,7 @@
 </body>
 </html>"}
 
-	usr << browse(output,"window=editrights;size=600x500")
+	SHOW_BROWSER(usr, output,"window=editrights;size=600x500")
 
 
 /datum/admins/proc/log_admin_rank_modification(adm_ckey, new_rank)

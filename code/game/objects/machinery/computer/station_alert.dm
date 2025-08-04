@@ -43,7 +43,7 @@
 		else
 			dat += "-- All Systems Nominal<BR>\n"
 		dat += "<BR>\n"
-	user << browse(dat, "window=alerts")
+	SHOW_BROWSER(user, dat, "window=alerts")
 	onclose(user, "alerts")
 
 /obj/machinery/computer/station_alert/Topic(href, href_list)

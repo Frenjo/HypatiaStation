@@ -61,7 +61,7 @@ Which I am commenting out /N
 		user.machine = src
 		if (!( src.data ))
 			update()
-		user << browse(src.data, "window=game_kit")
+		SHOW_BROWSER(user, src.data, "window=game_kit")
 		onclose(user, "game_kit")
 		return
 	return

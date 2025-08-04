@@ -111,7 +111,7 @@
 /datum/preferences/proc/process_occupation_choices_panel(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("close")
-			user << browse(null, "window=mob_occupation")
+			CLOSE_BROWSER(user, "window=mob_occupation")
 			return
 
 		if("reset")

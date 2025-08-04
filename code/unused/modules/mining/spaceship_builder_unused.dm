@@ -157,7 +157,7 @@
 		dat += text("<A href='byond://?src=\ref[src];ship=secvan'>Boxvan MMDLVI - Security eidition</A> - Large, Rather slow, 125000 metal<br>")
 		dat += text("<A href='byond://?src=\ref[src];ship=station4'>Space station 4</A> - Huge, Slow, 250000 metal<br>")
 
-	user << browse("[dat]", "window=shipbuilder")
+	SHOW_BROWSER(user, dat, "window=shipbuilder")
 
 
 /obj/machinery/spaceship_builder/Topic(href, href_list)

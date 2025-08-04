@@ -94,7 +94,7 @@
 				\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 			dat += "<A href='byond://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

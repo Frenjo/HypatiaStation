@@ -661,7 +661,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 	<BR><HR><BR>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, text("window=mob[name];size=340x480"))
+	SHOW_BROWSER(user, dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")
 	return
 

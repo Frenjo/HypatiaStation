@@ -228,7 +228,7 @@ Status: []<BR>"},
 "<A href='byond://?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A>" )
 
 
-	user << browse("<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 	return
 
@@ -911,7 +911,7 @@ Status: []<BR>"},
 
 "<A href='byond://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
 
-	user << browse("<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 	return
 
@@ -956,7 +956,7 @@ Status: []<BR>"},
 
 
 
-	user << browse("<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 	return
 

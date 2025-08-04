@@ -156,10 +156,10 @@ obj/machinery/shipcore/attack_hand(user as mob)
 				dat += "<A href='byond://?src=\ref[src];move=1'>Move</A><BR>"
 			if("rebuilding")
 				dat += "<h3>Core Status: <font color =#FFCC00>Recalibrating</font></h3><BR>"
-		user << browse("<HEAD><TITLE>Ship Core</TITLE></HEAD>[dat]","window=shipcore")
+		SHOW_BROWSER(user, "<HEAD><TITLE>Ship Core</TITLE></HEAD>[dat]","window=shipcore")
 		onclose(user, "shipcore")
 		return
-	user << browse("<HEAD><TITLE>Ship Core Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=shipcore")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Ship Core Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=shipcore")
 	onclose(user, "shipcore")
 	return
 
@@ -280,7 +280,7 @@ obj/machinery/ship_component/control_panel
 				if(istype(C, /obj/machinery/ship_component/thruster))
 					dat += "<tr><td></td><td><i>Status: [C:check_ready() ? "Ready" : "On Cooldown"]</i></td></tr>"
 			dat += "</table>"
-		user << browse("<HEAD><TITLE>Ship Controls</TITLE></HEAD>[dat]","window=shipcontrols")
+		SHOW_BROWSER(user, "<HEAD><TITLE>Ship Controls</TITLE></HEAD>[dat]","window=shipcontrols")
 		onclose(user, "shipcontrols")
 
 	Topic(href, href_list)

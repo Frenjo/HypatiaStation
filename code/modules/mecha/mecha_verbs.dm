@@ -81,7 +81,7 @@
 		return
 
 	//pr_update_stats.start()
-	occupant << browse(get_stats_html(), "window=exosuit")
+	SHOW_BROWSER(occupant, get_stats_html(), "window=exosuit")
 
 /*
 /obj/mecha/verb/force_eject()
@@ -144,7 +144,7 @@
 			occupant.client.eye = occupant.client.mob
 			occupant.client.perspective = MOB_PERSPECTIVE
 		*/
-		occupant << browse(null, "window=exosuit")
+		CLOSE_BROWSER(occupant, "window=exosuit")
 		if(isMMI(mob_container)) // This should also cover /obj/item/mmi/posibrain.
 			var/obj/item/mmi/mmi = mob_container
 			if(isnotnull(mmi.brainmob))

@@ -165,13 +165,13 @@
 				to_chat(O, "<b>[U]</b> holds \a [itemname] up to one of your cameras...")
 			else
 				to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U]'>[U]</a></b> holds \a [itemname] up to one of your cameras...")
-			O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
+			SHOW_BROWSER(O, "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
 		for_no_type_check(var/mob/O, GLOBL.player_list)
 			if(istype(O.machine, /obj/machinery/computer/security))
 				var/obj/machinery/computer/security/S = O.machine
 				if(S.current == src)
 					to_chat(O, "[U] holds \a [itemname] up to one of the cameras...")
-					O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
+					SHOW_BROWSER(O, "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
 	else if(istype(W, /obj/item/camera_bug))
 		if(!can_use())
 			to_chat(user, SPAN_INFO("Camera non-functional."))

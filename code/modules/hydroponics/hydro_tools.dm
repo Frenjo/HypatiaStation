@@ -349,7 +349,7 @@
 
 		dat += "<br><a href='byond://?src=\ref[src];unload=1'>Unload All</A>"
 		dat += "</TT>"
-	user << browse("<HEAD><TITLE>Seedbag Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=seedbag")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Seedbag Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=seedbag")
 	onclose(user, "seedbag")
 	return
 

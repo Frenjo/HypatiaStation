@@ -238,7 +238,7 @@
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 
-	user << browse("<HEAD><TITLE>MULEbot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
+	SHOW_BROWSER(user, "<HEAD><TITLE>MULEbot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 
 /obj/machinery/bot/mulebot/Topic(href, href_list)
@@ -354,12 +354,12 @@
 
 			if("close")
 				usr.unset_machine()
-				usr << browse(null, "window=mulebot")
+				CLOSE_BROWSER(usr, "window=mulebot")
 
 		updateDialog()
 		//updateUsrDialog()
 	else
-		usr << browse(null, "window=mulebot")
+		CLOSE_BROWSER(usr, "window=mulebot")
 		usr.unset_machine()
 
 // returns true if the bot has power

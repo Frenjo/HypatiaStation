@@ -24,11 +24,11 @@
 /obj/machinery/computer/rust_core_control/interact(mob/user)
 	if(stat & BROKEN)
 		user.unset_machine()
-		user << browse(null, "window=core_control")
+		CLOSE_BROWSER(user, "window=core_control")
 		return
 	if(!issilicon(user) && !in_range(src, user))
 		user.unset_machine()
-		user << browse(null, "window=core_control")
+		CLOSE_BROWSER(user, "window=core_control")
 		return
 
 	var/dat = ""
@@ -98,7 +98,7 @@
 		dat += "<a href='byond://?src=\ref[src];refresh=1'>Refresh</a> "
 		dat += "<a href='byond://?src=\ref[src];close=1'>Close</a>"
 
-	user << browse(dat, "window=core_control;size=500x400")
+	SHOW_BROWSER(user, dat, "window=core_control;size=500x400")
 	onclose(user, "core_control")
 	user.set_machine(src)
 
@@ -126,7 +126,7 @@
 			cur_viewed_device.Shutdown()
 
 	if( href_list["close"] )
-		usr << browse(null, "window=core_control")
+		CLOSE_BROWSER(usr, "window=core_control")
 		usr.unset_machine()
 
 	updateDialog()

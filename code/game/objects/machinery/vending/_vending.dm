@@ -166,7 +166,7 @@
 		var/dat = "<TT><center><b>[name]</b></center><hr /><br>" //display the name, and added a horizontal rule
 		dat += "<b>You have selected [currently_vending.product_name].<br>Please swipe your ID to pay for the article.</b><br>"
 		dat += "<a href='byond://?src=\ref[src];cancel_buying=1'>Cancel</a>"
-		user << browse(dat, "window=vending")
+		SHOW_BROWSER(user, dat, "window=vending")
 		onclose(user, "")
 		return
 
@@ -230,7 +230,7 @@
 		if(length(slogan_list))
 			dat += "The speaker switch is [shut_up ? "off" : "on"]. <a href='byond://?src=\ref[src];togglevoice=[1]'>Toggle</a>"
 
-	user << browse(dat, "window=vending")
+	SHOW_BROWSER(user, dat, "window=vending")
 	onclose(user, "")
 
 /obj/machinery/vending/Topic(href, href_list)
@@ -330,7 +330,7 @@
 		add_fingerprint(usr)
 		updateUsrDialog()
 	else
-		usr << browse(null, "window=vending")
+		CLOSE_BROWSER(usr, "window=vending")
 		return
 
 /obj/machinery/vending/process()

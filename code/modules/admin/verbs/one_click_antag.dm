@@ -26,7 +26,7 @@
 		<a href='byond://?src=\ref[src];makeAntag=10'>Make Deathsquad (Syndicate) (Requires Ghosts)</a><br>
 		"}
 */
-	usr << browse(dat, "window=oneclickantag;size=400x400")
+	SHOW_BROWSER(usr, dat, "window=oneclickantag;size=400x400")
 
 /datum/admins/proc/return_antagonist_candidates(role_flag, antagonist_type, restricted_jobs)
 	var/list/candidates = list()

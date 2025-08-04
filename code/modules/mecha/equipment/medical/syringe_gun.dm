@@ -152,7 +152,7 @@
 			log_message("Reagent processing started.")
 		return
 	if(topic_filter.get("show_reagents"))
-		chassis.occupant << browse(get_reagents_page(), "window=msyringegun")
+		SHOW_BROWSER(chassis.occupant, get_reagents_page(), "window=msyringegun")
 	if(topic_filter.get("purge_reagent"))
 		var/reagent_type = text2path(topic_filter.get("purge_reagent"))
 		if(isnotnull(reagent_type))

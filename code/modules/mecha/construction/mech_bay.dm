@@ -201,7 +201,7 @@
 	*/
 
 	output += "</ body></html>"
-	user << browse(output, "window=mech_bay_console")
+	SHOW_BROWSER(user, output, "window=mech_bay_console")
 	onclose(user, "mech_bay_console")
 
 /obj/machinery/computer/mech_bay_power_console/Topic(href, href_list)

@@ -45,7 +45,7 @@
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		user << browse(dat, "window=partyalarm")
+		SHOW_BROWSER(user, dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 	else
 		if(A.fire_alarm)
@@ -59,7 +59,7 @@
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Party Button")]</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		user << browse(dat, "window=partyalarm")
+		SHOW_BROWSER(user, dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 
 /obj/machinery/party_alarm/proc/reset()
@@ -103,5 +103,5 @@
 
 		add_fingerprint(usr)
 	else
-		usr << browse(null, "window=partyalarm")
+		CLOSE_BROWSER(usr, "window=partyalarm")
 		return

@@ -43,7 +43,7 @@ ________________________________________________________________________________
 
 /obj/item/clothing/suit/space/space_ninja/Destroy()
 	if(affecting)//To make sure the window is closed.
-		affecting << browse(null, "window=hack spideros")
+		CLOSE_BROWSER(affecting, "window=hack spideros")
 	if(isnotnull(AI))//If there are AIs present when the ninja kicks the bucket.
 		killai()
 	if(isnotnull(hologram))//If there is a hologram
@@ -61,7 +61,7 @@ ________________________________________________________________________________
 /obj/item/clothing/suit/space/space_ninja/proc/killai(mob/living/silicon/ai/A = AI)
 	if(A.client)
 		to_chat(A, SPAN_WARNING("Self-erase protocol dete-- *bzzzzz*"))
-		A << browse(null, "window=hack spideros")
+		CLOSE_BROWSER(A, "window=hack spideros")
 	AI = null
 	A.death(1)//Kill, deleting mob.
 	qdel(A)
@@ -143,7 +143,7 @@ ________________________________________________________________________________
 		if(cell.charge<=0)
 			if(kamikaze)
 				U.say("I DIE TO LIVE AGAIN!")
-				U << browse(null, "window=spideros")//Just in case.
+				CLOSE_BROWSER(U, "window=spideros") // Just in case.
 				U.death()
 				return
 			cell.charge=0
@@ -466,7 +466,7 @@ ________________________________________________________________________________
 	dat += "</body></html>"
 
 	//Setting the can>resize etc to 0 remove them from the drag bar but still allows the window to be draggable.
-	display_to << browse(dat,"window=spideros;size=400x444;border=1;can_resize=1;can_close=0;can_minimize=0")
+	SHOW_BROWSER(display_to, dat, "window=spideros;size=400x444;border=1;can_resize=1;can_close=0;can_minimize=0")
 
 //=======//SPIDEROS TOPIC PROC//=======//
 
@@ -479,7 +479,7 @@ ________________________________________________________________________________
 	if(s_control)
 		if(!affecting||U.stat||!s_initialized)//Check to make sure the guy is wearing the suit after clicking and it's on.
 			to_chat(U, SPAN_WARNING("Your suit must be worn and active to use this function."))
-			U << browse(null, "window=spideros")//Closes the window.
+			CLOSE_BROWSER(U, "window=spideros") // Closes the window.
 			return
 
 		if(k_unlock!=7&&href_list["choice"]!="Return")
@@ -491,12 +491,12 @@ ________________________________________________________________________________
 	else
 		if(!affecting||A.stat||!s_initialized||A.loc!=src)
 			to_chat(A, SPAN_WARNING("This function is not available at this time."))
-			A << browse(null, "window=spideros")//Closes the window.
+			CLOSE_BROWSER(A, "window=spideros") // Closes the window.
 			return
 
 	switch(href_list["choice"])
 		if("Close")
-			display_to << browse(null, "window=spideros")
+			CLOSE_BROWSER(display_to, "window=spideros")
 			return
 		if("Refresh")//Refresh, goes to the end of the proc.
 		if("Return")//Return
@@ -522,7 +522,7 @@ ________________________________________________________________________________
 			var/t = input(U, "Please enter untraceable message.") as text
 			t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 			if(!t||U.stat||U.wear_suit!=src||!s_initialized)//Wow, another one of these. Man...
-				display_to << browse(null, "window=spideros")
+				CLOSE_BROWSER(display_to, "window=spideros")
 				return
 			if(isnull(P)||P.toff)//So it doesn't freak out if the object no-longer exists.
 				to_chat(display_to, SPAN_WARNING("Error: unable to deliver message."))
@@ -593,7 +593,7 @@ ________________________________________________________________________________
 					else
 						to_chat(U, "\red <b>ERROR<b>: \black Unable to initiate mode.")
 				else
-					U << browse(null, "window=spideros")
+					CLOSE_BROWSER(U, "window=spideros")
 					s_busy = 0
 					return
 			else
@@ -646,7 +646,7 @@ ________________________________________________________________________________
 		if("Purge AI")
 			var/confirm = alert("Are you sure you want to purge the AI? This cannot be undone once started.", "Confirm purge", "Yes", "No")
 			if(U.stat||U.wear_suit!=src||!s_initialized)
-				U << browse(null, "window=spideros")
+				CLOSE_BROWSER(U, "window=spideros")
 				return
 			if(confirm == "Yes"&&AI)
 				if(A.laws.zeroth)//Gives a few seconds to re-upload the AI somewhere before it takes full control.
@@ -659,7 +659,7 @@ ________________________________________________________________________________
 									to_chat(U, "\red <b>WARNING</b>: HACKING AT��TEMP� IN PR0GRESs!")
 									spideros = 0
 									k_unlock = 0
-									U << browse(null, "window=spideros")
+									CLOSE_BROWSER(U, "window=spideros")
 								if(1)
 									to_chat(A, "Disconnecting neural interface...")
 									to_chat(U, SPAN_WARNING("<b>WAR�NING</b>: �R�O0�Gr�--S 2&3%"))
@@ -779,7 +779,7 @@ ________________________________________________________________________________
 	set category = "AI Ninja Equip"
 	set src = usr.loc
 
-	AI << browse(null, "window=spideros")//Close window
+	CLOSE_BROWSER(AI, "window=spideros") // Close window
 	to_chat(AI, "You have seized your hacking attempt. [affecting.real_name] has regained control.")
 	to_chat(affecting, "<b>UPDATE</b>: [AI.real_name] has ceased hacking attempt. All systems clear.")
 

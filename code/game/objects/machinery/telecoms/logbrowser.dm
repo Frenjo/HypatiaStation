@@ -111,7 +111,7 @@
 
 			dat += "</ol>"
 
-	user << browse(dat, "window=comm_monitor;size=575x400")
+	SHOW_BROWSER(user, dat, "window=comm_monitor;size=575x400")
 	onclose(user, "server_control")
 
 	temp = ""

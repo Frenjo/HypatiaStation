@@ -252,7 +252,7 @@
 	if(..())
 		return
 	if(href_list["close"])
-		usr << browse(null, "window=telesci")
+		CLOSE_BROWSER(usr, "window=telesci")
 		usr.unset_machine()
 		return
 	if(href_list["setrotation"])

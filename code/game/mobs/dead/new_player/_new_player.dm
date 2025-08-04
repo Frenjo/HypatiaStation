@@ -91,7 +91,7 @@
 			ready = FALSE
 
 	if(href_list["refresh"])
-		src << browse(null, "window=playersetup") //closes the player setup window
+		CLOSE_BROWSER(src, "window=playersetup") //closes the player setup window
 		new_player_panel()
 
 	if(href_list["observe"])
@@ -180,7 +180,7 @@
 			if("nostats")
 				option = "NOSTATS"
 			if("later")
-				usr << browse(null,"window=privacypoll")
+				CLOSE_BROWSER(usr,"window=privacypoll")
 				return
 			if("abstain")
 				option = "ABSTAIN"
@@ -193,7 +193,7 @@
 			var/DBQuery/query_insert = GLOBL.dbcon.NewQuery(sql)
 			query_insert.Execute()
 			usr << "<b>Thank you for your vote!</b>"
-			usr << browse(null,"window=privacypoll")
+			CLOSE_BROWSER(usr, "window=privacypoll")
 
 	if(!ready && href_list["preference"])
 		if(client)
@@ -433,8 +433,8 @@
 	return 0
 
 /mob/dead/new_player/proc/close_spawn_windows()
-	src << browse(null, "window=latechoices") //closes late choices window
-	src << browse(null, "window=playersetup") //closes the player setup window
+	CLOSE_BROWSER(src, "window=latechoices") //closes late choices window
+	CLOSE_BROWSER(src, "window=playersetup") //closes the player setup window
 
 /mob/dead/new_player/hear_say(message, verbage = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
 	return

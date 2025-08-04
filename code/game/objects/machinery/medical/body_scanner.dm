@@ -348,5 +348,5 @@
 		else
 			dat = "<font color='red'>Error: No Body Scanner connected.</font>"
 	dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=scanconsole'>Close</A>"
-	user << browse(dat, "window=scanconsole;size=430x600")
+	SHOW_BROWSER(user, dat, "window=scanconsole;size=430x600")
 	return

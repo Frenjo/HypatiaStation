@@ -27,4 +27,4 @@
 	for(var/datum/language/L in languages)
 		dat += "<b>[L.name] ([LANGUAGE_PREFIX_KEY][L.key])</b><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
+	SHOW_BROWSER(src, dat, "window=checklanguage")

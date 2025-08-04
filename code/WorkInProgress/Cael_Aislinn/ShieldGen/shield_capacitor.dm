@@ -89,7 +89,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=shield_capacitor")
+			CLOSE_BROWSER(user, "window=shield_capacitor")
 			return
 	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
 	if(locked)
@@ -111,7 +111,7 @@
 	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(t, "window=shield_capacitor;size=500x400")
+	SHOW_BROWSER(user, t, "window=shield_capacitor;size=500x400")
 	user.set_machine(src)
 
 /obj/machinery/shield_capacitor/process()
@@ -133,7 +133,7 @@
 /obj/machinery/shield_capacitor/Topic(href, list/href_list)
 	..()
 	if( href_list["close"] )
-		usr << browse(null, "window=shield_capacitor")
+		CLOSE_BROWSER(usr, "window=shield_capacitor")
 		usr.unset_machine()
 		return
 	if( href_list["toggle"] )

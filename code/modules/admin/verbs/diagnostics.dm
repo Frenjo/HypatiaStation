@@ -39,7 +39,7 @@
 	Tile Update: [length(global.PCair.tiles_to_update)]<BR>
 "}
 
-	usr << browse(output,"window=airreport")
+	SHOW_BROWSER(usr, output,"window=airreport")
 
 /client/proc/fix_next_move()
 	set category = PANEL_DEBUG
@@ -109,7 +109,7 @@
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
-	usr << browse(output,"window=radioreport")
+	SHOW_BROWSER(usr, output,"window=radioreport")
 	feedback_add_details("admin_verb", "RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/reload_admins()

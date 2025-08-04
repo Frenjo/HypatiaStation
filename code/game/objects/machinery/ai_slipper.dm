@@ -40,7 +40,7 @@
 			if(locked)
 				if(user.machine == src)
 					user.unset_machine()
-					user << browse(null, "window=ai_slipper")
+					CLOSE_BROWSER(user, "window=ai_slipper")
 			else
 				if(user.machine == src)
 					src.attack_hand(usr)
@@ -59,7 +59,7 @@
 		if(!issilicon(user))
 			to_chat(user, "Too far away.")
 			user.unset_machine()
-			user << browse(null, "window=ai_slipper")
+			CLOSE_BROWSER(user, "window=ai_slipper")
 			return
 
 	user.set_machine(src)
@@ -78,7 +78,7 @@
 		t += "Dispenser [src.disabled ? "deactivated" : "activated"] - <A href='byond://?src=\ref[src];toggleOn=1'>[src.disabled ? "Enable" : "Disable"]?</a><br>\n"
 		t += "Uses Left: [uses]. <A href='byond://?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n"
 
-	user << browse(t, "window=computer;size=575x450")
+	SHOW_BROWSER(user, t, "window=computer;size=575x450")
 	onclose(user, "computer")
 	return
 

@@ -118,7 +118,7 @@ Check Security Records: ["<A href='byond://?src=\ref[src];operation=ignorerec'>[
 Operating Mode: ["<A href='byond://?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>"]<BR>
 Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"]"}
 
-	user << browse("<HEAD><TITLE>Securitron v1.3 controls</TITLE></HEAD>[dat]", "window=autosec")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Securitron v1.3 controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 
 /obj/machinery/bot/secbot/Topic(href, href_list)

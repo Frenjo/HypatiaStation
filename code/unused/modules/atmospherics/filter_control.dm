@@ -49,7 +49,7 @@
 
 /obj/machinery/filter_control/attack_hand(mob/user as mob)
 	if(stat & NOPOWER)
-		user << browse(null, "window=filter_control")
+		CLOSE_BROWSER(user, "window=filter_control")
 		user.machine = null
 		return
 	if(user.stat || user.lying)
@@ -83,11 +83,11 @@
 		dat += "<BR>\n<small>Error codes: 0x0000001E 0x0000007B</small><BR>\n"
 
 	dat += "<BR>\n<A href='byond://?src=\ref[src];close=1'>Close</A><BR>\n"
-	user << browse(dat, "window=filter_control;size=300x225")
+	SHOW_BROWSER(user, dat, "window=filter_control;size=300x225")
 	onclose(user, "filter_control")
 /obj/machinery/filter_control/Topic(href, href_list)
 	if (href_list["close"])
-		usr << browse(null, "window=filter_control;")
+		CLOSE_BROWSER(usr, "window=filter_control;")
 		usr.machine = null
 		return	//Who cares if we're dead or whatever let us close the fucking window
 	if(..())
@@ -107,7 +107,7 @@
 		src.updateUsrDialog()
 		src.add_fingerprint(usr)
 	else
-		usr << browse(null, "window=filter_control")
+		CLOSE_BROWSER(usr, "window=filter_control")
 		usr.machine = null
 		return
 

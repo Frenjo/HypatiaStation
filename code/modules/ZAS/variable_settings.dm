@@ -118,7 +118,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 				vw_name = vars["[ch]_NAME"]
 		dat += "<b>[vw_name] = [vw]</b> <A href='byond://?src=\ref[src];changevar=[ch]'>\[Change\]</A><br>"
 		dat += "<i>[vw_desc]</i><br><br>"
-	user << browse(dat,"window=settings")
+	SHOW_BROWSER(user, dat,"window=settings")
 
 /vs_control/Topic(href, href_list)
 	if("changevar" in href_list)

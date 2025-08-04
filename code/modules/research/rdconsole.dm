@@ -725,7 +725,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[mat];imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 				dat += "<BR>"
 
-	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
+	SHOW_BROWSER(user, "<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
 	onclose(user, "rdconsole")
 
 /obj/machinery/computer/rdconsole/core

@@ -73,14 +73,14 @@
 			dat += {"<a href='byond://?src=\ref[src];choice=Wireless'>[A.control_disabled ? "Enable" : "Disable"] Wireless Activity</a>"}
 			dat += "<br>"
 			dat += {"<a href='byond://?src=\ref[src];choice=Close'> Close</a>"}
-	user << browse(dat, "window=aicard")
+	SHOW_BROWSER(user, dat, "window=aicard")
 	onclose(user, "aicard")
 	return
 
 /obj/item/aicard/Topic(href, href_list)
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)//If they are not in range of 1 or less or their machine is not the card (ie, clicked on something else).
-		U << browse(null, "window=aicard")
+		CLOSE_BROWSER(U, "window=aicard")
 		U.unset_machine()
 		return
 
@@ -89,7 +89,7 @@
 
 	switch(href_list["choice"])//Now we switch based on choice.
 		if("Close")
-			U << browse(null, "window=aicard")
+			CLOSE_BROWSER(U, "window=aicard")
 			U.unset_machine()
 			return
 
@@ -97,7 +97,7 @@
 			var/confirm = alert("Are you sure you want to wipe this card's memory? This cannot be undone once started.", "Confirm Wipe", "Yes", "No")
 			if(confirm == "Yes")
 				if(isnull(src) || !in_range(src, U) || U.machine != src)
-					U << browse(null, "window=aicard")
+					CLOSE_BROWSER(U, "window=aicard")
 					U.unset_machine()
 					return
 				else

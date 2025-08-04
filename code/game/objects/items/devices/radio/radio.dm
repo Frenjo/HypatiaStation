@@ -96,7 +96,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	for(var/ch_name in channels)
 		dat += text_sec_channel(ch_name, channels[ch_name])
 	dat += {"[text_wires()]</TT></body></html>"}
-	user << browse(dat, "window=radio")
+	SHOW_BROWSER(user, dat, "window=radio")
 	onclose(user, "radio")
 	return
 
@@ -118,7 +118,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		return
 
 	if(!(issilicon(usr) || (usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)))))
-		usr << browse(null, "window=radio")
+		CLOSE_BROWSER(usr, "window=radio")
 		return
 	usr.set_machine(src)
 	if(href_list["track"])
@@ -150,7 +150,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		radio_connection = register_radio(src, new_frequency, new_frequency, RADIO_CHAT)
 		if(hidden_uplink)
 			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
-				usr << browse(null, "window=radio")
+				CLOSE_BROWSER(usr, "window=radio")
 				return
 
 	else if(href_list["talk"])
@@ -802,7 +802,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		for(var/ch_name in channels)
 			dat += text_sec_channel(ch_name, channels[ch_name])
 	dat += {"[text_wires()]</TT></body></html>"}
-	user << browse(dat, "window=radio")
+	SHOW_BROWSER(user, dat, "window=radio")
 	onclose(user, "radio")
 	return
 

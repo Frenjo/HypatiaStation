@@ -21,7 +21,7 @@ GLOBAL_GLOBL_INIT(inactive_keys, "None<br>")
 	else
 		dat += "<a href='byond://?src=\ref[src];_src_=holder;populate_inactive_customitems=1'>Populate list (requires an active database connection)</a><br>"
 
-	usr << browse(dat, "window=inactive_customitems;size=600x480")
+	SHOW_BROWSER(usr, dat, "window=inactive_customitems;size=600x480")
 
 /proc/populate_inactive_customitems_list(client/C)
 	set background = BACKGROUND_ENABLED

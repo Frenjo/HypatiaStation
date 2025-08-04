@@ -70,7 +70,7 @@
 		if((!in_range(src, user)) || (stat & (BROKEN|NOPOWER)))
 			if (!issilicon(user))
 				user.machine = null
-				user << browse(null, "window=lockdown")
+				CLOSE_BROWSER(user, "window=lockdown")
 				return
 
 		var/t = "<B>Lockdown Control</B><BR>"
@@ -106,14 +106,14 @@
 			t += "\red No networks connected.<br>"
 		t += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
 		t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-		user << browse(t, "window=lockdown;size=550x600")
+		SHOW_BROWSER(user, t, "window=lockdown;size=550x600")
 		onclose(user, "lockdown")
 
 	Topic(href, href_list)
 		..()
 
 		if( href_list["close"] )
-			usr << browse(null, "window=lockdown")
+			CLOSE_BROWSER(usr, "window=lockdown")
 			usr.machine = null
 
 		if( href_list["show_net"] )

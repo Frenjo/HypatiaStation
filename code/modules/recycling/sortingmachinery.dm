@@ -194,7 +194,7 @@
 
 	dat += "</tr></table><br>Current Selection: [currTag ? GLOBL.tagger_locations[currTag] : "None"]</tt>"
 
-	user << browse(dat, "window=destTagScreen;size=450x350")
+	SHOW_BROWSER(user, dat, "window=destTagScreen;size=450x350")
 	onclose(user, "destTagScreen")
 
 /obj/item/dest_tagger/attack_self(mob/user)

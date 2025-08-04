@@ -39,7 +39,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 		if(index != length(vox_words))
 			dat += " / "
 
-	src << browse(dat, "window=announce_help;size=500x400")
+	SHOW_BROWSER(src, dat, "window=announce_help;size=500x400")
 
 /mob/living/silicon/ai/verb/announcement()
 	set category = PANEL_AI_COMMANDS

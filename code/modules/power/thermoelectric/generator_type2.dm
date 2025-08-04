@@ -102,7 +102,7 @@
 /obj/machinery/power/generator_type2/interact(mob/user)
 	if(!in_range(src, user) && !issilicon(user))
 		user.unset_machine()
-		user << browse(null, "window=teg")
+		CLOSE_BROWSER(user, "window=teg")
 		return
 
 	user.set_machine(src)
@@ -122,7 +122,7 @@
 	t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</PRE>"
-	user << browse(t, "window=teg;size=460x300")
+	SHOW_BROWSER(user, t, "window=teg;size=460x300")
 	onclose(user, "teg")
 	return 1
 
@@ -131,7 +131,7 @@
 	..()
 
 	if( href_list["close"] )
-		usr << browse(null, "window=teg")
+		CLOSE_BROWSER(usr, "window=teg")
 		usr.unset_machine()
 		return 0
 

@@ -101,7 +101,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 <A href='byond://?src=\ref[user];mach_close=scrubber'>Close</A><BR>
 "}
 
-	user << browse(output_text, "window=scrubber;size=600x300")
+	SHOW_BROWSER(user, output_text, "window=scrubber;size=600x300")
 	onclose(user, "scrubber")
 
 /obj/machinery/portable_atmospherics/scrubber/Topic(href, href_list)
@@ -128,7 +128,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 		add_fingerprint(usr)
 		update_icon()
 	else
-		usr << browse(null, "window=scrubber")
+		CLOSE_BROWSER(usr, "window=scrubber")
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
 	if(stat & (BROKEN | NOPOWER))

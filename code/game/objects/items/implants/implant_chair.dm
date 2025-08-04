@@ -41,7 +41,7 @@
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
 	user.set_machine(src)
-	user << browse(dat, "window=implant")
+	SHOW_BROWSER(user, dat, "window=implant")
 	onclose(user, "implant")
 
 /obj/machinery/implantchair/Topic(href, href_list)

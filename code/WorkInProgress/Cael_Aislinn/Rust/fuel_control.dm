@@ -53,12 +53,12 @@
 /obj/machinery/computer/rust_fuel_control/interact(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		user.unset_machine()
-		user << browse(null, "window=fuel_control")
+		CLOSE_BROWSER(user, "window=fuel_control")
 		return
 
 	if(!issilicon(user) && !in_range(src, user))
 		user.unset_machine()
-		user << browse(null, "window=fuel_control")
+		CLOSE_BROWSER(user, "window=fuel_control")
 		return
 
 	var/dat = "<B>Reactor Core Fuel Control</B><BR>"
@@ -114,7 +114,7 @@
 	dat += "<hr>"
 	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A> "
 	dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(dat, "window=fuel_control;size=800x400")
+	SHOW_BROWSER(user, dat, "window=fuel_control;size=800x400")
 	user.set_machine(src)
 
 /obj/machinery/computer/rust_fuel_control/Topic(href, href_list)
@@ -167,7 +167,7 @@
 		announce_stageprogression = text2num(href_list["announce_stageprogression"])
 
 	if( href_list["close"] )
-		usr << browse(null, "window=fuel_control")
+		CLOSE_BROWSER(usr, "window=fuel_control")
 		usr.unset_machine()
 
 	if( href_list["set_next_stage"] )

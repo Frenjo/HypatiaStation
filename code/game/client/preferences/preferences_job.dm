@@ -16,7 +16,7 @@
 /datum/preferences/proc/SetJob(mob/user, role)
 	var/datum/job/job = global.CTjobs.get_job(role)
 	if(isnull(job))
-		user << browse(null, "window=mob_occupation")
+		CLOSE_BROWSER(user, "window=mob_occupation")
 		return
 
 	if(role == "Assistant")

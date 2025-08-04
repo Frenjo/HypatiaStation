@@ -261,7 +261,7 @@
 		dat += "<br>"
 		dat += "The orange light is [(src.seconds_electrified == 0) ? "off" : "on"].<BR>"
 		dat += "The red light is [src.shoot_inventory ? "off" : "blinking"].<BR>"
-	user << browse("<HEAD><TITLE>[src] Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=smartfridge")
+	SHOW_BROWSER(user, "<HEAD><TITLE>[src] Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=smartfridge")
 	return
 
 /obj/machinery/smartfridge/Topic(href, href_list)
@@ -451,7 +451,7 @@
 		dat += "The orange light is [(src.seconds_electrified == 0) ? "off" : "on"].<BR>"
 		//dat += "The red light is [src.shoot_inventory ? "off" : "blinking"].<BR>"
 		dat += "The green light is [src.locked == 1 ? "off" : "[src.locked == -1 ? "blinking" : "on"]"].<BR>"
-	user << browse("<HEAD><TITLE>[src] Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=smartfridge")
+	SHOW_BROWSER(user, "<HEAD><TITLE>[src] Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=smartfridge")
 	return
 
 //TODO: Make smartfridges hackable. - JoeyJo0

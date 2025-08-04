@@ -124,7 +124,7 @@
 	if (href_list["mach_close"])
 		var/t1 = "window=[href_list["mach_close"]]"
 		unset_machine()
-		src << browse(null, t1)
+		CLOSE_BROWSER(src, t1)
 	if ((href_list["item"] && !( usr.stat ) && !( usr.restrained() ) && in_range(src, usr) ))
 		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
 		O.source = usr

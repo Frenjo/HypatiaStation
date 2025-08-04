@@ -65,7 +65,7 @@ Des: Removes all infected images from the alien.
 	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pouches</A>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, "window=mob[name];size=340x480")
+	SHOW_BROWSER(user, dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")
 	return
 	*/

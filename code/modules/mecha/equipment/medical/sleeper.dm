@@ -126,7 +126,7 @@
 	if(topic_filter.get("eject"))
 		go_out()
 	if(topic_filter.get("view_stats"))
-		chassis.occupant << browse(get_patient_stats(),"window=msleeper")
+		SHOW_BROWSER(chassis.occupant, get_patient_stats(),"window=msleeper")
 		onclose(chassis.occupant, "msleeper")
 		return
 	if(topic_filter.get("inject"))

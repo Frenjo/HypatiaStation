@@ -114,14 +114,14 @@
 	dat += "<BR><A href='byond://?src=\ref[src];scanning=1'>[scanning?"Armed":"Unarmed"]</A> (Movement sensor active when armed!)"
 	dat += "<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
 	dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
-	user << browse(dat, "window=prox")
+	SHOW_BROWSER(user, dat, "window=prox")
 	onclose(user, "prox")
 	return
 
 /obj/item/assembly/prox_sensor/Topic(href, href_list)
 	..()
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=prox")
+		CLOSE_BROWSER(usr, "window=prox")
 		onclose(usr, "prox")
 		return
 
@@ -143,7 +143,7 @@
 		range = min(max(range, 1), 5)
 
 	if(href_list["close"])
-		usr << browse(null, "window=prox")
+		CLOSE_BROWSER(usr, "window=prox")
 		return
 
 	if(usr)

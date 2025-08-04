@@ -326,10 +326,10 @@ var/engwords = list(
 					[words[9]] is <a href='byond://?src=\ref[src];number=9;action=change'>[words[words[9]]]</A> <A href='byond://?src=\ref[src];number=9;action=clear'>Clear</A><BR>
 					[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 					"}
-		usr << browse("[notedat]", "window=notes")
+		SHOW_BROWSER(usr, "[notedat]", "window=notes")
 //		call(/obj/item/tome/proc/edit_notes)()
 	else
-		usr << browse(null, "window=notes")
+		CLOSE_BROWSER(usr, "window=notes")
 		return
 
 
@@ -349,7 +349,7 @@ var/engwords = list(
 //			[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 //					"}
 //		usr << "whatev"
-//		usr << browse(null, "window=tank")
+//		CLOSE_BROWSER(usr, "window=tank")
 
 /obj/item/tome/attack(mob/living/M, mob/living/user)
 	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had the [name] used on him by [user.name] ([user.ckey])</font>"
@@ -398,7 +398,7 @@ var/engwords = list(
 				if("Read it")
 					if(usr.get_active_hand() != src)
 						return
-					user << browse("[tomedat]", "window=Arcane Tome")
+					SHOW_BROWSER(user, tomedat, "window=Arcane Tome")
 					return
 				if("Notes")
 					if(usr.get_active_hand() != src)
@@ -417,7 +417,7 @@ var/engwords = list(
 				[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 				"}
 //						call(/obj/item/tome/proc/edit_notes)()
-					user << browse("[notedat]", "window=notes")
+					SHOW_BROWSER(user, notedat, "window=notes")
 					return
 		if(usr.get_active_hand() != src)
 			return

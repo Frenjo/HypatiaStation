@@ -315,7 +315,7 @@
 					text += "<a href='byond://?src=\ref[t];SDQL_select=\ref[t]'>\ref[t]</a>: [t]<br>"
 
 				//text += "[t]<br>"
-			usr << browse(text, "window=sdql_result")
+			SHOW_BROWSER(usr, text, "window=sdql_result")
 
 
 /client/Topic(href, list/href_list, hsrc)

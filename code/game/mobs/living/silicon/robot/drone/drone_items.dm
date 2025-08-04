@@ -223,7 +223,7 @@
 
 	dat += resources
 
-	src << browse(dat, "window=robotmod&can_close=0")
+	SHOW_BROWSER(src, dat, "window=robotmod&can_close=0")
 
 //Putting the decompiler here to avoid doing list checks every tick.
 /mob/living/silicon/robot/drone/use_power()

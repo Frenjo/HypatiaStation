@@ -372,7 +372,7 @@
 			loaded_pill_bottle.forceMove(loc)
 			loaded_pill_bottle = null
 	else if(href_list["close"])
-		usr << browse(null, "window=chemmaster")
+		CLOSE_BROWSER(usr, "window=chemmaster")
 		usr.unset_machine()
 		return
 
@@ -395,7 +395,7 @@
 					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='byond://?src=\ref[src];main=1'>(Back)</A>"
 			else
 				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='byond://?src=\ref[src];main=1'>(Back)</A>"
-			usr << browse(dat, "window=chem_master;size=575x400")
+			SHOW_BROWSER(usr, dat, "window=chem_master;size=575x400")
 			return
 
 		else if(href_list["add"])
@@ -493,14 +493,14 @@
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			usr << browse(dat, "window=chem_master")
+			SHOW_BROWSER(usr, dat, "window=chem_master")
 			return
 		else if(href_list["change_bottle"])
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			usr << browse(dat, "window=chem_master")
+			SHOW_BROWSER(usr, dat, "window=chem_master")
 			return
 		else if(href_list["pill_sprite"])
 			pillsprite = href_list["pill_sprite"]
@@ -574,9 +574,9 @@
 		else
 			dat += "<A href='byond://?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
-		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+		SHOW_BROWSER(user, "<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	else
-		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+		SHOW_BROWSER(user, "<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	onclose(user, "chem_master")
 	return
 
@@ -735,7 +735,7 @@
 
 
 	else
-		usr << browse(null, "window=pandemic")
+		CLOSE_BROWSER(usr, "window=pandemic")
 		src.updateUsrDialog()
 		return
 
@@ -833,7 +833,7 @@
 		dat += "<BR><A href='byond://?src=\ref[src];eject=1'>Eject beaker</A>[(R.total_volume && length(R.reagent_list) ? "-- <A href='byond://?src=\ref[src];empty_beaker=1'>Empty beaker</A>" : "")]<BR>"
 		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>Close</A>"
 
-	user << browse("<TITLE>[src.name]</TITLE><BR>[dat]", "window=pandemic;size=575x400")
+	SHOW_BROWSER(user, "<TITLE>[src.name]</TITLE><BR>[dat]", "window=pandemic;size=575x400")
 	onclose(user, "pandemic")
 	return
 
@@ -1022,7 +1022,7 @@
 			dat += "<A href='byond://?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
-	user << browse("<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")
+	SHOW_BROWSER(user, "<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")
 	onclose(user, "reagentgrinder")
 	return
 

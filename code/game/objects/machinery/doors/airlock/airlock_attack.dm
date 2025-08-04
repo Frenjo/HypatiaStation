@@ -62,7 +62,7 @@
 
 		t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
 
-		user << browse(t1, "window=airlock")
+		SHOW_BROWSER(user, t1, "window=airlock")
 		onclose(user, "airlock")
 
 	else
@@ -172,7 +172,7 @@
 			t1 += "<A href='byond://?src=\ref[src];aiDisable=7'>Close door</a><br>\n"
 
 	t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
-	user << browse(t1, "window=airlock")
+	SHOW_BROWSER(user, t1, "window=airlock")
 	onclose(user, "airlock")
 
 //aiDisable - 1 idscan, 2 disrupt main power, 3 disrupt backup power, 4 drop door bolts, 5 un-electrify door, 7 close door

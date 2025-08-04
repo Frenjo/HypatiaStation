@@ -24,7 +24,7 @@
 
 /obj/item/stack/Destroy()
 	if(src && usr && usr.machine == src)
-		usr << browse(null, "window=stack")
+		CLOSE_BROWSER(usr, "window=stack")
 	recipes = null
 	return ..()
 
@@ -42,7 +42,7 @@
 		return
 
 	if(!src || amount <= 0)
-		user << browse(null, "window=stack")
+		CLOSE_BROWSER(user, "window=stack")
 
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
@@ -99,7 +99,7 @@
 					t1 += " <A href='byond://?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
 
 	t1 += "</TT></body></HTML>"
-	user << browse(t1, "window=stack")
+	SHOW_BROWSER(user, t1, "window=stack")
 	onclose(user, "stack")
 	return
 

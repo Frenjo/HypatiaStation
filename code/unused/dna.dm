@@ -31,13 +31,13 @@
 		var/dat = text("<I>Please Insert the cards into the slots</I><BR>\n\t\t\t\tFunction Disk: <A href='byond://?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\tTarget Disk: <A href='byond://?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\tAux. Data Disk: <A href='byond://?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", src, (src.scan ? text("[]", src.scan.name) : "----------"), src, (src.modify ? text("[]", src.modify.name) : "----------"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='byond://?src=\ref[];execute=1'>Execute Function</A>", src) : "No function disk inserted!"))
 		if (src.temp)
 			dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>Clear Message</A>", src.temp, src)
-		user << browse(dat, "window=dna_comp")
+		SHOW_BROWSER(user, dat, "window=dna_comp")
 		onclose(user, "dna_comp")
 	else
 		var/dat = text("<I>[]</I><BR>\n\t\t\t\t[] <A href='byond://?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\t[] <A href='byond://?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\t[] <A href='byond://?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", stars("Please Insert the cards into the slots"), stars("Function Disk:"), src, (src.scan ? text("[]", src.scan.name) : "----------"), stars("Target Disk:"), src, (src.modify ? text("[]", src.modify.name) : "----------"), stars("Aux. Data Disk:"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='byond://?src=\ref[];execute=1'>[]</A>", src, stars("Execute Function")) : stars("No function disk inserted!")))
 		if (src.temp)
 			dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>[]", stars(src.temp), src, stars("Clear Message</A>"))
-		user << browse(dat, "window=dna_comp")
+		SHOW_BROWSER(user, dat, "window=dna_comp")
 		onclose(user, "dna_comp")
 	return
 
@@ -638,7 +638,7 @@
 			 	(src.scan ? text("<A href='byond://?src=\ref[];u_dat=1'>Upload Data</A>", src) : "No disk to upload"),
 			 	((src.data || src.func || src.special) ? text("<A href='byond://?src=\ref[];c_dat=1'>Clear Data</A><BR><A href='byond://?src=\ref[];e_dat=1'>Execute Data</A><BR>Function Type: [][]<BR>Data: []", src, src, src.func, (src.special ? text("-[]", src.special) : null), src.data) : "No data uploaded"))
 			dat += text("<BR><BR><A href='byond://?src=\ref[];mach_close=scanner'>Close</A>", user)
-	user << browse(dat, "window=scanner;size=400x500")
+	SHOW_BROWSER(user, dat, "window=scanner;size=400x500")
 	onclose(user, "scanner")
 	return
 

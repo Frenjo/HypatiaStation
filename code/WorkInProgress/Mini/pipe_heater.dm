@@ -60,7 +60,7 @@
 		Target gas temperature: <A href='byond://?src=\ref[src];temp=-100'>-</A> <A href='byond://?src=\ref[src];temp=-10'>-</A> <A href='byond://?src=\ref[src];temp=-1'>-</A> [current_temperature] <A href='byond://?src=\ref[src];temp=1'>+</A> <A href='byond://?src=\ref[src];temp=10'>+</A> <A href='byond://?src=\ref[src];temp=100'>+</A><BR>
 		"}
 
-		user << browse(dat, "window=freezer;size=400x500")
+		SHOW_BROWSER(user, dat, "window=freezer;size=400x500")
 		onclose(user, "freezer")
 
 	Topic(href, href_list)

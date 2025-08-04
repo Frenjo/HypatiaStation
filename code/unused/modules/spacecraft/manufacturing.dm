@@ -132,7 +132,7 @@ obj/machinery/nanosprayer/attack_hand(user as mob)
 	dat += text("<A href='byond://?src=\ref[src];start=1'>Start Spray</A><BR>")
 	dat += text("<A href='byond://?src=\ref[src];stop=1'>Cancel Spray</A>")
 	dat += text("<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>")
-	user << browse("<HEAD><TITLE>NANO SPRAY 1.1</TITLE></HEAD><TT>[dat]</TT>", "window=nanosprayer")
+	SHOW_BROWSER(user, "<HEAD><TITLE>NANO SPRAY 1.1</TITLE></HEAD><TT>[dat]</TT>", "window=nanosprayer")
 	onclose(user, "nanosprayer")
 
 obj/machinery/nanosprayer/Topic(href, href_list)
@@ -205,7 +205,7 @@ obj/machinery/smelter/attack_hand(user as mob)
 	dat += text("<HR /><BR>Turn key <A href='byond://?src=\ref[src];key=1'>[src.locked ? "to upper-left position" : "to upper-right position"]</A><BR>")
 	dat += text("Flip switch <A href='byond://?src=\ref[src];switch=1'>[src.closed ? "up" : "down"]</A><BR>")
 	dat += text("<A href='byond://?src=\ref[src];button=1'>Push large flashing yellow button</A><BR>")
-	user << browse("<HEAD><TITLE>SMELTOMATIC</TITLE></HEAD><TT>[dat]</TT>", "window=smelter")
+	SHOW_BROWSER(user, "<HEAD><TITLE>SMELTOMATIC</TITLE></HEAD><TT>[dat]</TT>", "window=smelter")
 	onclose(user, "smelter")
 
 

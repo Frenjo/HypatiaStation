@@ -338,7 +338,7 @@
  					   </body>
 						</html>"}
 
-	occupant << browse(output, "window=ex_debug")
+	SHOW_BROWSER(occupant, output, "window=ex_debug")
 	//src.health = initial(src.health)/2.2
 	//src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return

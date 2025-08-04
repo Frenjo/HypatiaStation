@@ -199,7 +199,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 	dat += text("<A href='byond://?src=\ref[];refresh=1'>(Refresh)</A><BR>", src)
 	dat += text("<A href='byond://?src=\ref[];release=1'>RELEASE (Siphons only)</A> <A href='byond://?src=\ref[];siphon=1'>Siphon (Siphons only)</A> <A href='byond://?src=\ref[];stop_siph=1'>Stop</A> <A href='byond://?src=\ref[];auto=1'>Regulate</A><BR>", src, src, src, src)
 	dat += text("<BR><BR><A href='byond://?src=\ref[];mach_close=computer'>Close</A></TT></BODY></HTML>", user)
-	user << browse(dat, "window=computer;size=400x500")
+	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 
@@ -283,7 +283,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 
 	if (src.loc == user.loc)
 		var/dat = text("<B>Security Pad:</B><BR>\nKeycard: []<BR>\n<A href='byond://?src=\ref[];door1=1'>Toggle Outer Door</A><BR>\n<A href='byond://?src=\ref[];door2=1'>Toggle Inner Door</A><BR>\n<BR>\n<A href='byond://?src=\ref[];em_cl=1'>Emergency Close</A><BR>\n<A href='byond://?src=\ref[];em_op=1'>Emergency Open</A><BR>", (src.scan ? text("<A href='byond://?src=\ref[];card=1'>[]</A>", src, src.scan.name) : text("<A href='byond://?src=\ref[];card=1'>-----</A>", src)), src, src, src, src)
-		user << browse(dat, "window=sec_lock")
+		SHOW_BROWSER(user, dat, "window=sec_lock")
 		onclose(user, "sec_lock")
 	return
 

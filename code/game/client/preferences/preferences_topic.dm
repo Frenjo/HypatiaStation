@@ -277,7 +277,7 @@
 						SetDisabilities(user)
 						return
 					else
-						user << browse(null, "window=disabil")
+						CLOSE_BROWSER(user, "window=disabil")
 
 				if("limbs")
 					var/limb_name = input(user, "Which limb do you want to change?") as null | anything in list("Left Leg", "Right Leg", "Left Arm", "Right Arm", "Left Foot", "Right Foot", "Left Hand", "Right Hand")

@@ -405,4 +405,4 @@
 
 		output += "</table></div>"
 
-	usr << browse(output,"window=lookupbans;size=900x500")
+	SHOW_BROWSER(usr, output,"window=lookupbans;size=900x500")

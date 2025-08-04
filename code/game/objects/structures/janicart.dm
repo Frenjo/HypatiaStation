@@ -104,7 +104,7 @@
 	if(!isliving(usr))
 		return
 	if(href_list["close"])
-		usr << browse(null, "window=janicart")
+		CLOSE_BROWSER(usr, "window=janicart")
 		usr.unset_machine()
 		return
 

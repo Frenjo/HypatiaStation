@@ -105,7 +105,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=shield_generator")
+			CLOSE_BROWSER(user, "window=shield_generator")
 			return
 	var/t = "<B>Shield Generator Control Console</B><BR><br>"
 	if(locked)
@@ -139,7 +139,7 @@
 	t += "<hr>"
 	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=shield_generator;size=500x800")
+	SHOW_BROWSER(user, t, "window=shield_generator;size=500x800")
 	user.set_machine(src)
 
 /obj/machinery/shield_gen/process()
@@ -182,7 +182,7 @@
 /obj/machinery/shield_gen/Topic(href, list/href_list)
 	..()
 	if( href_list["close"] )
-		usr << browse(null, "window=shield_generator")
+		CLOSE_BROWSER(usr, "window=shield_generator")
 		usr.unset_machine()
 		return
 	else if( href_list["toggle"] )

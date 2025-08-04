@@ -92,7 +92,7 @@
 	dat += "<hr>"
 	dat += "<a href='byond://?src=\ref[src]'>Refresh</a> <a href='byond://?src=\ref[src];close=1'>Close</a>"
 
-	user << browse(dat, "window=anodevice;size=400x500")
+	SHOW_BROWSER(user, dat, "window=anodevice;size=400x500")
 	onclose(user, "anodevice")
 
 /obj/item/anodevice/process()
@@ -189,7 +189,7 @@
 		inserted_battery = null
 		UpdateSprite()
 	if(href_list["close"])
-		usr << browse(null, "window=anodevice")
+		CLOSE_BROWSER(usr, "window=anodevice")
 		usr.unset_machine(src)
 
 	..()

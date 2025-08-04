@@ -34,7 +34,7 @@ var/const/max_assembly_amount = 300
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=fuelcomp")
+			CLOSE_BROWSER(user, "window=fuelcomp")
 			return
 
 	var/t = "<B>Reactor Fuel Rod Compressor / Assembler</B><BR>"
@@ -51,7 +51,7 @@ var/const/max_assembly_amount = 300
 	t += "<hr>"
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
-	user << browse(t, "window=fuelcomp;size=500x300")
+	SHOW_BROWSER(user, t, "window=fuelcomp;size=500x300")
 	user.set_machine(src)
 
 	//var/locked
@@ -60,7 +60,7 @@ var/const/max_assembly_amount = 300
 /obj/machinery/rust_fuel_compressor/Topic(href, href_list)
 	..()
 	if( href_list["close"] )
-		usr << browse(null, "window=fuelcomp")
+		CLOSE_BROWSER(usr, "window=fuelcomp")
 		usr.machine = null
 
 	if( href_list["eject_matter"] )

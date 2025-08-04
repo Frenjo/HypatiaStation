@@ -592,14 +592,14 @@
 	if(!in_range(src, user))
 		if(!issilicon(user))
 			user.machine = null
-			user << browse(null, "window=air_alarm")
-			user << browse(null, "window=AAlarmwires")
+			CLOSE_BROWSER(user, "window=air_alarm")
+			CLOSE_BROWSER(user, "window=AAlarmwires")
 			return
 
 
 		else if(issilicon(user) && aidisabled)
 			to_chat(user, "AI control for this Air Alarm interface has been disabled.")
-			user << browse(null, "window=air_alarm")
+			CLOSE_BROWSER(user, "window=air_alarm")
 			return
 
 	if(wiresexposed && (!issilicon(user)))
@@ -624,11 +624,11 @@
 			t1 += "<br>"
 		t1 += "<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]"
 		t1 += "<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p></body></html>"
-		user << browse(t1, "window=AAlarmwires")
+		SHOW_BROWSER(user, t1, "window=AAlarmwires")
 		onclose(user, "AAlarmwires")
 
 	if(!shorted)
-		user << browse(return_text(user),"window=air_alarm")
+		SHOW_BROWSER(user, return_text(user),"window=air_alarm")
 		onclose(user, "air_alarm")
 
 /obj/machinery/air_alarm/proc/return_text(mob/user)
@@ -898,8 +898,8 @@ table tr:first-child th:first-child { border: none;}
 	if(!in_range(src, usr))
 		if(!issilicon(usr))
 			usr.unset_machine()
-			usr << browse(null, "window=air_alarm")
-			usr << browse(null, "window=AAlarmwires")
+			CLOSE_BROWSER(usr, "window=air_alarm")
+			CLOSE_BROWSER(usr, "window=AAlarmwires")
 			return
 
 	add_fingerprint(usr)

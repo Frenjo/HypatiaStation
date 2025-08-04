@@ -44,7 +44,7 @@
 				if (2)
 					dat += "<font color=red>"
 			dat += "[alarm]</font></a><br/>"
-	user << browse(dat, "window=atmoscontrol")
+	SHOW_BROWSER(user, dat, "window=atmoscontrol")
 
 /obj/machinery/computer/atmoscontrol/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))

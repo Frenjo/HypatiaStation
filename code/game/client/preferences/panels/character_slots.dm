@@ -26,7 +26,7 @@
 /datum/preferences/proc/process_character_slots_panel(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("close")
-			user << browse(null, "window=saves")
+			CLOSE_BROWSER(user, "window=saves")
 			return
 		if("change_slot")
 			load_character(text2num(href_list["num"]))

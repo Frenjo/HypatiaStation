@@ -217,9 +217,9 @@ log transactions
 				dat += "<input type='submit' value='Submit'><br>"
 				dat += "</form>"
 
-		user << browse(dat,"window=atm;size=550x650")
+		SHOW_BROWSER(user, dat,"window=atm;size=550x650")
 	else
-		user << browse(null,"window=atm")
+		CLOSE_BROWSER(user,"window=atm")
 
 /obj/machinery/atm/Topic(href, href_list)
 	if(href_list["choice"])
@@ -414,7 +414,7 @@ log transactions
 					release_held_id(usr)
 			if("logout")
 				authenticated_account = null
-				//usr << browse(null,"window=atm")
+				//CLOSE_BROWSER(usr,"window=atm")
 
 	src.attack_hand(usr)
 

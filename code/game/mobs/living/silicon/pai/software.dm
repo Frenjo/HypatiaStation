@@ -109,7 +109,7 @@
 				</div>
 			</body>
 			</html>"}
-	usr << browse(dat, "window=pai;size=685x449;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
+	SHOW_BROWSER(usr, dat, "window=pai;size=685x449;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
 	onclose(usr, "pai")
 	temp = null
 	return

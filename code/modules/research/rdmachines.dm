@@ -54,7 +54,7 @@
 		dat += "The red light is [disabled ? "off" : "on"].<BR>"
 		dat += "The green light is [shocked ? "off" : "on"].<BR>"
 		dat += "The blue light is [hacked ? "off" : "on"].<BR>"
-		user << browse("<HTML><HEAD><TITLE>[name] Hacking</TITLE></HEAD><BODY>[dat]</BODY></HTML>","window=hack_win")
+		SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[name] Hacking</TITLE></HEAD><BODY>[dat]</BODY></HTML>","window=hack_win")
 	return
 
 /obj/machinery/r_n_d/attackby(obj/item/O, mob/user)

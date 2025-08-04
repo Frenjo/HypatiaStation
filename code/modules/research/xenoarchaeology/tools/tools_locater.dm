@@ -74,7 +74,7 @@
 				"}
 
 	dat += "<A href='byond://?src=\ref[src];close=1'>Close</a><br>"
-	user << browse(dat,"window=locater;size=300x150")
+	SHOW_BROWSER(user, dat, "window=locater;size=300x150")
 	onclose(user, "locater")
 
 /obj/item/beacon_locator/Topic(href, href_list)
@@ -92,6 +92,6 @@
 
 	else if(href_list["close"])
 		usr.unset_machine()
-		usr << browse(null, "window=locater")
+		CLOSE_BROWSER(usr, "window=locater")
 
 	updateSelfDialog()

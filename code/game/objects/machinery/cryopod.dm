@@ -45,7 +45,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	dat += "<a href='byond://?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 	dat += "<a href='byond://?src=\ref[src];crew=1'>Revive crew</a>.<br/><hr/>"
 
-	user << browse(dat, "window=cryopod_console")
+	SHOW_BROWSER(user, dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
@@ -61,7 +61,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
-		user << browse(dat, "window=cryolog")
+		SHOW_BROWSER(user, dat, "window=cryolog")
 
 	else if(href_list["item"])
 		if(!length(GLOBL.frozen_items))

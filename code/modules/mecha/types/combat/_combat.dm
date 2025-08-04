@@ -253,7 +253,7 @@
 							</body>
 							</html>
 						  "}
-		occupant << browse(window, "window=sam;size=800x600;")
+		SHOW_BROWSER(occupant, window, "window=sam;size=800x600;")
 		onclose(occupant, "sam", src)
 	return
 */

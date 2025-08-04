@@ -195,7 +195,7 @@
 	if(!in_range(src, user))
 		if(!isAI(user))
 			user.unset_machine()
-			user << browse(null, "window=port_gen")
+			CLOSE_BROWSER(user, "window=port_gen")
 			return
 
 	user.set_machine(src)
@@ -212,7 +212,7 @@
 	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
 	dat += text("Heat: [heat]<br>")
 	dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
-	user << browse("[dat]", "window=port_gen")
+	SHOW_BROWSER(user, "[dat]", "window=port_gen")
 	onclose(user, "port_gen")*/
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo

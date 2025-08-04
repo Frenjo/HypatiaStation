@@ -83,7 +83,7 @@
 						dat += " <br>  [G.name]: <A href='byond://?src=\ref[src];isolate=[V.uniqueID]'>Isolate pathogen #[V.uniqueID]</a>"
 				else
 					dat += "    <b>No pathogen</b>"
-	user << browse("<TITLE>Pathogenic Isolator</TITLE>Isolator menu:<BR><BR>[dat]", "window=isolator;size=575x400")
+	SHOW_BROWSER(user, "<TITLE>Pathogenic Isolator</TITLE>Isolator menu:<BR><BR>[dat]", "window=isolator;size=575x400")
 	onclose(user, "isolator")
 	return
 

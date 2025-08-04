@@ -38,7 +38,7 @@
 
 	output += "</div>"
 
-	src << browse(output,"window=privacypoll;size=600x500")
+	SHOW_BROWSER(src, output, "window=privacypoll;size=600x500")
 	return
 
 /datum/polloption
@@ -74,7 +74,7 @@
 
 		output += "</table>"
 
-		src << browse(output,"window=playerpolllist;size=500x300")
+		SHOW_BROWSER(src, output, "window=playerpolllist;size=500x300")
 
 
 
@@ -157,7 +157,7 @@
 
 				output += "</div>"
 
-				src << browse(output,"window=playerpoll;size=500x250")
+				SHOW_BROWSER(src, output, "window=playerpoll;size=500x250")
 
 			//Polls with a text input
 			if("TEXT")
@@ -199,7 +199,7 @@
 				else
 					output += "[vote_text]"
 
-				src << browse(output,"window=playerpoll;size=500x500")
+				SHOW_BROWSER(src, output, "window=playerpoll;size=500x500")
 
 			//Polls with a text input
 			if("NUMVAL")
@@ -270,7 +270,7 @@
 					output += "<p><input type='submit' value='Submit'>"
 					output += "</form>"
 
-				src << browse(output,"window=playerpoll;size=500x500")
+				SHOW_BROWSER(src, output, "window=playerpoll;size=500x500")
 			if("MULTICHOICE")
 				var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
 				voted_query.Execute()
@@ -332,7 +332,7 @@
 
 				output += "</div>"
 
-				src << browse(output,"window=playerpoll;size=500x250")
+				SHOW_BROWSER(src, output, "window=playerpoll;size=500x250")
 		return
 
 /mob/dead/new_player/proc/vote_on_poll(var/pollid = -1, var/optionid = -1, var/multichoice = 0)
@@ -402,7 +402,7 @@
 		insert_query.Execute()
 
 		usr << "\blue Vote successful."
-		usr << browse(null,"window=playerpoll")
+		CLOSE_BROWSER(usr, "window=playerpoll")
 
 
 /mob/dead/new_player/proc/log_text_poll_reply(var/pollid = -1, var/replytext = "")
@@ -460,7 +460,7 @@
 		insert_query.Execute()
 
 		usr << "\blue Feedback logging successful."
-		usr << browse(null,"window=playerpoll")
+		CLOSE_BROWSER(usr, "window=playerpoll")
 
 
 /mob/dead/new_player/proc/vote_on_numval_poll(var/pollid = -1, var/optionid = -1, var/rating = null)
@@ -522,4 +522,4 @@
 		insert_query.Execute()
 
 		usr << "\blue Vote successful."
-		usr << browse(null,"window=playerpoll")
+		CLOSE_BROWSER(usr, "window=playerpoll")

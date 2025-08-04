@@ -49,7 +49,7 @@
 
 /obj/item/photo/proc/show(mob/user)
 	SEND_RSC(user, img, "tmp_photo.png")
-	user << browse("<html><head><title>[name]</title></head>" \
+	SHOW_BROWSER(user, "<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \
 		+ "[scribble ? "<div> Written on the back:<br><i>[scribble]</i>" : null]"\

@@ -4,7 +4,7 @@ GLOBAL_GLOBL_INIT(create_object_html, null)
 		GLOBL.create_object_html = file2text('html/misc/create_object.html')
 		GLOBL.create_object_html = replacetext(GLOBL.create_object_html, "null /* object types */", "\"[jointext(typesof(/obj), ";")]\"")
 
-	user << browse(replacetext(GLOBL.create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
+	SHOW_BROWSER(user, replacetext(GLOBL.create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
 
 /datum/admins/proc/quick_create_object(mob/user)
 	var/list/quick_create_types = list(/obj, /obj/effect, /obj/item, /obj/item/stack, /obj/machinery, /obj/mecha, /obj/structure)
@@ -13,4 +13,4 @@ GLOBAL_GLOBL_INIT(create_object_html, null)
 	var/quick_create_object_html = file2text('html/misc/create_object.html')
 	quick_create_object_html = replacetext(quick_create_object_html, "null /* object types */", "\"[jointext(typesof(path), ";")]\"")
 
-	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
+	SHOW_BROWSER(user, replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")

@@ -113,7 +113,7 @@ Target Pressure: <A href='byond://?src=\ref[src];pressure_adj=-1000'>-</A> <A hr
 <A href='byond://?src=\ref[user];mach_close=pump'>Close</A><BR>
 "}
 
-	user << browse(output_text, "window=pump;size=600x300")
+	SHOW_BROWSER(user, output_text, "window=pump;size=600x300")
 	onclose(user, "pump")
 
 /obj/machinery/portable_atmospherics/pump/Topic(href, href_list)
@@ -143,4 +143,4 @@ Target Pressure: <A href='byond://?src=\ref[src];pressure_adj=-1000'>-</A> <A hr
 		add_fingerprint(usr)
 		update_icon()
 	else
-		usr << browse(null, "window=pump")
+		CLOSE_BROWSER(usr, "window=pump")

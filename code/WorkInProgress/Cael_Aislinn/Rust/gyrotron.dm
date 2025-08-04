@@ -32,7 +32,7 @@
 /obj/machinery/rust/gyrotron/Topic(href, href_list)
 	..()
 	if(href_list["close"])
-		usr << browse(null, "window=gyro_monitor")
+		CLOSE_BROWSER(usr, "window=gyro_monitor")
 		usr.machine = null
 		return
 	if(href_list["modifypower"])
@@ -171,7 +171,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.machine = null
-			user << browse(null, "window=gyro_monitor")
+			CLOSE_BROWSER(user, "window=gyro_monitor")
 			return
 	var/t = "<B>Free electron MASER (Gyrotron) Control Panel</B><BR>"
 	if(owned_gyrotron && owned_gyrotron.on)
@@ -188,5 +188,5 @@
 		t += "<b><font color=red>Gyrotron unresponsive</font></b>"
 	t += "<hr>"
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=gyro_monitor;size=500x800")
+	SHOW_BROWSER(user, t, "window=gyro_monitor;size=500x800")
 	user.machine = src

@@ -202,11 +202,11 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 /obj/machinery/power/rust_core/interact(mob/user)
 	if(stat & BROKEN)
 		user.unset_machine()
-		user << browse(null, "window=core_gen")
+		CLOSE_BROWSER(user, "window=core_gen")
 		return
 	if(!issilicon(user) && !in_range(src, user))
 		user.unset_machine()
-		user << browse(null, "window=core_gen")
+		CLOSE_BROWSER(user, "window=core_gen")
 		return
 
 	var/dat = ""
@@ -246,7 +246,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 			font_colour = "orange"
 		dat += "<b>Power status:</b> <font color=[font_colour]>[active_power_usage]/[cached_power_avail] W</font><br>"
 
-	user << browse(dat, "window=core_gen;size=500x300")
+	SHOW_BROWSER(user, dat, "window=core_gen;size=500x300")
 	onclose(user, "core_gen")
 	user.set_machine(src)
 
@@ -276,7 +276,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 			id_tag = input("Enter a new ID tag", "Tokamak core ID tag", id_tag) as text|null
 
 	if(href_list["close"])
-		usr << browse(null, "window=core_gen")
+		CLOSE_BROWSER(usr, "window=core_gen")
 		usr.unset_machine()
 
 	if(href_list["extern_update"])

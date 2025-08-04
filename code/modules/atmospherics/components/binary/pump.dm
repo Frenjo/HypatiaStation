@@ -116,7 +116,7 @@ Thus, the two variables affect pump operation are set in New():
 					[round(target_pressure,0.1)]kPa | <a href='byond://?src=\ref[src];set_press=1'>Change</a>
 					"}
 
-		user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
+		SHOW_BROWSER(user, "<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
 		onclose(user, "atmo_pump")*/
 
 /obj/machinery/atmospherics/binary/pump/receive_signal(datum/signal/signal)

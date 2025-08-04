@@ -179,7 +179,7 @@
 
 		dat += "</TT>"
 
-	user << browse(dat,"window=comp2")
+	SHOW_BROWSER(user, dat,"window=comp2")
 	onclose(user,"comp2")
 	return
 

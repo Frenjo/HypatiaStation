@@ -16,7 +16,7 @@
 			output += "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++
 
-	recipient << browse(output,"window=memory")
+	SHOW_BROWSER(recipient, output, "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(isnull(global.PCticker?.mode))
@@ -265,4 +265,4 @@
 
 	out += "<a href='byond://?src=\ref[src];obj_announce=1'>Announce objectives</a><br><br>"
 
-	usr << browse(out, "window=edit_memory[src]")
+	SHOW_BROWSER(usr, out, "window=edit_memory[src]")

@@ -133,7 +133,7 @@
 			if(!in_range(src, user))
 				if(!issilicon(user))
 					user.machine = null
-					user << browse(null, "window=port_gen")
+					CLOSE_BROWSER(user, "window=port_gen")
 					return
 
 			user.machine = src
@@ -150,7 +150,7 @@
 			dat += text("Power output: <A href='byond://?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='byond://?src=\ref[src];action=higher_power'>+</A><br>")
 			dat += text("Heat: [heat]<br>")
 			dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
-			user << browse("[dat]", "window=port_gen")
+			SHOW_BROWSER(user, dat, "window=port_gen")
 
 	Topic(href, href_list)
 		if(..())
@@ -177,5 +177,5 @@
 					power_output++
 					src.updateUsrDialog()
 			if (href_list["action"] == "close")
-				usr << browse(null, "window=port_gen")
+				CLOSE_BROWSER(usr, "window=port_gen")
 				usr.machine = null

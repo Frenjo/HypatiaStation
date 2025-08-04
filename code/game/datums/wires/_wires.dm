@@ -70,7 +70,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 	else
 		user.unset_machine()
 		// No content means no window.
-		user << browse(null, "window=wires")
+		CLOSE_BROWSER(user, "window=wires")
 		return
 
 	var/datum/browser/popup = new /datum/browser(user, "wires", holder.name, window_x, window_y)
@@ -102,7 +102,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 	if(!isliving(usr))
 		return
 	if(href_list["close"])
-		usr << browse(null, "window=wires")
+		CLOSE_BROWSER(usr, "window=wires")
 		usr.unset_machine()
 		return
 

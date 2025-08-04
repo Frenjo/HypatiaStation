@@ -364,7 +364,7 @@
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, "window=mob[name];size=325x500")
+	SHOW_BROWSER(user, dat, "window=mob[name];size=325x500")
 	onclose(user, "mob[name]")
 
 //generates realistic-ish pulse output based on preset levels

@@ -315,7 +315,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 		var/dat2 = src.interact_ai(user) // give the AI a different interact proc to limit its access
 		if(dat2)
 			dat += dat2
-			user << browse(dat, "window=communications;size=400x500")
+			SHOW_BROWSER(user, dat, "window=communications;size=400x500")
 			onclose(user, "communications")
 		return
 
@@ -397,7 +397,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 			dat += "<A href='byond://?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A href='byond://?src=\ref[user];mach_close=communications'>Close</A> \]"
-	user << browse(dat, "window=communications;size=400x500")
+	SHOW_BROWSER(user, dat, "window=communications;size=400x500")
 	onclose(user, "communications")
 
 /obj/machinery/computer/communications/proc/interact_ai(mob/living/silicon/ai/user)

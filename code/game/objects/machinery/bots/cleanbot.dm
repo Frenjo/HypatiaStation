@@ -89,7 +89,7 @@ Maintenance panel is [open ? "opened" : "closed"]"}
 Odd looking screw twiddled: ["<A href='byond://?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A>"]<BR>
 Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"]"}
 
-	user << browse("<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
 	onclose(user, "autocleaner")
 
 /obj/machinery/bot/cleanbot/Topic(href, href_list)

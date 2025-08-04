@@ -100,7 +100,7 @@ Version 1 changes (from version 0):
 	src.tag = tag
 
 /sd_alert/Destroy()
-	target << browse(null, "window=\ref[src]")
+	CLOSE_BROWSER(target, "window=\ref[src]")
 	return ..()
 
 /sd_alert/Topic(href, list/params)
@@ -111,7 +111,7 @@ Version 1 changes (from version 0):
 /sd_alert/proc/Display(message, title, list/buttons, default, unfocus, size, table, style, select, flags)
 	if(unfocus)
 		spawn()
-			target << browse(null, null)
+			CLOSE_BROWSER(target, null)
 	if(istext(buttons))
 		buttons = list(buttons)
 	if(!default)
@@ -157,7 +157,7 @@ Version 1 changes (from version 0):
 
 	html += "</th></tr></table></body>"
 
-	target << browse(html, "window=\ref[src];size=[size];can_close=0")
+	SHOW_BROWSER(target, html, "window=\ref[src];size=[size];can_close=0")
 
 /sd_alert/proc/Response()
 	var/validated

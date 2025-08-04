@@ -8,7 +8,7 @@
 /obj/machinery/computer/rust_gyrotron_controller/Topic(href, href_list)
 	..()
 	if(href_list["close"])
-		usr << browse(null, "window=gyrotron_controller")
+		CLOSE_BROWSER(usr, "window=gyrotron_controller")
 		usr.machine = null
 		return
 	if(href_list["target"])
@@ -25,7 +25,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.machine = null
-			user << browse(null, "window=gyrotron_controller")
+			CLOSE_BROWSER(user, "window=gyrotron_controller")
 			return
 	var/t = "<B>Gyrotron Remote Control Console</B><BR>"
 	t += "<hr>"
@@ -81,5 +81,5 @@
 	t += "</table>"
 	*/
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=gyrotron_controller;size=500x400")
+	SHOW_BROWSER(user, t, "window=gyrotron_controller;size=500x400")
 	user.machine = src

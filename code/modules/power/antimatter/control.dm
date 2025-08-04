@@ -265,7 +265,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.unset_machine()
-			user << browse(null, "window=AMcontrol")
+			CLOSE_BROWSER(user, "window=AMcontrol")
 			return
 	user.set_machine(src)
 
@@ -295,7 +295,7 @@
 		dat += "- <A href='byond://?src=\ref[src];strengthdown=1'>--</A>|<A href='byond://?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 
 
-	user << browse(dat, "window=AMcontrol;size=420x500")
+	SHOW_BROWSER(user, dat, "window=AMcontrol;size=420x500")
 	onclose(user, "AMcontrol")
 	return
 
@@ -305,11 +305,11 @@
 	// Ignore input if we are broken or a non-silicon guy is not touching us, robots/AIs can control from a ways away.
 	if(stat & (BROKEN|NOPOWER) || (!in_range(src, usr) && !issilicon(usr)))
 		usr.unset_machine()
-		usr << browse(null, "window=AMcontrol")
+		CLOSE_BROWSER(usr, "window=AMcontrol")
 		return
 
 	if(href_list["close"])
-		usr << browse(null, "window=AMcontrol")
+		CLOSE_BROWSER(usr, "window=AMcontrol")
 		usr.unset_machine()
 		return
 

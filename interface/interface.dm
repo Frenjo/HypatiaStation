@@ -40,8 +40,8 @@
 
 		</html>"}
 
-	//src << browse(file(RULES_FILE), "window=rules;size=480x320")
-	src << browse(rules, "window=rules;size=920x820") //:)
+	//SHOW_BROWSER(src, file(RULES_FILE), "window=rules;size=480x320")
+	SHOW_BROWSER(src, rules, "window=rules;size=920x820") //:)
 //#undef RULES_FILE
 
 /client/verb/donate()

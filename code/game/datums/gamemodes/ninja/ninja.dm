@@ -48,7 +48,7 @@
 
 /datum/game_mode/ninja/pre_setup()
 	for_no_type_check(var/datum/mind/ninja, ninjas)
-		ninja.current << browse(null, "window=playersetup")
+		CLOSE_BROWSER(ninja.current, "window=playersetup")
 		ninja.current = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
 		ninja.current.ckey = ninja.key
 	return 1

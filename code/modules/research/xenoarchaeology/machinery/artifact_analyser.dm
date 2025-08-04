@@ -51,7 +51,7 @@
 	dat += "<br>"
 	dat += "<hr>"
 	dat += "<a href='byond://?src=\ref[src]'>Refresh</a> <a href='byond://?src=\ref[src];close=1'>Close</a>"
-	user << browse(dat, "window=artanalyser;size=450x500")
+	SHOW_BROWSER(user, dat, "window=artanalyser;size=450x500")
 	user.set_machine(src)
 	onclose(user, "artanalyser")
 
@@ -121,7 +121,7 @@
 
 	if(href_list["close"])
 		usr.unset_machine(src)
-		usr << browse(null, "window=artanalyser")
+		CLOSE_BROWSER(usr, "window=artanalyser")
 
 	..()
 	updateDialog()

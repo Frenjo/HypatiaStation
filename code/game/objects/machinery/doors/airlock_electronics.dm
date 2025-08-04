@@ -52,7 +52,7 @@
 
 	t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
 
-	user << browse(t1, "window=airlock_electronics")
+	SHOW_BROWSER(user, t1, "window=airlock_electronics")
 	onclose(user, "airlock")
 
 /obj/item/airlock_electronics/Topic(href, href_list)
@@ -60,7 +60,7 @@
 	if(usr.stat || usr.restrained() || !ishuman(usr))
 		return
 	if(href_list["close"])
-		usr << browse(null, "window=airlock")
+		CLOSE_BROWSER(usr, "window=airlock")
 		return
 
 	if(href_list["login"])

@@ -141,7 +141,7 @@
 	for(var/datum/language/L in languages)
 		dat += "<b>[L.name] ([LANGUAGE_PREFIX_KEY][L.key])</b><br/>Speech Synthesizer: <i>[(L in speech_synthesizer_langs)? "YES" : "NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
+	SHOW_BROWSER(src, dat, "window=checklanguage")
 
 /mob/living/silicon/binarycheck()
 	return 1

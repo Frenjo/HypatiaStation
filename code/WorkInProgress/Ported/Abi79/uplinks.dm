@@ -335,7 +335,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 					dat += "<HR>"
 				dat += "<A href='byond://?src=\ref[src];selfdestruct=1'>Self-Destruct</A>"
 
-		user << browse(dat, "window=radio")
+		SHOW_BROWSER(user, dat, "window=radio")
 		onclose(user, "radio")
 		return
 
@@ -370,7 +370,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			else if (href_list["lock"] && src.origradio)
 				// presto chango, a regular radio again! (reset the freq too...)
 				usr.machine = null
-				usr << browse(null, "window=radio")
+				CLOSE_BROWSER(usr, "window=radio")
 				var/obj/item/radio/T = src.origradio
 				var/obj/item/uplink/radio/R = src
 				R.forceMove(T)
@@ -429,7 +429,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
 			if (M.client && M.machine == src)
-				M << browse(null, "window=radio")
+				CLOSE_BROWSER(M, "window=radio")
 				M.machine = null
 
 		var/obj/item/radio/T = src.origradio

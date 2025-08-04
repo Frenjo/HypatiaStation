@@ -71,7 +71,7 @@
 	else
 		dat += "No local gravity generator detected!"
 
-	user << browse(dat, "window=gravgen")
+	SHOW_BROWSER(user, dat, "window=gravgen")
 	onclose(user, "gravgen")
 
 /obj/machinery/computer/gravity_control_computer/Topic(href, href_list)
@@ -81,7 +81,7 @@
 	if(!in_range(src, usr))
 		if(!issilicon(usr))
 			usr.unset_machine()
-			usr << browse(null, "window=air_alarm")
+			CLOSE_BROWSER(usr, "window=air_alarm")
 			return
 
 	if(href_list["gentoggle"])

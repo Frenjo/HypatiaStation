@@ -63,10 +63,10 @@
 		return
 
 	if(ishuman(user) || isghost(user) || issilicon(user))
-		user << browse("<html><head><title>[name]</title></head><body>[info][stamps]</body></html>", "window=[name]")
+		SHOW_BROWSER(user, "<html><head><title>[name]</title></head><body>[info][stamps]</body></html>", "window=[name]")
 		onclose(user, "[name]")
 	else
-		user << browse("<html><head><title>[name]</title></head><body>[stars(info)][stamps]</body></html>", "window=[name]")
+		SHOW_BROWSER(user, "<html><head><title>[name]</title></head><body>[stars(info)][stamps]</body></html>", "window=[name]")
 		onclose(user, "[name]")
 
 /obj/item/paper/verb/rename()
@@ -100,10 +100,10 @@
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
+		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	else
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
+		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	return
 
@@ -211,7 +211,7 @@
 
 
 /obj/item/paper/proc/openhelp(mob/user)
-	user << browse({"<HTML><HEAD><TITLE>Pen Help</TITLE></HEAD>
+	SHOW_BROWSER(user, {"<HTML><HEAD><TITLE>Pen Help</TITLE></HEAD>
 	<BODY>
 		<b><center>Crayon&Pen commands</center></b><br>
 		<br>
@@ -295,7 +295,7 @@
 			info += t // Oh, he wants to edit to the end of the file, let him.
 			updateinfolinks()
 
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		update_icon()
 
@@ -310,7 +310,7 @@
 		if(istype(P, /obj/item/pen/cyborg) && P:mode == 2)
 			P:RenamePaper(user,src)
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
+			SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		//openhelp(user)
 		return
 

@@ -65,7 +65,7 @@
 		return
 
 	if(href_list["view_log"])
-		occupant << browse(get_log_html(), "window=exosuit_log")
+		SHOW_BROWSER(occupant, get_log_html(), "window=exosuit_log")
 		onclose(occupant, "exosuit_log")
 		return
 
@@ -139,7 +139,7 @@
 			return
 		add_req_access = 0
 		var/mob/user = topic_filter.getMob("user")
-		user << browse(null,"window=exosuit_add_access")
+		CLOSE_BROWSER(user,"window=exosuit_add_access")
 		return
 
 	if(href_list["dna_lock"])

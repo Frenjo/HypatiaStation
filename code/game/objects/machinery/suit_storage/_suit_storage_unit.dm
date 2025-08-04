@@ -93,13 +93,13 @@
 		dat += "<font color ='black'>A small dial with a \"�\" symbol embroidded on it. It's pointing towards a gauge that reads [(issuperUV ? "15nm" : "185nm")]</font>.<BR> <font color='blue'><A href='byond://?src=\ref[src];toggleUV=1'> Turn towards [(issuperUV ? "185nm" : "15nm")]</A><BR>"
 		dat += "<font color ='black'>A thick old-style button, with 2 grimy LED lights next to it. The [(safetieson ? "<font color='green'><B>GREEN</B></font>" : "<font color='red'><B>RED</B></font>")] LED is on.</font><BR><font color ='blue'><A href='byond://?src=\ref[src];togglesafeties=1'>Press button</a></font>"
 		dat += "<HR><BR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
-		//user << browse(dat, "window=ssu_m_panel;size=400x500")
+		//SHOW_BROWSER(user, dat, "window=ssu_m_panel;size=400x500")
 		//onclose(user, "ssu_m_panel")
 	else if(isUV) //The thing is running its cauterisation cycle. You have to wait.
 		dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 		dat += "<font color ='red'><B>Unit is cauterising contents with selected UV ray intensity. Please wait.</font></B><BR>"
 		//dat+= "<font colr='black'><B>Cycle end in: [cycletimeleft()] seconds. </font></B>"
-		//user << browse(dat, "window=ssu_cycling_panel;size=400x500")
+		//SHOW_BROWSER(user, dat, "window=ssu_cycling_panel;size=400x500")
 		//onclose(user, "ssu_cycling_panel")
 
 	else
@@ -127,16 +127,16 @@
 			dat += "Unit status: [(islocked ? "<font color ='red'><B>**LOCKED**</B></font><BR>" : "<font color ='green'><B>**UNLOCKED**</B></font><BR>")]"
 			dat += "<A href='byond://?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
 			dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
-			//user << browse(dat, "window=Suit Storage Unit;size=400x500")
+			//SHOW_BROWSER(user, dat, "window=Suit Storage Unit;size=400x500")
 			//onclose(user, "Suit Storage Unit")
 		else //Ohhhh shit it's dirty or broken! Let's inform the guy.
 			dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 			dat += "<font color='maroon'><B>Unit chamber is too contaminated to continue usage. Please call for a qualified individual to perform maintenance.</font></B><BR><BR>"
 			dat += "<HR><A href='byond://?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
-			//user << browse(dat, "window=suit_storage_unit;size=400x500")
+			//SHOW_BROWSER(user, dat, "window=suit_storage_unit;size=400x500")
 			//onclose(user, "suit_storage_unit")
 
-	user << browse(dat, "window=suit_storage_unit;size=400x500")
+	SHOW_BROWSER(user, dat, "window=suit_storage_unit;size=400x500")
 	onclose(user, "suit_storage_unit")
 
 /obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc

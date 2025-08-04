@@ -685,7 +685,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 	cancel_stealth()
 
-	U << browse(null, "window=spideros")
+	CLOSE_BROWSER(U, "window=spideros")
 	to_chat(U, SPAN_WARNING("Do or Die, <b>LET'S ROCK!!</b>"))
 
 /obj/item/clothing/suit/space/space_ninja/proc/remove_kamikaze(mob/living/carbon/U)
@@ -852,7 +852,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 /obj/effect/proc_holder/ai_return_control/Click()
 	var/mob/living/silicon/ai/A = loc
 	var/obj/item/clothing/suit/space/space_ninja/S = A.loc
-	A << browse(null, "window=hack spideros")//Close window
+	CLOSE_BROWSER(A, "window=hack spideros") // Close window
 	to_chat(A, "You have seized your hacking attempt. [S.affecting] has regained control.")
 	to_chat(S.affecting, "<b>UPDATE</b>: [A.real_name] has ceased hacking attempt. All systems clear.")
 	S.remove_AI_verbs()

@@ -27,7 +27,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.machine = null
-			user << browse(null, "window=laser_control")
+			CLOSE_BROWSER(user, "window=laser_control")
 			return
 	//var/t = "<TT><B>Laser status monitor</B><HR>"
 	var/t = "<TT><B>Laser Status Monitor</B><HR>"
@@ -38,7 +38,7 @@
 		t += "Output: [laser.active ? "<B>Online</B> <A href='byond://?src=\ref[laser];online=1'>Offline</A>" : "<A href='byond://?src=\ref[laser];online=1'>Online</A> <B>Offline</B> "]<BR>"
 	t += "<hr>"
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=laser_control;size=500x800")
+	SHOW_BROWSER(user, t, "window=laser_control;size=500x800")
 	user.machine = src
 */
 
@@ -47,7 +47,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.unset_machine()
-			//user << browse(null, "window=laser_control")
+			//CLOSE_BROWSER(user, "window=laser_control")
 			return
 
 	/*
@@ -59,7 +59,7 @@
 		t += "Output: [laser.active ? "<B>Online</B> <A href='byond://?src=\ref[laser];online=1'>Offline</A>" : "<A href='byond://?src=\ref[laser];online=1'>Online</A> <B>Offline</B> "]<BR>"
 	t += "<hr>"
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=laser_control")
+	SHOW_BROWSER(user, t, "window=laser_control")
 	user.machine = src
 	*/
 
@@ -76,7 +76,7 @@
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.machine = null
-			user << browse(null, "window=powcomp")
+			CLOSE_BROWSER(user, "window=powcomp")
 			return
 
 
@@ -96,7 +96,7 @@
 
 		t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A></TT>"
 
-	user << browse(t, "window=lascomp;size=420x700")
+	SHOW_BROWSER(user, t, "window=lascomp;size=420x700")
 	onclose(user, "lascomp")
 */
 
@@ -104,7 +104,7 @@
 	..()
 	// Commented this out to reflect NanoUI port. -Frenjo
 	/*if( href_list["close"] )
-		usr << browse(null, "window=laser_control")
+		CLOSE_BROWSER(usr, "window=laser_control")
 		usr.machine = null
 		return
 

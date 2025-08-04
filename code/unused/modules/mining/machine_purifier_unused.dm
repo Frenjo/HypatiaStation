@@ -33,7 +33,7 @@
 	dat += text("<br><br><A href='byond://?src=\ref[src];purify=[input]'>Purify</A>")
 
 	dat += text("<br><br>found: <font color='green'><b>[processed]</b></font>")
-	user << browse("[dat]", "window=purifier")
+	SHOW_BROWSER(user, dat, "window=purifier")
 
 /obj/machinery/mineral/purifier/Topic(href, href_list)
 	if(..())

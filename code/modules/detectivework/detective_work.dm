@@ -122,7 +122,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 			<tt>[scan_data]</tt>"}
 			if(scan_data && !scan_process)
 				dat += "<br><a href='byond://?src=\ref[src];operation=erase'>{Erase Data}</a>"
-	user << browse(dat, "window=scanner")
+	SHOW_BROWSER(user, dat, "window=scanner")
 	onclose(user, "scanner")
 
 /obj/machinery/computer/forensic_scanning/Topic(href, href_list)

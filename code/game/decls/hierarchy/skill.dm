@@ -165,8 +165,8 @@
 			HTML += "</tr>"
 	HTML += "</table>"
 
-	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=show_skills;size=600x800")
+	CLOSE_BROWSER(user, "window=preferences")
+	SHOW_BROWSER(user, HTML, "window=show_skills;size=600x800")
 
 /mob/living/carbon/human/verb/show_skills()
 	set category = PANEL_IC

@@ -40,7 +40,7 @@ CONTROLLER_DEF(pai)
 			global.PCticker.mode.update_rev_icons_removed(card.pai.mind)
 
 			candidates.Remove(candidate)
-			usr << browse(null, "window=findPai")
+			CLOSE_BROWSER(usr, "window=findPai")
 
 	if(href_list["new"])
 		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
@@ -85,7 +85,7 @@ CONTROLLER_DEF(pai)
 				for(var/obj/item/paicard/p in GLOBL.movable_atom_list)
 					if(p.looking_for_personality == 1)
 						p.alertUpdate()
-				usr << browse(null, "window=paiRecruit")
+				CLOSE_BROWSER(usr, "window=paiRecruit")
 				return
 		recruit_window(usr)
 
@@ -213,7 +213,7 @@ CONTROLLER_DEF(pai)
 	<body>
 	"}
 
-	M << browse(dat, "window=paiRecruit;size=580x580;")
+	SHOW_BROWSER(M, dat, "window=paiRecruit;size=580x580;")
 
 /datum/controller/pai/proc/find_pAI(obj/item/paicard/p, mob/user)
 	request_recruits()
@@ -329,7 +329,7 @@ CONTROLLER_DEF(pai)
 			</html>
 		"}
 
-	user << browse(dat, "window=findPai")
+	SHOW_BROWSER(user, dat, "window=findPai")
 
 /datum/controller/pai/proc/request_recruits()
 	for(var/mob/dead/ghost/O in GLOBL.player_list)

@@ -5,7 +5,7 @@
 		return
 	add_fingerprint(usr)
 	if(href_list["close"])
-		usr << browse(null, "window=airlock")
+		CLOSE_BROWSER(usr, "window=airlock")
 		if(usr.machine == src)
 			usr.unset_machine()
 			return

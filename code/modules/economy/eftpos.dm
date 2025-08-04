@@ -103,9 +103,9 @@
 			dat += "<a href='byond://?src=\ref[src];choice=change_code'>Change access code</a><br>"
 			dat += "<a href='byond://?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"
 			dat += "Scan card to reset access code <a href='byond://?src=\ref[src];choice=reset'>\[------\]</a>"
-		user << browse(dat, "window=eftpos")
+		SHOW_BROWSER(user, dat, "window=eftpos")
 	else
-		user << browse(null, "window=eftpos")
+		CLOSE_BROWSER(user, "window=eftpos")
 
 /obj/item/eftpos/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card))

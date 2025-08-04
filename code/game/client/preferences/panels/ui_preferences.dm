@@ -39,7 +39,7 @@
 /datum/preferences/proc/process_ui_preferences_panel(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("close")
-			user << browse(null, "window=uipreferences")
+			CLOSE_BROWSER(user, "window=uipreferences")
 			character_setup_panel(user)
 			return
 

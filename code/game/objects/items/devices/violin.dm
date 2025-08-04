@@ -285,12 +285,12 @@
 		else
 			dat += "<A href='byond://?src=\ref[src];help=2'>Show Help</A><BR>"
 	dat += "</BODY></HTML>"
-	user << browse(dat, "window=violin;size=700x300")
+	SHOW_BROWSER(user, dat, "window=violin;size=700x300")
 	onclose(user, "violin")
 
 /obj/item/violin/Topic(href, href_list)
 	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
-		usr << browse(null, "window=violin;size=700x300")
+		CLOSE_BROWSER(usr, "window=violin;size=700x300")
 		onclose(usr, "violin")
 		return
 

@@ -175,7 +175,7 @@
 		. += "<br>"
 	. += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
 	. += "</body></html>"
-	user << browse(., "window=exosuit_add_access")
+	SHOW_BROWSER(user, ., "window=exosuit_add_access")
 	onclose(user, "exosuit_add_access")
 
 /obj/mecha/proc/output_maintenance_dialog(obj/item/card/id/id_card, mob/user)
@@ -194,5 +194,5 @@
 						[state > 0 ? "<a href='byond://?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>" : null]
 						</body>
 						</html>"}
-	user << browse(., "window=exosuit_maint_console")
+	SHOW_BROWSER(user, ., "window=exosuit_maint_console")
 	onclose(user, "exosuit_maint_console")
