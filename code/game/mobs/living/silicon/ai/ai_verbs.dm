@@ -89,7 +89,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = src
 		if(AI.control_disabled)
-			usr << "Wireless control is disabled!"
+			to_chat(usr, SPAN_WARNING("Wireless control is disabled!"))
 			return
 
 	var/confirm = alert("Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")

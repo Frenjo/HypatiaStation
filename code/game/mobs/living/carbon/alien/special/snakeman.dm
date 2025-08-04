@@ -25,8 +25,8 @@
 
 	visible_message("[src] extends a probiscis and stabs it into [M]")
 
-	if (!do_mob(usr, M, 50))
-		usr << "\red The injection of the egg has been interrupted!"
+	if(!do_mob(usr, M, 50))
+		to_chat(usr, SPAN_WARNING("The injection of the egg has been interrupted!"))
 		return
 
 	if(M.client)

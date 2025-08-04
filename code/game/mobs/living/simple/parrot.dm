@@ -581,7 +581,7 @@
 		return -1
 
 	if(held_item)
-		src << "\red You are already holding the [held_item]"
+		to_chat(src, SPAN_WARNING("You are already holding \the [held_item]."))
 		return 1
 
 	for(var/obj/item/I in view(1,src))
@@ -597,7 +597,7 @@
 			visible_message("[src] grabs the [held_item]!", "\blue You grab the [held_item]!", "You hear the sounds of wings flapping furiously.")
 			return held_item
 
-	src << "\red There is nothing of interest to take."
+	to_chat(src, SPAN_WARNING("There is nothing of interest to take."))
 	return 0
 
 /mob/living/simple/parrot/proc/steal_from_mob()
@@ -609,7 +609,7 @@
 		return -1
 
 	if(held_item)
-		src << "\red You are already holding the [held_item]"
+		to_chat(src, SPAN_WARNING("You are already holding \the [held_item]."))
 		return 1
 
 	var/obj/item/stolen_item = null
@@ -628,7 +628,7 @@
 			visible_message("[src] grabs the [held_item] out of [C]'s hand!", "\blue You snag the [held_item] out of [C]'s hand!", "You hear the sounds of wings flapping furiously.")
 			return held_item
 
-	src << "\red There is nothing of interest to take."
+	to_chat(src, SPAN_WARNING("There is nothing of interest to take."))
 	return 0
 
 /mob/living/simple/parrot/verb/drop_held_item_player()
@@ -660,11 +660,11 @@
 			var/obj/item/grenade/G = held_item
 			G.forceMove(loc)
 			G.prime()
-			src << "You let go of the [held_item]!"
+			to_chat(src, SPAN_INFO("You let go of the [held_item]!"))
 			held_item = null
 			return 1
 
-	src << "You drop the [held_item]."
+	to_chat(src, SPAN_INFO("You drop the [held_item]."))
 
 	held_item.forceMove(loc)
 	held_item = null
@@ -685,7 +685,8 @@
 					forceMove(AM.loc)
 					icon_state = "parrot_sit"
 					return
-	src << "\red There is no perch nearby to sit on."
+
+	to_chat(src, SPAN_WARNING("There is no perch nearby to sit on."))
 	return
 
 /*

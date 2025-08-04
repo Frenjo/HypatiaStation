@@ -305,7 +305,7 @@ var/list/admin_verbs_mod = list(
 	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
 	verbs += /client/proc/show_verbs
 
-	src << "<span class='interface'>Most of your adminverbs have been hidden.</span>"
+	to_chat(src, SPAN("interface", "Most of your adminverbs have been hidden."))
 	feedback_add_details("admin_verb","HMV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -316,7 +316,7 @@ var/list/admin_verbs_mod = list(
 	remove_admin_verbs()
 	verbs += /client/proc/show_verbs
 
-	src << "<span class='interface'>Almost all of your adminverbs have been hidden.</span>"
+	to_chat(src, SPAN("interface", "Almost all of your adminverbs have been hidden."))
 	feedback_add_details("admin_verb","TAVVH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -327,7 +327,7 @@ var/list/admin_verbs_mod = list(
 	verbs -= /client/proc/show_verbs
 	add_admin_verbs()
 
-	src << "<span class='interface'>All of your adminverbs are now visible.</span>"
+	to_chat(src, SPAN("interface", "All of your adminverbs are now visible."))
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -487,7 +487,7 @@ var/list/admin_verbs_mod = list(
 	else	D = GLOBL.preferences_datums[warned_ckey]
 
 	if(!D)
-		src << "<font color='red'>Error: warn(): No such ckey found.</font>"
+		to_chat(src, SPAN_WARNING("Error: warn(): No such ckey found."))
 		return
 
 	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
@@ -619,7 +619,7 @@ var/list/admin_verbs_mod = list(
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()
-			src << "<span class='interface'>You are now a normal player.</span>"
+			to_chat(src, SPAN("interface", "You are now a normal player."))
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_log_hrefs()
@@ -629,10 +629,10 @@ var/list/admin_verbs_mod = list(
 	if(!holder)	return
 	if(CONFIG_GET(/decl/configuration_entry/log_hrefs))
 		CONFIG_SET(/decl/configuration_entry/log_hrefs, FALSE)
-		src << "<b>Stopped logging hrefs</b>"
+		to_chat(src, "<b>Stopped logging hrefs</b>")
 	else
 		CONFIG_SET(/decl/configuration_entry/log_hrefs, TRUE)
-		src << "<b>Started logging hrefs</b>"
+		to_chat(src, "<b>Started logging hrefs</b>")
 
 /client/proc/check_ai_laws()
 	set category = PANEL_ADMIN
@@ -758,11 +758,11 @@ var/list/admin_verbs_mod = list(
 	if(!holder)	return
 	if(CONFIG_GET(/decl/configuration_entry/cult_ghostwriter))
 		CONFIG_SET(/decl/configuration_entry/cult_ghostwriter, FALSE)
-		src << "<b>Disallowed ghost writers.</b>"
+		to_chat(src, "<b>Disallowed ghost writers.</b>")
 		message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
 	else
 		CONFIG_SET(/decl/configuration_entry/cult_ghostwriter, TRUE)
-		src << "<b>Enabled ghost writers.</b>"
+		to_chat(src, "<b>Enabled ghost writers.</b>")
 		message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 
 

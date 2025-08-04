@@ -115,7 +115,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 /client/proc/preload_vox()
 	var/list/vox_files = flist(VOX_PATH)
 	for(var/file in vox_files)
-	//	src << "Downloading [file]"
+		// to_chat(src, "Downloading [file].")
 		var/sound/S = sound("[VOX_PATH][file]")
 		src << browse_rsc(S)
 

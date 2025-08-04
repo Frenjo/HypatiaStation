@@ -12,14 +12,14 @@
 
 	if(istype(src.loc, /mob/living/simple/borer))
 		var/mob/living/simple/borer/B = src.loc
-		src << "You whisper silently, \"[message]\""
-		B.host << "The captive mind of [src] whispers, \"[message]\""
+		to_chat(src, "You whisper silently, \"[message]\"")
+		to_chat(B.host, "The captive mind of [src] whispers, \"[message]\"")
 
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-				M << "The captive mind of [src] whispers, \"[message]\""
+				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
 
 /mob/living/captive_brain/emote(message)
 	return
@@ -61,23 +61,23 @@
 			if(host.reagents.has_reagent("sugar"))
 				if(!docile)
 					if(controlling)
-						host << "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+						to_chat(host, SPAN_INFO("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
 					else
-						src << "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+						to_chat(src, SPAN_INFO("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
 					docile = 1
 			else
 				if(docile)
 					if(controlling)
-						host << "\blue You shake off your lethargy as the sugar leaves your host's blood."
+						to_chat(host, SPAN_INFO("You shake off your lethargy as the sugar leaves your host's blood."))
 					else
-						src << "\blue You shake off your lethargy as the sugar leaves your host's blood."
+						to_chat(src, SPAN_INFO("You shake off your lethargy as the sugar leaves your host's blood."))
 					docile = 0
 
 			if(chemicals < 250)
 				chemicals++
 			if(controlling)
 				if(docile)
-					host << "\blue You are feeling far too docile to continue controlling your host..."
+					to_chat(host, SPAN_INFO("You are feeling far too docile to continue controlling your host..."))
 					host.release_control()
 					return
 
@@ -122,17 +122,17 @@
 		return borer_speak(message)
 
 	if(!host)
-		src << "You have no host to speak to."
+		to_chat(src, SPAN_WARNING("You have no host to speak to."))
 		return //No host, no audible speech.
 
-	src << "You drop words into [host]'s mind: \"[message]\""
-	host << "Your own thoughts speak: \"[message]\""
+	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")
+	to_chat(host, "Your own thoughts speak: \"[message]\"")
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnewplayer(M))
 			continue
 		else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-			M << "[src.truename] whispers to [host], \"[message]\""
+			to_chat(M, "[truename] whispers to [host], \"[message]\"")
 
 
 /mob/living/simple/borer/Stat()
@@ -165,15 +165,15 @@
 	set desc = "Freeze the limbs of a potential host with supernatural fear."
 
 	if(world.time - used_dominate < 300)
-		src << "You cannot use that ability again so soon."
+		to_chat(src, SPAN_WARNING("You cannot use that ability again so soon."))
 		return
 
 	if(host)
-		src << "You cannot do that from within a host body."
+		to_chat(src, SPAN_WARNING("You cannot do that from within a host body."))
 		return
 
 	if(src.stat)
-		src << "You cannot do that in your current state."
+		to_chat(src, SPAN_WARNING("You cannot do that in your current state."))
 		return
 
 	var/list/choices = list()
@@ -182,7 +182,7 @@
 			choices += C
 
 	if(world.time - used_dominate < 300)
-		src << "You cannot use that ability again so soon."
+		to_chat(src, SPAN_WARNING("You cannot use that ability again so soon."))
 		return
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
@@ -191,11 +191,11 @@
 		return
 
 	if(M.has_brain_worms())
-		src << "You cannot infest someone who is already infested!"
+		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
 		return
 
-	src << "\red You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."
-	M << "\red You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."
+	to_chat(src, SPAN_WARNING("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
+	to_chat(M, SPAN_WARNING("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
 	M.Weaken(3)
 
 	used_dominate = world.time
@@ -246,25 +246,27 @@
 	set desc = "Push some chemicals into your host's bloodstream."
 
 	if(!host)
-		src << "You are not inside a host body."
+		to_chat(src, SPAN_WARNING("You are not inside a host body."))
 		return
 
 	if(stat)
-		src << "You cannot secrete chemicals in your current state."
+		to_chat(src, SPAN_WARNING("You cannot secrete chemicals in your current state."))
+		return
 
 	if(docile)
-		src << "\blue You are feeling far too docile to do that."
+		to_chat(src, SPAN_INFO("You are feeling far too docile to do that."))
 		return
 
 	if(chemicals < 50)
-		src << "You don't have enough chemicals!"
+		to_chat(src, SPAN_WARNING("You don't have enough chemicals!"))
+		return
 
 	var/chem = input("Select a chemical to secrete.", "Chemicals") in list("bicaridine","tramadol","hyperzine","alkysine")
 
 	if(chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return
 
-	src << "\red <B>You squirt a measure of [chem] from your reservoirs into [host]'s bloodstream.</B>"
+	to_chat(src, SPAN_DANGER("You squirt a measure of [chem] from your reservoirs into [host]'s bloodstream."))
 	host.reagents.add_reagent(chem, 15)
 	chemicals -= 50
 
@@ -275,35 +277,35 @@
 	set desc = "Slither out of your host."
 
 	if(!host)
-		src << "You are not inside a host body."
+		to_chat(src, SPAN_WARNING("You are not inside a host body."))
 		return
 
 	if(stat)
-		src << "You cannot leave your host in your current state."
+		to_chat(src, SPAN_WARNING("You cannot leave your host in your current state."))
 
 	if(docile)
-		src << "\blue You are feeling far too docile to do that."
+		to_chat(src, SPAN_INFO("You are feeling far too docile to do that."))
 		return
 
 	if(!host || !src)
 		return
 
-	src << "You begin disconnecting from [host]'s synapses and prodding at their internal ear canal."
+	to_chat(src, SPAN_INFO("You begin disconnecting from [host]'s synapses and prodding at their internal ear canal."))
 
 	if(!host.stat)
-		host << "An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."
+		to_chat(host, "An odd, uncomfortable pressure begins to build inside your skull, behind your ear...")
 
 	spawn(200)
 		if(!host || !src)
 			return
 
 		if(src.stat)
-			src << "You cannot infest a target in your current state."
+			to_chat(src, SPAN_WARNING("You cannot infest a target in your current state."))
 			return
 
-		src << "You wiggle out of [host]'s ear and plop to the ground."
+		to_chat(src, SPAN_INFO("You wiggle out of [host]'s ear and plop to the ground."))
 		if(!host.stat)
-			host << "Something slimy wiggles out of your ear and plops to the ground!"
+			to_chat(host, SPAN_WARNING("Something slimy wiggles out of your ear and plops to the ground!"))
 
 		detatch()
 
@@ -345,11 +347,11 @@
 	set desc = "Infest a suitable humanoid host."
 
 	if(host)
-		src << "You are already within a host."
+		to_chat(src, SPAN_WARNING("You are already within a host."))
 		return
 
 	if(stat)
-		src << "You cannot infest a target in your current state."
+		to_chat(src, SPAN_WARNING("You cannot infest a target in your current state."))
 		return
 
 	var/list/choices = list()
@@ -366,37 +368,37 @@
 		return
 
 	if(M.has_brain_worms())
-		src << "You cannot infest someone who is already infested!"
+		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
 		return
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.check_head_coverage())
-			src << "You cannot get through that host's protective gear."
+			to_chat(src, SPAN_WARNING("You cannot get through that host's protective gear."))
 			return
 
-	M << "Something slimy begins probing at the opening of your ear canal..."
-	src << "You slither up [M] and begin probing at their ear canal..."
+	to_chat(M, SPAN_WARNING("Something slimy begins probing at the opening of your ear canal..."))
+	to_chat(src, SPAN_INFO("You slither up [M] and begin probing at their ear canal..."))
 
 	if(!do_after(src, 50))
-		src << "As [M] moves away, you are dislodged and fall to the ground."
+		to_chat(src, SPAN_WARNING("As [M] moves away, you are dislodged and fall to the ground."))
 		return
 
 	if(!M || !src)
 		return
 
 	if(src.stat)
-		src << "You cannot infest a target in your current state."
+		to_chat(src, SPAN_WARNING("You cannot infest a target in your current state."))
 		return
 
 	if(M.stat == DEAD)
-		src << "That is not an appropriate target."
+		to_chat(src, SPAN_WARNING("That is not an appropriate target."))
 		return
 
 	if(M in view(1, src))
-		src << "You wiggle into [M]'s ear."
+		to_chat(src, SPAN_INFO("You wiggle into [M]'s ear."))
 		if(!M.stat)
-			M << "Something disgusting and slimy wiggles into your ear!"
+			to_chat(M, SPAN_WARNING("Something disgusting and slimy wiggles into your ear!"))
 
 		src.host = M
 		forceMove(M)
@@ -411,7 +413,7 @@
 
 		return
 	else
-		src << "They are no longer in range!"
+		to_chat(src, SPAN_WARNING("They are no longer in range!"))
 		return
 
 //Procs for grabbing players.

@@ -178,12 +178,12 @@
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
+	to_chat(M, SPAN_INFO("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		H << "\red Your nose begins to bleed..."
+		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()

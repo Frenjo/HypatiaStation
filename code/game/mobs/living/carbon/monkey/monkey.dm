@@ -174,7 +174,7 @@
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
 	if(!global.PCticker)
-		M << "You cannot attack people before the game has started."
+		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return
 
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
@@ -193,7 +193,7 @@
 							O.show_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>", 1, "\red You hear someone fall", 2)
 					return
 				else
-					M << "\red Not enough charge! "
+					to_chat(M, SPAN_WARNING("Not enough charge!"))
 					return
 
 	if (M.a_intent == "help")
@@ -284,7 +284,7 @@
 
 /mob/living/carbon/monkey/attack_slime(mob/living/carbon/slime/M as mob)
 	if(!global.PCticker)
-		M << "You cannot attack people before the game has started."
+		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return
 
 	if(M.Victim) return // can't attack while eating!

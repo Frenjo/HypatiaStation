@@ -3,7 +3,7 @@
 	set name = "Lockdown"
 
 	if(usr.stat == 2)
-		usr <<"You cannot initiate lockdown because you are dead!"
+		to_chat(usr, SPAN_WARNING("You cannot initiate lockdown because you are dead!"))
 		return
 
 	src << "<b>Initiating lockdowns has been disabled due to system stress.</b>"
@@ -36,7 +36,7 @@
 	set name = "Disable Lockdown"
 
 	if(usr.stat == 2)
-		usr <<"You cannot disable lockdown because you are dead!"
+		to_chat(usr, SPAN_WARNING("You cannot disable lockdown because you are dead!"))
 		return
 
 	to_world("\red Lockdown cancelled by [usr.name]!")

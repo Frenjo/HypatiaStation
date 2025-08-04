@@ -41,7 +41,7 @@
 	if(!ismonkey(M))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if(!global.PCticker)
-		M << "You cannot attack people before the game has started."
+		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return
 	..()
 
@@ -61,7 +61,7 @@
 
 /mob/living/carbon/alien/attack_slime(mob/living/carbon/slime/M)
 	if(!global.PCticker)
-		M << "You cannot attack people before the game has started."
+		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return
 
 	if(M.Victim) return // can't attack while eating!
@@ -86,7 +86,7 @@
 
 /mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M)
 	if(!global.PCticker)
-		M << "You cannot attack people before the game has started."
+		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return
 
 	..()
@@ -109,7 +109,7 @@
 					)
 					return
 				else
-					M << "\red Not enough charge! "
+					to_chat(M, SPAN_WARNING("Not enough charge!"))
 					return
 
 	switch(M.a_intent)
@@ -119,7 +119,7 @@
 			else
 				if (M.health >= -75.0)
 					if(M.is_mouth_covered())
-						M << "\blue <B>Remove that mask!</B>"
+						to_chat(M, SPAN_NOTICE("Remove [M]'s mask!"))
 						return
 					var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 					O.source = M

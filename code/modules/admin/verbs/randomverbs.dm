@@ -200,7 +200,7 @@
 	set desc = "Play the banhammer sound.  Banhammmerrr...."
 
 	if(!holder)
-		src << "Excuse me, I don't see your banhammer license..."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	world << sound("sound/voice/banhammer.ogg")
 
@@ -222,7 +222,7 @@ Ccomp's first proc.
 		any = TRUE					//if no ghosts show up, any will just be 0
 	if(!any)
 		if(notify)
-			src << "There doesn't appear to be any ghosts for you to select."
+			to_chat(src, SPAN_WARNING("There don't appear to be any ghosts for you to select."))
 		return
 
 	for(var/mob/M in mobs)
@@ -245,7 +245,7 @@ Ccomp's first proc.
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
 	if(!target)
-		src << "Hrm, appears you didn't select a ghost"		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
+		to_chat(src, SPAN_WARNING("Hrm, appears you didn't select a ghost.")) // Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
 
 	var/mob/dead/ghost/G = ghosts[target]
@@ -281,7 +281,7 @@ Ccomp's first proc.
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
 				g << "\red <B>The Administrator has disabled AntagHUD </B>"
 		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, FALSE)
-		src << "\red <B>AntagHUD usage has been disabled</B>"
+		to_chat(src, SPAN_DANGER("AntagHUD usage has been disabled."))
 		action = "disabled"
 	else
 		for(var/mob/dead/ghost/g in get_ghosts())
@@ -290,8 +290,7 @@ Ccomp's first proc.
 			g << "\blue <B>The Administrator has enabled AntagHUD </B>"	// Notify all observers they can now use AntagHUD
 		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, TRUE)
 		action = "enabled"
-		src << "\blue <B>AntagHUD usage has been enabled</B>"
-
+		to_chat(src, SPAN_DANGER("AntagHUD usage has been enabled."))
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
 	message_admins("Admin [key_name_admin(usr)] has [action] antagHUD usage for observers", 1)
@@ -308,19 +307,19 @@ Ccomp's first proc.
 	var/action=""
 	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 		for(var/mob/dead/ghost/g in get_ghosts())
-			g << "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>"
+			to_chat(g, SPAN_NOTICE("The administrator has lifted restrictions on joining the round if you use AntagHUD."))
 		action = "lifted restrictions"
 		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, FALSE)
-		src << "\blue <B>AntagHUD restrictions have been lifted</B>"
+		to_chat(src, SPAN_NOTICE("AntagHUD restrictions have been lifted."))
 	else
 		for(var/mob/dead/ghost/g in get_ghosts())
-			g << "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>"
-			g << "\red <B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>"
+			to_chat(g, SPAN_DANGER("The administrator has placed restrictions on joining the round if you use AntagHUD."))
+			to_chat(g, SPAN_DANGER("Your AntagHUD has been disabled, you may choose to re-enable it but restrictions will apply."))
 			g.antagHUD = 0
 			g.has_enabled_antagHUD = 0
 		action = "placed restrictions"
 		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, TRUE)
-		src << "\red <B>AntagHUD restrictions have been enabled</B>"
+		to_chat(src, SPAN_DANGER("AntagHUD restrictions have been enabled."))
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
@@ -603,7 +602,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	if(global.CTjobs)
 		for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
-			src << "[job.title]: [job.total_positions]"
+			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)

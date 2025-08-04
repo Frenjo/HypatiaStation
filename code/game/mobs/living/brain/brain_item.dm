@@ -34,7 +34,7 @@
 	brainmob.timeofhostdeath = H.timeofdeath
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
-	brainmob << "\blue You feel slightly disoriented. That's normal when you're just a brain."
+	to_chat(brainmob, SPAN_INFO("You feel slightly disoriented. That's normal when you're just a brain."))
 	return
 
 /obj/item/brain/get_examine_text()
@@ -58,7 +58,7 @@
 
 	if(ishuman(M) && M.are_eyes_covered())
 		// you can't stab someone in the eyes wearing a mask!
-		user << "\blue You're going to need to remove their head cover first."
+		to_chat(user, SPAN_INFO("You're going to need to remove their head cover first."))
 		return
 
 //since these people will be dead M != usr

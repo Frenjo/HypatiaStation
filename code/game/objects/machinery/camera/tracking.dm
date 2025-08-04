@@ -25,7 +25,7 @@
 	set name = "Show Camera List"
 
 	if(stat == DEAD)
-		src << "You can't list the cameras because you are dead!"
+		to_chat(src, SPAN_WARNING("You can't list the cameras because you are dead!"))
 		return
 
 	if(!camera || camera == "Cancel")
@@ -106,7 +106,7 @@
 	set desc = "Select who you would like to track."
 
 	if(stat == DEAD)
-		src << "You can't track with camera because you are dead!"
+		to_chat(src, SPAN_WARNING("You can't track with camera because you are dead!"))
 		return
 	if(!target_name)
 		cameraFollow = null

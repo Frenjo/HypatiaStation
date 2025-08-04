@@ -46,7 +46,7 @@
 		wrapped = null
 		return
 
-	src.loc << "\red You drop \the [wrapped]."
+	to_chat(loc, SPAN_WARNING("You drop \the [wrapped]."))
 	wrapped.forceMove(T)
 	wrapped = null
 	//update_icon()
@@ -94,12 +94,12 @@
 
 		//We can grab the item, finally.
 		if(grab)
-			user << "You collect \the [I]."
+			to_chat(user, SPAN_INFO("You collect \the [I]."))
 			I.forceMove(src)
 			wrapped = I
 			return
 		else
-			user << "\red Your gripper cannot hold \the [target]."
+			to_chat(user, SPAN_WARNING("Your gripper cannot hold \the [target]."))
 
 //TODO: Matter decompiler.
 /obj/item/matter_decompiler
@@ -175,9 +175,9 @@
 		grabbed_something = 1
 
 	if(grabbed_something)
-		user << "\blue You deploy your decompiler and clear out the contents of \the [T]."
+		to_chat(user, SPAN_INFO("You deploy your decompiler and clear out the contents of \the [T]."))
 	else
-		user << "\red Nothing on \the [T] is useful to you."
+		to_chat(user, SPAN_WARNING("Nothing on \the [T] is useful to you."))
 	return
 
 //PRETTIER TOOL LIST.

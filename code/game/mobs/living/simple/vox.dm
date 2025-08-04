@@ -56,10 +56,10 @@
 	if(quills<=0)
 		return
 
-	src << "\red You launch a razor-sharp quill at [target]!"
-	for(var/mob/O in oviewers())
-		if ((O.client && !( O.blinded )))
-			O << "\red [src] launches a razor-sharp quill at [target]!"
+	visible_message(
+		SPAN_WARNING("[src] launches a razor-sharp quill at [target]!"),
+		SPAN_WARNING("You launch a razor-sharp quill at [target]!")
+	)
 
 	var/obj/item/arrow/quill/Q = new(loc)
 	Q.fingerprintslast = src.ckey
@@ -67,7 +67,7 @@
 	quills--
 
 	spawn(100)
-		src << "\red You feel a fresh quill slide into place."
+		to_chat(src, SPAN_WARNING("You feel a fresh quill slide into place."))
 		quills++
 
 /mob/living/simple/vox/armalis/verb/message_mob()
@@ -89,7 +89,7 @@
 	var/mob/M = targets[target]
 
 	if(isghost(M) || M.stat == DEAD)
-		src << "Not even the armalis can speak to the dead."
+		to_chat(src, SPAN_WARNING("Not even the armalis can speak to the dead."))
 		return
 
 	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"

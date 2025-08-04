@@ -254,7 +254,7 @@
 		return -1
 
 	if(held_item)
-		src << "\red You are already holding \the [held_item]"
+		to_chat(src, SPAN_WARNING("You are already holding \the [held_item]."))
 		return 1
 
 	var/list/items = list()
@@ -271,10 +271,10 @@
 				selection.forceMove(src)
 				visible_message("\blue [src] scoops up \the [held_item]!", "\blue You grab \the [held_item]!", "You hear a skittering noise and a clink.")
 				return held_item
-		src << "\red \The [selection] is too far away."
+		to_chat(src, SPAN_WARNING("\The [selection] is too far away."))
 		return 0
 
-	src << "\red There is nothing of interest to take."
+	to_chat(src, SPAN_WARNING("There is nothing of interest to take."))
 	return 0
 
 /mob/living/simple/spiderbot/get_examine_text(mob/user)

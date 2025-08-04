@@ -266,10 +266,10 @@ GLOBAL_GLOBL_INIT(mouse_respawn_time, 5 MINUTES) // Amount of time that must pas
 		to_chat(usr, "No emergency response team is currently being sent.")
 		return
 /*	if(admin_emergency_team)
-		usr << "An emergency response team has already been sent."
+		to_chat(usr, "An emergency response team has already been sent.")
 		return */
 	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, "Security Officer"))
-		to_chat(usr, "<font color=red><b>You are jobbanned from the emergency reponse team!")
+		to_chat(usr, SPAN_DANGER("You are jobbanned from the emergency reponse team!"))
 		return
 
 	if(length(GLOBL.response_team_members) > 5)

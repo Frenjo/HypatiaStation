@@ -31,7 +31,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 				return
 
 	if(GLOBL.sent_syndicate_strike_team)
-		src << "Looks like someone beat you to it."
+		to_chat(src, SPAN_WARNING("Looks like someone beat you to it."))
 		return
 
 	GLOBL.sent_syndicate_strike_team = 1

@@ -45,7 +45,7 @@
 	canmove = FALSE
 	anchored = TRUE
 	var/lastnut = nutrition
-	//if(M.client) M << "\red You legs become paralyzed!"
+	//if(M.client) to_chat(M, "\red You legs become paralyzed!")
 	if(isslimeadult(src))
 		icon_state = "[colour] adult slime eat"
 	else
@@ -158,7 +158,7 @@
 /mob/living/carbon/slime/proc/Feedstop()
 	if(Victim)
 		if(Victim.client)
-			Victim << "[src] has let go of your head!"
+			to_chat(Victim, "\The [src] has let go of your head!")
 		Victim = null
 
 /mob/living/carbon/slime/proc/UpdateFeed(mob/M)

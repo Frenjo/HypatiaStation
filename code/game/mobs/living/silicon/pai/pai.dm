@@ -185,7 +185,7 @@
 	var/cameralist[0]
 
 	if(usr.stat == 2)
-		usr << "You can't change your camera network because you are dead!"
+		to_chat(usr, SPAN_WARNING("You can't change your camera network because you are dead!"))
 		return
 
 	for (var/obj/machinery/camera/C in Cameras)
@@ -196,7 +196,7 @@
 				cameralist[C.network] = C.network
 
 	network = input(usr, "Which network would you like to view?") as null|anything in cameralist
-	src << "\blue Switched to [network] camera network."
+	to_chat(src, SPAN_INFO("Switched to [network] camera network."))
 //End of code by Mord_Sith
 */
 

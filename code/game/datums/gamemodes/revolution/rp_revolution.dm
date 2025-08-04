@@ -94,7 +94,7 @@
 		// Tell them about people they might want to contact.
 		var/mob/living/carbon/human/M = get_nt_opposed()
 		if(M && !(M.mind in head_revolutionaries) && !(M in already_considered))
-			rev_mob << "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them."
+			to_chat(rev_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them.")
 			rev_mob.mind.store_memory("<b>Potential Collaborator</b>: [M.real_name]")
 
 ///////////////////////////////////////////////////
@@ -108,7 +108,7 @@
 	if((rev_mind in revolutionaries) || (rev_mind in head_revolutionaries))
 		return 0
 	revolutionaries += rev_mind
-	rev_mind.current << "\red <FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"
+	to_chat(rev_mind.current, SPAN_WARNING("<FONT size = 3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"))
 	rev_mind.special_role = "Revolutionary"
 	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
@@ -222,7 +222,7 @@
 				update_rev_icons_added(H.mind)
 				H.verbs += /mob/living/carbon/human/proc/RevConvert
 
-				H << "\red Congratulations, yer heads of revolution are all gone now, so yer earned yourself a promotion."
+				to_chat(H, SPAN_WARNING("Congratulations, yer heads of revolution are all gone now, so yer earned yourself a promotion."))
 				added_heads = 1
 				break
 
@@ -258,4 +258,4 @@
 			rev_obj.target = M.mind
 			rev_obj.explanation_text = "Assassinate, convert or capture [M.real_name], the [M.mind.assigned_role]."
 			rev_mind.objectives += rev_obj
-			rev_mind.current << "\red A new Head of Staff, [M.real_name], the [M.mind.assigned_role] has appeared. Your objectives have been updated."
+			to_chat(rev_mind.current, SPAN_WARNING("A new Head of Staff, [M.real_name], the [M.mind.assigned_role] has appeared. Your objectives have been updated."))

@@ -6,14 +6,14 @@
 	if(src.stat == DEAD || usr.stat == DEAD || src.client == null)
 		return
 	if(src == usr)
-		usr << "\red I feel stupider, suddenly."
+		to_chat(usr, SPAN_WARNING("I feel stupider, suddenly."))
 		return
 	var/obj/item/I
 	if(!usr.hand && usr.r_hand == null)
-		usr << "\red You don't have anything in your right hand to give to [src.name]"
+		to_chat(usr, SPAN_WARNING("You don't have anything in your right hand to give to [name]."))
 		return
 	if(usr.hand && usr.l_hand == null)
-		usr << "\red You don't have anything in your left hand to give to [src.name]"
+		to_chat(usr, SPAN_WARNING("You don't have anything in your left hand to give to [name]."))
 		return
 	if(usr.hand)
 		I = usr.l_hand
@@ -55,4 +55,4 @@
 			if("No")
 				src.visible_message("\red [usr.name] tried to hand [I.name] to [src.name] but [src.name] didn't want it.")
 	else
-		usr << "\red [src.name]'s hands are full."
+		to_chat(usr, SPAN_WARNING("[src.name]'s hands are full."))
