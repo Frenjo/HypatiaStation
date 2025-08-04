@@ -20,7 +20,7 @@
 			f_name = "<em>a</em> "
 		f_name += "[SPAN_DANGER("blood-stained")] <em>[name]</em>!"
 
-	. += "This is [html_icon(src)] [f_name]"
+	. += "This is [icon2html(src, user)] [f_name]"
 
 	if(desc)
 		. += desc

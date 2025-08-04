@@ -55,18 +55,18 @@
 		if(!previous_power_state)
 			previous_power_state = 1
 			icon_state = "cellold1"
-			visible_message(SPAN_INFO("[html_icon(src)] [src] suddenly comes to life!"))
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] suddenly comes to life!"))
 
 		//slowly grow a mob
 		current_ticks_spawning++
 		if(prob(5))
-			visible_message(SPAN_INFO("[html_icon(src)] [src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."))
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."))
 
 		//if we've finished growing...
 		if(current_ticks_spawning >= ticks_required_to_spawn)
 			current_ticks_spawning = 0
 			update_power_state(USE_POWER_IDLE)
-			visible_message(SPAN_INFO("[html_icon(src)] [src] pings!"))
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] pings!"))
 			icon_state = "cellold1"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
 			if(spawn_type)
@@ -85,7 +85,7 @@
 		if(previous_power_state)
 			previous_power_state = 0
 			icon_state = "cellold0"
-			visible_message(SPAN_INFO("[html_icon(src)] [src] suddenly shuts down."))
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] suddenly shuts down."))
 
 		//cloned mob slowly breaks down
 		if(current_ticks_spawning > 0)

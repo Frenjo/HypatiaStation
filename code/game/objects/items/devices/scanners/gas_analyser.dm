@@ -42,11 +42,11 @@
 	var/list/message = list()
 	if(isliving(user))
 		user.visible_message(
-			SPAN_NOTICE("[user] uses the analyser on \the [html_icon(target)] [target]."),
-			SPAN_NOTICE("You use the analyser on \the [html_icon(target)] [target]."),
+			SPAN_NOTICE("[user] uses the analyser on \the [icon2html(target, viewers(user))] [target]."),
+			SPAN_NOTICE("You use the analyser on \the [icon2html(target, user)] [target]."),
 			SPAN_INFO("You hear a click followed by gentle humming.")
 		)
-	message += SPAN_INFO_B("Results of analysis of \the [html_icon(target)] [target]:")
+	message += SPAN_INFO_B("Results of analysis of \the [icon2html(target, user)] [target]:")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		message += SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa")
 	else

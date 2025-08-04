@@ -70,9 +70,9 @@ var/const/max_assembly_amount = 300
 			compressed_matter -= 10
 			ejected = 1
 		if(ejected)
-			to_chat(usr, SPAN_INFO("[html_icon(src)] [src] ejects some compressed matter units."))
+			to_chat(usr, SPAN_INFO("[icon2html(src, usr)] [src] ejects some compressed matter units."))
 		else
-			to_chat(usr, SPAN_WARNING("[html_icon(src)] [src] contains no compressed matter units!"))
+			to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] [src] contains no compressed matter units!"))
 
 	if( href_list["activate"] )
 		//to_world("\blue New fuel rod assembly")
@@ -96,7 +96,7 @@ var/const/max_assembly_amount = 300
 		if(fail)
 			qdel(F)
 			compressed_matter = old_matter
-			to_chat(usr, SPAN_WARNING("[html_icon(src)] [src] flashes red: \"Out of matter.\""))
+			to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] [src] flashes red: \"Out of matter.\""))
 		else
 			F.forceMove(loc)//get_step(GET_TURF(src), src.dir)
 			F.percent_depleted = 0

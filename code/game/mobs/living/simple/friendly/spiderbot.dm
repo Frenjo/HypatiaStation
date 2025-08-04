@@ -277,7 +277,7 @@
 	src << "\red There is nothing of interest to take."
 	return 0
 
-/mob/living/simple/spiderbot/get_examine_text()
+/mob/living/simple/spiderbot/get_examine_text(mob/user)
 	. = ..()
 	if(isnotnull(held_item))
-		. += SPAN_INFO("It is carrying [html_icon(held_item)] <em>\a [held_item]</em>.")
+		. += SPAN_INFO("It is carrying [icon2html(held_item, user)] <em>\a [held_item]</em>.")

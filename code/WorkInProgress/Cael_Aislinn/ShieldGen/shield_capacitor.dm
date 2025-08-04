@@ -44,8 +44,8 @@
 	if(iswrench(tool))
 		anchored = !anchored
 		user.visible_message(
-			SPAN_NOTICE("[html_icon(src)] [user] [anchored ? "secures" : "unsecures"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
-			SPAN_NOTICE("[html_icon(src)] You [anchored ? "secure" : "unsecure"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
+			SPAN_NOTICE("[icon2html(src, viewers(user))] [user] [anchored ? "secures" : "unsecures"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
+			SPAN_NOTICE("[icon2html(src, user)] You [anchored ? "secure" : "unsecure"] \the [src]'s reinforcing bolts [anchored ? "to" : "from"] the floor."),
 			SPAN_INFO("You hear a ratchet.")
 		)
 		if(anchored)

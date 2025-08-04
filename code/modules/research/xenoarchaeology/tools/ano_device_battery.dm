@@ -100,9 +100,10 @@
 		cooldown -= 1
 		if(cooldown <= 0)
 			cooldown = 0
+			var/viewing = viewers(GET_TURF(src))
 			visible_message(
-				SPAN_INFO("[html_icon(src)] [src] chimes."),
-				SPAN_INFO("[html_icon(src)] You hear something chime.")
+				SPAN_INFO("[icon2html(src, viewing)] [src] chimes."),
+				SPAN_INFO("[icon2html(src, viewing)] You hear something chime.")
 			)
 	else if(activated)
 		if(inserted_battery && inserted_battery.battery_effect)
@@ -139,9 +140,10 @@
 	if(activated)
 		activated = 0
 		timing = 0
+		var/viewing = viewers(GET_TURF(src))
 		visible_message(
-			SPAN_INFO("[html_icon(src)] [src] buzzes."),
-			SPAN_INFO("[html_icon(src)] You hear something buzz.")
+			SPAN_INFO("[icon2html(src, viewing)] [src] buzzes."),
+			SPAN_INFO("[icon2html(src, viewing)] You hear something buzz.")
 		)
 
 		cooldown = archived_time / 2

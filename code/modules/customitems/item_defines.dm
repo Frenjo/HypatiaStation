@@ -131,7 +131,7 @@
 	icon_state = "victor_kaminsky_1"
 
 /obj/item/fluff/victor_kaminsky_1/attack_self(mob/user)
-	user.visible_message("[user] shows you: [html_icon(src)] [src.name].")
+	user.visible_message("[user] shows you: [icon2html(src, viewers(src))] [src.name].")
 	src.add_fingerprint(user)
 
 /obj/item/fluff/ana_issek_2 //suethecake: Ana Issek

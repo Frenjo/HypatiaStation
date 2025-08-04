@@ -52,9 +52,9 @@
 						scan_ticks = 0
 						var/turf/T = GET_TURF(src)
 						if(target_radio)
-							T.visible_message("[html_icon(src)] [src] [pick("chirps", "chirrups", "cheeps")] happily.")
+							T.visible_message("[icon2html(src, viewers(T))] [src] [pick("chirps", "chirrups", "cheeps")] happily.")
 						else
-							T.visible_message("[html_icon(src)] [src] [pick("chirps", "chirrups", "cheeps")] sadly.")
+							T.visible_message("[icon2html(src, viewers(T))] [src] [pick("chirps", "chirrups", "cheeps")] sadly.")
 		else
 			icon_state = "pinoff"
 

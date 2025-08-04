@@ -38,7 +38,7 @@
 		to_chat(user, SPAN_WARNING("There is nothing on the [src]."))
 
 /obj/machinery/bunsen_burner/proc/try_heating()
-	visible_message(SPAN_INFO("[html_icon(src)] [src] hisses."))
+	visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] hisses."))
 	if(held_container && heating)
 		heated = 1
 		held_container.reagents.handle_reactions()

@@ -177,7 +177,7 @@ var/list/forbidden_varedit_object_types = list(
 
 	else if(isicon(variable))
 		to_chat(usr, "Variable appears to be <b>ICON</b>.")
-		variable = "[html_icon(variable)]"
+		variable = "[icon2html(variable, usr)]"
 		default = "icon"
 
 	else if(isatom(variable) || isdatum(variable))
@@ -329,7 +329,7 @@ var/list/forbidden_varedit_object_types = list(
 
 			else if(isicon(var_value))
 				to_chat(usr, "Variable appears to be <b>ICON</b>.")
-				var_value = "[html_icon(var_value)]"
+				var_value = "[icon2html(var_value, usr)]"
 				class = "icon"
 
 			else if(isatom(var_value) || isdatum(var_value))
@@ -386,7 +386,7 @@ var/list/forbidden_varedit_object_types = list(
 
 		else if(isicon(var_value))
 			to_chat(usr, "Variable appears to be <b>ICON</b>.")
-			var_value = "[html_icon(var_value)]"
+			var_value = "[icon2html(var_value, usr)]"
 			default = "icon"
 
 		else if(isatom(var_value) || isdatum(var_value))

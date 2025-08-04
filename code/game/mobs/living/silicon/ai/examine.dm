@@ -1,7 +1,7 @@
-/mob/living/silicon/ai/get_examine_header()
+/mob/living/silicon/ai/get_examine_header(mob/user)
 	. = list()
 	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is [html_icon(src)] <em>[src]</em>, an <em>AI</em>!")
+	. += SPAN_INFO("This is [icon2html(src, user)] <em>[src]</em>, an <em>AI</em>!")
 	if(desc)
 		. += SPAN_INFO(desc)
 

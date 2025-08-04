@@ -182,7 +182,7 @@
 			if(href_list["send"])
 				sradio.send_signal("ACTIVATE")
 				for(var/mob/O in hearers(1, loc))
-					O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+					O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 
 			if(href_list["freq"])
 				var/new_frequency = (sradio.frequency + text2num(href_list["freq"]))

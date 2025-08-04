@@ -77,7 +77,7 @@
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
 		P.info += "<br>"
-		P.info += "[html_icon(scanned_object)] [results]"
+		P.info += "\icon[scanned_object] [results]"
 		P.stamped = list(/obj/item/stamp)
 		P.overlays = list("paper_stamped")
 

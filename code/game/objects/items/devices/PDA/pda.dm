@@ -708,7 +708,7 @@
 			playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 		for(var/mob/O in hearers(3, P.loc))
 			if(!P.silent)
-				O.show_message("[html_icon(P)] *[P.ttone]*")
+				O.show_message("[icon2html(P, O)] *[P.ttone]*")
 		//Search for holder of the PDA.
 		var/mob/living/L = null
 		if(P.loc && isliving(P.loc))
@@ -718,7 +718,7 @@
 			L = get(P, /mob/living/silicon)
 
 		if(L)
-			to_chat(L, "[html_icon(P)] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
+			to_chat(L, "[icon2html(P, L)] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
 			global.PCnanoui.update_user_uis(L, P) // Update the recieving user's PDA UI so that they can see the new message
 
 		global.PCnanoui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message

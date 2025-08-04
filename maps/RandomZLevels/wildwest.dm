@@ -158,8 +158,7 @@
 		return
 
 	if(ishuman(M) || ismonkey(M))
-		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the [html_icon(src)] [src]</font>")
+		visible_message(SPAN_WARNING("[M] triggers [icon2html(src, viewers(src))] \the [src]!"))
 		triggered = 1
 		call(src, triggerproc)(M)
 

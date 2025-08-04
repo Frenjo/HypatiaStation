@@ -22,7 +22,7 @@
 		return
 
 	if(ishuman(AM) || ismonkey(AM))
-		visible_message(SPAN_WARNING("[AM] triggers [html_icon(src)] \the [src]!"))
+		visible_message(SPAN_WARNING("[AM] triggers [icon2html(src, viewers(src))] \the [src]!"))
 		triggered = TRUE
 		call(src, triggerproc)(AM)
 

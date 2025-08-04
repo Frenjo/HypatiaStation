@@ -102,16 +102,16 @@
 
 	if(active)
 		user.visible_message(
-			SPAN_INFO("[html_icon(src)] [user] deactivates \the [src]."),
-			SPAN_INFO("[html_icon(src)] You deactivate \the [src]."),
+			SPAN_INFO("[icon2html(src, viewers(user))] [user] deactivates \the [src]."),
+			SPAN_INFO("[icon2html(src, user)] You deactivate \the [src]."),
 			SPAN_INFO("You hear heavy droning fade out.")
 		)
 		shields_down()
 	else
 		if(anchored)
 			user.visible_message(
-				SPAN_INFO("[html_icon(src)] [user] activates \the [src]."),
-				SPAN_INFO("[html_icon(src)] You activate \the [src]."),
+				SPAN_INFO("[icon2html(src, viewers(user))] [user] activates \the [src]."),
+				SPAN_INFO("[icon2html(src, user)] You activate \the [src]."),
 				SPAN_INFO("You hear heavy droning.")
 			)
 			shields_up()

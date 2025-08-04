@@ -83,14 +83,14 @@ log transactions
 
 	//display a message to the user
 	var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.", "PIN Code accepted! Emptying account balance.", "Jackpot!")
-	to_chat(user, SPAN_WARNING("[html_icon(src)] \The [src] beeps: \"[response]\""))
+	to_chat(user, SPAN_WARNING("[icon2html(src, user)] \The [src] beeps: \"[response]\""))
 	return TRUE
 
 /obj/machinery/atm/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
 		if(emagged)
 			//prevent inserting id into an emagged ATM
-			to_chat(user, SPAN_WARNING("[html_icon(src)] CARD READER ERROR. This system has been compromised!"))
+			to_chat(user, SPAN_WARNING("[icon2html(src, user)] CARD READER ERROR. This system has been compromised!"))
 			return
 
 		if(isnull(held_card))
@@ -126,7 +126,7 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user)
 	if(issilicon(user))
-		to_chat(user, SPAN_WARNING("[html_icon(src)] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."))
+		to_chat(user, SPAN_WARNING("[icon2html(src, user)] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."))
 		return
 	if(in_range(src, user))
 		//js replicated from obj/machinery/computer/card
@@ -233,7 +233,7 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, SPAN_INFO("[html_icon(src)] Funds transfer successful."))
+							to_chat(usr, SPAN_INFO("[icon2html(src, usr)] Funds transfer successful."))
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -246,10 +246,10 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							to_chat(usr, SPAN_WARNING("[html_icon(src)] Funds transfer failed."))
+							to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Funds transfer failed."))
 
 					else
-						to_chat(usr, SPAN_WARNING("[html_icon(src)] You don't have enough funds to do that!"))
+						to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] You don't have enough funds to do that!"))
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -286,11 +286,11 @@ log transactions
 									T.time = worldtime2text()
 									failed_account.transaction_log.Add(T)
 							else
-								to_chat(usr, SPAN_WARNING("[html_icon(src)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
+								to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 								previous_account_number = tried_account_num
 								playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 						else
-							to_chat(usr, SPAN_WARNING("[html_icon(src)] incorrect pin/account combination entered."))
+							to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] incorrect pin/account combination entered."))
 							number_incorrect_tries = 0
 					else
 						playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -306,7 +306,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 
-						to_chat(usr, SPAN_INFO("[html_icon(src)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
+						to_chat(usr, SPAN_INFO("[icon2html(src, usr)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					previous_account_number = tried_account_num
 			if("withdrawal")
@@ -332,7 +332,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, SPAN_WARNING("[html_icon(src)] You don't have enough funds to do that!"))
+						to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)
@@ -403,7 +403,7 @@ log transactions
 				if(isnull(held_card))
 					//this might happen if the user had the browser window open when somebody emagged it
 					if(emagged > 0)
-						to_chat(usr, SPAN_WARNING("[html_icon(src)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
+						to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
 					else
 						var/obj/item/I = usr.get_active_hand()
 						if(istype(I, /obj/item/card/id))
@@ -431,7 +431,7 @@ log transactions
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)
-					to_chat(human_user, SPAN_INFO("[html_icon(src)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
+					to_chat(human_user, SPAN_INFO("[icon2html(src, usr)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					//create a transaction log entry
 					var/datum/transaction/T = new /datum/transaction()

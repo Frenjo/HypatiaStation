@@ -1,6 +1,6 @@
 /obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))
-		O.show_message(SPAN_NOTICE("[html_icon(src)] [msg]"), 2)
+		O.show_message(SPAN_NOTICE("[icon2html(src, O)] [msg]"), 2)
 
 ///////////////ANTIBODY SCANNER///////////////
 

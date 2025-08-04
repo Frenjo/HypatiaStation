@@ -76,7 +76,7 @@
 	if(ishuman(AM))
 		if(!stat)
 			var/mob/M = AM
-			to_chat(M, SPAN_INFO("[html_icon(src)] Squeek!"))
+			to_chat(M, SPAN_INFO("[icon2html(src, M)] Squeek!"))
 			M << 'sound/effects/mousesqueek.ogg'
 	..()
 
