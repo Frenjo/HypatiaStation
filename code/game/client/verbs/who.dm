@@ -2,7 +2,7 @@
 	set category = PANEL_OOC
 	set name = "Who"
 
-	var/msg = "<b>Current Players:</b>\n"
+	var/msg = "<b>Current Players:</b><br>"
 
 	var/list/lines = list()
 
@@ -36,7 +36,7 @@
 				lines.Add(C.key)
 
 	for(var/line in sortList(lines))
-		msg += "[line]\n"
+		msg += "[line]<br>"
 
 	msg += "<b>Total Players: [length(lines)]</b>"
 	to_chat(src, msg)
@@ -66,7 +66,7 @@
 
 				if(C.is_afk())
 					msg += " (AFK)"
-				msg += "\n"
+				msg += "<br>"
 
 				num_admins_online++
 			else
@@ -81,17 +81,17 @@
 
 				if(C.is_afk())
 					modmsg += " (AFK)"
-				modmsg += "\n"
+				modmsg += "<br>"
 				num_mods_online++
 	else
 		for_no_type_check(var/client/C, GLOBL.admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
 				if(isnull(C.holder.fakekey))
-					msg += "\t[C] is a [C.holder.rank]\n"
+					msg += "\t[C] is a [C.holder.rank]<br>"
 					num_admins_online++
 			else
-				modmsg += "\t[C] is a [C.holder.rank]\n"
+				modmsg += "\t[C] is a [C.holder.rank]<br>"
 				num_mods_online++
 
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg + "\n<b> Current Moderators([num_mods_online]):</b>\n" + modmsg
+	msg = "<b>Current Admins ([num_admins_online]):</b><br>" + msg + "<br><b> Current Moderators([num_mods_online]):</b><br>" + modmsg
 	to_chat(src, msg)

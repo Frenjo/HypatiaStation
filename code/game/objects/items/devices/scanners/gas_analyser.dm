@@ -60,4 +60,4 @@
 	else
 		message += SPAN_INFO("\The [target] is empty!")
 
-	to_chat(user, jointext(message, "\n"))
+	to_chat(user, jointext(message, "<br>"))

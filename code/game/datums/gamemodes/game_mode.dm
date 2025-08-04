@@ -83,7 +83,7 @@ Implants;
 
 	var/list/messages = get_announce_content()
 	if(isnotnull(messages))
-		to_world(jointext(messages, "\n"))
+		to_world(jointext(messages, "<br>"))
 	else
 		to_world("<B>Notice</B>: [src] did not define get_announce_content()")
 
@@ -431,7 +431,8 @@ Implants;
 //Reports player logouts//
 //////////////////////////
 /proc/display_roundstart_logout_report()
-	var/msg = "\blue <b>Roundstart logout report\n\n"
+	var/msg = SPAN_INFO_B("Roundstart logout report")
+	msg += "<br><br>"
 	for(var/mob/living/L in GLOBL.mob_list)
 		if(isnotnull(L.ckey))
 			var/found = 0
@@ -440,22 +441,21 @@ Implants;
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
-
+				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)<br>"
 
 		if(isnotnull(L.ckey) && isnotnull(L.client))
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)<br>"
 				continue //AFK client
 			if(L.stat)
 				if(L.suiciding)	//Suicider
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
+					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='red'><b>Suicide</b></font>)<br>"
 					continue //Disconnected client
 				if(L.stat == UNCONSCIOUS)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)<br>"
 					continue //Unconscious
 				if(L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
+					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)<br>"
 					continue //Dead
 
 			continue //Happy connected client
@@ -463,17 +463,17 @@ Implants;
 			if(isnotnull(D.mind) && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)<br>"
 						continue //Disconnected client
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>This shouldn't appear.</b></font>)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>This shouldn't appear.</b></font>)<br>"
 						continue //Lolwhat
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)<br>"
 						continue //Ghosted while alive
 
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
