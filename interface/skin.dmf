@@ -703,7 +703,7 @@ window "outputwindow"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
 		button-type = pushbox
 	elem "output"
-		type = OUTPUT
+		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
