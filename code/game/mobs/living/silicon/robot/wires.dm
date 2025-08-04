@@ -40,7 +40,7 @@
 	switch(wireIndex)
 		if(BORG_WIRE_LAWCHECK) //Cut the law wire, and the borg will no longer receive law updates from its AI
 			if (src.lawupdate == 1)
-				src << "LawSync protocol engaged."
+				to_chat(src, "LawSync protocol engaged.")
 				src.show_laws()
 		if (BORG_WIRE_AI_CONTROL) //Cut the AI wire to reset AI control
 			if (src.connected_ai)
@@ -82,8 +82,10 @@
 		if (BORG_WIRE_CAMERA)
 			if(isnotnull(src.camera) && src.camera.status && !scrambledcodes)
 				src.camera.deactivate(usr, 0) // Kick anyone watching the Cyborg's camera, doesn't display you disconnecting the camera.
-				usr << "[src]'s camera lens focuses loudly."
-				src << "Your camera lens focuses loudly."
+				visible_message(
+					SPAN_INFO("[src]'s camera lens focuses loudly."),
+					SPAN_INFO("Your camera lens focuses loudly.")
+				)
 
 	src.interact(usr)
 

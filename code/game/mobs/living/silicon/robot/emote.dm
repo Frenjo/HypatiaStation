@@ -206,9 +206,9 @@
 				src << "You are not security."
 
 		if("help")
-			src << "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping, \nbuzz, law, halt"
+			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping,<br>buzz, law, halt")
 		else
-			src << "\blue Unusable emote '[act]'. Say *help for a list."
+			to_chat(src, SPAN_INFO("Unusable emote '[act]'. Say *help for a list."))
 
 	if((message && src.stat == CONSCIOUS))
 		if (m_type & 1)

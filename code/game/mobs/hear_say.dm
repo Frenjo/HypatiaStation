@@ -41,9 +41,9 @@
 		if(speaker == src)
 			to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 		else
-			src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
+			to_chat(src, "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
 	else
-		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verbage], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
+		to_chat(src, "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verbage], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>")
 
 
 /mob/proc/hear_radio(message, verbage = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = 0, vname = "")
@@ -108,9 +108,9 @@
 		if(prob(20))
 			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 	else if(track)
-		src << "[part_a][track][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>"
+		to_chat(src, "[part_a][track][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>")
 	else
-		src << "[part_a][speaker_name][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>"
+		to_chat(src, "[part_a][speaker_name][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>")
 
 /mob/proc/hear_sleep(message)
 	var/heard = ""

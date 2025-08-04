@@ -110,9 +110,9 @@
 			message = "<B>[src]</B> collapses!"
 			m_type = 2
 		if("help")
-			src << "burp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,\nscretch, shake, sign-#, sulk, sway, tail, twitch, whimper"
+			to_chat(src, "burp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,<br>scretch, shake, sign-#, sulk, sway, tail, twitch, whimper")
 		else
-			src << "Invalid Emote: [act]"
+			to_chat(src, SPAN_INFO("Unusable emote '[act]'. Say *help for a list."))
 	if(message && src.stat == CONSCIOUS)
 		log_emote("[name]/[key] : [message]")
 		if(m_type & 1)

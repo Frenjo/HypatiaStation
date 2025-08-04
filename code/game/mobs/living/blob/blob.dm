@@ -56,7 +56,7 @@
 
 
 /mob/living/blob/blob_act()
-	src << "The blob attempts to reabsorb you."
+	to_chat(src, "The blob attempts to reabsorb you.")
 	adjustToxLoss(20)
 	return
 

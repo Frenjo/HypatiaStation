@@ -1010,7 +1010,7 @@
 /*	//The fucking FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
 	if(MUTATION_FAT in mutations)
 		if(overeatduration < 100)
-			src << "\blue You feel fit again!"
+			to_chat(src, SPAN_INFO("You feel fit again!"))
 			mutations.Remove(MUTATION_FAT)
 			update_mutantrace(0)
 			update_mutations(0)
@@ -1018,7 +1018,7 @@
 			update_inv_wear_suit()
 	else
 		if(overeatduration > 500)
-			src << "\red You suddenly feel blubbery!"
+			to_chat(src, SPAN_WARNING("You suddenly feel blubbery!"))
 			mutations.Add(MUTATION_FAT)
 			update_mutantrace(0)
 			update_mutations(0)

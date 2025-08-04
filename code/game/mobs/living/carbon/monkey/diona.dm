@@ -54,8 +54,8 @@
 	//Let people pick the little buggers up.
 	if(M.a_intent == "help")
 		if(M.species && istype(M.species, /datum/species/diona))
-			M << "You feel your being twine with that of [src] as it merges with your biomass."
-			src << "You feel your being twine with that of [M] as you merge with its biomass."
+			to_chat(M, SPAN_INFO("You feel your being twine with that of [src] as it merges with your biomass."))
+			to_chat(src, SPAN_INFO("You feel your being twine with that of [M] as you merge with its biomass."))
 			src.verbs += /mob/living/carbon/monkey/diona/proc/split
 			src.verbs -= /mob/living/carbon/monkey/diona/proc/merge
 			forceMove(M)
@@ -64,8 +64,8 @@
 			forceMove(D)
 			D.name = loc.name
 			D.attack_hand(M)
-			M << "You scoop up [src]."
-			src << "[M] scoops you up."
+			to_chat(M, SPAN_INFO("You scoop up \the [src]."))
+			to_chat(src, SPAN_INFO("[M] scoops you up."))
 		return
 
 	..()
@@ -105,8 +105,8 @@
 		return
 
 	if(ishuman(M))
-		M << "You feel your being twine with that of [src] as it merges with your biomass."
-		src << "You feel your being twine with that of [M] as you merge with its biomass."
+		to_chat(M, SPAN_INFO("You feel your being twine with that of [src] as it merges with your biomass."))
+		to_chat(src, SPAN_INFO("You feel your being twine with that of [M] as you merge with its biomass."))
 		forceMove(M)
 		src.verbs += /mob/living/carbon/monkey/diona/proc/split
 		src.verbs -= /mob/living/carbon/monkey/diona/proc/merge
@@ -122,8 +122,8 @@
 		src.verbs -= /mob/living/carbon/monkey/diona/proc/split
 		return
 
-	src.loc << "You feel a pang of loss as [src] splits away from your biomass."
-	src << "You wiggle out of the depths of [src.loc]'s biomass and plop to the ground."
+	to_chat(loc, SPAN_INFO("You feel a pang of loss as \the [src] splits away from your biomass."))
+	to_chat(src, SPAN_INFO("You wiggle out of the depths of [loc]'s biomass and plop to the ground."))
 	forceMove(GET_TURF(src))
 	src.verbs -= /mob/living/carbon/monkey/diona/proc/split
 	src.verbs += /mob/living/carbon/monkey/diona/proc/merge
@@ -138,11 +138,11 @@
 		return 0
 
 	if(length(donors) < 5)
-		src << "You are not yet ready for your growth..."
+		to_chat(src, SPAN_WARNING("You are not yet ready for your growth..."))
 		return
 
 	if(nutrition < 400)
-		src << "You have not yet consumed enough to grow..."
+		to_chat(src, SPAN_WARNING("You have not yet consumed enough to grow..."))
 		return
 
 	src.split()
@@ -183,11 +183,11 @@
 		return
 
 	if(HAS_SPECIES_FLAGS(M.species, SPECIES_FLAG_NO_BLOOD))
-		src << "\red That donor has no blood to take."
+		to_chat(src, SPAN_WARNING("That donor has no blood to take."))
 		return
 
 	if(donors.Find(M.real_name))
-		src << "\red That donor offers you nothing new."
+		to_chat(src, SPAN_WARNING("That donor offers you nothing new."))
 		return
 
 	src.visible_message("\red [src] flicks out a feeler and neatly steals a sample of [M]'s blood.","\red You flick out a feeler and neatly steal a sample of [M]'s blood.")

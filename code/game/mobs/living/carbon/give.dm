@@ -27,16 +27,16 @@
 				if(!I)
 					return
 				if(!Adjacent(usr))
-					usr << "\red You need to stay in reaching distance while giving an object."
-					src << "\red [usr.name] moved too far away."
+					to_chat(usr, SPAN_WARNING("You need to stay in reaching distance while giving an object."))
+					to_chat(src, SPAN_WARNING("[usr.name] moved too far away."))
 					return
 				if((usr.hand && usr.l_hand != I) || (!usr.hand && usr.r_hand != I))
-					usr << "\red You need to keep the item in your active hand."
-					src << "\red [usr.name] seem to have given up on giving \the [I.name] to you."
+					to_chat(usr, SPAN_WARNING("You need to keep the item in your active hand."))
+					to_chat(src, SPAN_WARNING("[usr.name] seems to have given up on giving \the [I] to you."))
 					return
 				if(src.r_hand != null && src.l_hand != null)
-					src << "\red Your hands are full."
-					usr << "\red Their hands are full."
+					to_chat(usr, SPAN_WARNING("Their hands are full."))
+					to_chat(src, SPAN_WARNING("Your hands are full."))
 					return
 				else
 					usr.drop_item()

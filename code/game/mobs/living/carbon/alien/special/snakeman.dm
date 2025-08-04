@@ -20,7 +20,7 @@
 		return
 
 	if(!M.client)
-		src << "This being is missing a brain."
+		to_chat(src, SPAN_WARNING("This being is missing a brain."))
 		return
 
 	visible_message("[src] extends a probiscis and stabs it into [M]")
@@ -37,7 +37,7 @@
 		M.update_body()
 		M.death()
 	else
-		src << "This being is missing a brain."
+		to_chat(src, SPAN_WARNING("This being is missing a brain."))
 
 	return
 

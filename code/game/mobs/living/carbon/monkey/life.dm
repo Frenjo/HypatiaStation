@@ -172,7 +172,7 @@
 /mob/living/carbon/monkey/proc/handle_disabilities()
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 10))
-			src << "\red You have a seizure!"
+			to_chat(src, SPAN_WARNING("You have a seizure!"))
 			Paralyse(10)
 	if (disabilities & COUGHING)
 		if ((prob(5) && paralysis <= 1))
@@ -393,7 +393,7 @@
 
 	if(breath.temperature > (T0C+66)) // Hot air hurts :(
 		if(prob(20))
-			src << "\red You feel a searing heat in your lungs!"
+			to_chat(src, SPAN_WARNING("You feel a searing heat in your lungs!"))
 		fire_alert = max(fire_alert, 2)
 	else
 		fire_alert = 0

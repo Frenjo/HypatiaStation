@@ -205,7 +205,7 @@
 					M = M.loc
 					count++
 					if(count >= 6)
-						src << "You are not being carried by anyone!"
+						to_chat(src, SPAN_WARNING("You are not being carried by anyone!"))
 						return 0
 				spawn CheckDNA(M, src)
 

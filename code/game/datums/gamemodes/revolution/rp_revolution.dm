@@ -172,29 +172,29 @@
 		if(!stat && P.client && P.mind && !P.mind.special_role)
 			Possible += P
 	if(!length(Possible))
-		src << "\red There doesn't appear to be anyone available for you to convert here."
+		to_chat(src, SPAN_WARNING("There doesn't appear to be anyone available for you to convert here."))
 		return
 	var/mob/living/carbon/human/M = input("Select a person to convert", "Viva la revolution!", null) as mob in Possible
 	if(((src.mind in global.PCticker.mode:head_revolutionaries) || (src.mind in global.PCticker.mode:revolutionaries)))
 		if((M.mind in global.PCticker.mode:head_revolutionaries) || (M.mind in global.PCticker.mode:revolutionaries))
-			src << "\red <b>[M] is already be a revolutionary!</b>"
+			to_chat(src, SPAN_DANGER("[M] is already be a revolutionary!"))
 		else if(!global.PCticker.mode:is_convertible(M))
-			src << "\red <b>[M] is implanted with a loyalty implant - Remove it first!</b>"
+			to_chat(src, SPAN_DANGER("[M] is implanted with a loyalty implant - Remove it first!"))
 		else
 			if(world.time < M.mind.rev_cooldown)
-				src << "\red Wait five seconds before reconversion attempt."
+				to_chat(src, SPAN_WARNING("Wait five seconds before reconversion attempt."))
 				return
-			src << "\red Attempting to convert [M]..."
+			to_chat(src, SPAN_WARNING("Attempting to convert [M]..."))
 			log_admin("[src]([src.ckey]) attempted to convert [M].")
 			message_admins("\red [src]([src.ckey]) attempted to convert [M].")
 			var/choice = alert(M,"Asked by [src]: Do you want to join the revolution?","Align Thyself with the Revolution!","No!","Yes!")
 			if(choice == "Yes!")
 				global.PCticker.mode:add_revolutionary(M.mind)
-				M << "\blue You join the revolution!"
-				src << "\blue <b>[M] joins the revolution!</b>"
+				to_chat(src, SPAN_INFO_B("[M] joins the revolution!"))
+				to_chat(M, SPAN_INFO("You join the revolution!"))
 			else if(choice == "No!")
-				M << "\red You reject this traitorous cause!"
-				src << "\red <b>[M] does not support the revolution!</b>"
+				to_chat(src, SPAN_DANGER("[M] does not support the revolution!"))
+				to_chat(M, SPAN_WARNING("You reject the traitorous cause!"))
 			M.mind.rev_cooldown = world.time + 50
 
 /datum/game_mode/revolution/rp_revolution/process()

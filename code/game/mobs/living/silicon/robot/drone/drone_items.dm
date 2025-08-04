@@ -183,7 +183,7 @@
 //PRETTIER TOOL LIST.
 /mob/living/silicon/robot/drone/installed_modules()
 	if(weapon_lock)
-		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
+		to_chat(src, SPAN_WARNING("Weapon lock active, unable to use modules! Count: [weaponlock_time]."))
 		return
 
 	if(istype(model, /obj/item/robot_model/default))
