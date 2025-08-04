@@ -24,7 +24,7 @@
 		return
 
 	if(!(connected))
-		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
+		visible_message(SPAN_WARNING("Cannot locate mass driver connector. Cancelling firing sequence!"))
 		return
 
 	FOR_MACHINES_TYPED(pod_door, /obj/machinery/door/poddoor)

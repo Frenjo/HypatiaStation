@@ -9,9 +9,9 @@
 	var/server_location = CONFIG_GET(/decl/configuration_entry/server)
 	for_no_type_check(var/client/C, GLOBL.clients)
 		if(isnotnull(server_location))
-			C << link("byond://[server_location]")
+			OPEN_LINK(C, "byond://[server_location]")
 		else
-			C << link("byond://[world.address]:[world.port]")
+			OPEN_LINK(C, "byond://[world.address]:[world.port]")
 
 	. = ..(reason)
 
@@ -27,7 +27,7 @@
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
-	F << the_mode
+	TO_FILE(F, the_mode)
 
 // MOTD loading.
 /hook/startup/proc/load_motd()

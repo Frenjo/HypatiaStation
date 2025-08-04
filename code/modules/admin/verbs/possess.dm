@@ -4,7 +4,7 @@
 
 	if(istype(O, /obj/singularity))
 		if(CONFIG_GET(/decl/configuration_entry/forbid_singulo_possession))
-			usr << "It is forbidden to possess singularities."
+			to_chat(usr, SPAN_WARNING("It is forbidden to possess singularities."))
 			return
 
 	var/turf/T = GET_TURF(O)

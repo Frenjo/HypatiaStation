@@ -31,7 +31,7 @@
 
 		playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 		visible_message("\red [src] has grabbed [target]!")
-		target << "\red <b>You feel something suddenly grab you around the neck from behind!</b> Everything goes black..."
+		to_chat(target, SPAN_DANGER("You feel something suddenly grab you around the neck from behind!") + SPAN_WARNING(" Everything goes black..."))
 
 		G.state = 3
 		G.killing = 1
@@ -74,8 +74,8 @@
 	//if we are sent into forced hibernation mode, allow our victim to escape
 	if(hibernate && G && G.killing == 1)
 		if(G)
-			G.affecting << "\red You suddenly feel the grip around your neck being loosened!"
-			visible_message("\red [src] suddenly loosens it's grip!")
+			to_chat(G.affecting, SPAN_WARNING("You suddenly feel the grip around your neck being loosened!"))
+			visible_message(SPAN_WARNING("[src] suddenly loosens its grip!"))
 			G.killing = 0
 			G.state = 1
 		return
@@ -84,8 +84,8 @@
 	if(allow_escape)
 		allow_escape = 0
 		if(G)
-			G.affecting << "\red You suddenly feel the grip around your neck being loosened!"
-			visible_message("\red [src] suddenly loosens it's grip!")
+			to_chat(G.affecting, SPAN_WARNING("You suddenly feel the grip around your neck being loosened!"))
+			visible_message(SPAN_WARNING("[src] suddenly loosens its grip!"))
 			G.killing = 0
 			G.state = 1
 			if(!observed)
@@ -239,8 +239,8 @@
 	else if(G)
 		//we can't move while observed, so we can't effectively strangle any more
 		//our grip is still rock solid, but the victim has a chance to escape
-		G.affecting << "\red You suddenly feel the grip around your neck being loosened!"
-		visible_message("\red [src] suddenly loosens it's grip!")
+		to_chat(G.affecting, SPAN_WARNING("You suddenly feel the grip around your neck being loosened!"))
+		visible_message(SPAN_WARNING("[src] suddenly loosens its grip!"))
 		G.state = 1
 		G.killing = 0
 

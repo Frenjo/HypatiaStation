@@ -29,5 +29,5 @@
 	if(text)
 		var/F = file("broken_icons.txt")
 		fdel(F)
-		F << text
+		TO_FILE(F, text)
 		to_world("Completeled successfully and written to [F].")

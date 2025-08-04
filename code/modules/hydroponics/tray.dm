@@ -651,7 +651,7 @@
 	else if(istype(O, /obj/item/seeds))
 		if(!planted)
 			user.u_equip(O)
-			user << "You plant the [O.name]"
+			to_chat(user, SPAN_INFO("You plant \the [O]."))
 			dead = 0
 			myseed = O
 			planted = 1

@@ -116,7 +116,7 @@
 			)
 			shields_up()
 		else
-			user << "The device must first be secured to the floor."
+			to_chat(user, SPAN_WARNING("The device must first be secured to the floor."))
 	return
 
 /obj/machinery/shieldgen/attack_emag(obj/item/card/emag/emag, mob/user, uses)
@@ -151,32 +151,32 @@
 /obj/machinery/shieldgen/attackby(obj/item/W, mob/user)
 	if(iscable(W) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
-		user << "\blue You begin to replace the wires."
+		to_chat(user, SPAN_INFO("You begin to replace the wires..."))
 		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS))
 			if(!src || !coil) return
 			coil.use(1)
 			health = max_health
 			malfunction = 0
-			user << "\blue You repair the [src]!"
+			to_chat(user, SPAN_INFO("You repair \the [src]!"))
 			update_icon()
 
 	else if(iswrench(W))
 		if(locked)
-			user << "The bolts are covered, unlocking this would retract the covers."
+			to_chat(user, SPAN_WARNING("The bolts are covered, unlocking this would retract the covers."))
 			return
 		if(anchored)
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You unsecure the [src] from the floor!"
+			to_chat(user, SPAN_INFO("You unsecure \the [src] from the floor!"))
 			if(active)
-				user << "\blue The [src] shuts off!"
+				to_chat(user, SPAN_WARNING("\The [src] shuts off!"))
 				shields_down()
 			anchored = FALSE
 		else
 			if(isspace(GET_TURF(src)))
 				return //No wrenching these in space!
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You secure the [src] to the floor!"
+			to_chat(user, SPAN_INFO("You secure \the [src] to the floor!"))
 			anchored = TRUE
 
 	else

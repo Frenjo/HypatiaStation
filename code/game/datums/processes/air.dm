@@ -110,13 +110,13 @@ PROCESS_DEF(air)
 		S.update_air_properties()
 		CHECK_TICK
 
-	world << {"<span class='info'>
+	to_world({"<span class='info'>
 ↪ Total Simulated Turfs: [simulated_turf_count]
 ↪ Total Zones: [length(zones)]
 ↪ Total Edges: [length(edges)]
 ↪ Total Active Edges: [length(active_edges) ? SPAN_DANGER(length(active_edges)) : "None"]
 ↪ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
-</span>"}
+</span>"})
 
 /datum/process/air/do_work()
 	if(processing_killed)

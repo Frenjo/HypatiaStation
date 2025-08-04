@@ -225,7 +225,7 @@
 	if( href_list["fuel_usage"] )
 		var/new_usage = text2num(input("Enter new fuel usage (0.01% - 100%)", "Modifying fuel usage", fuel_usage * 100))
 		if(!new_usage)
-			usr << "\red That's not a valid number."
+			to_chat(usr, SPAN_WARNING("That's not a valid number."))
 			return
 		new_usage = max(new_usage, 0.01)
 		new_usage = min(new_usage, 100)

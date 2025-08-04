@@ -12,7 +12,7 @@
 	message_admins("[key_name_admin(src)] played sound [S]", 1)
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
-			M << uploaded_sound
+			SOUND_TO(M, uploaded_sound)
 
 	feedback_add_details("admin_verb","PGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

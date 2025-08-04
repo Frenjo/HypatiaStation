@@ -365,11 +365,11 @@ var/list/admin_verbs_mod = list(
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			mob << "\red <b>Invisimin off. Invisibility reset.</b>"
+			to_chat(mob, SPAN_DANGER("Invisimin off. Invisibility reset."))
 			mob.alpha = max(mob.alpha + 100, 255)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			mob << "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>"
+			to_chat(mob, SPAN_INFO_B("Invisimin on. You are now as invisible as a ghost."))
 			mob.alpha = max(mob.alpha - 100, 0)
 
 
@@ -478,7 +478,7 @@ var/list/admin_verbs_mod = list(
 
 	if(!warned_ckey || !istext(warned_ckey))	return
 	if(warned_ckey in GLOBL.admin_datums)
-		usr << "<font color='red'>Error: warn(): You can't warn admins.</font>"
+		to_chat(usr, SPAN_WARNING("ERROR: warn(): You can't warn admins."))
 		return
 
 	var/datum/preferences/D
@@ -487,14 +487,14 @@ var/list/admin_verbs_mod = list(
 	else	D = GLOBL.preferences_datums[warned_ckey]
 
 	if(!D)
-		to_chat(src, SPAN_WARNING("Error: warn(): No such ckey found."))
+		to_chat(src, SPAN_WARNING("ERROR: warn(): No such ckey found."))
 		return
 
 	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
 		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			C << "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes."
+			to_chat(C, SPAN_WARNING("<BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes."))
 			qdel(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
@@ -502,7 +502,7 @@ var/list/admin_verbs_mod = list(
 		feedback_inc("ban_warn",1)
 	else
 		if(C)
-			C << "<font color='red'><BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban.</font>"
+			to_chat(C, SPAN_WARNING("<BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban."))
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)]. They have [MAX_WARNS-D.warns] strikes remaining.")
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [MAX_WARNS-D.warns] strikes remaining.")
@@ -660,7 +660,7 @@ var/list/admin_verbs_mod = list(
 	if(!check_rights(R_FUN))	return
 
 	if(!ishuman(M))
-		usr << "\red You can only do this to humans!"
+		to_chat(usr, SPAN_WARNING("You can only do this to humans!"))
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Soghun, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
 		if("No")
@@ -733,7 +733,7 @@ var/list/admin_verbs_mod = list(
 			if(J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if(!length(jobs))
-			usr << "There are no fully staffed jobs."
+			to_chat(usr, SPAN_WARNING("There are no fully staffed jobs."))
 			return
 		var/job = input("Please select job slot to free", "Free job slot") as null|anything in jobs
 		if(job)
@@ -746,9 +746,9 @@ var/list/admin_verbs_mod = list(
 
 	prefs.toggles ^= CHAT_ATTACKLOGS
 	if(prefs.toggles & CHAT_ATTACKLOGS)
-		usr << "You now will get attack log messages"
+		to_chat(usr, SPAN_INFO("You will now get attack log messages."))
 	else
-		usr << "You now won't get attack log messages"
+		to_chat(usr, SPAN_INFO("You won't now get attack log messages."))
 
 
 /client/proc/toggleghostwriters()
@@ -771,10 +771,10 @@ var/list/admin_verbs_mod = list(
 	set name = "Toggle Debug Log Messages"
 
 	prefs.toggles ^= CHAT_DEBUGLOGS
-	if (prefs.toggles & CHAT_DEBUGLOGS)
-		usr << "You now will get debug log messages"
+	if(prefs.toggles & CHAT_DEBUGLOGS)
+		to_chat(usr, SPAN_INFO("You will now get debug log messages."))
 	else
-		usr << "You now won't get debug log messages"
+		to_chat(usr, SPAN_INFO("You won't now get debug log messages."))
 
 
 /client/proc/man_up(mob/T as mob in GLOBL.mob_list)
@@ -782,8 +782,8 @@ var/list/admin_verbs_mod = list(
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
 
-	T << "<span class='notice'><b><font size=3>Man up and deal with it.</font></b></span>"
-	T << "<span class='notice'>Move on.</span>"
+	to_chat(T, SPAN_NOTICE("<b><font size=3>Man up and deal with it.</font></b>"))
+	to_chat(T, SPAN_NOTICE("Move on."))
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", 1)
@@ -794,7 +794,7 @@ var/list/admin_verbs_mod = list(
 	set desc = "Tells everyone to man up and deal with it."
 
 	for(var/mob/T as mob in GLOBL.mob_list)
-		T << "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>"
+		to_chat(T, "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>")
 		SOUND_TO(T, 'sound/voice/ManUp1.ogg')
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")

@@ -66,7 +66,7 @@
 		for(var/obj/item/reagent_holder/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			user << "\red The biogenerator is full! Activate it."
+			to_chat(user, SPAN_WARNING("The biogenerator is full! Activate it."))
 		else
 			user.before_take_item(O)
 			O.forceMove(src)

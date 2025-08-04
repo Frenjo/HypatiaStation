@@ -422,7 +422,7 @@
 	if(isturf(loc))
 		loc = loc:loc
 	if(!isarea(loc))
-		user << text("Turret badly positioned - loc.loc is [].", loc)
+		to_chat(user, "Turret badly positioned - loc.loc is [loc].")
 		return
 	var/area/area = loc
 	var/t = "<TT><B>Turret Control Panel</B> ([area.name])<HR>"

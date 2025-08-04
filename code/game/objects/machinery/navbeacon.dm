@@ -142,7 +142,7 @@
 		return		// prevent intraction when T-scanner revealed
 
 	if(!open && !ai)	// can't alter controls if not open, unless you're an AI
-		user << "The beacon's control cover is closed."
+		to_chat(user, SPAN_WARNING("\The [src]'s control cover is closed."))
 		return
 
 	var/t

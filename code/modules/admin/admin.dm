@@ -9,7 +9,7 @@ var/global/floorIsLava = 0
 	log_adminwarn(msg)
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if(R_MOD || R_ADMIN & C.holder.rights)
-			C << msg
+			to_chat(C, msg)
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)
@@ -18,7 +18,7 @@ var/global/floorIsLava = 0
 		if(R_ADMIN & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
-				C << msg
+				to_chat(C, msg)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -29,12 +29,12 @@ var/global/floorIsLava = 0
 	set desc="Edit player (respawn, ban, heal, etc)"
 
 	if(!M)
-		usr << "You seem to be selecting a mob that doesn't exist anymore."
+		to_chat(usr, SPAN_WARNING("You seem to be selecting a mob that doesn't exist anymore."))
 		return
-	if (!istype(src,/datum/admins))
+	if(!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
+	if(!istype(src,/datum/admins))
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 
 	var/body = "<html><head><title>Options for [M.key]</title></head>"
@@ -189,10 +189,10 @@ var/global/floorIsLava = 0
 	set category = PANEL_ADMIN
 	set name = "Player Notes"
 
-	if (!istype(src,/datum/admins))
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
+	if(!istype(src, /datum/admins))
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 	PlayerNotesPage(1)
 
@@ -249,10 +249,10 @@ var/global/floorIsLava = 0
 	set category = PANEL_ADMIN
 	set name = "Show Player Info"
 
-	if (!istype(src,/datum/admins))
+	if(!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
+	if(!istype(src,/datum/admins))
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
@@ -292,10 +292,10 @@ var/global/floorIsLava = 0
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
 
-	if (!istype(src,/datum/admins))
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
+	if(!istype(src, /datum/admins))
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 	var/dat
 	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
@@ -799,8 +799,8 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/startnow()
 	set category = PANEL_SERVER
-	set desc="Start the round RIGHT NOW"
-	set name="Start Now"
+	set name = "Start Now"
+	set desc = "Start the round RIGHT NOW"
 
 	if(!global.PCticker)
 		alert("Unable to start the game as it is not set up.")
@@ -812,7 +812,7 @@ var/global/floorIsLava = 0
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return 1
 	else
-		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
+		to_chat(usr, SPAN_WARNING("ERROR: Start Now: Game has already started."))
 		return 0
 
 /datum/admins/proc/toggleenter()
@@ -1067,10 +1067,10 @@ var/global/floorIsLava = 0
 	set name = "Show Traitor Panel"
 
 	if(!istype(M))
-		usr << "This can only be used on instances of type /mob"
+		to_chat(usr, SPAN_WARNING("This can only be used on instances of type /mob."))
 		return
 	if(!M.mind)
-		usr << "This mob has no mind!"
+		to_chat(usr, SPAN_WARNING("This mob has no mind!"))
 		return
 
 	M.mind.edit_memory()
@@ -1107,21 +1107,21 @@ var/global/floorIsLava = 0
 	for(var/mob/living/silicon/S in GLOBL.mob_list)
 		ai_number++
 		if(isAI(S))
-			usr << "<b>AI [key_name(S, usr)]'s laws:</b>"
+			to_chat(usr, SPAN_INFO("<b>AI [key_name(S, usr)]'s laws:</b>"))
 		else if(isrobot(S))
 			var/mob/living/silicon/robot/R = S
-			usr << "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independant)"]: laws:</b>"
+			to_chat(usr, SPAN_INFO("<b>CYBORG [key_name(S, usr)] [R.connected_ai ? "(Slaved to: [R.connected_ai])" : "(Independent)"]: laws:</b>"))
 		else if(ispAI(S))
-			usr << "<b>pAI [key_name(S, usr)]'s laws:</b>"
+			to_chat(usr, SPAN_INFO("<b>pAI [key_name(S, usr)]'s laws:</b>"))
 		else
-			usr << "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"
+			to_chat(usr, SPAN_INFO("<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"))
 
 		if(S.laws == null)
-			usr << "[key_name(S, usr)]'s laws are null?? Contact a coder."
+			to_chat(usr, SPAN_WARNING("[key_name(S, usr)]'s laws are null?? Contact a coder."))
 		else
 			S.laws.show_laws(usr)
 	if(!ai_number)
-		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
+		to_chat(usr, SPAN_INFO("<b>No AIs located</b>")) // Just so you know the thing is actually working and not just ignoring you.
 
 /datum/admins/proc/show_skills(mob/living/carbon/human/M as mob in GLOBL.mob_list)
 	set category = PANEL_ADMIN
@@ -1130,7 +1130,7 @@ var/global/floorIsLava = 0
 	if(!istype(src, /datum/admins))
 		src = usr.client.holder
 	if(!istype(src, /datum/admins))
-		usr << "Error: you are not an admin!"
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 
 	show_skill_window(usr, M)

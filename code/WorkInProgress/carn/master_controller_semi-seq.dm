@@ -238,11 +238,11 @@ datum/controller/game_controller/proc/process()
 							defcon = 5
 							for(var/client/C)
 								if(C.holder)
-									C << "<font color='red' size='2'><b>Warning. The Master Controller has not fired in the last [4*ticks_per_spin] ticks. Automatic restart in [ticks_per_spin] ticks.</b></font>"
+									to_chat(C, "<font color='red' size='2'><b>Warning. The Master Controller has not fired in the last [4*ticks_per_spin] ticks. Automatic restart in [ticks_per_spin] ticks.</b></font>")
 						if(5)
 							for(var/client/C)
 								if(C.holder)
-									C << "<font color='red' size='2'><b>Warning. The Master Controller has still not fired within the last [5*ticks_per_spin] ticks. Killing and restarting...</b></font>"
+									to_chat(C, "<font color='red' size='2'><b>Warning. The Master Controller has still not fired within the last [5*ticks_per_spin] ticks. Killing and restarting...</b></font>")
 							spawn(0)
 								new /datum/controller/game_controller()	//replace the old master_controller (hence killing the old one's process)
 								master_controller.process()	//Start it rolling again
