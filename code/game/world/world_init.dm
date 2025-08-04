@@ -19,7 +19,7 @@
 	tick_lag = CONFIG_GET(/decl/configuration_entry/ticklag)
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
+		TO_WORLD_LOG("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND.")
 
 	global.CTconfiguration.post_load()
 

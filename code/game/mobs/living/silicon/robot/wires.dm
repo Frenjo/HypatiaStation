@@ -21,7 +21,7 @@
 			BorgIndexToWireColor[flagIndex] = colorIndex
 			BorgWireColorToIndex[colorIndex] = flagIndex
 			colorIndexList -= colorIndex // Shortens the list.
-		//world.log << "Flag: [flag], CIndex: [colorIndex], FIndex: [flagIndex]"
+		//TO_WORLD_LOG("Flag: [flag], CIndex: [colorIndex], FIndex: [flagIndex]")
 		flagIndex+=1
 	return Borgwires
 

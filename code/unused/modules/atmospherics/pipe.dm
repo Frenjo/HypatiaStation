@@ -65,23 +65,23 @@ var/linenums = 0
 	return gas
 
 /obj/machinery/pipeline/gas_flow()
-	//if(suffix == "d" && Debug) world.log << "PLF1  [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(suffix == "d" && Debug) TO_WORLD_LOG("PLF1  [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	gas.copy_from(ngas)
 
-	//if(suffix == "d" && Debug) world.log << "PLF2  [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(suffix == "d" && Debug) TO_WORLD_LOG("PLF2  [gas.total_moles()] ~ [ngas.total_moles()]")
 
 /obj/machinery/pipeline/process()
 	/*
 	// heat exchange for whole pipeline
 
 	//if(suffix=="dbgp")
-	//	world.log << "PLP"
+	//	TO_WORLD_LOG("PLP")
 	//	Plasma()
 
 //	var/dbg = (suffix == "d") && Debug
 
-	//if(dbg) world.log << "PLP1 [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("PLP1 [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	if(!numnodes)
 		return		//dividing by zero is bad okay?
@@ -89,7 +89,7 @@ var/linenums = 0
 	var/gtemp = ngas.temperature					// cached temperature for heat exch calc
 	var/tot_node = ngas.total_moles() / numnodes		// fraction of gas in this node
 
-	//if(dbg) world.log << "PLHE: [gtemp] [tot_node]"
+	//if(dbg) TO_WORLD_LOG("PLHE: [gtemp] [tot_node]")
 
 	if(tot_node>0.1)		// no pipe contents, don't heat
 		for(var/obj/machinery/pipes/P in src.nodes)		// for each segment of pipe
@@ -106,7 +106,7 @@ var/linenums = 0
 	// now do standard gas flow proc
 
 
-	//if(dbg) world.log << "PLP2 [ngas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("PLP2 [ngas.total_moles()]")
 
 	var/delta_gt
 
@@ -114,7 +114,7 @@ var/linenums = 0
 		delta_gt = FLOWFRAC * ( vnode1.get_gas_val(src) - gas.total_moles() / capmult)
 		calc_delta( src, gas, ngas, vnode1, delta_gt)//, dbg)
 
-		//if(dbg) world.log << "PLT1 [delta_gt] >> [gas.total_moles()] ~ [ngas.total_moles()]"
+		//if(dbg) TO_WORLD_LOG("PLT1 [delta_gt] >> [gas.total_moles()] ~ [ngas.total_moles()]")
 
 		flow = delta_gt
 	else
@@ -124,7 +124,7 @@ var/linenums = 0
 		delta_gt = FLOWFRAC * ( vnode2.get_gas_val(src) - gas.total_moles() / capmult)
 		calc_delta( src, gas, ngas, vnode2, delta_gt)//, dbg)
 
-		//if(dbg) world.log << "PLT2 [delta_gt] >> [gas.total_moles()] ~ [ngas.total_moles()]"
+		//if(dbg) TO_WORLD_LOG("PLT2 [delta_gt] >> [gas.total_moles()] ~ [ngas.total_moles()]")
 
 		flow -= delta_gt
 	else
@@ -174,7 +174,7 @@ var/linenums = 0
 		if(!P.plnum)							// if not already part of a line
 			P.buildnodes(++linenums)			// add it, and spread to all connected pipes
 
-			//world.log<<"Line #[linecount] started at [P] ([P.x],[P.y],[P.z])"
+			//TO_WORLD_LOG("Line #[linecount] started at [P] ([P.x],[P.y],[P.z])")
 
 	for(var/L = 1 to linenums)					// for count of lines found
 		var/obj/machinery/pipeline/PL = new()	// make a pipeline virtual object
@@ -630,22 +630,22 @@ var/linenums = 0
 			gas.temperature += ( T.temp - temp) / (3.0 * insulation * numnodes)
 		else
 
-	//		if(dbg) world.log << "PHE: ([x],[y]) [T.temp]-> \..."
+	//		if(dbg) TO_WORLD_LOG("PHE: ([x],[y]) [T.temp]-> \...")
 			var/delta_T = (T.temp - temp) / (insulation)	// normal turf
 
 			gas.temperature += delta_T	/ numnodes			// heat the pipe due to turf temperature
 
 			/*
 			if(abs(delta_T*tot_node/T.total_moles()) > 1)
-				world.log << "Turf [T] at [T.x],[T.y]: gt=[temp] tt=[T.temp]"
-				world.log << "dT = [delta_T] tn=[tot_node] ttg=[T.total_moles()] tt-=[delta_T*tot_node/T.total_moles()]"
+				TO_WORLD_LOG("Turf [T] at [T.x],[T.y]: gt=[temp] tt=[T.temp]")
+				TO_WORLD_LOG("dT = [delta_T] tn=[tot_node] ttg=[T.total_moles()] tt-=[delta_T*tot_node/T.total_moles()]")
 
 			*/
 			var/tot_turf = max(1, T.total_moles())
 			T.temp -= delta_T*min(10,tot_node/tot_turf)			// also heat the turf due to pipe temp
 							// clamp max temp change to prevent thermal runaway
 							// if low amount of gas in turf
-	//		if(dbg) world.log << "[T.temp] [tot_turf] #[delta_T]"
+	//		if(dbg) TO_WORLD_LOG("[T.temp] [tot_turf] #[delta_T]")
 			T.res_vars()	// ensure turf tmp vars are updated
 
 	else								// if level 1 but in space, perform cooling anyway - exposed pipes
@@ -925,36 +925,36 @@ var/linenums = 0
 /obj/machinery/connector/gas_flow()
 
 //	var/dbg = (suffix == "d") && Debug
-	//if(dbg) world.log << "CF0: ngas=[ngas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("CF0: ngas=[ngas.total_moles()]")
 
 	//ngas.transfer_from(agas, -1)
 
-	//if(dbg)	world.log << "CF1: ngas=[gas.total_moles()]"
+	//if(dbg)	TO_WORLD_LOG("CF1: ngas=[gas.total_moles()]")
 	gas.copy_from(ngas)
-	//if(dbg)	world.log << "CF2: gas=[gas.total_moles()]"
+	//if(dbg)	TO_WORLD_LOG("CF2: gas=[gas.total_moles()]")
 	flag = 0
 
 /obj/machinery/connector/process()
 	//if(suffix=="dbgp")
-	//	world.log << "CP"
+	//	TO_WORLD_LOG("CP")
 	//	Plasma()
 
 	var/delta_gt
 //	var/dbg = (suffix == "d") && Debug
 
-	//if(dbg) world.log << "C[tag]P: [gas.total_moles()] ~ [ngas.total_moles()]"
-	//if(dbg && connected) world.log << "C[tag]PC: [connected.gas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("C[tag]P: [gas.total_moles()] ~ [ngas.total_moles()]")
+	//if(dbg && connected) TO_WORLD_LOG("C[tag]PC: [connected.gas.total_moles()]")
 
 	if(vnode)
 
 		delta_gt = FLOWFRAC * ( vnode.get_gas_val(src) - gas.total_moles() / capmult)
-		//if(dbg) world.log << "C[tag]P0: [delta_gt]"
+		//if(dbg) TO_WORLD_LOG("C[tag]P0: [delta_gt]")
 
 		//var/obj/substance/gas/vgas = vnode.get_gas(src)
 
-		//if(dbg) world.log << "C[tag]P1: [gas.total_moles()], [ngas.total_moles()] -> [vgas.total_moles()]"
+		//if(dbg) TO_WORLD_LOG("C[tag]P1: [gas.total_moles()], [ngas.total_moles()] -> [vgas.total_moles()]")
 		calc_delta( src, gas, ngas, vnode, delta_gt)//, dbg)
-		//if(dbg) world.log << "C[tag]P2: [gas.total_moles()], [ngas.total_moles()] -> [vgas.total_moles()]"
+		//if(dbg) TO_WORLD_LOG("C[tag]P2: [gas.total_moles()], [ngas.total_moles()] -> [vgas.total_moles()]")
 
 	else
 		leak_to_turf()
@@ -963,14 +963,14 @@ var/linenums = 0
 		var/amount
 		if(connected.c_status == 1)				// canister set to release
 
-			//if(dbg) world.log << "C[tag]PC1: [gas.total_moles()], [ngas.total_moles()] <- [connected.gas.total_moles()]"
+			//if(dbg) TO_WORLD_LOG("C[tag]PC1: [gas.total_moles()], [ngas.total_moles()] <- [connected.gas.total_moles()]")
 			amount = min(connected.c_per, capacity - gas.total_moles() )	// limit to space in connector
 			amount = max(0, min(amount, connected.gas.total_moles() ) )		// limit to amount in canister, or 0
-			//if(dbg) world.log << "C[tag]PC2: a=[amount]"
+			//if(dbg) TO_WORLD_LOG("C[tag]PC2: a=[amount]")
 			//var/ng = ngas.total_moles()
 			ngas.transfer_from( connected.gas, amount)
-			//if(dbg) world.log <<"[ngas.total_moles()-ng] from siph to connector"
-			//if(dbg) world.log << "C[tag]PC3: [gas.total_moles()], [ngas.total_moles()] <- [connected.gas.total_moles()]"
+			//if(dbg) TO_WORLD_LOG("[ngas.total_moles()-ng] from siph to connector")
+			//if(dbg) TO_WORLD_LOG("C[tag]PC3: [gas.total_moles()], [ngas.total_moles()] <- [connected.gas.total_moles()]")
 		else if(connected.c_status == 2)		// canister set to accept
 
 			amount = min(connected.c_per, connected.gas.maximum - connected.gas.total_moles())	//limit to space in canister
@@ -981,7 +981,7 @@ var/linenums = 0
 	//flag = 1
 
 	//if(suffix=="dbgp")
-	//	world.log << "CP"
+	//	TO_WORLD_LOG("CP")
 	//	Plasma()
 */ //TODO: FIX
 
@@ -993,12 +993,12 @@ var/linenums = 0
 	var/turf/T = get_step(src, dir)
 	if(T && !T.density)
 
-		//if(dbg) world.log << "CLT1: [gas.tostring()] ~ [ngas.tostring()]\nTg = [T.tostring()]"
+		//if(dbg) TO_WORLD_LOG("CLT1: [gas.tostring()] ~ [ngas.tostring()]\nTg = [T.tostring()]")
 
 
 		flow_to_turf(gas, ngas, T)
 
-		//if(dbg) world.log << "CLT2: [gas.tostring()] ~ [ngas.tostring()]\nTg = [T.tostring()]"
+		//if(dbg) TO_WORLD_LOG("CLT2: [gas.tostring()] ~ [ngas.tostring()]\nTg = [T.tostring()]")
 	*/
 
 
@@ -1034,12 +1034,12 @@ var/linenums = 0
 	//else if(tag == "dbg2")
 	//	dbg = 2
 
-	//if(dbg)	world.log << "J[dbg]F1: [gas.tostring()] ~ [ngas.tostring()]"
+	//if(dbg)	TO_WORLD_LOG("J[dbg]F1: [gas.tostring()] ~ [ngas.tostring()]")
 
 
 	gas.copy_from(ngas)
 
-	//if(dbg)	world.log << "J[dbg]F2: [gas.tostring()] ~ [ngas.tostring()]"
+	//if(dbg)	TO_WORLD_LOG("J[dbg]F2: [gas.tostring()] ~ [ngas.tostring()]")
 
 /obj/machinery/junction/process()
 /*
@@ -1049,7 +1049,7 @@ var/linenums = 0
 	//else if(tag == "dbg2")
 	//	dbg = 2
 
-	//if(dbg)	world.log << "J[dbg]P: [gas.tostring()] ~ [ngas.tostring()]"
+	//if(dbg)	TO_WORLD_LOG("J[dbg]P: [gas.tostring()] ~ [ngas.tostring()]")
 
 	var/delta_gt
 
@@ -1057,7 +1057,7 @@ var/linenums = 0
 		delta_gt = FLOWFRAC * ( vnode1.get_gas_val(src) - gas.total_moles() / capmult)
 		calc_delta( src, gas, ngas, vnode1, delta_gt) //, dbg)
 
-	//	if(dbg)	world.log << "J[dbg]T1: [delta_gt] >> [gas.tostring()] ~ [ngas.tostring()]"
+	//	if(dbg)	TO_WORLD_LOG("J[dbg]T1: [delta_gt] >> [gas.tostring()] ~ [ngas.tostring()]")
 	else
 		leak_to_turf(1)
 
@@ -1065,7 +1065,7 @@ var/linenums = 0
 		delta_gt = FLOWFRAC * ( vnode2.get_gas_val(src) - gas.total_moles() / capmult)
 		calc_delta( src, gas, ngas, vnode2, delta_gt) //, dbg)
 
-	//	if(dbg)	world.log << "J[dbg]T2: [delta_gt] >> [gas.tostring()] ~ [ngas.tostring()]"
+	//	if(dbg)	TO_WORLD_LOG("J[dbg]T2: [delta_gt] >> [gas.tostring()] ~ [ngas.tostring()]")
 	else
 		leak_to_turf(2)
 */ //TODO: FIX
@@ -1129,18 +1129,18 @@ var/linenums = 0
 /obj/machinery/vent/gas_flow()
 
 //	var/dbg = (suffix=="d") && Debug
-	//if(dbg) world.log << "V[tag]F1: [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("V[tag]F1: [gas.total_moles()] ~ [ngas.total_moles()]")
 	gas.copy_from(ngas)
-	//if(dbg) world.log << "V[tag]F2: [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("V[tag]F2: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 /obj/machinery/vent/process()
 	/*
 
 //	var/dbg = (suffix=="d") && Debug
-	//if(dbg)	world.log << "V[tag]T1: [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(dbg)	TO_WORLD_LOG("V[tag]T1: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	//if(suffix=="dbgp")
-	//	world.log << "VP"
+	//	TO_WORLD_LOG("VP")
 	//	Plasma()
 
 	var/delta_gt
@@ -1151,18 +1151,18 @@ var/linenums = 0
 	//var/ng = ngas.total_moles()
 	ngas.turf_add(T, delta_gt)
 
-	//if(dbg) world.log << "[num2text(ng-ngas.total_moles(),10)] from vent to turf"
-	//if(dbg)	world.log << "V[tag]T2: [gas.total_moles()] ~ [ngas.total_moles()]"
+	//if(dbg) TO_WORLD_LOG("[num2text(ng-ngas.total_moles(),10)] from vent to turf")
+	//if(dbg)	TO_WORLD_LOG("V[tag]T2: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	if(vnode)
 
-		//if(dbg)	world.log << "V[tag]N1: [gas.total_moles()] ~ [ngas.total_moles()]"
+		//if(dbg)	TO_WORLD_LOG("V[tag]N1: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 		delta_gt = FLOWFRAC * ( vnode.get_gas_val(src) - gas.total_moles() / capmult)
 
 		calc_delta( src, gas, ngas, vnode, delta_gt)//, dbg)
 
-		//if(dbg)	world.log << "V[tag]N2: [gas.total_moles()] ~ [ngas.total_moles()]"
+		//if(dbg)	TO_WORLD_LOG("V[tag]N2: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	else
 		leak_to_turf()
@@ -1219,7 +1219,7 @@ var/linenums = 0
 /obj/machinery/inlet/process()
 	/*
 	//if(suffix=="dbgp")
-	//	world.log << "VP"
+	//	TO_WORLD_LOG("VP")
 	//	Plasma()
 
 	var/delta_gt
@@ -1231,17 +1231,17 @@ var/linenums = 0
 	if(T && !T.density)
 		flow_to_turf(gas, ngas, T, dbg)		// act as gas leak
 
-	if(dbg)	world.log << "I[tag]T2: [gas.total_moles()] ~ [ngas.total_moles()]"
+	if(dbg)	TO_WORLD_LOG("I[tag]T2: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	if(vnode)
 
-		//if(dbg)	world.log << "V[tag]N1: [gas.total_moles()] ~ [ngas.total_moles()]"
+		//if(dbg)	TO_WORLD_LOG("V[tag]N1: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 		delta_gt = FLOWFRAC * ( vnode.get_gas_val(src) - gas.total_moles() / capmult)
 
 		calc_delta( src, gas, ngas, vnode, delta_gt)//, dbg)
 
-		//if(dbg)	world.log << "V[tag]N2: [gas.total_moles()] ~ [ngas.total_moles()]"
+		//if(dbg)	TO_WORLD_LOG("V[tag]N2: [gas.total_moles()] ~ [ngas.total_moles()]")
 
 	else
 		leak_to_turf()
@@ -1264,8 +1264,8 @@ var/linenums = 0
 
 /obj/machinery/proc/flow_to_turf(var/datum/gas_mixture/sgas, var/datum/gas_mixture/sngas, var/turf/T, var/dbg = 0)
 /*
-	if(dbg) world.log << "FTT: G=[sgas.tostring()] ~ N=[sngas.tostring()]"
-	if(dbg) world.log << "T=[T.tostring()]"
+	if(dbg) TO_WORLD_LOG("FTT: G=[sgas.tostring()] ~ N=[sngas.tostring()]")
+	if(dbg) TO_WORLD_LOG("T=[T.tostring()]")
 
 
 
@@ -1273,31 +1273,31 @@ var/linenums = 0
 
 	var/delta_gt = FLOWFRAC * ( t_tot - sgas.total_moles() / capmult )
 
-	if(dbg) world.log << "FTT: dgt=[delta_gt]"
+	if(dbg) TO_WORLD_LOG("FTT: dgt=[delta_gt]")
 
 	var/datum/gas_mixture/ndelta = new()
 
 	if(delta_gt < 0)	// flow from pipe to turf
 
-		//world.log << "FTT<0"
+		//TO_WORLD_LOG("FTT<0")
 		ndelta.set_frac(sgas, -delta_gt)		// ndelta contains gas to transfer to turf
-		//world.log << "ND=[ndelta.tostring()]"
+		//TO_WORLD_LOG("ND=[ndelta.tostring()]")
 		sngas.sub_delta(ndelta)			// update new gas to remove the amount transfered
-		//world.log << "SN=[sngas.tostring()]"
+		//TO_WORLD_LOG("SN=[sngas.tostring()]")
 		ndelta.turf_add(T, -1)		// add all of ndelta to turf
-		//world.log << "T=[T.tostring()]"
+		//TO_WORLD_LOG("T=[T.tostring()]")
 
-		//world.log << "LTT: [num2text(-delta_gt,10)] from [sgas.loc] to turf"
+		//TO_WORLD_LOG("LTT: [num2text(-delta_gt,10)] from [sgas.loc] to turf")
 
 
 	else				// flow from turf to pipe
-		if(dbg) world.log << "FTT>0"
+		if(dbg) TO_WORLD_LOG("FTT>0")
 
 		sngas.turf_take(T, delta_gt)		// grab gas from turf and direcly add it to the new gas
-		if(dbg) world.log << "SN=[sngas.tostring()]"
-		if(dbg) world.log << "T=[T.tostring()]"
+		if(dbg) TO_WORLD_LOG("SN=[sngas.tostring()]")
+		if(dbg) TO_WORLD_LOG("T=[T.tostring()]")
 
-		if(dbg) world.log << "LTT: [num2text(delta_gt,10)] from turf to [sgas.loc]"
+		if(dbg) TO_WORLD_LOG("LTT: [num2text(delta_gt,10)] from turf to [sgas.loc]")
 
 	T.res_vars()	// update turf gas vars for both cases
 */ //TODO: FIX

@@ -180,7 +180,7 @@
 	else
 		Zdir = 999
 ///// Z-Level Stuff
-//	world.log << "d=[d] fdir=[fdir]"
+//	TO_WORLD_LOG("d=[d] fdir=[fdir]")
 	for(var/AM in T)
 		if(AM == source)
 			continue			//we don't want to return source
@@ -207,7 +207,7 @@
 
 //remove the old powernet and replace it with a new one throughout the network.
 /proc/propagate_network(obj/O, datum/powernet/PN)
-	//world.log << "propagating new network"
+	//TO_WORLD_LOG("propagating new network")
 	var/list/worklist = list()
 	var/list/obj/machinery/power/found_machines = list()
 	var/index = 1

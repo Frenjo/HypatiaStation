@@ -8,15 +8,15 @@
 GLOBAL_BYOND_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "") // Possibly move this to GLOBL?
 
 /proc/error(msg)
-	world.log << "## ERROR: [msg][global.log_end]"
+	TO_WORLD_LOG("## ERROR: [msg][global.log_end]")
 
 //print a warning message to world.log
 /proc/warning(msg)
-	world.log << "## WARNING: [msg][global.log_end]"
+	TO_WORLD_LOG("## WARNING: [msg][global.log_end]")
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
-	world.log << "## TESTING: [msg][global.log_end]"
+	TO_WORLD_LOG("## TESTING: [msg][global.log_end]")
 
 /proc/log_admin(text)
 	GLOBL.admin_log.Add(text)
@@ -76,7 +76,7 @@ GLOBAL_BYOND_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "") // P
 		GLOBL.diary << "\[[time_stamp()]]PDA: [text][global.log_end]"
 
 /proc/log_to_dd(text)
-	world.log << text //this comes before the config check because it can't possibly runtime
+	TO_WORLD_LOG(text) //this comes before the config check because it can't possibly runtime
 	if(CONFIG_GET(/decl/configuration_entry/log_world_output))
 		GLOBL.diary << "\[[time_stamp()]]DD_OUTPUT: [text][global.log_end]"
 

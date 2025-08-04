@@ -116,7 +116,7 @@
 			if(sight_check && !isInSight(mover, O))
 				continue
 			L |= M
-			//world.log << "[recursion_limit] = [M] - [GET_TURF(M)] - ([M.x], [M.y], [M.z])"
+			//TO_WORLD_LOG("[recursion_limit] = [M] - [GET_TURF(M)] - ([M.x], [M.y], [M.z])")
 
 		else if(include_radio && isradio(mover))
 			if(sight_check && !isInSight(mover, O))

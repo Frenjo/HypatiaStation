@@ -95,7 +95,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		if(defer_powernet_rebuild != 2)
 			defer_powernet_rebuild = 0
 
-		world.log << "## Explosion([x],[y],[z])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [(world.timeofday-start)/10] seconds. Processed [counter] atoms."
+		TO_WORLD_LOG("## Explosion([x],[y],[z])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [(world.timeofday-start)/10] seconds. Processed [counter] atoms.")
 	return 1
 
 proc/explosion_turf(var/x,var/y,var/z,var/force)

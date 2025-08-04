@@ -40,7 +40,7 @@
 	for(var/obj/machinery/camera/C in cameranet.cameras)
 		var/list/tempnetwork = C.network & network
 		if(C != src && C.c_tag == c_tag && length(tempnetwork))
-			world.log << "[c_tag] [x] [y] [z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]"
+			TO_WORLD_LOG("[c_tag] [x] [y] [z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
 	*/
 	if(!length(network))
 		if(loc)

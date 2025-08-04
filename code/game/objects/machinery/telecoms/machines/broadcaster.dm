@@ -660,5 +660,5 @@
 
 	sleep(rand(1 SECOND, 2.5 SECONDS))
 
-	//world.log << "Level: [signal.data["level"]] - Done: [signal.data["done"]]"
+	//TO_WORLD_LOG("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 	return signal

@@ -102,7 +102,7 @@
 		if(8)
 			return WEST
 		else
-			world.log << "UNKNOWN DIRECTION: [direction]"
+			TO_WORLD_LOG("UNKNOWN DIRECTION: [direction]")
 
 //Turns a direction into text
 /proc/dir2text(direction)

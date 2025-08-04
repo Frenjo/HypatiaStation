@@ -4,4 +4,4 @@
 	for(var/atom/A)
 		if(A.loc == null)
 			msg += "\ref[A] [A.type] - [A]\n"
-	world.log << msg
+	TO_WORLD_LOG(msg)

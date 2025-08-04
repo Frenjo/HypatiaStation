@@ -59,13 +59,13 @@
 /hook/startup/proc/connect_database()
 	. = TRUE
 	if(!setup_database_connection())
-		world.log << "Your server failed to establish a connection with the feedback database."
+		TO_WORLD_LOG("Your server failed to establish a connection with the feedback database.")
 	else
-		world.log << "Feedback database connection established."
+		TO_WORLD_LOG("Feedback database connection established.")
 
 /hook/startup/proc/connect_old_database()
 	. = TRUE
 	if(!setup_old_database_connection())
-		world.log << "Your server failed to establish a connection with the SQL database."
+		TO_WORLD_LOG("Your server failed to establish a connection with the SQL database.")
 	else
-		world.log << "SQL database connection established."
+		TO_WORLD_LOG("SQL database connection established.")

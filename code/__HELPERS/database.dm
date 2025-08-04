@@ -18,7 +18,7 @@
 		GLOBL.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		GLOBL.failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << GLOBL.dbcon.ErrorMsg()
+		TO_WORLD_LOG(GLOBL.dbcon.ErrorMsg())
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 /proc/establish_db_connection()
@@ -50,7 +50,7 @@
 		GLOBL.failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		GLOBL.failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << GLOBL.dbcon.ErrorMsg()
+		TO_WORLD_LOG(GLOBL.dbcon.ErrorMsg())
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 /proc/establish_old_db_connection()

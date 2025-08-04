@@ -124,6 +124,6 @@ datum/controller/lighting/proc/Recover()
 					varval1 = "/list([length(varval1)])"
 					varval2 = "/list([length(varval2)])"
 				msg += "\t [varname] = [varval1] -> [varval2]\n"
-	world.log << msg
+	TO_WORLD_LOG(msg)
 
 #undef LIGHTING_ICON

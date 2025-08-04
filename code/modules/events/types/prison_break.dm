@@ -19,7 +19,7 @@
 			"Security Alert"
 		)
 	else
-		world.log << "ERROR: Could not initate grey-tide. Unable find prison or brig area."
+		TO_WORLD_LOG("ERROR: Could not initate grey-tide. Unable find prison or brig area.")
 		kill()
 
 /datum/round_event/prison_break/start()

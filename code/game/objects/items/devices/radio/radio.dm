@@ -59,7 +59,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			frequency = sanitize_frequency(frequency, maxf)
 	// The max freq is higher than a regular headset to decrease the chance of people listening in, if you use the higher channels.
 	else if (frequency < 1441 || frequency > maxf)
-		//world.log << "[src] ([type]) has a frequency of [frequency], sanitizing."
+		//TO_WORLD_LOG("[src] ([type]) has a frequency of [frequency], sanitizing.")
 		frequency = sanitize_frequency(frequency, maxf)
 
 	radio_connection = register_radio(src, null, frequency, RADIO_CHAT)

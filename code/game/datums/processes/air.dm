@@ -127,7 +127,7 @@ PROCESS_DEF(air)
 
 		if(failed_ticks > 5)
 			to_world(SPAN_DANGER("RUNTIMES IN ATMOS TICKER. Killing air simulation!"))
-			world.log << "### ZAS SHUTDOWN"
+			TO_WORLD_LOG("### ZAS SHUTDOWN")
 
 			message_admins("ZASALERT: Shutting down! status: [tick_progress]")
 			log_admin("ZASALERT: Shutting down! status: [tick_progress]")

@@ -136,8 +136,8 @@ turf/New()
 	if(opacity)
 		UpdateAffectingLights()
 	if(luminosity)
-		world.log << "[type] has luminosity at New()"
-		if(light)	world.log << "## WARNING: [type] - Don't set lights up manually during New(), We do it automatically."
+		TO_WORLD_LOG("[type] has luminosity at New()")
+		if(light)	TO_WORLD_LOG("## WARNING: [type] - Don't set lights up manually during New(), We do it automatically.")
 		light = new(src)
 
 //Movable atoms with opacity when they are constructed will trigger nearby lights to update
@@ -148,7 +148,7 @@ atom/movable/New()
 	if(opacity)
 		UpdateAffectingLights()
 	if(luminosity)
-		if(light)	world.log << "## WARNING: [type] - Don't set lights up manually during New(), We do it automatically."
+		if(light)	TO_WORLD_LOG("## WARNING: [type] - Don't set lights up manually during New(), We do it automatically.")
 		light = new(src)
 
 //Turfs with opacity will trigger nearby lights to update at next lighting process.
@@ -172,11 +172,11 @@ atom/movable/Del()
 atom/proc/SetLuminosity(new_luminosity, max_luminosity = LIGHTING_MAX_LUMINOSITY)
 	if(new_luminosity < 0)
 		new_luminosity = 0
-//		world.log << "## WARNING: [type] - luminosity cannot be negative"
+//		TO_WORLD_LOG("## WARNING: [type] - luminosity cannot be negative")
 	else if(max_luminosity < new_luminosity)
 		new_luminosity = max_luminosity
 //		if(luminosity != new_luminosity)
-//			world.log << "## WARNING: [type] - LIGHT_MAX_LUMINOSITY exceeded"
+//			TO_WORLD_LOG("## WARNING: [type] - LIGHT_MAX_LUMINOSITY exceeded")
 
 	if(isturf(loc))
 		if(light)
@@ -230,7 +230,7 @@ turf/space
 turf/proc/update_lumcount(amount)
 	lighting_lumcount += amount
 //	if(lighting_lumcount < 0 || lighting_lumcount > 100)
-//		world.log << "## WARNING: [type] ([src]) lighting_lumcount = [lighting_lumcount]"
+//		TO_WORLD_LOG("## WARNING: [type] ([src]) lighting_lumcount = [lighting_lumcount]")
 	if(!lighting_changed)
 		lighting_controller.changed_turfs += src
 		lighting_changed = 1

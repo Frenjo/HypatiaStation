@@ -339,13 +339,13 @@
 						if (t > t2)
 							t = t2
 						//var/g = gas.total_moles()
-						//if(dbg) world.log << "VP0 : [t] from turf: [gas.total_moles()]"
+						//if(dbg) TO_WORLD_LOG("VP0 : [t] from turf: [gas.total_moles()]")
 						//if(dbg) Air()
 
 						src.gas.turf_take(T, t)
-						//if(dbg) world.log << "VP1 : now [gas.total_moles()]"
+						//if(dbg) TO_WORLD_LOG("VP1 : now [gas.total_moles()]")
 
-						//if(dbg) world.log << "[gas.total_moles()-g] ([t]) from turf to siph"
+						//if(dbg) TO_WORLD_LOG("[gas.total_moles()-g] ([t]) from turf to siph")
 
 						//if(dbg) Air()
 			if(4.0)

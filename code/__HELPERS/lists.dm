@@ -372,7 +372,7 @@
 
 //Don't use this on lists larger than half a dozen or so
 /proc/insertion_sort_numeric_list_ascending(list/L)
-	//world.log << "ascending len input: [length(L)]"
+	//TO_WORLD_LOG("ascending len input: [length(L)]")
 	var/list/out = list(pop(L))
 	for(var/entry in L)
 		if(isnum(entry))
@@ -385,13 +385,13 @@
 			if(!success)
 				out.Add(entry)
 
-	//world.log << "	output: [length(out)]"
+	//TO_WORLD_LOG("	output: [length(out)]")
 	return out
 
 /proc/insertion_sort_numeric_list_descending(list/L)
-	//world.log << "descending len input: [length(L)]"
+	//TO_WORLD_LOG("descending len input: [length(L)]")
 	var/list/out = insertion_sort_numeric_list_ascending(L)
-	//world.log << "	output: [length(out)]"
+	//TO_WORLD_LOG("	output: [length(out)]")
 	return reverselist(out)
 
 /proc/dd_sortedObjectList(list/L, cache = list())
