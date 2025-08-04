@@ -76,7 +76,7 @@
 						desc = circuit.frame_desc
 					else
 						update_desc()
-					user << desc
+					to_chat(user, desc)
 				else
 					to_chat(user, SPAN_WARNING("This frame does not accept circuit boards of this type!"))
 			else
@@ -152,6 +152,6 @@
 								req_components[I]--
 								update_desc()
 								break
-						user << desc
+						to_chat(user, desc)
 						if(P && P.loc != src && !iscable(P))
 							to_chat(user, SPAN_WARNING("You cannot add that component to the machine!"))

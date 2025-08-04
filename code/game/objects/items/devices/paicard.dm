@@ -235,7 +235,7 @@
 			var/datum/dna/dna = usr.dna
 			pai.master = M.real_name
 			pai.master_dna = dna.unique_enzymes
-			pai << "<font color = red><h3>You have been bound to a new master.</h3></font>"
+			to_chat(pai, SPAN_WARNING("<h3>You have been bound to a new master.</h3>"))
 	if(href_list["request"])
 		src.looking_for_personality = 1
 		global.CTpai.find_pAI(src, usr)

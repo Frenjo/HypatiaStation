@@ -118,8 +118,8 @@
 		return 1
 
 	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
-		if (!mmi)
-			user << "\red There's no reason to swipe your ID - the spiderbot has no brain to remove."
+		if(!mmi)
+			to_chat(user, SPAN_WARNING("There's no reason to swipe your ID - the spiderbot has no brain to remove."))
 			return 0
 
 		var/obj/item/card/id/id_card
@@ -131,7 +131,7 @@
 			id_card = pda.id
 
 		if(ACCESS_ROBOTICS in id_card.access)
-			user << "\blue You swipe your access card and pop the brain out of [src]."
+			to_chat(user, SPAN_INFO("You swipe your access card and pop the brain out of \the [src]."))
 			eject_brain()
 
 			if(held_item)
@@ -140,7 +140,7 @@
 
 			return 1
 		else
-			user << "\red You swipe your card, with no effect."
+			to_chat(user, SPAN_WARNING("You swipe your card, with no effect."))
 			return 0
 	else
 		if(O.force)
@@ -228,7 +228,7 @@
 		return
 
 	if(!held_item)
-		usr << "\red You have nothing to drop!"
+		to_chat(usr, SPAN_WARNING("You have nothing to drop!"))
 		return 0
 
 	if(istype(held_item, /obj/item/grenade))

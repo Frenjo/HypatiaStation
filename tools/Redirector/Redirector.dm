@@ -58,7 +58,7 @@ mob/Login()
 		if(S.weight == lowest)
 			serverlink = S.link
 
-	src << link(serverlink)
+	OPEN_LINK(src, serverlink)
 
 proc/extract(var/data, var/type = PLAYERS)
 

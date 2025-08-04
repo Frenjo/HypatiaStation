@@ -3,8 +3,10 @@
 	atom_flags = ATOM_FLAG_NO_BLOODY
 
 /obj/item/melee/energy/suicide_act(mob/user)
-	viewers(user) << pick(SPAN_DANGER("[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku."), \
-						SPAN_DANGER("[user] is falling on the [src.name]! It looks like \he's trying to commit suicide."))
+	user.visible_message(pick( \
+		SPAN_DANGER("[user] is slitting \his stomach open with \the [src]! It looks like \he's trying to commit seppuku."), \
+		SPAN_DANGER("[user] is falling on \the [src]! It looks like \he's trying to commit suicide."))
+	)
 	return (BRUTELOSS|FIRELOSS)
 
 
@@ -26,7 +28,7 @@
 	edge = 1
 
 /obj/item/melee/energy/axe/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] swings the [src.name] towards /his head! It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] swings \the [src] towards \his head! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
 

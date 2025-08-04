@@ -50,9 +50,9 @@
 				make_sparks(5, FALSE, loc)
 				playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 				playsound(src, "sparks", 50, 1)
-				user << "You slice through the lock on [src]."
+				to_chat(user, SPAN_WARNING("You slice through the lock on \the [src]."))
 			else
-				user << "You short out the lock on [src]."
+				to_chat(user, SPAN_WARNING("You short out the lock on \the [src]."))
 			return
 
 		if(isscrewdriver(W))
@@ -159,7 +159,7 @@
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user)
 	if((loc == user) && (locked == 1))
-		usr << "\red [src] is locked and cannot be opened!"
+		to_chat(user, SPAN_WARNING("\The [src] is locked and cannot be opened!"))
 	else if((loc == user) && (!locked))
 		open(usr)
 	else

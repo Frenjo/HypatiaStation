@@ -118,10 +118,10 @@
 	if(istype(W, /obj/item/toy/crayon))
 		switch(W:colourName)
 			if("mime")
-				usr << "This crayon is too sad to be contained in this box."
+				to_chat(user, SPAN_WARNING("This crayon is too sad to be contained in this box."))
 				return
 			if("rainbow")
-				usr << "This crayon is too powerful to be contained in this box."
+				to_chat(user, SPAN_WARNING("This crayon is too powerful to be contained in this box."))
 				return
 	..()
 

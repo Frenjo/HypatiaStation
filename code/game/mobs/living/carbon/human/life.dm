@@ -932,7 +932,7 @@
 /mob/living/carbon/human/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(nodamage)
 		return
-	//world <<"body_part = [body_part], exposed_temperature = [exposed_temperature], exposed_intensity = [exposed_intensity]"
+	//to_world("body_part = [body_part], exposed_temperature = [exposed_temperature], exposed_intensity = [exposed_intensity]")
 	var/discomfort = min(abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
 
 	if(exposed_temperature > bodytemperature)

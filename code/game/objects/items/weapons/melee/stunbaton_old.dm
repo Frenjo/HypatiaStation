@@ -16,7 +16,7 @@
 	origin_tech = alist(/decl/tech/combat = 2)
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</b>"
+		user.visible_message(SPAN_DANGER("[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide."))
 		return (FIRELOSS)
 
 /obj/item/melee/baton/update_icon()

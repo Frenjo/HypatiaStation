@@ -93,10 +93,10 @@
 
 /obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M)
 	if(!iscarbon(M))
-		usr << "\red <B>The [src.name] cannot hold this!</B>"
+		to_chat(usr, SPAN_DANGER("\The [src] cannot hold this!"))
 		return
 	if(src.occupant)
-		usr << "\red <B>The [src.name] is already occupied!</B>"
+		to_chat(usr, SPAN_DANGER("\The [src] is already occupied!"))
 		return
 	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE

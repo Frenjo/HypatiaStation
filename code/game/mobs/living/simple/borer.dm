@@ -156,7 +156,7 @@
 
 	for(var/mob/M in GLOBL.mob_list)
 		if(M.mind && (istype(M, /mob/living/simple/borer) || isghost(M)))
-			M << "<i>Cortical link, <b>[truename]:</b> [copytext(message, 2)]</i>"
+			to_chat(M, "<i>Cortical link, <b>[truename]:</b> [copytext(message, 2)]</i>")
 
 
 /mob/living/simple/borer/verb/dominate_victim()

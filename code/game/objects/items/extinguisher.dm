@@ -41,27 +41,26 @@
 	. = ..()
 	if(!in_range(src, user))
 		return
+	. += "The safety is [safety ? "on" : "off"]."
 	. += SPAN_INFO("It has <em>[reagents.total_volume]</em> units of water left!")
 
 /obj/item/fire_extinguisher/attack_self(mob/user)
 	safety = !safety
-	src.icon_state = "[sprite_name][!safety]"
-	src.desc = "The safety is [safety ? "on" : "off"]."
-	user << "The safety is [safety ? "on" : "off"]."
-	return
+	icon_state = "[sprite_name][!safety]"
+	to_chat(user, SPAN_WARNING("The safety is [safety ? "on" : "off"]."))
 
 /obj/item/fire_extinguisher/afterattack(atom/target, mob/user , flag)
 	//TODO; Add support for reagents in water.
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(src, target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
-		user << "\blue \The [src] is now refilled"
+		to_chat(user, SPAN_INFO("\The [src] is now refilled."))
 		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if(!safety)
 		if(src.reagents.total_volume < 1)
-			usr << "\red \The [src] is empty."
+			to_chat(user, SPAN_WARNING("\The [src] is empty."))
 			return
 
 		if(world.time < src.last_use + 20)

@@ -27,7 +27,7 @@
 		return ..()
 	else
 		M.death()
-		user << "<b>ERROR ERROR ERROR</b>"
+		to_chat(user, SPAN_DANGER("ERROR ERROR ERROR"))
 
 /obj/item/aicard/attack_self(mob/user)
 	if(!in_range(src, user))

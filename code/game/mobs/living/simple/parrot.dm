@@ -154,27 +154,27 @@
 							if(copytext(possible_phrase,1,3) in GLOBL.department_radio_keys)
 								possible_phrase = copytext(possible_phrase,3,length(possible_phrase))
 					else
-						usr << "\red There is nothing to remove from its [remove_from]."
+						to_chat(usr, SPAN_WARNING("There is nothing to remove from its [remove_from]."))
 						return
 
 		//Adding things to inventory
 		else if(href_list["add_inv"])
 			var/add_to = href_list["add_inv"]
 			if(!usr.get_active_hand())
-				usr << "\red You have nothing in your hand to put on its [add_to]."
+				to_chat(usr, SPAN_WARNING("You have nothing in your hand to put on its [add_to]."))
 				return
 			switch(add_to)
 				if("ears")
 					if(ears)
-						usr << "\red It's already wearing something."
+						to_chat(usr, SPAN_WARNING("It's already wearing something."))
 						return
 					else
 						var/obj/item/item_to_add = usr.get_active_hand()
 						if(!item_to_add)
 							return
 
-						if( !istype(item_to_add,  /obj/item/radio/headset) )
-							usr << "\red This object won't fit."
+						if(!istype(item_to_add, /obj/item/radio/headset))
+							to_chat(usr, SPAN_WARNING("This object won't fit."))
 							return
 
 						var/obj/item/radio/headset/headset_to_add = item_to_add
@@ -182,7 +182,7 @@
 						usr.drop_item()
 						headset_to_add.forceMove(src)
 						src.ears = headset_to_add
-						usr << "You fit the headset onto [src]."
+						to_chat(usr, SPAN_INFO("You fit the headset onto \the [src]."))
 
 						clearlist(available_channels)
 						for(var/ch in headset_to_add.channels)
@@ -652,7 +652,7 @@
 		return -1
 
 	if(!held_item)
-		usr << "\red You have nothing to drop!"
+		to_chat(usr, SPAN_WARNING("You have nothing to drop!"))
 		return 0
 
 	if(!drop_gently)

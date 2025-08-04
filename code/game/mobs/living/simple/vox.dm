@@ -92,12 +92,12 @@
 		to_chat(src, SPAN_WARNING("Not even the armalis can speak to the dead."))
 		return
 
-	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
+	to_chat(M, SPAN_INFO("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(istype(H.species, /datum/species/vox))
 			return
-		H << "\red Your nose begins to bleed..."
+		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
 		H.drip(1)
 
 /mob/living/simple/vox/armalis/verb/shriek()

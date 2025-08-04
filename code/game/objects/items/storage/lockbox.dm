@@ -20,17 +20,17 @@
 /obj/item/storage/lockbox/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/card/id))
 		if(broken)
-			user << "\red It appears to be broken."
+			to_chat(user, SPAN_WARNING("It appears to be broken."))
 			return
 		if(allowed(user))
-			locked = !( locked )
+			locked = !locked
 			if(locked)
 				icon_state = icon_locked
-				user << "\red You lock the [name]!"
+				to_chat(user, SPAN_WARNING("You lock the [name]!"))
 				return
 			else
 				icon_state = icon_closed
-				user << "\red You unlock the [name]!"
+				to_chat(user, SPAN_WARNING("You unlock the [name]!"))
 				return
 		else
 			FEEDBACK_ACCESS_DENIED(user)
@@ -52,12 +52,12 @@
 	if(!locked)
 		..()
 	else
-		user << "\red Its locked!"
+		to_chat(user, SPAN_WARNING("It's locked!"))
 	return
 
 /obj/item/storage/lockbox/show_to(mob/user)
 	if(locked)
-		user << "\red Its locked!"
+		to_chat(user, SPAN_WARNING("It's locked!"))
 	else
 		..()
 	return

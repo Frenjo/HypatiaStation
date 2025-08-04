@@ -156,7 +156,7 @@
 					O.show_message(text("\red [] has been injected with [] by [].", M, src, user), 1)
 					//Foreach goto(192)
 				if(!(ishuman(M) || ismonkey(M)))
-					user << "\red Apparently it didn't work."
+					to_chat(user, SPAN_WARNING("Apparently it didn't work."))
 					return
 
 				if (buf.types & DNA2_BUF_SE)

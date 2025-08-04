@@ -724,7 +724,7 @@ steam.start() -- spawns the effect
 			flash += (round(amount / 4) * flashing_factor)
 
 		for(var/mob/M in viewers(8, location))
-			M << "\red The solution violently explodes."
+			to_chat(M, SPAN_WARNING("The solution violently explodes."))
 
 		explosion(location, devastation, heavy, light, flash)
 

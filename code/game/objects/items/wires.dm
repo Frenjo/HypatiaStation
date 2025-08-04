@@ -12,7 +12,7 @@
 	var/old_lay = null
 
 /obj/item/wire/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide."))
 	return (OXYLOSS)
 
 /obj/item/wire/proc/update()
