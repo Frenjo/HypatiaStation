@@ -66,13 +66,12 @@
 
 /client/New()
 	..()
-	src << output( \
-{"
+	src << output({"
 [script]
 <script type='text/javascript'>
 	function replace(msg, count) {
 		var replacing = document.getElementById('chatOutput').innerHTML;
-		var replacingIndex = replacing.lastIndexOf('<BR>');
+		var replacingIndex = replacing.lastIndexOf('<br>');
 		if(replacingIndex >= 0)
 		{
 			msg += ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
@@ -87,7 +86,6 @@
 		var scrollingElement = (document.scrollingElement || document.body);
 		scrollingElement.scrollTop = scrollingElement.scrollHeight;
 	}
-
 </script>
 <div id='chatOutput'></div>
 "}, "outputwindow.output");
