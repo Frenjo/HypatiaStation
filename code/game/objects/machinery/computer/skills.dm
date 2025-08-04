@@ -91,8 +91,8 @@
 					if(istype(active1, /datum/data/record) && GLOBL.data_core.general.Find(active1))
 						var/icon/front = new(active1.fields["photo"], dir = SOUTH)
 						var/icon/side = new(active1.fields["photo"], dir = WEST)
-						user << browse_rsc(front, "front.png")
-						user << browse_rsc(side, "side.png")
+						SEND_RSC(user, front, "front.png")
+						SEND_RSC(user, side, "side.png")
 						dat += text("<table><tr><td>	\
 						Name: <A href='byond://?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
 						ID: <A href='byond://?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n	\

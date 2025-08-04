@@ -4,7 +4,7 @@
 
 	if(isnull(preview_icon))
 		update_preview_icon()
-	user << browse_rsc(preview_icon, "previewicon.png")
+	SEND_RSC(user, preview_icon, "previewicon.png")
 
 	var/dat = character_setup_header(user)
 

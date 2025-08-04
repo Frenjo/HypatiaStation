@@ -229,4 +229,4 @@ PROCESS_DEF(nanoui)
 		files = flist(path)
 		for(var/file in files)
 			if(copytext(file, length(file)) != "/") // files which end in "/" are actually directories, which we want to ignore
-				client << browse_rsc(file(path + file))	// send the file to the client
+				SEND_RSC(client, fcopy_rsc(path + file), file) // send the file to the client

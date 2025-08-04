@@ -235,7 +235,7 @@
 				imgstring+=replacetextx("__[A.type]_[A.icon_state]","/","_")
 
 			//Output it
-			src << browse_rsc(I,"[imgstring].dmi")
+			SEND_RSC(src, I, "[imgstring].dmi")
 			html+="<td><img src=\"[imgstring].dmi\" width=[tilesizex] height=[tilesizey]></td>"
 
 	text2file("</table></body></html>",filename)

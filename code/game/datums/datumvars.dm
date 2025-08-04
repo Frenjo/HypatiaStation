@@ -28,7 +28,7 @@
 		var/atom/AT = D
 		if(AT.icon && AT.icon_state)
 			sprite = new /icon(AT.icon, AT.icon_state)
-			usr << browse_rsc(sprite, "view_vars_sprite.png")
+			SEND_RSC(usr, sprite, "view_vars_sprite.png")
 
 	title = "[D] (\ref[D]) = [D.type]"
 
@@ -349,7 +349,7 @@ body
 		var/icon/I = new/icon(value)
 		var/rnd = rand(1, 10000)
 		var/rname = "tmp\ref[I][rnd].png"
-		usr << browse_rsc(I, rname)
+		SEND_RSC(usr, I, rname)
 		html += "[name] = (<span class='value'>[value]</span>) <img class=icon src=\"[rname]\">"
 		#else
 		html += "[name] = /icon (<span class='value'>[value]</span>)"
@@ -360,7 +360,7 @@ body
 		var/rnd = rand(1, 10000)
 		var/image/I = value
 
-		src << browse_rsc(I.icon, "tmp\ref[value][rnd].png")
+		SEND_RSC(src, I.icon, "tmp\ref[value][rnd].png")
 		html += "[name] = <img src=\"tmp\ref[value][rnd].png\">"
 		#else
 		html += "[name] = /image (<span class='value'>[value]</span>)"

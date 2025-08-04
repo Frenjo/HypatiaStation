@@ -57,8 +57,8 @@
 				if(4.0)
 					var/icon/front = new(active1.fields["photo"], dir = SOUTH)
 					var/icon/side = new(active1.fields["photo"], dir = WEST)
-					user << browse_rsc(front, "front.png")
-					user << browse_rsc(side, "side.png")
+					SEND_RSC(user, front, "front.png")
+					SEND_RSC(user, side, "side.png")
 					dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
 					if(istype(src.active1, /datum/data/record) && GLOBL.data_core.general.Find(src.active1))
 						dat += "<table><tr><td>Name: [active1.fields["name"]] \

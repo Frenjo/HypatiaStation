@@ -1,6 +1,7 @@
 /*
  * Output Macros
  */
+#define SEND_RSC(TARGET, CONTENT, NAME) TARGET << browse_rsc(CONTENT, NAME)
 #define OPEN_LINK(TARGET, URL) TARGET << link(URL)
 #define OPEN_FILE(TARGET, FILE) TARGET << run(FILE)
 

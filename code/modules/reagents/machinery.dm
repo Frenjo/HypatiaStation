@@ -524,9 +524,9 @@
 		spawn()
 			has_sprites += user.client
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				usr << browse_rsc(icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
+				SEND_RSC(usr, icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
-				usr << browse_rsc(icon('icons/obj/chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
+				SEND_RSC(usr, icon('icons/obj/chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"

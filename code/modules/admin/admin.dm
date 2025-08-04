@@ -400,7 +400,7 @@ var/global/floorIsLava = 0
 						i++
 						dat += "-[message.body] <BR>"
 						if(message.img)
-							usr << browse_rsc(message.img, "tmp_photo[i].png")
+							SEND_RSC(usr, message.img, "tmp_photo[i].png")
 							dat += "<img src='tmp_photo[i].png' width = '180'><BR><BR>"
 						dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
 			dat+={"
@@ -513,7 +513,7 @@ var/global/floorIsLava = 0
 				<B>Photo:</B>:
 			"}
 			if(global.CTeconomy.news_network.wanted_issue.img)
-				usr << browse_rsc(global.CTeconomy.news_network.wanted_issue.img, "tmp_photow.png")
+				SEND_RSC(usr, global.CTeconomy.news_network.wanted_issue.img, "tmp_photow.png")
 				dat+="<BR><img src='tmp_photow.png' width = '180'>"
 			else
 				dat+="None"

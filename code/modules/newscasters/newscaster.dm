@@ -247,7 +247,7 @@
 							i++
 							dat += "- [message.body]<BR>"
 							if(isnotnull(message.img))
-								usr << browse_rsc(message.img, "tmp_photo[i].png")
+								SEND_RSC(usr, message.img, "tmp_photo[i].png")
 								dat += "<img src='tmp_photo[i].png' width = '180'><BR><BR>"
 							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
 				dat += "<BR><HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
@@ -343,7 +343,7 @@
 				dat += "<B>Description</B>: [global.CTeconomy.news_network.wanted_issue.body]<BR>"
 				dat += "<B>Photo:</B>: "
 				if(global.CTeconomy.news_network.wanted_issue.img)
-					usr << browse_rsc(global.CTeconomy.news_network.wanted_issue.img, "tmp_photow.png")
+					SEND_RSC(usr, global.CTeconomy.news_network.wanted_issue.img, "tmp_photow.png")
 					dat += "<BR><img src='tmp_photow.png' width = '180'>"
 				else
 					dat += "None"
@@ -744,7 +744,7 @@
 							i++
 							dat += "- [message.body]<BR>"
 							if(message.img)
-								user << browse_rsc(message.img, "tmp_photo[i].png")
+								SEND_RSC(user, message.img, "tmp_photo[i].png")
 								dat += "<img src='tmp_photo[i].png' width = '180'><BR>"
 							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR><BR>"
 						dat += "</ul>"
@@ -760,7 +760,7 @@
 					dat += "<B>Description</B>: [important_message.body]<BR>"
 					dat += "<B>Photo:</B>: "
 					if(important_message.img)
-						user << browse_rsc(important_message.img, "tmp_photow.png")
+						SEND_RSC(user, important_message.img, "tmp_photow.png")
 						dat += "<BR><img src='tmp_photow.png' width = '180'>"
 					else
 						dat += "None"
