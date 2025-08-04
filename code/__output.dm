@@ -61,7 +61,7 @@
 
 	if(realsize)
 		return "<img class='icon icon-[icon_state] [class]' style='width:[I.Width()]px;height:[I.Height()]px;min-height:[I.Height()]px' src=\"[url_encode(name)]\">"
-	return "<img class='icon icon-[icon_state] [class]' src=\"[url_encode(name)]\">"
+	return "<img class='icon icon-[icon_state] [class]' style='width:16px;height:16px' src=\"[url_encode(name)]\">"
 
 /atom
 	var/last_chat_message

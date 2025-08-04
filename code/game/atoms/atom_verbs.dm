@@ -3,7 +3,7 @@
 	var/list/examine_header = get_examine_header(user, distance)
 	var/list/examine_text = get_examine_text(user, distance)
 	var/examine_output = jointext(examine_header + examine_text, "<br>")
-	to_chat(user, examine_output)
+	to_chat(user, "<div style='background:gainsboro;padding:2px;margin-top:3px;border:1px solid #0000CC'>[examine_output]</div>")
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 /atom/proc/get_examine_header(mob/user, distance = -1)
