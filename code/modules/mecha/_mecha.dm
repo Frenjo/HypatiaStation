@@ -293,9 +293,8 @@
 
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
-		if(src.occupant && src.occupant.client)
-			src.occupant << "[html_icon(src)] [message]"
-	return
+		if(occupant?.client)
+			to_chat(occupant, "[html_icon(src)] [message]")
 
 /obj/mecha/proc/log_message(message as text, red = null)
 	log.len++

@@ -128,7 +128,7 @@
 				playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			for(var/mob/O in hearers(3, P.loc))
 				if(!P.silent)
-					O.show_message(text("[html_icon(P)] *[P.ttone]*"))
+					O.show_message("[html_icon(P)] *[P.ttone]*")
 			//Search for holder of the PDA.
 			var/mob/living/L = null
 			if(P.loc && isliving(P.loc))

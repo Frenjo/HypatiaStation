@@ -67,7 +67,7 @@
 			SPAN_INFO("[user] extends \the [P] towards \the [src]."),
 			SPAN_INFO("You extend \the [P] towards \the [src].")
 		)
-		if(do_after(user, 40))
+		if(do_after(user, 4 SECONDS))
 			to_chat(user, SPAN_INFO("[html_icon(P)] [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
 		return TRUE
 

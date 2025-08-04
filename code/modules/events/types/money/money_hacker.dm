@@ -43,7 +43,7 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 				if(!Console.silent)
 					playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
 					for(var/mob/O in hearers(5, Console.loc))
-						O.show_message(text("[html_icon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
+						O.show_message("[html_icon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'")
 				Console.messages += "<B><FONT color='red'>High Priority message from [my_department]</FONT></B><BR>[sending]"
 
 /datum/round_event/money_hacker/tick()
@@ -105,5 +105,5 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 				if(!Console.silent)
 					playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
 					for(var/mob/O in hearers(5, Console.loc))
-						O.show_message(text("[html_icon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
+						O.show_message("[html_icon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'")
 				Console.messages += "<B><FONT color='red'>High Priority message from [my_department]</FONT></B><BR>[sending]"

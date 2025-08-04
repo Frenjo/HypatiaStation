@@ -277,14 +277,14 @@
 		covered_turfs = null
 
 		for(var/mob/M in view(5,src))
-			M << "[html_icon(src)] You hear heavy droning start up."
+			to_chat(M, "[html_icon(src)] You hear heavy droning start up.")
 	else
 		for_no_type_check(var/obj/effect/energy_field/D, field)
 			field.Remove(D)
 			qdel(D)
 
 		for(var/mob/M in view(5,src))
-			M << "[html_icon(src)] You hear heavy droning fade out."
+			to_chat(M, "[html_icon(src)] You hear heavy droning fade out.")
 
 //grab the border tiles in a circle around this machine
 /obj/machinery/shield_gen/proc/get_shielded_turfs()
