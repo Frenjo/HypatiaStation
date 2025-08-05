@@ -23,7 +23,7 @@
 			. += SPAN_DANGER("It has severe burns!")
 
 	if(stat == DEAD)
-		. += SPAN("deadsay", "It is limp and unresponsive, with no signs of life.")
+		. += SPAN_DEADSAY("It is limp and unresponsive, with no signs of life.")
 	else if(stat == UNCONSCIOUS)
 		. += SPAN_WARNING("It isn't responding to anything around it; it seems to be asleep.")
 

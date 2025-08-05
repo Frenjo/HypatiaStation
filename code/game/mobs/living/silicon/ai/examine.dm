@@ -19,7 +19,7 @@
 			. += SPAN_DANGER("Its casing is melted and heat-warped!")
 
 	if(stat == DEAD)
-		. += SPAN("deadsay", "It appears to be powered-down.")
+		. += SPAN_DEADSAY("It appears to be powered-down.")
 	else if(stat == UNCONSCIOUS)
 		. += SPAN_WARNING("It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".")
 

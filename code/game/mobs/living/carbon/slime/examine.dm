@@ -17,6 +17,6 @@
 			. += SPAN_DANGER("It has severe punctures and tears in its flesh!")
 
 	if(stat == DEAD)
-		. += SPAN("deadsay", "It is limp and unresponsive.")
+		. += SPAN_DEADSAY("It is limp and unresponsive.")
 
 	. += SPAN_INFO_B("*---------*")

@@ -37,7 +37,7 @@
 		if(UNCONSCIOUS)
 			. += SPAN_WARNING("It doesn't seem to be responding.")
 		if(DEAD)
-			. += SPAN("deadsay", "It looks completely unsalvageable.")
+			. += SPAN_DEADSAY("It looks completely unsalvageable.")
 
 	. += SPAN_INFO_B("*---------*")
 

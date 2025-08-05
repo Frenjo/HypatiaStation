@@ -225,9 +225,9 @@
 		spawn(1.5 SECONDS)
 			if(distance <= 1 && user.stat != 1)
 				if(pulse == PULSE_NONE)
-					to_chat(user, SPAN("deadsay", "[t_He] has no pulse[isnotnull(client) ? "" : " and [t_his] soul has departed"]..."))
+					to_chat(user, SPAN_DEADSAY("[t_He] has no pulse[isnotnull(client) ? "" : " and [t_his] soul has departed"]..."))
 				else
-					to_chat(user, SPAN("deadsay", "[t_He] has a pulse!"))
+					to_chat(user, SPAN_DEADSAY("[t_He] has a pulse!"))
 
 	if(fire_stacks)
 		. += SPAN_WARNING("[t_He] [t_is] covered in some liquid.")
@@ -249,7 +249,7 @@
 
 	if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 		if(!(species.has_organ["brain"] || has_brain()) && stat != DEAD)
-			. += SPAN("deadsay", "[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
+			. += SPAN_DEADSAY("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
 		else if(!client && brain_op_stage != 4 && stat != DEAD)
 			. += SPAN_INFO("[t_He] [t_has] suddenly fallen asleep.")
 

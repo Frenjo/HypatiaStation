@@ -162,7 +162,7 @@ Doing this because FindTurfs() isn't even used
 		//to_world("Turf [T] at ([T.x],[T.y])")
 
 		for(var/obj/machinery/M in T)
-			//world <<" Mach [M] with pdir=[M.p_dir]"
+			//to_world(" Mach [M] with pdir=[M.p_dir]")
 
 			if(M && M.p_dir)
 
@@ -208,7 +208,7 @@ Doing this because FindTurfs() isn't even used
 
 			var/marked = 0
 			for(var/obj/M in T)
-				//world <<" Mach [M] with pdir=[M.p_dir]"
+				//to_world(" Mach [M] with pdir=[M.p_dir]")
 
 
 				if(M && istype(M, /obj/structure/cable/))

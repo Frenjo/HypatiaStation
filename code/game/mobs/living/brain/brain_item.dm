@@ -42,7 +42,7 @@
 	if(isnotnull(brainmob?.client))
 		. += SPAN_INFO("You can feel the small spark of life still left in this one.")
 	else
-		. += SPAN("deadsay", "This one seems particularly lifeless. Perhaps it will regain some of its luster later...")
+		. += SPAN_DEADSAY("This one seems particularly lifeless. Perhaps it will regain some of its luster later...")
 
 /obj/item/brain/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!ismob(M))

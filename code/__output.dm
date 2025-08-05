@@ -12,6 +12,7 @@
 #define TO_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] << VALUE
 #define FROM_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] >> VALUE
 
+// The two procs below are ported from Bay12.
 /proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
 
@@ -65,35 +66,37 @@
 		return "<img class='icon icon-[icon_state] [class]' style='width:[I.Width()]px;height:[I.Height()]px;min-height:[I.Height()]px' src=\"[url_encode(name)]\">"
 	return "<img class='icon icon-[icon_state] [class]' style='width:16px;height:16px' src=\"[url_encode(name)]\">"
 
-/atom
-	var/last_chat_message
-	var/last_chat_message_count = 0
-
+// Sets up the new browser output with collapsing functionality for identical strings.
 /client/New()
-	..()
+	. = ..()
 	src << output({"
 [script]
 <script type='text/javascript'>
-	function replace(msg, count) {
-		var replacing = document.getElementById('chatOutput').innerHTML;
-		var replacingIndex = replacing.lastIndexOf('<br>');
-		if(replacingIndex >= 0)
-		{
-			msg += ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
-			document.getElementById('chatOutput').innerHTML = replacing.substring(0, replacingIndex);
-		}
-		append(msg)
-	}
-
 	function append(msg)
 	{
 		document.getElementById('chatOutput').innerHTML += '<br>' + msg;
 		var scrollingElement = (document.scrollingElement || document.body);
 		scrollingElement.scrollTop = scrollingElement.scrollHeight;
 	}
+
+	function replace(msg, count)
+	{
+		var replacing = document.getElementById('chatOutput').innerHTML;
+		var replacingIndex = replacing.lastIndexOf('<br>');
+		if(replacingIndex != -1)
+		{
+			msg += ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
+			document.getElementById('chatOutput').innerHTML = replacing.substring(0, replacingIndex);
+		}
+		append(msg);
+	}
 </script>
 <div id='chatOutput'></div>
 "}, "outputwindow.output");
+
+/atom
+	var/last_chat_message
+	var/last_chat_message_count = 0
 
 /proc/to_chat(atom/target, message)
 	if(!message)

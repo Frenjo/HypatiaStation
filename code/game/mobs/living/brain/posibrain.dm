@@ -111,8 +111,8 @@
 			if(UNCONSCIOUS)
 				. += SPAN_WARNING("It doesn't seem to be responsive.")
 			if(DEAD)
-				. += SPAN("deadsay", "It appears to be completely inactive.")
+				. += SPAN_DEADSAY("It appears to be completely inactive.")
 	else
-		. += SPAN("deadsay", "It appears to be completely inactive.")
+		. += SPAN_DEADSAY("It appears to be completely inactive.")
 
 	. += SPAN_INFO_B("*---------*")
