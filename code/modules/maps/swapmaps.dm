@@ -222,11 +222,11 @@
 	areas -= defarea
 	InitializeSwapMaps()
 	locked = 1
-	S["id"] << id
-	S["z"] << z2 - z1 + 1
-	S["y"] << y2 - y1 + 1
-	S["x"] << x2 - x1 + 1
-	S["areas"] << areas
+	TO_SAVEFILE(S, "id", id)
+	TO_SAVEFILE(S, "z", z2 - z1 + 1)
+	TO_SAVEFILE(S, "y", y2 - y1 + 1)
+	TO_SAVEFILE(S, "x", x2 - x1 + 1)
+	TO_SAVEFILE(S, "areas", areas)
 	for(n in 1 to length(areas))
 		areas[areas[n]] = n
 	var/oldcd = S.cd
@@ -237,9 +237,9 @@
 			for(x = x1, x <= x2, ++x)
 				S.cd = "[x - x1 + 1]"
 				var/turf/T = locate(x, y, z)
-				S["type"] << T.type
+				TO_SAVEFILE(S, "type", T.type)
 				if(T.loc != defarea)
-					S["AREA"] << areas[T.loc]
+					TO_SAVEFILE(S, "AREA", areas[T.loc])
 				T.Write(S)
 				S.cd = ".."
 			S.cd = ".."
@@ -264,14 +264,14 @@
 	if(!defarea)
 		defarea = new world.area
 	if(!_id)
-		S["id"] >> id
+		FROM_SAVEFILE(S, "id", id)
 	else
 		var/dummy
-		S["id"] >> dummy
-	S["z"] >> z2		// these are depth,
-	S["y"] >> y2		//			height,
-	S["x"] >> x2		//			width
-	S["areas"] >> areas
+		FROM_SAVEFILE(S, "id", dummy)
+	FROM_SAVEFILE(S, "z", z2) // these are depth,
+	FROM_SAVEFILE(S, "x", y2) //		height,
+	FROM_SAVEFILE(S, "x", x2) //		width
+	FROM_SAVEFILE(S, "areas", areas)
 	locked = 1
 	AllocateSwapMap()	// adjust x1,y1,z1 - x2,y2,z2 coords
 	var/oldcd = S.cd
@@ -282,12 +282,12 @@
 			for(x = x1, x <= x2, ++x)
 				S.cd = "[x - x1 + 1]"
 				var/tp
-				S["type"] >> tp
+				FROM_SAVEFILE(S, "type", tp)
 				var/turf/T = locate(x, y, z)
 				T.loc.contents -= T
 				T = new tp(locate(x, y, z))
 				if("AREA" in S.dir)
-					S["AREA"] >> n
+					FROM_SAVEFILE(S, "AREA", n)
 					var/area/A = areas[n]
 					A.contents += T
 				else
@@ -480,23 +480,23 @@
 	for(var/V in vars-"x"-"y"-"z"-"contents"-"icon"-"overlays"-"underlays")
 		if(issaved(vars[V]))
 			if(vars[V] != initial(vars[V]))
-				S[V] << vars[V]
+				TO_SAVEFILE(S, V, vars[V])
 			else
 				S.dir.Remove(V)
 	if(icon != initial(icon))
 		if(swapmaps_iconcache && swapmaps_iconcache[icon])
-			S["icon"] << swapmaps_iconcache[icon]
+			TO_SAVEFILE(S, "icon", swapmaps_iconcache[icon])
 		else
-			S["icon"] << icon
+			TO_SAVEFILE(S, "icon", icon)
 	// do not save mobs with keys; do save other mobs
 	var/mob/M
 	for(M in src)
 		if(M.key)
 			break
 	if(length(overlays))
-		S["overlays"] << overlays
+		TO_SAVEFILE(S, "overlays", overlays)
 	if(length(underlays))
-		S["underlays"] << underlays
+		TO_SAVEFILE(S, "underlays", underlays)
 	if(length(contents) && !isarea(src))
 		var/list/l = contents
 		if(M)
@@ -505,7 +505,7 @@
 				if(M.key)
 					l -= M
 		if(length(l))
-			S["contents"] << l
+			TO_SAVEFILE(S, "contents", l)
 		if(l != contents)
 			qdel(l)
 
@@ -518,7 +518,7 @@
 	// replace it from the cache list
 	if(!icon && ("icon" in S.dir))
 		var/ic
-		S["icon"] >> ic
+		FROM_SAVEFILE(S, "icon", ic)
 		if(istext(ic))
 			icon = swapmaps_iconcache[ic]
 	if(l && contents != l)
@@ -723,7 +723,7 @@ var/swapmaps_byname
 	var/x
 	var/y
 	var/z
-	S["x"] >> x
-	S["y"] >> y
-	S["z"] >> z
+	FROM_SAVEFILE(S, "x", x)
+	FROM_SAVEFILE(S, "y", y)
+	FROM_SAVEFILE(S, "z", z)
 	return list(x, y, z)

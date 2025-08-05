@@ -15,7 +15,7 @@
 	var/savefile/F = new(TORFILE)
 	if(F)
 		var/last_update
-		F["last_update"] >> last_update
+		FROM_SAVEFILE(F, "last_update", last_update)
 		if((last_update + TOR_UPDATE_INTERVAL) < world.realtime)	//we haven't updated for a while
 			ToRban_update()
 	return

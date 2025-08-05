@@ -77,23 +77,23 @@
 		switch(bantype)
 			if(BANTYPE_PERMA)
 				if(!banckey || !banreason)
-					usr << "Not enough parameters (Requires ckey and reason)"
+					to_chat(usr, SPAN_WARNING("Not enough parameters (Requires ckey and reason)"))
 					return
 				banduration = null
 				banjob = null
 			if(BANTYPE_TEMP)
 				if(!banckey || !banreason || !banduration)
-					usr << "Not enough parameters (Requires ckey, reason and duration)"
+					to_chat(usr, SPAN_WARNING("Not enough parameters (Requires ckey, reason and duration)"))
 					return
 				banjob = null
 			if(BANTYPE_JOB_PERMA)
 				if(!banckey || !banreason || !banjob)
-					usr << "Not enough parameters (Requires ckey, reason and job)"
+					to_chat(usr, SPAN_WARNING("Not enough parameters (Requires ckey, reason and job)"))
 					return
 				banduration = null
 			if(BANTYPE_JOB_TEMP)
 				if(!banckey || !banreason || !banjob || !banduration)
-					usr << "Not enough parameters (Requires ckey, reason and job)"
+					to_chat(usr, SPAN_WARNING("Not enough parameters (Requires ckey, reason and job)"))
 					return
 
 		var/mob/playermob
@@ -365,10 +365,10 @@
 			return
 
 		if(!M.ckey)	//sanity
-			usr << "This mob has no ckey"
+			to_chat(usr, SPAN_WARNING("This mob has no ckey!"))
 			return
 		if(!global.CTjobs)
-			usr << "Job Master has not been setup!"
+			to_chat(usr, SPAN_WARNING("Job Master has not been setup!"))
 			return
 
 		var/dat = ""
@@ -670,7 +670,7 @@
 				return
 
 		if(!global.CTjobs)
-			usr << "Job Master has not been setup!"
+			to_chat(usr, SPAN_WARNING("Job Master has not been setup!"))
 			return
 
 		//get jobs for department if specified, otherwise just returnt he one job in a list.
@@ -740,7 +740,7 @@
 				if("Yes")
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
 					if(CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
-						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
+						to_chat(usr, SPAN_WARNING("Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."))
 						return
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
@@ -763,9 +763,9 @@
 							msg += ", [job]"
 					notes_add(M.ckey, "Banned  from [msg] - [reason]")
 					message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes", 1)
-					M << "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>"
-					M << "\red <B>The reason is: [reason]</B>"
-					M << "\red This jobban will be lifted in [mins] minutes."
+					to_chat(M, SPAN_DANGER("<big>You have been jobbanned by [usr.client.ckey] from: [msg].</big>"))
+					to_chat(M, SPAN_DANGER("The reason is: [reason]"))
+					to_chat(M, SPAN_WARNING("This jobban will be lifted in [mins] minutes."))
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return 1
 				if("No")
@@ -784,9 +784,9 @@
 							else		msg += ", [job]"
 						notes_add(M.ckey, "Banned  from [msg] - [reason]")
 						message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg]", 1)
-						M << "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>"
-						M << "\red <B>The reason is: [reason]</B>"
-						M << "\red Jobban can be lifted only upon request."
+						to_chat(M, SPAN_DANGER("<big>You have been jobbanned by [usr.client.ckey] from: [msg].</big>"))
+						to_chat(M, SPAN_DANGER("The reason is: [reason]"))
+						to_chat(M, SPAN_WARNING("This jobban can only be lifted upon request."))
 						href_list["jobban2"] = 1 // lets it fall through and refresh
 						return 1
 				if("Cancel")
@@ -796,7 +796,7 @@
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 		if(length(joblist)) //at least 1 banned job exists in joblist so we have stuff to unban.
 			if(!CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
-				usr << "Unfortunately, database based unbanning cannot be done through this panel"
+				to_chat(usr, SPAN_WARNING("Unfortunately, database based unbanning cannot be done through this panel."))
 				DB_ban_panel(M.ckey)
 				return
 			var/msg
@@ -817,7 +817,7 @@
 						continue
 			if(msg)
 				message_admins("\blue [key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg]", 1)
-				M << "\red<BIG><B>You have been un-jobbanned by [usr.client.ckey] from [msg].</B></BIG>"
+				to_chat(M, SPAN_DANGER("<big>You have been un-jobbanned by [usr.client.ckey] from [msg].</big>"))
 				href_list["jobban2"] = 1 // lets it fall through and refresh
 			return 1
 		return 0 //we didn't do anything!
@@ -829,9 +829,9 @@
 				return
 			var/reason = input("Please enter reason")
 			if(!reason)
-				M << "\red You have been kicked from the server"
+				to_chat(M, SPAN_WARNING("You have been kicked from the server."))
 			else
-				M << "\red You have been kicked from the server: [reason]"
+				to_chat(M, SPAN_WARNING("You have been kicked from the server: [reason]"))
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
@@ -889,15 +889,16 @@
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
-				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-				M << "\red This is a temporary ban, it will be removed in [mins] minutes."
+				to_chat(M, SPAN_DANGER("<big>ou have been banned by [usr.client.ckey].</big>"))
+				to_chat(M, SPAN_DANGER("<big>Reason: [reason].</big>"))
+				to_chat(M, SPAN_WARNING("This is a temporary ban, it will be removed in [mins] minutes."))
 				feedback_inc("ban_tmp",1)
 				DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 				feedback_inc("ban_tmp_mins",mins)
 				if(isnotnull(CONFIG_GET(/decl/configuration_entry/banappeals)))
-					M << "\red To try to resolve this matter head to [CONFIG_GET(/decl/configuration_entry/banappeals)]"
+					to_chat(M, SPAN_WARNING("To try to resolve this matter head to [CONFIG_GET(/decl/configuration_entry/banappeals)]."))
 				else
-					M << "\red No ban appeals URL has been set."
+					to_chat(M, SPAN_WARNING("No ban appeals URL has been set."))
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
@@ -914,12 +915,13 @@
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
 					if("No")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-				M << "\red This is a permanent ban."
+				to_chat(M, SPAN_DANGER("<big>You have been banned by [usr.client.ckey].</big>"))
+				to_chat(M, SPAN_DANGER("<big>Reason: [reason].</big>"))
+				to_chat(M, SPAN_WARNING("This is a permanent ban."))
 				if(isnotnull(CONFIG_GET(/decl/configuration_entry/banappeals)))
-					M << "\red To try to resolve this matter head to [CONFIG_GET(/decl/configuration_entry/banappeals)]"
+					to_chat(M, SPAN_WARNING("To try to resolve this matter head to [CONFIG_GET(/decl/configuration_entry/banappeals)]."))
 				else
-					M << "\red No ban appeals URL has been set."
+					to_chat(M, SPAN_WARNING("No ban appeals URL has been set."))
 				ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 				message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
@@ -1221,7 +1223,7 @@
 			message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 		else
-			usr << "Admin Rejuvenates have been disabled"
+			to_chat(usr, SPAN_WARNING("Admin Rejuvenates have been disabled."))
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
@@ -1270,7 +1272,7 @@
 
 		var/mob/M = locate(href_list["makeanimal"])
 		if(isnewplayer(M))
-			usr << "This cannot be used on instances of type /mob/dead/new_player"
+			to_chat(usr, SPAN_WARNING("This cannot be used on instances of type /mob/dead/new_player."))
 			return
 
 		usr.client.cmd_admin_animalize(M)
@@ -1431,7 +1433,7 @@
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_cookies_spawned",1)
-		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
+		to_chat(H, SPAN_INFO("Your prayers have been answered! You received the <b>best cookie</b>!"))
 
 	else if(href_list["BlueSpaceArtillery"])
 		if(!check_rights(R_ADMIN|R_FUN))
@@ -1446,14 +1448,14 @@
 			return
 
 		if(BSACooldown)
-			src.owner << "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!"
+			to_chat(owner, SPAN_WARNING("Standby! Reload cycle in progress! Gunnery crews ready in five seconds!"))
 			return
 
 		BSACooldown = 1
 		spawn(50)
 			BSACooldown = 0
 
-		M << "You've been hit by bluespace artillery!"
+		to_chat(M, SPAN_DANGER("You've been hit by bluespace artillery!"))
 		log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
 		message_admins("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
 
@@ -1485,16 +1487,16 @@
 			to_chat(usr, SPAN_WARNING("This can only be used on instances of type /mob/living/carbon/human."))
 			return
 		if(!istype(H.l_ear, /obj/item/radio/headset) && !istype(H.r_ear, /obj/item/radio/headset))
-			usr << "The person you are trying to contact is not wearing a headset"
+			to_chat(usr, SPAN_WARNING("The person you are trying to contact is not wearing a headset."))
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from CentCom", "")
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.", "Outgoing message from CentCom", "")
 		if(!input)	return
 
-		src.owner << "You sent [input] to [H] via a secure channel."
+		to_chat(owner, SPAN_INFO("You sent [input] to [H] via a secure channel."))
 		log_admin("[src.owner] replied to [key_name(H)]'s CentCom message with the message [input].")
 		message_admins("[src.owner] replied to [key_name(H)]'s CentCom message with: \"[input]\"")
-		H << "You hear something crackle in your headset for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. <b>\"[input]\"</b>  Message ends.\""
+		to_chat(H, "You hear something crackle in your headset for a moment before a voice speaks. \"Please stand by for a message from Central Command. Message as follows. <b>\"[input]\"</b> Message ends.\"")
 
 	else if(href_list["SyndicateReply"])
 		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
@@ -1502,15 +1504,15 @@
 			to_chat(usr, SPAN_WARNING("This can only be used on instances of type /mob/living/carbon/human."))
 			return
 		if(!istype(H.l_ear, /obj/item/radio/headset) && !istype(H.r_ear, /obj/item/radio/headset))
-			usr << "The person you are trying to contact is not wearing a headset"
+			to_chat(usr, SPAN_WARNING("The person you are trying to contact is not wearing a headset."))
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from The Syndicate", "")
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.", "Outgoing message from The Syndicate", "")
 		if(!input)	return
 
-		src.owner << "You sent [input] to [H] via a secure channel."
+		to_chat(owner, SPAN_INFO("You sent [input] to [H] via a secure channel."))
 		log_admin("[src.owner] replied to [key_name(H)]'s Syndicate message with the message [input].")
-		H << "You hear something crackle in your headset for a moment before a voice speaks.  \"Please stand by for a message from your benefactor.  Message as follows, agent. <b>\"[input]\"</b>  Message ends.\""
+		to_chat(H, "You hear something crackle in your headset for a moment before a voice speaks. \"Please stand by for a message from your benefactor. Message as follows, agent. <b>\"[input]\"</b> Message ends.\"")
 
 	else if(href_list["CentComFaxView"])
 		var/info = locate(href_list["CentComFaxView"])
@@ -1548,7 +1550,7 @@
 					P.add_overlay(stamp_overlay)
 					P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
-		src.owner << "Message reply to transmitted successfully."
+		to_chat(owner, SPAN_INFO("Message reply transmitted successfully."))
 		log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
 		message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
 
@@ -1681,24 +1683,24 @@
 			where = "onfloor"
 
 		if(where == "inhand")
-			usr << "Support for inhand not available yet. Will spawn on floor."
+			to_chat(usr, SPAN_WARNING("Support for inhand not available yet. Will spawn on floor."))
 			where = "onfloor"
 
 		if(where == "inhand")	//Can only give when human or monkey
 			if(!(ishuman(usr) || ismonkey(usr)))
-				usr << "Can only spawn in hand when you're a human or a monkey."
+				to_chat(usr, SPAN_WARNING("Can only spawn in hand when you're a human or a monkey."))
 				where = "onfloor"
 			else if(usr.get_active_hand())
-				usr << "Your active hand is full. Spawning on floor."
+				to_chat(usr, SPAN_WARNING("Your active hand is full. Spawning on floor."))
 				where = "onfloor"
 
 		if(where == "inmarked")
 			if(!marked_datum)
-				usr << "You don't have any object marked. Abandoning spawn."
+				to_chat(usr, SPAN_WARNING("You don't have any object marked. Abandoning spawn."))
 				return
 			else
 				if(!isatom(marked_datum))
-					usr << "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."
+					to_chat(usr, SPAN_WARNING("The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."))
 					return
 
 		var/atom/target //Where the object will be spawned
@@ -2198,7 +2200,7 @@
 				message_admins("[key_name_admin(usr)] turned all AIs into best friends.", 1)
 			if("floorlava")
 				if(floorIsLava)
-					usr << "The floor is lava already."
+					to_chat(usr, SPAN_WARNING("The floor is lava already."))
 					return
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","LF")
