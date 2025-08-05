@@ -72,9 +72,10 @@
 	src << output({"
 [script]
 <script type='text/javascript'>
-	function append(msg)
+	function append(msg, newline = true)
 	{
-		document.getElementById('chatOutput').innerHTML += '<br>' + msg;
+		var toAppend = newline ? '<br>' + msg : msg;
+		document.getElementById('chatOutput').innerHTML += toAppend;
 		var scrollingElement = (document.scrollingElement || document.body);
 		scrollingElement.scrollTop = scrollingElement.scrollHeight;
 	}
@@ -82,13 +83,11 @@
 	function replace(msg, count)
 	{
 		var replacing = document.getElementById('chatOutput').innerHTML;
-		var replacingIndex = replacing.lastIndexOf('<br>');
-		if(replacingIndex != -1)
-		{
-			msg += ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
-			document.getElementById('chatOutput').innerHTML = replacing.substring(0, replacingIndex);
-		}
-		append(msg);
+		var countText = ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
+		var indexToReplace = count > 2 ? (replacing.length - (msg.length + countText.length)) : (replacing.length - msg.length);
+		msg += countText;
+		document.getElementById('chatOutput').innerHTML = replacing.substring(0, indexToReplace);
+		append(msg, false);
 	}
 </script>
 <div id='chatOutput'></div>
