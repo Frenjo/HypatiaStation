@@ -43,7 +43,7 @@
 
 	S.cd = "/"
 
-	S["version"] >> savefile_version
+	FROM_SAVEFILE(S, "version", savefile_version)
 	// Conversion.
 	if(!savefile_version || !isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN || savefile_version > SAVEFILE_VERSION_MAX)
 		if(!savefile_update()) // Handles updates.
@@ -53,16 +53,16 @@
 			return FALSE
 
 	// General preferences.
-	S["ooccolor"]	>> ooccolor
-	S["lastchangelog"]	>> lastchangelog
-	S["UI_style"]	>> UI_style
-	S["be_special"]	>> be_special
-	S["default_slot"]	>> default_slot
-	S["toggles"]	>> toggles
-	S["UI_style_color"]	>> UI_style_color
-	S["UI_style_alpha"]	>> UI_style_alpha
-	S["screentip_pref"]	>> screentip_pref
-	S["screentip_colour"]	>> screentip_colour
+	FROM_SAVEFILE(S, "ooccolor", ooccolor)
+	FROM_SAVEFILE(S, "lastchangelog", lastchangelog)
+	FROM_SAVEFILE(S, "UI_style", UI_style)
+	FROM_SAVEFILE(S, "be_special", be_special)
+	FROM_SAVEFILE(S, "default_slot", default_slot)
+	FROM_SAVEFILE(S, "toggles", toggles)
+	FROM_SAVEFILE(S, "UI_style_color", UI_style_color)
+	FROM_SAVEFILE(S, "UI_style_alpha", UI_style_alpha)
+	FROM_SAVEFILE(S, "screentip_pref", screentip_pref)
+	FROM_SAVEFILE(S, "screentip_colour", screentip_colour)
 
 	// Sanitize.
 	ooccolor	= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -86,19 +86,19 @@
 
 	S.cd = "/"
 
-	S["version"] << savefile_version
+	TO_SAVEFILE(S, "version", savefile_version)
 
 	// General preferences.
-	S["ooccolor"]	<< ooccolor
-	S["lastchangelog"]	<< lastchangelog
-	S["UI_style"]	<< UI_style
-	S["be_special"]	<< be_special
-	S["default_slot"]	<< default_slot
-	S["toggles"]	<< toggles
-	S["UI_style_color"]	<< UI_style_color
-	S["UI_style_alpha"]	<< UI_style_alpha
-	S["screentip_pref"]	<< screentip_pref
-	S["screentip_colour"]	<< screentip_colour
+	TO_SAVEFILE(S, "ooccolor", ooccolor)
+	TO_SAVEFILE(S, "lastchangelog", lastchangelog)
+	TO_SAVEFILE(S, "UI_style", UI_style)
+	TO_SAVEFILE(S, "be_special", be_special)
+	TO_SAVEFILE(S, "default_slot", default_slot)
+	TO_SAVEFILE(S, "toggles", toggles)
+	TO_SAVEFILE(S, "UI_style_color", UI_style_color)
+	TO_SAVEFILE(S, "UI_style_alpha", UI_style_alpha)
+	TO_SAVEFILE(S, "screentip_pref", screentip_pref)
+	TO_SAVEFILE(S, "screentip_colour", screentip_colour)
 
 	return TRUE
 
@@ -117,64 +117,64 @@
 	slot = sanitize_integer(slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
-		S["default_slot"] << slot
+		TO_SAVEFILE(S, "default_slot", slot)
 	S.cd = "/character[slot]"
 
 	// Character.
-	S["OOC_Notes"]			>> metadata
-	S["real_name"]			>> real_name
-	S["name_is_always_random"] >> be_random_name
-	S["gender"]				>> gender
-	S["age"]				>> age
-	S["species"]			>> species
-	S["language"]			>> secondary_language
-	S["spawnpoint"]			>> spawnpoint
+	FROM_SAVEFILE(S, "OOC_Notes", metadata)
+	FROM_SAVEFILE(S, "real_name", real_name)
+	FROM_SAVEFILE(S, "name_is_always_random", be_random_name)
+	FROM_SAVEFILE(S, "gender", gender)
+	FROM_SAVEFILE(S, "age", age)
+	FROM_SAVEFILE(S, "species", species)
+	FROM_SAVEFILE(S, "language", secondary_language)
+	FROM_SAVEFILE(S, "spawnpoint", spawnpoint)
 
 	// Colours to be consolidated into hex strings (requires some work with dna code).
-	S["hair_red"]			>> r_hair
-	S["hair_green"]			>> g_hair
-	S["hair_blue"]			>> b_hair
-	S["facial_red"]			>> r_facial
-	S["facial_green"]		>> g_facial
-	S["facial_blue"]		>> b_facial
-	S["skin_tone"]			>> s_tone
-	S["skin_red"]			>> r_skin
-	S["skin_green"]			>> g_skin
-	S["skin_blue"]			>> b_skin
-	S["hair_style_name"]	>> h_style
-	S["facial_style_name"]	>> f_style
-	S["eyes_red"]			>> r_eyes
-	S["eyes_green"]			>> g_eyes
-	S["eyes_blue"]			>> b_eyes
-	S["underwear"]			>> underwear
-	S["backbag"]			>> backbag
-	S["b_type"]				>> b_type
+	FROM_SAVEFILE(S, "hair_red", r_hair)
+	FROM_SAVEFILE(S, "hair_green", g_hair)
+	FROM_SAVEFILE(S, "hair_blue", b_hair)
+	FROM_SAVEFILE(S, "facial_red", r_facial)
+	FROM_SAVEFILE(S, "facial_green", g_facial)
+	FROM_SAVEFILE(S, "facial_blue", b_facial)
+	FROM_SAVEFILE(S, "skin_tone", s_tone)
+	FROM_SAVEFILE(S, "skin_red", r_skin)
+	FROM_SAVEFILE(S, "skin_green", g_skin)
+	FROM_SAVEFILE(S, "skin_blue", b_skin)
+	FROM_SAVEFILE(S, "hair_style_name", h_style)
+	FROM_SAVEFILE(S, "facial_style_name", f_style)
+	FROM_SAVEFILE(S, "eyes_red", r_eyes)
+	FROM_SAVEFILE(S, "eyes_green", g_eyes)
+	FROM_SAVEFILE(S, "eyes_blue", b_eyes)
+	FROM_SAVEFILE(S, "underwear", underwear)
+	FROM_SAVEFILE(S, "backbag", backbag)
+	FROM_SAVEFILE(S, "b_type", b_type)
 
 	// Jobs.
-	S["alternate_option"]	>> alternate_option
+	FROM_SAVEFILE(S, "alternate_option", alternate_option)
 	for_no_type_check(var/decl/department/dep, GET_DECL_SUBTYPE_INSTANCES(/decl/department))
 		var/dep_name = lowertext(dep.name)
-		S["job_[dep_name]_high"] >> job_by_department_high[dep.type]
-		S["job_[dep_name]_med"] >> job_by_department_med[dep.type]
-		S["job_[dep_name]_low"] >> job_by_department_low[dep.type]
+		FROM_SAVEFILE(S, "job_[dep_name]_high", job_by_department_high[dep.type])
+		FROM_SAVEFILE(S, "job_[dep_name]_med", job_by_department_med[dep.type])
+		FROM_SAVEFILE(S, "job_[dep_name]_low", job_by_department_low[dep.type])
 
 	// Miscellaneous.
-	S["flavor_text"]		>> flavor_text
-	S["med_record"]			>> med_record
-	S["sec_record"]			>> sec_record
-	S["gen_record"]			>> gen_record
-	S["be_special"]			>> be_special
-	S["disabilities"]		>> disabilities
-	S["player_alt_titles"]		>> player_alt_titles
-	S["used_skillpoints"]	>> used_skillpoints
-	S["skills"]				>> skills
-	S["skill_specialization"] >> skill_specialization
-	S["organ_data"]			>> organ_data
+	FROM_SAVEFILE(S, "flavor_text", flavor_text)
+	FROM_SAVEFILE(S, "med_record", med_record)
+	FROM_SAVEFILE(S, "sec_record", sec_record)
+	FROM_SAVEFILE(S, "gen_record", gen_record)
+	FROM_SAVEFILE(S, "player_alt_titles", player_alt_titles)
+	FROM_SAVEFILE(S, "be_special", be_special)
+	FROM_SAVEFILE(S, "disabilities", disabilities)
+	FROM_SAVEFILE(S, "used_skillpoints", used_skillpoints)
+	FROM_SAVEFILE(S, "skills", skills)
+	FROM_SAVEFILE(S, "skill_specialization", skill_specialization)
+	FROM_SAVEFILE(S, "organ_data", organ_data)
 
-	S["nanotrasen_relation"] >> nanotrasen_relation
-	//S["skin_style"]			>> skin_style
+	FROM_SAVEFILE(S, "nanotrasen_relation", nanotrasen_relation)
+	//FROM_SAVEFILE(S, "skin_style", skin_style)
 
-	S["uplinklocation"] >> uplinklocation
+	FROM_SAVEFILE(S, "uplinklocation", uplinklocation)
 
 	// Sanitize.
 	metadata		= sanitize_text(metadata, initial(metadata))
@@ -239,57 +239,57 @@
 	S.cd = "/character[default_slot]"
 
 	// Character.
-	S["OOC_Notes"]			<< metadata
-	S["real_name"]			<< real_name
-	S["name_is_always_random"] << be_random_name
-	S["gender"]				<< gender
-	S["age"]				<< age
-	S["species"]			<< species
-	S["language"]			<< secondary_language
-	S["hair_red"]			<< r_hair
-	S["hair_green"]			<< g_hair
-	S["hair_blue"]			<< b_hair
-	S["facial_red"]			<< r_facial
-	S["facial_green"]		<< g_facial
-	S["facial_blue"]		<< b_facial
-	S["skin_tone"]			<< s_tone
-	S["skin_red"]			<< r_skin
-	S["skin_green"]			<< g_skin
-	S["skin_blue"]			<< b_skin
-	S["hair_style_name"]	<< h_style
-	S["facial_style_name"]	<< f_style
-	S["eyes_red"]			<< r_eyes
-	S["eyes_green"]			<< g_eyes
-	S["eyes_blue"]			<< b_eyes
-	S["underwear"]			<< underwear
-	S["backbag"]			<< backbag
-	S["b_type"]				<< b_type
+	TO_SAVEFILE(S, "OOC_Notes", metadata)
+	TO_SAVEFILE(S, "real_name", real_name)
+	TO_SAVEFILE(S, "name_is_always_random", be_random_name)
+	TO_SAVEFILE(S, "gender", gender)
+	TO_SAVEFILE(S, "age", age)
+	TO_SAVEFILE(S, "species", species)
+	TO_SAVEFILE(S, "language", secondary_language)
+	TO_SAVEFILE(S, "hair_red", r_hair)
+	TO_SAVEFILE(S, "hair_green", g_hair)
+	TO_SAVEFILE(S, "hair_blue", b_hair)
+	TO_SAVEFILE(S, "facial_red", r_facial)
+	TO_SAVEFILE(S, "facial_green", g_facial)
+	TO_SAVEFILE(S, "facial_blue", b_facial)
+	TO_SAVEFILE(S, "skin_tone", s_tone)
+	TO_SAVEFILE(S, "skin_red", r_skin)
+	TO_SAVEFILE(S, "skin_green", g_skin)
+	TO_SAVEFILE(S, "skin_blue", b_skin)
+	TO_SAVEFILE(S, "hair_style_name", h_style)
+	TO_SAVEFILE(S, "facial_style_name", f_style)
+	TO_SAVEFILE(S, "eyes_red", r_eyes)
+	TO_SAVEFILE(S, "eyes_green", g_eyes)
+	TO_SAVEFILE(S, "eyes_blue", b_eyes)
+	TO_SAVEFILE(S, "underwear", underwear)
+	TO_SAVEFILE(S, "backbag", backbag)
+	TO_SAVEFILE(S, "b_type", b_type)
 
 	// Jobs.
-	S["alternate_option"]	<< alternate_option
+	TO_SAVEFILE(S, "alternate_option", alternate_option)
 	for_no_type_check(var/decl/department/dep, GET_DECL_SUBTYPE_INSTANCES(/decl/department))
 		var/dep_name = lowertext(dep.name)
-		S["job_[dep_name]_high"] << job_by_department_high[dep.type]
-		S["job_[dep_name]_med"] << job_by_department_med[dep.type]
-		S["job_[dep_name]_low"] << job_by_department_low[dep.type]
+		TO_SAVEFILE(S, "job_[dep_name]_high", job_by_department_high[dep.type])
+		TO_SAVEFILE(S, "job_[dep_name]_med", job_by_department_med[dep.type])
+		TO_SAVEFILE(S, "job_[dep_name]_low", job_by_department_low[dep.type])
 
 	// Miscellaneous.
-	S["flavor_text"]		<< flavor_text
-	S["med_record"]			<< med_record
-	S["sec_record"]			<< sec_record
-	S["gen_record"]			<< gen_record
-	S["player_alt_titles"]		<< player_alt_titles
-	S["be_special"]			<< be_special
-	S["disabilities"]		<< disabilities
-	S["used_skillpoints"]	<< used_skillpoints
-	S["skills"]				<< skills
-	S["skill_specialization"] << skill_specialization
-	S["organ_data"]			<< organ_data
+	TO_SAVEFILE(S, "flavor_text", flavor_text)
+	TO_SAVEFILE(S, "med_record", med_record)
+	TO_SAVEFILE(S, "sec_record", sec_record)
+	TO_SAVEFILE(S, "gen_record", gen_record)
+	TO_SAVEFILE(S, "player_alt_titles", player_alt_titles)
+	TO_SAVEFILE(S, "be_special", be_special)
+	TO_SAVEFILE(S, "disabilities", disabilities)
+	TO_SAVEFILE(S, "used_skillpoints", used_skillpoints)
+	TO_SAVEFILE(S, "skills", skills)
+	TO_SAVEFILE(S, "skill_specialization", skill_specialization)
+	TO_SAVEFILE(S, "organ_data", organ_data)
 
-	S["nanotrasen_relation"] << nanotrasen_relation
-	//S["skin_style"]			<< skin_style
+	TO_SAVEFILE(S, "nanotrasen_relation", nanotrasen_relation)
+	//TO_SAVEFILE(S, "skin_style", skin_style)
 
-	S["uplinklocation"] << uplinklocation
+	TO_SAVEFILE(S, "uplinklocation", uplinklocation)
 
 	return TRUE
 

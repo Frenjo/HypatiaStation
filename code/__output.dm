@@ -9,6 +9,8 @@
 #define SEND_RSC(TARGET, CONTENT, NAME) TARGET << browse_rsc(CONTENT, NAME)
 #define OPEN_LINK(TARGET, URL) TARGET << link(URL)
 #define OPEN_FILE(TARGET, FILE) TARGET << run(FILE)
+#define TO_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] << VALUE
+#define FROM_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] >> VALUE
 
 /proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
