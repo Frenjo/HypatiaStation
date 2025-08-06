@@ -911,7 +911,7 @@
 
 		if(5)
 			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
-				atmos_scan(user, A)
+				atmos_scan(src, user, A)
 
 	if(!scanmode && owner)
 		if(istype(A, /obj/item/paper))

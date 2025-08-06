@@ -125,7 +125,7 @@ GLOBAL_GLOBL_INIT(mouse_respawn_time, 5 MINUTES) // Amount of time that must pas
 	if(!isghost(usr))
 		return
 
-	atmos_scan(usr, GET_TURF(usr))
+	atmos_scan(null, usr, GET_TURF(usr)) // First parameter is null because user isn't a living mob.
 
 /mob/dead/ghost/verb/toggle_darkness()
 	set category = PANEL_GHOST
