@@ -1644,7 +1644,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "aEK" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/prison/station)
 "aER" = (
 /obj/structure/sign/double/map/left,
@@ -6841,7 +6841,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/prison/rec_room)
 "cqv" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/prison/station)
 "cqx" = (
 /obj/structure/stool/bed/chair/comfy/beige{
@@ -9096,7 +9096,7 @@
 /turf/closed/wall/reinforced,
 /area/station/maintenance/central/starboard)
 "dfE" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/arrival/station)
 "dfZ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -9835,7 +9835,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/locker_room)
 "dsH" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/research/station)
 "dsN" = (
 /obj/machinery/disposal,
@@ -10174,7 +10174,7 @@
 	},
 /area/station/crew/locker_room)
 "dye" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/prison/station)
 "dyk" = (
 /obj/machinery/light_switch{
@@ -10508,7 +10508,7 @@
 /turf/open/floor/tiled/cafeteria,
 /area/station/crew/kitchen)
 "dEw" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/prison/station)
 "dEP" = (
 /obj/machinery/door/airlock/external{
@@ -11285,7 +11285,7 @@
 /turf/closed/wall/reinforced,
 /area/station/command/vault)
 "dSh" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/research/station)
 "dSi" = (
 /obj/structure/closet/l3,
@@ -14433,7 +14433,7 @@
 	},
 /area/station/hallway/secondary/escape)
 "fan" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/mining/station)
 "fas" = (
 /obj/machinery/atmospherics/trinary/filter{
@@ -15056,7 +15056,7 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/singularity)
 "fna" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/engineering/station)
 "fnC" = (
 /obj/structure/grille{
@@ -16375,7 +16375,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "fLS" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/escape_pod/four/station)
 "fMb" = (
 /obj/structure/disposalpipe/segment{
@@ -28559,7 +28559,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/post/arrivals)
 "jTO" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/research/station)
 "jUq" = (
 /obj/structure/table,
@@ -30831,7 +30831,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/hallway/main)
 "kHQ" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/engineering/station)
 "kHU" = (
 /obj/machinery/door/airlock/external{
@@ -32026,7 +32026,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/dormitories)
 "lgl" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/arrival/station)
 "lgm" = (
 /obj/structure/window/reinforced{
@@ -32241,7 +32241,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "ljt" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/arrival/station)
 "ljB" = (
 /obj/structure/closet/emergency,
@@ -33051,7 +33051,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "lAa" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/escape_pod/three/station)
 "lAb" = (
 /obj/structure/cable{
@@ -33666,7 +33666,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "lLq" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/escape_pod/five/station)
 "lLr" = (
 /obj/machinery/computer/telescience,
@@ -33965,7 +33965,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "lPy" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/escape_pod/five/station)
 "lPD" = (
 /obj/machinery/air_alarm{
@@ -35439,7 +35439,7 @@
 /turf/open/floor/plating/metal,
 /area/station/command/office/hop)
 "msH" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/engineering/station)
 "msI" = (
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
@@ -43383,7 +43383,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/genetics)
 "pcz" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/escape_pod/two/station)
 "pcD" = (
 /obj/structure/table,
@@ -46901,7 +46901,7 @@
 /turf/open/floor/tiled/dark,
 /area/station/command/gateway)
 "qoV" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/escape_pod/one/station)
 "qpi" = (
 /obj/structure/cable{
@@ -47977,7 +47977,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/primary)
 "qHK" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/arrival/station)
 "qHS" = (
 /obj/structure/cable{
@@ -49540,7 +49540,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/disposal)
 "riy" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/engineering/station)
 "riQ" = (
 /obj/machinery/door/firedoor/border_only{
@@ -50065,7 +50065,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/medical/surgery/one)
 "rrm" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/mining/station)
 "rru" = (
 /obj/machinery/light_switch{
@@ -53400,10 +53400,10 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/chemistry)
 "syN" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/escape_pod/one/station)
 "syX" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/escape_pod/three/station)
 "szb" = (
 /obj/machinery/power/emitter,
@@ -53526,7 +53526,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "sAE" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/escape_pod/four/station)
 "sBe" = (
 /obj/machinery/light{
@@ -59382,7 +59382,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "uMd" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/escape_pod/two/station)
 "uMi" = (
 /obj/effect/landmark{
@@ -61574,7 +61574,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "vDT" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/mining/station)
 "vEs" = (
 /obj/effect/decal/floor/coloured/light_green{
@@ -63282,7 +63282,7 @@
 /turf/open/floor/plating/metal,
 /area/ai_monitored/storage/eva)
 "wir" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/shuttle/mining/station)
 "wiA" = (
 /mob/living/simple/cat/Runtime,
@@ -65771,7 +65771,7 @@
 	},
 /area/station/command/office/cmo)
 "xbo" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/shuttle/research/station)
 "xbr" = (
 /obj/structure/table/woodentable,

@@ -87,7 +87,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "aJ" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/external/abandoned/ship)
 "aQ" = (
 /obj/machinery/telecoms/bus/preset_two,
@@ -162,7 +162,7 @@
 /turf/open/floor/plating/metal/shuttle/airless,
 /area/external/abandoned/ship)
 "bF" = (
-/turf/closed/wall/shuttle/corner/interior/white/northwest{
+/turf/closed/wall/shuttle/corner/interior/white/se{
 	icon_state = "swall_floor3"
 	},
 /area/space)
@@ -781,7 +781,7 @@
 	},
 /area/space)
 "lz" = (
-/turf/closed/wall/shuttle/corner/interior/white/northwest{
+/turf/closed/wall/shuttle/corner/interior/white/se{
 	icon_state = "swall_plating"
 	},
 /area/external/abandoned/ship)
@@ -928,7 +928,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "nX" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast{
+/turf/closed/wall/shuttle/corner/interior/white/sw{
 	icon_state = "swall_plating"
 	},
 /area/external/abandoned/ship)
@@ -1146,7 +1146,7 @@
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "rE" = (
-/turf/closed/wall/shuttle/corner/interior/white/southwest{
+/turf/closed/wall/shuttle/corner/interior/white/ne{
 	icon_state = "swall_floor3"
 	},
 /area/external/abandoned/ship)
@@ -1195,7 +1195,7 @@
 	},
 /area/external/tcomsat/chamber)
 "sl" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/external/abandoned/ship)
 "sn" = (
 /obj/machinery/door/airlock/hatch{
@@ -1411,7 +1411,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "uw" = (
-/turf/closed/wall/shuttle/corner/interior/white/southwest{
+/turf/closed/wall/shuttle/corner/interior/white/ne{
 	icon_state = "swall_plating"
 	},
 /area/external/abandoned/ship)
@@ -1546,7 +1546,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "vL" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/space)
 "vN" = (
 /obj/structure/stool/bed/chair{
@@ -1555,7 +1555,7 @@
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "wj" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast{
+/turf/closed/wall/shuttle/corner/interior/white/sw{
 	icon_state = "swall_floor3"
 	},
 /area/external/abandoned/ship)
@@ -1682,7 +1682,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/lounge)
 "xt" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast{
+/turf/closed/wall/shuttle/corner/interior/white/sw{
 	icon_state = "swall_floor3"
 	},
 /area/space)
@@ -1727,7 +1727,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/computer)
 "ya" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/space)
 "yh" = (
 /obj/structure/cable{
@@ -1746,7 +1746,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "yl" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/space)
 "yq" = (
 /turf/open/floor/plating/metal/airless,
@@ -1944,7 +1944,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "Ab" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/space)
 "Ai" = (
 /obj/machinery/power/apc/standard/high{
@@ -2146,7 +2146,7 @@
 /turf/open/floor/plating/metal/airless,
 /area/external/tcomsat/solar/fore)
 "Cu" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/external/abandoned/ship)
 "Cw" = (
 /obj/structure/cable/yellow{
@@ -2560,7 +2560,7 @@
 	},
 /area/external/tcomsat/chamber)
 "IN" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/external/abandoned/ship)
 "IU" = (
 /obj/structure/rack,
@@ -2941,7 +2941,7 @@
 /turf/open/floor/plating/metal,
 /area/turret_protected/tcomsat)
 "Ot" = (
-/turf/closed/wall/shuttle/corner/interior/white/southeast{
+/turf/closed/wall/shuttle/corner/interior/white/nw{
 	icon_state = "swall_floor3"
 	},
 /area/external/abandoned/ship)
@@ -2961,7 +2961,7 @@
 /turf/open/floor/plating/metal,
 /area/turret_protected/tcomsat)
 "OB" = (
-/turf/closed/wall/shuttle/corner/interior/white/southeast{
+/turf/closed/wall/shuttle/corner/interior/white/nw{
 	icon_state = "swall_floor3"
 	},
 /area/space)
@@ -3453,7 +3453,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "VS" = (
-/turf/closed/wall/shuttle/corner/interior/white/southwest{
+/turf/closed/wall/shuttle/corner/interior/white/ne{
 	icon_state = "swall_floor3"
 	},
 /area/space)
@@ -3576,7 +3576,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "Xv" = (
-/turf/closed/wall/shuttle/corner/interior/white/northwest{
+/turf/closed/wall/shuttle/corner/interior/white/se{
 	icon_state = "swall_floor3"
 	},
 /area/external/abandoned/ship)
@@ -3656,7 +3656,7 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "Yo" = (
-/turf/closed/wall/shuttle/corner/interior/white/southeast{
+/turf/closed/wall/shuttle/corner/interior/white/nw{
 	icon_state = "swall_plating"
 	},
 /area/external/abandoned/ship)

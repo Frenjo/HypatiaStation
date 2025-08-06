@@ -598,7 +598,7 @@
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/derelict/hallway/secondary)
 "gy" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southwest,
+/turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/external/abandoned/bananium_shuttle)
 "gK" = (
 /obj/item/stack/rods,
@@ -912,7 +912,7 @@
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/derelict/solar/starboard)
 "jc" = (
-/turf/closed/wall/shuttle/corner/interior/white/northeast,
+/turf/closed/wall/shuttle/corner/exterior/white/sw,
 /area/external/abandoned/bananium_shuttle)
 "je" = (
 /obj/machinery/telecoms/relay/preset/ruskie,
@@ -1742,7 +1742,7 @@
 	},
 /area/external/abandoned/derelict/hallway/secondary)
 "sv" = (
-/turf/closed/wall/shuttle/corner/exterior/white/northwest,
+/turf/closed/wall/shuttle/corner/exterior/white/se,
 /area/external/abandoned/bananium_shuttle)
 "sG" = (
 /obj/structure/table,
@@ -3077,7 +3077,7 @@
 /turf/open/floor/plating/metal,
 /area/external/abandoned/derelict/solar_control)
 "Ij" = (
-/turf/closed/wall/shuttle/corner/exterior/white/southeast,
+/turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/external/abandoned/bananium_shuttle)
 "Ik" = (
 /obj/structure/cable{
