@@ -2934,7 +2934,7 @@
 	},
 /area/external/research_outpost/harvesting)
 "nD" = (
-/turf/closed/wall/shuttle/corner/interior/orange_old/northeast,
+/turf/closed/wall/shuttle/corner/exterior/orange_old/sw,
 /area/shuttle/alien/mine)
 "nI" = (
 /obj/structure/transit_tube,
@@ -8231,7 +8231,7 @@
 /turf/open/floor/tiled/dark,
 /area/external/mining_outpost/communications)
 "LF" = (
-/turf/closed/wall/shuttle/corner/exterior/orange_old/southwest,
+/turf/closed/wall/shuttle/corner/exterior/orange_old/ne,
 /area/shuttle/alien/mine)
 "LG" = (
 /obj/machinery/access_button{
@@ -9905,7 +9905,7 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Tx" = (
-/turf/closed/wall/shuttle/corner/exterior/orange_old/northwest,
+/turf/closed/wall/shuttle/corner/exterior/orange_old/se,
 /area/shuttle/alien/mine)
 "Tz" = (
 /obj/structure/cable{
@@ -10678,7 +10678,7 @@
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
 "Xa" = (
-/turf/closed/wall/shuttle/corner/exterior/orange_old/southeast,
+/turf/closed/wall/shuttle/corner/exterior/orange_old/nw,
 /area/shuttle/alien/mine)
 "Xd" = (
 /obj/machinery/light/small,
