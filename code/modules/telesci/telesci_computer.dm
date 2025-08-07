@@ -1,6 +1,6 @@
 /obj/machinery/computer/telescience
 	name = "telepad control console"
-	desc = "Used to teleport objects to and from the telescience telepad."
+	desc = "Used to teleport objects to and from a telepad."
 	icon_state = "teleport"
 
 	var/sending = TRUE
