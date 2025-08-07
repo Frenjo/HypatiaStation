@@ -15,7 +15,7 @@
 /obj/multiz/ladder
 	icon_state = "ladderdown"
 	name = "ladder"
-	desc = "A ladder.  You climb up and down it."
+	desc = "A ladder. You climb up and down it."
 
 	var/d_state = 1
 	var/obj/multiz/target
@@ -207,7 +207,7 @@
 // Stairs
 /obj/multiz/stairs
 	name = "Stairs"
-	desc = "Stairs.  You walk up and down them."
+	desc = "Stairs. You walk up and down them."
 	icon_state = "rampbottom"
 
 	var/obj/multiz/stairs/connected

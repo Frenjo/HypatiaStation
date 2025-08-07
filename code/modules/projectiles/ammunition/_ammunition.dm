@@ -48,8 +48,8 @@
 
 //Boxes of ammo
 /obj/item/ammo_magazine
-	name = "ammo box (.357)"
-	desc = "A box of ammo"
+	name = "ammo box"
+	desc = "A box of ammunition."
 	icon = 'icons/obj/weapons/ammo.dmi'
 	icon_state = "357"
 	item_state = "syringe_kit"
@@ -59,7 +59,7 @@
 	matter_amounts = alist(/decl/material/steel = 50000)
 
 	throwforce = 2
-	w_class = 1.0
+	w_class = 1
 	throw_speed = 4
 	throw_range = 10
 
@@ -77,4 +77,7 @@
 /obj/item/ammo_magazine/update_icon()
 	if(multiple_sprites)
 		icon_state = "[initial(icon_state)]-[length(stored_ammo)]"
-	desc = "There are [length(stored_ammo)] shell\s left!"
+
+/obj/item/ammo_magazine/get_examine_text()
+	. = ..()
+	. += SPAN_INFO("There are [length(stored_ammo)] shell\s left!")

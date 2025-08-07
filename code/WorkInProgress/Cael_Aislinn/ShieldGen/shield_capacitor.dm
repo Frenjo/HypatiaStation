@@ -4,7 +4,7 @@
 
 /obj/machinery/shield_capacitor
 	name = "shield capacitor"
-	desc = "Machine that charges a shield generator."
+	desc = "A machine that stores energy for and charges a shield generator."
 	icon = 'code/WorkInProgress/Cael_Aislinn/ShieldGen/shielding.dmi'
 	icon_state = "capacitor"
 	density = TRUE

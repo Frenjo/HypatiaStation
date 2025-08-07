@@ -7,7 +7,7 @@
 
 /obj/machinery/shield_gen
 	name = "shield generator"
-	desc = "Machine that generates an impenetrable field of energy when activated."
+	desc = "A machine that generates an impenetrable field of energy when activated."
 	icon = 'code/WorkInProgress/Cael_Aislinn/ShieldGen/shielding.dmi'
 	icon_state = "generator0"
 	density = TRUE
