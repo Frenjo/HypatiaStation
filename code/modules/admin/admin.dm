@@ -750,7 +750,7 @@ var/global/floorIsLava = 0
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = adminscrub(message,500)
-		to_world("\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]")
+		to_world("\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b<br> \t [message]")
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

@@ -107,7 +107,7 @@
 	var/recieve_message = ""
 
 	if(holder && !C.holder)
-		recieve_message = "<font color='[recieve_color]' size='4'><b>-- Administrator private message --</b></font>\n"
+		recieve_message = "<font color='[recieve_color]' size='4'><b>-- Administrator private message --</b></font><br>"
 		//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
 		if(CONFIG_GET(/decl/configuration_entry/popup_admin_pm))
 			spawn(0)	//so we don't hold the caller proc up

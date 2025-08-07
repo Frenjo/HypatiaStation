@@ -237,7 +237,7 @@
 					dat += "[(occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Toxin Content %: [occupant.getToxLoss()]</FONT><BR>"
 					dat += "[(occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Burn Severity %: [occupant.getFireLoss()]</FONT><BR><BR>"
 
-					dat += "[(occupant.radiation < 10 ?"<font color='blue'>" : "<font color='red'>")]\tRadiation Level %: [occupant.radiation]</FONT><BR>"
+					dat += "[(occupant.radiation < 10 ? "<font color='blue'>" : "<font color='red'>")]\tRadiation Level %: [occupant.radiation]</FONT><BR>"
 					dat += "[(occupant.getCloneLoss() < 1 ?"<font color='blue'>" : "<font color='red'>")]\tGenetic Tissue Damage %: [occupant.getCloneLoss()]</FONT><BR>"
 					dat += "[(occupant.getBrainLoss() < 1 ?"<font color='blue'>" : "<font color='red'>")]\tApprox. Brain Damage %: [occupant.getBrainLoss()]</FONT><BR>"
 					dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<BR>"
@@ -259,7 +259,7 @@
 						dat += "[(occupant.reagents.get_reagent_amount("dexalin") < 30 ? "<font color='black'>" : "<font color='red'>")]\tDexalin: [occupant.reagents.get_reagent_amount("dexalin")] units<BR>"
 
 					for(var/datum/disease/D in occupant.viruses)
-						if(!D.hidden[SCANNER])
+						if(!D.hidden[DISEASE_INFO_SCANNER])
 							dat += "<font color='red'><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>"
 
 					dat += "<HR><table border='1'>"

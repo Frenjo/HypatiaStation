@@ -227,7 +227,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 		if(assign_mission)
 			new_ninja.mind.store_memory("<B>Mission:</B> \red [assign_mission].<br>")
-			to_chat(new_ninja, "\blue \nYou are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training! \nYour current mission is: \red <B>[assign_mission]</B>")
+			to_chat(new_ninja, "\blue <br>You are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training! <br>Your current mission is: \red <B>[assign_mission]</B>")
 		else
 			if(length(xeno_list) > 3)//If there are more than three humanoid xenos on the station, time to get dangerous.
 				//Here we want the ninja to murder all the queens. The other aliens don't really matter.
@@ -367,7 +367,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 			ninja_mind.objectives += ninja_objective
 
 			var/directive = generate_ninja_directive(side)
-			to_chat(new_ninja, "\blue \nYou are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training (initialize your suit by right clicking on it)! \nYour current directive is: \red <B>[directive]</B>")
+			to_chat(new_ninja, "\blue <br>You are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training (initialize your suit by right clicking on it)! <br>Your current directive is: \red <B>[directive]</B>")
 			new_ninja.mind.store_memory("<B>Directive:</B> \red [directive]<br>")
 
 			var/obj_count = 1
@@ -489,7 +489,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 	space_ninja_arrival(input, mission)
 
-	message_admins("\blue [key_name_admin(key)] has spawned [input] as a Space Ninja.\nTheir <b>mission</b> is: [mission]")
+	message_admins("\blue [key_name_admin(key)] has spawned [input] as a Space Ninja.<br>Their <b>mission</b> is: [mission]")
 	log_admin("[key] used Spawn Space Ninja.")
 
 	return
@@ -548,17 +548,17 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		H.gloves.item_state = "s-ninjan"
 	else
 		if(H.mind.special_role != "Ninja")
-			to_chat(H, SPAN_WARNING("<B>f�TaL ��RRoR</B>: 382200-*#00C�DE <B>RED</B>\nUNAU�HORIZED US� DET�C���eD\nCoMM�NCING SUB-R0U�IN3 13...\nT�RMInATING U-U-US�R..."))
+			to_chat(H, SPAN_WARNING("<B>f�TaL ��RRoR</B>: 382200-*#00C�DE <B>RED</B><br>UNAU�HORIZED US� DET�C���eD<br>CoMM�NCING SUB-R0U�IN3 13...<br>T�RMInATING U-U-US�R..."))
 			H.gib()
 			return 0
 		if(!istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
-			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR\nABORTING..."))
+			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR<br>ABORTING..."))
 			return 0
 		if(!istype(H.shoes, /obj/item/clothing/shoes/space_ninja))
-			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR\nABORTING..."))
+			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR<br>ABORTING..."))
 			return 0
 		if(!istype(H.gloves, /obj/item/clothing/gloves/space_ninja))
-			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR\nABORTING..."))
+			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR<br>ABORTING..."))
 			return 0
 
 		affecting = H
@@ -704,7 +704,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		U.incorporeal_move = 0
 		kamikaze = 0
 		k_unlock = 0
-		to_chat(U, SPAN_INFO("Disengaging mode...\n\black<b>CODE NAME</b>: \red <b>KAMIKAZE</b>"))
+		to_chat(U, SPAN_INFO("Disengaging mode...<br>\black<b>CODE NAME</b>: \red <b>KAMIKAZE</b>"))
 
 //=======//AI VERBS//=======//
 
@@ -828,7 +828,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	opacity = FALSE
 
 /obj/effect/proc_holder/ai_instruction/Click()
-	to_chat(loc, "The menu you are seeing will contain other commands if they become available.\nRight click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away.")
+	to_chat(loc, "The menu you are seeing will contain other commands if they become available.<br>Right click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away.")
 
 /obj/effect/proc_holder/ai_hack_ninja//Generic proc holder to make sure the two verbs below work propely.
 	name = "Hack SpiderOS"

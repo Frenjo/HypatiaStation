@@ -796,7 +796,7 @@
 		cartridge = C
 		user.drop_item()
 		cartridge.forceMove(src)
-		to_chat(user, SPAN_NOTICE("You insert [cartridge] into [src]."))
+		to_chat(user, SPAN_NOTICE("You insert \the [cartridge] into \the [src]."))
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
@@ -838,8 +838,10 @@
 		var/mob/living/carbon/C = M
 		switch(scanmode)
 			if(1)
-				for(var/mob/O in viewers(C, null))
-					O.show_message(SPAN_WARNING("[user] has analysed [C]'s vitals!"), 1)
+				user.visible_message(
+					SPAN_INFO("[user] analyses [M]'s vitals."),
+					SPAN_INFO("You analyse [M]'s vitals.")
+				)
 
 				user.show_message(SPAN_INFO("Analyzing Results for [C]:"))
 				user.show_message("\blue \t Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]", 1)
@@ -859,7 +861,7 @@
 						user.show_message(SPAN_INFO("\t Limbs are OK."), 1)
 
 				for(var/datum/disease/D in C.viruses)
-					if(!D.hidden[SCANNER])
+					if(!D.hidden[DISEASE_INFO_SCANNER])
 						user.show_message(SPAN_WARNING("<b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
 
 			if(2)

@@ -421,6 +421,35 @@
 		to_chat(usr, "The pests seem to behave oddly, but quickly settle down...")
 	return
 
+/obj/machinery/hydroponics/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/plant_analyser))
+		var/list/output = list()
+		if(planted && myseed)
+			output += SPAN_INFO_B("*** [myseed.plantname] ***") //Carn: now reports the plants growing, not the seeds.
+			output += SPAN_INFO("- Plant Age: [age]")
+			output += SPAN_INFO("- Plant Endurance: [myseed.endurance]")
+			output += SPAN_INFO("- Plant Lifespan: [myseed.lifespan]")
+			if(myseed.yield != -1)
+				output += SPAN_INFO("- Plant Yield: [myseed.yield]")
+			output += SPAN_INFO("- Plant Production: [myseed.production]")
+			if(myseed.potency != -1)
+				output += SPAN_INFO("- Plant Potency: [myseed.potency]")
+			output += SPAN_INFO("- Weed level: [weedlevel]/10")
+			output += SPAN_INFO("- Pest level: [pestlevel]/10")
+			output += SPAN_INFO("- Toxicity level: [toxic]/100")
+			output += SPAN_INFO("- Water level: [waterlevel]/100")
+			output += SPAN_INFO("- Nutrition level: [nutrilevel]/10")
+		else
+			output += SPAN_INFO_B("*** No plant found ***")
+			output += SPAN_INFO("- Weed level: [weedlevel]/10")
+			output += SPAN_INFO("- Pest level: [pestlevel]/10")
+			output += SPAN_INFO("- Toxicity level: [toxic]/100")
+			output += SPAN_INFO("- Water level: [waterlevel]/100")
+			output += SPAN_INFO("- Nutrition level: [nutrilevel]/10")
+		var/joined_output = jointext(output, "<br>")
+		user.show_message("<div class='examine'>[joined_output]</div>", 1)
+		return TRUE
+	return ..()
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user)
 	//Called when mob user "attacks" it with object O
@@ -665,32 +694,6 @@
 			updateicon()
 		else
 			to_chat(user, SPAN_WARNING("The [src] already has seeds in it!"))
-
-	else if(istype(O, /obj/item/plant_analyser))
-		if(planted && myseed)
-			to_chat(user, "*** <B>[myseed.plantname]</B> ***") //Carn: now reports the plants growing, not the seeds.
-			to_chat(user, "-Plant Age: \blue [age]")
-			to_chat(user, "-Plant Endurance: \blue [myseed.endurance]")
-			to_chat(user, "-Plant Lifespan: \blue [myseed.lifespan]")
-			if(myseed.yield != -1)
-				to_chat(user, "-Plant Yield: \blue [myseed.yield]")
-			to_chat(user, "-Plant Production: \blue [myseed.production]")
-			if(myseed.potency != -1)
-				to_chat(user, "-Plant Potency: \blue [myseed.potency]")
-			to_chat(user, "-Weed level: \blue [weedlevel]/10")
-			to_chat(user, "-Pest level: \blue [pestlevel]/10")
-			to_chat(user, "-Toxicity level: \blue [toxic]/100")
-			to_chat(user, "-Water level: \blue [waterlevel]/100")
-			to_chat(user, "-Nutrition level: \blue [nutrilevel]/10")
-			to_chat(user, "")
-		else
-			to_chat(user, "<B>No plant found.</B>")
-			to_chat(user, "-Weed level: \blue [weedlevel]/10")
-			to_chat(user, "-Pest level: \blue [pestlevel]/10")
-			to_chat(user, "-Toxicity level: \blue [toxic]/100")
-			to_chat(user, "-Water level: \blue [waterlevel]/100")
-			to_chat(user, "-Nutrition level: \blue [nutrilevel]/10")
-			to_chat(user, "")
 
 	else if(istype(O, /obj/item/reagent_holder/spray/plantbgone))
 		if(planted && myseed)

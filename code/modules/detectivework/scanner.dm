@@ -62,7 +62,7 @@
 		to_chat(user, SPAN_INFO("Blood found on [M]. Analysing..."))
 		spawn(15)
 			for(var/blood in M.blood_DNA)
-				to_chat(user, SPAN_INFO("Blood type: [M.blood_DNA[blood]]\nDNA: [blood]"))
+				to_chat(user, SPAN_INFO("Blood type: [M.blood_DNA[blood]]<br>DNA: [blood]"))
 	return
 
 /obj/item/detective_scanner/afterattack(atom/A, mob/user, proximity)
@@ -84,7 +84,7 @@
 	if(istype(A, /obj/effect/decal/cleanable/blood) || isrune(A) || istype(A, /obj/effect/decal/cleanable/blood/gibs))
 		if(isnotnull(A.blood_DNA))
 			for(var/blood in A.blood_DNA)
-				to_chat(user, SPAN_INFO("Blood type: [A.blood_DNA[blood]]\nDNA: [blood]"))
+				to_chat(user, SPAN_INFO("Blood type: [A.blood_DNA[blood]]<br>DNA: [blood]"))
 				flick("forensic2", src)
 		return
 
@@ -142,7 +142,7 @@
 		return 0
 	else
 		user.visible_message(
-			"\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]\n[user.gender == MALE ? "He" : "She"] seems to perk up slightly at the readout.",
+			"\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]<br>[user.gender == MALE ? "He" : "She"] seems to perk up slightly at the readout.",
 			"The results of the scan pique your interest.",
 			"You hear a faint hum of electrical equipment, and someone making a thoughtful noise."
 		)

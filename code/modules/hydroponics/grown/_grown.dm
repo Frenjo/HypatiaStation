@@ -26,27 +26,30 @@
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_holder/food/snacks/grown/attackby(obj/item/O, mob/user)
-	..()
-	if(istype(O, /obj/item/plant_analyser))
-		var/msg
-		msg = "*---------*\n This is \a <span class='name'>[src]</span>\n"
+/obj/item/reagent_holder/food/snacks/grown/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/plant_analyser))
+		var/list/output = list()
+		output += SPAN_INFO_B("*---------*")
+		output += SPAN_INFO("This is <em>\a <span class='name'>[src]</span></em>")
 		switch(plant_type)
 			if(0)
-				msg += "- Plant type: <i>Normal plant</i>\n"
+				output += SPAN_INFO("- Plant type: <i>Normal</i>")
 			if(1)
-				msg += "- Plant type: <i>Weed</i>\n"
+				output += SPAN_INFO("- Plant type: <i>Weed</i>")
 			if(2)
-				msg += "- Plant type: <i>Mushroom</i>\n"
-		msg += "- Potency: <i>[potency]</i>\n"
-		msg += "- Yield: <i>[yield]</i>\n"
-		msg += "- Maturation speed: <i>[maturation]</i>\n"
-		msg += "- Production speed: <i>[production]</i>\n"
-		msg += "- Endurance: <i>[endurance]</i>\n"
-		msg += "- Healing properties: <i>[reagents.get_reagent_amount("nutriment")]</i>\n"
-		msg += "*---------*"
-		to_chat(usr, SPAN_INFO(msg))
-		return
+				output += SPAN_INFO("- Plant type: <i>Mushroom</i>")
+		output += SPAN_INFO("- Potency: <i>[potency]</i>")
+		output += SPAN_INFO("- Yield: <i>[yield]</i>")
+		output += SPAN_INFO("- Maturation speed: <i>[maturation]</i>")
+		output += SPAN_INFO("- Production speed: <i>[production]</i>")
+		output += SPAN_INFO("- Endurance: <i>[endurance]</i>")
+		output += SPAN_INFO("- Healing properties: <i>[reagents.get_reagent_amount("nutriment")]</i>")
+		output += SPAN_INFO_B("*---------*")
+
+		var/joined_output = jointext(output, "<br>")
+		user.show_message("<div class='examine'>[joined_output]</div>", 1)
+		return TRUE
+	return ..()
 
 	/*if (istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/plantbag/S = O
@@ -64,7 +67,6 @@
 				S.contents += src;
 			else
 				user << "\blue The plant bag is full."*/
-	return
 
 /*/obj/item/seeds/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/storage/bag/plants))
@@ -85,24 +87,26 @@
 				user << "\blue The plant bag is full."
 	return*/
 
-/obj/item/grown/attackby(obj/item/O, mob/user)
-	..()
-	if(istype(O, /obj/item/plant_analyser))
-		var/msg
-		msg = "*---------*\n This is \a <span class='name'>[src]</span>\n"
+/obj/item/grown/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/plant_analyser))
+		var/list/output = list()
+		output += SPAN_INFO_B("*---------*")
+		output += SPAN_INFO("This is <em>\a <span class='name'>[src]</span></em>")
 		switch(plant_type)
 			if(0)
-				msg += "- Plant type: <i>Normal plant</i>\n"
+				output += SPAN_INFO("- Plant type: <i>Normal</i>")
 			if(1)
-				msg += "- Plant type: <i>Weed</i>\n"
+				output += SPAN_INFO("- Plant type: <i>Weed</i>")
 			if(2)
-				msg += "- Plant type: <i>Mushroom</i>\n"
-		msg += "- Acid strength: <i>[potency]</i>\n"
-		msg += "- Yield: <i>[yield]</i>\n"
-		msg += "- Maturation speed: <i>[maturation]</i>\n"
-		msg += "- Production speed: <i>[production]</i>\n"
-		msg += "- Endurance: <i>[endurance]</i>\n"
-		msg += "*---------*"
-		to_chat(usr, SPAN_INFO(msg))
-		return
-	return
+				output += SPAN_INFO("- Plant type: <i>Mushroom</i>")
+		output += SPAN_INFO("- Potency: <i>[potency]</i>")
+		output += SPAN_INFO("- Yield: <i>[yield]</i>")
+		output += SPAN_INFO("- Maturation speed: <i>[maturation]</i>")
+		output += SPAN_INFO("- Production speed: <i>[production]</i>")
+		output += SPAN_INFO("- Endurance: <i>[endurance]</i>")
+		output += SPAN_INFO_B("*---------*")
+
+		var/joined_output = jointext(output, "<br>")
+		user.show_message("<div class='examine'>[joined_output]</div>", 1)
+		return TRUE
+	return ..()

@@ -162,21 +162,21 @@ ________________________________________________________________________________
 				if(1)
 					if(!lock_suit(U))//To lock the suit onto wearer.
 						break
-					to_chat(U, "\blue Securing external locking mechanism...\nNeural-net established.")
+					to_chat(U, "\blue Securing external locking mechanism...<br>Neural-net established.")
 				if(2)
-					to_chat(U, "\blue Extending neural-net interface...\nNow monitoring brain wave pattern...")
+					to_chat(U, "\blue Extending neural-net interface...<br>Now monitoring brain wave pattern...")
 				if(3)
 					if(U.stat==2||U.health<=0)
-						to_chat(U, "\red <B>FĆAL �Rr�R</B>: 344--93#�&&21 BR��N |/|/aV� PATT$RN <B>RED</B>\nA-A-aB�rT�NG...")
+						to_chat(U, "\red <B>FĆAL �Rr�R</B>: 344--93#�&&21 BR��N |/|/aV� PATT$RN <B>RED</B><br>A-A-aB�rT�NG...")
 						unlock_suit()
 						break
 					lock_suit(U,1)//Check for icons.
 					U.regenerate_icons()
-					to_chat(U, "\blue Linking neural-net interface...\nPattern \green <B>GREEN</B>\blue, continuing operation.")
+					to_chat(U, "\blue Linking neural-net interface...<br>Pattern \green <B>GREEN</B>\blue, continuing operation.")
 				if(4)
-					to_chat(U, "\blue VOID-shift device status: <B>ONLINE</B>.\nCLOAK-tech device status: <B>ONLINE</B>.")
+					to_chat(U, "\blue VOID-shift device status: <B>ONLINE</B>.<br>CLOAK-tech device status: <B>ONLINE</B>.")
 				if(5)
-					to_chat(U, "\blue Primary system status: <B>ONLINE</B>.\nBackup system status: <B>ONLINE</B>.\nCurrent energy capacity: <B>[cell.charge]</B>.")
+					to_chat(U, "\blue Primary system status: <B>ONLINE</B>.<br>Backup system status: <B>ONLINE</B>.<br>Current energy capacity: <B>[cell.charge]</B>.")
 				if(6)
 					to_chat(U, "\blue All systems operational. Welcome to <B>SpiderOS</B>, [U.real_name].")
 					grant_ninja_verbs()
@@ -217,16 +217,16 @@ ________________________________________________________________________________
 					to_chat(U, "\blue Logging off, [U:real_name]. Shutting down <B>SpiderOS</B>.")
 					remove_ninja_verbs()
 				if(2)
-					to_chat(U, "\blue Primary system status: <B>OFFLINE</B>.\nBackup system status: <B>OFFLINE</B>.")
+					to_chat(U, "\blue Primary system status: <B>OFFLINE</B>.<br>Backup system status: <B>OFFLINE</B>.")
 				if(3)
-					to_chat(U, "\blue VOID-shift device status: <B>OFFLINE</B>.\nCLOAK-tech device status: <B>OFFLINE</B>.")
+					to_chat(U, "\blue VOID-shift device status: <B>OFFLINE</B>.<br>CLOAK-tech device status: <B>OFFLINE</B>.")
 					cancel_stealth()//Shutdowns stealth.
 				if(4)
 					to_chat(U, "\blue Disconnecting neural-net interface...\green<B>Success</B>\blue.")
 				if(5)
 					to_chat(U, "\blue Disengaging neural-net interface...\green<B>Success</B>\blue.")
 				if(6)
-					to_chat(U, "\blue Unsecuring external locking mechanism...\nNeural-net abolished.\nOperation status: <B>FINISHED</B>.")
+					to_chat(U, "\blue Unsecuring external locking mechanism...<br>Neural-net abolished.<br>Operation status: <B>FINISHED</B>.")
 					blade_check(U,2)
 					remove_equip_verbs()
 					unlock_suit()
@@ -577,11 +577,11 @@ ________________________________________________________________________________
 						for(var/i, i<4, i++)
 							switch(i)
 								if(0)
-									to_chat(U, "\blue Engaging mode...\n\black<b>CODE NAME</b>: \red <b>KAMIKAZE</b>")
+									to_chat(U, "\blue Engaging mode...<br>\black<b>CODE NAME</b>: \red <b>KAMIKAZE</b>")
 								if(1)
-									to_chat(U, "\blue Re-routing power nodes... \nUnlocking limiter...")
+									to_chat(U, "\blue Re-routing power nodes... <br>Unlocking limiter...")
 								if(2)
-									to_chat(U, "\blue Power nodes re-routed. \nLimiter unlocked.")
+									to_chat(U, "\blue Power nodes re-routed. <br>Limiter unlocked.")
 								if(3)
 									grant_kamikaze(U)//Give them verbs and change variables as necessary.
 									U.regenerate_icons()//Update their clothing.
@@ -655,7 +655,7 @@ ________________________________________________________________________________
 						if(AI==A)
 							switch(i)
 								if(0)
-									to_chat(A, "\red <b>WARNING</b>: \black purge procedure detected. \nNow hacking host...")
+									to_chat(A, "\red <b>WARNING</b>: \black purge procedure detected. <br>Now hacking host...")
 									to_chat(U, "\red <b>WARNING</b>: HACKING AT��TEMP� IN PR0GRESs!")
 									spideros = 0
 									k_unlock = 0
@@ -673,7 +673,7 @@ ________________________________________________________________________________
 									A.control_disabled = FALSE
 								if(4)
 									to_chat(A, "Connection established and secured. Menu updated.")
-									to_chat(U, "\red <b>W�r#nING</b>: #%@!!WȆ|_4�54@ \nUn�B88l3 T� L�-�o-L�CaT2 ##$!�RN�0..%..")
+									to_chat(U, "\red <b>W�r#nING</b>: #%@!!WȆ|_4�54@ <br>Un�B88l3 T� L�-�o-L�CaT2 ##$!�RN�0..%..")
 									grant_AI_verbs()
 									return
 							sleep(s_delay)
@@ -750,7 +750,7 @@ ________________________________________________________________________________
 	set category = "AI Ninja Equip"
 	set src = usr.loc
 
-	to_chat(AI, "The menu you are seeing will contain other commands if they become available.\nRight click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away.")
+	to_chat(AI, "The menu you are seeing will contain other commands if they become available.<br>Right click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away.")
 
 /obj/item/clothing/suit/space/space_ninja/proc/ai_holo_clear()
 	set name = "Clear Hologram"
@@ -820,7 +820,7 @@ ________________________________________________________________________________
 			return
 		else if(istype(I, /obj/item/cell))
 			if(I:maxcharge>cell.maxcharge&&n_gloves&&n_gloves.candrain)
-				to_chat(U, "\blue Higher maximum capacity detected.\nUpgrading...")
+				to_chat(U, "\blue Higher maximum capacity detected.<br>Upgrading...")
 				if (n_gloves&&n_gloves.candrain&&do_after(U,s_delay))
 					U.drop_item()
 					I.forceMove(src)

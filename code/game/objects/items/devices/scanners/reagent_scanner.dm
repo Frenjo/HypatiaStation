@@ -40,7 +40,7 @@
 			var/one_percent = O.reagents.total_volume / 100
 			for(var/datum/reagent/R in O.reagents.reagent_list)
 				if(prob(reliability))
-					dat += "\n \t \blue [R][details ? ": [R.volume / one_percent]%" : ""]"
+					dat += "<br> \t \blue [R][details ? ": [R.volume / one_percent]%" : ""]"
 					recent_fail = FALSE
 				else if(recent_fail)
 					crit_fail = TRUE

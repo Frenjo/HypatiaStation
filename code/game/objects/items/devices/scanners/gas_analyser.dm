@@ -32,32 +32,3 @@
 	atmos_scan(src, user, location)
 
 	add_fingerprint(user)
-
-/proc/atmos_scan(atom/source, mob/user, atom/target)
-	var/datum/gas_mixture/mixture = target.return_air()
-
-	var/pressure = mixture.return_pressure()
-	var/total_moles = mixture.total_moles
-
-	var/list/message = list()
-	if(isnotnull(source) && isliving(user))
-		user.visible_message(
-			SPAN_NOTICE("[user] uses \the [source] on \the [target]."),
-			SPAN_NOTICE("You use \the [source] on \the [target]."),
-			SPAN_INFO("You hear a click followed by gentle humming.")
-		)
-	message += SPAN_INFO_B("Results of analysis of [icon2html(target, user)] \the [target]:")
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		message += SPAN_INFO("Pressure: [round(pressure, 0.1)]kPa")
-	else
-		message += SPAN_WARNING("Pressure: [round(pressure, 0.1)]kPa")
-	if(total_moles)
-		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-		for(var/g in mixture.gas)
-			message += SPAN_INFO("[gas_data.name[g]]: [round((mixture.gas[g] / total_moles) * 100)]%")
-		message += SPAN_INFO("Temperature: [round(mixture.temperature - T0C)]&deg;C")
-		message += SPAN_INFO("Heat Capacity: [round(mixture.heat_capacity(), 0.1)] / K")
-	else
-		message += SPAN_INFO("\The [target] is empty!")
-
-	to_chat(user, "<div class='examine'>[jointext(message, "<br>")]</div>")

@@ -122,9 +122,9 @@ PROCESS_DEF(vote)
 	if(length(winners))
 		if(length(winners) > 1)
 			if(mode != "gamemode" || !global.PCticker.hide_mode) // Here we are making sure we don't announce potential game modes
-				text = "<b>Vote Tied Between:</b>\n"
+				text = "<b>Vote Tied Between:</b><br>"
 				for(var/option in winners)
-					text += "\t[option]\n"
+					text += "\t[option]<br>"
 		. = pick(winners)
 
 		for(var/key in current_votes)
@@ -232,7 +232,7 @@ PROCESS_DEF(vote)
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator]."
 		if(mode == "custom")
-			text += "\n[question]"
+			text += "<br>[question]"
 
 		log_vote(text)
 		to_world("<font color='purple'><b>[text]</b><br>Type vote to place your votes.<br>You have [CONFIG_GET(/decl/configuration_entry/vote_period) / 10] seconds to vote.</font>")

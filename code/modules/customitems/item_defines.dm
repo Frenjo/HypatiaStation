@@ -143,11 +143,17 @@
 
 /obj/item/fluff/ana_issek_2/attack_self(mob/user)
 	if(isliving(user))
-		user.visible_message("\red [user] flashes their golden security badge.\nIt reads: Ana Issek, NT Security.","\red You display the faded bage.\nIt reads: Ana Issek, NT Security.")
+		user.visible_message(
+			SPAN_WARNING("[user] flashes their golden security badge. It reads: Ana Issek, NT Security."),
+			SPAN_WARNING("You display the faded badge. It reads: Ana Issek, NT Security.")
+		)
 
 /obj/item/fluff/ana_issek_2/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
+		user.visible_message(
+			SPAN_WARNING("[user] invades [M]'s personal space, thrusting \the [src] into their face insistently."),
+			SPAN_WARNING("You invade [M]'s personal space, thrusting \the [src] into their face insistently. You are the law.")
+		)
 
 /obj/item/soap/fluff/azare_siraj_1 //mister fox: Azare Siraj
 	name = "S'randarr's Tongue Leaf"
