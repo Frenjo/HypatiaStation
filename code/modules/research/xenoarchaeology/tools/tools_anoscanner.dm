@@ -22,8 +22,8 @@
 /obj/item/ano_scanner/interact(mob/user)
 	var/message = "Background radiation levels detected."
 	if(nearest_artifact_distance >= 0)
-		message = "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m"
-	to_chat(user, SPAN_INFO("[message]"))
+		message = "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m."
+	to_chat(user, SPAN_INFO(message))
 	if(world.time - last_scan_time >= scan_delay)
 		scan()
 

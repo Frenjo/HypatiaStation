@@ -23,12 +23,12 @@
 	var/material = "unknown"
 
 /obj/item/depth_scanner/proc/scan_atom(mob/user, atom/A)
-	user.visible_message(SPAN_INFO("[user] scans [A], the air around them humming gently."))
+	user.visible_message(SPAN_INFO("[user] scans \the [A], the air around them humming gently."))
 	if(istype(A, /turf/closed/rock))
 		var/turf/closed/rock/M = A
 		if(length(M.finds) || M.artifact_find)
 			//create a new scanlog entry
-			var/datum/depth_scan/D = new()
+			var/datum/depth_scan/D = new /datum/depth_scan()
 			D.coords = "[M.x].[rand(0, 9)]:[M.y].[rand(0, 9)]:[10 * M.z].[rand(0, 9)]"
 			D.time = worldtime2text()
 			D.record_index = length(positive_locations) + 1
@@ -44,13 +44,13 @@
 			positive_locations.Add(D)
 
 			for(var/mob/L in range(src, 1))
-				to_chat(L, SPAN_INFO("[icon2html(src, L)] [src] pings."))
+				to_chat(L, SPAN_INFO("[icon2html(src, L)] \The [src] pings."))
 
-	else if(istype(A,/obj/structure/boulder))
+	else if(istype(A, /obj/structure/boulder))
 		var/obj/structure/boulder/B = A
 		if(B.artifact_find)
 			//create a new scanlog entry
-			var/datum/depth_scan/D = new()
+			var/datum/depth_scan/D = new /datum/depth_scan()
 			D.coords = "[10 * B.x].[rand(0, 9)]:[10 * B.y].[rand(0, 9)]:[10 * B.z].[rand(0, 9)]"
 			D.time = worldtime2text()
 			D.record_index = length(positive_locations) + 1
@@ -63,7 +63,7 @@
 			positive_locations.Add(D)
 
 			for(var/mob/L in range(src, 1))
-				to_chat(L, SPAN_INFO("[icon2html(src, L)] [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
+				to_chat(L, SPAN_INFO("[icon2html(src, L)] \The [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
 
 /obj/item/depth_scanner/attack_self(mob/user)
 	return src.interact(user)

@@ -22,8 +22,8 @@
 		)
 		if(do_after(user, 2.5 SECONDS))
 			user.visible_message(
-				SPAN_INFO("[icon2html(tape, viewers(user))] [user] measures the excavation depth of \the [src]."),
-				SPAN_INFO("[icon2html(tape, user)] [src] has been excavated to a depth of [2 * excavation_level]cm.")
+				SPAN_INFO("[user] measures the excavation depth of \the [src]."),
+				SPAN_INFO("You measure the excavation depth of \the [src]. It is [2 * excavation_level]cm.")
 			)
 		return TRUE
 
