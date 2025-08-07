@@ -11,6 +11,7 @@
 #define OPEN_FILE(TARGET, FILE) TARGET << run(FILE)
 #define TO_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] << VALUE
 #define FROM_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] >> VALUE
+#define TO_OUTPUT(TARGET, CONTENT, ARGUMENTS) TARGET << output(CONTENT, ARGUMENTS)
 
 // The two procs below are ported from Bay12.
 /proc/generate_asset_name(file)
@@ -110,7 +111,7 @@
 		else
 			func = "replace"
 		target.last_chat_message_count++
-		target << output(list2params(list(message, target.last_chat_message_count)), "outputwindow.output:[func]")
+		TO_OUTPUT(target, list2params(list(message, target.last_chat_message_count)), "outputwindow.output:[func]")
 		target.last_chat_message = message
 
 /proc/to_world(message)
