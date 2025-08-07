@@ -4,7 +4,7 @@
 /mob/living/simple/sculpture
 	name = "\improper sculpture"
 	real_name = "sculpture"
-	desc = "It's some kind of human sized, doll-like sculpture, with weird discolourations on some parts of it. It appears to be quite solid. "
+	desc = "It's some kind of human sized, doll-like sculpture, with weird discolourations on some parts of it. It appears to be quite solid."
 	icon = 'code/WorkInProgress/Cael_Aislinn/unknown.dmi'
 	icon_state = "sculpture"
 	icon_living = "sculpture"

@@ -3,7 +3,7 @@
 ////////////////////////////////
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely irreparable."
+	desc = "The remains of some unfortunate mecha. Completely irreparable."
 	icon = 'icons/obj/mecha/mecha.dmi'
 
 	density = TRUE

@@ -1,6 +1,6 @@
 /obj/structure/mecha_wreckage/eidolon
 	name = "Eidolon wreckage"
-	desc = "Remains of some unfortunate mecha. There's surprising amount of salvage on it."
+	desc = "The remains of some unfortunate mecha. There's surprising amount of salvage on it."
 	icon_state = "eidolon-broken"
 	part_salvage = list(
 		/obj/item/mecha_part/part/eidolon/torso,
@@ -25,6 +25,6 @@
 	)
 
 /obj/structure/mecha_wreckage/eidolon/wrecked
-	desc = "Remains of some unfortunate mecha. There doesn't appear to be any salvage on it."
+	desc = "The remains of some unfortunate mecha. There doesn't appear to be any salvage on it."
 
 	salvage_num = 0
