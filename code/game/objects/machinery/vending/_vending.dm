@@ -162,25 +162,26 @@
 		if(shock(user, 100))
 			return
 
+	// Displays the vendor's name and adds some spacing.
+	var/list/content = list("<html><body><code><center><b>[name]</b></center><hr>")
 	if(isnotnull(currently_vending))
-		var/dat = "<TT><center><b>[name]</b></center><hr /><br>" //display the name, and added a horizontal rule
-		dat += "<b>You have selected [currently_vending.product_name].<br>Please swipe your ID to pay for the article.</b><br>"
-		dat += "<a href='byond://?src=\ref[src];cancel_buying=1'>Cancel</a>"
-		SHOW_BROWSER(user, dat, "window=vending")
+		content += "<b>You have selected [currently_vending.product_name].</b>"
+		content += "<b>Please swipe your ID to pay for the article.</b>"
+		content += "<a href='byond://?src=\ref[src];cancel_buying=1'>Cancel</a></body></html>"
+		SHOW_BROWSER(user, jointext(content, "<br>"), "window=vending")
 		onclose(user, "")
 		return
 
-	var/dat = "<TT><center><b>[name]</b></center><hr /><br>" //display the name, and added a horizontal rule
-	dat += "<b>Select an item: </b><br><br>" //the rest is just general spacing and bolding
+	content += "<b>Select an item:</b>"
 
-	if(length(premium))
-		dat += "<b>Coin slot:</b> [coin ? coin : "No coin inserted"] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</A>)<br>"
+	var/coin_string = isnotnull(coin) ? "[coin] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</a>)" : "No coin inserted!"
+	content += "<b>Coin Slot:</b> [coin_string]"
 
-	if(isnotnull(cash_card))
-		dat += "<b>Charge card's credits:</b> [cash_card ? cash_card.worth : "No charge card inserted"] (<a href='byond://?src=\ref[src];remove_charge_card=1'>Remove</A>)<br><br>"
+	var/charge_card_string = isnotnull(cash_card) ? "[cash_card.worth]CR (<a href='byond://?src=\ref[src];remove_charge_card=1'>Remove</a>)" : "No charge card inserted!"
+	content += "<b>Charge Card:</b> [charge_card_string]<br>" // Double usage of <br> here is intentional.
 
 	if(!length(product_records))
-		dat += SPAN_WARNING("No product loaded!")
+		content += SPAN_WARNING("No product loaded!")
 	else
 		var/list/datum/data/vending_product/display_records = product_records
 		if(extended_inventory)
@@ -191,46 +192,49 @@
 			display_records = product_records + hidden_records + coin_records
 
 		for_no_type_check(var/datum/data/vending_product/R, display_records)
-			dat += "<FONT color = '[R.display_color]'><B>[R.product_name]</B>:"
-			dat += " <b>[R.amount]</b> </font>"
+			var/product_info = "<font color = '[R.display_color]'><b>[R.product_name]</b>: "
+			product_info += "<b>[R.amount]</b></font> "
 			if(R.price)
-				dat += " <b>(Price: [R.price])</b>"
+				product_info += "<b>(Price: [R.price])</b> "
 			if(R.amount > 0)
-				dat += " <a href='byond://?src=\ref[src];vend=\ref[R]'>(Vend)</A>"
+				product_info += "<a href='byond://?src=\ref[src];vend=\ref[R]'>(Vend)</a>"
 			else
-				dat += " <font color = 'red'>SOLD OUT</font>"
-			dat += "<br>"
-
-		dat += "</TT>"
+				product_info += "<font color = 'red'>SOLD OUT</font>"
+			content += product_info
 
 	if(panel_open)
+		content += "</code>"
+
 		var/list/vendwires = list(
 			"Violet" = 1,
 			"Orange" = 2,
 			"Goldenrod" = 3,
 			"Green" = 4,
 		)
-		dat += "<br><hr><br><B>Access Panel</B><br>"
+		content += "<hr><br><b>Access Panel</b>"
 		for(var/wiredesc in vendwires)
+			var/wire_info = "[wiredesc] wire: "
 			var/is_uncut = wires & APCWireColorToFlag[vendwires[wiredesc]]
-			dat += "[wiredesc] wire: "
 			if(!is_uncut)
-				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
+				wire_info += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
 			else
-				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-				dat += "<a href='byond://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
-			dat += "<br>"
+				wire_info += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
+				wire_info += "<a href='byond://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a>"
+			content += wire_info
 
-		dat += "<br>"
-		dat += "The orange light is [seconds_electrified == 0 ? "off" : "on"].<BR>"
-		dat += "The red light is [shoot_inventory ? "off" : "blinking"].<BR>"
-		dat += "The green light is [extended_inventory ? "on" : "off"].<BR>"
-		dat += "The [(wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
+		content += "<br>"
+		content += "The orange light is [seconds_electrified == 0 ? "off" : "on"]."
+		content += "The red light is [shoot_inventory ? "off" : "blinking"]."
+		content += "The green light is [extended_inventory ? "on" : "off"]."
+		content += "The [(wires & WIRE_SCANID) ? "purple" : "yellow"] light is on."
 
 		if(length(slogan_list))
-			dat += "The speaker switch is [shut_up ? "off" : "on"]. <a href='byond://?src=\ref[src];togglevoice=[1]'>Toggle</a>"
+			content += "The speaker switch is [shut_up ? "off" : "on"]. <a href='byond://?src=\ref[src];togglevoice=[1]'>Toggle</a>"
+		content += "</body></html>"
+	else
+		content += "</code></body></html>"
 
-	SHOW_BROWSER(user, dat, "window=vending")
+	SHOW_BROWSER(user, jointext(content, "<br>"), "window=vending")
 	onclose(user, "")
 
 /obj/machinery/vending/Topic(href, href_list)
@@ -241,7 +245,7 @@
 
 	if(href_list["remove_coin"] && !issilicon(usr))
 		if(isnull(coin))
-			to_chat(usr, "There is no coin in this machine.")
+			to_chat(usr, SPAN_WARNING("There is no coin in this machine."))
 			return
 
 		coin.forceMove(loc)
@@ -252,7 +256,7 @@
 
 	if(href_list["remove_charge_card"] && !issilicon(usr))
 		if(isnull(cash_card))
-			to_chat(usr, "There is no charge card in this machine.")
+			to_chat(usr, SPAN_WARNING("There is no charge card in \the [src]."))
 			return
 		cash_card.forceMove(loc)
 		if(!usr.get_active_hand())
@@ -306,7 +310,7 @@
 		else if((href_list["cutwire"]) && (panel_open))
 			var/twire = text2num(href_list["cutwire"])
 			if(!iswirecutter(usr.get_active_hand()))
-				to_chat(usr, "You need wirecutters!")
+				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
 				return
 			if(isWireColorCut(twire))
 				mend(twire)
@@ -316,10 +320,10 @@
 		else if((href_list["pulsewire"]) && (panel_open))
 			var/twire = text2num(href_list["pulsewire"])
 			if(!ismultitool(usr.get_active_hand()))
-				to_chat(usr, "You need a multitool!")
+				to_chat(usr, SPAN_WARNING("You need a multitool!"))
 				return
 			if(isWireColorCut(twire))
-				to_chat(usr, "You can't pulse a cut wire.")
+				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
 				return
 			else
 				pulse(twire)
