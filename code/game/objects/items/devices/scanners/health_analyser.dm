@@ -77,7 +77,7 @@
 		var/mob/living/L = target
 		output.Add(SPAN_INFO("Analysing results for <em>ERROR</em>:"))
 		output.Add("\t [SPAN_INFO("Overall Status: <em>ERROR</em>")]")
-		output.Add("\t Key: <font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burns</em></font>/<font color='green'><em>Toxin</em></font>/<font color='blue'><em>Suffocation</em></font>")
+		output.Add("\t Key: <font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burn</em></font>/<font color='green'><em>Toxin</em></font>/<font color='blue'><em>Suffocation</em></font>")
 		output.Add("\t Damage Specifics: <font color='red'>?</font> - <font color='#FFA500'>?</font> - <font color='green'>?</font> - <font color='blue'>?</font>")
 		output.Add(SPAN_INFO("Body Temperature: [L.bodytemperature - T0C]&deg;C ([L.bodytemperature * 1.8-459.67]&deg;F)"))
 		output.Add("[SPAN_DANGER("Warning: Blood Level ERROR: --% --cl.")] [SPAN_INFO("Type: ERROR")]")
@@ -85,7 +85,7 @@
 	else
 		output.Add(SPAN_INFO("Analysing results for <em>\the [target]</em>:"))
 		output.Add("\t [SPAN_INFO("Overall Status: <em>Healthy</em>")]")
-		output.Add("\t Key: <font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burns</em></font>/<font color='green'><em>Toxin</em></font>/<font color='blue'><em>Suffocation</em></font>")
+		output.Add("\t Key: <font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burn</em></font>/<font color='green'><em>Toxin</em></font>/<font color='blue'><em>Suffocation</em></font>")
 		output.Add("\t Damage Specifics: <font color='red'>[0]</font> - <font color='#FFA500'>[0]</font> - <font color='green'>[0]</font> - <font color='blue'>[0]</font>")
 		output.Add(SPAN_INFO("Body Temperature: ???"))
 

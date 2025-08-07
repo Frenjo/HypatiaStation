@@ -55,7 +55,7 @@
 	// Handles basic health data.
 	output.Add(SPAN_INFO("Analysing results for [target]:"))
 	output.Add("\t [SPAN_INFO("Overall Status: [target_status]")]")
-	output.Add("\t Key: <font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burns</em></font>/<font color='green'><em>Toxin</em></font>/<font color='blue'><em>Suffocation</em></font>")
+	output.Add("\t Key: <font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burn</em></font>/<font color='green'><em>Toxin</em></font>/<font color='blue'><em>Suffocation</em></font>")
 	output.Add("\t Damage Specifics: <font color='red'>[brute_string]</font> - <font color='#FFA500'>[burn_string]</font> - <font color='green'>[tox_string]</font> - <font color='blue'>[oxy_string]</font>")
 	output.Add(SPAN_INFO("Body Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)"))
 
