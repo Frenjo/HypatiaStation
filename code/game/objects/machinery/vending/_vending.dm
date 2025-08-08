@@ -104,7 +104,7 @@
 		return FALSE
 
 	if(emagged)
-		to_chat(user, SPAN_WARNING("[src]'s product lock is already shorted!"))
+		to_chat(user, SPAN_WARNING("\The [src]'s product lock is already shorted!"))
 		return FALSE
 	to_chat(user, SPAN_WARNING("You short out the product lock on \the [src]."))
 	emagged = TRUE
@@ -192,14 +192,14 @@
 			display_records = product_records + hidden_records + coin_records
 
 		for_no_type_check(var/datum/data/vending_product/R, display_records)
-			var/product_info = "<font color = '[R.display_color]'><b>[R.product_name]</b>: "
+			var/product_info = "<font color='[R.display_color]'><b>[R.product_name]</b>: "
 			product_info += "<b>[R.amount]</b></font> "
 			if(R.price)
 				product_info += "<b>(Price: [R.price])</b> "
 			if(R.amount > 0)
 				product_info += "<a href='byond://?src=\ref[src];vend=\ref[R]'>(Vend)</a>"
 			else
-				product_info += "<font color = 'red'>SOLD OUT</font>"
+				product_info += "<font color='red'>SOLD OUT</font>"
 			content += product_info
 
 	if(panel_open)
@@ -245,13 +245,13 @@
 
 	if(href_list["remove_coin"] && !issilicon(usr))
 		if(isnull(coin))
-			to_chat(usr, SPAN_WARNING("There is no coin in this machine."))
+			to_chat(usr, SPAN_WARNING("There is no coin in \the [src]."))
 			return
 
 		coin.forceMove(loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		to_chat(usr, SPAN_INFO("You remove the [coin] from the [src]"))
+		to_chat(usr, SPAN_INFO("You remove \the [coin] from \the [src]"))
 		coin = null
 
 	if(href_list["remove_charge_card"] && !issilicon(usr))
@@ -459,9 +459,9 @@
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, SPAN_INFO("You successfully pull the coin out before the [src] could swallow it."))
+				to_chat(user, SPAN_INFO("You successfully pull the coin out before \the [src] can swallow it."))
 			else
-				to_chat(user, SPAN_INFO("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
+				to_chat(user, SPAN_WARNING("You aren't able to pull the coin out fast enough! The machine eats it, string and all..."))
 				qdel(coin)
 		else
 			qdel(coin)
@@ -485,7 +485,7 @@
 
 /obj/machinery/vending/proc/stock(datum/data/vending_product/R, mob/user)
 	if(panel_open)
-		to_chat(usr, SPAN_INFO("You stock the [src] with \a [R.product_name]"))
+		to_chat(usr, SPAN_INFO("You stock \the [src] with \a [R.product_name]"))
 		R.amount++
 
 	updateUsrDialog()
@@ -538,7 +538,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target, 16, 3)
-	visible_message(SPAN_DANGER("[src] launches [throw_item.name] at [target.name]!"))
+	visible_message(SPAN_DANGER("\The [src] launches [throw_item.name] at [target.name]!"))
 	return 1
 
 /obj/machinery/vending/proc/isWireColorCut(wireColor)
