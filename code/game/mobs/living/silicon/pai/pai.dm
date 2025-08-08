@@ -77,7 +77,7 @@
 
 /mob/living/silicon/pai/Login()
 	. = ..()
-	usr << browse_rsc('html/assets/paigrid.png') // Go ahead and cache the interface resources as early as possible
+	SEND_RSC(usr, 'html/assets/paigrid.png', "paigrid.png")
 
 // this function shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
@@ -185,7 +185,7 @@
 	var/cameralist[0]
 
 	if(usr.stat == 2)
-		usr << "You can't change your camera network because you are dead!"
+		to_chat(usr, SPAN_WARNING("You can't change your camera network because you are dead!"))
 		return
 
 	for (var/obj/machinery/camera/C in Cameras)
@@ -196,7 +196,7 @@
 				cameralist[C.network] = C.network
 
 	network = input(usr, "Which network would you like to view?") as null|anything in cameralist
-	src << "\blue Switched to [network] camera network."
+	to_chat(src, SPAN_INFO("Switched to [network] camera network."))
 //End of code by Mord_Sith
 */
 

@@ -80,11 +80,11 @@
 		descriptive = "furiously hot"
 	. += SPAN_INFO("It feels <em>[descriptive]</em>.")
 
-	if(loc != usr || isnull(alert_gas_type) || isnull(alert_gas_amount))
+	if(loc != user || isnull(alert_gas_type) || isnull(alert_gas_amount))
 		return
 	if(air_contents.gas[alert_gas_type] < alert_gas_amount)
 		. += SPAN_DANGER("The meter indicates you are almost out of air!")
-		usr << sound('sound/effects/alert.ogg')
+		SOUND_TO(user, 'sound/effects/alert.ogg')
 
 /obj/item/tank/blob_act()
 	if(prob(50))
@@ -99,7 +99,7 @@
 
 /obj/item/tank/attack_tool(obj/item/tool, mob/user)
 	if(istype(tool, /obj/item/gas_analyser))
-		atmos_scan(user, src)
+		atmos_scan(tool, user, src)
 		return TRUE
 	return ..()
 

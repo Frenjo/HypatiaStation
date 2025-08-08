@@ -38,7 +38,7 @@
 	if(href_list["modifypower"])
 		var/new_val = text2num(input("Enter new emission power level (0.001 - 0.01)", "Modifying power level (MeV)", mega_energy))
 		if(!new_val)
-			usr << "\red That's not a valid number."
+			to_chat(usr, SPAN_WARNING("That's not a valid number."))
 			return
 		new_val = min(new_val, 0.01)
 		new_val = max(new_val, 0.001)
@@ -49,7 +49,7 @@
 	if(href_list["modifyrate"])
 		var/new_val = text2num(input("Enter new emission rate (1 - 10)", "Modifying emission rate (sec)", rate))
 		if(!new_val)
-			usr << "\red That's not a valid number."
+			to_chat(usr, SPAN_WARNING("That's not a valid number."))
 			return
 		new_val = min(new_val, 1)
 		new_val = max(new_val, 10)
@@ -60,7 +60,7 @@
 	if(href_list["modifyfreq"])
 		var/new_val = text2num(input("Enter new emission frequency (1 - 50000)", "Modifying emission frequency (GHz)", frequency))
 		if(!new_val)
-			usr << "\red That's not a valid number."
+			to_chat(usr, SPAN_WARNING("That's not a valid number."))
 			return
 		new_val = min(new_val, 1)
 		new_val = max(new_val, 50000)

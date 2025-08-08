@@ -17,19 +17,19 @@
 	if(isnotnull(M.wear_suit))
 		fibertext = "Material from \a [M.wear_suit]."
 		if(prob(10 * item_multiplier) && !(fibertext in suit_fibers))
-			//world.log << "Added fibertext: [fibertext]"
+			//TO_WORLD_LOG("Added fibertext: [fibertext]")
 			suit_fibers += fibertext
 		if(!(M.wear_suit.body_parts_covered & 32))
 			if(isnotnull(M.wear_uniform))
 				fibertext = "Fibers from \a [M.wear_uniform]."
 				if(prob(12 * item_multiplier) && !(fibertext in suit_fibers)) //Wearing a suit means less of the uniform exposed.
-					//world.log << "Added fibertext: [fibertext]"
+					//TO_WORLD_LOG("Added fibertext: [fibertext]")
 					suit_fibers += fibertext
 		if(!(M.wear_suit.body_parts_covered & 64))
 			if(M.gloves)
 				fibertext = "Material from a pair of [M.gloves.name]."
 				if(prob(20 * item_multiplier) && !(fibertext in suit_fibers))
-					//world.log << "Added fibertext: [fibertext]"
+					//TO_WORLD_LOG("Added fibertext: [fibertext]")
 					suit_fibers += fibertext
 	else if(M.wear_uniform)
 		fibertext = "Fibers from \a [M.wear_uniform]."
@@ -39,12 +39,12 @@
 		if(M.gloves)
 			fibertext = "Material from a pair of [M.gloves.name]."
 			if(prob(20 * item_multiplier) && !(fibertext in suit_fibers))
-				//world.log << "Added fibertext: [fibertext]"
+				//TO_WORLD_LOG("Added fibertext: [fibertext]")
 				suit_fibers += "Material from a pair of [M.gloves.name]."
 	else if(M.gloves)
 		fibertext = "Material from a pair of [M.gloves.name]."
 		if(prob(20 * item_multiplier) && !(fibertext in suit_fibers))
-			//world.log << "Added fibertext: [fibertext]"
+			//TO_WORLD_LOG("Added fibertext: [fibertext]")
 			suit_fibers += "Material from a pair of [M.gloves.name]."
 	if(!length(suit_fibers))
 		qdel(suit_fibers)
@@ -160,7 +160,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					M.drop_item()
 					I.forceMove(src)
 			else
-				usr << "Invalid Object Rejected."
+				to_chat(usr, SPAN_WARNING("Invalid object rejected."))
 		if("card")  //Processing a fingerprint card.
 			var/mob/M = usr
 			var/obj/item/I = M.get_active_hand()
@@ -171,7 +171,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				if(!card.fingerprints)
 					card.fingerprints = list()
 				if(card.amount > 1 || !length(card.fingerprints))
-					usr << "\red ERROR: No prints/too many cards."
+					to_chat(usr, SPAN_WARNING("ERROR: No prints/too many cards."))
 					if(card.loc == src)
 						card.forceMove(loc)
 					card = null
@@ -180,7 +180,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				I.forceMove(src)
 				process_card()
 			else
-				usr << "\red Invalid Object Rejected."
+				to_chat(usr, SPAN_WARNING("Invalid object rejected."))
 		if("database") //Viewing all records in each database
 			canclear = 1
 			if(href_list["delete_record"])
@@ -214,7 +214,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					if(new_title)
 						dossier[2] = new_title
 					else
-						usr << "Illegal or blank name."
+						to_chat(usr, SPAN_WARNING("Illegal or blank name."))
 				temp = {"<b>Criminal Evidence Database</b><br><br>
 				Consolidated data points: [dossier[2]]<br>"}
 				var/print_string = "Fingerprints: Print not complete!<br>"
@@ -296,7 +296,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 						for(var/named in blood)
 							P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type: [blood[named]], DNA: [named]<br>"
 			else
-				usr << "ERROR.  Database not found!<br>"
+				to_chat(usr, SPAN_WARNING("ERROR: Database not found!"))
 		if("auxiliary") //Viewing a record from the "misc" database.
 			canclear = 0
 			if(misc)
@@ -363,7 +363,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					for(var/named in blood)
 						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type: [blood[named]], DNA: [named]<br>"
 			else
-				usr << "ERROR.  Database not found!<br>"
+				to_chat(usr, SPAN_WARNING("ERROR: Database not found!"))
 		if("scan")
 			if(istype(scanning, /obj/item/f_card))
 				card = scanning

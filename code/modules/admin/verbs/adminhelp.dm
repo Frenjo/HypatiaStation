@@ -98,7 +98,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 			if(X.is_afk())
 				admin_number_afk++
 			if(X.prefs.toggles & SOUND_ADMINHELP)
-				X << 'sound/effects/adminhelp.ogg'
+				SOUND_TO(X, 'sound/effects/adminhelp.ogg')
 			to_chat(X, msg)
 
 	//show it to the person adminhelping too

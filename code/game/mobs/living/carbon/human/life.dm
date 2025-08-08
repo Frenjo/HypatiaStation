@@ -932,7 +932,7 @@
 /mob/living/carbon/human/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(nodamage)
 		return
-	//world <<"body_part = [body_part], exposed_temperature = [exposed_temperature], exposed_intensity = [exposed_intensity]"
+	//to_world("body_part = [body_part], exposed_temperature = [exposed_temperature], exposed_intensity = [exposed_intensity]")
 	var/discomfort = min(abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
 
 	if(exposed_temperature > bodytemperature)
@@ -942,7 +942,7 @@
 		discomfort *= TEMPERATURE_DAMAGE_COEFFICIENT * 2 //I don't like magic numbers. I'll make mutantraces a datum with vars sometime later. -- Urist
 	else
 		discomfort *= TEMPERATURE_DAMAGE_COEFFICIENT //Dangercon 2011 - now with less magic numbers!
-	//world <<"[discomfort]"
+	//to_world(discomfort)
 
 	switch(body_part)
 		if(HEAD)
@@ -1010,7 +1010,7 @@
 /*	//The fucking FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
 	if(MUTATION_FAT in mutations)
 		if(overeatduration < 100)
-			src << "\blue You feel fit again!"
+			to_chat(src, SPAN_INFO("You feel fit again!"))
 			mutations.Remove(MUTATION_FAT)
 			update_mutantrace(0)
 			update_mutations(0)
@@ -1018,7 +1018,7 @@
 			update_inv_wear_suit()
 	else
 		if(overeatduration > 500)
-			src << "\red You suddenly feel blubbery!"
+			to_chat(src, SPAN_WARNING("You suddenly feel blubbery!"))
 			mutations.Add(MUTATION_FAT)
 			update_mutantrace(0)
 			update_mutations(0)
@@ -1725,7 +1725,7 @@
 	if(BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
 		for(var/datum/disease/D in viruses)
-			if(!D.hidden[SCANNER])
+			if(!D.hidden[DISEASE_INFO_SCANNER])
 				foundVirus++
 		for(var/ID in virus2)
 			if(ID in virusDB)

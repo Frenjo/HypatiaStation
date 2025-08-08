@@ -71,9 +71,6 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 		if("Triumvirate") icon_state = "ai-triumvirate"
 		if("Triumvirate Static") icon_state = "ai-triumvirate-malf"
 		else icon_state = "ai"
-	//else
-			//usr <<"You can only change your display once!"
-			//return
 
 /*
  * Call Emergency Shuttle
@@ -89,7 +86,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = src
 		if(AI.control_disabled)
-			usr << "Wireless control is disabled!"
+			to_chat(usr, SPAN_WARNING("Wireless control is disabled!"))
 			return
 
 	var/confirm = alert("Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")

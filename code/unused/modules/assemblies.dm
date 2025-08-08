@@ -136,7 +136,7 @@
 	if (!status)
 		return
 	for(var/mob/O in hearers(1, src.loc))
-		O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 	src.part2.Activate()
 	return
 
@@ -561,7 +561,7 @@
 
 /obj/item/assembly/prox_ignite/receive_signal()
 	for(var/mob/O in hearers(1, src.loc))
-		O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 	src.part2.Activate()
 	return
 
@@ -609,7 +609,7 @@
 
 /obj/item/assembly/rad_ignite/receive_signal()
 	for(var/mob/O in hearers(1, src.loc))
-		O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 	src.part2.Activate()
 	return
 
@@ -722,7 +722,7 @@
 /obj/item/assembly/m_i_ptank/receive_signal()
 	//to_world("miptank [src] got signal")
 	for(var/mob/O in hearers(1, null))
-		O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 		//Foreach goto(19)
 
 	if ((src.status && prob(90)))
@@ -812,7 +812,7 @@
 /obj/item/assembly/t_i_ptank/receive_signal()
 	//to_world("tiptank [src] got signal")
 	for(var/mob/O in hearers(1, null))
-		O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 		//Foreach goto(19)
 	if ((src.status && prob(90)))
 		//to_world("sent ignite() to [src.part3]")
@@ -937,7 +937,7 @@
 /obj/item/assembly/r_i_ptank/receive_signal()
 	//to_world("riptank [src] got signal")
 	for(var/mob/O in hearers(1, null))
-		O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 		//Foreach goto(19)
 	if ((src.status && prob(90)))
 		//to_world("sent ignite() to [src.part3]")

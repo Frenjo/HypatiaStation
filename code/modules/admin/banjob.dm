@@ -57,9 +57,9 @@ DEBUG
 /proc/jobban_loadbanfile()
 	if(CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
 		var/savefile/S=new("data/job_full.ban")
-		S["keys[0]"] >> jobban_keylist
+		FROM_SAVEFILE(S, "keys[0]", jobban_keylist)
 		log_admin("Loading jobban_rank")
-		S["runonce"] >> jobban_runonce
+		FROM_SAVEFILE(S, "runonce", jobban_runonce)
 
 		if (!length(jobban_keylist))
 			jobban_keylist=list()
@@ -94,7 +94,7 @@ DEBUG
 
 /proc/jobban_savebanfile()
 	var/savefile/S=new("data/job_full.ban")
-	S["keys[0]"] << jobban_keylist
+	TO_SAVEFILE(S, "keys[0]", jobban_keylist)
 
 /proc/jobban_unban(mob/M, rank)
 	jobban_remove("[M.ckey] - [rank]")

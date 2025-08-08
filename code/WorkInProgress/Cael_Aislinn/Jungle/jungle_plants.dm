@@ -112,7 +112,7 @@ var/jungle_plants_init = 0
 /obj/structure/jungle_plant/attack_hand(mob/user as mob)
 	if(fruits_left > 0)
 		fruits_left--
-		to_chat(user, SPAN_INFO("You pick a fruit off [src]."))
+		to_chat(user, SPAN_INFO("You pick a fruit off of \the [src]."))
 
 		var/obj/item/reagent_holder/food/snacks/grown/jungle_fruit/J = new(src.loc)
 		J.potency = plant_strength
@@ -126,4 +126,4 @@ var/jungle_plants_init = 0
 		fruit_overlay.Blend(rgb(fruit_r, fruit_g, fruit_b), ICON_ADD)
 		add_overlay(fruit_overlay)
 	else
-		to_chat(user, SPAN_WARNING("There are no fruit left on [src]."))
+		to_chat(user, SPAN_WARNING("There are no fruit left on \the [src]."))

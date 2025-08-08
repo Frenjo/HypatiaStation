@@ -146,13 +146,13 @@
 
 	if(!L.client.ambience_playing)
 		L.client.ambience_playing = TRUE
-		L << sound('sound/ambience/shipambience.ogg', repeat = TRUE, wait = FALSE, channel = 2, volume = 35)
+		SOUND_TO(L, sound('sound/ambience/shipambience.ogg', repeat = TRUE, wait = FALSE, channel = 2, volume = 35))
 
 	if(length(ambience) && prob(35))
 		sound = pick(ambience)
 
 		if(world.time > L.client.played + 600)
-			L << sound(sound, repeat = FALSE, wait = FALSE, channel = 1, volume = musVolume)
+			SOUND_TO(L, sound(sound, repeat = FALSE, wait = FALSE, channel = 1, volume = musVolume))
 			L.client.played = world.time
 
 /area/proc/set_gravity(new_gravity = FALSE)

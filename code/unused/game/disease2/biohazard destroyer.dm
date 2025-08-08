@@ -17,4 +17,4 @@
 	I.forceMove(loc)
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message("[html_icon(src)] \blue The [src.name] beeps", 2)
+		O.show_message("[icon2html(src, O)] \blue The [src.name] beeps", 2)

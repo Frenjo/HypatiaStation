@@ -62,7 +62,7 @@
 		)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!internal_damage)
-			occupant << sound(activation_sound, volume = activation_sound_volume)
+			SOUND_TO(occupant, sound(activation_sound, volume = activation_sound_volume))
 		return TRUE
 	return FALSE
 
@@ -120,6 +120,6 @@
 		set_dir(entry_direction)
 		log_message("[mmi_as_oc] moved in as pilot.")
 		if(!internal_damage)
-			occupant << sound(activation_sound, volume = activation_sound_volume)
+			SOUND_TO(occupant, sound(activation_sound, volume = activation_sound_volume))
 		return TRUE
 	return FALSE

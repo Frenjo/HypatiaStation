@@ -101,7 +101,7 @@
 	var/strength = 2
 
 /obj/item/weedspray/suicide_act(mob/user)
-	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
+	user.visible_message(SPAN_DANGER("[user] is huffing \the [src]! It looks like \he's trying to commit suicide."))
 	return (TOXLOSS)
 
 /*
@@ -125,7 +125,7 @@
 	var/strength = 2
 
 /obj/item/pestspray/suicide_act(mob/user)
-	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
+	user.visible_message(SPAN_DANGER("[user] is huffing \the [src]! It looks like \he's trying to commit suicide."))
 	return (TOXLOSS)
 
 /*

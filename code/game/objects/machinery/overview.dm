@@ -152,7 +152,7 @@
 			var/icon/I2 = imap[2+(ix + icx*iy)*2]
 
 
-			//to_world("icon: [html_icon(I)]")
+			//to_world("icon: [icon2html(I, world)]")
 
 			I.DrawBox(colour, rx, ry, rx+1, ry+1)
 
@@ -169,7 +169,7 @@
 
 		H.screen_loc = "[5 + i%icx],[6+ round(i/icx)]"
 
-		//world<<"[html_icon(I)] at [H.screen_loc]"
+		//to_world("[icon2html(I, world)] at [H.screen_loc]")
 
 		H.name = (i==0)?"maprefresh":"map"
 
@@ -285,7 +285,7 @@
 			var/icon/I = imap[1+(ix + icx*iy)]
 
 
-			//to_world("icon: [html_icon(I)]")
+			//to_world("icon: [icon2html(I, world)]")
 
 			I.DrawBox(colour, rx, ry, rx, ry)
 
@@ -300,7 +300,7 @@
 
 		H.screen_loc = "[5 + i%icx],[6+ round(i/icx)]"
 
-		//world<<"[html_icon(I)] at [H.screen_loc]"
+		//to_world("[icon2html(I, world)] at [H.screen_loc]")
 
 		H.name = (i==0)?"maprefresh":"map"
 

@@ -45,7 +45,7 @@
 	canmove = FALSE
 	anchored = TRUE
 	var/lastnut = nutrition
-	//if(M.client) M << "\red You legs become paralyzed!"
+	//if(M.client) to_chat(M, "\red You legs become paralyzed!")
 	if(isslimeadult(src))
 		icon_state = "[colour] adult slime eat"
 	else
@@ -143,22 +143,22 @@
 					rabid = 1 // UUUNNBGHHHH GONNA EAT JUUUUUU
 
 			if(client)
-				src << "<i>This subject does not have a strong enough life energy anymore...</i>"
+				to_chat(src, "<i>This subject does not have a strong enough life energy anymore...</i>")
 		else
 			M.canmove = TRUE
 
 			if(client)
-				src << "<i>I have stopped feeding...</i>"
+				to_chat(src, "<i>I have stopped feeding...</i>")
 	else
 		if(client)
-			src << "<i>I have stopped feeding...</i>"
+			to_chat(src, "<i>I have stopped feeding...</i>")
 
 	Victim = null
 
 /mob/living/carbon/slime/proc/Feedstop()
 	if(Victim)
 		if(Victim.client)
-			Victim << "[src] has let go of your head!"
+			to_chat(Victim, "\The [src] has let go of your head!")
 		Victim = null
 
 /mob/living/carbon/slime/proc/UpdateFeed(mob/M)
@@ -172,7 +172,7 @@
 	set desc = "This will let you evolve from baby to adult slime."
 
 	if(stat)
-		src << "<i>I must be conscious to do this...</i>"
+		to_chat(src, "<i>I must be conscious to do this...</i>")
 		return
 
 	if(!isslimeadult(src))
@@ -183,26 +183,26 @@
 			new_slime.a_intent = "hurt"
 			new_slime.key = key
 			new_slime.universal_speak = universal_speak
-			new_slime << "<B>You are now an adult slime.</B>"
+			to_chat(new_slime, "<B>You are now an adult slime.</B>")
 			qdel(src)
 		else
-			src << "<i>I am not ready to evolve yet...</i>"
+			to_chat(src, "<i>I am not ready to evolve yet...</i>")
 	else
-		src << "<i>I have already evolved...</i>"
+		to_chat(src, "<i>I have already evolved...</i>")
 
 /mob/living/carbon/slime/verb/Reproduce()
 	set category = "Slime"
 	set desc = "This will make you split into four Slimes. NOTE: this will KILL you, but you will be transferred into one of the babies."
 
 	if(stat)
-		src << "<i>I must be conscious to do this...</i>"
+		to_chat(src, "<i>I must be conscious to do this...</i>")
 		return
 
 	if(isslimeadult(src))
 		if(amount_grown >= 10)
 			//if(input("Are you absolutely sure you want to reproduce? Your current body will cease to be, but your consciousness will be transferred into a produced slime.") in list("Yes","No")=="Yes")
 			if(stat)
-				src << "<i>I must be conscious to do this...</i>"
+				to_chat(src, "<i>I must be conscious to do this...</i>")
 				return
 
 			var/list/babies = list()
@@ -252,10 +252,9 @@
 			new_slime.a_intent = "hurt"
 			new_slime.universal_speak = universal_speak
 			new_slime.key = key
-
-			new_slime << "<B>You are now a slime!</B>"
+			to_chat(new_slime, "<B>You are now a slime!</B>")
 			qdel(src)
 		else
-			src << "<i>I am not ready to reproduce yet...</i>"
+			to_chat(src, "<i>I am not ready to reproduce yet...</i>")
 	else
-		src << "<i>I am not old enough to reproduce yet...</i>"
+		to_chat(src, "<i>I am not old enough to reproduce yet...</i>")

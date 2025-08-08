@@ -134,7 +134,9 @@
 	ninja.current.mind = ninja
 
 	var/directive = generate_ninja_directive("heel")//Only hired by antags, not NT
-	to_chat(ninja.current, "You are an elite mercenary assassin of the Spider Clan, [ninja.current.real_name]. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.\nYour current directive is: \red <B>[directive]</B>\n \blue Try your best to adhere to this.")
+	to_chat(ninja.current, "You are an elite mercenary assassin of the Spider Clan, [ninja.current.real_name]. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.")
+	to_chat(ninja.current, "Your current directive is: [SPAN_DANGER(directive)]")
+	to_chat(ninja.current, SPAN_INFO("Try your best to adhere to this."))
 	ninja.store_memory("<B>Directive:</B> \red [directive]<br>")
 
 	var/obj_count = 1

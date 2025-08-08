@@ -140,16 +140,16 @@ proc/dmp2swapmap(filename)
 		//to_world("Code \"[code]\":\n[codes[code]]")
 	fdel("map_[mapname].txt")
 	var/F = file("map_[mapname].txt")
-	F << ". = object(\".0\")\n.0\n\ttype = /swapmap\n\tid = \"[mapname]\"\n\tz = [Z]\n\ty = [Y]\n\tx = [X]"
+	TO_FILE(F, ". = object(\".0\")\n.0\n\ttype = /swapmap\n\tid = \"[mapname]\"\n\tz = [Z]\n\ty = [Y]\n\tx = [X]")
 	if(areas)
 		txt=""
 		for(i = 0, i < length(areas), ++i)
 			txt+="[i?", ":""]object(\".[i]\")"
-		F << "\tareas = list([txt])"
+		TO_FILE(F, "\tareas = list([txt])")
 		for(i = 0, i < length(areas), ++i)
-			F << "\t\t.[i]"
+			TO_FILE(F, "\t\t.[i]")
 			txt=d2sm_ConvertType(areas[i+1],"\t\t\t")
-			F << copytext(txt,1,length(txt))
+			TO_FILE(F, copytext(txt, 1, length(txt)))
 
 	// 2nd pass
 	txt=d2sm_prepmap(filename)
@@ -172,15 +172,15 @@ proc/dmp2swapmap(filename)
 			_x=max(_x,(j-i-1)/codelen)
 			i=j
 		// print out this z-level now
-		F << "\t[coords[3]]"
+		TO_FILE(F, "\t[coords[3]]")
 		i=1
 		for(var/y=_y,y>0,--y)	// map is top-down
 			++i
-			F << "\t\t[y]"
+			TO_FILE(F, "\t\t[y]")
 			for(var/x in 1 to _x)
-				F << "\t\t\t[x]"
+				TO_FILE(F, "\t\t\t[x]")
 				j=i+codelen
-				F << codes[copytext(mtxt,i,j)]
+				TO_FILE(F, codes[copytext(mtxt, i, j)])
 				i=j
 		txt=copytext(txt,k+1)
 	/* for(z in 1 to Z)

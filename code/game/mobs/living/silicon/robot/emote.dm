@@ -193,8 +193,6 @@
 
 				playsound(src, 'sound/voice/biamthelaw.ogg', 50, 0)
 				m_type = 2
-			else
-				src << "You are not THE LAW, pal."
 
 		if("halt")
 			if(istype(model, /obj/item/robot_model/security))
@@ -202,13 +200,11 @@
 
 				playsound(src, 'sound/voice/halt.ogg', 50, 0)
 				m_type = 2
-			else
-				src << "You are not security."
 
 		if("help")
-			src << "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping, \nbuzz, law, halt"
+			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping,<br>buzz, law, halt")
 		else
-			src << "\blue Unusable emote '[act]'. Say *help for a list."
+			to_chat(src, SPAN_INFO("Unusable emote '[act]'. Say *help for a list."))
 
 	if((message && src.stat == CONSCIOUS))
 		if (m_type & 1)

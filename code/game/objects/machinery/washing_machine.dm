@@ -30,8 +30,8 @@
 	if(!isliving(usr)) //ew ew ew usr, but it's the only way to check.
 		return
 
-	if( state != 4 )
-		usr << "The washing machine cannot run in this state."
+	if(state != 4)
+		to_chat(usr, SPAN_WARNING("The washing machine cannot run in this state."))
 		return
 
 	if( locate(/mob,contents) )
@@ -227,40 +227,37 @@
 
 		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
 		if(istype(W, /obj/item/clothing/suit/space))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 		if(istype(W, /obj/item/clothing/suit/syndicatefake))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			user << "This item does not fit."
+//		if(istype(W, /obj/item/clothing/suit/powered))
+//			to_chat(user, SPAN_WARNING("This item does not fit."))
 //			return
 		if(istype(W, /obj/item/clothing/suit/cyborg_suit))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 		if(istype(W, /obj/item/clothing/suit/bomb_suit))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 		if(istype(W, /obj/item/clothing/suit/armor))
-			user << "This item does not fit."
-			return
-		if(istype(W, /obj/item/clothing/suit/armor))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 		if(istype(W, /obj/item/clothing/mask/gas))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 		if(istype(W, /obj/item/clothing/mask/cigarette))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 		if(istype(W, /obj/item/clothing/head/syndicatefake))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
-//		if ( istype(W,/obj/item/clothing/head/powered ) )
-//			user << "This item does not fit."
+//		if(istype(W, /obj/item/clothing/head/powered))
+//			to_chat(user, SPAN_WARNING("This item does not fit."))
 //			return
 		if(istype(W, /obj/item/clothing/head/helmet))
-			user << "This item does not fit."
+			to_chat(user, SPAN_WARNING("This item does not fit."))
 			return
 
 		if(length(contents) < 5)
@@ -269,9 +266,9 @@
 				W.forceMove(src)
 				state = 3
 			else
-				user << "\blue You can't put the item in right now."
+				to_chat(user, SPAN_WARNING("You can't put \the [W] in right now."))
 		else
-			user << "\blue The washing machine is full."
+			to_chat(user, SPAN_WARNING("\The [src] is full."))
 	else
 		..()
 	update_icon()
@@ -293,7 +290,7 @@
 			crayon = null
 			state = 1
 		if(5)
-			user << "\red The [src] is busy."
+			to_chat(user, SPAN_WARNING("\The [src] is busy."))
 		if(6)
 			state = 7
 		if(7)

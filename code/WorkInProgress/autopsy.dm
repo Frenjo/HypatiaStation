@@ -77,7 +77,7 @@
 	set name = "Print Data"
 
 	if(usr.stat || !(ishuman(usr)))
-		usr << "No."
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
 	var/scan_data = ""

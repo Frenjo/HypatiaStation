@@ -23,8 +23,8 @@
 /datum/medical_effect/proc/cure(mob/living/carbon/human/H)
 	for(var/R in cures)
 		if(H.reagents.has_reagent(R))
-			if (cure_message)
-				H <<"\blue [cure_message]"
+			if(cure_message)
+				to_chat(H, SPAN_INFO(cure_message))
 			return 1
 	return 0
 

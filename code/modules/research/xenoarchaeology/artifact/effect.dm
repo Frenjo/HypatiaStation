@@ -63,7 +63,7 @@
 			var/atom/toplevelholder = holder
 			while(!isturf(toplevelholder.loc))
 				toplevelholder = toplevelholder.loc
-			toplevelholder.visible_message(SPAN_WARNING("[html_icon(toplevelholder)] [toplevelholder] [display_msg]"))
+			toplevelholder.visible_message(SPAN_WARNING("[icon2html(toplevelholder, viewers(toplevelholder))] [toplevelholder] [display_msg]"))
 
 /datum/artifact_effect/proc/DoEffectTouch(mob/user)
 /datum/artifact_effect/proc/DoEffectAura(atom/holder)

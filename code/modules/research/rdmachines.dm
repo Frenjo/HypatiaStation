@@ -61,10 +61,10 @@
 	if(stat)
 		return 1
 	if(disabled)
-		to_chat(user, "\The [src.name] appears to not be working!")
+		to_chat(user, "\The [src] appears to not be working!")
 		return 1
 	if(busy)
-		to_chat(user, SPAN_WARNING("\The [src.name] is busy. Please wait for completion of previous operation."))
+		to_chat(user, SPAN_WARNING("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
 
 	if(shocked)
@@ -80,10 +80,10 @@
 	if(href_list["pulse"])
 		var/temp_wire = href_list["wire"]
 		if(!ismultitool(usr.get_active_hand()))
-			to_chat(usr, "You need a multitool!")
+			to_chat(usr, SPAN_WARNING("You need a multitool!"))
 		else
 			if(wires[temp_wire])
-				to_chat(usr, "You can't pulse a cut wire.")
+				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
 			else
 				if(hack_wire == href_list["wire"])
 					hacked = !hacked
@@ -101,7 +101,7 @@
 						shocked = !shocked
 	if(href_list["cut"])
 		if(!iswirecutter(usr.get_active_hand()))
-			to_chat(usr, "You need wirecutters!")
+			to_chat(usr, SPAN_WARNING("You need wirecutters!"))
 		else
 			var/temp_wire = href_list["wire"]
 			wires[temp_wire] = !wires[temp_wire]

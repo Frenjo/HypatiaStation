@@ -59,7 +59,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			frequency = sanitize_frequency(frequency, maxf)
 	// The max freq is higher than a regular headset to decrease the chance of people listening in, if you use the higher channels.
 	else if (frequency < 1441 || frequency > maxf)
-		//world.log << "[src] ([type]) has a frequency of [frequency], sanitizing."
+		//TO_WORLD_LOG("[src] ([type]) has a frequency of [frequency], sanitizing.")
 		frequency = sanitize_frequency(frequency, maxf)
 
 	radio_connection = register_radio(src, null, frequency, RADIO_CHAT)
@@ -476,7 +476,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled))
 			var/part_a = "<span class='radio'><span class='name'>"
-			//var/part_b = "</span><b> [html_icon(src)]\[[format_frequency(frequency)]\]</b> <span class='message'>"
+			//var/part_b = "</span><b> [icon2html(src, receive)]\[[format_frequency(frequency)]\]</b> <span class='message'>"
 			var/freq_text
 			switch(display_freq)
 				if(FREQUENCY_SYNDICATE)
@@ -500,7 +500,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			if(!freq_text)
 				freq_text = format_frequency(display_freq)
 
-			var/part_b = "</span><b> [html_icon(src)]\[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+			var/part_b = "</span><b> [icon2html(src, receive)]\[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 			var/part_c = "</span></span>"
 
 			if(display_freq == FREQUENCY_SYNDICATE)

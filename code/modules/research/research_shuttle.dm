@@ -106,7 +106,7 @@ proc/move_research_shuttle()
 		//		return
 
 		if(!research_shuttle_moving)
-			usr << "\blue Shuttle recieved message and will arrive in [(research_shuttle_tickstomove / 10)] seconds."
+			to_chat(usr, SPAN_INFO("Shuttle recieved message and will arrive in [(research_shuttle_tickstomove / 10)] seconds."))
 
 			// EVEN MORE research shuttle airlock interaction.
 			// Shameless port from door access buttons. -Frenjo
@@ -150,7 +150,7 @@ proc/move_research_shuttle()
 
 			radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
 		else
-			usr << "\blue Shuttle is already moving."
+			to_chat(user, SPAN_WARNING("Shuttle is already moving."))
 
 /obj/machinery/computer/research_shuttle/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(hacked)

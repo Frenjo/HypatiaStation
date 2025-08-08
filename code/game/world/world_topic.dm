@@ -1,5 +1,5 @@
 /world/Topic(T, addr, master, key)
-	GLOBL.diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	TO_FILE(GLOBL.diary, "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]")
 
 	if(T == "ping")
 		var/x = 1

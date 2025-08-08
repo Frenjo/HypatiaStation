@@ -22,14 +22,14 @@
 
 /obj/item/card/id/guest/read()
 	if (world.time > expiration_time)
-		usr << "This pass expired at [worldtime2text(expiration_time)]."
+		to_chat(usr, SPAN_WARNING("This pass expired at [worldtime2text(expiration_time)]."))
 	else
-		usr << "This pass expires at [worldtime2text(expiration_time)]."
+		to_chat(usr, SPAN_INFO("This pass expires at [worldtime2text(expiration_time)]."))
 
-	usr << "It grants access to following areas:"
-	for (var/A in temp_access)
-		usr << "[get_access_desc(A)]."
-	usr << "Issuing reason: [reason]."
+	to_chat(usr, SPAN_INFO("It grants access to following areas:"))
+	for(var/A in temp_access)
+		to_chat(usr, SPAN_INFO("- [get_access_desc(A)]."))
+	to_chat(usr, SPAN_INFO("Issuing reason: [reason]."))
 	return
 
 /////////////////////////////////////////////
@@ -124,7 +124,7 @@
 				if (dur > 0 && dur < 30)
 					duration = dur
 				else
-					usr << "\red Invalid duration."
+					to_chat(usr, SPAN_WARNING("Invalid duration."))
 			if("access")
 				var/A = text2num(href_list["access"])
 				if(A in accesses)
@@ -155,7 +155,7 @@
 				var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
 				for(var/entry in internal_log)
 					dat += "[entry]<br><hr>"
-				//usr << "Printing the log, standby..."
+				//to_chat(usr, "Printing the log, standby...")
 				//sleep(50)
 				var/obj/item/paper/P = new/obj/item/paper(loc)
 				P.name = "activity log"
@@ -180,6 +180,6 @@
 					pass.reason = reason
 					pass.name = "guest pass #[number]"
 				else
-					usr << "\red Cannot issue pass without issuing ID."
+					to_chat(usr, SPAN_WARNING("Cannot issue pass without issuing ID."))
 	updateUsrDialog()
 	return

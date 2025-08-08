@@ -50,7 +50,7 @@
 			message = "<B>The [src.name]</B> bounces in place."
 			m_type = 1
 		else
-			src << "Invalid Emote: [act]"
+			to_chat(src, SPAN_INFO("Unusable emote '[act]'."))
 	if((message && src.stat == CONSCIOUS))
 		if(m_type & 1)
 			for(var/mob/O in viewers(src, null))

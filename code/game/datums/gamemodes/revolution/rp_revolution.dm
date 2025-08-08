@@ -94,7 +94,7 @@
 		// Tell them about people they might want to contact.
 		var/mob/living/carbon/human/M = get_nt_opposed()
 		if(M && !(M.mind in head_revolutionaries) && !(M in already_considered))
-			rev_mob << "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them."
+			to_chat(rev_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them.")
 			rev_mob.mind.store_memory("<b>Potential Collaborator</b>: [M.real_name]")
 
 ///////////////////////////////////////////////////
@@ -108,7 +108,7 @@
 	if((rev_mind in revolutionaries) || (rev_mind in head_revolutionaries))
 		return 0
 	revolutionaries += rev_mind
-	rev_mind.current << "\red <FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"
+	to_chat(rev_mind.current, SPAN_WARNING("<FONT size = 3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"))
 	rev_mind.special_role = "Revolutionary"
 	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
@@ -172,29 +172,29 @@
 		if(!stat && P.client && P.mind && !P.mind.special_role)
 			Possible += P
 	if(!length(Possible))
-		src << "\red There doesn't appear to be anyone available for you to convert here."
+		to_chat(src, SPAN_WARNING("There doesn't appear to be anyone available for you to convert here."))
 		return
 	var/mob/living/carbon/human/M = input("Select a person to convert", "Viva la revolution!", null) as mob in Possible
 	if(((src.mind in global.PCticker.mode:head_revolutionaries) || (src.mind in global.PCticker.mode:revolutionaries)))
 		if((M.mind in global.PCticker.mode:head_revolutionaries) || (M.mind in global.PCticker.mode:revolutionaries))
-			src << "\red <b>[M] is already be a revolutionary!</b>"
+			to_chat(src, SPAN_DANGER("[M] is already be a revolutionary!"))
 		else if(!global.PCticker.mode:is_convertible(M))
-			src << "\red <b>[M] is implanted with a loyalty implant - Remove it first!</b>"
+			to_chat(src, SPAN_DANGER("[M] is implanted with a loyalty implant - Remove it first!"))
 		else
 			if(world.time < M.mind.rev_cooldown)
-				src << "\red Wait five seconds before reconversion attempt."
+				to_chat(src, SPAN_WARNING("Wait five seconds before reconversion attempt."))
 				return
-			src << "\red Attempting to convert [M]..."
+			to_chat(src, SPAN_WARNING("Attempting to convert [M]..."))
 			log_admin("[src]([src.ckey]) attempted to convert [M].")
 			message_admins("\red [src]([src.ckey]) attempted to convert [M].")
 			var/choice = alert(M,"Asked by [src]: Do you want to join the revolution?","Align Thyself with the Revolution!","No!","Yes!")
 			if(choice == "Yes!")
 				global.PCticker.mode:add_revolutionary(M.mind)
-				M << "\blue You join the revolution!"
-				src << "\blue <b>[M] joins the revolution!</b>"
+				to_chat(src, SPAN_INFO_B("[M] joins the revolution!"))
+				to_chat(M, SPAN_INFO("You join the revolution!"))
 			else if(choice == "No!")
-				M << "\red You reject this traitorous cause!"
-				src << "\red <b>[M] does not support the revolution!</b>"
+				to_chat(src, SPAN_DANGER("[M] does not support the revolution!"))
+				to_chat(M, SPAN_WARNING("You reject the traitorous cause!"))
 			M.mind.rev_cooldown = world.time + 50
 
 /datum/game_mode/revolution/rp_revolution/process()
@@ -222,7 +222,7 @@
 				update_rev_icons_added(H.mind)
 				H.verbs += /mob/living/carbon/human/proc/RevConvert
 
-				H << "\red Congratulations, yer heads of revolution are all gone now, so yer earned yourself a promotion."
+				to_chat(H, SPAN_WARNING("Congratulations, yer heads of revolution are all gone now, so yer earned yourself a promotion."))
 				added_heads = 1
 				break
 
@@ -258,4 +258,4 @@
 			rev_obj.target = M.mind
 			rev_obj.explanation_text = "Assassinate, convert or capture [M.real_name], the [M.mind.assigned_role]."
 			rev_mind.objectives += rev_obj
-			rev_mind.current << "\red A new Head of Staff, [M.real_name], the [M.mind.assigned_role] has appeared. Your objectives have been updated."
+			to_chat(rev_mind.current, SPAN_WARNING("A new Head of Staff, [M.real_name], the [M.mind.assigned_role] has appeared. Your objectives have been updated."))

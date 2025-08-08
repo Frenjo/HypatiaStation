@@ -13,5 +13,5 @@
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
 /obj/item/melee/chainofcommand/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide."))
 	return (OXYLOSS)

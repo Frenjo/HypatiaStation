@@ -138,11 +138,11 @@
 				src.locked = !src.locked
 				src.anchored = !src.anchored
 				src.icon_state = "barrier[src.locked]"
-				if ((src.locked == 1.0) && (src.emagged < 2.0))
-					user << "Barrier lock toggled on."
+				if((src.locked == 1.0) && (src.emagged < 2.0))
+					to_chat(user, SPAN_INFO("You lock \the [src]."))
 					return
-				else if ((src.locked == 0.0) && (src.emagged < 2.0))
-					user << "Barrier lock toggled off."
+				else if((src.locked == 0.0) && (src.emagged < 2.0))
+					to_chat(user, SPAN_INFO("You unlock \the [src]."))
 					return
 			else
 				make_sparks(2, TRUE, src)

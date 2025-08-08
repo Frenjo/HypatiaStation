@@ -41,7 +41,7 @@
 	if(user.get_active_hand() == src)
 		newtime = clamp(newtime, 10, 60000)
 		timer = newtime
-		user << "Timer set for [timer] seconds."
+		to_chat(user, SPAN_INFO("Timer set for [timer] seconds."))
 
 /obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if(!flag)
@@ -49,7 +49,7 @@
 	if(ismob(target) || (istype(target, /turf/closed/wall/shuttle) || istype(target, /turf/open/floor/shuttle)) || istype(target, /obj/item/storage))
 		return
 
-	user << "Planting explosives..."
+	to_chat(user, SPAN_INFO("Planting explosives..."))
 	if(do_after(user, 50) && in_range(user, target))
 		user.drop_item()
 		src.target = target
@@ -66,7 +66,7 @@
 
 		target.add_overlay(plastic_overlay)
 
-		user << "Bomb has been planted. Timer counting down from [timer]."
+		to_chat(user, SPAN_INFO("Bomb has been planted. Timer counting down from [timer]."))
 		spawn(timer*10)
 			explode(GET_TURF(target))
 

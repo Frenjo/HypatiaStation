@@ -8,7 +8,7 @@
 		var/name
 		for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)
 			S.cd = "/character[i]"
-			S["real_name"] >> name
+			FROM_SAVEFILE(S, "real_name", name)
 			if(!name)
 				name = "Character[i]"
 			if(i == default_slot)

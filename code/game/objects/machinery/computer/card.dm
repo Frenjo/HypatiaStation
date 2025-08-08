@@ -239,7 +239,7 @@
 				if (check_access(scan))
 					authenticated = 1
 			else if((!(authenticated) && (issilicon(usr))) && (!modify))
-				usr << "You can't modify an ID without an ID inserted to modify. Once one is in the modify slot on the computer, you can log in."
+				to_chat(usr, SPAN_WARNING("You can't modify an ID without an ID inserted to modify. Once one is in the modify slot on the computer, you can log in."))
 		if("logout")
 			authenticated = 0
 		if("access")
@@ -267,7 +267,7 @@
 							jobdatum = J
 							break
 					if(!jobdatum)
-						usr << "\red No log exists for this job."
+						to_chat(usr, SPAN_WARNING("No log exists for this job."))
 						return
 
 					modify.access = (istype(src, /obj/machinery/computer/card/centcom) ? get_centcom_access(t1) : jobdatum.get_access())

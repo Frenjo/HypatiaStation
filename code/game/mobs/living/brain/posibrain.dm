@@ -93,10 +93,10 @@
 	T.visible_message(SPAN_INFO("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 // This is the exact same as /mob/living/get_examine_header().
-/obj/item/mmi/posibrain/get_examine_header()
+/obj/item/mmi/posibrain/get_examine_header(mob/user)
 	. = list()
 	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is [html_icon(src)] <em>\a [src]</em>!")
+	. += SPAN_INFO("This is [icon2html(src, user)] <em>\a [src]</em>!")
 	if(desc)
 		. += SPAN_INFO(desc)
 
@@ -111,8 +111,8 @@
 			if(UNCONSCIOUS)
 				. += SPAN_WARNING("It doesn't seem to be responsive.")
 			if(DEAD)
-				. += SPAN("deadsay", "It appears to be completely inactive.")
+				. += SPAN_DEADSAY("It appears to be completely inactive.")
 	else
-		. += SPAN("deadsay", "It appears to be completely inactive.")
+		. += SPAN_DEADSAY("It appears to be completely inactive.")
 
 	. += SPAN_INFO_B("*---------*")

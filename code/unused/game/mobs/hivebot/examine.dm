@@ -2,7 +2,7 @@
 	set src in oview()
 
 	usr << "\blue *---------*"
-	usr << text("\blue This is [html_icon(src)] <B>[src.name]</B>!")
+	usr << text("\blue This is [icon2html(src, user)] <B>[src.name]</B>!")
 	if (src.stat == 2)
 		usr << text("\red [src.name] is powered-down.")
 	if (src.getBruteLoss())

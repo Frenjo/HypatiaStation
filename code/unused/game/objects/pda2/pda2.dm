@@ -252,7 +252,7 @@
 		if (alert_message)
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			for (var/mob/O in hearers(3, src.loc))
-				O.show_message(text("[html_icon(src)] *[alert_message]*"))
+				O.show_message(text("[icon2html(src, O)] *[alert_message]*"))
 
 		src.cut_overlays()
 		add_overlay(image('icons/obj/items/devices/pda.dmi', "pda-r"))

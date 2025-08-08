@@ -1,8 +1,8 @@
 /* This is totally pointless because this mob is contained inside a card!
-/mob/living/silicon/pai/examine() //removed as it was pointless...moved to the pai-card instead.
+/mob/living/silicon/pai/examine(mob/user) //removed as it was pointless...moved to the pai-card instead.
 	set src in oview()
 
-	var/msg = "<span class='info'>*---------*\nThis is [html_icon(src)] \a <EM>[src]</EM>!\n"
+	var/msg = "<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n"
 	if (src.stat == DEAD)
 		msg += "<span class='deadsay'>It appears to be offline.</span>\n"
 	else
@@ -22,5 +22,5 @@
 		msg += "</span>"
 	msg += "*---------*</span>"
 
-	usr << msg
+	to_chat(usr, msg)
 */

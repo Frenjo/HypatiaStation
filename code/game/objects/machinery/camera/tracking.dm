@@ -25,7 +25,7 @@
 	set name = "Show Camera List"
 
 	if(stat == DEAD)
-		src << "You can't list the cameras because you are dead!"
+		to_chat(src, SPAN_WARNING("You can't list the cameras because you are dead!"))
 		return
 
 	if(!camera || camera == "Cancel")
@@ -106,7 +106,7 @@
 	set desc = "Select who you would like to track."
 
 	if(stat == DEAD)
-		src << "You can't track with camera because you are dead!"
+		to_chat(src, SPAN_WARNING("You can't track with camera because you are dead!"))
 		return
 	if(!target_name)
 		cameraFollow = null
@@ -124,34 +124,34 @@
 	//U << text("Now tracking [] on camera.", target.name)
 	//if (U.machine == null)
 	//	U.machine = U
-	U << "Now tracking [target.name] on camera."
+	to_chat(U, SPAN_INFO("Now tracking [target.name] on camera."))
 
-	spawn (0)
+	spawn(0)
 		while(U.cameraFollow == target)
 			if(U.cameraFollow == null)
 				return
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(istype(H.id_store?.get_id(), /obj/item/card/id/syndicate))
-					U << "Follow camera mode terminated."
+					to_chat(U, SPAN_WARNING("Follow camera mode terminated."))
 					U.cameraFollow = null
 					return
 				if(istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
-					U << "Follow camera mode terminated."
+					to_chat(U, SPAN_WARNING("Follow camera mode terminated."))
 					U.cameraFollow = null
 					return
 				if(H.digitalcamo)
-					U << "Follow camera mode terminated."
+					to_chat(U, SPAN_WARNING("Follow camera mode terminated."))
 					U.cameraFollow = null
 					return
 
 			if(istype(target.loc,/obj/effect/dummy))
-				U << "Follow camera mode ended."
+				to_chat(U, SPAN_INFO("Follow camera mode ended."))
 				U.cameraFollow = null
 				return
 
 			if(!near_camera(target))
-				U << "Target is not near any active cameras."
+				to_chat(U, SPAN_WARNING("Target is not near any active cameras."))
 				sleep(100)
 				continue
 

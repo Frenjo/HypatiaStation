@@ -46,56 +46,56 @@
 /obj/machinery/apiary/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/queen_bee))
 		if(health > 0)
-			user << "\red There is already a queen in there."
+			to_chat(user, SPAN_WARNING("There is already a queen in \the [src]."))
 		else
 			health = 10
 			nutrilevel += 10
 			user.drop_item()
 			qdel(O)
-			user << "\blue You carefully insert the queen into [src], she gets busy making a hive."
+			to_chat(user, SPAN_INFO("You carefully insert the queen into \the [src], she gets busy making a hive."))
 			bees_in_hive = 0
 	else if(istype(O, /obj/item/beezeez))
 		beezeez += 100
 		nutrilevel += 10
 		user.drop_item()
 		if(health > 0)
-			user << "\blue You insert [O] into [src]. A relaxed humming appears to pick up."
+			to_chat(user, SPAN_INFO("You insert \the [O] into \the [src]. A relaxed humming appears to pick up."))
 		else
-			user << "\blue You insert [O] into [src]. Now it just needs some bees."
+			to_chat(user, SPAN_INFO("You insert \the [O] into \the [src]. Now it just needs some bees."))
 		qdel(O)
 	else if(istype(O, /obj/item/minihoe))
 		if(health > 0)
-			user << "\red <b>You begin to dislodge the apiary from the tray, the bees don't like that.</b>"
+			to_chat(user, SPAN_DANGER("You begin to dislodge the apiary from the tray, the bees don't like that."))
 			angry_swarm(user)
 		else
-			user << "\blue You begin to dislodge the dead apiary from the tray."
+			to_chat(user, SPAN_INFO("You begin to dislodge the dead apiary from the tray."))
 		if(do_after(user, 50))
 			new hydrotray_type(src.loc)
 			new /obj/item/apiary(src.loc)
-			user << "\red You dislodge the apiary from the tray."
+			to_chat(user, SPAN_WARNING("You dislodge the apiary from the tray."))
 			qdel(src)
 	else if(istype(O, /obj/item/bee_net))
 		var/obj/item/bee_net/N = O
 		if(N.caught_bees > 0)
-			user << "\blue You empty the bees into the apiary."
+			to_chat(user, SPAN_INFO("You empty the bees into the apiary."))
 			bees_in_hive += N.caught_bees
 			N.caught_bees = 0
 		else
-			user << "\blue There are no more bees in the net."
+			to_chat(user, SPAN_WARNING("There are no more bees in the net."))
 	else if(istype(O, /obj/item/reagent_holder/glass))
 		var/obj/item/reagent_holder/glass/G = O
 		if(harvestable_honey > 0)
 			if(health > 0)
-				user << "\red You begin to harvest the honey. The bees don't seem to like it."
+				to_chat(user, SPAN_WARNING("You begin to harvest the honey. The bees don't seem to like it."))
 				angry_swarm(user)
 			else
-				user << "\blue You begin to harvest the honey."
-			if(do_after(user,50))
+				to_chat(user, SPAN_INFO("You begin to harvest the honey."))
+			if(do_after(user, 5 SECONDS))
 				G.reagents.add_reagent("honey",harvestable_honey)
 				harvestable_honey = 0
-				user << "\blue You successfully harvest the honey."
+				to_chat(user, SPAN_INFO("You successfully harvest the honey."))
 		else
-			user << "\blue There is no honey left to harvest."
+			to_chat(user, SPAN_WARNING("There is no honey left to harvest."))
 	else
 		angry_swarm(user)
 		..()
@@ -239,5 +239,5 @@
 		if(toxic > 0)
 			H.reagents.add_reagent("toxin", toxic)
 
-	usr << "\blue You harvest the honeycomb from the hive. There is a wild buzzing!"
+	to_chat(usr, SPAN_WARNING("You harvest the honeycomb from the hive. There is a wild buzzing!"))
 	angry_swarm(usr)

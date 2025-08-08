@@ -77,9 +77,9 @@
 
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		var/obj_count = 1
-		rev_mind.current << "\blue You are a member of the revolutionaries' leadership!"
+		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
 		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
-			rev_mind.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 
 /datum/game_mode/rp_revolution/send_intercept()
@@ -260,22 +260,22 @@ mob/living/carbon/human/proc
 		set name = "Rev-Convert"
 		if(((src.mind in ticker.mode:head_revolutionaries) || (src.mind in ticker.mode:revolutionaries)))
 			if((M.mind in ticker.mode:head_revolutionaries) || (M.mind in ticker.mode:revolutionaries))
-				src << "\red <b>[M] is already be a revolutionary!</b>"
+				to_chat(src, SPAN_DANGER("[M] is already be a revolutionary!"))
 			else if(src.mind in ticker.mode:get_unconvertables())
-				src << "\red <b>[M] cannot be a revolutionary!</b>"
+				to_chat(src, SPAN_DANGER("[M] cannot be a revolutionary!"))
 			else
 				if(world.time < M.mind.rev_cooldown)
-					src << "\red Wait five seconds before reconversion attempt."
+					to_chat(src, SPAN_WARNING("Wait five seconds before reconversion attempt."))
 					return
-				src << "\red Attempting to convert [M]..."
+				to_chat(src, SPAN_WARNING("Attempting to convert [M]..."))
 				log_admin("[src]([src.ckey]) attempted to convert [M].")
 				message_admins("\red [src]([src.ckey]) attempted to convert [M].")
 				var/choice = alert(M,"Asked by [src]: Do you want to join the revolution?","Align Thyself with the Revolution!","No!","Yes!")
 				if(choice == "Yes!")
 					ticker.mode:add_revolutionary(M.mind)
-					M << "\blue You join the revolution!"
-					src << "\blue <b>[M] joins the revolution!</b>"
+					to_chat(src, SPAN_INFO_B("[M] joins the revolution!"))
+					to_chat(M, SPAN_INFO("You join the revolution!"))
 				else if(choice == "No!")
-					M << "\red You reject this traitorous cause!"
-					src << "\red <b>[M] does not support the revolution!</b>"
+					to_chat(src, SPAN_DANGER("[M] does not support the revolution!"))
+					to_chat(M, SPAN_WARNING("You reject the traitorous cause!"))
 				M.mind.rev_cooldown = world.time+50

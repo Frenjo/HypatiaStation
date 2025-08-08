@@ -1,5 +1,5 @@
 /client/script = {"<style>
-body {font-family: Verdana, sans-serif;}
+body {font-family: Verdana, sans-serif; font-size: 0.8125em;}
 
 h1, h2, h3, h4, h5, h6 {color: blue; font-family: Georgia, Verdana, sans-serif;}
 
@@ -76,4 +76,9 @@ h1.alert, h2.alert {color: black;}
 .say_quote {font-family: Georgia, Verdana, sans-serif;}
 
 .interface {color: #330033;}
+
+.examine {background: lightgrey; padding: 2px; margin: 3px 0px; border: 1px solid #0000CC;}
+.priority_announce {background: lightgrey; padding: 0px 2px 2em 2px; margin: 3px 0px; border: 1px solid black;}
+.minor_announce {background: lightgrey; padding: 2px 4px; margin: 3px 0px; border: 1px solid black;}
+
 </style>"}

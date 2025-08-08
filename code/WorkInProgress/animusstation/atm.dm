@@ -61,12 +61,12 @@ log transactions
 				A.forceMove(src)
 				inserted += 300
 				return
-			user << "You insert your [A.name] in ATM"
+			to_chat(user, SPAN_INFO("You insert your [A.name] into the ATM."))
 		..()
 
 	attack_hand(var/mob/user)
 		if(issilicon(user))
-			user << "\red Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."
+			to_chat(user, SPAN_WARNING("Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."))
 			return
 
 		if(!(stat && NOPOWER) && ishuman(user))
@@ -77,7 +77,7 @@ log transactions
 					pincode = input(usr,"Enter a pin-code") as num
 					if(card.checkaccess(pincode,usr))
 						accepted = 1
-//						usr << sound('nya.mp3')
+						//SOUND_TO(usr, 'nya.mp3')
 			else
 				dat = null
 				dat += "<h1>NanoTrasen Automatic Teller Machine</h1><br/>"
@@ -117,7 +117,7 @@ log transactions
 						if(1000)
 							new /obj/item/cash/c1000(loc)
 				else
-					user << "\red Error: Insufficient funds."
+					to_chat(user, SPAN_WARNING("ERROR: Insufficient funds."))
 					return
 
 		scan(var/mob/user)
@@ -170,7 +170,7 @@ log transactions
 
 /obj/item/card/id/proc/checkaccess(p,var/mob/user)
 	if(p == pin)
-		user << "\green Access granted."
+		to_chat(user, SPAN_ALIUM("Access granted."))
 		return 1
 	FEEDBACK_ACCESS_DENIED(user)
 	return 0

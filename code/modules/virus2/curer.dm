@@ -18,7 +18,7 @@
 
 	if(istype(I, /obj/item/virusdish))
 		if(virusing)
-			user << "<b>The pathogen materializer is still recharging.."
+			to_chat(user, SPAN_WARNING("The pathogen materializer is still recharging..."))
 			return TRUE
 		var/obj/item/reagent_holder/glass/beaker/product = new /obj/item/reagent_holder/glass/beaker(loc)
 

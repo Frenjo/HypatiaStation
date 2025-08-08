@@ -74,36 +74,36 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		user << "\red It's locked and running"
+		to_chat(user, SPAN_WARNING("It's locked and running."))
 		return
 	else
 		src.startgibbing(user)
 
 /obj/machinery/gibber/attackby(obj/item/grab/G, mob/user)
 	if(src.occupant)
-		user << "\red The gibber is full, empty it first!"
+		to_chat(user, SPAN_WARNING("The gibber is full, empty it first!"))
 		return
 
-	if( !(istype(G, /obj/item/grab)) )
-		user << "\red This item is not suitable for the gibber!"
+	if(!istype(G, /obj/item/grab))
+		to_chat(user, SPAN_WARNING("This item is not suitable for the gibber!"))
 		return
 
 	if(!iscarbon(G.affecting) && !issimple(G.affecting))
-		user << "\red This item is not suitable for the gibber!"
+		to_chat(user, SPAN_WARNING("This item is not suitable for the gibber!"))
 		return
 
 	if(G.state < 2)
-		user << "\red You need a better grip to do that!"
+		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 		return
 
 	if(G.affecting.abiotic(TRUE))
-		user << "\red Subject may not have abiotic items on."
+		to_chat(user, SPAN_WARNING("Subject may not have abiotic items on."))
 		return
 
-	user.visible_message("\red [user] starts to put [G.affecting] into the gibber!")
+	user.visible_message(SPAN_WARNING("[user] starts to put [G.affecting] into the gibber!"))
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && G && G.affecting && !occupant)
-		user.visible_message("\red [user] stuffs [G.affecting] into the gibber!")
+		user.visible_message(SPAN_WARNING("[user] stuffs [G.affecting] into the gibber!"))
 		var/mob/M = G.affecting
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE

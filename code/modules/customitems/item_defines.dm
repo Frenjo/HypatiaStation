@@ -131,7 +131,7 @@
 	icon_state = "victor_kaminsky_1"
 
 /obj/item/fluff/victor_kaminsky_1/attack_self(mob/user)
-	user.visible_message("[user] shows you: [html_icon(src)] [src.name].")
+	user.visible_message("[user] shows you: [icon2html(src, viewers(src))] [src.name].")
 	src.add_fingerprint(user)
 
 /obj/item/fluff/ana_issek_2 //suethecake: Ana Issek
@@ -143,11 +143,17 @@
 
 /obj/item/fluff/ana_issek_2/attack_self(mob/user)
 	if(isliving(user))
-		user.visible_message("\red [user] flashes their golden security badge.\nIt reads: Ana Issek, NT Security.","\red You display the faded bage.\nIt reads: Ana Issek, NT Security.")
+		user.visible_message(
+			SPAN_WARNING("[user] flashes their golden security badge. It reads: Ana Issek, NT Security."),
+			SPAN_WARNING("You display the faded badge. It reads: Ana Issek, NT Security.")
+		)
 
 /obj/item/fluff/ana_issek_2/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
+		user.visible_message(
+			SPAN_WARNING("[user] invades [M]'s personal space, thrusting \the [src] into their face insistently."),
+			SPAN_WARNING("You invade [M]'s personal space, thrusting \the [src] into their face insistently. You are the law.")
+		)
 
 /obj/item/soap/fluff/azare_siraj_1 //mister fox: Azare Siraj
 	name = "S'randarr's Tongue Leaf"
@@ -360,30 +366,31 @@
 	starting_reagents = alist("tricordrazine" = 30, "oxycodone" = 15)
 
 /obj/item/reagent_holder/hypospray/fluff/asher_spock_1/attack_self(mob/user)
-	user << "\blue You click \the [src] but get no reaction. Must be dead."
+	to_chat(user, SPAN_INFO("You click \the [src] but get no reaction. Must be dead."))
 
 /obj/item/reagent_holder/hypospray/fluff/asher_spock_1/attack(mob/M, mob/user)
 	if (user.ckey != "nerezza") //Because this can end up in the wrong hands, let's make it useless for them!
-		user << "\blue You click \the [src] but get no reaction. Must be dead."
+		to_chat(user, SPAN_INFO("You click \the [src] but get no reaction. Must be dead."))
 		return
 	if(!reagents.total_volume)
-		user << "\red \The [src] is empty."
+		to_chat(user, SPAN_WARNING("\The [src] is empty."))
 		return
 	if(!ismob(M))
 		return
 	if (reagents.total_volume)
 		if (M == user && user.ckey == "nerezza") //Make sure this is being used by the right person, for the right reason (self injection)
-			visible_message("\blue [user] presses their \
-				penlight against their skin, quickly clicking the button once.", \
-				"\blue You press the disguised autoinjector against your skin and click the button. There's a sharp pain at the injection site that rapidly fades.", \
-				"You hear a rustle as someone moves nearby, then a sharp click.")
+			visible_message(
+				"\blue [user] presses their penlight against their skin, quickly clicking the button once.",
+				"\blue You press the disguised autoinjector against your skin and click the button. There's a sharp pain at the injection site that rapidly fades.",
+				"You hear a rustle as someone moves nearby, then a sharp click."
+			)
 		if (M != user && user.ckey == "nerezza") //Woah now, you better be careful partner
-			user << "\blue You don't want to contaminate the autoinjector."
+			to_chat(user, SPAN_INFO("You don't want to contaminate the autoinjector."))
 			return
 		src.reagents.reaction(M, INGEST)
 		if(M.reagents)
 			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
-			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in \the [src]."
+			to_chat(user, SPAN_INFO("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
 	return
 
 /obj/item/reagent_holder/hypospray/fluff/asher_spock_1/get_examine_text(mob/user)
@@ -728,10 +735,10 @@
 
 	if(src.icon_state == "jane_sid_suit_down")
 		src.item_color = "jane_sid_suit"
-		usr << "You zip up the [src]."
+		to_chat(usr, SPAN_INFO("You zip up \the [src]."))
 	else
 		src.item_color = "jane_sid_suit_down"
-		usr << "You unzip and roll down the [src]."
+		to_chat(usr, SPAN_INFO("You unzip and roll down \the [src]."))
 
 	src.icon_state = "[item_color]"
 	src.item_state = "[item_color]"
@@ -806,16 +813,16 @@
 
 /obj/item/clothing/tie/fluff/konaa_hirano/attack_self(mob/user)
 	if(held)
-		user << "You open [src] and [held] falls out."
+		to_chat(user, SPAN_INFO("You open \the [src] and \the [held] falls out."))
 		held.forceMove(GET_TURF(user))
 		src.held = null
 
 /obj/item/clothing/tie/fluff/konaa_hirano/attackby(obj/item/O, mob/user)
 	if(istype(O,/obj/item/paper))
 		if(held)
-			usr << "[src] already has something inside it."
+			to_chat(user, SPAN_WARNING("\The [src] already has something inside it."))
 		else
-			usr << "You slip [O] into [src]."
+			to_chat(user, SPAN_INFO("You slip \the [O] into \the [src]."))
 			user.drop_item()
 			O.forceMove(src)
 			src.held = O

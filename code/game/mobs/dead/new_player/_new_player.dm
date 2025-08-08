@@ -101,7 +101,7 @@
 			var/mob/dead/ghost/observer = new /mob/dead/ghost()
 
 			spawning = TRUE
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+			SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // MAD JAMS cant last forever yo
 
 			observer.started_as_observer = TRUE
 			close_spawn_windows()
@@ -192,7 +192,7 @@
 			var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
 			var/DBQuery/query_insert = GLOBL.dbcon.NewQuery(sql)
 			query_insert.Execute()
-			usr << "<b>Thank you for your vote!</b>"
+			to_chat(usr, "<b>Thank you for your vote!</b>")
 			CLOSE_BROWSER(usr, "window=privacypoll")
 
 	if(!ready && href_list["preference"])
@@ -228,7 +228,7 @@
 				var/id_max = text2num(href_list["maxid"])
 
 				if((id_max - id_min) > 100)	//Basic exploit prevention
-					usr << "The option ID difference is too big. Please contact administration or the database admin."
+					to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
@@ -247,7 +247,7 @@
 				var/id_max = text2num(href_list["maxoptionid"])
 
 				if((id_max - id_min) > 100)	//Basic exploit prevention
-					usr << "The option ID difference is too big. Please contact administration or the database admin."
+					to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
@@ -403,7 +403,7 @@
 	else
 		client.prefs.copy_to(new_character)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+	SOUND_TO(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)) // MAD JAMS cant last forever yo
 
 	if(isnotnull(mind))
 		mind.active = FALSE				//we wish to transfer the key manually

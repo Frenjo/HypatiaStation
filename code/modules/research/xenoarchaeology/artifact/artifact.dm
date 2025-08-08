@@ -68,7 +68,7 @@
 			SPAN_INFO("You extend \the [P] towards \the [src].")
 		)
 		if(do_after(user, 4 SECONDS))
-			to_chat(user, SPAN_INFO("[html_icon(P)] [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
+			to_chat(user, SPAN_INFO("[icon2html(P, user)] [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
 		return TRUE
 
 	if(istype(I, /obj/item/pickaxe))

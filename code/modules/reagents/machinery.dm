@@ -780,7 +780,7 @@
 				var/list/vir = Blood.data["viruses"]
 				if(length(vir))
 					for(var/datum/disease/D in Blood.data["viruses"])
-						if(!D.hidden[PANDEMIC])
+						if(!D.hidden[DISEASE_INFO_PANDEMIC])
 
 							var/disease_creation = D.type
 							if(istype(D, /datum/disease/advance))

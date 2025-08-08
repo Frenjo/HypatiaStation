@@ -74,13 +74,13 @@
 
 /obj/structure/falsewall/attackby(obj/item/W, mob/user)
 	if(opening)
-		user << "\red You must wait until the door has stopped moving."
+		to_chat(user, SPAN_WARNING("You must wait until the door has stopped moving."))
 		return
 
 	if(density)
 		var/turf/T = GET_TURF(src)
 		if(T.density)
-			user << "\red The wall is blocked!"
+			to_chat(user, SPAN_WARNING("The wall is blocked!"))
 			return
 		if(isscrewdriver(W))
 			user.visible_message("[user] tightens some bolts on the wall.", "You tighten the bolts on the wall.")
@@ -96,7 +96,7 @@
 					T.attackby(W, user)
 				qdel(src)
 	else
-		user << "\blue You can't reach, close it first!"
+		to_chat(user, SPAN_WARNING("You can't reach, close it first!"))
 
 	if(istype(W, /obj/item/pickaxe/plasmacutter))
 		var/turf/T = GET_TURF(src)
@@ -155,7 +155,7 @@
 
 /obj/structure/falsewall/reinforced/attackby(obj/item/W, mob/user)
 	if(opening)
-		user << "\red You must wait until the door has stopped moving."
+		to_chat(user, SPAN_WARNING("You must wait until the door has stopped moving."))
 		return
 
 	if(isscrewdriver(W))

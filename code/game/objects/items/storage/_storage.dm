@@ -416,9 +416,9 @@
 	collection_mode = !collection_mode
 	switch(collection_mode)
 		if(1)
-			usr << "[src] now picks up all items in a tile at once."
+			to_chat(usr, SPAN_INFO("[src] now picks up all items in a tile at once."))
 		if(0)
-			usr << "[src] now picks up one item at a time."
+			to_chat(usr, SPAN_INFO("[src] now picks up one item at a time."))
 
 /obj/item/storage/verb/quick_empty()
 	set category = PANEL_OBJECT

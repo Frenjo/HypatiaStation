@@ -375,7 +375,7 @@
 	var/colourName = "red" //for updateIcon purposes
 
 /obj/item/toy/crayon/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS | OXYLOSS)
 
 /*

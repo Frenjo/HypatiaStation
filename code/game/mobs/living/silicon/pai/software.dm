@@ -182,7 +182,7 @@
 			if(href_list["send"])
 				sradio.send_signal("ACTIVATE")
 				for(var/mob/O in hearers(1, loc))
-					O.show_message("[html_icon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
+					O.show_message("[icon2html(src, O)] *beep* *beep*", 3, "*beep* *beep*", 2)
 
 			if(href_list["freq"])
 				var/new_frequency = (sradio.frequency + text2num(href_list["freq"]))
@@ -205,7 +205,7 @@
 					M = M.loc
 					count++
 					if(count >= 6)
-						src << "You are not being carried by anyone!"
+						to_chat(src, SPAN_WARNING("You are not being carried by anyone!"))
 						return 0
 				spawn CheckDNA(M, src)
 
@@ -590,7 +590,7 @@
 	dat += "<font color=#55FF55>Connected</font> <br>"
 
 	if(!istype(machine, /obj/machinery/camera))
-		src << "DERP"
+		to_chat(src, "DERP")
 	return dat
 
 // Door Jack

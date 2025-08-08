@@ -1,17 +1,17 @@
 //bitflags for mutations
 // Extra powers:
-#define LASER			(1<<8)	// harm intent - click anywhere to shoot lasers from eyes
-#define HEAL			(1<<9)	// healing people with hands
-#define SHADOW			(1<<10)	// shadow teleportation (create in/out portals anywhere) (25%)
-#define SCREAM			(1<<11)	// supersonic screaming (25%)
-#define EXPLOSIVE		(1<<12)	// exploding on-demand (15%)
-#define REGENERATION	(1<<13)	// superhuman regeneration (30%)
-#define REPROCESSOR		(1<<14)	// eat anything (50%)
-#define SHAPESHIFTING	(1<<15)	// take on the appearance of anything (40%)
-#define PHASING			(1<<16)	// ability to phase through walls (40%)
-#define SHIELD			(1<<17)	// shielding from all projectile attacks (30%)
-#define SHOCKWAVE		(1<<18)	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
-#define ELECTRICITY		(1<<19)	// ability to shoot electric attacks (15%)
+#define LASER			BITFLAG(8)	// harm intent - click anywhere to shoot lasers from eyes
+#define HEAL			BITFLAG(9)	// healing people with hands
+#define SHADOW			BITFLAG(10)	// shadow teleportation (create in/out portals anywhere) (25%)
+#define SCREAM			BITFLAG(11)	// supersonic screaming (25%)
+#define EXPLOSIVE		BITFLAG(12)	// exploding on-demand (15%)
+#define REGENERATION	BITFLAG(13)	// superhuman regeneration (30%)
+#define REPROCESSOR		BITFLAG(14)	// eat anything (50%)
+#define SHAPESHIFTING	BITFLAG(15)	// take on the appearance of anything (40%)
+#define PHASING			BITFLAG(16)	// ability to phase through walls (40%)
+#define SHIELD			BITFLAG(17)	// shielding from all projectile attacks (30%)
+#define SHOCKWAVE		BITFLAG(18)	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
+#define ELECTRICITY		BITFLAG(19)	// ability to shoot electric attacks (15%)
 
 // mob/var/list/mutations
 

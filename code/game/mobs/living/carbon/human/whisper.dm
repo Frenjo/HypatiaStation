@@ -10,7 +10,7 @@
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_IC)
-			src << "\red You cannot whisper (muted)."
+			to_chat(src, SPAN_WARNING("You cannot whisper (muted)."))
 			return
 		if(src.client.handle_spam_prevention(message,MUTE_IC))
 			return

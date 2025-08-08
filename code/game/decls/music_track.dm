@@ -10,11 +10,11 @@
 
 /decl/music_track/proc/play(listener)
 	to_chat(listener, SPAN_INFO_B("Now Playing: [artist] - [title][isnotnull(album) ? " (from [album])" : ""]."))
-	listener << sound(file_path, repeat = 0, wait = 0, volume = 85, channel = 1)
+	SOUND_TO(listener, sound(file_path, repeat = 0, wait = 0, volume = 85, channel = 1))
 
 /decl/music_track/proc/stop(listener)
 	to_chat(listener, SPAN_INFO_B("Music stopped."))
-	listener << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+	SOUND_TO(listener, sound(null, repeat = 0, wait = 0, volume = 85, channel = 1))
 
 /decl/music_track/endless_space
 	artist = "SolusLunes"

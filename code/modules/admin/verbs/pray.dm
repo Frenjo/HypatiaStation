@@ -17,7 +17,7 @@
 			return
 
 	var/image/cross = image('icons/obj/storage/bible.dmi',"bible")
-	msg = "\blue [html_icon(cross)] <b><font color=purple>PRAY: </font>[key_name(src, 1)] (<A href='byond://?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A href='byond://?_src_=holder;adminplayeropts=\ref[src]'>PP</A>) (<A href='byond://?_src_=vars;Vars=\ref[src]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=\ref[src]'>SM</A>) (<A href='byond://?_src_=holder;adminplayerobservejump=\ref[src]'>JMP</A>) (<A href='byond://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A href='byond://?_src_=holder;adminspawncookie=\ref[src]'>SC</a>):</b> [msg]"
+	msg = "\blue [icon2html(cross, GLOBL.admins)] <b><font color=purple>PRAY: </font>[key_name(src, 1)] (<A href='byond://?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A href='byond://?_src_=holder;adminplayeropts=\ref[src]'>PP</A>) (<A href='byond://?_src_=vars;Vars=\ref[src]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=\ref[src]'>SM</A>) (<A href='byond://?_src_=holder;adminplayerobservejump=\ref[src]'>JMP</A>) (<A href='byond://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A href='byond://?_src_=holder;adminspawncookie=\ref[src]'>SC</a>):</b> [msg]"
 
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if(C.prefs.toggles & CHAT_PRAYER)
@@ -30,9 +30,9 @@
 /proc/centcom_announce(var/text , var/mob/Sender , var/iamessage)
 	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = "\blue <b><font color=orange>CENTCOM[iamessage ? " IA" : ""]:</font>[key_name(Sender, 1)] (<A href='byond://?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A href='byond://?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A href='byond://?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A href='byond://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A href='byond://?_src_=holder;BlueSpaceArtillery=\ref[Sender]'>BSA</A>) (<A href='byond://?_src_=holder;CentComReply=\ref[Sender]'>RPLY</A>):</b> [msg]"
-	GLOBL.admins << msg
+	to_chat(GLOBL.admins, msg)
 
 /proc/Syndicate_announce(var/text , var/mob/Sender)
 	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = "\blue <b><font color=crimson>SYNDICATE:</font>[key_name(Sender, 1)] (<A href='byond://?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A href='byond://?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A href='byond://?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A href='byond://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A href='byond://?_src_=holder;BlueSpaceArtillery=\ref[Sender]'>BSA</A>) (<A href='byond://?_src_=holder;SyndicateReply=\ref[Sender]'>RPLY</A>):</b> [msg]"
-	GLOBL.admins << msg
+	to_chat(GLOBL.admins, msg)

@@ -220,7 +220,7 @@
 			W.forceMove(back)
 			W.layer_to_hud()
 		else
-			usr << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
+			to_chat(usr, SPAN_WARNING("You are trying to equip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."))
 			return
 
 	return

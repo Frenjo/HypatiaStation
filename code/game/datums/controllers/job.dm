@@ -385,7 +385,7 @@ CONTROLLER_DEF(jobs)
 		H.mind.store_memory(remembered_info)
 
 	// Displays job-based and standard spawn information.
-	to_chat(H, jointext(job.get_spawn_message_content(H.mind.role_alt_title), "\n"))
+	to_chat(H, jointext(job.get_spawn_message_content(H.mind.role_alt_title), "<br>"))
 	to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	if(rank == "Cyborg")

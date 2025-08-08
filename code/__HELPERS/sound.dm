@@ -89,7 +89,7 @@ var/const/SURROUND_CAP = 255
 		S.y = 1
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 
-	src << S
+	SOUND_TO(src, S)
 
 /mob/living/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff)
 	if(ear_deaf > 0)

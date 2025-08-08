@@ -69,7 +69,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/attack_tool(obj/item/tool, mob/user)
 	if(istype(tool, /obj/item/gas_analyser))
-		atmos_scan(user, src)
+		atmos_scan(tool, user, src)
 		return TRUE
 	return ..()
 

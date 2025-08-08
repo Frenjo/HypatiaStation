@@ -39,7 +39,7 @@
 	if(fexists("[map_name].dmm"))
 		fdel("[map_name].dmm")
 	var/saved_map = file("[map_name].dmm")
-	saved_map << file_text
+	TO_FILE(saved_map, file_text)
 	return saved_map
 
 // t1: A turf representing one corner of a three dimensional grid (Required).

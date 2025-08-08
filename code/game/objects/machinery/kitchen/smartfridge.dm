@@ -272,7 +272,7 @@
 	if ((href_list["cutwire"]) && (src.panel_open))
 		var/twire = text2num(href_list["cutwire"])
 		if(!iswirecutter(usr.get_active_hand()))
-			usr << "You need wirecutters!"
+			to_chat(usr, SPAN_WARNING("You need wirecutters!"))
 			return
 		if (src.isWireColorCut(twire))
 			src.mend(twire)
@@ -281,10 +281,10 @@
 	else if ((href_list["pulsewire"]) && (src.panel_open))
 		var/twire = text2num(href_list["pulsewire"])
 		if(!ismultitool(usr.get_active_hand()))
-			usr << "You need a multitool!"
+			to_chat(usr, SPAN_WARNING("You need a multitool!"))
 			return
 		if (src.isWireColorCut(twire))
-			usr << "You can't pulse a cut wire."
+			to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
 			return
 		else
 			src.pulse(twire)

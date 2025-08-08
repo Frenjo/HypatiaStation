@@ -119,14 +119,16 @@
 	edge = 1
 
 /obj/item/kitchen/utensil/knife/suicide_act(mob/user)
-	viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-						"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-						"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
+	user.visible_message(pick( \
+		SPAN_DANGER("[user] is slitting \his wrists with \the [src]! It looks like \he's trying to commit suicide."), \
+		SPAN_DANGER("[user] is slitting \his throat with \the [src]! It looks like \he's trying to commit suicide."), \
+		SPAN_DANGER("[user] is slitting \his stomach open with \the [src]! It looks like \he's trying to commit seppuku."))
+	)
 	return (BRUTELOSS)
 
 /obj/item/kitchen/utensil/knife/attack(mob/target, mob/living/user)
-	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
-		user << "\red You accidentally cut yourself with the [src]."
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
+		to_chat(user, SPAN_WARNING("You accidentally cut yourself with \the [src]."))
 		user.take_organ_damage(20)
 		return
 	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
@@ -140,8 +142,8 @@
 	throwforce = 10.0
 
 /obj/item/kitchen/utensil/knife/attack(mob/target, mob/living/user)
-	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
-		user << "\red You somehow managed to cut yourself with the [src]."
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
+		to_chat(user, SPAN_WARNING("You somehow manage to cut yourself with \the [src]."))
 		user.take_organ_damage(20)
 		return
 	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
@@ -168,9 +170,11 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/kitchenknife/suicide_act(mob/user)
-	viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-						"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-						"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
+	user.visible_message(pick( \
+		SPAN_DANGER("[user] is slitting \his wrists with \the [src]! It looks like \he's trying to commit suicide."), \
+		SPAN_DANGER("[user] is slitting \his throat with \the [src]! It looks like \he's trying to commit suicide."), \
+		SPAN_DANGER("[user] is slitting \his stomach open with \the [src]! It looks like \he's trying to commit seppuku."))
+	)
 	return (BRUTELOSS)
 
 /obj/item/kitchenknife/ritual
@@ -220,7 +224,7 @@
 
 /obj/item/kitchen/rollingpin/attack(mob/living/M, mob/living/user)
 	if((MUTATION_CLUMSY in user.mutations) && prob(50))
-		user << "\red The [src] slips out of your hand and hits your head."
+		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(2)
 		return
@@ -305,7 +309,7 @@
 
 
 	if((MUTATION_CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		M << "\red You accidentally slam yourself with the [src]!"
+		to_chat(M, SPAN_WARNING("You accidentally slam yourself with \the [src]!"))
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		if(prob(50))
@@ -346,7 +350,7 @@
 			return
 
 	if(ishuman(M) && M.are_eyes_covered())
-		M << "\red You get slammed in the face with the tray, against your mask!"
+		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray, against your mask!"))
 		if(prob(33))
 			src.add_blood(H)
 			if (H.wear_mask)
@@ -376,7 +380,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		M << "\red You get slammed in the face with the tray!"
+		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray!"))
 		if(prob(33))
 			src.add_blood(M)
 			var/turf/location = H.loc

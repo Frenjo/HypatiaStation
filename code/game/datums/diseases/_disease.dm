@@ -6,9 +6,6 @@
 #define CONTACT_GENERAL 4
 #define AIRBORNE 5
 
-#define SCANNER 1
-#define PANDEMIC 2
-
 /*
 
 IMPORTANT NOTE: Please delete the diseases by using cure() proc or del() instruction.

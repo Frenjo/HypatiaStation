@@ -52,7 +52,7 @@
 	if(length(equipment))
 		. += SPAN_INFO_B("It's equipped with:")
 		for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
-			. += SPAN_INFO("[html_icon(equip)] [equip]")
+			. += SPAN_INFO("[icon2html(equip, user)] [equip]")
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return

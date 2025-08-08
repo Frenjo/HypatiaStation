@@ -39,7 +39,7 @@
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_WEAR_UNIFORM)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_ID_SHOES)
 		spawn(50)
-			M << "\red You have been sent to the prison station!"
+			to_chat(M, SPAN_WARNING("You have been sent to the prison station!"))
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -60,7 +60,7 @@
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
-				M << "\bold You hear a voice in your head... \italic [msg]"
+				to_chat(M, "\bold You hear a voice in your head... \italic [msg]")
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
@@ -102,7 +102,7 @@
 	if( !msg )
 		return
 
-	M << msg
+	to_chat(M, msg)
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
 	message_admins("\blue \bold DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]<BR>", 1)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -115,7 +115,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	M.status_flags ^= GODMODE
-	usr << "\blue Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"
+	to_chat(usr, SPAN_INFO("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))
 
 	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
 	message_admins("[key_name_admin(usr)] has toggled [key_name_admin(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]", 1)
@@ -130,12 +130,12 @@
 		if(!usr || !usr.client)
 			return
 		if(!usr.client.holder)
-			usr << "<font color='red'>Error: cmd_admin_mute: You don't have permission to do this.</font>"
+			to_chat(usr, SPAN_WARNING("ERROR: cmd_admin_mute: You don't have permission to do this."))
 			return
 		if(!M.client)
-			usr << "<font color='red'>Error: cmd_admin_mute: This mob doesn't have a client tied to it.</font>"
+			to_chat(usr, SPAN_WARNING("ERROR: cmd_admin_mute: This mob doesn't have a client tied to it."))
 		if(M.client.holder)
-			usr << "<font color='red'>Error: cmd_admin_mute: You cannot mute an admin/mod.</font>"
+			to_chat(usr, SPAN_WARNING("ERROR: cmd_admin_mute: You cannot mute an admin/mod."))
 	if(!M.client)		return
 	if(M.client.holder)	return
 
@@ -156,7 +156,7 @@
 		M.client.prefs.muted |= mute_type
 		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(M)] from [mute_string]")
 		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-		M << "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin."
+		to_chat(M, SPAN_WARNING("You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin."))
 		feedback_add_details("admin_verb","AUTOMUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return
 
@@ -169,7 +169,7 @@
 
 	log_admin("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string]")
 	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
-	M << "You have been [muteunmute] from [mute_string]."
+	to_chat(M, SPAN_WARNING("You have been [muteunmute] from [mute_string]."))
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -200,9 +200,9 @@
 	set desc = "Play the banhammer sound.  Banhammmerrr...."
 
 	if(!holder)
-		src << "Excuse me, I don't see your banhammer license..."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
-	world << sound("sound/voice/banhammer.ogg")
+	SOUND_TO(world, 'sound/voice/banhammer.ogg')
 
 /*
 Allow admins to set players to be able to respawn/bypass 30 min wait, without the admin having to edit variables directly
@@ -222,7 +222,7 @@ Ccomp's first proc.
 		any = TRUE					//if no ghosts show up, any will just be 0
 	if(!any)
 		if(notify)
-			src << "There doesn't appear to be any ghosts for you to select."
+			to_chat(src, SPAN_WARNING("There don't appear to be any ghosts for you to select."))
 		return
 
 	for(var/mob/M in mobs)
@@ -245,7 +245,7 @@ Ccomp's first proc.
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
 	if(!target)
-		src << "Hrm, appears you didn't select a ghost"		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
+		to_chat(src, SPAN_WARNING("Hrm, appears you didn't select a ghost.")) // Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
 
 	var/mob/dead/ghost/G = ghosts[target]
@@ -278,20 +278,19 @@ Ccomp's first proc.
 				g.verbs -= /mob/dead/ghost/verb/toggle_antagHUD
 			if(g.antagHUD)
 				g.antagHUD = 0						// Disable it on those that have it enabled
-				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
-				g << "\red <B>The Administrator has disabled AntagHUD </B>"
+				g.has_enabled_antagHUD = 2			// We'll allow them to respawn
+				to_chat(g, SPAN_DANGER("The Administrator has disabled AntagHUD."))
 		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, FALSE)
-		src << "\red <B>AntagHUD usage has been disabled</B>"
+		to_chat(src, SPAN_DANGER("AntagHUD usage has been disabled."))
 		action = "disabled"
 	else
 		for(var/mob/dead/ghost/g in get_ghosts())
 			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
 				g.verbs += /mob/dead/ghost/verb/toggle_antagHUD
-			g << "\blue <B>The Administrator has enabled AntagHUD </B>"	// Notify all observers they can now use AntagHUD
+			to_chat(g, SPAN_INFO_B("The Administrator has enabled AntagHUD.")) // Notify all observers they can now use AntagHUD
 		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, TRUE)
 		action = "enabled"
-		src << "\blue <B>AntagHUD usage has been enabled</B>"
-
+		to_chat(src, SPAN_DANGER("AntagHUD usage has been enabled."))
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
 	message_admins("Admin [key_name_admin(usr)] has [action] antagHUD usage for observers", 1)
@@ -308,19 +307,19 @@ Ccomp's first proc.
 	var/action=""
 	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 		for(var/mob/dead/ghost/g in get_ghosts())
-			g << "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>"
+			to_chat(g, SPAN_NOTICE("The administrator has lifted restrictions on joining the round if you use AntagHUD."))
 		action = "lifted restrictions"
 		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, FALSE)
-		src << "\blue <B>AntagHUD restrictions have been lifted</B>"
+		to_chat(src, SPAN_NOTICE("AntagHUD restrictions have been lifted."))
 	else
 		for(var/mob/dead/ghost/g in get_ghosts())
-			g << "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>"
-			g << "\red <B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>"
+			to_chat(g, SPAN_DANGER("The administrator has placed restrictions on joining the round if you use AntagHUD."))
+			to_chat(g, SPAN_DANGER("Your AntagHUD has been disabled, you may choose to re-enable it but restrictions will apply."))
 			g.antagHUD = 0
 			g.has_enabled_antagHUD = 0
 		action = "placed restrictions"
 		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, TRUE)
-		src << "\red <B>AntagHUD restrictions have been enabled</B>"
+		to_chat(src, SPAN_DANGER("AntagHUD restrictions have been enabled."))
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
@@ -352,7 +351,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 
 	if(!G_found)//If a ghost was not found.
-		usr << "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>"
+		to_chat(usr, SPAN_WARNING("There is no active key like that in the game or the person is not currently a ghost."))
 		return
 
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
@@ -362,7 +361,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				var/mob/living/carbon/monkey/new_monkey = new(pick(GLOBL.latejoin))
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
-				new_monkey << "You have been fully respawned. Enjoy the game."
+				to_chat(new_monkey, SPAN_NOTICE("You have been fully respawned. Enjoy the game."))
 				message_admins("\blue [key_name_admin(usr)] has respawned [new_monkey.key] as a filthy xeno.", 1)
 				return	//all done. The ghost is auto-deleted
 
@@ -450,16 +449,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new_character.internal = new_character.suit_store
 			new_character.internals.icon_state = "internal1"
 			if(!length(GLOBL.ninjastart))
-				new_character << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
-				new_character << "<B>\red Attempting to place at a carpspawn.</B>"
+				to_chat(new_character, SPAN_DANGER("A proper starting location for you could not be found, please report this bug!"))
+				to_chat(new_character, SPAN_DANGER("Attempting to place at a carpspawn..."))
 				for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 					if(L.name == "carpspawn")
 						GLOBL.ninjastart.Add(L)
 				if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
-					new_character << "<B>\red Still no spawneable locations could be found. Defaulting to latejoin.</B>"
+					to_chat(new_character, SPAN_DANGER("Still no spawnable locations could be found. Defaulting to latejoin."))
 					new_character.forceMove(pick(GLOBL.latejoin))
 				else if(!length(GLOBL.ninjastart))
-					new_character << "<B>\red Still no spawneable locations could be found. Aborting.</B>"
+					to_chat(new_character, SPAN_DANGER("Still no spawnable locations could be found. Aborting."))
 
 		if("Death Commando")//Leaves them at late-join spawn.
 			new_character.equip_outfit(/decl/hierarchy/outfit/death_commando/standard)
@@ -491,7 +490,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
 
-	new_character << "You have been fully respawned. Enjoy the game."
+	to_chat(new_character, SPAN_NOTICE("You have been fully respawned. Enjoy the game."))
 
 	feedback_add_details("admin_verb", "RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
@@ -508,13 +507,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	for(var/mob/living/silicon/ai/M in GLOBL.mob_list)
 		if(M.stat == DEAD)
-			usr << "Upload failed. No signal is being detected from the AI."
+			to_chat(usr, SPAN_WARNING("Upload failed. No signal is being detected from the AI."))
 		else if(M.see_in_dark == 0)
-			usr << "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power."
+			to_chat(usr, SPAN_WARNING("Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power."))
 		else
 			M.add_ion_law(input)
 			for(var/mob/living/silicon/ai/O in GLOBL.mob_list)
-				O << "\red " + input + "\red...LAWS UPDATED"
+				to_chat(O, "\red " + input + "\red...LAWS UPDATED")
 
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]", 1)
@@ -575,7 +574,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("No")
 			to_world("\red New NanoTrasen Update available at all communication consoles.")
 
-	world << sound('sound/AI/commandreport.ogg')
+	SOUND_TO(world, 'sound/AI/commandreport.ogg')
 	log_admin("[key_name(src)] has created a command report: [input]")
 	message_admins("[key_name_admin(src)] has created a command report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -603,7 +602,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	if(global.CTjobs)
 		for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
-			src << "[job.title]: [job.total_positions]"
+			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
@@ -766,7 +765,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/list/L = M.get_contents()
 	for(var/t in L)
-		usr << "[t]"
+		to_chat(usr, "[t]")
 	feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /* This proc is DEFERRED. Does not do anything.
@@ -877,9 +876,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = PANEL_SPECIAL_VERBS
 	set name = "Attack Log"
 
-	usr << text("\red <b>Attack Log for []</b>", mob)
+	to_chat(usr, SPAN_DANGER("Attack Log for [mob]:"))
 	for(var/t in M.attack_log)
-		usr << t
+		to_chat(usr, t)
 	feedback_add_details("admin_verb","ATTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -891,13 +890,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_FUN))	return
 
 	if(global.PCticker?.mode)
-		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
+		to_chat(usr, SPAN_WARNING("Nope you can't do this, the game's already started. This only works before rounds!"))
 		return
 
 	if(global.PCticker.random_players)
 		global.PCticker.random_players = FALSE
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
-		usr << "Disabled."
+		to_chat(usr, SPAN_INFO("Disabled."))
 		return
 
 
@@ -911,7 +910,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(notifyplayers == "Yes")
 		to_world("\blue <b>Admin [usr.key] has forced the players to have completely random identities!")
 
-	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
+	to_chat(usr, SPAN_INFO("<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."))
 
 	global.PCticker.random_players = TRUE
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -926,10 +925,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!CONFIG_GET(/decl/configuration_entry/allow_random_events))
 		CONFIG_SET(/decl/configuration_entry/allow_random_events, TRUE)
-		usr << "Random events enabled"
+		to_chat(usr, SPAN_INFO("Random events enabled."))
 		message_admins("Admin [key_name_admin(usr)] has enabled random events.", 1)
 	else
 		CONFIG_SET(/decl/configuration_entry/allow_random_events, FALSE)
-		usr << "Random events disabled"
+		to_chat(usr, SPAN_INFO("Random events disabled."))
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

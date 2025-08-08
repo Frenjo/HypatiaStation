@@ -85,9 +85,11 @@
 		if(!str || !length(str))
 			to_chat(usr, SPAN_WARNING("Invalid text."))
 			return
-		for(var/mob/M in viewers())
-			to_chat(M, SPAN_INFO("[user] labels [src] as [str]."))
-		src.name = "[src.name] ([str])"
+		user.visible_message(
+			SPAN_INFO("[user] labels \the [src] as [str]."),
+			SPAN_INFO("You label \the [src] as [str].")
+		)
+		name = "[name] ([str])"
 	return
 
 

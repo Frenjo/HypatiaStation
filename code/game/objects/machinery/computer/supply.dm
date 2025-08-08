@@ -229,7 +229,7 @@
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(!global.PCsupply) // Edited this to reflect 'shuttles' port. -Frenjo
-		world.log << "## ERROR: Eek. The supply_shuttle controller datum is missing somehow."
+		TO_WORLD_LOG("## ERROR: Eek. The supply_shuttle controller datum is missing somehow.")
 		return
 
 	var/datum/shuttle/ferry/supply/supply_shuttle = global.PCsupply.shuttle // Edited this to reflect 'shuttles' port. -Frenjo

@@ -33,7 +33,7 @@
 				if(G.amount >= G.max_amount)
 					continue
 				G.attackby(NG, user)
-				to_chat(user, "You add the newly-formed plasma glass to the stack. It now contains [NG.amount] sheets.")
+				to_chat(user, SPAN_INFO("You add the newly-formed plasma glass to the stack. It now contains [NG.amount] sheets."))
 			//SN del(src)
 			qdel(src)
 			return

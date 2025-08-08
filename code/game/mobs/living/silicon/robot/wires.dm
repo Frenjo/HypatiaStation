@@ -21,7 +21,7 @@
 			BorgIndexToWireColor[flagIndex] = colorIndex
 			BorgWireColorToIndex[colorIndex] = flagIndex
 			colorIndexList -= colorIndex // Shortens the list.
-		//world.log << "Flag: [flag], CIndex: [colorIndex], FIndex: [flagIndex]"
+		//TO_WORLD_LOG("Flag: [flag], CIndex: [colorIndex], FIndex: [flagIndex]")
 		flagIndex+=1
 	return Borgwires
 
@@ -40,7 +40,7 @@
 	switch(wireIndex)
 		if(BORG_WIRE_LAWCHECK) //Cut the law wire, and the borg will no longer receive law updates from its AI
 			if (src.lawupdate == 1)
-				src << "LawSync protocol engaged."
+				to_chat(src, "LawSync protocol engaged.")
 				src.show_laws()
 		if (BORG_WIRE_AI_CONTROL) //Cut the AI wire to reset AI control
 			if (src.connected_ai)
@@ -82,8 +82,10 @@
 		if (BORG_WIRE_CAMERA)
 			if(isnotnull(src.camera) && src.camera.status && !scrambledcodes)
 				src.camera.deactivate(usr, 0) // Kick anyone watching the Cyborg's camera, doesn't display you disconnecting the camera.
-				usr << "[src]'s camera lens focuses loudly."
-				src << "Your camera lens focuses loudly."
+				visible_message(
+					SPAN_INFO("[src]'s camera lens focuses loudly."),
+					SPAN_INFO("Your camera lens focuses loudly.")
+				)
 
 	src.interact(usr)
 
@@ -120,7 +122,7 @@
 		if (href_list["borgwires"])
 			var/t1 = text2num(href_list["borgwires"])
 			if(!iswirecutter(usr.get_active_hand()))
-				usr << "You need wirecutters!"
+				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
 				return
 			if (src.isWireColorCut(t1))
 				src.mend(t1)
@@ -129,10 +131,10 @@
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
 			if(!ismultitool(usr.get_active_hand()))
-				usr << "You need a multitool!"
+				to_chat(usr, SPAN_WARNING("You need a multitool!"))
 				return
 			if (src.isWireColorCut(t1))
-				usr << "You can't pulse a cut wire."
+				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
 				return
 			else
 				src.pulse(t1)

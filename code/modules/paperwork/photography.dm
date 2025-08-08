@@ -131,7 +131,7 @@
 		src.icon_state = icon_on
 	else
 		src.icon_state = icon_off
-	user << "You switch the camera [on ? "on" : "off"]."
+	to_chat(user, SPAN_INFO("You switch the camera [on ? "on" : "off"]."))
 	return
 
 /obj/item/camera/attackby(obj/item/I, mob/user)

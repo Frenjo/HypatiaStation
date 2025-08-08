@@ -58,13 +58,13 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 					return 1
 				else
 					if(show_msg)
-						usr << "<font color='red'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</font>"
+						to_chat(usr, SPAN_WARNING("Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")]."))
 		else
 			if(usr.client.holder)
 				return 1
 			else
 				if(show_msg)
-					usr << "<font color='red'>Error: You are not an admin.</font>"
+					FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 	return 0
 
 //probably a bit iffy - will hopefully figure out a better solution
@@ -76,7 +76,7 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 			if(usr.client.holder.rights != other.holder.rights)
 				if( (usr.client.holder.rights & other.holder.rights) == other.holder.rights )
 					return 1	//we have all the rights they have and more
-		usr << "<font color='red'>Error: Cannot proceed. They have more or equal rights to us.</font>"
+		to_chat(usr, SPAN_WARNING("ERROR: Cannot proceed. They have more than or equal rights to us."))
 	return 0
 
 

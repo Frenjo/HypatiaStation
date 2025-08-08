@@ -60,7 +60,7 @@
 			stat &= ~NOPOWER
 
 /obj/machinery/computer/telescience/attack_paw(mob/user)
-	to_chat(user, "You are too primitive to use this computer.")
+	to_chat(user, SPAN_WARNING("You are too primitive to use \the [src]."))
 	return
 
 /obj/machinery/computer/telescience/attack_by(obj/item/I, mob/user)

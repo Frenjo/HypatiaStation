@@ -10,7 +10,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot tackle someone in your current state."
+		to_chat(src, SPAN_WARNING("You cannot tackle someone in your current state."))
 		return
 
 	var/list/choices = list()
@@ -30,7 +30,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot leap in your current state."
+		to_chat(src, SPAN_WARNING("You cannot leap in your current state."))
 		return
 
 	last_special = world.time + 50
@@ -57,7 +57,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying)
-		src << "You cannot leap in your current state."
+		to_chat(src, SPAN_WARNING("You cannot leap in your current state."))
 		return
 
 	var/list/choices = list()
@@ -87,7 +87,7 @@
 		status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		src << "\red You miss!"
+		to_chat(src, SPAN_WARNING("You miss!"))
 		return
 
 	T.Weaken(5)
@@ -95,7 +95,7 @@
 	var/use_hand = "left"
 	if(l_hand)
 		if(r_hand)
-			src << "\red You need to have one hand free to grab someone."
+			to_chat(src, SPAN_WARNING("You need to have one hand free to grab someone."))
 			return
 		else
 			use_hand = "right"
@@ -121,16 +121,16 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying)
-		src << "\red You cannot do that in your current state."
+		to_chat(src, SPAN_WARNING("You cannot do that in your current state."))
 		return
 
 	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
-		src << "\red You are not grabbing anyone."
+		to_chat(src, SPAN_WARNING("You are not grabbing anyone."))
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		src << "\red You must have an aggressive grab to gut your prey!"
+		to_chat(src, SPAN_WARNING("You must have an aggressive grab to gut your prey!"))
 		return
 
 	last_special = world.time + 50
@@ -173,17 +173,17 @@
 	var/mob/M = targets[target]
 
 	if(isghost(M) || M.stat == DEAD)
-		src << "Not even a [src.species.name] can speak to the dead."
+		to_chat(src, SPAN_WARNING("Not even a [species.name] can speak to the dead."))
 		return
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
+	to_chat(M, SPAN_INFO("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		H << "\red Your nose begins to bleed..."
+		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()

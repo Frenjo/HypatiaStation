@@ -290,7 +290,7 @@
 	set src in oview(1)
 
 	if(src.anchored)
-		usr << "It is fastened to the floor; therefore, you can't rotate it!"
+		to_chat(usr, SPAN_WARNING("It is fastened to the floor; therefore, you can't rotate it!"))
 		return 0
 	if(src.state != "01")
 		update_nearby_tiles(need_rebuild = 1) //Compel updates before

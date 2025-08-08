@@ -60,7 +60,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
 	if (!syndicate_elite_can_move())
-		usr << "\red The Syndicate Elite shuttle is unable to leave."
+		to_chat(usr, SPAN_WARNING("The Syndicate Elite shuttle is unable to leave."))
 		return
 
 	sleep(600)
@@ -174,7 +174,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 	for_no_type_check(var/turf/T, get_area_turfs(end_location))
 		var/mob/M = locate(/mob) in T
-		M << "\red You have arrived to [GLOBL.current_map.station_name]. Commence operation!"
+		to_chat(M, SPAN_WARNING("You have arrived to [GLOBL.current_map.station_name]. Commence operation!"))
 
 /proc/syndicate_elite_can_move()
 	if(syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return 0
@@ -230,17 +230,17 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (href_list["sendtodock"])
 		if(!syndicate_elite_shuttle_at_station|| syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
-		usr << "\blue The Syndicate will not allow the Elite Squad shuttle to return."
+		to_chat(usr, SPAN_INFO("The Syndicate will not allow the Elite Squad shuttle to return."))
 		return
 
 	else if (href_list["sendtostation"])
 		if(syndicate_elite_shuttle_at_station || syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
 		if (!syndicate_elite_can_move())
-			usr << "\red The Syndicate Elite shuttle is unable to leave."
+			to_chat(usr, SPAN_WARNING("The Syndicate Elite shuttle is unable to leave."))
 			return
 
-		usr << "\blue The Syndicate Elite shuttle will arrive on [GLOBL.current_map.station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds."
+		to_chat(usr, SPAN_INFO("The Syndicate Elite shuttle will arrive on [GLOBL.current_map.station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds."))
 
 		temp  = "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()

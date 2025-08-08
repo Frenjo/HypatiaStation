@@ -93,11 +93,11 @@
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)
 		mode = 2
-		user << "Changed printing mode to 'Rename Paper'"
+		to_chat(user, SPAN_INFO("Changed printing mode to 'Rename Paper'"))
 		return
 	if (mode == 2)
 		mode = 1
-		user << "Changed printing mode to 'Write Paper'"
+		to_chat(user, SPAN_INFO("Changed printing mode to 'Write Paper'"))
 
 // Copied over from paper's rename verb
 // see code\modules\paperwork\paper.dm line 62

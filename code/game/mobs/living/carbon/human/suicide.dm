@@ -76,12 +76,12 @@
 				updatehealth()
 				return
 
-		viewers(src) << pick( \
+		visible_message(pick( \
 			SPAN_DANGER("[src] is attempting to bite \his tongue off! It looks like \he's trying to commit suicide."), \
 			SPAN_DANGER("[src] is jamming \his thumbs into \his eye sockets! It looks like \he's trying to commit suicide."), \
 			SPAN_DANGER("[src] is twisting \his own neck! It looks like \he's trying to commit suicide."), \
 			SPAN_DANGER("[src] is holding \his breath! It looks like \he's trying to commit suicide.") \
-		)
+		))
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
@@ -104,7 +104,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(loc) << SPAN_DANGER("[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.")
+		visible_message(SPAN_DANGER("[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live."))
 		spawn(50)
 			death(0)
 			suiciding = 0
@@ -132,7 +132,7 @@
 			return
 		suiciding = 1
 		//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
-		viewers(src) << SPAN_DANGER("[src] is attempting to bite \his tongue. It looks like \he's trying to commit suicide.")
+		visible_message(SPAN_DANGER("[src] is attempting to bite \his tongue. It looks like \he's trying to commit suicide."))
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
@@ -151,7 +151,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << SPAN_DANGER("[src] is powering down. It looks like \he's trying to commit suicide.")
+		visible_message(SPAN_DANGER("[src] is powering down. It looks like \he's trying to commit suicide."))
 		//put em at -175
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
@@ -171,7 +171,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << SPAN_DANGER("[src] is powering down. It looks like \he's trying to commit suicide.")
+		visible_message(SPAN_DANGER("[src] is powering down. It looks like \he's trying to commit suicide."))
 		//put em at -175
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()

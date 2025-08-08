@@ -41,8 +41,8 @@
 		user.drop_item()
 		I.forceMove(src)
 		user.visible_message(
-			SPAN_INFO("[user] adds the virus dish to the machine."),
-			SPAN_INFO("You add the virus dish to the machine.")
+			SPAN_INFO("[user] adds \the [I] to the machine."),
+			SPAN_INFO("You add \the [I] to the machine.")
 		)
 		updateUsrDialog()
 		return TRUE

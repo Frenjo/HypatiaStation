@@ -111,19 +111,19 @@
 	switch(emagged)
 		if(0)
 			emagged = 0.5
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"DB error \[Code 0x00F1\]...\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"DB error \[Code 0x00F1\]...\"")
 			sleep(10)
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"Attempting auto-repair...\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Attempting auto-repair...\"")
 			sleep(15)
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
 			sleep(30)
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"User DB truncated. Please contact your NanoTrasen system operator for future assistance.\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"User DB truncated. Please contact your NanoTrasen system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
 		if(0.5)
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"DB not responding \[Code 0x0003\]...\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"DB not responding \[Code 0x0003\]...\"")
 		if(1)
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"No records in User DB.\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"No records in User DB.\"")
 
 /obj/machinery/robotics_fabricator/proc/output_parts_list(set_name)
 	. = ""
@@ -176,7 +176,7 @@
 	var/obj/item/output = new D.build_path()
 	output.forceMove(get_step(src, SOUTH))
 	output.matter_amounts = calculate_materials_with_coeff(D)
-	visible_message("[html_icon(src)] <b>[src]</b> beeps, \"The following has been completed: [output.name] is built.\"")
+	visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"The following has been completed: [output.name] is built.\"")
 	being_built = null
 	updateUsrDialog()
 	return 1
@@ -219,14 +219,14 @@
 		if(stat & (NOPOWER | BROKEN))
 			return 0
 		if(!has_materials(D))
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
 			temp = {"<font color='red'>Not enough resources to build next part.</font><br>
 						<a href='byond://?src=\ref[src];process_queue=1'>Try again</a> | <a href='byond://?src=\ref[src];clear_temp=1'>Return</a><a>"}
 			return 0
 		remove_from_queue(1)
 		build_part(D)
 		D = listgetindex(queue, 1)
-	visible_message("[html_icon(src)] <b>[src]</b> beeps, \"Queue processing finished successfully\".")
+	visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Queue processing finished successfully\".")
 	return 1
 
 /obj/machinery/robotics_fabricator/proc/list_queue()
@@ -296,12 +296,12 @@
 			temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 			updateUsrDialog()
 		if(i || tech_output)
-			visible_message("[html_icon(src)] <b>[src]</b> beeps, \"Successfully synchronized with R&D server. New data processed.\"")
+			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Successfully synchronized with R&D server. New data processed.\"")
 	if(found == 0)
 		temp = "Couldn't contact R&D server.<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 		updateUsrDialog()
-		visible_message("[html_icon(src)] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
+		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 
 /obj/machinery/robotics_fabricator/attack_hand(mob/user)
 	var/dat, left_part
@@ -312,7 +312,7 @@
 	user.set_machine(src)
 	var/turf/exit = get_step(src, SOUTH)
 	if(exit.density)
-		visible_message("[html_icon(src)] <b>[src]</b> beeps, \"Error! Part outlet is obstructed\".")
+		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Error! Part outlet is obstructed\".")
 		return
 	if(temp)
 		left_part = temp

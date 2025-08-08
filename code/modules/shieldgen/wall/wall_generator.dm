@@ -62,13 +62,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user)
 	if(state != 1)
-		to_chat(user, SPAN_WARNING("The shield generator needs to be firmly secured to the floor first."))
+		to_chat(user, SPAN_WARNING("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 	if(locked && !issilicon(user))
 		FEEDBACK_CONTROLS_LOCKED(user)
 		return 1
 	if(power != 1)
-		to_chat(user, SPAN_WARNING("The shield generator needs to be powered by wire underneath."))
+		to_chat(user, SPAN_WARNING("\The [src] needs to be powered by wire underneath."))
 		return 1
 
 	if(active >= 1)
@@ -120,7 +120,7 @@
 	if(active >= 1)
 		if(power == 0)
 			visible_message(
-				SPAN_WARNING("\red \The [src] shuts down due to lack of power!"),
+				SPAN_WARNING("\The [src] shuts down due to lack of power!"),
 				SPAN_INFO("You hear heavy droning fade out.")
 			)
 			icon_state = "Shield_Gen"

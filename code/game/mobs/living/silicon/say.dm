@@ -114,7 +114,7 @@
 		if("general")
 			switch(bot_type)
 				if(IS_AI)
-					src << "Yeah, not yet, sorry"
+					to_chat(src, "Yeah, not yet, sorry...")
 				if(IS_ROBOT)
 					log_say("[key_name(src)] : [message]")
 					R.radio.talk_into(src, message, null, verbage, speaking)
@@ -127,7 +127,7 @@
 			if(message_mode && (message_mode in GLOBL.radio_channels))
 				switch(bot_type)
 					if(IS_AI)
-						src << "You don't have this function yet, I'm working on it"
+						to_chat(src, "You don't have this function yet, I'm working on it...")
 						return
 					if(IS_ROBOT)
 						log_say("[key_name(src)] : [message]")

@@ -34,14 +34,14 @@
 	if(ismob(Obj))
 		if(Obj:client)
 			mysound.status = SOUND_UPDATE
-			Obj << mysound
+			SOUND_TO(Obj, mysound)
 	return
 
 /area/special/beach/Exited(atom/movable/Obj)
 	if(ismob(Obj))
 		if(Obj:client)
 			mysound.status = SOUND_PAUSED | SOUND_UPDATE
-			Obj << mysound
+			SOUND_TO(Obj, mysound)
 
 /area/special/beach/proc/process()
 	set background = BACKGROUND_ENABLED
@@ -58,9 +58,9 @@
 //			H.update_body()
 		if(H.client)
 			mysound.status = SOUND_UPDATE
-			H << mysound
+			SOUND_TO(H, mysound)
 			if(S)
 				spawn(sound_delay)
-					H << S
+					SOUND_TO(H, S)
 	spawn(60)
 		.()

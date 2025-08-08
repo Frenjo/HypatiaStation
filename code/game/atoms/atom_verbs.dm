@@ -3,7 +3,7 @@
 	var/list/examine_header = get_examine_header(user, distance)
 	var/list/examine_text = get_examine_text(user, distance)
 	var/examine_output = jointext(examine_header + examine_text, "<br>")
-	to_chat(user, examine_output)
+	to_chat(user, "<div class='examine'>[examine_output]</div>")
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 /atom/proc/get_examine_header(mob/user, distance = -1)
@@ -20,7 +20,7 @@
 			f_name = "<em>a</em> "
 		f_name += "[SPAN_DANGER("blood-stained")] <em>[name]</em>!"
 
-	. += "This is [html_icon(src)] [f_name]"
+	. += "This is [icon2html(src, user)] [f_name]"
 
 	if(desc)
 		. += desc

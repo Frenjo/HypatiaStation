@@ -142,11 +142,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	var/datum/gas_mixture/env = T.return_air()
 
-	var/t = "\blue Coordinates: [T.x], [T.y], [T.z]\n"
-	t += "\red Temperature: [env.temperature]\n"
-	t += "\red Pressure: [env.return_pressure()]kPa\n"
+	var/t = "\blue Coordinates: [T.x], [T.y], [T.z]<br>"
+	t += "\red Temperature: [env.temperature]<br>"
+	t += "\red Pressure: [env.return_pressure()]kPa<br>"
 	for(var/g in env.gas)
-		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
+		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa<br>"
 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb", "ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

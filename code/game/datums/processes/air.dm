@@ -110,13 +110,13 @@ PROCESS_DEF(air)
 		S.update_air_properties()
 		CHECK_TICK
 
-	world << {"<span class='info'>
-↪ Total Simulated Turfs: [simulated_turf_count]
-↪ Total Zones: [length(zones)]
-↪ Total Edges: [length(edges)]
-↪ Total Active Edges: [length(active_edges) ? SPAN_DANGER(length(active_edges)) : "None"]
-↪ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
-</span>"}
+	to_world(SPAN_INFO(jointext(list(
+		"<br>↪ Total Simulated Turfs: [simulated_turf_count]",
+		"↪ Total Zones: [length(zones)]",
+		"↪ Total Edges: [length(edges)]",
+		"↪ Total Active Edges: [length(active_edges) ? SPAN_DANGER(length(active_edges)) : "None"]",
+		"↪ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]<br>"
+	), "<br>")))
 
 /datum/process/air/do_work()
 	if(processing_killed)
@@ -127,7 +127,7 @@ PROCESS_DEF(air)
 
 		if(failed_ticks > 5)
 			to_world(SPAN_DANGER("RUNTIMES IN ATMOS TICKER. Killing air simulation!"))
-			world.log << "### ZAS SHUTDOWN"
+			TO_WORLD_LOG("### ZAS SHUTDOWN")
 
 			message_admins("ZASALERT: Shutting down! status: [tick_progress]")
 			log_admin("ZASALERT: Shutting down! status: [tick_progress]")

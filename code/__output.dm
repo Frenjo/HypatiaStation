@@ -1,17 +1,118 @@
 /*
  * Output Macros
  */
+#define TO_WORLD_LOG(X) world.log << X
+#define SOUND_TO(TARGET, SOUND) TARGET << SOUND
+#define TO_FILE(FILE, VAR) FILE << VAR
 #define SHOW_BROWSER(TARGET, CONTENT, OPTIONS) TARGET << browse(CONTENT, OPTIONS)
 #define CLOSE_BROWSER(TARGET, NAME) TARGET << browse(null, NAME)
 #define SEND_RSC(TARGET, CONTENT, NAME) TARGET << browse_rsc(CONTENT, NAME)
 #define OPEN_LINK(TARGET, URL) TARGET << link(URL)
 #define OPEN_FILE(TARGET, FILE) TARGET << run(FILE)
+#define TO_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] << VALUE
+#define FROM_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] >> VALUE
+#define TO_OUTPUT(TARGET, CONTENT, ARGUMENTS) TARGET << output(CONTENT, ARGUMENTS)
 
-/proc/html_icon(thing) // Proc instead of macro to avoid precompiler problems.
-	. = "\icon[thing]"
+// The two procs below are ported from Bay12.
+/proc/generate_asset_name(file)
+	return "asset.[md5(fcopy_rsc(file))]"
+
+/proc/icon2html(thing, target, icon_state, dir, frame = 1, moving = FALSE, realsize = FALSE, class = null)
+	if(!thing)
+		return
+
+	var/icon/I = thing
+	if(!target)
+		return
+	if(target == world)
+		target = GLOBL.clients
+
+	var/list/targets
+	if(!islist(target))
+		targets = list(target)
+	else
+		targets = target
+		if(!targets.len)
+			return
+	if(!isicon(I))
+		if(isfile(thing)) //special snowflake
+			var/name = "[generate_asset_name(thing)].png"
+			for(var/thing2 in targets)
+				SEND_RSC(thing2, thing, name)
+			return "<img class='icon icon-misc [class]' src=\"[url_encode(name)]\">"
+		var/atom/A = thing
+		if(isnull(dir))
+			dir = A.dir
+		if(isnull(icon_state))
+			icon_state = A.icon_state
+		I = A.icon
+		if(istype(thing, /mob/living/carbon/human)) // Shitty workaround for a BYOND issue.
+			var/icon/temp = I
+			I = icon()
+			I.Insert(temp, dir = SOUTH)
+			dir = SOUTH
+	else
+		if(isnull(dir))
+			dir = SOUTH
+		if(isnull(icon_state))
+			icon_state = ""
+
+	I = icon(I, icon_state, dir, frame, moving)
+
+	var/name = "[generate_asset_name(I)].png"
+	for(var/thing2 in targets)
+		SEND_RSC(thing2, I, name)
+
+	if(realsize)
+		return "<img class='icon icon-[icon_state] [class]' style='width:[I.Width()]px;height:[I.Height()]px;min-height:[I.Height()]px' src=\"[url_encode(name)]\">"
+	return "<img class='icon icon-[icon_state] [class]' style='width:16px;height:16px' src=\"[url_encode(name)]\">"
+
+// Sets up the new browser output with collapsing functionality for identical strings.
+/client/New()
+	. = ..()
+	src << output({"
+[script]
+<script type='text/javascript'>
+	function append(msg, newline = true)
+	{
+		var toAppend = newline ? '<br>' + msg : msg;
+		document.getElementById('chatOutput').innerHTML += toAppend;
+		var scrollingElement = (document.scrollingElement || document.body);
+		scrollingElement.scrollTop = scrollingElement.scrollHeight;
+	}
+
+	function replace(msg, count)
+	{
+		var replacing = document.getElementById('chatOutput').innerHTML;
+		var countText = ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
+		var indexToReplace = count > 2 ? (replacing.length - (msg.length + countText.length)) : (replacing.length - msg.length);
+		msg += countText;
+		document.getElementById('chatOutput').innerHTML = replacing.substring(0, indexToReplace);
+		append(msg, false);
+	}
+</script>
+<div id='chatOutput'></div>
+"}, "outputwindow.output");
+
+/atom
+	var/last_chat_message
+	var/last_chat_message_count = 0
 
 /proc/to_chat(atom/target, message)
-	target << message
+	if(!message)
+		return
+	if(istype(target, /client))
+		var/client/C = target
+		target = C.mob
+	if(istype(target))
+		var/func = "append"
+		if(isnull(target.last_chat_message) || message != target.last_chat_message)
+			target.last_chat_message_count = 0
+		else
+			func = "replace"
+		target.last_chat_message_count++
+		TO_OUTPUT(target, list2params(list(message, target.last_chat_message_count)), "outputwindow.output:[func]")
+		target.last_chat_message = message
 
 /proc/to_world(message)
 	for_no_type_check(var/client/C, GLOBL.clients)

@@ -42,7 +42,7 @@
 		var/file = file(map)
 		if(isfile(file))
 			GLOBL.maploader.load_map(file)
-			world.log << "away mission loaded: [map]"
+			TO_WORLD_LOG("away mission loaded: [map]")
 
 		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name != "awaystart")

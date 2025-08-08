@@ -15,21 +15,21 @@ Creature-level abilities.
 
 	// Check if the client has a mob and if the mob is valid and alive.
 	if(!mob || !isliving(mob) || mob.stat)
-		src << "\red You must be corporeal and alive to do that."
+		to_chat(src, SPAN_WARNING("You must be corporeal and alive to do that."))
 		return 0
 
 	//Handcuff check.
 	if(mob.restrained())
-		src << "\red You cannot do this while restrained."
+		to_chat(src, SPAN_WARNING("You cannot do this while restrained."))
 		return 0
 
 	if(iscarbon(mob))
 		var/mob/living/carbon/M = mob
 		if(M.handcuffed)
-			src << "\red You cannot do this while cuffed."
+			to_chat(src, SPAN_WARNING("You cannot do this while cuffed."))
 			return 0
 
-	src << "\blue You perform an ability."
+	to_chat(src, SPAN_INFO("You perform an ability."))
 
 */
 

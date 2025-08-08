@@ -15,7 +15,7 @@
 	var/savefile/F = new(TORFILE)
 	if(F)
 		var/last_update
-		F["last_update"] >> last_update
+		FROM_SAVEFILE(F, "last_update", last_update)
 		if((last_update + TOR_UPDATE_INTERVAL) < world.realtime)	//we haven't updated for a while
 			ToRban_update()
 	return
@@ -39,7 +39,8 @@
 					F[cleaned] << 1
 			F["last_update"] << world.realtime
 			log_misc("ToR data updated!")
-			if(usr)	usr << "ToRban updated."
+			if(usr)
+				to_chat(usr, "ToRban updated.")
 			return
 		log_misc("ToR data update aborted: no data.")
 		return
@@ -75,16 +76,16 @@
 			var/choice = input(src,"Please select an IP address to remove from the ToR banlist:", "Remove ToR ban", null) as null | anything in F.dir
 			if(choice)
 				F.dir.Remove(choice)
-				src << "<b>Address removed</b>"
+				to_chat(src, "<b>Address removed.</b>")
 		if("remove all")
-			src << "<b>[TORFILE] was [fdel(TORFILE) ? "" : "not "]removed.</b>"
+			to_chat(src, "<b>[TORFILE] was [fdel(TORFILE) ? "" : "not "]removed.</b>")
 		if("find")
 			var/input = input(src,"Please input an IP address to search for:", "Find ToR ban", null) as null | text
 			if(input)
 				if(ToRban_isbanned(input))
-					src << "<font color='green'><b>Address is a known ToR address</b></font>"
+					to_chat(src, SPAN_RADIOACTIVE("Address is a known ToR address."))
 				else
-					src << "<font color='red'><b>Address is not a known ToR address</b></font>"
+					to_chat(src, SPAN_DANGER("Address is not a known ToR address."))
 	return
 
 #undef TORFILE

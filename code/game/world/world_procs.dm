@@ -1,6 +1,6 @@
 /world/Reboot(reason)
 	spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
+		SOUND_TO(world, pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 
 	// Stops the master controller's process scheduling.
 	global.CTmaster.stop()
@@ -9,9 +9,9 @@
 	var/server_location = CONFIG_GET(/decl/configuration_entry/server)
 	for_no_type_check(var/client/C, GLOBL.clients)
 		if(isnotnull(server_location))
-			C << link("byond://[server_location]")
+			OPEN_LINK(C, "byond://[server_location]")
 		else
-			C << link("byond://[world.address]:[world.port]")
+			OPEN_LINK(C, "byond://[world.address]:[world.port]")
 
 	. = ..(reason)
 
@@ -27,7 +27,7 @@
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
-	F << the_mode
+	TO_FILE(F, the_mode)
 
 // MOTD loading.
 /hook/startup/proc/load_motd()
@@ -59,13 +59,13 @@
 /hook/startup/proc/connect_database()
 	. = TRUE
 	if(!setup_database_connection())
-		world.log << "Your server failed to establish a connection with the feedback database."
+		TO_WORLD_LOG("Your server failed to establish a connection with the feedback database.")
 	else
-		world.log << "Feedback database connection established."
+		TO_WORLD_LOG("Feedback database connection established.")
 
 /hook/startup/proc/connect_old_database()
 	. = TRUE
 	if(!setup_old_database_connection())
-		world.log << "Your server failed to establish a connection with the SQL database."
+		TO_WORLD_LOG("Your server failed to establish a connection with the SQL database.")
 	else
-		world.log << "SQL database connection established."
+		TO_WORLD_LOG("SQL database connection established.")

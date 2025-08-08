@@ -1,19 +1,20 @@
 /*
  * SPAN_X Macros
 */
-#define SPAN(class, text)		"<span class='[class]'>[text]</span>"
-#define SPAN_INFO(text)			SPAN("info", text)
-#define SPAN_INFO_B(text)		SPAN_INFO("<B>[text]</B>")
-#define SPAN_NOTICE(text)		SPAN("notice", text)
-#define SPAN_WARNING(text)		SPAN("warning", text)
-#define SPAN_DANGER(text)		SPAN("danger", text)
-#define SPAN_ALIUM(text)		SPAN("alium", text)
-#define SPAN_RADIOACTIVE(text)	SPAN("radioactive", text)
-#define SPAN_ALERT(text)		SPAN("alert", text)
-#define SPAN_ERROR(text)		SPAN("error", text)
-#define SPAN_DISARM(text)		SPAN("disarm", text)
-#define SPAN_CAUTION(text)		SPAN("caution", text)
-#define SPAN_MODERATE(text)		SPAN("moderate", text)
+#define SPAN(CLASS, TEXT) "<span class='[CLASS]'>[TEXT]</span>"
+#define SPAN_INFO(TEXT) SPAN("info", TEXT)
+#define SPAN_INFO_B(TEXT) SPAN_INFO("<B>[TEXT]</B>")
+#define SPAN_NOTICE(TEXT) SPAN("notice", TEXT)
+#define SPAN_WARNING(TEXT) SPAN("warning", TEXT)
+#define SPAN_DANGER(TEXT) SPAN("danger", TEXT)
+#define SPAN_ALIUM(TEXT) SPAN("alium", TEXT)
+#define SPAN_RADIOACTIVE(TEXT) SPAN("radioactive", TEXT)
+#define SPAN_ALERT(TEXT) SPAN("alert", TEXT)
+#define SPAN_ERROR(TEXT) SPAN("error", TEXT)
+#define SPAN_DISARM(TEXT) SPAN("disarm", TEXT)
+#define SPAN_CAUTION(TEXT) SPAN("caution", TEXT)
+#define SPAN_MODERATE(TEXT) SPAN("moderate", TEXT)
+#define SPAN_DEADSAY(TEXT) SPAN("deadsay", TEXT)
 
 /*
  * Languages

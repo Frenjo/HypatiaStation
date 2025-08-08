@@ -8,7 +8,7 @@
 		if(isnotnull(global.PCticker))
 			global.PCticker.minds.Add(mind)
 		else
-			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
+			TO_WORLD_LOG("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 	if(isnull(mind.name))
 		mind.name = real_name
 	mind.current = src

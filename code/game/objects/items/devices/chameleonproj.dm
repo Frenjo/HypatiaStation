@@ -33,7 +33,7 @@
 	if(!active_dummy)
 		if(isitem(target) && !istype(target, /obj/item/disk/nuclear))
 			playsound(GET_TURF(src), 'sound/weapons/flash.ogg', 100, 1, -6)
-			user << "\blue Scanned [target]."
+			to_chat(user, SPAN_INFO("Scanned [target]."))
 			saved_item = target.type
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state

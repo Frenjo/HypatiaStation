@@ -54,7 +54,7 @@
 			var/mob/tmob = AM
 			if(ishuman(tmob) && (MUTATION_FAT in tmob.mutations))
 				if(prob(70))
-					src << "\red <B>You fail to push [tmob]'s fat ass out of the way.</B>"
+					to_chat(src, SPAN_DANGER("You fail to push [tmob]'s fat ass out of the way."))
 					now_pushing = 0
 					return
 				if(!(tmob.status_flags & CANPUSH))

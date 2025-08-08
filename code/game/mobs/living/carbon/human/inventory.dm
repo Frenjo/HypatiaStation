@@ -315,7 +315,7 @@
 			W.forceMove(back)
 			W.layer_to_hud()
 		else
-			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
+			to_chat(src, SPAN_WARNING("You are trying to eqiip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."))
 			return
 
 	return

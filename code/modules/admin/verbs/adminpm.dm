@@ -107,7 +107,7 @@
 	var/recieve_message = ""
 
 	if(holder && !C.holder)
-		recieve_message = "<font color='[recieve_color]' size='4'><b>-- Administrator private message --</b></font>\n"
+		recieve_message = "<font color='[recieve_color]' size='4'><b>-- Administrator private message --</b></font><br>"
 		//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
 		if(CONFIG_GET(/decl/configuration_entry/popup_admin_pm))
 			spawn(0)	//so we don't hold the caller proc up
@@ -132,7 +132,7 @@
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
 	if(C.prefs.toggles & SOUND_ADMINHELP)
-		C << 'sound/effects/adminhelp.ogg'
+		SOUND_TO(C, 'sound/effects/adminhelp.ogg')
 
 	/*
 	if(C.holder)
@@ -150,7 +150,7 @@
 
 		//play the recieving admin the adminhelp sound (if they have them enabled)
 		if(C.prefs.toggles & SOUND_ADMINHELP)
-			C << 'sound/effects/adminhelp.ogg'
+			SOUND_TO(C, 'sound/effects/adminhelp.ogg')
 
 	else
 		if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
@@ -165,7 +165,7 @@
 				src << "<font color='blue'>Admin PM to-<b>[key_name(C, src, 1)]</b>: [msg]</font>"
 
 			//always play non-admin recipients the adminhelp sound
-			C << 'sound/effects/adminhelp.ogg'
+			SOUND_TO(C, 'sound/effects/adminhelp.ogg')
 
 			//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
 			if(CONFIG_GET(/decl/configuration_entry/popup_admin_pm))

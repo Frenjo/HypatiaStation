@@ -110,7 +110,7 @@
 			if(damage > emergency_point)
 				shift_light(7, emergency_color)
 				radio.autosay(addtext(emergency_alert, " Instability: ", stability, "%"), "Supermatter Monitor")
-				world << sound('sound/effects/siren_shortened.ogg', volume = 100) // Play a sound if shit's fucked, yo. -Frenjo
+				SOUND_TO(world, 'sound/effects/siren_shortened.ogg') // Play a sound if shit's fucked, yo. -Frenjo
 				lastwarning = world.timeofday
 
 			else if(damage >= damage_archived)	// The damage is still going up
@@ -246,9 +246,9 @@
 /obj/machinery/power/supermatter/attackby(obj/item/W, mob/living/user)
 	user.visible_message(
 		SPAN_WARNING("\The [user] touches \a [W] to \the [src] as a silence fills the room..."),
-		//"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>"
+		//"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span><br><span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>"
 		// Not sure if this is a valid replacement for this? But I mean, it compiles so... -Frenjo
-		SPAN_DANGER("You touch \the [W] to \the [src] when everything suddenly goes silent.") + "\n" + SPAN_NOTICE("\The [W] flashes into dust as you flinch away from \the [src]."),
+		SPAN_DANGER("You touch \the [W] to \the [src] when everything suddenly goes silent.") + "<br>" + SPAN_NOTICE("\The [W] flashes into dust as you flinch away from \the [src]."),
 		SPAN_WARNING("Everything suddenly goes silent.")
 	)
 

@@ -120,10 +120,10 @@
 			var/text = "choke, "
 			if(istype(src, /mob/living/carbon/monkey/diona))
 				text += "chirp, "
-			text += "choke, collapse, dance, deathgasp, drool, gasp, shiver, gnarl, jump, paw, moan, nod, roar, roll, scratch,\nscretch, shake, sign-#, sit, sulk, sway, tail, twitch, whimper"
-			src << text
+			text += "choke, collapse, dance, deathgasp, drool, gasp, shiver, gnarl, jump, paw, moan, nod, roar, roll, scratch,<br>scretch, shake, sign-#, sit, sulk, sway, tail, twitch, whimper"
+			to_chat(src, text)
 		else
-			src << "Invalid Emote: [act]"
+			to_chat(src, SPAN_INFO("Unusable emote '[act]'. Say *help for a list."))
 	if((message && src.stat == CONSCIOUS))
 		if(src.client)
 			log_emote("[name]/[key] : [message]")

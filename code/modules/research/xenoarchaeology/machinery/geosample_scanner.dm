@@ -248,16 +248,16 @@
 			//emergency stop if seal integrity reaches 0
 			if(scanner_seal_integrity <= 0 || (scanner_temperature >= 1273 && !rad_shield))
 				stop_scanning()
-				visible_message(SPAN_INFO("[html_icon(src)] buzzes unhappily. It has failed mid-scan!"), 2)
+				visible_message(SPAN_INFO("[icon2html(src, viewers(src))] buzzes unhappily. It has failed mid-scan!"), 2)
 
 			if(prob(5))
-				visible_message(SPAN_INFO("[html_icon(src)] [pick("whirrs", "chuffs", "clicks")][pick(" excitedly", " energetically", " busily")]."), 2)
+				visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [pick("whirrs", "chuffs", "clicks")][pick(" excitedly", " energetically", " busily")]."), 2)
 	else
 		//gradually cool down over time
 		if(scanner_temperature > 0)
 			scanner_temperature = max(scanner_temperature - 5 - 10 * rand(), 0)
 		if(prob(0.75))
-			visible_message(SPAN_INFO("[html_icon(src)] [pick("plinks", "hisses")][pick(" quietly", " softly", " sadly", " plaintively")]."), 2)
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [pick("plinks", "hisses")][pick(" quietly", " softly", " sadly", " plaintively")]."), 2)
 	last_process_worldtime = world.time
 
 /obj/machinery/radiocarbon_spectrometer/proc/stop_scanning()
@@ -275,7 +275,7 @@
 		used_coolant = 0
 
 /obj/machinery/radiocarbon_spectrometer/proc/complete_scan()
-	visible_message(SPAN_INFO("[html_icon(src)] makes an insistent chime."), 2)
+	visible_message(SPAN_INFO("[icon2html(src, viewers(src))] makes an insistent chime."), 2)
 
 	if(scanned_item)
 		//create report

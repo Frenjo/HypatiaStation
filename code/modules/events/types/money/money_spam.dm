@@ -128,7 +128,7 @@
 				playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			for(var/mob/O in hearers(3, P.loc))
 				if(!P.silent)
-					O.show_message("[html_icon(P)] *[P.ttone]*")
+					O.show_message("[icon2html(P, O)] *[P.ttone]*")
 			//Search for holder of the PDA.
 			var/mob/living/L = null
 			if(P.loc && isliving(P.loc))
@@ -138,7 +138,7 @@
 				L = get(P, /mob/living/silicon)
 
 			if(isnotnull(L))
-				to_chat(L, "[html_icon(P)] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
+				to_chat(L, "[icon2html(P, L)] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
 	else if(world.time > time_failed + 1200)
 		//if there's no server active for two minutes, give up
 		kill()

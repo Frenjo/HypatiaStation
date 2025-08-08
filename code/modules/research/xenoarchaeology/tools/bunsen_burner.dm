@@ -13,32 +13,32 @@
 /obj/machinery/bunsen_burner/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_holder))
 		if(held_container)
-			to_chat(user, SPAN_WARNING("You must remove the [held_container] first."))
+			to_chat(user, SPAN_WARNING("You must remove \the [held_container] first."))
 		else
 			user.drop_item(src)
 			held_container = W
 			held_container.forceMove(src)
-			to_chat(user, SPAN_INFO("You put the [held_container] onto the [src]."))
+			to_chat(user, SPAN_INFO("You put \the [held_container] onto \the [src]."))
 			var/image/I = image("icon" = W, "layer" = FLOAT_LAYER)
 			underlays += I
 			if(heating)
 				spawn(heat_time)
 					try_heating()
 	else
-		to_chat(user, SPAN_WARNING("You can't put the [W] onto the [src]."))
+		to_chat(user, SPAN_WARNING("You can't put \the [W] onto \the [src]."))
 
 /obj/machinery/bunsen_burner/attack_hand(mob/user)
 	if(held_container)
 		underlays = null
-		to_chat(user, SPAN_INFO("You remove the [held_container] from the [src]."))
+		to_chat(user, SPAN_INFO("You remove \the [held_container] from \the [src]."))
 		held_container.forceMove(loc)
 		held_container.attack_hand(user)
 		held_container = null
 	else
-		to_chat(user, SPAN_WARNING("There is nothing on the [src]."))
+		to_chat(user, SPAN_WARNING("There is nothing on \the [src]."))
 
 /obj/machinery/bunsen_burner/proc/try_heating()
-	visible_message(SPAN_INFO("[html_icon(src)] [src] hisses."))
+	visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] hisses."))
 	if(held_container && heating)
 		heated = 1
 		held_container.reagents.handle_reactions()

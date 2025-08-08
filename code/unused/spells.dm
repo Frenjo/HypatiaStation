@@ -370,7 +370,7 @@
 				L+=T
 
 	if(!L.len)
-		usr <<"The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."
+		to_chat(usr, SPAN_WARNING("The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."))
 		return
 
 	var/attempt = 0

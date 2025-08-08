@@ -88,7 +88,7 @@
 	if(emagged)
 		return FALSE
 	emagged = TRUE
-	to_chat(user, SPAN_INFO("You emag the [src], arming the escape pod!"))
+	to_chat(user, SPAN_INFO("You emag \the [src], arming the escape pod!"))
 	if(istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
 		var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
 		if(!P.armed)

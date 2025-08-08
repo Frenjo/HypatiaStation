@@ -77,7 +77,7 @@
 	if(length(spawning_types) && powered())
 		spawn_progress++
 		if(spawn_progress > max_spawn_ticks)
-			visible_message(SPAN_INFO("[html_icon(src)] [src] pings!"))
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] pings!"))
 			var/spawn_type = spawning_types[1]
 			new spawn_type(src.loc)
 
@@ -90,7 +90,7 @@
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
-			visible_message(SPAN_INFO("[html_icon(src)] [src] [pick("clicks", "whizzes", "whirrs", "whooshes", "clanks", "clongs", "clonks", "bangs")]."))
+			visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src] [pick("clicks", "whizzes", "whirrs", "whooshes", "clanks", "clongs", "clonks", "bangs")]."))
 
 /obj/machinery/replicator/attack_hand(mob/user)
 	interact(user)
@@ -108,9 +108,9 @@
 		var/index = text2num(href_list["activate"])
 		if(index > 0 && index <= length(construction))
 			if(length(spawning_types))
-				visible_message(SPAN_INFO("[html_icon(src)] a [pick("light", "dial", "display", "meter", "pad")] on [src]'s front [pick("blinks","flashes")] [pick("red", "yellow", "blue", "orange", "purple", "green", "white")]."))
+				visible_message(SPAN_INFO("[icon2html(src, viewers(src))] a [pick("light", "dial", "display", "meter", "pad")] on [src]'s front [pick("blinks","flashes")] [pick("red", "yellow", "blue", "orange", "purple", "green", "white")]."))
 			else
-				visible_message(SPAN_INFO("[html_icon(src)] [src]'s front compartment slides shut."))
+				visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src]'s front compartment slides shut."))
 
 			spawning_types.Add(construction[construction[index]])
 			spawn_progress = 0

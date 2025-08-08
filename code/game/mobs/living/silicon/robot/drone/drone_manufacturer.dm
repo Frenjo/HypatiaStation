@@ -89,7 +89,7 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 
 	if(!CONFIG_GET(/decl/configuration_entry/allow_drone_spawn))
-		src << "\red That verb is not currently permitted."
+		to_chat(src, SPAN_WARNING("That verb is not currently permitted."))
 		return
 
 	if (!src.stat)
@@ -102,7 +102,7 @@
 	if(isghost(src))
 		var/mob/dead/ghost/G = src
 		if(G.has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
-			usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
+			to_chat(G, SPAN_INFO_B("Upon using the antagHUD you forfeited the ability to join the round."))
 			return
 
 	var/deathtimeminutes = round(deathtime / 600)
@@ -115,19 +115,19 @@
 		pluralcheck = " [deathtimeminutes] minutes and"
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 
-	if (deathtime < 6000)
-		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "You must wait 10 minutes to respawn as a drone!"
+	if(deathtime < 6000)
+		to_chat(usr, SPAN_WARNING("You have been dead for[pluralcheck] [deathtimeseconds] seconds."))
+		to_chat(usr, SPAN_WARNING("You must wait 10 minutes to respawn as a drone!"))
 		return
 
 	FOR_MACHINES_TYPED(drone_fab, /obj/machinery/drone_fabricator)
 		if(drone_fab.stat & NOPOWER || !drone_fab.produce_drones)
 			continue
 		if(drone_fab.count_drones() >= CONFIG_GET(/decl/configuration_entry/max_maint_drones))
-			src << "\red There are too many active drones in the world for you to spawn."
+			to_chat(src, SPAN_WARNING("There are too many active drones in the world for you to spawn."))
 			return
 
 		drone_fab.create_drone(src.client)
 		return
 
-	src << "\red There are no available drone spawn points, sorry."
+	to_chat(src, SPAN_WARNING("There are no available drone spawn points, sorry."))

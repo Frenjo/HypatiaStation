@@ -40,7 +40,7 @@
 		update_chassis_page()
 		chassis.occupant_message(SPAN_DANGER("The [src] is destroyed!"))
 		chassis.log_append_to_last("[src] is destroyed.", 1)
-		chassis.occupant << sound(destruction_sound, volume = 50)
+		SOUND_TO(chassis.occupant, sound(destruction_sound, volume = 50))
 		chassis = null
 	return ..()
 
@@ -175,7 +175,7 @@
 
 /obj/item/mecha_equipment/proc/occupant_message(message)
 	if(isnotnull(chassis))
-		chassis.occupant_message("[html_icon(src)] [message]")
+		chassis.occupant_message("[icon2html(src, chassis.occupant)] [message]")
 
 /obj/item/mecha_equipment/proc/log_message(message)
 	if(isnotnull(chassis))

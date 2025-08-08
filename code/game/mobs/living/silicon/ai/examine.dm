@@ -1,7 +1,7 @@
-/mob/living/silicon/ai/get_examine_header()
+/mob/living/silicon/ai/get_examine_header(mob/user)
 	. = list()
 	. += SPAN_INFO_B("*---------*")
-	. += SPAN_INFO("This is [html_icon(src)] <em>[src]</em>, an <em>AI</em>!")
+	. += SPAN_INFO("This is [icon2html(src, user)] <em>[src]</em>, an <em>AI</em>!")
 	if(desc)
 		. += SPAN_INFO(desc)
 
@@ -19,7 +19,7 @@
 			. += SPAN_DANGER("Its casing is melted and heat-warped!")
 
 	if(stat == DEAD)
-		. += SPAN("deadsay", "It appears to be powered-down.")
+		. += SPAN_DEADSAY("It appears to be powered-down.")
 	else if(stat == UNCONSCIOUS)
 		. += SPAN_WARNING("It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".")
 

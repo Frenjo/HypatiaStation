@@ -352,7 +352,7 @@
 		var/part_b_extra = ""
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
-		var/part_b = "</span><b> [html_icon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [icon2html(radio, receive)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		// department radio formatting (poorly optimized, ugh)
@@ -566,7 +566,7 @@
 		// Creates a dummy radio headset for the sole purpose of using its icon.
 		var/static/obj/item/radio/headset/radio = new /obj/item/radio/headset()
 
-		var/part_b = "</span><b> [html_icon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [icon2html(radio, receive)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		if(display_freq == FREQUENCY_SYNDICATE)
@@ -660,5 +660,5 @@
 
 	sleep(rand(1 SECOND, 2.5 SECONDS))
 
-	//world.log << "Level: [signal.data["level"]] - Done: [signal.data["done"]]"
+	//TO_WORLD_LOG("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 	return signal

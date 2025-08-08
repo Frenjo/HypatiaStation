@@ -108,7 +108,7 @@
 
 /decl/security_level/blue/on_elevate_to()
 	. = ..()
-	world << sound('sound/AI/securityblue.ogg')
+	SOUND_TO(world, 'sound/AI/securityblue.ogg')
 
 /*
  * Red.
@@ -184,4 +184,4 @@
 
 /decl/security_level/delta/on_elevate_to()
 	. = ..()
-	world << sound('sound/misc/bloblarm.ogg', volume = 70)
+	SOUND_TO(world, sound('sound/misc/bloblarm.ogg', volume = 70))

@@ -30,7 +30,7 @@
 
 	//search the href for script injection
 	if(findtext(href, "<script", 1, 0))
-		world.log << "Attempted use of scripts within a topic call, by [src]."
+		TO_WORLD_LOG("Attempted use of scripts within a topic call, by [src].")
 		message_admins("Attempted use of scripts within a topic call, by [src].")
 		//del(usr)
 		return
@@ -46,7 +46,7 @@
 
 	//Logs all hrefs
 	if(CONFIG_GET(/decl/configuration_entry/log_hrefs) && isnotnull(GLOBL.href_logfile))
-		GLOBL.href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
+		TO_FILE(GLOBL.href_logfile, "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
 
 	switch(href_list["_src_"])
 		if("holder")

@@ -290,11 +290,11 @@ Buildable meters
 
 	for(var/obj/machinery/atmospherics/M in src.loc)
 		if(M.initialize_directions & pipe_dir)	// matches at least one direction on either type of pipe
-			user << "\red There is already a pipe at that location."
+			to_chat(user, SPAN_WARNING("There is already a pipe at that location."))
 			return 1
 	// no conflicts found
 
-	var/pipefailtext = "\red There's nothing to connect this pipe section to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+	var/pipefailtext = SPAN_WARNING("There's nothing to connect this pipe section to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
 
 	switch(pipe_type)
 		if(PIPE_SIMPLE_STRAIGHT, PIPE_SIMPLE_BENT)
@@ -306,7 +306,7 @@ Buildable meters
 			P.level = T.intact ? 2 : 1
 			P.atmos_initialise()
 			if(!P)
-				usr << pipefailtext
+				to_chat(user, pipefailtext)
 				return 1
 			P.build_network()
 			if(P.node1)
@@ -325,7 +325,7 @@ Buildable meters
 			//P.level = T.intact ? 2 : 1
 			P.atmos_initialise()
 			if(!P)
-				usr << pipefailtext
+				to_chat(user, pipefailtext)
 				return 1
 			P.build_network()
 			if(P.node1)
@@ -360,7 +360,7 @@ Buildable meters
 			M.level = T.intact ? 2 : 1
 			M.atmos_initialise()
 			if(!M)
-				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(user, SPAN_WARNING("There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"))
 				return 1
 			M.build_network()
 			if(M.node1)
@@ -383,7 +383,7 @@ Buildable meters
 			M.level = T.intact ? 2 : 1
 			M.atmos_initialise()
 			if(!M)
-				usr << "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(user, SPAN_WARNING("There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"))
 				return 1
 			M.build_network()
 			if(M.node1)
@@ -408,7 +408,7 @@ Buildable meters
 			//P.level = T.intact ? 2 : 1
 			P.atmos_initialise()
 			if(!P)
-				usr << "There's nothing to connect this junction to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+				to_chat(user, SPAN_WARNING("There's nothing to connect this junction to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"))
 				return 1
 			P.build_network()
 			if(P.node1)
@@ -531,7 +531,7 @@ Buildable meters
 			P.level = T.intact ? 2 : 1
 			P.atmos_initialise()
 			if(!P)
-				usr << pipefailtext
+				to_chat(user, pipefailtext)
 				return 1
 			P.build_network()
 			if(P.node1)
@@ -681,11 +681,11 @@ Buildable meters
 	if(!iswrench(W))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
-		user << "\red You need to fasten it to a pipe"
+		to_chat(user, SPAN_WARNING("You need to fasten it to a pipe."))
 		return 1
 	new/obj/machinery/meter( src.loc )
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-	user << "\blue You have fastened the meter to the pipe"
+	to_chat(user, SPAN_NOTICE("You fasten the meter to the pipe."))
 	qdel(src)
 
 //not sure why these are necessary

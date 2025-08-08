@@ -42,16 +42,16 @@
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 	icon_base = "engineering"
 
-/obj/item/taperoll/attack_self(mob/user as mob)
+/obj/item/taperoll/attack_self(mob/user)
 	if(icon_state == "[icon_base]_start")
 		start = GET_TURF(src)
-		usr << "\blue You place the first end of the [src]."
+		to_chat(user, SPAN_INFO("You place the first end of \the [src]."))
 		icon_state = "[icon_base]_stop"
 	else
 		icon_state = "[icon_base]_start"
 		end = GET_TURF(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
-			usr << "\blue [src] can only be laid horizontally or vertically."
+			to_chat(user, SPAN_WARNING("\The [src] can only be laid horizontally or vertically."))
 			return
 
 		var/turf/cur = start
@@ -80,7 +80,7 @@
 						break
 			cur = get_step_towards(cur,end)
 		if (!can_place)
-			usr << "\blue You can't run \the [src] through that!"
+			to_chat(user, SPAN_WARNING("You can't run \the [src] through that!"))
 			return
 
 		cur = start
@@ -94,16 +94,16 @@
 				P.icon_state = "[P.icon_base]_[dir]"
 			cur = get_step_towards(cur,end)
 	//is_blocked_turf(var/turf/T)
-		usr << "\blue You finish placing the [src]."	//Git Test
+		to_chat(user, SPAN_INFO("You finish placing \the [src]."))
 
-/obj/item/taperoll/afterattack(var/atom/A, mob/user as mob)
+/obj/item/taperoll/afterattack(atom/A, mob/user)
 	if(istype(A, /obj/machinery/door/airlock))
 		var/turf/T = GET_TURF(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
 		P.forceMove(locate(T.x,T.y,T.z))
 		P.icon_state = "[src.icon_base]_door"
 		P.layer = 3.2
-		user << "\blue You finish placing the [src]."
+		to_chat(user, SPAN_INFO("You finish placing \the [src]."))
 
 /obj/item/tape/Bumped(atom/movable/AM)
 	if(ismob(AM))
@@ -142,7 +142,7 @@
 
 /obj/item/tape/proc/breaktape(obj/item/W, mob/user)
 	if(user.a_intent == "help" && (!can_puncture(W) && allowed(user)))
-		user << "You can't break the [src] with that!"
+		to_chat(user, SPAN_WARNING("You can't break \the [src] with that!"))
 		return FALSE
 	user.visible_message(
 		SPAN_INFO("[user] breaks \the [src]!"),

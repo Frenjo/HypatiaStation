@@ -112,6 +112,4 @@ Also, you never added distance checking after target is selected. I've went ahea
 
 	//After a certain amount of time the victim gets a message about being in a different body.
 	spawn(msg_wait)
-		//caster << "<span class='warning'>You feel woozy and lightheaded.</span> <span class='danger'>Your body doesn't seem like your own.</span>"
-		to_chat(caster, SPAN_WARNING("You feel woozy and lightheaded."))
-		to_chat(caster, SPAN_DANGER("Your body doesn't seem like your own."))
+		to_chat(caster, "[SPAN_WARNING("You feel woozy and lightheaded.")] [SPAN_DANGER("Your body doesn't seem like your own.")]")

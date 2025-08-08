@@ -114,10 +114,10 @@
 
 /obj/machinery/processor/attackby(obj/item/O, mob/user)
 	if(src.processing)
-		user << "\red The processor is in the process of processing."
+		to_chat(user, SPAN_WARNING("The processor is in the process of processing."))
 		return 1
 	if(length(contents)) //TODO: several items at once? several different items?
-		user << "\red Something is already in the processing chamber."
+		to_chat(user, SPAN_WARNING("Something is already in the processing chamber."))
 		return 1
 	var/what = O
 	if(istype(O, /obj/item/grab))
@@ -126,7 +126,7 @@
 
 	var/datum/food_processor_process/P = select_recipe(what)
 	if(!P)
-		user << "\red That probably won't blend."
+		to_chat(user, SPAN_WARNING("That probably won't blend."))
 		return 1
 	user.visible_message(
 		"[user] put [what] into [src].",
@@ -140,10 +140,10 @@
 	if(src.stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
-		user << "\red The processor is in the process of processing."
+		to_chat(user, SPAN_WARNING("The processor is in the process of processing."))
 		return 1
 	if(!length(contents))
-		user << "\red The processor is empty."
+		to_chat(user, SPAN_WARNING("The processor is empty."))
 		return 1
 	for(var/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)
