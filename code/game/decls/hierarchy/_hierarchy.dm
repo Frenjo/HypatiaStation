@@ -11,7 +11,7 @@
 
 	var/list/all_subtypes = list()
 	all_subtypes[type] = src
-	for(var/subtype in SUBTYPESOF(type))
+	for(var/subtype in subtypesof(type))
 		all_subtypes[subtype] = new subtype(FALSE)
 
 	for(var/subtype in (all_subtypes - type))

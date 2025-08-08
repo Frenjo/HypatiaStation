@@ -145,7 +145,7 @@ CONTROLLER_DEF(configuration)
 						entry.value = splittext(value, " ")
 
 /datum/controller/configuration/proc/load_gamemodes()
-	for(var/path in SUBTYPESOF(/datum/game_mode))
+	for(var/path in subtypesof(/datum/game_mode))
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/mode = new path()

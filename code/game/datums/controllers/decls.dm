@@ -35,7 +35,7 @@ CONTROLLER_DEF(decls)
 	. = instance_lists_by_type[prototype]
 	if(isnull(.))
 		. = list()
-		for(var/path in SUBTYPESOF(prototype))
+		for(var/path in subtypesof(prototype))
 			var/decl/decl = GET_DECL_INSTANCE(path)
 			. += decl
 		instance_lists_by_type[prototype] = .

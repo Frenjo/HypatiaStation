@@ -213,7 +213,7 @@
 	preview_icon = null
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
-	for(var/path in SUBTYPESOF(/decl/department))
+	for(var/path in subtypesof(/decl/department))
 		job_by_department_high[path] = sanitize_integer(job_by_department_high[path], 0, 65535, initial(job_by_department_high[path]))
 		job_by_department_med[path] = sanitize_integer(job_by_department_med[path], 0, 65535, initial(job_by_department_med[path]))
 		job_by_department_low[path] = sanitize_integer(job_by_department_low[path], 0, 65535, initial(job_by_department_low[path]))

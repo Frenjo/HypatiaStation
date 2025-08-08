@@ -8,7 +8,7 @@
 /hook/global_init/proc/init_hair_and_facial_hair()
 	. = TRUE
 	// Hair - Initialises all /datum/sprite_accessory/hair into a list, indexed by name.
-	for(var/path in SUBTYPESOF(/datum/sprite_accessory/hair))
+	for(var/path in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new path()
 		GLOBL.hair_styles_list[H.name] = H
 		switch(H.gender)
@@ -21,7 +21,7 @@
 				GLOBL.hair_styles_female_list.Add(H.name)
 
 	// Facial Hair - Initialises all /datum/sprite_accessory/facial_hair into a list, indexed by name.
-	for(var/path in SUBTYPESOF(/datum/sprite_accessory/facial_hair))
+	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		GLOBL.facial_hair_styles_list[H.name] = H
 		switch(H.gender)
@@ -36,7 +36,7 @@
 /hook/global_init/proc/init_chemistry()
 	. = TRUE
 	// Chemical Reagents - Initialises all /datum/reagent into a list, indexed by reagent id.
-	for(var/path in SUBTYPESOF(/datum/reagent))
+	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()
 		GLOBL.chemical_reagents_list[D.id] = D
 
@@ -44,7 +44,7 @@
 	// It is filtered into multiple lists within a list.
 	// For example:
 	// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
-	for(var/path in SUBTYPESOF(/datum/chemical_reaction))
+	for(var/path in subtypesof(/datum/chemical_reaction))
 		var/datum/chemical_reaction/D = new path()
 		var/list/reaction_ids = list()
 
@@ -60,7 +60,7 @@
 // Medical side effects - Initialises all /datum/medical_effect into a list, indexed by name.
 /hook/global_init/proc/init_medical_side_effects()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/datum/medical_effect))
+	for(var/path in subtypesof(/datum/medical_effect))
 		var/datum/medical_effect/M = new path()
 		GLOBL.side_effects[M.name] = M
 
@@ -74,7 +74,7 @@
 // Languages - Initialises all /datum/language and language keys into lists.
 /hook/global_init/proc/init_languages()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/datum/language))
+	for(var/path in subtypesof(/datum/language))
 		var/datum/language/L = new path()
 		GLOBL.all_languages[L.name] = L
 		GLOBL.language_keys["[LANGUAGE_PREFIX_KEY][lowertext(L.key)]"] = L.name
@@ -83,7 +83,7 @@
 /hook/global_init/proc/init_species()
 	. = TRUE
 	var/rkey = 0
-	for(var/path in SUBTYPESOF(/datum/species))
+	for(var/path in subtypesof(/datum/species))
 		rkey++
 		var/datum/species/S = new path()
 		S.race_key = rkey //Used in mob icon caching.
@@ -103,7 +103,7 @@
 /hook/global_init/proc/init_research()
 	. = TRUE
 	// Designs - Initialises all /datum/design into a list, indexed by typepath.
-	for(var/path in SUBTYPESOF(/datum/design))
+	for(var/path in subtypesof(/datum/design))
 		var/datum/design/D = new path()
 		if(isnull(D.build_path))
 			continue

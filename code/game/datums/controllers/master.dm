@@ -224,7 +224,7 @@ CONTROLLER_DEF(master)
 
 	var/process
 	// Adds all the processes we can find, except those deferred until later.
-	for(process in SUBTYPESOF(/datum/process))
+	for(process in subtypesof(/datum/process))
 		if(!(process in deferred_setup_list))
 			add_process(new process(src))
 

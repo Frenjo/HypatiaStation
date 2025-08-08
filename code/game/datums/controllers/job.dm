@@ -13,7 +13,7 @@ CONTROLLER_DEF(jobs)
 
 /datum/controller/jobs/proc/setup_occupations()
 	occupations = list()
-	var/list/all_jobs = SUBTYPESOF(/datum/job)
+	var/list/all_jobs = subtypesof(/datum/job)
 	if(!length(all_jobs))
 		to_world(SPAN_DANGER("Error setting up jobs, no job datums found!"))
 		return 0

@@ -83,7 +83,7 @@
 	spawn
 		if(!istype(H))
 			return
-		var/tp = pick(SUBTYPESOF(/datum/genetics/side_effect))
+		var/tp = pick(subtypesof(/datum/genetics/side_effect))
 		var/datum/genetics/side_effect/S = new tp
 
 		S.start(H)

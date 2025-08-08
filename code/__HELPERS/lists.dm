@@ -460,7 +460,7 @@
 // If no list is provided, one is created.
 /proc/init_subtypes(prototype, list/L = null)
 	LAZYINITLIST(L)
-	for(var/path in SUBTYPESOF(prototype))
+	for(var/path in subtypesof(prototype))
 		L.Add(new path())
 	return L
 

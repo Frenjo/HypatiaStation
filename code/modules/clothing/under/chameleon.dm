@@ -14,11 +14,11 @@
 
 /obj/item/clothing/under/chameleon/initialise()
 	. = ..()
-	for(var/path in SUBTYPESOF(/obj/item/clothing/under/color))
+	for(var/path in subtypesof(/obj/item/clothing/under/color))
 		var/obj/item/clothing/under/new_under = new path()
 		clothing_choices.Add(new_under)
 
-	for(var/path in SUBTYPESOF(/obj/item/clothing/under/rank))
+	for(var/path in subtypesof(/obj/item/clothing/under/rank))
 		var/obj/item/clothing/under/new_under = new path()
 		clothing_choices.Add(new_under)
 

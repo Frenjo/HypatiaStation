@@ -21,4 +21,4 @@
 #define for_no_type_check(THING, LIST) for(##THING as anything in LIST)
 
 // Allows easily obtaining all subtypes of a type exclusively.
-#define SUBTYPESOF(prototype) (typesof(prototype) - prototype) // TODO: Make this lowercase.
+#define subtypesof(prototype) (typesof(prototype) - prototype)

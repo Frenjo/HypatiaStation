@@ -5,7 +5,7 @@ PROCESS_DEF(event)
 	name = "Event"
 	schedule_interval = 2 SECONDS
 
-	var/static/list/all_events = SUBTYPESOF(/datum/round_event)
+	var/static/list/all_events = subtypesof(/datum/round_event)
 
 	var/static/list/datum/round_event/processing_list = list()
 

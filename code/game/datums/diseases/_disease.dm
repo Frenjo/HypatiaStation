@@ -14,7 +14,7 @@ to null does not delete the object itself. Thank you.
 
 */
 
-GLOBAL_GLOBL_LIST_INIT(diseases, SUBTYPESOF(/datum/disease))
+GLOBAL_GLOBL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 /datum/disease
 	var/form = "Virus" //During medscans, what the disease is referred to as

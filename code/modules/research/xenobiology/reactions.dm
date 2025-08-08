@@ -101,7 +101,7 @@
 
 /datum/chemical_reaction/slimebork/on_reaction(datum/reagents/holder)
 	var/turf/location = GET_TURF(holder.my_atom)
-	var/list/borks = SUBTYPESOF(/obj/item/reagent_holder/food/snacks)
+	var/list/borks = subtypesof(/obj/item/reagent_holder/food/snacks)
 	// BORK BORK BORK
 
 	playsound(location, 'sound/effects/phasein.ogg', 100, 1)

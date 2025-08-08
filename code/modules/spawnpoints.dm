@@ -1,7 +1,7 @@
 GLOBAL_GLOBL_ALIST_NEW(spawntypes)
 
 /proc/populate_spawn_points()
-	for(var/type in SUBTYPESOF(/datum/spawnpoint))
+	for(var/type in subtypesof(/datum/spawnpoint))
 		var/datum/spawnpoint/S = new type()
 		GLOBL.spawntypes[S.display_name] = S
 

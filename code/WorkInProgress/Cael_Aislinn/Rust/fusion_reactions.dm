@@ -17,7 +17,7 @@ GLOBAL_GLOBL_ALIST_NEW(fusion_reactions)
 			return GLOBL.fusion_reactions[primary_reactant][secondary_reactant]
 
 /proc/populate_fusion_reactions()
-	for(var/cur_reaction_type in SUBTYPESOF(/datum/fusion_reaction))
+	for(var/cur_reaction_type in subtypesof(/datum/fusion_reaction))
 		var/datum/fusion_reaction/cur_reaction = new cur_reaction_type()
 		if(!GLOBL.fusion_reactions[cur_reaction.primary_reactant])
 			GLOBL.fusion_reactions[cur_reaction.primary_reactant] = alist()

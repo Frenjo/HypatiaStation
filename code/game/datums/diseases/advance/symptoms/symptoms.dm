@@ -1,6 +1,6 @@
 // Symptoms are the effects that engineered advanced diseases do.
 
-GLOBAL_GLOBL_LIST_INIT(list_symptoms, SUBTYPESOF(/datum/symptom))
+GLOBAL_GLOBL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 GLOBAL_GLOBL_LIST_NEW(dictionary_symptoms)
 
 /var/global/const/SYMPTOM_ACTIVATION_PROB = 3

@@ -5,7 +5,7 @@
 	icon_state = "ano00"
 	density = TRUE
 
-	var/static/list/all_effect_types = SUBTYPESOF(/datum/artifact_effect)
+	var/static/list/all_effect_types = subtypesof(/datum/artifact_effect)
 	var/datum/artifact_effect/my_effect
 	var/datum/artifact_effect/secondary_effect
 
