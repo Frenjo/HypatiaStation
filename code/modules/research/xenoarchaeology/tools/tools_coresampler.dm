@@ -37,11 +37,11 @@
 /obj/item/core_sampler/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/evidencebag/sample))
 		if(num_stored_bags >= 10)
-			to_chat(user, SPAN_WARNING("The core sampler cannot fit any more bags!"))
+			to_chat(user, SPAN_WARNING("\The [src] cannot fit any more bags!"))
 			return TRUE
 		qdel(I)
 		num_stored_bags++
-		to_chat(user, SPAN_INFO("You insert \the [I] into the core sampler."))
+		to_chat(user, SPAN_INFO("You insert \the [I] into \the [src]."))
 		return TRUE
 	return ..()
 

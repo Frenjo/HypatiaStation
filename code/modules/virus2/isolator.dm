@@ -13,14 +13,14 @@
 	if(!istype(I, /obj/item/reagent_holder/syringe))
 		return ..()
 	if(isnotnull(beaker))
-		to_chat(user, SPAN_WARNING("A syringe is already loaded into the machine."))
+		to_chat(user, SPAN_WARNING("A syringe is already loaded into \the [src]."))
 		return TRUE
 	beaker = I
 	user.drop_item()
 	I.forceMove(src)
 	user.visible_message(
-		SPAN_INFO("[user] adds the syringe to the machine."),
-		SPAN_INFO("You add the syringe to the machine.")
+		SPAN_INFO("[user] adds the syringe to \the [src]."),
+		SPAN_INFO("You add the syringe to \the [src].")
 	)
 	icon_state = "isolator_in"
 	updateUsrDialog()

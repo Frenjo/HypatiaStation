@@ -36,11 +36,11 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 
 /obj/machinery/power/rad_collector/attack_hand(mob/user)
 	if(anchored)
-		if(!src.locked)
+		if(!locked)
 			toggle_power()
 			user.visible_message(
-				"[user.name] turns the [src.name] [active? "on":"off"].",
-				"You turn the [src.name] [active? "on":"off"]."
+				SPAN_INFO("[user.name] turns \the [src] [active ? "on" : "off"]."),
+				SPAN_INFO("You turn \the [src] [active ? "on" : "off"].")
 			)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas[/decl/xgm_gas/plasma]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
@@ -51,11 +51,11 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/gas_analyser))
-		to_chat(user, SPAN_INFO("The [W.name] detects that [last_power]W were recently produced."))
+		to_chat(user, SPAN_INFO("\The [W] detects that [last_power]W were recently produced."))
 		return 1
 	else if(istype(W, /obj/item/tank/plasma))
 		if(!src.anchored)
-			to_chat(user, SPAN_WARNING("The [src] needs to be secured to the floor first."))
+			to_chat(user, SPAN_WARNING("\The [src] needs to be secured to the floor first."))
 			return 1
 		if(src.P)
 			to_chat(user, SPAN_WARNING("There's already a plasma tank loaded."))
@@ -75,9 +75,9 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 		src.anchored = !src.anchored
 		user.visible_message(
-			"[user.name] [anchored ? "secures" : "unsecures"] the [src.name].",
-			"You [anchored ? "secure" : "undo"] the external bolts.",
-			"You hear a ratchet."
+			SPAN_NOTICE("[user] [anchored ? "secures" : "unsecures"] \the [src]."),
+			SPAN_NOTICE("You [anchored ? "secure" : "undo"] the external bolts."),
+			SPAN_INFO("You hear a ratchet.")
 		)
 		if(anchored)
 			connect_to_network()

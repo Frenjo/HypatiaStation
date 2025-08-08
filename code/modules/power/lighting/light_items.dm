@@ -110,7 +110,7 @@
 	if(istype(I, /obj/item/reagent_holder/syringe))
 		var/obj/item/reagent_holder/syringe/S = I
 
-		to_chat(user, "You inject the solution into the [src].")
+		to_chat(user, SPAN_INFO("You inject the solution into \the [src]."))
 
 		if(S.reagents.has_reagent("plasma", 5))
 			log_admin("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")

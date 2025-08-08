@@ -12,7 +12,7 @@
 
 /obj/item/slime_potion/pet/attack(mob/living/carbon/slime/M, mob/user)
 	if(!isslime(M)) // If target is not a slime.
-		to_chat(user, SPAN_WARNING("The potion only works on [adults_only ? "adult" : "baby"] slimes!"))
+		to_chat(user, SPAN_WARNING("This potion only works on [adults_only ? "adult" : "baby"] slimes!"))
 		return ..()
 	if(M.stat)
 		to_chat(user, SPAN_WARNING("The slime is dead!"))
@@ -55,7 +55,7 @@
 
 /obj/item/slime_potion/steroid/attack(mob/living/carbon/slime/M, mob/user)
 	if(!isslime(M)) // If target is not a slime.
-		to_chat(user, SPAN_WARNING("The steroid only works on baby slimes!"))
+		to_chat(user, SPAN_WARNING("This steroid only works on baby slimes!"))
 		return ..()
 	if(isslimeadult(M)) // Doesn't work on adults.
 		to_chat(user, SPAN_WARNING("Only baby slimes can use the steroid!"))

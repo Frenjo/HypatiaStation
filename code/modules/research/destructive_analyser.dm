@@ -62,11 +62,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 			qdel(src)
 			return 1
 		else
-			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
+			to_chat(user, SPAN_WARNING("You can't load \the [src] while it's opened."))
 			return 1
 
 	if(!linked_console)
-		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
+		to_chat(user, SPAN_WARNING("\The [src] must be linked to an R&D console first!"))
 		return 1
 
 	if(!isitem(O) || loaded_item)
@@ -89,7 +89,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	loaded_item = O
 	user.drop_item()
 	O.forceMove(src)
-	to_chat(user, SPAN_INFO("You add the [O.name] to the [src.name]!"))
+	to_chat(user, SPAN_INFO("You add \the [O] to \the [src]!"))
 	flick("d_analyser_la", src)
 	spawn(10)
 		icon_state = "d_analyser_l"

@@ -27,7 +27,7 @@
 		if(isnotnull(inserted_battery))
 			to_chat(user, SPAN_WARNING("There is already a battery in \the [src]."))
 			return TRUE
-		to_chat(user, SPAN_INFO("You insert [I] into [src]."))
+		to_chat(user, SPAN_INFO("You insert \the [I] into \the [src]."))
 		user.drop_item()
 		I.forceMove(src)
 		inserted_battery = I

@@ -450,12 +450,12 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.glasses, /obj/item/clothing/glasses/meson))
-					to_chat(H, SPAN_INFO("You look directly into The [src.name], good thing you had your protective eyewear on!"))
+					to_chat(H, SPAN_INFO("You look directly into \the [src], good thing you had your protective eyewear on!"))
 					return
-		to_chat(M, SPAN_WARNING("You look directly into The [src.name] and feel weak."))
+		to_chat(M, SPAN_WARNING("You look directly into \the [src] and feel weak."))
 		M.apply_effect(3, STUN)
 		for(var/mob/O in viewers(M, null))
-			O.show_message(SPAN_DANGER("[M] stares blankly at the [src]!"), 1)
+			O.show_message(SPAN_DANGER("[M] stares blankly at \the [src]!"), 1)
 	return
 
 /obj/singularity/proc/emp_area()

@@ -19,7 +19,7 @@
 		return TRUE
 
 	if(istype(I, /obj/item/diseasedisk))
-		to_chat(user, SPAN_INFO("You upload the contents of the disk into the buffer."))
+		to_chat(user, SPAN_INFO("You upload the contents of \the [I] into \the [src]'s buffer."))
 		var/obj/item/diseasedisk/disk = I
 		memorybank = disk.effect
 		return TRUE

@@ -82,7 +82,7 @@
 		var/new_label = input("What should the new label be?", "Label Solution Tray")
 		if(isnotnull(new_label))
 			name = "solution tray ([new_label])"
-			to_chat(user, SPAN_INFO("You label the solution tray using \the [I]."))
+			to_chat(user, SPAN_INFO("You label \the [src] using \the [I]."))
 		return TRUE
 
 	return ..()

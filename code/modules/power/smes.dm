@@ -190,7 +190,7 @@
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if(user.loc == loc)
-		to_chat(user, SPAN_WARNING("You must not be on the same tile as the [src]."))
+		to_chat(user, SPAN_WARNING("You must not be on the same tile as \the [src]."))
 		return 1
 
 	//Direction the terminal will face to
@@ -202,13 +202,13 @@
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
 	if(isspace(tempLoc))
-		to_chat(user, SPAN_WARNING("You can't build a terminal on space."))
+		to_chat(user, SPAN_WARNING("You can't build a terminal in space!"))
 		return 1
 	else if(istype(tempLoc))
 		if(tempLoc.intact)
 			to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 			return 1
-	to_chat(user, SPAN_NOTICE("You start adding cable to the SMES."))
+	to_chat(user, SPAN_NOTICE("You start adding cables to \the [src]."))
 	if(do_after(user, 50))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.set_dir(tempDir)

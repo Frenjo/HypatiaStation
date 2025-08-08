@@ -97,7 +97,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 
 /obj/machinery/message_server/attack_hand(mob/user)
 //	user << "\blue There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."
-	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"].")
+	to_chat(user, SPAN_INFO("You toggle PDA message passing from [active ? "on" : "off"] to [active ? "off" : "on"]."))
 	active = !active
 	update_icon()
 	return

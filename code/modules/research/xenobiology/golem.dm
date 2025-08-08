@@ -107,7 +107,7 @@
 		ghost = O
 		break
 	if(!ghost)
-		to_chat(user, "The rune fizzles uselessly. There is no spirit nearby.")
+		to_chat(user, SPAN_DEADSAY("The rune fizzles uselessly. There is no spirit nearby."))
 		return
 	var/mob/living/carbon/human/G = new /mob/living/carbon/human
 	G.dna.mutantrace = "adamantine"
@@ -123,7 +123,7 @@
 		if(G.client)
 			var/area/A = GET_AREA(src)
 			if(isnotnull(A))
-				to_chat(G, "Golem rune created in [A.name].")
+				to_chat(G, SPAN_DEADSAY("<em>Golem rune created in [A.name].</em>"))
 
 // Adamanatine Golem outfit
 /decl/hierarchy/outfit/adamantine_golem

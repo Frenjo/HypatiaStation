@@ -44,7 +44,7 @@
 		else if(occupant != user)
 			to_chat(user, SPAN_WARNING("\The [occupant] was faster. Try better next time, loser."))
 	else
-		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
+		to_chat(user, SPAN_INFO("You stop entering \the [src]."))
 	return TRUE
 
 /obj/mecha/combat/eidolon/go_out()
