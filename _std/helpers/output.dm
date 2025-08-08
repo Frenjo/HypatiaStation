@@ -1,28 +1,13 @@
-/*
- * Output Macros
- */
-#define TO_WORLD_LOG(X) world.log << X
-#define SOUND_TO(TARGET, SOUND) TARGET << SOUND
-#define TO_FILE(FILE, VAR) FILE << VAR
-#define SHOW_BROWSER(TARGET, CONTENT, OPTIONS) TARGET << browse(CONTENT, OPTIONS)
-#define CLOSE_BROWSER(TARGET, NAME) TARGET << browse(null, NAME)
-#define SEND_RSC(TARGET, CONTENT, NAME) TARGET << browse_rsc(CONTENT, NAME)
-#define OPEN_LINK(TARGET, URL) TARGET << link(URL)
-#define OPEN_FILE(TARGET, FILE) TARGET << run(FILE)
-#define TO_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] << VALUE
-#define FROM_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] >> VALUE
-#define TO_OUTPUT(TARGET, CONTENT, ARGUMENTS) TARGET << output(CONTENT, ARGUMENTS)
-
 // The two procs below are ported from Bay12.
 /proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
 
 /proc/icon2html(thing, target, icon_state, dir, frame = 1, moving = FALSE, realsize = FALSE, class = null)
-	if(!thing)
+	if(isnull(thing))
 		return
 
 	var/icon/I = thing
-	if(!target)
+	if(isnull(target))
 		return
 	if(target == world)
 		target = GLOBL.clients
@@ -46,7 +31,7 @@
 		if(isnull(icon_state))
 			icon_state = A.icon_state
 		I = A.icon
-		if(istype(thing, /mob/living/carbon/human)) // Shitty workaround for a BYOND issue.
+		if(ishuman(thing)) // Shitty workaround for a BYOND issue.
 			var/icon/temp = I
 			I = icon()
 			I.Insert(temp, dir = SOUTH)
@@ -101,7 +86,7 @@
 /proc/to_chat(atom/target, message)
 	if(!message)
 		return
-	if(istype(target, /client))
+	if(isclient(target))
 		var/client/C = target
 		target = C.mob
 	if(istype(target))

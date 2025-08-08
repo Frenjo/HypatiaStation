@@ -1,0 +1,16 @@
+/*
+ * Output Macros
+ *
+ * These are all kinda self explanatory in what they do.
+ */
+#define TO_WORLD_LOG(X) world.log << X
+#define SOUND_TO(TARGET, SOUND) TARGET << SOUND
+#define TO_FILE(FILE, VAR) FILE << VAR
+#define SHOW_BROWSER(TARGET, CONTENT, OPTIONS) TARGET << browse(CONTENT, OPTIONS)
+#define CLOSE_BROWSER(TARGET, NAME) TARGET << browse(null, NAME)
+#define SEND_RSC(TARGET, CONTENT, NAME) TARGET << browse_rsc(CONTENT, NAME)
+#define OPEN_LINK(TARGET, URL) TARGET << link(URL)
+#define OPEN_FILE(TARGET, FILE) TARGET << run(FILE)
+#define TO_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] << VALUE
+#define FROM_SAVEFILE(TARGET, KEY, VALUE) TARGET[KEY] >> VALUE
+#define TO_OUTPUT(TARGET, CONTENT, ARGUMENTS) TARGET << output(CONTENT, ARGUMENTS)
