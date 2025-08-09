@@ -9,6 +9,3 @@
 // The default value for all uses of set background. Set background can cause gradual lag and is recommended you only turn this on if necessary.
 // TRUE will enable set background. FALSE will disable set background.
 #define BACKGROUND_ENABLED FALSE
-
-// Used so the code isn't littered with random sleep(-1) everywhere.
-#define WAIT_FOR_BACKLOG sleep(-1)

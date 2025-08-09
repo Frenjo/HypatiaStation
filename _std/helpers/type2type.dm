@@ -195,17 +195,6 @@
 /proc/angle2text(degree)
 	return dir2text(angle2dir(degree))
 
-/proc/ui_style2icon(ui_style)
-	switch(ui_style)
-		if("old")
-			return 'icons/hud/screen1_old.dmi'
-		if("Orange")
-			return 'icons/hud/screen1_Orange.dmi'
-		if("Midnight")
-			return 'icons/hud/screen1_Midnight.dmi'
-		else
-			return 'icons/hud/screen1_White.dmi'
-
 // Ported from Baystation12 on 27/11/2019. -Frenjo
 // heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 /proc/heat2color(temp)
@@ -234,3 +223,18 @@
 			. = 0
 		else
 			. = max(0, min(255, 138.5177312231 * log(temp - 10) - 305.0447927307))
+
+// Converts a bitfield to a list of numbers (or words if a wordlist is provided)
+/proc/bitfield2list(bitfield = 0, list/wordlist)
+	. = list()
+	if(islist(wordlist))
+		var/max = min(length(wordlist), 16)
+		var/bit = 1
+		for(var/i = 1, i <= max, i++)
+			if(bitfield & bit)
+				. += wordlist[i]
+			bit = bit << 1
+	else
+		for(var/bit = 1, bit <= 65535, bit = bit << 1)
+			if(bitfield & bit)
+				. += bit

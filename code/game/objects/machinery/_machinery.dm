@@ -268,3 +268,6 @@
 
 /obj/machinery/proc/refresh_parts() //Placeholder proc for machines that are built using frames.
 	return 0
+
+/obj/machinery/dd_SortValue()
+	return "[sanitize(name)]"

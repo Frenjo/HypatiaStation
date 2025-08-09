@@ -1,0 +1,4 @@
+#define NUM_E 2.71828183
+#define PI 3.14159265
+#define SQRT_2 1.41421356
+#define INFINITY 1.#INF

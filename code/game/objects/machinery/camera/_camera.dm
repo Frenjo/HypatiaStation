@@ -300,3 +300,6 @@
 
 	user.set_machine(src)
 	wires.Interact(user)
+
+/obj/machinery/camera/dd_SortValue()
+	return "[c_tag]"

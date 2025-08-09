@@ -5,9 +5,6 @@
  * These do sacrifice compactness for readability, but they...
  * ... clearly allow someone to see at first glance exactly what's happening.
  */
-// Allows easily defining a bitflag without putting the << operator everywhere.
-#define BITFLAG(X) (1 << X)
-
 // Atom
 #define SET_ATOM_FLAGS(ATOM, FLAGS) ATOM.atom_flags |= FLAGS
 #define UNSET_ATOM_FLAGS(ATOM, FLAGS) ATOM.atom_flags &= ~FLAGS

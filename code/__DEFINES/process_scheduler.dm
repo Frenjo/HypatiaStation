@@ -18,7 +18,7 @@
 #define SCHECK_EVERY(this_many_calls) if(++src.calls_since_last_scheck >= this_many_calls) sleep_check()
 #define SCHECK sleep_check()
 
-#define TICKS_IN_DAY	864000
+#define TICKS_IN_DAY 864000
 #define TICKS_IN_SECOND 10
 
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
