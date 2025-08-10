@@ -116,7 +116,7 @@
 
 // Cleaner
 /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/cleaner
-	name = "\improper CCL-6 grenade launcher"
+	name = "\improper CCL-6 grenade launcher" // CCL-6 = Custodial Cleaner Launcher with a 6 shot magazine.
 	icon_state = "cleaner_grenade_launcher"
 	matter_amounts = /datum/design/mechfab/equipment/working/cleaner_grenade_launcher::materials
 	origin_tech = /datum/design/mechfab/equipment/working/cleaner_grenade_launcher::req_tech

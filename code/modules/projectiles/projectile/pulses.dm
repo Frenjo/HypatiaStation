@@ -1,5 +1,5 @@
 /obj/item/projectile/energy/pulse/laser
-	name = "laser"
+	name = "laser pulse"
 	icon_state = "laser"
 
 	pass_flags = parent_type::pass_flags | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
@@ -10,29 +10,27 @@
 
 	var/frequency = 1
 
-/obj/item/projectile/energy/pulse/laser/practice
-	name = "laser pulse"
-	icon_state = "laser"
-
-	damage = 0
-	eyeblur = 2
-
 /obj/item/projectile/energy/pulse/laser/heavy
 	name = "heavy laser pulse"
 	icon_state = "heavylaser"
 
-/obj/item/projectile/energy/pulse/laser/death
+/obj/item/projectile/energy/pulse/laser/heavy/death
 	name = "death laser pulse"
-	icon_state = "heavylaser"
 
 	damage = 60
 
+/obj/item/projectile/energy/pulse/laser/practice
+	damage = 0
+	eyeblur = 2
+
+// X-ray
 /obj/item/projectile/energy/pulse/laser/xray
 	name = "xray pulse"
 	icon_state = "xray"
 
 	damage = 30
 
+// Disabler
 /obj/item/projectile/energy/pulse/disabler
 	name = "disabler pulse"
 	icon_state = "bluespark"
@@ -44,6 +42,7 @@
 	weaken = 5
 	agony = 20
 
+// Pulse
 /obj/item/projectile/energy/pulse/pulse
 	name = "pulse"
 	icon_state = "u_laser"
@@ -58,12 +57,26 @@
 
 	damage = 60
 
+// Emitter
 /obj/item/projectile/energy/pulse/emitter
 	name = "emitter pulse"
 	icon_state = "emitter"
 
 	damage = 30
 
+// Sniper
+/obj/item/projectile/energy/pulse/sniper
+	name = "sniper pulse"
+	icon_state = "xray"
+
+	damage = 60
+	stun = 5
+	weaken = 5
+	stutter = 5
+
+/*
+ * Laser Tag Projectiles
+ */
 /obj/item/projectile/energy/pulse/laser/tag/blue
 	name = "lasertag pulse"
 	icon_state = "bluelaser"
@@ -105,12 +118,3 @@
 		if(istype(M.wear_suit, /obj/item/clothing/suit/laser_tag/blue) || istype(M.wear_suit, /obj/item/clothing/suit/laser_tag/red))
 			M.Weaken(5)
 	return 1
-
-/obj/item/projectile/energy/pulse/sniper
-	name = "sniper pulse"
-	icon_state = "xray"
-
-	damage = 60
-	stun = 5
-	weaken = 5
-	stutter = 5

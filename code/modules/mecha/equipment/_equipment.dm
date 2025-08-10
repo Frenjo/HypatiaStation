@@ -130,7 +130,7 @@
 		log_message("Critical failure", 1)
 
 /obj/item/mecha_equipment/proc/get_equip_info()
-	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;"
+	. = "<span style='color:[equip_ready ? "#0f0" : "#f00"]'>*</span> "
 	if(chassis.selected == src)
 		. += "<b>[name]</b>"
 	else if(selectable)

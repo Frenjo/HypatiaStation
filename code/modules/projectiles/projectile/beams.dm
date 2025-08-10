@@ -11,18 +11,13 @@
 
 	var/frequency = 1
 
+// Laser
 /obj/item/projectile/energy/beam/laser
 	name = "laser beam"
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
 	tracer_type = /obj/effect/projectile/laser/tracer
 	impact_type = /obj/effect/projectile/laser/impact
-
-/obj/item/projectile/energy/beam/laser/practice
-	damage = 0
-	nodamage = TRUE
-
-	eyeblur = 2
 
 /obj/item/projectile/energy/beam/laser/heavy
 	name = "heavy laser beam"
@@ -31,15 +26,18 @@
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
 	impact_type = /obj/effect/projectile/laser_heavy/impact
 
-/obj/item/projectile/energy/beam/laser/death
+/obj/item/projectile/energy/beam/laser/heavy/death
 	name = "death laser beam"
 
 	damage = 60
 
-	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
-	tracer_type = /obj/effect/projectile/laser_heavy/tracer
-	impact_type = /obj/effect/projectile/laser_heavy/impact
+/obj/item/projectile/energy/beam/laser/practice
+	damage = 0
+	nodamage = TRUE
 
+	eyeblur = 2
+
+// X-ray
 /obj/item/projectile/energy/beam/laser/xray
 	name = "xray laser beam"
 
@@ -49,6 +47,7 @@
 	tracer_type = /obj/effect/projectile/xray/tracer
 	impact_type = /obj/effect/projectile/xray/impact
 
+// Disabler
 /obj/item/projectile/energy/beam/disabler
 	name = "disabler beam"
 
@@ -61,6 +60,7 @@
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
 	impact_type = /obj/effect/projectile/laser_omni/impact
 
+// Pulse
 /obj/item/projectile/energy/beam/pulse
 	name = "pulse beam"
 
@@ -70,6 +70,7 @@
 	tracer_type = /obj/effect/projectile/laser_pulse/tracer
 	impact_type = /obj/effect/projectile/laser_pulse/impact
 
+// Emitter
 /obj/item/projectile/energy/beam/emitter
 	name = "emitter beam"
 
@@ -79,6 +80,7 @@
 	tracer_type = /obj/effect/projectile/emitter/tracer
 	impact_type = /obj/effect/projectile/emitter/impact
 
+// Sniper
 /obj/item/projectile/energy/beam/sniper
 	name = "sniper beam"
 

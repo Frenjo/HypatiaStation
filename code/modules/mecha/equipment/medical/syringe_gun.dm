@@ -46,7 +46,7 @@
 /obj/item/mecha_equipment/medical/syringe_gun/get_equip_info()
 	if(isnull(reagents))
 		return ""
-	. = "[..()] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode ? "Analyse" : "Launch"]</a>\]<br>\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
+	. = "[..()] \[<a href='byond://?src=\ref[src];toggle_mode=1'>[mode ? "Analyse" : "Launch"]</a>\]<br>\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
 
 /obj/item/mecha_equipment/medical/syringe_gun/action(atom/movable/target)
 	if(!..())
@@ -211,9 +211,9 @@
 /obj/item/mecha_equipment/medical/syringe_gun/proc/get_current_reagents()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.volume > 0)
-			. += "[R]: [round(R.volume, 0.001)] - <a href=\"?src=\ref[src];purge_reagent=[R.type]\">Purge Reagent</a><br />"
+			. += "[R]: [round(R.volume, 0.001)] - <a href='byond://?src=\ref[src];purge_reagent=[R.type]'>Purge Reagent</a><br />"
 	if(.)
-		. += "Total: [round(reagents.total_volume, 0.001)] / [reagents.maximum_volume] - <a href=\"?src=\ref[src];purge_all=1\">Purge All</a>"
+		. += "Total: [round(reagents.total_volume, 0.001)] / [reagents.maximum_volume] - <a href='byond://?src=\ref[src];purge_all=1'>Purge All</a>"
 	return . || "None"
 
 /obj/item/mecha_equipment/medical/syringe_gun/proc/load_syringe(obj/item/reagent_holder/syringe/S)

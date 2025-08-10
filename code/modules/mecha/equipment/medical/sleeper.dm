@@ -192,7 +192,7 @@
 	if(isnotnull(SG) && isnotnull(SG.reagents) && islist(SG.reagents.reagent_list))
 		for(var/datum/reagent/R in SG.reagents.reagent_list)
 			if(R.volume > 0)
-				. += "<a href=\"?src=\ref[src];inject=\ref[R];source=\ref[SG]\">Inject [R.name]</a><br />"
+				. += "<a href='byond://?src=\ref[src];inject=\ref[R];source=\ref[SG]'>Inject [R.name]</a><br />"
 
 /obj/item/mecha_equipment/medical/sleeper/proc/inject_reagent(datum/reagent/R, obj/item/mecha_equipment/medical/syringe_gun/SG)
 	if(isnull(R) || isnull(patient) || isnull(SG) || !(SG in chassis.equipment))
