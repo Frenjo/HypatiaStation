@@ -44,7 +44,7 @@
 		var/should_be_bold = ((job.title in GLOBL.command_positions) || job.title == "AI") // Bold head jobs and AI.
 		if(job.alt_titles)
 			var/formatted_title = should_be_bold ? "<b>[GetPlayerAltTitle(job)]</b>" : GetPlayerAltTitle(job)
-			dat += "<a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">[formatted_title]</a>"
+			dat += "<a href='byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]'>[formatted_title]</a>"
 		else
 			dat += should_be_bold ? "<font color='black'><b>[job.title]</b></font>" : "<font color='black'>[job.title]</font>"
 		dat += "</td><td width='40%'>"

@@ -106,15 +106,15 @@
 	dat += "<tt><center>"
 	dat += "<b>Choose disabilities</b><br>"
 
-	dat += "Need Glasses? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=0\">[disabilities & (1<<0) ? "Yes" : "No"]</a><br>"
-	dat += "Seizures? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=1\">[disabilities & (1<<1) ? "Yes" : "No"]</a><br>"
-	dat += "Coughing? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=2\">[disabilities & (1<<2) ? "Yes" : "No"]</a><br>"
-	dat += "Tourettes/Twitching? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=3\">[disabilities & (1<<3) ? "Yes" : "No"]</a><br>"
-	dat += "Nervousness? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=4\">[disabilities & (1<<4) ? "Yes" : "No"]</a><br>"
-	dat += "Deafness? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=5\">[disabilities & (1<<5) ? "Yes" : "No"]</a><br>"
+	dat += "Need Glasses? <a href='byond://?src=\ref[user];preferences=1;disabilities=0'>[disabilities & (1<<0) ? "Yes" : "No"]</a><br>"
+	dat += "Seizures? <a href='byond://?src=\ref[user];preferences=1;disabilities=1'>[disabilities & (1<<1) ? "Yes" : "No"]</a><br>"
+	dat += "Coughing? <a href='byond://?src=\ref[user];preferences=1;disabilities=2'>[disabilities & (1<<2) ? "Yes" : "No"]</a><br>"
+	dat += "Tourettes/Twitching? <a href='byond://?src=\ref[user];preferences=1;disabilities=3'>[disabilities & (1<<3) ? "Yes" : "No"]</a><br>"
+	dat += "Nervousness? <a href='byond://?src=\ref[user];preferences=1;disabilities=4'>[disabilities & (1<<4) ? "Yes" : "No"]</a><br>"
+	dat += "Deafness? <a href='byond://?src=\ref[user];preferences=1;disabilities=5'>[disabilities & (1<<5) ? "Yes" : "No"]</a><br>"
 
 	dat += "<br>"
-	dat += "<a href=\"byond://?src=\ref[user];preferences=1;disabilities=-2\">\[Done\]</a>"
+	dat += "<a href='byond://?src=\ref[user];preferences=1;disabilities=-2'>\[Done\]</a>"
 	dat += "</center></tt>"
 
 	CLOSE_BROWSER(user, "window=preferences")

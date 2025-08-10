@@ -4,7 +4,7 @@
 
 	var/html = "<b>Select your Skills</b><br>"
 	html += "Current skill level: <b>[calculate_skill_class(used_skillpoints, age)]</b> ([used_skillpoints])<br>"
-	html += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
+	html += "<a href='byond://?src=\ref[user];preference=skills;preconfigured=1;'>Use preconfigured skillset</a><br>"
 	html += "<hr>"
 
 	html += "<table>"
@@ -28,7 +28,7 @@
 	html += "</table>"
 
 	html += "<hr>"
-	html += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
+	html += "<a href='byond://?src=\ref[user];preference=skills;cancel=1'>\[Done\]</a>"
 
 	var/datum/browser/panel = new /datum/browser(user, "show_skills", "", 640, 780)
 	panel.set_content(html)

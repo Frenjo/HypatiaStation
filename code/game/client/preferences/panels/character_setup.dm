@@ -182,9 +182,9 @@
 	. = "<div align='center'>"
 	if(path)
 		. += "Slot <b>[slot_name]</b> - "
-		. += "<a href=\"byond://?src=\ref[user];preference=open_load_dialog\">Load slot</a> - "
-		. += "<a href=\"byond://?src=\ref[user];preference=save\">Save slot</a> - "
-		. += "<a href=\"byond://?src=\ref[user];preference=reload\">Reload slot</a>"
+		. += "<a href='byond://?src=\ref[user];preference=open_load_dialog'>Load slot</a> - "
+		. += "<a href='byond://?src=\ref[user];preference=save'>Save slot</a> - "
+		. += "<a href='byond://?src=\ref[user];preference=reload'>Reload slot</a>"
 	else
 		. += "Please create an account to save your preferences."
 	. += "<hr>"
@@ -193,10 +193,10 @@
 	if(jobban_isbanned(user, "Records"))
 		. += "<font color='red'><b><s><a>Character Records</a></s></b></font> - "
 	else
-		. += "<a href=\"byond://?src=\ref[user];preference=records\"><b>Character Records</b></a> - "
-	. += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Skills</b> (<i>[calculate_skill_class(used_skillpoints, age)] [used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a> - "
-	. += "<a href=\"byond://?src=\ref[user];preference=specialroles\"><b>Special Roles</b></a> - "
-	. += "<a href=\"byond://?src=\ref[user];preference=uipreferences\"><b>UI Preferences</b></a>"
+		. += "<a href='byond://?src=\ref[user];preference=records'><b>Character Records</b></a> - "
+	. += "\t<a href='byond://?src=\ref[user];preference=skills'><b>Skills</b> (<i>[calculate_skill_class(used_skillpoints, age)] [used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a> - "
+	. += "<a href='byond://?src=\ref[user];preference=specialroles'><b>Special Roles</b></a> - "
+	. += "<a href='byond://?src=\ref[user];preference=uipreferences'><b>UI Preferences</b></a>"
 	. += "<hr>"
 	. += "</div>"
 

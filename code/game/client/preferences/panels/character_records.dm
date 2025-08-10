@@ -2,7 +2,7 @@
 	var/html = "<div align='center'><b>Set Character Records</b>"
 	html += "<hr>"
 
-	html += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a>"
+	html += "<a href='byond://?src=\ref[user];preference=records;task=med_record'>Medical Records</a>"
 	html += "<br>"
 	if(length(med_record) <= 40)
 		html += "[med_record]"
@@ -11,7 +11,7 @@
 
 	html += "<br>"
 	html += "<br>"
-	html += "<a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a>"
+	html += "<a href='byond://?src=\ref[user];preference=records;task=gen_record'>Employment Records</a>"
 	html += "<br>"
 	if(length(gen_record) <= 40)
 		html += "[gen_record]"
@@ -20,7 +20,7 @@
 
 	html += "<br>"
 	html += "<br>"
-	html += "<a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a>"
+	html += "<a href='byond://?src=\ref[user];preference=records;task=sec_record'>Security Records</a>"
 	html += "<br>"
 	if(length(sec_record) <= 40)
 		html += "[sec_record]<br>"
@@ -29,7 +29,7 @@
 
 	html += "<br>"
 	html += "<hr>"
-	html += "<a href=\"byond://?src=\ref[user];preference=records;task=close\">\[Done\]</a>"
+	html += "<a href='byond://?src=\ref[user];preference=records;task=close'>\[Done\]</a>"
 	html += "</div>"
 
 	var/datum/browser/panel = new /datum/browser(user, "records", "", 360, 280)

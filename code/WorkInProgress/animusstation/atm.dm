@@ -85,10 +85,10 @@ log transactions
 				dat += "Welcome, [card.registered_name]. You have [card.money] credits deposited.<br>"
 				dat += "Current inserted item value: [inserted] credits.<br><br>"
 				dat += "Please, select action<br>"
-				dat += "<a href=\"?src=\ref[src]&with=1\">Withdraw Physical Credits</a><br/>"
-				dat += "<a href=\"?src=\ref[src]&eca=1\">Eject Inserted Items</a><br/>"
-				dat += "<a href=\"?src=\ref[src]&ins=1\">Convert Inserted Items to Credits</a><br/>"
-				dat += "<a href=\"?src=\ref[src]&lock=1\">Lock ATM</a><br/>"
+				dat += "<a href='?src=\ref[src]&with=1'>Withdraw Physical Credits</a><br/>"
+				dat += "<a href='?src=\ref[src]&eca=1'>Eject Inserted Items</a><br/>"
+				dat += "<a href='?src=\ref[src]&ins=1'>Convert Inserted Items to Credits</a><br/>"
+				dat += "<a href='?src=\ref[src]&lock=1'>Lock ATM</a><br/>"
 			SHOW_BROWSER(user, dat,"window=atm")
 			onclose(user,"close")
 	proc

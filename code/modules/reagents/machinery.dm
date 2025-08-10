@@ -491,14 +491,14 @@
 		else if(href_list["change_pill"])
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href='byond://?src=\ref[src]&pill_sprite=[i]'><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			SHOW_BROWSER(usr, dat, "window=chem_master")
 			return
 		else if(href_list["change_bottle"])
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href='byond://?src=\ref[src]&bottle_sprite=[i]'><img src=\"bottle[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			SHOW_BROWSER(usr, dat, "window=chem_master")
 			return
@@ -568,9 +568,9 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='byond://?src=\ref[src];createpill=1'>Create pill (50 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='byond://?src=\ref[src];createpill=1'>Create pill (50 units max)</A><a href='byond://?src=\ref[src]&change_pill=1'><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='byond://?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];createbottle=1'>Create bottle (30 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle[bottlesprite].png\" /></A>"
+			dat += "<A href='byond://?src=\ref[src];createbottle=1'>Create bottle (30 units max)<a href='byond://?src=\ref[src]&change_bottle=1'><img src=\"bottle[bottlesprite].png\" /></A>"
 		else
 			dat += "<A href='byond://?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
