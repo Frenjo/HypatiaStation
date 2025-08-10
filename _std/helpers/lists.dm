@@ -37,7 +37,7 @@
 				return list[index]
 		else if(index in list)
 			return list[index]
-	return
+	return null
 
 //Return either pick(list) or null if list is not of type /list or is empty
 /proc/safepick(list/list)

@@ -210,8 +210,8 @@
 	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
 
 	if(href_list["make"])
-		var/build_path = topic_filter.getPath("make")
-		var/multiplier = topic_filter.getNum("multiplier")
+		var/build_path = topic_filter.get_path("make")
+		var/multiplier = topic_filter.get_num("multiplier")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(!(D.build_type & DESIGN_TYPE_AUTOLATHE))
 				continue

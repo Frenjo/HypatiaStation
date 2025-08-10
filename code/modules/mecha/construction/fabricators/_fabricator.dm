@@ -367,7 +367,7 @@
 	. = ..()
 	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
 	if(href_list["part_set"])
-		var/tpart_set = topic_filter.getStr("part_set")
+		var/tpart_set = topic_filter.get_str("part_set")
 		if(tpart_set)
 			if(tpart_set == "clear")
 				part_set = null
@@ -375,7 +375,7 @@
 				part_set = tpart_set
 				screen = "parts"
 	if(href_list["part"])
-		var/path = topic_filter.getPath("part")
+		var/path = topic_filter.get_path("part")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
 				if(D.type == path)
@@ -385,7 +385,7 @@
 						add_to_queue(D)
 					break
 	if(href_list["add_to_queue"])
-		var/path = topic_filter.getPath("add_to_queue")
+		var/path = topic_filter.get_path("add_to_queue")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
 				if(D.type == path)
@@ -393,7 +393,7 @@
 					break
 		return update_queue_on_page()
 	if(href_list["remove_from_queue"])
-		remove_from_queue(topic_filter.getNum("remove_from_queue"))
+		remove_from_queue(topic_filter.get_num("remove_from_queue"))
 		return update_queue_on_page()
 	if(href_list["partset_to_queue"])
 		add_part_set_to_queue(topic_filter.get("partset_to_queue"))
@@ -411,8 +411,8 @@
 	if(href_list["screen"])
 		screen = href_list["screen"]
 	if(href_list["queue_move"] && href_list["index"])
-		var/index = topic_filter.getNum("index")
-		var/new_index = index + topic_filter.getNum("queue_move")
+		var/index = topic_filter.get_num("index")
+		var/new_index = index + topic_filter.get_num("queue_move")
 		if(isnum(index) && isnum(new_index))
 			if(InRange(new_index, 1, length(queue)))
 				queue.Swap(index, new_index)
@@ -425,7 +425,7 @@
 		sync()
 		return update_queue_on_page()
 	if(href_list["part_desc"])
-		var/path = topic_filter.getPath("part_desc")
+		var/path = topic_filter.get_path("part_desc")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
 				if(D.type == path)
@@ -436,8 +436,8 @@
 							"}
 					break
 	if(href_list["remove_mat"] && href_list["material"])
-		var/decl/material/mat = topic_filter.getPath("material")
-		temp = "Ejected [materials.eject_sheets(mat, topic_filter.getNum("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
+		var/decl/material/mat = topic_filter.get_path("material")
+		temp = "Ejected [materials.eject_sheets(mat, topic_filter.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()

@@ -86,10 +86,10 @@
 	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
 
 	if(href_list["choose"])
-		chosen = topic_filter.getPath("choose")
+		chosen = topic_filter.get_path("choose")
 
 	if(href_list["chooseAmt"])
-		coinsToProduce = clamp(coinsToProduce + topic_filter.getNum("chooseAmt"), 0, 1000)
+		coinsToProduce = clamp(coinsToProduce + topic_filter.get_num("chooseAmt"), 0, 1000)
 
 	if(href_list["makeCoins"])
 		var/temp_coins = coinsToProduce

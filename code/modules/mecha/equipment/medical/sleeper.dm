@@ -130,7 +130,7 @@
 		onclose(chassis.occupant, "msleeper")
 		return
 	if(topic_filter.get("inject"))
-		inject_reagent(topic_filter.getType("inject", /datum/reagent), topic_filter.getObj("source"))
+		inject_reagent(topic_filter.get_type("inject", /datum/reagent), topic_filter.get_obj("source"))
 
 /obj/item/mecha_equipment/medical/sleeper/proc/get_patient_stats()
 	if(isnull(patient))
