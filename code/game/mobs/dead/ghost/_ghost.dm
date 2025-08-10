@@ -72,9 +72,13 @@
 	if(isnotnull(src) && isnull(key))	//we've transferred to another mob. This ghost should be deleted.
 		qdel(src)
 
-/mob/dead/ghost/Topic(href, href_list)
-	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
+/mob/dead/ghost/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("track"))
+		var/mob/target = locate(topic.get("track")) in GLOBL.mob_list
 		if(isnotnull(target))
 			ManualFollow(target)
 

@@ -100,6 +100,7 @@
 		..()
 
 /obj/machinery/account_database/Topic(href, href_list)
+	. = ..()
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("create_account")

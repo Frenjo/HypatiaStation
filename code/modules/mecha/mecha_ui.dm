@@ -161,7 +161,7 @@
 						<body>
 						<h1>Following keycodes are present in this system:</h1>"}
 	for(var/a in operation_req_access)
-		. += "[get_access_desc(a)] - <a href='byond://?src=\ref[src];del_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Delete</a>"
+		. += "[get_access_desc(a)] - <a href='byond://?src=\ref[src];del_req_access=[a];id_card=\ref[id_card]'>Delete</a>"
 		. += "<br>"
 	. += "<hr>"
 	. += "<h1>Following keycodes were detected on portable device:</h1>"
@@ -171,9 +171,9 @@
 		var/a_name = get_access_desc(a)
 		if(!a_name)
 			continue //there's some strange access without a name
-		. += "[a_name] - <a href='byond://?src=\ref[src];add_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Add</a>"
+		. += "[a_name] - <a href='byond://?src=\ref[src];add_req_access=[a];id_card=\ref[id_card]'>Add</a>"
 		. += "<br>"
-	. += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
+	. += "<hr><a href='byond://?src=\ref[src];finish_req_access=1'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
 	. += "</body></html>"
 	SHOW_BROWSER(user, ., "window=exosuit_add_access")
 	onclose(user, "exosuit_add_access")
@@ -189,9 +189,9 @@
 						</style>
 						</head>
 						<body>
-						[add_req_access ? "<a href='byond://?src=\ref[src];req_access=1;id_card=\ref[id_card];user=\ref[user]'>Edit Operation Keycodes</a>" : null]
-						[maint_access ? "<a href='byond://?src=\ref[src];maint_access=1;id_card=\ref[id_card];user=\ref[user]'>Initiate Maintenance Protocol</a>" : null]
-						[state > 0 ? "<a href='byond://?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>" : null]
+						[add_req_access ? "<a href='byond://?src=\ref[src];req_access=1;id_card=\ref[id_card]'>Edit Operation Keycodes</a>" : null]
+						[maint_access ? "<a href='byond://?src=\ref[src];maint_access=1;id_card=\ref[id_card]'>Initiate Maintenance Protocol</a>" : null]
+						[state > 0 ? "<a href='byond://?src=\ref[src];set_internal_tank_valve=1'>Set Cabin Air Pressure</a>" : null]
 						</body>
 						</html>"}
 	SHOW_BROWSER(user, ., "window=exosuit_maint_console")

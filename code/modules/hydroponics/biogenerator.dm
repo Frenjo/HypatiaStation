@@ -206,6 +206,7 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(usr.stat || usr.restrained())

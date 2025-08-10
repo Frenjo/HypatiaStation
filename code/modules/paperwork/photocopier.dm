@@ -43,6 +43,7 @@
 	return
 
 /obj/machinery/photocopier/Topic(href, href_list)
+	. = ..()
 	if(href_list["copy"])
 		if(copy)
 			for(var/i = 0, i < copies, i++)

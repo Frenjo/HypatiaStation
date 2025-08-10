@@ -120,9 +120,13 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 		dat += "<i>[vw_desc]</i><br><br>"
 	SHOW_BROWSER(user, dat,"window=settings")
 
-/vs_control/Topic(href, href_list)
-	if("changevar" in href_list)
-		ChangeSetting(usr, href_list["changevar"])
+/vs_control/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("changevar"))
+		ChangeSetting(user, topic.get("changevar"))
 
 /vs_control/proc/ChangeSetting(mob/user, ch)
 	var/vw

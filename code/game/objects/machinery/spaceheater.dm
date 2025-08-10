@@ -112,6 +112,7 @@
 	return
 
 /obj/machinery/space_heater/Topic(href, href_list)
+	. = ..()
 	if(usr.stat)
 		return
 	if((in_range(src, usr) && isturf(src.loc)) || issilicon(usr))

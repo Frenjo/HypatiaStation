@@ -1,75 +1,74 @@
 /////////////////
 ///// Topic /////
 /////////////////
-/obj/mecha/Topic(href, href_list)
+/obj/mecha/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
+	if(!.)
+		return FALSE
+	if(user != occupant)
+		return FALSE
+	if(topic.has("close"))
+		return FALSE
+	if(user.stat > 0)
+		return FALSE
 
-	if(usr != occupant)
-		return
-	if(href_list["update_content"])
-		send_byjax(occupant,"exosuit.browser", "content", get_stats_part())
-		return
-	if(href_list["close"])
-		return
-	if(usr.stat > 0)
+	if(topic.has("update_content"))
+		send_byjax(occupant, "exosuit.browser", "content", get_stats_part())
 		return
 
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(href_list["select_equip"])
-		if(usr != occupant)
-			return
-		var/obj/item/mecha_equipment/equip = topic_filter.get_obj("select_equip")
-		if(equip)
+	if(topic.has("select_equip"))
+		var/obj/item/mecha_equipment/equip = topic.get_obj("select_equip")
+		if(isnotnull(equip))
 			selected = equip
 			occupant_message("You switch to [equip]")
 			visible_message("[src] raises [equip]")
-			send_byjax(occupant,"exosuit.browser", "eq_list", get_equipment_list())
+			send_byjax(occupant, "exosuit.browser", "eq_list", get_equipment_list())
 		return
 
-	if(href_list["eject"])
+	if(topic.has("eject"))
 		eject()
 		return
 
-	if(href_list["toggle_lights"])
+	if(topic.has("toggle_lights"))
 		toggle_lights()
 		return
 
-	if(href_list["toggle_airtank"])
+	if(topic.has("toggle_airtank"))
 		toggle_internal_tank()
 		return
 
-	if(href_list["rmictoggle"])
+	if(topic.has("rmictoggle"))
 		radio.broadcasting = !radio.broadcasting
 		send_byjax(occupant, "exosuit.browser", "rmicstate", (radio.broadcasting ? "Engaged" : "Disengaged"))
 		return
 
-	if(href_list["rspktoggle"])
+	if(topic.has("rspktoggle"))
 		radio.listening = !radio.listening
 		send_byjax(occupant, "exosuit.browser", "rspkstate", (radio.listening ? "Engaged" : "Disengaged"))
 		return
 
-	if(href_list["rfreq"])
-		var/new_frequency = (radio.frequency + topic_filter.get_num("rfreq"))
+	if(topic.has("rfreq"))
+		var/new_frequency = (radio.frequency + topic.get_num("rfreq"))
 		if(!radio.freerange || (radio.frequency < 1200 || radio.frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency)
 		radio.radio_connection = register_radio(radio, new_frequency, new_frequency, RADIO_CHAT)
 		send_byjax(occupant, "exosuit.browser", "rfreq", "[format_frequency(radio.frequency)]")
 		return
 
-	if(href_list["port_disconnect"])
+	if(topic.has("port_disconnect"))
 		disconnect_from_port()
 		return
 
-	if(href_list["port_connect"])
+	if(topic.has("port_connect"))
 		connect_to_port()
 		return
 
-	if(href_list["view_log"])
+	if(topic.has("view_log"))
 		SHOW_BROWSER(occupant, get_log_html(), "window=exosuit_log")
 		onclose(occupant, "exosuit_log")
 		return
 
-	if(href_list["change_name"])
+	if(topic.has("change_name"))
 		var/newname = strip_html_simple(input(occupant, "Choose new exosuit name", "Rename exosuit", initial(name)) as text, MAX_NAME_LEN)
 		if(newname && trim(newname))
 			name = newname
@@ -77,72 +76,65 @@
 			alert(occupant, "nope.avi")
 		return
 
-	if(href_list["toggle_id_upload"])
+	if(topic.has("toggle_id_upload"))
 		add_req_access = !add_req_access
 		send_byjax(occupant, "exosuit.browser", "t_id_upload", "[add_req_access ? "L" : "Unl"]ock ID upload panel")
 		return
 
-	if(href_list["toggle_maint_access"])
+	if(topic.has("toggle_maint_access"))
 		if(state)
-			occupant_message("<font color='red'>Maintenance protocols in effect</font>")
+			occupant_message(SPAN_WARNING("Maintenance protocols in effect."))
 			return
 		maint_access = !maint_access
 		send_byjax(occupant, "exosuit.browser", "t_maint_access", "[maint_access ? "Forbid" : "Permit"] maintenance protocols")
 		return
 
-	if(href_list["req_access"] && add_req_access)
-		if(!in_range(src, usr))
-			return
-		output_access_dialog(topic_filter.get_obj("id_card"), topic_filter.get_mob("user"))
+	if(topic.has("req_access") && add_req_access)
+		output_access_dialog(topic.get_obj("id_card"), user)
 		return
 
-	if(href_list["maint_access"] && maint_access)
-		if(!in_range(src, usr))
+	if(topic.has("maint_access") && maint_access)
+		if(!in_range(src, user))
 			return
-		var/mob/user = topic_filter.get_mob("user")
-		if(user)
-			if(state == 0)
-				state = 1
-				to_chat(user, SPAN_INFO("The securing bolts are now exposed."))
-			else if(state == 1)
-				state = 0
-				to_chat(user, SPAN_INFO("The securing bolts are now hidden."))
-			output_maintenance_dialog(topic_filter.get_obj("id_card"), user)
+		if(state == 0)
+			state = 1
+			to_chat(user, SPAN_INFO("The securing bolts are now exposed."))
+		else if(state == 1)
+			state = 0
+			to_chat(user, SPAN_INFO("The securing bolts are now hidden."))
+		output_maintenance_dialog(topic.get_obj("id_card"), user)
 		return
 
-	if(href_list["set_internal_tank_valve"] && state >= 1)
-		if(!in_range(src, usr))
+	if(topic.has("set_internal_tank_valve") && state >= 1)
+		if(!in_range(src, user))
 			return
-		var/mob/user = topic_filter.get_mob("user")
-		if(user)
-			var/new_pressure = input(user, "Input new output pressure", "Pressure setting", internal_tank_valve) as num
-			if(new_pressure)
-				internal_tank_valve = new_pressure
-				to_chat(user, SPAN_INFO("The internal pressure valve has been set to [internal_tank_valve]kPa."))
+		var/new_pressure = input(user, "Input new output pressure", "Pressure setting", internal_tank_valve) as num
+		if(isnotnull(new_pressure))
+			internal_tank_valve = new_pressure
+			to_chat(user, SPAN_INFO("The internal pressure valve has been set to [internal_tank_valve]kPa."))
 
-	if(href_list["add_req_access"] && add_req_access && topic_filter.get_obj("id_card"))
-		if(!in_range(src, usr))
+	if(topic.has("add_req_access") && add_req_access && topic.get_obj("id_card"))
+		if(!in_range(src, user))
 			return
-		operation_req_access += topic_filter.get_num("add_req_access")
-		output_access_dialog(topic_filter.get_obj("id_card"), topic_filter.get_mob("user"))
+		operation_req_access += topic.get_num("add_req_access")
+		output_access_dialog(topic.get_obj("id_card"), user)
 		return
 
-	if(href_list["del_req_access"] && add_req_access && topic_filter.get_obj("id_card"))
-		if(!in_range(src, usr))
+	if(topic.has("del_req_access") && add_req_access && topic.get_obj("id_card"))
+		if(!in_range(src, user))
 			return
-		operation_req_access -= topic_filter.get_num("del_req_access")
-		output_access_dialog(topic_filter.get_obj("id_card"), topic_filter.get_mob("user"))
+		operation_req_access -= topic.get_num("del_req_access")
+		output_access_dialog(topic.get_obj("id_card"), user)
 		return
 
-	if(href_list["finish_req_access"])
-		if(!in_range(src, usr))
+	if(topic.has("finish_req_access"))
+		if(!in_range(src, user))
 			return
 		add_req_access = 0
-		var/mob/user = topic_filter.get_mob("user")
 		CLOSE_BROWSER(user,"window=exosuit_add_access")
 		return
 
-	if(href_list["dna_lock"])
+	if(topic.has("dna_lock"))
 		if(isbrain(occupant))
 			occupant_message("You are a brain. No.")
 			return
@@ -151,21 +143,27 @@
 			occupant_message("You feel a prick as the needle takes your DNA sample.")
 		return
 
-	if(href_list["reset_dna"])
+	if(topic.has("reset_dna"))
 		dna = null
+		return
 
-	if(href_list["repair_int_control_lost"])
+	if(topic.has("repair_int_control_lost"))
 		occupant_message("Recalibrating coordination system.")
 		log_message("Recalibration of coordination system started.")
 		var/T = loc
 		if(do_after(occupant, 10 SECONDS))
 			if(T == loc)
 				clear_internal_damage(MECHA_INT_CONTROL_LOST)
-				occupant_message("<font color='blue'>Recalibration successful.</font>")
+				occupant_message(SPAN_INFO("Recalibration successful."))
 				log_message("Recalibration of coordination system finished with 0 errors.")
 			else
-				occupant_message("<font color='red'>Recalibration failed.</font>")
-				log_message("Recalibration of coordination system failed with 1 error.",1)
+				occupant_message(SPAN_WARNING("Recalibration failed."))
+				log_message("Recalibration of coordination system failed with 1 error.", 1)
+		return
+
+/*
+/obj/mecha/Topic(href, href_list)
+	. = ..()
 
 	//debug
 	/*
@@ -226,3 +224,4 @@
 			occupant = cur_occupant
 */
 	return
+*/

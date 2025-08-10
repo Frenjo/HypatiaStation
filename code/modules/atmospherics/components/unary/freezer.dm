@@ -76,6 +76,7 @@
 		ui.set_auto_update()
 
 /obj/machinery/atmospherics/unary/cold_sink/freezer/Topic(href, href_list)
+	. = ..()
 	if(href_list["toggleStatus"])
 		on = !on
 		update_icon()

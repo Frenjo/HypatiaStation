@@ -103,10 +103,11 @@ Version 1 changes (from version 0):
 	CLOSE_BROWSER(target, "window=\ref[src]")
 	return ..()
 
-/sd_alert/Topic(href, list/params)
-	if(usr.client != target)
+/sd_alert/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(user.client != target)
 		return
-	response = params["clk"]
+	response = topic.get("clk")
 
 /sd_alert/proc/Display(message, title, list/buttons, default, unfocus, size, table, style, select, flags)
 	if(unfocus)

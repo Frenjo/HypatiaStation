@@ -176,6 +176,7 @@
 	onclose(user, "dormitory")
 
 /obj/machinery/telecoms/Topic(href, href_list)
+	. = ..()
 	if(!issilicon(usr))
 		if(!ismultitool(usr.get_active_hand()))
 			return

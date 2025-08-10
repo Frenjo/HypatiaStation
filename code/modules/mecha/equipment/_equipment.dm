@@ -164,8 +164,12 @@
 		return FALSE
 	return TRUE
 
-/obj/item/mecha_equipment/Topic(href, href_list)
-	if(href_list["detach"])
+/obj/item/mecha_equipment/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("detach"))
 		detach()
 
 /obj/item/mecha_equipment/proc/set_ready_state(state)

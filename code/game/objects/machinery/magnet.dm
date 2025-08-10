@@ -273,6 +273,7 @@
 	onclose(user, "magnet")
 
 /obj/machinery/magnetic_controller/Topic(href, href_list)
+	. = ..()
 	if(stat & (BROKEN | NOPOWER))
 		return
 	usr.set_machine(src)

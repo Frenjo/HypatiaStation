@@ -23,13 +23,13 @@
 	panel.set_content(html)
 	panel.open()
 
-/datum/preferences/proc/process_character_slots_panel(mob/user, list/href_list)
-	switch(href_list["task"])
+/datum/preferences/proc/process_character_slots_panel(mob/user, datum/topic_input/topic)
+	switch(topic.get("task"))
 		if("close")
 			CLOSE_BROWSER(user, "window=saves")
 			return
 		if("change_slot")
-			load_character(text2num(href_list["num"]))
+			load_character(topic.get_num("num"))
 
 	// Triggers both relevant panels to update after clicking an option.
 	character_setup_panel(user)

@@ -27,12 +27,16 @@
 		. += "Nothing"
 	. += "</div>"
 
-/obj/mecha/working/Topic(href, href_list)
+/obj/mecha/working/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["drop_from_cargo"])
-		var/atom/movable/mover = locate(href_list["drop_from_cargo"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("drop_from_cargo"))
+		var/atom/movable/mover = topic.get_and_locate("drop_from_cargo")
 		if(isnotnull(mover) && (mover in cargo))
 			occupant_message(SPAN_INFO("You unload [mover]."))
 			mover.forceMove(GET_TURF(src))
 			cargo.Remove(mover)
 			log_message("Unloaded [mover]. Cargo compartment capacity: [cargo_capacity - length(cargo)]")
+		return

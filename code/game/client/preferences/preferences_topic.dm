@@ -1,24 +1,24 @@
-/datum/preferences/proc/process_link(mob/user, list/href_list)
+/datum/preferences/proc/process_link(mob/user, datum/topic_input/topic)
 	if(isnull(user) || !isnewplayer(user))
 		return
 
-	switch(href_list["preference"])
+	switch(topic.get("preference"))
 		if("saves")
-			return process_character_slots_panel(user, href_list)
+			return process_character_slots_panel(user, topic)
 		if("job")
-			return process_occupation_choices_panel(user, href_list)
+			return process_occupation_choices_panel(user, topic)
 		if("records")
-			return process_character_records_panel(user, href_list)
+			return process_character_records_panel(user, topic)
 		if("skills")
-			return process_set_skills_panel(user, href_list)
+			return process_set_skills_panel(user, topic)
 		if("specialroles")
-			return process_special_roles_panel(user, href_list)
+			return process_special_roles_panel(user, topic)
 		if("uipreferences")
-			return process_ui_preferences_panel(user, href_list)
+			return process_ui_preferences_panel(user, topic)
 
-	switch(href_list["task"])
+	switch(topic.get("task"))
 		if("random")
-			switch(href_list["preference"])
+			switch(topic.get("preference"))
 				if("name")
 					real_name = random_name(gender)
 				if("age")
@@ -55,7 +55,7 @@
 				if("all")
 					randomize_appearance_for()	//no params needed
 		if("input")
-			switch(href_list["preference"])
+			switch(topic.get("preference"))
 				if("name")
 					var/new_name = reject_bad_name(input(user, "Choose your character's name:", "Character Preference") as text | null)
 					if(new_name)
@@ -271,9 +271,10 @@
 						flavor_text = msg
 
 				if("disabilities")
-					if(text2num(href_list["disabilities"]) >= -1)
-						if(text2num(href_list["disabilities"]) >= 0)
-							disabilities ^= (1 << text2num(href_list["disabilities"])) //MAGIC
+					var/new_disabilities = topic.get_num("disabilities")
+					if(new_disabilities >= -1)
+						if(new_disabilities >= 0)
+							disabilities ^= (1 << new_disabilities) //MAGIC
 						SetDisabilities(user)
 						return
 					else
@@ -371,7 +372,7 @@
 					spawnpoint = choice
 
 		else
-			switch(href_list["preference"])
+			switch(topic.get("preference"))
 				if("open_load_dialog")
 					if(!IsGuestKey(user.key))
 						character_slots_panel(user)

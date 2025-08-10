@@ -49,9 +49,12 @@
 	. += ..()
 
 //Modified phazon code
-/obj/mecha/working/hoverpod/Topic(href, href_list)
+/obj/mecha/working/hoverpod/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["stabilisation"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("stabilisation"))
 		stabilisation = !stabilisation
 		balloon_alert(occupant, "[stabilisation ? "en" : "dis"]abled stabilisation")
 		send_byjax(occupant, "exosuit.browser", "stabilisation_command", "[stabilisation ? "Dis" : "En"]able Thruster Stabilisation")

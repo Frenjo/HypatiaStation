@@ -104,6 +104,7 @@
 	SHOW_BROWSER(user, dat, "window=alien_replicator")
 
 /obj/machinery/replicator/Topic(href, href_list)
+	. = ..()
 	if(href_list["activate"])
 		var/index = text2num(href_list["activate"])
 		if(index > 0 && index <= length(construction))

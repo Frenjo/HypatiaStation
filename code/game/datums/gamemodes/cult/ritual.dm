@@ -301,6 +301,8 @@ var/engwords = list(
 				"}
 
 /obj/item/tome/Topic(href, list/href_list)
+	. = ..()
+
 	if(src.loc == usr)
 		var/number = text2num(href_list["number"])
 		if(usr.stat|| usr.restrained())

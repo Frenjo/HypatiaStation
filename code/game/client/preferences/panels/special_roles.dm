@@ -32,8 +32,8 @@
 	panel.set_content(html)
 	panel.open()
 
-/datum/preferences/proc/process_special_roles_panel(mob/user, list/href_list)
-	switch(href_list["task"])
+/datum/preferences/proc/process_special_roles_panel(mob/user, datum/topic_input/topic)
+	switch(topic.get("task"))
 		if("close")
 			CLOSE_BROWSER(user, "window=specialroles")
 			character_setup_panel(user)
@@ -48,7 +48,7 @@
 				uplinklocation = "PDA"
 
 		if("be_special")
-			be_special ^= (1 << text2num(href_list["num"]))
+			be_special ^= (1 << topic.get_num("num"))
 
 	special_roles_panel(user) // Refreshes the panel so things update.
 

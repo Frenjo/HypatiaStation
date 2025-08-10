@@ -76,28 +76,36 @@
 				if(player.ready)
 					totalPlayersReady++
 
-/mob/dead/new_player/Topic(href, list/href_list)
-	if(isnull(client))
-		return 0
+/mob/dead/new_player/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["show_preferences"])
+	if(topic.has("show_preferences"))
 		client.prefs.character_setup_panel(src)
-		return 1
+		return
 
-	if(href_list["ready"])
+	if(topic.has("ready"))
 		if(global.PCticker?.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = !ready
 		else
 			ready = FALSE
-
-	if(href_list["refresh"])
-		CLOSE_BROWSER(src, "window=playersetup") //closes the player setup window
 		new_player_panel()
+		return
 
-	if(href_list["observe"])
+	if(topic.has("refresh"))
+		CLOSE_BROWSER(src, "window=playersetup") // Closes the player setup window.
+		new_player_panel()
+		return
+
+	if(!ready && topic.has("preference"))
+		client.prefs.process_link(src, topic)
+		return
+
+	if(topic.has("observe"))
 		if(alert(src, "Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!", "Player Setup", "Yes", "No") == "Yes")
 			if(isnull(client))
-				return 1
+				return
 			var/mob/dead/ghost/observer = new /mob/dead/ghost()
 
 			spawning = TRUE
@@ -128,36 +136,38 @@
 			observer.key = key
 			qdel(src)
 
-			return 1
+			return
 
-	if(href_list["late_join"])
+	if(topic.has("late_join"))
 		if(global.PCticker?.current_state != GAME_STATE_PLAYING)
-			to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
+			to_chat(user, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
 
 		if(client.prefs.species != SPECIES_HUMAN)
 			if(!is_alien_whitelisted(src, client.prefs.species) && CONFIG_GET(/decl/configuration_entry/usealienwhitelist))
 				src << alert("You are currently not whitelisted to play [client.prefs.species].")
-				return 0
+				return
 
 		late_join_choices_panel()
+		return
 
-	if(href_list["manifest"])
-		GLOBL.data_core.show_manifest_to(usr, is_ooc = TRUE)
+	if(topic.has("manifest"))
+		GLOBL.data_core.show_manifest_to(user, is_ooc = TRUE)
+		return
 
-	if(href_list["SelectedJob"])
+	if(topic.has("SelectedJob"))
 		if(!GLOBL.enter_allowed)
-			to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
+			to_chat(user, SPAN_INFO("There is an administrative lock on entering the game!"))
 			return
 
 		if(!is_alien_whitelisted(src, client.prefs.species) && CONFIG_GET(/decl/configuration_entry/usealienwhitelist))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
 			return 0
 
-		attempt_late_spawn(href_list["SelectedJob"], client.prefs.spawnpoint)
+		attempt_late_spawn(topic.get("SelectedJob"), client.prefs.spawnpoint)
 		return
 
-	if(href_list["privacy_poll"])
+	if(topic.has("privacy_poll"))
 		establish_db_connection()
 		if(!GLOBL.dbcon.IsConnected())
 			return
@@ -172,7 +182,7 @@
 
 		//This is a safety switch, so only valid options pass through
 		var/option = "UNKNOWN"
-		switch(href_list["privacy_poll"])
+		switch(topic.get("privacy_poll"))
 			if("signed")
 				option = "SIGNED"
 			if("anonymous")
@@ -180,7 +190,7 @@
 			if("nostats")
 				option = "NOSTATS"
 			if("later")
-				CLOSE_BROWSER(usr,"window=privacypoll")
+				CLOSE_BROWSER(user, "window=privacypoll")
 				return
 			if("abstain")
 				option = "ABSTAIN"
@@ -192,67 +202,63 @@
 			var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
 			var/DBQuery/query_insert = GLOBL.dbcon.NewQuery(sql)
 			query_insert.Execute()
-			to_chat(usr, "<b>Thank you for your vote!</b>")
-			CLOSE_BROWSER(usr, "window=privacypoll")
+			to_chat(user, "<b>Thank you for your vote!</b>")
+			CLOSE_BROWSER(user, "window=privacypoll")
+		return
 
-	if(!ready && href_list["preference"])
-		if(client)
-			client.prefs.process_link(src, href_list)
-	else if(!href_list["late_join"])
-		new_player_panel()
-
-	if(href_list["showpoll"])
+	if(topic.has("showpoll"))
 		handle_player_polling()
 		return
 
-	if(href_list["pollid"])
-		var/pollid = href_list["pollid"]
+	if(topic.has("pollid"))
+		var/pollid = topic.get_str("pollid")
 		if(istext(pollid))
 			pollid = text2num(pollid)
 		if(isnum(pollid))
-			src.poll_player(pollid)
+			poll_player(pollid)
 		return
 
-	if(href_list["votepollid"] && href_list["votetype"])
-		var/pollid = text2num(href_list["votepollid"])
-		var/votetype = href_list["votetype"]
+	if(topic.has("votepollid") && topic.has("votetype"))
+		var/pollid = topic.get_num("votepollid")
+		var/votetype = topic.get_str("votetype")
 		switch(votetype)
 			if("OPTION")
-				var/optionid = text2num(href_list["voteoptionid"])
+				var/optionid = topic.get_num("voteoptionid")
 				vote_on_poll(pollid, optionid)
 			if("TEXT")
-				var/replytext = href_list["replytext"]
+				var/replytext = topic.get_str("replytext")
 				log_text_poll_reply(pollid, replytext)
 			if("NUMVAL")
-				var/id_min = text2num(href_list["minid"])
-				var/id_max = text2num(href_list["maxid"])
+				var/id_min = topic.get_num("minid")
+				var/id_max = topic.get_num("maxid")
 
-				if((id_max - id_min) > 100)	//Basic exploit prevention
-					to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
+				if((id_max - id_min) > 100) // Basic exploit prevention.
+					to_chat(user, "The option ID difference is too big. Please contact administration or the database admin.")
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(isnotnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
+					if(topic.has("o[optionid]")) // Test if this optionid was replied to.
 						var/rating
-						if(href_list["o[optionid]"] == "abstain")
+						if(topic.get("o[optionid]") == "abstain")
 							rating = null
 						else
-							rating = text2num(href_list["o[optionid]"])
+							rating = topic.get_num("o[optionid]")
 							if(!isnum(rating))
 								return
 
 						vote_on_numval_poll(pollid, optionid, rating)
 			if("MULTICHOICE")
-				var/id_min = text2num(href_list["minoptionid"])
-				var/id_max = text2num(href_list["maxoptionid"])
+				var/id_min = topic.get_num("minoptionid")
+				var/id_max = topic.get_num("maxoptionid")
 
-				if((id_max - id_min) > 100)	//Basic exploit prevention
-					to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
+				if((id_max - id_min) > 100) // Basic exploit prevention.
+					to_chat(user, "The option ID difference is too big. Please contact administration or the database admin.")
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(isnotnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
+					if(topic.has("option_[optionid]")) // Test if this optionid was selected.
 						vote_on_poll(pollid, optionid, 1)
+		return
 
 /mob/dead/new_player/proc/is_job_available(rank)
 	var/datum/job/job = global.CTjobs.get_job(rank)

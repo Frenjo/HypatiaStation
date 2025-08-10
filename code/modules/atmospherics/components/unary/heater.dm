@@ -74,6 +74,7 @@
 		ui.set_auto_update()
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/Topic(href, href_list)
+	. = ..()
 	if(href_list["toggleStatus"])
 		on = !on
 		update_icon()

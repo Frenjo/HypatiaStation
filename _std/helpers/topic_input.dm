@@ -3,9 +3,12 @@
 	VAR_PRIVATE/list/_href_list
 
 /datum/topic_input/New(href, list/href_list)
+	. = ..()
 	_href = href
 	_href_list = href_list.Copy()
-	return
+
+/datum/topic_input/proc/has(i)
+	return isnotnull(_href_list[i])
 
 /datum/topic_input/proc/get(i)
 	return listgetindex(_href_list, i)

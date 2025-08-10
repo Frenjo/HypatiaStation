@@ -36,8 +36,8 @@
 	panel.set_content(html)
 	panel.open()
 
-/datum/preferences/proc/process_character_records_panel(mob/user, list/href_list)
-	switch(href_list["task"])
+/datum/preferences/proc/process_character_records_panel(mob/user, datum/topic_input/topic)
+	switch(topic.get("task"))
 		if("close")
 			CLOSE_BROWSER(user, "window=records")
 			return

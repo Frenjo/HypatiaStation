@@ -99,6 +99,7 @@
 	popup.open()
 
 /obj/structure/janitorialcart/Topic(href, href_list)
+	. = ..()
 	if(!in_range(src, usr))
 		return
 	if(!isliving(usr))

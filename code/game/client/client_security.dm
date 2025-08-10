@@ -54,11 +54,11 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			return prefs.process_link(usr, href_list)
+			return prefs.process_link(usr, new /datum/topic_input(href, href_list))
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 
-	..()	//redirect to hsrc.Topic()
+	return ..() //redirect to hsrc.Topic()
 
 /client/proc/handle_spam_prevention(message, mute_type)
 	if(CONFIG_GET(/decl/configuration_entry/automute_on) && isnull(holder) && last_message == message)

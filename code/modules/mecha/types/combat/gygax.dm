@@ -18,10 +18,14 @@
 	var/overload = FALSE
 	var/overload_coeff = 2
 
-/obj/mecha/combat/gygax/Topic(href, list/href_list)
+/obj/mecha/combat/gygax/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle_leg_overload"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_leg_overload"))
 		toggle_actuator_overload()
+		return
 
 /obj/mecha/combat/gygax/do_move(direction)
 	. = ..()

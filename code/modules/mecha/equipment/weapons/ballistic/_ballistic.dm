@@ -16,7 +16,10 @@
 	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 	log_message("Rearmed [name].")
 
-/obj/item/mecha_equipment/weapon/ballistic/Topic(href, href_list)
+/obj/item/mecha_equipment/weapon/ballistic/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["rearm"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("rearm"))
 		rearm()

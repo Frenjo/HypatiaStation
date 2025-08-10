@@ -47,6 +47,8 @@
 		ui.set_auto_update()
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/Topic(href, href_list)
+	SHOULD_CALL_PARENT(FALSE)
+
 	return
 
 

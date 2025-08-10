@@ -281,20 +281,22 @@
 		zoom_mode = FALSE
 	. = ..()
 
-/obj/mecha/combat/Topic(href, href_list)
+/obj/mecha/combat/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(topic_filter.get("close"))
+	if(!.)
+		return FALSE
+
+	if(topic.has("close"))
 		am = null
 		return
-	if(topic_filter.get("zoom"))
+	if(topic.has("zoom"))
 		toggle_zoom_mode()
 		return
-	if(topic_filter.get("defence_mode"))
+	if(topic.has("defence_mode"))
 		toggle_defence_mode()
 		return
 	/*
-	if(filter.get("saminput"))
+	if(filter.has("saminput"))
 		if(md5(filter.get("saminput")) == am)
 			occupant_message("From the lies of the Antipath, Circuit preserve us.")
 		am = null

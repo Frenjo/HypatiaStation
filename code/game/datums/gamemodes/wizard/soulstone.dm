@@ -52,6 +52,7 @@
 	return
 
 /obj/item/soulstone/Topic(href, href_list)
+	. = ..()
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)
 		CLOSE_BROWSER(U, "window=aicard")

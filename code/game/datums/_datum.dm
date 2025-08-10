@@ -16,3 +16,14 @@
 		global.PCnanoui.close_uis(src)
 
 	return
+
+/datum/Topic(href, list/href_list)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = ..()
+	handle_topic(usr, new /datum/topic_input(href, href_list))
+
+/datum/proc/handle_topic(mob/user, datum/topic_input/topic)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return TRUE

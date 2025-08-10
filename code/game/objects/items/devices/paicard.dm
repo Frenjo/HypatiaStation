@@ -222,6 +222,7 @@
 	return
 
 /obj/item/paicard/Topic(href, href_list)
+	. = ..()
 	if(!usr || usr.stat)
 		return
 

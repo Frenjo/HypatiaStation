@@ -40,7 +40,7 @@
 		A.add_fingerprint(user)
 
 /obj/item/radio/electropack/Topic(href, href_list)
-	//..()
+	. = ..()
 	if(usr.stat || usr.restrained())
 		return
 	if(((ishuman(usr) && ((!global.PCticker || (global.PCticker && global.PCticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && isturf(loc)))))

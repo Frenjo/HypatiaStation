@@ -92,12 +92,17 @@
 	"}
 	. += ..()
 
-/obj/mecha/combat/marauder/Topic(href, href_list)
+/obj/mecha/combat/marauder/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["thrusters"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("thrusters"))
 		toggle_thrusters()
-	if(href_list["smoke"])
+		return
+	if(topic.has("smoke"))
 		smoke()
+		return
 
 /obj/mecha/combat/marauder/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

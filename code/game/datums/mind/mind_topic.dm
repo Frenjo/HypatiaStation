@@ -1,4 +1,6 @@
 /datum/mind/Topic(href, href_list)
+	. = ..()
+
 	if(!check_rights(R_ADMIN))
 		return
 

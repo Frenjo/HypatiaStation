@@ -266,6 +266,7 @@
 		ui.set_auto_update()
 
 /obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
+	. = ..()
 	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict.
 	if(!isturf(loc))
 		return 0

@@ -126,6 +126,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 	onclose(user, "scanner")
 
 /obj/machinery/computer/forensic_scanning/Topic(href, href_list)
+	. = ..()
 	switch(href_list["operation"])
 		if("login")
 			var/mob/M = usr

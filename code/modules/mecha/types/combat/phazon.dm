@@ -78,12 +78,17 @@
 	"}
 	. += ..()
 
-/obj/mecha/combat/phazon/Topic(href, href_list)
+/obj/mecha/combat/phazon/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["phasing"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("phasing"))
 		toggle_phasing()
-	if(href_list["switch_damage_type"])
+		return
+	if(topic.has("switch_damage_type"))
 		switch_damage_type()
+		return
 
 /obj/mecha/combat/phazon/verb/toggle_phasing()
 	set category = "Exosuit Interface"

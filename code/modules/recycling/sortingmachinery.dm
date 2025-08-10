@@ -204,6 +204,7 @@
 	return
 
 /obj/item/dest_tagger/Topic(href, href_list)
+	. = ..()
 	src.add_fingerprint(usr)
 	if(href_list["nextTag"])
 		var/n = text2num(href_list["nextTag"])

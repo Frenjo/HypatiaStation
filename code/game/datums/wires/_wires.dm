@@ -95,53 +95,57 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 	return html
 
-/datum/wires/Topic(href, href_list)
-	..()
-	if(!in_range(holder, usr))
-		return
-	if(!isliving(usr))
-		return
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=wires")
-		usr.unset_machine()
-		return
+/datum/wires/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!in_range(holder, user))
+		return FALSE
+	if(!isliving(user))
+		return FALSE
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=wires")
+		user.unset_machine()
+		return FALSE
+	var/mob/living/L = user
+	if(!CanUse(L))
+		return FALSE
 
-	var/mob/living/L = usr
-	if(CanUse(L) && href_list["action"])
-		var/obj/item/I = L.get_active_hand()
-		holder.add_hiddenprint(L)
-		if(href_list["cut"]) // Toggles the cut/mend status
-			if(iswirecutter(I))
-				var/colour = href_list["cut"]
-				CutWireColour(colour)
+	if(!topic.has("action"))
+		return FALSE
+
+	var/obj/item/I = L.get_active_hand()
+	holder.add_hiddenprint(L)
+	if(topic.has("cut")) // Toggles the cut/mend status
+		if(iswirecutter(I))
+			var/colour = topic.get_str("cut")
+			CutWireColour(colour)
+		else
+			to_chat(L, SPAN_WARNING("You need wirecutters!"))
+
+	else if(topic.has("pulse"))
+		if(ismultitool(I))
+			var/colour = topic.get_str("pulse")
+			PulseColour(colour)
+		else
+			to_chat(L, SPAN_WARNING("You need a multitool!"))
+
+	else if(topic.has("attach"))
+		var/colour = topic.get_str("attach")
+		// Detach
+		if(IsAttached(colour))
+			var/obj/item/O = Detach(colour)
+			if(isnotnull(O))
+				L.put_in_hands(O)
+
+		// Attach
+		else
+			if(istype(I, /obj/item/assembly/signaler))
+				L.drop_item()
+				Attach(colour, I)
 			else
-				to_chat(L, SPAN_ERROR("You need wirecutters!"))
+				to_chat(L, SPAN_WARNING("You need a remote signaller!"))
 
-		else if(href_list["pulse"])
-			if(ismultitool(I))
-				var/colour = href_list["pulse"]
-				PulseColour(colour)
-			else
-				to_chat(L, SPAN_ERROR("You need a multitool!"))
-
-		else if(href_list["attach"])
-			var/colour = href_list["attach"]
-			// Detach
-			if(IsAttached(colour))
-				var/obj/item/O = Detach(colour)
-				if(isnotnull(O))
-					L.put_in_hands(O)
-
-			// Attach
-			else
-				if(istype(I, /obj/item/assembly/signaler))
-					L.drop_item()
-					Attach(colour, I)
-				else
-					to_chat(L, SPAN_ERROR("You need a remote signaller!"))
-
-		// Update Window
-		Interact(usr)
+	// Update Window
+	Interact(user)
 
 //
 // Overridable Procs

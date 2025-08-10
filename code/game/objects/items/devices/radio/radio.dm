@@ -113,7 +113,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			"}
 
 /obj/item/radio/Topic(href, href_list)
-	//..()
+	. = ..()
 	if(usr.stat || !on)
 		return
 

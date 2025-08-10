@@ -132,6 +132,7 @@
 	return
 
 /obj/item/flamethrower/Topic(href, list/href_list)
+	. = ..()
 	if(href_list["close"])
 		usr.unset_machine()
 		CLOSE_BROWSER(usr, "window=flamethrower")

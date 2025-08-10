@@ -238,6 +238,7 @@
 	onclose(user, "")
 
 /obj/machinery/vending/Topic(href, href_list)
+	. = ..()
 	if(stat & (BROKEN | NOPOWER))
 		return
 	if(usr.stat || usr.restrained())

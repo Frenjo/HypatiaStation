@@ -250,41 +250,42 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	onclose(user, "core_gen")
 	user.set_machine(src)
 
-/obj/machinery/power/rust_core/Topic(href, href_list)
-	if(href_list["str"])
-		var/dif = text2num(href_list["str"])
+/obj/machinery/power/rust_core/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("str"))
+		var/dif = topic.get_num("str")
 		field_strength = min(max(field_strength + dif, MIN_FIELD_STR), MAX_FIELD_STR)
-		power_usage[USE_POWER_ACTIVE] = 5 * field_strength	//change to 500 later
-		if(owned_field)
-			owned_field.ChangeFieldStrength(field_strength)
+		power_usage[USE_POWER_ACTIVE] = 5 * field_strength //change to 500 later
+		owned_field?.ChangeFieldStrength(field_strength)
 
-	if(href_list["freq"])
-		var/dif = text2num(href_list["freq"])
+	if(topic.has("freq"))
+		var/dif = topic.get_num("freq")
 		field_frequency = min(max(field_frequency + dif, MIN_FIELD_FREQ), MAX_FIELD_FREQ)
-		if(owned_field)
-			owned_field.ChangeFieldFrequency(field_frequency)
+		owned_field?.ChangeFieldFrequency(field_frequency)
 
-	if(href_list["toggle_active"])
+	if(topic.has("toggle_active"))
 		if(!Startup())
 			Shutdown()
 
-	if(href_list["toggle_remote"])
+	if(topic.has("toggle_remote"))
 		remote_access_enabled = !remote_access_enabled
 
-	if(href_list["new_id_tag"])
-		if(usr)
-			id_tag = input("Enter a new ID tag", "Tokamak core ID tag", id_tag) as text|null
+	if(topic.has("new_id_tag"))
+		if(isnotnull(user))
+			id_tag = input("Enter a new ID tag", "Tokamak core ID tag", id_tag) as text | null
 
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=core_gen")
-		usr.unset_machine()
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=core_gen")
+		user.unset_machine()
 
-	if(href_list["extern_update"])
-		var/obj/machinery/computer/rust_core_control/C = locate(href_list["extern_update"])
-		if(C)
-			C.updateDialog()
+	if(topic.has("extern_update"))
+		var/obj/machinery/computer/rust_core_control/control = topic.get_and_locate("extern_update")
+		control?.updateDialog()
 
-	src.updateDialog()
+	updateDialog()
 
 /obj/machinery/power/rust_core/proc/Startup()
 	if(owned_field)

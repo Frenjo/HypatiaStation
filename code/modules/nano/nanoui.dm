@@ -388,6 +388,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/Topic(href, href_list)
+	. = ..()
 	update_status(FALSE) // update the status
 	if(status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
 		return

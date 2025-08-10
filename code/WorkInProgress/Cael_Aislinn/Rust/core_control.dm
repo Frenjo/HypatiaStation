@@ -102,32 +102,30 @@
 	onclose(user, "core_control")
 	user.set_machine(src)
 
-/obj/machinery/computer/rust_core_control/Topic(href, href_list)
-	..()
+/obj/machinery/computer/rust_core_control/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if( href_list["goto_scanlist"] )
+	if(topic.has("goto_scanlist"))
 		cur_viewed_device = null
+	if(topic.has("manage_individual"))
+		cur_viewed_device = topic.get_and_locate("manage_individual")
 
-	if( href_list["manage_individual"] )
-		cur_viewed_device = locate(href_list["manage_individual"])
-
-	if( href_list["scan"] )
+	if(topic.has("scan"))
 		connected_devices = list()
 		for(var/obj/machinery/power/rust_core/C in range(scan_range, src))
 			if(check_core_status(C))
 				connected_devices.Add(C)
 
-	if( href_list["startup"] )
-		if(cur_viewed_device)
-			cur_viewed_device.Startup()
+	if(topic.has("startup"))
+		cur_viewed_device?.Startup()
+	if(topic.has("shutdown"))
+		cur_viewed_device?.Shutdown()
 
-	if( href_list["shutdown"] )
-		if(cur_viewed_device)
-			cur_viewed_device.Shutdown()
-
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=core_control")
-		usr.unset_machine()
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=core_control")
+		user.unset_machine()
 
 	updateDialog()
 

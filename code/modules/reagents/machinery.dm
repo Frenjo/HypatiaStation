@@ -161,6 +161,7 @@
 		ui.open()
 
 /obj/machinery/chem_dispenser/Topic(href, href_list)
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return 0 // don't update UIs attached to this object
 
@@ -357,6 +358,7 @@
 	return
 
 /obj/machinery/chem_master/Topic(href, href_list)
+	. = ..()
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(usr.stat || usr.restrained())
@@ -632,6 +634,7 @@
 
 
 /obj/machinery/computer/pandemic/Topic(href, href_list)
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(usr.stat || usr.restrained())

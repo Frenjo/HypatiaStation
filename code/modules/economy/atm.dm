@@ -222,6 +222,7 @@ log transactions
 		CLOSE_BROWSER(user,"window=atm")
 
 /obj/machinery/atm/Topic(href, href_list)
+	. = ..()
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("transfer")

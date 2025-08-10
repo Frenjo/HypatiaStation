@@ -34,24 +34,24 @@
 	panel.set_content(html)
 	panel.open()
 
-/datum/preferences/proc/process_set_skills_panel(mob/user, list/href_list)
-	if(href_list["cancel"])
+/datum/preferences/proc/process_set_skills_panel(mob/user, datum/topic_input/topic)
+	if(topic.has("cancel"))
 		CLOSE_BROWSER(user, "window=show_skills")
 		character_setup_panel(user)
 		return
 
-	if(href_list["skillinfo"])
-		var/decl/hierarchy/skill/S = locate(href_list["skillinfo"])
+	if(topic.has("skillinfo"))
+		var/decl/hierarchy/skill/S = topic.get_and_locate("skillinfo")
 		var/HTML = "<b>[S.name]</b><br>[S.desc]"
 		SHOW_BROWSER(user, HTML, "window=\ref[user]skillinfo")
 
-	else if(href_list["setskill"])
-		var/decl/hierarchy/skill/S = locate(href_list["setskill"])
-		var/value = text2num(href_list["newvalue"])
+	else if(topic.has("setskill"))
+		var/decl/hierarchy/skill/S = topic.get_and_locate("setskill")
+		var/value = topic.get_num("newvalue")
 		skills[S.type] = value
 		CalculateSkillPoints()
 
-	else if(href_list["preconfigured"])
+	else if(topic.has("preconfigured"))
 		var/selected = input(user, "Select a skillset", "Skillset") as null | anything in GLOBL.skill_presets
 		if(!selected)
 			return
@@ -63,8 +63,8 @@
 			skills[V] = GLOBL.skill_presets[selected][V]
 		CalculateSkillPoints()
 
-	else if(href_list["setspecialization"])
-		skill_specialization = href_list["setspecialization"]
+	else if(topic.has("setspecialization"))
+		skill_specialization = topic.get_str("setspecialization")
 		CalculateSkillPoints()
 
 	set_skills_panel(user)

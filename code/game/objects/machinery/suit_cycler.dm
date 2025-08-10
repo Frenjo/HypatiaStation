@@ -239,6 +239,7 @@
 	onclose(user, "suit_cycler")
 
 /obj/machinery/suit_cycler/Topic(href, href_list)
+	. = ..()
 	if(href_list["eject_suit"])
 		if(!suit)
 			return

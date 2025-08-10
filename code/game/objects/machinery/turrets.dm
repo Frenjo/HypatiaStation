@@ -552,6 +552,7 @@
 	return attack_hand(user)
 
 /obj/structure/turret/gun_turret/Topic(href, href_list)
+	. = ..()
 	if(href_list["power"])
 		src.on = !src.on
 		if(src.on)

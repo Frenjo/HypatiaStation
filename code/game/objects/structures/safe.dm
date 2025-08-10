@@ -79,6 +79,7 @@ FLOOR SAFES
 	SHOW_BROWSER(user, "<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
 
 /obj/structure/safe/Topic(href, href_list)
+	. = ..()
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr

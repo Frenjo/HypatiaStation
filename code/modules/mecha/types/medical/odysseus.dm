@@ -131,10 +131,14 @@
 	"}
 	. += ..()
 
-/obj/mecha/medical/odysseus/eurymachus/Topic(href, href_list)
+/obj/mecha/medical/odysseus/eurymachus/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["camouflage"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("camouflage"))
 		toggle_camouflage()
+		return
 
 /obj/mecha/medical/odysseus/eurymachus/verb/toggle_camouflage()
 	set category = "Exosuit Interface"

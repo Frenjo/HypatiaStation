@@ -108,8 +108,8 @@
 
 	. += "</div>"
 
-/datum/preferences/proc/process_occupation_choices_panel(mob/user, list/href_list)
-	switch(href_list["task"])
+/datum/preferences/proc/process_occupation_choices_panel(mob/user, datum/topic_input/topic)
+	switch(topic.get("task"))
 		if("close")
 			CLOSE_BROWSER(user, "window=mob_occupation")
 			return
@@ -117,15 +117,15 @@
 		if("reset")
 			ResetJobs()
 		if("input")
-			SetJob(user, href_list["text"])
+			SetJob(user, topic.get("text"))
 		if("random")
 			if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_ASSISTANT)
 				alternate_option += 1
 			else if(alternate_option == RETURN_TO_LOBBY)
 				alternate_option = 0
 		if("alt_title")
-			var/datum/job/job = locate(href_list["job"])
-			if(job)
+			var/datum/job/job = topic.get_and_locate("job")
+			if(isnotnull(job))
 				var/choices = list(job.title) + job.alt_titles
 				var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
 				if(choice)

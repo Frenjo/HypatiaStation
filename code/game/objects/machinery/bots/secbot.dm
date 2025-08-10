@@ -122,6 +122,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	onclose(user, "autosec")
 
 /obj/machinery/bot/secbot/Topic(href, href_list)
+	. = ..()
 	usr.set_machine(src)
 	add_fingerprint(usr)
 	if(href_list["power"] && allowed(usr))

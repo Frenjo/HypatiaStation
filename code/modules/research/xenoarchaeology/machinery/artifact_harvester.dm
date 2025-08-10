@@ -114,6 +114,7 @@
 			icon_state = "incubator"
 
 /obj/machinery/artifact_harvester/Topic(href, href_list)
+	. = ..()
 	if(href_list["harvest"])
 		//locate artifact on analysis pad
 		cur_artifact = null

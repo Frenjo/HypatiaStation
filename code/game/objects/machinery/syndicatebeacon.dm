@@ -38,6 +38,7 @@
 	onclose(user, "syndbeacon")
 
 /obj/machinery/syndicate_beacon/Topic(href, href_list)
+	. = ..()
 	if(href_list["betraitor"])
 		if(charges < 1)
 			src.updateUsrDialog()

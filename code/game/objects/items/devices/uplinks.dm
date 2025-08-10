@@ -267,6 +267,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			feedback_add_details("traitor_uplink_items_bought", "ST")
 
 /obj/item/uplink/Topic(href, href_list)
+	. = ..()
 	if(href_list["buy_item"])
 		if(href_list["buy_item"] == "random")
 			var/boughtItem = chooseRandomItem()

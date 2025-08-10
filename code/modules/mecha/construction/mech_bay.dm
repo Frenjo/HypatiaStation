@@ -205,6 +205,7 @@
 	onclose(user, "mech_bay_console")
 
 /obj/machinery/computer/mech_bay_power_console/Topic(href, href_list)
+	. = ..()
 	if(href_list["autostart"])
 		autostart = !autostart
 	if(href_list["voltage"])

@@ -78,6 +78,7 @@
 	return
 
 /obj/item/aicard/Topic(href, href_list)
+	. = ..()
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)//If they are not in range of 1 or less or their machine is not the card (ie, clicked on something else).
 		CLOSE_BROWSER(U, "window=aicard")

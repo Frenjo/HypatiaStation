@@ -91,6 +91,7 @@
 	to_chat(user, SPAN_NOTICE("You find nothing in [src]."))
 
 /obj/structure/filingcabinet/Topic(href, href_list)
+	. = ..()
 	if(href_list["retrieve"])
 		SHOW_BROWSER(usr, "", "window=filingcabinet") // Close the menu
 

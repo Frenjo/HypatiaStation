@@ -566,18 +566,26 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = FALSE
 
-/mob/Topic(href, href_list)
-	if(href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
+/mob/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(isnull(client))
+		return FALSE
+
+	if(topic.has("mach_close"))
+		var/t1 = "window=[topic.get("mach_close")]"
 		unset_machine()
 		CLOSE_BROWSER(src, t1)
+		return
 
-	if(href_list["flavor_more"])
-		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><TT>[replacetext(flavor_text, "\n", "<BR>")]</TT></BODY></HTML>", "window=[name];size=500x200")
-		onclose(usr, "[name]")
-	if(href_list["flavor_change"])
+	if(topic.has("flavor_change"))
 		update_flavor_text()
-//	..()
+		return
+	if(topic.has("flavor_more"))
+		SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><TT>[replacetext(flavor_text, "\n", "<BR>")]</TT></BODY></HTML>", "window=[name];size=500x200")
+		onclose(user, "[name]")
+		return
 
 /mob/proc/pull_damage()
 	if(ishuman(src))
