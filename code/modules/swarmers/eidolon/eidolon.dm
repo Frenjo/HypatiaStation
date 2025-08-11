@@ -75,9 +75,12 @@
 	"}
 	. += ..()
 
-/obj/mecha/combat/eidolon/Topic(href, list/href_list)
+/obj/mecha/combat/eidolon/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["ball_mode"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("ball_mode"))
 		toggle_ball_mode()
 
 /obj/mecha/combat/eidolon/verb/toggle_ball_mode()

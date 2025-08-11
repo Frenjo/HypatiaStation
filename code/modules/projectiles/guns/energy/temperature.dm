@@ -40,22 +40,23 @@
 	SHOW_BROWSER(user, dat, "window=freezegun;size=450x300;can_resize=1;can_close=1;can_minimize=1")
 	onclose(user, "window=freezegun", src)
 
-/obj/item/gun/energy/temperature/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
+/obj/item/gun/energy/temperature/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["temp"])
-		var/amount = text2num(href_list["temp"])
+	user.set_machine(src)
+	add_fingerprint(user)
+
+	if(topic.has("temp"))
+		var/amount = topic.get_num("temp")
 		if(amount > 0)
 			current_temperature = min(500, current_temperature + amount)
 		else
 			current_temperature = max(0, current_temperature + amount)
+
 	if(ismob(loc))
 		attack_self(loc)
-	add_fingerprint(usr)
-	return
 
 /obj/item/gun/energy/temperature/process()
 	switch(temperature)

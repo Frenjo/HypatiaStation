@@ -237,33 +237,43 @@
 	SHOW_BROWSER(user, jointext(content, "<br>"), "window=vending")
 	onclose(user, "")
 
+/obj/machinery/vending/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(stat & (BROKEN | NOPOWER))
+		return FALSE
+	if(user.stat || user.restrained())
+		return FALSE
+
+	if(!issilicon(user))
+		if(topic.has("remove_coin"))
+			if(isnull(coin))
+				to_chat(user, SPAN_WARNING("There is no coin in \the [src]."))
+				return
+			coin.forceMove(loc)
+			if(!user.get_active_hand())
+				user.put_in_hands(coin)
+			to_chat(user, SPAN_INFO("You remove \the [coin] from \the [src]"))
+			coin = null
+			return
+		if(topic.has("remove_charge_card"))
+			if(isnull(cash_card))
+				to_chat(user, SPAN_WARNING("There is no charge card in \the [src]."))
+				return
+			cash_card.forceMove(loc)
+			if(!user.get_active_hand())
+				user.put_in_hands(cash_card)
+			to_chat(usr, SPAN_INFO("You remove \the [cash_card] from \the [src]"))
+			cash_card = null
+			return
+
 /obj/machinery/vending/Topic(href, href_list)
 	. = ..()
 	if(stat & (BROKEN | NOPOWER))
 		return
 	if(usr.stat || usr.restrained())
 		return
-
-	if(href_list["remove_coin"] && !issilicon(usr))
-		if(isnull(coin))
-			to_chat(usr, SPAN_WARNING("There is no coin in \the [src]."))
-			return
-
-		coin.forceMove(loc)
-		if(!usr.get_active_hand())
-			usr.put_in_hands(coin)
-		to_chat(usr, SPAN_INFO("You remove \the [coin] from \the [src]"))
-		coin = null
-
-	if(href_list["remove_charge_card"] && !issilicon(usr))
-		if(isnull(cash_card))
-			to_chat(usr, SPAN_WARNING("There is no charge card in \the [src]."))
-			return
-		cash_card.forceMove(loc)
-		if(!usr.get_active_hand())
-			usr.put_in_hands(cash_card)
-		to_chat(usr, SPAN_INFO("You remove \the [cash_card] from \the [src]"))
-		cash_card = null
 
 	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)))
 		usr.set_machine(src)

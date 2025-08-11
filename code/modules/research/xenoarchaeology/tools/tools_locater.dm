@@ -77,21 +77,23 @@
 	SHOW_BROWSER(user, dat, "window=locater;size=300x150")
 	onclose(user, "locater")
 
-/obj/item/beacon_locator/Topic(href, href_list)
-	..()
-	usr.set_machine(src)
+/obj/item/beacon_locator/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["reset_tracking"])
+	user.set_machine(src)
+
+	if(topic.has("reset_tracking"))
 		scan_ticks = 1
 		target_radio = null
-	else if(href_list["freq"])
-		var/new_frequency = (frequency + text2num(href_list["freq"]))
+	else if(topic.has("freq"))
+		var/new_frequency = (frequency + topic.get_num("freq"))
 		if(frequency < 1200 || frequency > 1600)
 			new_frequency = sanitize_frequency(new_frequency, 1499)
 		frequency = new_frequency
-
-	else if(href_list["close"])
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=locater")
+	else if(topic.has("close"))
+		user.unset_machine()
+		CLOSE_BROWSER(user, "window=locater")
 
 	updateSelfDialog()

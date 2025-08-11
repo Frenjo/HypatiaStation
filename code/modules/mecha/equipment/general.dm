@@ -35,9 +35,12 @@
 /obj/item/mecha_equipment/repair_droid/get_equip_info()
 	. = "[..()] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[equip_ready ? "A" : "Dea"]ctivate</a>"
 
-/obj/item/mecha_equipment/repair_droid/Topic(href, href_list)
+/obj/item/mecha_equipment/repair_droid/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle_repairs"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_repairs"))
 		chassis.remove_overlay(droid_overlay)
 		if(equip_ready)
 			START_PROCESSING(PCobj, src)
@@ -223,8 +226,11 @@
 /obj/item/mecha_equipment/gravcatapult/get_equip_info()
 	. = "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"
 
-/obj/item/mecha_equipment/gravcatapult/Topic(href, href_list)
+/obj/item/mecha_equipment/gravcatapult/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("mode"))
+		mode = topic.get_num("mode")
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())

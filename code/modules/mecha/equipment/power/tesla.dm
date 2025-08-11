@@ -32,9 +32,12 @@
 			. = channel
 			break
 
-/obj/item/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
+/obj/item/mecha_equipment/tesla_energy_relay/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle_relay"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_relay"))
 		if(equip_ready)
 			START_PROCESSING(PCobj, src)
 			log_message("Activated.")

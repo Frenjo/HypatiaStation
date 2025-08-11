@@ -74,39 +74,42 @@
 			anchored = TRUE
 		return
 
-/obj/structure/dispenser/Topic(href, href_list)
+/obj/structure/dispenser/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(usr.stat || usr.restrained())
-		return
-	if(Adjacent(usr))
-		usr.set_machine(src)
-		if(href_list["oxygen"])
-			if(oxygentanks > 0)
-				var/obj/item/tank/oxygen/O
-				if(length(oxytanks) == oxygentanks)
-					O = oxytanks[1]
-					oxytanks.Remove(O)
-				else
-					O = new /obj/item/tank/oxygen(loc)
-				O.forceMove(loc)
-				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
-				oxygentanks--
-				update_icon()
-		if(href_list["plasma"])
-			if(plasmatanks > 0)
-				var/obj/item/tank/plasma/P
-				if(length(platanks) == plasmatanks)
-					P = platanks[1]
-					platanks.Remove(P)
-				else
-					P = new /obj/item/tank/plasma(loc)
-				P.forceMove(loc)
-				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
-				plasmatanks--
-				update_icon()
-		add_fingerprint(usr)
-		updateUsrDialog()
-	else
-		CLOSE_BROWSER(usr, "window=dispenser")
-		return
-	return
+	if(!.)
+		return FALSE
+	if(user.stat || user.restrained())
+		return FALSE
+	if(!Adjacent(user))
+		CLOSE_BROWSER(user, "window=dispenser")
+		return FALSE
+
+	user.set_machine(src)
+	add_fingerprint(user)
+	if(topic.has("oxygen"))
+		if(oxygentanks > 0)
+			var/obj/item/tank/oxygen/O
+			if(length(oxytanks) == oxygentanks)
+				O = oxytanks[1]
+				oxytanks.Remove(O)
+			else
+				O = new /obj/item/tank/oxygen(loc)
+			O.forceMove(loc)
+			to_chat(user, SPAN_NOTICE("You take [O] out of [src]."))
+			oxygentanks--
+			update_icon()
+
+	if(topic.has("plasma"))
+		if(plasmatanks > 0)
+			var/obj/item/tank/plasma/P
+			if(length(platanks) == plasmatanks)
+				P = platanks[1]
+				platanks.Remove(P)
+			else
+				P = new /obj/item/tank/plasma(loc)
+			P.forceMove(loc)
+			to_chat(user, SPAN_NOTICE("You take [P] out of [src]."))
+			plasmatanks--
+			update_icon()
+
+	updateUsrDialog()

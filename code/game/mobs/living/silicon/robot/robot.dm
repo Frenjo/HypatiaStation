@@ -228,27 +228,30 @@
 			return 0
 	return 1
 
-/mob/living/silicon/robot/Topic(href, href_list)
+/mob/living/silicon/robot/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
+	if(!.)
+		return FALSE
+
+	if(topic.has("mach_close"))
+		var/t1 = "window=[topic.get("mach_close")]"
 		unset_machine()
-		CLOSE_BROWSER(src, t1)
+		CLOSE_BROWSER(user, t1)
 		return
 
-	if(href_list["showalerts"])
+	if(topic.has("showalerts"))
 		robot_alerts()
 		return
 
-	if(href_list["mod"])
-		var/obj/item/O = locate(href_list["mod"])
+	if(topic.has("mod"))
+		var/obj/item/O = topic.get_and_locate("mod")
 		if(isnotnull(O))
-			O.attack_self(src)
+			O.attack_self(user)
 
-	if(href_list["act"])
-		var/obj/item/O = locate(href_list["act"])
+	if(topic.has("act"))
+		var/obj/item/O = topic.get_and_locate("act")
 		if(activated(O))
-			to_chat(src, "Module already activated.")
+			to_chat(user, SPAN_WARNING("Module already activated."))
 			return
 		if(isnull(module_state_1))
 			module_state_1 = O
@@ -272,11 +275,11 @@
 				var/obj/item/robot_module/sight/sight = module_state_3
 				sight_mode |= sight.sight_mode
 		else
-			to_chat(src, "You need to disable a module first!")
+			to_chat(user, SPAN_WARNING("You need to disable a module first!"))
 		installed_modules()
 
-	if(href_list["deact"])
-		var/obj/item/O = locate(href_list["deact"])
+	if(topic.has("deact"))
+		var/obj/item/O = topic.get_and_locate("deact")
 		if(activated(O))
 			if(module_state_1 == O)
 				module_state_1 = null
@@ -288,9 +291,9 @@
 				module_state_3 = null
 				contents.Remove(O)
 			else
-				to_chat(src, "Module isn't activated.")
+				to_chat(user, SPAN_WARNING("Module isn't activated."))
 		else
-			to_chat(src, "Module isn't activated.")
+			to_chat(user, SPAN_WARNING("Module isn't activated."))
 		installed_modules()
 
 /mob/living/silicon/robot/proc/radio_menu()

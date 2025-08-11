@@ -387,13 +387,16 @@ nanoui is used to open and update nano browser uis
   *
   * @return nothing
   */
-/datum/nanoui/Topic(href, href_list)
+/datum/nanoui/Topic(href, list/href_list)
 	. = ..()
+	if(!.)
+		return FALSE
+
 	update_status(FALSE) // update the status
-	if(status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
+	if(status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user.
 		return
 
-	if(isnotnull(src_object) && src_object.Topic(href, href_list))
+	if(src_object?.Topic(href, href_list))
 		global.PCnanoui.update_uis(src_object) // update all UIs attached to src_object
 
  /**

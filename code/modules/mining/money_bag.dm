@@ -35,15 +35,17 @@
 			contents += O
 		to_chat(user, SPAN_INFO("You empty the [C.name] into the bag."))
 
-/obj/item/moneybag/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
+/obj/item/moneybag/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["remove"])
+	user.set_machine(src)
+	add_fingerprint(user)
+
+	if(topic.has("remove"))
 		var/obj/item/coin/coin = null
-		var/decl/material/material = GET_DECL_INSTANCE(text2path(href_list["remove"]))
+		var/decl/material/material = GET_DECL_INSTANCE(topic.get_path("remove"))
 		coin = locate(material.coin_path, contents)
 		if(isnull(coin))
 			return

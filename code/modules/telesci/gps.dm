@@ -53,15 +53,19 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
-/obj/item/gps/Topic(href, href_list)
-	..()
-	if(href_list["tag"] )
+/obj/item/gps/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("tag"))
 		var/a = input("Please enter desired tag.", name, gpstag) as text
 		a = uppertext(copytext(sanitize(a), 1, 5))
-		if(src.loc == usr)
+		if(loc == user)
 			gpstag = a
 			name = "global positioning system ([gpstag])"
-			attack_self(usr)
+			attack_self(user)
+		return
 
 /obj/item/gps/science
 	icon_state = "gps-s"

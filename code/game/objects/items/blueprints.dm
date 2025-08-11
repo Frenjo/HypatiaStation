@@ -26,23 +26,25 @@
 	interact()
 	return
 
-/obj/item/blueprints/Topic(href, href_list)
-	..()
-	if((usr.restrained() || usr.stat || usr.get_active_hand() != src))
-		return
-	if(!href_list["action"])
-		return
-	switch(href_list["action"])
-		if("create_area")
-			if(get_area_type() != AREA_SPACE)
-				interact()
-				return
-			create_area()
-		if("edit_area")
-			if(get_area_type() != AREA_STATION)
-				interact()
-				return
-			edit_area()
+/obj/item/blueprints/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.restrained() || user.stat || user.get_active_hand() != src)
+		return FALSE
+
+	if(topic.has("action"))
+		switch(topic.get("action"))
+			if("create_area")
+				if(get_area_type() != AREA_SPACE)
+					interact()
+					return
+				create_area()
+			if("edit_area")
+				if(get_area_type() != AREA_STATION)
+					interact()
+					return
+				edit_area()
 
 /obj/item/blueprints/interact()
 	var/area/A = GET_AREA(src)

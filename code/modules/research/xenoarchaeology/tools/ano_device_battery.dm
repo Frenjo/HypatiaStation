@@ -151,50 +151,53 @@
 		if(inserted_battery.battery_effect.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
 
-/obj/item/anodevice/Topic(href, href_list)
-	if(href_list["neg_changetime_max"])
+/obj/item/anodevice/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("neg_changetime_max"))
 		time += -100
 		if(time > inserted_battery.capacity)
 			time = inserted_battery.capacity
 		else if (time < 0)
 			time = 0
-	if(href_list["neg_changetime"])
+	if(topic.has("neg_changetime"))
 		time += -10
 		if(time > inserted_battery.capacity)
 			time = inserted_battery.capacity
 		else if (time < 0)
 			time = 0
-	if(href_list["changetime"])
+	if(topic.has("changetime"))
 		time += 10
 		if(time > inserted_battery.capacity)
 			time = inserted_battery.capacity
 		else if (time < 0)
 			time = 0
-	if(href_list["changetime_max"])
+	if(topic.has("changetime_max"))
 		time += 100
 		if(time > inserted_battery.capacity)
 			time = inserted_battery.capacity
 		else if(time < 0)
 			time = 0
-	if(href_list["startup"])
+	if(topic.has("startup"))
 		activated = 1
 		if(!inserted_battery.battery_effect.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
-	if(href_list["shutdown"])
+	if(topic.has("shutdown"))
 		activated = 0
-	if(href_list["starttimer"])
+	if(topic.has("starttimer"))
 		timing = 1
 		archived_time = time
-	if(href_list["ejectbattery"])
+	if(topic.has("ejectbattery"))
 		shutdown_emission()
 		inserted_battery.forceMove(GET_TURF(src))
 		inserted_battery = null
 		UpdateSprite()
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=anodevice")
-		usr.unset_machine(src)
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=anodevice")
+		user.unset_machine(src)
 
-	..()
 	updateDialog()
 
 /obj/item/anodevice/proc/UpdateSprite()

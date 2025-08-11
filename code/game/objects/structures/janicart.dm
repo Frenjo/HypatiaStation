@@ -98,44 +98,46 @@
 	popup.set_content(html)
 	popup.open()
 
-/obj/structure/janitorialcart/Topic(href, href_list)
+/obj/structure/janitorialcart/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(!in_range(src, usr))
-		return
-	if(!isliving(usr))
-		return
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=janicart")
-		usr.unset_machine()
+	if(!.)
+		return FALSE
+	if(!in_range(src, user))
+		return FALSE
+	if(!isliving(user))
+		return FALSE
+
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=janicart")
+		user.unset_machine()
 		return
 
-	var/mob/living/user = usr
-	if(href_list["garbage"])
+	if(topic.has("garbage"))
 		if(isnotnull(mybag))
 			user.put_in_hands(mybag)
-			to_chat(user, SPAN_NOTICE("You take [mybag] from [src]."))
+			to_chat(user, SPAN_NOTICE("You take [mybag] from \the [src]."))
 			mybag = null
-	if(href_list["mop"])
+	if(topic.has("mop"))
 		if(isnotnull(mymop))
 			user.put_in_hands(mymop)
-			to_chat(user, SPAN_NOTICE("You take [mymop] from [src]."))
+			to_chat(user, SPAN_NOTICE("You take [mymop] from \the [src]."))
 			mymop = null
-	if(href_list["spray"])
+	if(topic.has("spray"))
 		if(isnotnull(myspray))
 			user.put_in_hands(myspray)
-			to_chat(user, SPAN_NOTICE("You take [myspray] from [src]."))
+			to_chat(user, SPAN_NOTICE("You take [myspray] from \the [src]."))
 			myspray = null
-	if(href_list["replacer"])
+	if(topic.has("replacer"))
 		if(isnotnull(myreplacer))
 			user.put_in_hands(myreplacer)
-			to_chat(user, SPAN_NOTICE("You take [myreplacer] from [src]."))
+			to_chat(user, SPAN_NOTICE("You take [myreplacer] from \the [src]."))
 			myreplacer = null
-	if(href_list["sign"])
+	if(topic.has("sign"))
 		if(signs)
 			var/obj/item/caution/sign = locate() in src
 			if(isnotnull(sign))
 				user.put_in_hands(sign)
-				to_chat(user, SPAN_NOTICE("You take \a [sign] from [src]."))
+				to_chat(user, SPAN_NOTICE("You take \a [sign] from \the [src]."))
 				signs--
 			else
 				warning("[src] signs ([signs]) didn't match contents")

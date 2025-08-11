@@ -64,9 +64,12 @@
 		set_ready_state(1)
 		log_message("Deactivated.")
 
-/obj/item/mecha_equipment/shield_droid/Topic(href, href_list)
+/obj/item/mecha_equipment/shield_droid/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle_shield"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_shield"))
 		toggle_shield()
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 

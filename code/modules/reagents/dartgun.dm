@@ -254,33 +254,39 @@
 			return 1
 	return 0
 
-/obj/item/gun/dartgun/Topic(href, href_list)
+/obj/item/gun/dartgun/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	src.add_fingerprint(usr)
-	if(href_list["stop_mix"])
-		var/index = text2num(href_list["stop_mix"])
+	if(!.)
+		return FALSE
+
+	add_fingerprint(user)
+	if(topic.has("stop_mix"))
+		var/index = topic.get_num("stop_mix")
 		if(index <= length(beakers))
 			for(var/obj/item/M in mixing)
 				if(M == beakers[index])
 					mixing -= M
 					break
-	else if(href_list["mix"])
-		var/index = text2num(href_list["mix"])
+
+	else if(topic.has("mix"))
+		var/index = topic.get_num("mix")
 		if(index <= length(beakers))
 			mixing += beakers[index]
-	else if(href_list["eject"])
-		var/index = text2num(href_list["eject"])
+
+	else if(topic.has("eject"))
+		var/index = topic.get_num("eject")
 		if(index <= length(beakers))
 			if(beakers[index])
 				var/obj/item/reagent_holder/glass/beaker/B = beakers[index]
-				to_chat(usr, "You remove [B] from [src].")
+				to_chat(user, SPAN_INFO("You remove \the [B] from \the [src]."))
 				mixing -= B
 				beakers -= B
 				B.forceMove(GET_TURF(src))
-	else if (href_list["eject_cart"])
+
+	else if(topic.has("eject_cart"))
 		remove_cartridge()
-	src.updateUsrDialog()
-	return
+
+	updateUsrDialog()
 
 /obj/item/gun/dartgun/Fire(atom/target, mob/living/user, params, point_blank = FALSE, reflex = FALSE)
 	if(cartridge)

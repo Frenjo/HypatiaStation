@@ -157,40 +157,42 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/item/tank/Topic(href, href_list)
-	..()
-	if(usr.stat|| usr.restrained())
-		return 0
-	if(loc != usr)
-		return 0
+/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.stat|| user.restrained())
+		return FALSE
+	if(loc != user)
+		return FALSE
 
-	if(href_list["dist_p"])
-		if(href_list["dist_p"] == "reset")
-			distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
-		else if(href_list["dist_p"] == "max")
-			distribute_pressure = TANK_MAX_RELEASE_PRESSURE
-		else
-			var/cp = text2num(href_list["dist_p"])
-			distribute_pressure += cp
-		distribute_pressure = min(max(round(distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
-	if(href_list["stat"])
-		if(iscarbon(loc))
-			var/mob/living/carbon/carbon = loc
-			if(carbon.internal == src)
-				carbon.internal = null
-				carbon.internals.icon_state = "internal0"
-				to_chat(usr, SPAN_INFO("You close the tank release valve."))
-				carbon.internals?.icon_state = "internal0"
+	if(topic.has("dist_p"))
+		switch(topic.get("dist_p"))
+			if("reset")
+				distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
+			if("max")
+				distribute_pressure = TANK_MAX_RELEASE_PRESSURE
 			else
-				if(isnotnull(carbon.wear_mask) && HAS_ITEM_FLAGS(carbon.wear_mask, ITEM_FLAG_AIRTIGHT))
-					carbon.internal = src
-					to_chat(usr, SPAN_INFO("You open \the [src] valve."))
-					carbon.internals?.icon_state = "internal1"
-				else
-					to_chat(usr, SPAN_INFO("You need something to connect to \the [src]."))
+				var/cp = topic.get_num("dist_p")
+				distribute_pressure += cp
+		distribute_pressure = min(max(round(distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
 
-	add_fingerprint(usr)
-	return 1
+	if(topic.has("stat") && iscarbon(user))
+		var/mob/living/carbon/carbon = user
+		if(carbon.internal == src)
+			carbon.internal = null
+			carbon.internals.icon_state = "internal0"
+			to_chat(user, SPAN_INFO("You close the tank release valve."))
+			carbon.internals?.icon_state = "internal0"
+		else
+			if(isnotnull(carbon.wear_mask) && HAS_ITEM_FLAGS(carbon.wear_mask, ITEM_FLAG_AIRTIGHT))
+				carbon.internal = src
+				to_chat(user, SPAN_INFO("You open \the [src] valve."))
+				carbon.internals?.icon_state = "internal1"
+			else
+				to_chat(user, SPAN_INFO("You need something to connect to \the [src]."))
+
+	add_fingerprint(user)
 
 /obj/item/tank/remove_air(amount)
 	return air_contents.remove(amount)

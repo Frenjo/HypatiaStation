@@ -1,7 +1,10 @@
-/mob/living/silicon/Topic(href, list/href_list)
+/mob/living/silicon/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawc"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("lawc")) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
+		var/L = topic.get_num("lawc")
 		switch(lawcheck[L + 1])
 			if("Yes")
 				lawcheck[L + 1] = "No"
@@ -11,8 +14,8 @@
 		state_laws_verb()
 		return
 
-	if(href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawi"])
+	if(topic.has("lawi")) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
+		var/L = topic.get_num("lawi")
 		switch(ioncheck[L])
 			if("Yes")
 				ioncheck[L] = "No"
@@ -22,6 +25,6 @@
 		state_laws_verb()
 		return
 
-	if(href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
+	if(topic.has("laws")) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
 		state_laws()
 		return

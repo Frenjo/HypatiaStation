@@ -80,10 +80,13 @@
 					playsound(target, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 	return TRUE
 
-/obj/item/mecha_equipment/tool/rcd/Topic(href, href_list)
+/obj/item/mecha_equipment/tool/rcd/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("mode"))
+		mode = topic.get_num("mode")
 		switch(mode)
 			if(0)
 				occupant_message("Switched RCD to Deconstruct.")
@@ -132,15 +135,18 @@
 	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 	return TRUE
 
-/obj/item/mecha_equipment/tool/cable_layer/Topic(href,href_list)
+/obj/item/mecha_equipment/tool/cable_layer/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle"))
 		set_ready_state(!equip_ready)
 		occupant_message("[src] [equip_ready ? "dea" : "a"]ctivated.")
 		log_message("[equip_ready ? "Dea" : "A"]ctivated.")
 		return
-	if(href_list["cut"])
-		if(cable && cable.amount)
+	if(topic.has("cut"))
+		if(cable?.amount)
 			var/m = round(input(chassis.occupant, "Please specify the length of cable to cut", "Cut cable", min(cable.amount, 30)), 1)
 			m = min(m, cable.amount)
 			if(m)

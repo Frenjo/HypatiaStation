@@ -125,21 +125,23 @@
 		reagents.add_reagent(reagent,amount)
 		chassis.use_power(energy_drain)
 
-/obj/item/mecha_equipment/medical/syringe_gun/Topic(href, href_list)
+/obj/item/mecha_equipment/medical/syringe_gun/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(topic_filter.get("toggle_mode"))
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_mode"))
 		mode = !mode
 		update_equip_info()
 		return
-	if(topic_filter.get("select_reagents"))
+	if(topic.has("select_reagents"))
 		processed_reagents.len = 0
 		var/m = 0
 		var/message
 		for(var/i = 1 to known_reagents.len)
 			if(m >= synth_speed)
 				break
-			var/reagent = topic_filter.get("reagent_[i]")
+			var/reagent = topic.get("reagent_[i]")
 			if(reagent && (reagent in known_reagents))
 				message = "[m ? ", " : null][known_reagents[reagent]]"
 				processed_reagents += reagent
@@ -151,14 +153,15 @@
 			occupant_message("Reagent processing started.")
 			log_message("Reagent processing started.")
 		return
-	if(topic_filter.get("show_reagents"))
+	if(topic.has("show_reagents"))
 		SHOW_BROWSER(chassis.occupant, get_reagents_page(), "window=msyringegun")
-	if(topic_filter.get("purge_reagent"))
-		var/reagent_type = text2path(topic_filter.get("purge_reagent"))
+		return
+	if(topic.has("purge_reagent"))
+		var/reagent_type = topic.get_path("purge_reagent")
 		if(isnotnull(reagent_type))
 			reagents.del_reagent(reagent_type)
 		return
-	if(topic_filter.get("purge_all"))
+	if(topic.has("purge_all"))
 		reagents.clear_reagents()
 		return
 

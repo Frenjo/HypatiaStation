@@ -120,17 +120,19 @@
 		return
 	. += "<br>\[Occupant: [patient] (Health: [patient.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
 
-/obj/item/mecha_equipment/medical/sleeper/Topic(href, href_list)
+/obj/item/mecha_equipment/medical/sleeper/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(topic_filter.get("eject"))
+	if(!.)
+		return FALSE
+
+	if(topic.has("eject"))
 		go_out()
-	if(topic_filter.get("view_stats"))
+	if(topic.has("view_stats"))
 		SHOW_BROWSER(chassis.occupant, get_patient_stats(),"window=msleeper")
 		onclose(chassis.occupant, "msleeper")
 		return
-	if(topic_filter.get("inject"))
-		inject_reagent(topic_filter.get_type("inject", /datum/reagent), topic_filter.get_obj("source"))
+	if(topic.get("inject"))
+		inject_reagent(topic.get_type("inject", /datum/reagent), topic.get_obj("source"))
 
 /obj/item/mecha_equipment/medical/sleeper/proc/get_patient_stats()
 	if(isnull(patient))

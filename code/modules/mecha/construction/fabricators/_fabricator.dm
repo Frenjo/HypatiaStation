@@ -363,19 +363,22 @@
 	SHOW_BROWSER(user, dat, "window=[ui_id];size=1000x600")
 	onclose(user, ui_id)
 
-/obj/machinery/robotics_fabricator/Topic(href, href_list)
+/obj/machinery/robotics_fabricator/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(href_list["part_set"])
-		var/tpart_set = topic_filter.get_str("part_set")
+	if(!.)
+		return FALSE
+
+	if(topic.has("part_set"))
+		var/tpart_set = topic.get_str("part_set")
 		if(tpart_set)
 			if(tpart_set == "clear")
 				part_set = null
 			else
 				part_set = tpart_set
 				screen = "parts"
-	if(href_list["part"])
-		var/path = topic_filter.get_path("part")
+
+	if(topic.has("part"))
+		var/path = topic.get_path("part")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
 				if(D.type == path)
@@ -384,21 +387,25 @@
 					else
 						add_to_queue(D)
 					break
-	if(href_list["add_to_queue"])
-		var/path = topic_filter.get_path("add_to_queue")
+
+	if(topic.has("add_to_queue"))
+		var/path = topic.get_path("add_to_queue")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
 				if(D.type == path)
 					add_to_queue(D)
 					break
 		return update_queue_on_page()
-	if(href_list["remove_from_queue"])
-		remove_from_queue(topic_filter.get_num("remove_from_queue"))
+
+	if(topic.has("remove_from_queue"))
+		remove_from_queue(topic.get_num("remove_from_queue"))
 		return update_queue_on_page()
-	if(href_list["partset_to_queue"])
-		add_part_set_to_queue(topic_filter.get("partset_to_queue"))
+
+	if(topic.has("partset_to_queue"))
+		add_part_set_to_queue(topic.get("partset_to_queue"))
 		return update_queue_on_page()
-	if(href_list["process_queue"])
+
+	if(topic.has("process_queue"))
 		spawn(-1)
 			if(processing_queue || being_built)
 				return
@@ -406,26 +413,31 @@
 			process_queue()
 			processing_queue = FALSE
 
-	if(href_list["clear_temp"])
+	if(topic.has("clear_temp"))
 		temp = null
-	if(href_list["screen"])
-		screen = href_list["screen"]
-	if(href_list["queue_move"] && href_list["index"])
-		var/index = topic_filter.get_num("index")
-		var/new_index = index + topic_filter.get_num("queue_move")
+
+	if(topic.has("screen"))
+		screen = topic.get("screen")
+
+	if(topic.has("queue_move") && topic.has("index"))
+		var/index = topic.get_num("index")
+		var/new_index = index + topic.get_num("queue_move")
 		if(isnum(index) && isnum(new_index))
 			if(InRange(new_index, 1, length(queue)))
 				queue.Swap(index, new_index)
 		return update_queue_on_page()
-	if(href_list["clear_queue"])
+
+	if(topic.has("clear_queue"))
 		queue = list()
 		return update_queue_on_page()
-	if(href_list["sync"])
+
+	if(topic.has("sync"))
 		queue = list()
 		sync()
 		return update_queue_on_page()
-	if(href_list["part_desc"])
-		var/path = topic_filter.get_path("part_desc")
+
+	if(topic.has("part_desc"))
+		var/path = topic.get_path("part_desc")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
 				if(D.type == path)
@@ -435,11 +447,13 @@
 								<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>
 							"}
 					break
-	if(href_list["remove_mat"] && href_list["material"])
-		var/decl/material/mat = topic_filter.get_path("material")
-		temp = "Ejected [materials.eject_sheets(mat, topic_filter.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
+
+	if(topic.has("remove_mat") && topic.has("material"))
+		var/decl/material/mat = topic.get_path("material")
+		temp = "Ejected [materials.eject_sheets(mat, topic.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
+
 	updateUsrDialog()
 
 /obj/machinery/robotics_fabricator/attack_emag(obj/item/card/emag/emag, mob/user, uses)

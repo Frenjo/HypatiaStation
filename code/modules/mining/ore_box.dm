@@ -102,14 +102,16 @@
 	dat += "<br><br><A href='byond://?src=\ref[src];removeall=1'>Empty Box</A>"
 	SHOW_BROWSER(user, dat, "window=orebox")
 
-/obj/structure/ore_box/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(href_list["removeall"])
+/obj/structure/ore_box/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	user.set_machine(src)
+	add_fingerprint(user)
+	if(topic.has("removeall"))
 		for_no_type_check(var/obj/item/ore/O, src)
 			contents.Remove(O)
 			O.forceMove(loc)
-		to_chat(usr, SPAN_INFO("You empty \the [src]."))
+		to_chat(user, SPAN_INFO("You empty \the [src]."))
 	updateUsrDialog()

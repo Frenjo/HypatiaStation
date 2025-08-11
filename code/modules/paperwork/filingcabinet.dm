@@ -90,15 +90,17 @@
 			return
 	to_chat(user, SPAN_NOTICE("You find nothing in [src]."))
 
-/obj/structure/filingcabinet/Topic(href, href_list)
+/obj/structure/filingcabinet/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["retrieve"])
-		SHOW_BROWSER(usr, "", "window=filingcabinet") // Close the menu
+	if(!.)
+		return FALSE
 
+	if(topic.has("retrieve"))
+		SHOW_BROWSER(user, "", "window=filingcabinet") // Close the menu
 		//var/retrieveindex = text2num(href_list["retrieve"])
-		var/obj/item/P = locate(href_list["retrieve"])//contents[retrieveindex]
-		if(P && in_range(src, usr))
-			usr.put_in_hands(P)
+		var/obj/item/P = topic.get_and_locate("retrieve")//contents[retrieveindex]
+		if(P && in_range(src, user))
+			user.put_in_hands(P)
 			updateUsrDialog()
 			icon_state = "[initial(icon_state)]-open"
 			sleep(5)

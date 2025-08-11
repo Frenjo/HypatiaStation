@@ -103,68 +103,69 @@
 	onclose(user, "stack")
 	return
 
-/obj/item/stack/Topic(href, href_list)
-	..()
+/obj/item/stack/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.restrained() || user.stat || user.get_active_hand() != src)
+		return FALSE
 
-	if(usr.restrained() || usr.stat || usr.get_active_hand() != src)
-		return
+	if(topic.has("sublist") && !topic.has("make"))
+		list_recipes(user, topic.get_num("sublist"))
 
-	if(href_list["sublist"] && !href_list["make"])
-		list_recipes(usr, text2num(href_list["sublist"]))
-
-	if(href_list["make"])
-		if(src.amount < 1)
+	if(topic.has("make"))
+		if(amount < 1)
 			qdel(src) //Never should happen
 
 		var/list/recipes_list = recipes
-		if(href_list["sublist"])
-			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
+		if(topic.has("sublist"))
+			var/datum/stack_recipe_list/srl = recipes_list[topic.get_num("sublist")]
 			recipes_list = srl.recipes
-		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
-		var/multiplier = text2num(href_list["multiplier"])
+		var/datum/stack_recipe/R = recipes_list[topic.get_num("make")]
+		var/multiplier = topic.get_num("multiplier")
 		if(!multiplier)
 			multiplier = 1
-		if(src.amount < R.req_amount * multiplier)
+		if(amount < R.req_amount * multiplier)
 			if(R.req_amount * multiplier > 1)
-				to_chat(usr, SPAN_WARNING("You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!"))
+				to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [R.req_amount * multiplier] [R.title]\s!"))
 			else
-				to_chat(usr, SPAN_WARNING("You haven't got enough [src] to build \the [R.title]!"))
+				to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [R.title]!"))
 			return
-		if(R.one_per_turf && (locate(R.result_type) in usr.loc))
-			to_chat(usr, SPAN_WARNING("There is another [R.title] here!"))
+		if(R.one_per_turf && (locate(R.result_type) in user.loc))
+			to_chat(user, SPAN_WARNING("There is another [R.title] here!"))
 			return
-		if(R.on_floor && !isfloorturf(usr.loc))
-			to_chat(usr, SPAN_WARNING("\The [R.title] must be constructed on the floor!"))
+		if(R.on_floor && !isfloorturf(user.loc))
+			to_chat(user, SPAN_WARNING("\The [R.title] must be constructed on the floor!"))
 			return
 		if(R.time)
-			to_chat(usr, SPAN_INFO("Building [R.title]..."))
-			if(!do_after(usr, R.time))
+			to_chat(user, SPAN_INFO("Building [R.title]..."))
+			if(!do_after(user, R.time))
 				return
-		if(src.amount < R.req_amount * multiplier)
+		if(amount < R.req_amount * multiplier)
 			return
-		var/atom/O = new R.result_type(usr.loc)
-		O.set_dir(usr.dir)
+		var/atom/O = new R.result_type(user.loc)
+		O.set_dir(user.dir)
 		if(R.max_res_amount > 1)
 			var/obj/item/stack/new_item = O
 			new_item.amount = R.res_amount * multiplier
 			//new_item.add_to_stacks(usr)
-		src.amount -= R.req_amount * multiplier
-		if(src.amount <= 0)
+		amount -= R.req_amount * multiplier
+		if(amount <= 0)
 			var/oldsrc = src
 			qdel(src) //dont kill proc after del()
-			usr.before_take_item(oldsrc)
+			user.before_take_item(oldsrc)
 			qdel(oldsrc)
 			if(isitem(O))
-				usr.put_in_hands(O)
-		O.add_fingerprint(usr)
+				user.put_in_hands(O)
+		O.add_fingerprint(user)
 		//BubbleWrap - so newly formed boxes are empty
 		if(istype(O, /obj/item/storage))
 			for(var/obj/item/I in O)
 				qdel(I)
 		//BubbleWrap END
-	if(src && usr.machine == src) //do not reopen closed window
+	if(isnotnull(src) && user.machine == src) //do not reopen closed window
 		spawn(0)
-			src.interact(usr)
+			interact(user)
 			return
 	return
 

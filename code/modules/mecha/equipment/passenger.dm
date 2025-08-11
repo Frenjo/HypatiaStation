@@ -88,9 +88,12 @@
 /obj/item/mecha_equipment/passenger/get_equip_info()
 	. = "[..()]<br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
-/obj/item/mecha_equipment/passenger/Topic(href, list/href_list)
+/obj/item/mecha_equipment/passenger/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle_lock"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_lock"))
 		door_locked = !door_locked
 		occupant_message(SPAN_INFO("Passenger compartment hatch [door_locked ? "locked" : "unlocked"]."))
 		if(isnotnull(chassis))

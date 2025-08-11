@@ -47,9 +47,12 @@
 /obj/item/mecha_equipment/melee_defence_shocker/get_equip_info()
 	. = "[..()] - <a href='byond://?src=\ref[src];toggle_shocker=1'>[active ? "Dea" : "A"]ctivate</a>"
 
-/obj/item/mecha_equipment/melee_defence_shocker/Topic(href, list/href_list)
+/obj/item/mecha_equipment/melee_defence_shocker/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["toggle_shocker"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle_shocker"))
 		active = !active
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
