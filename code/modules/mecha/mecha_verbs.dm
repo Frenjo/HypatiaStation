@@ -154,5 +154,7 @@
 		occupant = null
 		icon_state = initial(icon_state) + "-open"
 		set_dir(entry_direction)
+		if(custom_cursor)
+			occupant.client.mouse_pointer_icon = initial(occupant.client.mouse_pointer_icon)
 		return TRUE
 	return FALSE

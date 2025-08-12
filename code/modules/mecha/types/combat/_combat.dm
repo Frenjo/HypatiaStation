@@ -1,6 +1,8 @@
 /obj/mecha/combat
 	force = 30
 
+	custom_cursor = TRUE
+
 	damage_resistance = list("brute" = 30, "fire" = 0, "bullet" = 30, "laser" = 15, "energy" = 0, "bomb" = 20)
 
 	maint_access = FALSE
@@ -257,26 +259,9 @@
 		onclose(occupant, "sam", src)
 	return
 */
-// This will always be a /mob/living/carbon/human UNLESS it's a Swarmer entering an Eidolon.
-/obj/mecha/combat/moved_inside(mob/living/pilot)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(isnotnull(pilot.client))
-		pilot.client.mouse_pointer_icon = file("icons/obj/mecha/mecha_mouse.dmi")
-
-/obj/mecha/combat/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(isnotnull(occupant.client))
-		occupant.client.mouse_pointer_icon = file("icons/obj/mecha/mecha_mouse.dmi")
 
 /obj/mecha/combat/go_out()
 	if(isnotnull(occupant?.client))
-		occupant.client.mouse_pointer_icon = initial(occupant.client.mouse_pointer_icon)
 		occupant.client.view = world.view
 		zoom_mode = FALSE
 	. = ..()

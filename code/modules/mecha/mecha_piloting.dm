@@ -63,6 +63,8 @@
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!internal_damage)
 			SOUND_TO(occupant, sound(activation_sound, volume = activation_sound_volume))
+		if(custom_cursor)
+			occupant.client.mouse_pointer_icon = custom_cursor_icon
 		return TRUE
 	return FALSE
 
@@ -121,5 +123,7 @@
 		log_message("[mmi_as_oc] moved in as pilot.")
 		if(!internal_damage)
 			SOUND_TO(occupant, sound(activation_sound, volume = activation_sound_volume))
+		if(custom_cursor)
+			occupant.client.mouse_pointer_icon = custom_cursor_icon
 		return TRUE
 	return FALSE
