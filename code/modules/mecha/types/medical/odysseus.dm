@@ -107,7 +107,7 @@
 	if(get_charge() >= camouflage_energy_drain)
 		use_power(camouflage_energy_drain)
 	else
-		toggle_camouflage()
+		do_camouflage(TRUE)
 
 /obj/mecha/medical/odysseus/eurymachus/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))
@@ -137,7 +137,7 @@
 		return FALSE
 
 	if(topic.has("camouflage"))
-		toggle_camouflage()
+		do_camouflage()
 		return
 
 /obj/mecha/medical/odysseus/eurymachus/verb/toggle_camouflage()
@@ -146,10 +146,18 @@
 	set popup_menu = FALSE
 	set src = usr.loc
 
+	if(usr != occupant)
+		return
+	if(isnull(occupant))
+		return
+
+	do_camouflage()
+
+/obj/mecha/medical/odysseus/eurymachus/proc/do_camouflage(failed = FALSE)
 	if(camouflage)
 		camouflage = FALSE
 		do_camouflage_effects()
-		disable_camouflage()
+		disable_camouflage(failed)
 	else
 		if(camouflage_animation_playing)
 			balloon_alert(occupant, "camouflage recharging!")
@@ -165,7 +173,7 @@
 		remove_wibbly_filters(src)
 		camouflage_animation_playing = FALSE
 
-	send_byjax(occupant, "exosuit.browser", "camouflage_command", "[camouflage ? "Dis" : "En"]able camouflage")
+	send_byjax(occupant, "exosuit.browser", "camouflage_command", "[camouflage ? "Dis" : "En"]able Camouflage")
 	log_message("Toggled camouflage.")
 
 /obj/mecha/medical/odysseus/eurymachus/proc/do_camouflage_effects()
@@ -185,8 +193,8 @@
 	icon_state = /obj/mecha/medical/odysseus::icon_state
 	desc = /obj/mecha/medical/odysseus::desc
 
-/obj/mecha/medical/odysseus/eurymachus/proc/disable_camouflage()
-	balloon_alert(occupant, "disabled camouflage")
+/obj/mecha/medical/odysseus/eurymachus/proc/disable_camouflage(failed = FALSE)
+	balloon_alert(occupant, failed ? "camouflage failed!" : "disabled camouflage")
 	camouflage = FALSE
 	icon_state = initial(icon_state)
 	desc = initial(desc)
