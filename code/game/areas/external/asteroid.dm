@@ -9,7 +9,7 @@
 	name = "\improper Asteroid"
 	icon_state = "asteroid"
 	ambience = list(
-		'sound/ambience/song_game.ogg'
+		'sound/ambience/asteroid/song_game.ogg'
 	)
 
 /area/external/asteroid/cave // -- TLE
@@ -25,8 +25,8 @@
 	name = "Mine"
 	icon_state = "mining"
 	ambience = list(
-		'sound/ambience/ambimine.ogg',
-		'sound/ambience/song_game.ogg'
+		'sound/ambience/asteroid/ambimine.ogg',
+		'sound/ambience/asteroid/song_game.ogg'
 	)
 
 /area/external/asteroid/mine/explored

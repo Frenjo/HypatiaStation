@@ -11,7 +11,7 @@
 	..()
 	var/sound/S = new/sound()
 	mysound = S
-	S.file = 'sound/ambience/shore.ogg'
+	S.file = 'sound/ambience/beach/shore.ogg'
 	S.repeat = 1
 	S.wait = 0
 	S.channel = 123
@@ -39,7 +39,7 @@
 	var/sound/S = null
 	var/sound_delay = 0
 	if(prob(25))
-		S = sound(file = pick('sound/ambience/seag1.ogg', 'sound/ambience/seag2.ogg', 'sound/ambience/seag3.ogg'), volume = 100)
+		S = sound(file = pick('sound/ambience/beach/seag1.ogg', 'sound/ambience/beach/seag2.ogg', 'sound/ambience/beach/seag3.ogg'), volume = 100)
 		sound_delay = rand(0, 50)
 
 	for(var/mob/living/carbon/human/H in src)

@@ -11,7 +11,7 @@
 	always_unpowered = TRUE
 	dynamic_lighting = TRUE
 	ambience = list(
-		'sound/ambience/ambispace.ogg',
+		'sound/ambience/space/ambispace.ogg',
 		'sound/music/title2.ogg',
 		'sound/music/space.ogg',
 		'sound/music/main.ogg',

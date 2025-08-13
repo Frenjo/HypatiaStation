@@ -80,10 +80,10 @@
 	icon_state = "chapel"
 
 	ambience = list(
-		'sound/ambience/ambicha1.ogg',
-		'sound/ambience/ambicha2.ogg',
-		'sound/ambience/ambicha3.ogg',
-		'sound/ambience/ambicha4.ogg',
+		'sound/ambience/chapel/ambicha1.ogg',
+		'sound/ambience/chapel/ambicha2.ogg',
+		'sound/ambience/chapel/ambicha3.ogg',
+		'sound/ambience/chapel/ambicha4.ogg',
 		'sound/music/traitor.ogg'
 	)
 
