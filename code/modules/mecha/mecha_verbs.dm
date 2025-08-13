@@ -151,10 +151,10 @@
 				occupant.forceMove(mmi)
 			occupant.canmove = FALSE
 			verbs.Add(/obj/mecha/verb/eject)
+		if(custom_cursor)
+			occupant.client.mouse_pointer_icon = initial(occupant.client.mouse_pointer_icon)
 		occupant = null
 		icon_state = initial(icon_state) + "-open"
 		set_dir(entry_direction)
-		if(custom_cursor)
-			occupant.client.mouse_pointer_icon = initial(occupant.client.mouse_pointer_icon)
 		return TRUE
 	return FALSE
