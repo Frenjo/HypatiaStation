@@ -72,7 +72,7 @@
 		var countText = ' <sup><span class=\\'notice\\'><i>x ' + count + '</i></span></sup>';
 		var indexToReplace = count > 2 ? (replacing.length - (msg.length + countText.length)) : (replacing.length - msg.length);
 		if(count == 10 || count == 100 || count == 1000)
-			indexToReplace -= 4
+			indexToReplace += 4
 		msg += countText;
 		document.getElementById('chatOutput').innerHTML = replacing.substring(0, indexToReplace);
 		append(msg, false);
