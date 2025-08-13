@@ -521,3 +521,58 @@
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/right_leg
 	categories = list("Reticence")
+
+// Justice (emagged only)
+/datum/design/mechfab/part/justice_chassis
+	name = "\"Justice\" Chassis"
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 20)
+	build_path = /obj/item/mecha_part/chassis/justice
+	categories = list("Justice")
+	hidden = TRUE
+
+/datum/design/mechfab/part/justice_torso
+	name = "\"Justice\" Torso"
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 50, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 5)
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/justice/torso
+	categories = list("Justice")
+	hidden = TRUE
+
+/datum/design/mechfab/part/justice_left_arm
+	name = "\"Justice\" Left Arm"
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
+	build_path = /obj/item/mecha_part/part/justice/left_arm
+	categories = list("Justice")
+	hidden = TRUE
+
+/datum/design/mechfab/part/justice_right_arm
+	name = "\"Justice\" Right Arm"
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
+	build_path = /obj/item/mecha_part/part/justice/right_arm
+	categories = list("Justice")
+	hidden = TRUE
+
+/datum/design/mechfab/part/justice_left_leg
+	name = "\"Justice\" Left Leg"
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
+	build_path = /obj/item/mecha_part/part/justice/left_leg
+	categories = list("Justice")
+	hidden = TRUE
+
+/datum/design/mechfab/part/justice_right_leg
+	name = "\"Justice\" Right Leg"
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
+	build_path = /obj/item/mecha_part/part/justice/right_leg
+	categories = list("Justice")
+	hidden = TRUE
+
+/datum/design/mechfab/part/justice_armour
+	name = "\"Justice\" Armour"
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET * 5,
+		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
+	)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/justice/armour
+	categories = list("Justice")
+	hidden = TRUE

@@ -194,3 +194,18 @@
 	name = "\"Reticence\" Weapon Control & Targeting module"
 	desc = "Allows for the construction of a \"Reticence\" Weapon Control & Targeting module."
 	build_path = /obj/item/circuitboard/mecha/reticence/targeting
+
+// Justice (emagged only)
+/datum/design/circuit/mecha/justice
+	req_tech = alist()
+	hidden = TRUE
+
+/datum/design/circuit/mecha/justice/main
+	name = "\"Justice\" Central Control module"
+	desc = "Allows for the construction of a \"Justice\" Central Control module."
+	build_path = /obj/item/circuitboard/mecha/justice/main
+
+/datum/design/circuit/mecha/justice/targ
+	name = "\"Justice\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Justice\" Weapon Control & Targeting module."
+	build_path = /obj/item/circuitboard/mecha/justice/targeting
