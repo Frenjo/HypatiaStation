@@ -12,32 +12,32 @@
 /obj/item/mecha_part/part/justice/torso
 	name = "\improper Justice torso"
 	desc = "A Justice torso."
-	icon_state = "justice_torso"
+	icon_state = "torso"
 
 /obj/item/mecha_part/part/justice/left_arm
 	name = "\improper Justice left arm"
 	desc = "A Justice left arm."
-	icon_state = "justice_l_arm"
+	icon_state = "l_arm"
 
 /obj/item/mecha_part/part/justice/right_arm
 	name = "\improper Justice right arm"
 	desc = "A Justice left arm."
-	icon_state = "justice_r_arm"
+	icon_state = "r_arm"
 
 /obj/item/mecha_part/part/justice/left_leg
 	name = "\improper Justice left leg"
 	desc = "A Justice left leg."
-	icon_state = "justice_l_leg"
+	icon_state = "l_leg"
 
 /obj/item/mecha_part/part/justice/right_leg
 	name = "\improper Justice right leg"
 	desc = "A Justice left leg."
-	icon_state = "justice_r_leg"
+	icon_state = "r_leg"
 
 /obj/item/mecha_part/part/justice/armour
 	name = "\improper Justice armour plates"
 	desc = "The armour plates of a Justice-type exosuit."
-	icon_state = "justice_armour"
+	icon_state = "armour"
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/justice/main
