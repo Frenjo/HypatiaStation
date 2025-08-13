@@ -95,6 +95,9 @@
 	weapons_safety = !weapons_safety
 	if(weapons_safety)
 		move_delay = MOVE_DELAY_SAFETY
+		spawn(1 SECOND)
+			if(is_invisible)
+				disable_invisibility(TRUE)
 	else
 		move_delay = MOVE_DELAY_ANGRY
 	update_icon()
@@ -164,7 +167,7 @@
 		return
 
 	// Handles camouflage power drain.
-	if(get_charge() >= invisibility_energy_drain && !weapons_safety)
+	if(get_charge() >= invisibility_energy_drain)
 		use_power(invisibility_energy_drain)
 	else
 		disable_invisibility(TRUE)
