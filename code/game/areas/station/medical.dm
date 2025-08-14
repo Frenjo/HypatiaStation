@@ -53,8 +53,8 @@
 	name = "\improper Morgue"
 	icon_state = "morgue"
 	ambience = list(
-		'sound/ambience/ambimo1.ogg',
-		'sound/ambience/ambimo2.ogg',
+		'sound/ambience/medical/morgue1.ogg',
+		'sound/ambience/medical/morgue2.ogg',
 		'sound/music/main.ogg'
 	)
 

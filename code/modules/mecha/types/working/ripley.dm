@@ -67,20 +67,19 @@
 
 /obj/mecha/working/ripley/proc/update_overlays()
 	cut_overlays()
-	var/image/new_overlay = null
+	var/mutable_appearance/new_overlay = null
 	var/overlay_prefix = custom_goliath_overlay ? initial(icon_state) : "ripley"
 	var/overlay_suffix = isnotnull(occupant) ? "" : "-open"
 	if(!goliath_hides)
 		return
 	if(goliath_hides < max_goliath_hides)
-		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g[overlay_suffix]")
+		new_overlay = mutable_appearance('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g[overlay_suffix]", plane)
 	else
-		new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g-full[overlay_suffix]")
+		new_overlay = mutable_appearance('icons/obj/mecha/mecha_overlays.dmi', "[overlay_prefix]-g-full[overlay_suffix]", plane)
 
 	if(isnull(new_overlay))
 		return
 
-	new_overlay.plane = plane
 	add_overlay(new_overlay)
 
 /obj/mecha/working/ripley/firefighter

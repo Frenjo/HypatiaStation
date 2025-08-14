@@ -2,10 +2,9 @@
 /area/external/tcomsat
 	name = "\improper Telecommunications Satellite"
 	ambience = list(
-		'sound/ambience/ambisin2.ogg',
+		'sound/ambience/engineering/ambisin2.ogg',
 		'sound/ambience/signal.ogg',
-		'sound/ambience/signal.ogg',
-		'sound/ambience/ambigen10.ogg'
+		'sound/ambience/general/ambigen10.ogg'
 	)
 
 /area/external/tcomsat/exterior
@@ -33,10 +32,9 @@
 	name = "\improper Telecommunications Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list(
-		'sound/ambience/ambisin2.ogg',
+		'sound/ambience/engineering/ambisin2.ogg',
 		'sound/ambience/signal.ogg',
-		'sound/ambience/signal.ogg',
-		'sound/ambience/ambigen10.ogg'
+		'sound/ambience/general/ambigen10.ogg'
 	)
 
 /area/turret_protected/tcomsat/foyer
@@ -48,20 +46,18 @@
 	name = "\improper Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
 	ambience = list(
-		'sound/ambience/ambisin2.ogg',
+		'sound/ambience/engineering/ambisin2.ogg',
 		'sound/ambience/signal.ogg',
-		'sound/ambience/signal.ogg',
-		'sound/ambience/ambigen10.ogg'
+		'sound/ambience/general/ambigen10.ogg'
 	)
 
 /area/turret_protected/tcomeast
 	name = "\improper Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
 	ambience = list(
-		'sound/ambience/ambisin2.ogg',
+		'sound/ambience/engineering/ambisin2.ogg',
 		'sound/ambience/signal.ogg',
-		'sound/ambience/signal.ogg',
-		'sound/ambience/ambigen10.ogg'
+		'sound/ambience/general/ambigen10.ogg'
 	)
 */
 

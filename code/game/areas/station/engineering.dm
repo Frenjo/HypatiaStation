@@ -5,10 +5,11 @@
 	name = "Engineering"
 	icon_state = "engine"
 	ambience = list(
-		'sound/ambience/ambisin1.ogg',
-		'sound/ambience/ambisin2.ogg',
-		'sound/ambience/ambisin3.ogg',
-		'sound/ambience/ambisin4.ogg'
+		'sound/ambience/engineering/ambieng1.ogg',
+		'sound/ambience/engineering/ambisin1.ogg',
+		'sound/ambience/engineering/ambisin2.ogg',
+		'sound/ambience/engineering/ambisin3.ogg',
+		'sound/ambience/engineering/ambisin4.ogg'
 	)
 
 /area/station/engineering/hallway
@@ -80,14 +81,17 @@
 /area/station/engineering/atmospherics
 	name = "Atmospherics"
 	icon_state = "atmos"
-	ambience = list('sound/ambience/ambiatm1.ogg')
+	ambience = list(
+		'sound/ambience/engineering/atmos1.ogg',
+		'sound/ambience/engineering/ambieng1.ogg'
+	)
 
 /area/station/engineering/atmospherics/control
 	name = "Atmospherics Control"
 	icon_state = "atmos"
 	ambience = list(
-		'sound/ambience/ambisin1.ogg',
-		'sound/ambience/ambisin2.ogg',
-		'sound/ambience/ambisin3.ogg',
-		'sound/ambience/ambisin4.ogg'
+		'sound/ambience/engineering/ambisin1.ogg',
+		'sound/ambience/engineering/ambisin2.ogg',
+		'sound/ambience/engineering/ambisin3.ogg',
+		'sound/ambience/engineering/ambisin4.ogg'
 	)

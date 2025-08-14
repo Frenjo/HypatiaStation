@@ -73,18 +73,18 @@
 	 * Ambience
 	 */
 	var/list/ambience = list(
-		'sound/ambience/ambigen1.ogg',
-		'sound/ambience/ambigen3.ogg',
-		'sound/ambience/ambigen4.ogg',
-		'sound/ambience/ambigen5.ogg',
-		'sound/ambience/ambigen6.ogg',
-		'sound/ambience/ambigen7.ogg',
-		'sound/ambience/ambigen8.ogg',
-		'sound/ambience/ambigen9.ogg',
-		'sound/ambience/ambigen10.ogg',
-		'sound/ambience/ambigen11.ogg',
-		'sound/ambience/ambigen12.ogg',
-		'sound/ambience/ambigen14.ogg'
+		'sound/ambience/general/ambigen1.ogg',
+		'sound/ambience/general/ambigen3.ogg',
+		'sound/ambience/general/ambigen4.ogg',
+		'sound/ambience/general/ambigen5.ogg',
+		'sound/ambience/general/ambigen6.ogg',
+		'sound/ambience/general/ambigen7.ogg',
+		'sound/ambience/general/ambigen8.ogg',
+		'sound/ambience/general/ambigen9.ogg',
+		'sound/ambience/general/ambigen10.ogg',
+		'sound/ambience/general/ambigen11.ogg',
+		'sound/ambience/general/ambigen12.ogg',
+		'sound/ambience/general/ambigen14.ogg'
 	)
 
 /area/New()
@@ -121,7 +121,7 @@
 
 /area/Entered(A)
 	var/musVolume = 25
-	var/sound = 'sound/ambience/ambigen1.ogg'
+	var/sound = 'sound/ambience/general/ambigen1.ogg'
 
 	if(!isliving(A))
 		return

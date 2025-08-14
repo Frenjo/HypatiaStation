@@ -25,7 +25,7 @@
 /area/external/abandoned/mining_outpost
 	name = "Abandoned Mining Station"
 	ambience = list(
-		'sound/ambience/song_game.ogg'
+		'sound/ambience/asteroid/song_game.ogg'
 	)
 
 // Bananium Shuttle
@@ -33,7 +33,7 @@
 /area/external/abandoned/bananium_shuttle
 	name = "Abandoned Bananium Shuttle"
 	ambience = list(
-		'sound/ambience/ambispace.ogg',
+		'sound/ambience/space/ambispace.ogg',
 		'sound/music/title2.ogg',
 		'sound/music/space.ogg',
 		'sound/music/main.ogg',

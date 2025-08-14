@@ -6,7 +6,7 @@
 /area/external/mining_outpost
 	icon_state = "mining"
 	ambience = list(
-		'sound/ambience/song_game.ogg'
+		'sound/ambience/asteroid/song_game.ogg'
 	)
 
 // Mining Station
