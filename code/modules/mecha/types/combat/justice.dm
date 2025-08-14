@@ -43,6 +43,8 @@
 /obj/mecha/combat/justice/melee_action(atom/target)
 	if(weapons_safety)
 		return
+	if(is_invisible)
+		disable_invisibility(TRUE)
 	. = ..()
 	playsound(src, 'sound/mecha/justice/blade_attack.ogg', 100, TRUE)
 
