@@ -112,11 +112,11 @@
 		if(0)
 			emagged = 0.5
 			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"DB error \[Code 0x00F1\]...\"")
-			sleep(10)
+			sleep(1 SECOND)
 			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Attempting auto-repair...\"")
-			sleep(15)
+			sleep(1.5 SECONDS)
 			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
-			sleep(30)
+			sleep(3 SECONDS)
 			visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"User DB truncated. Please contact your NanoTrasen system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
@@ -326,6 +326,8 @@
 				left_part = output_available_resources()+"<hr>"
 				left_part += "<a href='byond://?src=\ref[src];sync=1'>Sync with R&D servers</a><hr>"
 				for(var/part_set in part_sets)
+					if(isnotnull(part_sets[part_set]) && !files.show_hidden_designs) // Only show hidden sets if they're available for printing.
+						continue
 					left_part += "<a href='byond://?src=\ref[src];part_set=[part_set]'>[part_set]</a> - <a href='byond://?src=\ref[src];partset_to_queue=[part_set]'>\[Add all parts to queue\]<br>"
 			if("parts")
 				left_part += output_parts_list(part_set)

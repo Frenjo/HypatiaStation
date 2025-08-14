@@ -53,6 +53,7 @@
 		"Phazon",
 		"H.O.N.K",
 		"Reticence",
+		"Justice" = FALSE, // This one's associative because it's hidden unless emagged.
 		"General Exosuit Equipment",
 		"Working Exosuit Equipment",
 		"Medical Exosuit Equipment",

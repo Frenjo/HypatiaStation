@@ -96,3 +96,10 @@
 /obj/structure/mecha_wreckage/reticence/initialise()
 	. = ..()
 	crowbar_salvage.Add(new /obj/item/mecha_part/chassis/reticence(src))
+
+// Justice
+/obj/structure/mecha_wreckage/justice
+	name = "Justice wreckage"
+	icon_state = "justice-broken"
+
+	welder_salvage = list(/obj/item/stack/sheet/steel, /obj/item/stack/rods)
