@@ -525,14 +525,14 @@
 // Justice (emagged only)
 /datum/design/mechfab/part/justice_chassis
 	name = "\"Justice\" Chassis"
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 20)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/justice
 	categories = list("Justice")
 	hidden = TRUE
 
 /datum/design/mechfab/part/justice_torso
 	name = "\"Justice\" Torso"
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 50, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 5)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/justice/torso
 	categories = list("Justice")
@@ -570,7 +570,7 @@
 	name = "\"Justice\" Armour"
 	materials = alist(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET * 5,
-		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
+		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/justice/armour
