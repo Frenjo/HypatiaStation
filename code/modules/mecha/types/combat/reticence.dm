@@ -91,7 +91,7 @@
 /obj/mecha/combat/reticence/proc/enable_stealth()
 	if(is_stealthed)
 		return
-	animate(src, alpha = 20.4, time = 1 SECOND)
+	animate(src, alpha = 21, color = "#878787", time = 1 SECOND)
 	is_stealthed = TRUE
 	balloon_alert(occupant, "enabled stealth")
 	send_byjax(occupant, "exosuit.browser", "stealth_command", "Disable Stealth")
@@ -100,7 +100,7 @@
 /obj/mecha/combat/reticence/proc/disable_stealth(failed = FALSE)
 	if(!is_stealthed)
 		return
-	animate(src, alpha = 255, time = 1 SECOND)
+	animate(src, alpha = 255, color = initial(color), time = 1 SECOND)
 	is_stealthed = FALSE
 	balloon_alert(occupant, failed ? "stealth failed" : "disabled stealth")
 	send_byjax(occupant, "exosuit.browser", "stealth_command", "Enable Stealth")
