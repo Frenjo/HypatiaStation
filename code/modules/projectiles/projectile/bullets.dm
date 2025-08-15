@@ -66,3 +66,12 @@
 
 /obj/item/projectile/bullet/a762
 	damage = 25
+
+// Quietus
+/obj/item/projectile/bullet/mime
+	damage = 20
+
+/obj/item/projectile/bullet/mime/on_hit(atom/target, blocked = 0)
+	if(..(target, blocked) && isliving(target))
+		var/mob/living/alive = target
+		alive.silent = max(alive.silent, 10)

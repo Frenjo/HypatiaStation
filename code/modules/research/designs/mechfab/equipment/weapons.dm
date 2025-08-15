@@ -88,6 +88,13 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_path = /obj/item/mecha_equipment/weapon/ballistic/lmg
 
+/datum/design/mechfab/equipment/weapon/quietus
+	name = "S.H.H. \"Quietus\" Carbine"
+	desc = "Allows for the construction of S.H.H. \"Quietus\" carbines."
+	req_tech = /datum/design/mechfab/equipment/weapon/lmg::req_tech // One is a normal gun, the other is a mime gun.
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 3)
+	build_path = /obj/item/mecha_equipment/weapon/ballistic/quietus
+
 /datum/design/mechfab/equipment/weapon/scattershot
 	name = "LBX AC 10 \"Scattershot\""
 	desc = "Allows for the construction of LBX AC 10 scattershots."

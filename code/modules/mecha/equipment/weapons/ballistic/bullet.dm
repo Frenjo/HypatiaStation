@@ -15,6 +15,23 @@
 	projectile_energy_cost = 20
 	fire_cooldown = 2
 
+// Quietus Carbine
+/obj/item/mecha_equipment/weapon/ballistic/quietus
+	name = "\improper S.H.H. \"Quietus\" Carbine"
+	desc = "(Can be attached to: Reticence)" // Needs a proper description.
+	icon_state = "quietus"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/quietus::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/quietus::req_tech
+
+	mecha_types = MECHA_TYPE_RETICENCE
+
+	equip_cooldown = 3 SECONDS
+
+	projectile = /obj/item/projectile/bullet/mime
+	fire_sound = 'sound/weapons/gun/gunshot_silenced.ogg'
+	projectiles = 6
+	projectile_energy_cost = 50
+
 // Scattershot
 /obj/item/mecha_equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
