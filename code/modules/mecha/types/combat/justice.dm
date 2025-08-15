@@ -40,6 +40,13 @@
 	if(!check_for_support())
 		icon_state = "[icon_state]-fly"
 
+/obj/mecha/combat/justice/go_out()
+	if(is_invisible)
+		disable_invisibility()
+	if(!weapons_safety)
+		do_safety()
+	. = ..()
+
 /obj/mecha/combat/justice/melee_action(atom/target)
 	if(weapons_safety)
 		return
@@ -168,7 +175,7 @@
 	if(world.time % 2 SECONDS != 0)
 		return
 
-	// Handles camouflage power drain.
+	// Handles invisibility power drain.
 	if(get_charge() >= invisibility_energy_drain)
 		use_power(invisibility_energy_drain)
 	else
