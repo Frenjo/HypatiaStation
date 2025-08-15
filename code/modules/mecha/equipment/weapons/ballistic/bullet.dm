@@ -25,7 +25,7 @@
 
 	mecha_types = MECHA_TYPE_RETICENCE
 
-	equip_cooldown = 3 SECONDS
+	equip_cooldown = 1.5 SECONDS
 
 	projectile = /obj/item/projectile/bullet/mime
 	fire_sound = 'sound/weapons/gun/gunshot_silenced.ogg'
