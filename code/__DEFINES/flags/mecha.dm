@@ -32,7 +32,7 @@
 
 #define MECHA_TYPE_DURAND BITFLAG(13) // Durand, Archambeau
 #define MECHA_TYPE_BRIGAND BITFLAG(14)
-#define MECHA_TYPE_MARAUDER BITFLAG(15) // Marauder, Seraph, Mauler
+#define MECHA_TYPE_MARAUDER BITFLAG(15) // Marauder, Mauler, Seraph, Fiend
 
 #define MECHA_TYPE_PHAZON BITFLAG(16) // Phazon, Dark Phazon
 

@@ -54,6 +54,11 @@
 	name = "Seraph wreckage"
 	icon_state = "seraph-broken"
 
+/obj/structure/mecha_wreckage/fiend
+	name = "Fiend wreckage"
+	desc = "The Syndicate definitely won't be very happy about this..."
+	icon_state = "fiend-broken"
+
 // Phazon
 /obj/structure/mecha_wreckage/phazon
 	name = "Phazon wreckage"

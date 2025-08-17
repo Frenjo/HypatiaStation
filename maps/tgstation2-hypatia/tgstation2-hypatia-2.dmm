@@ -4631,6 +4631,11 @@
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
+"wp" = (
+/obj/machinery/mech_bay_recharge_floor,
+/obj/mecha/combat/marauder/seraph/fiend/equipped,
+/turf/open/floor/shuttle/red,
+/area/enemy/syndicate/mothership/elite_squad)
 "wr" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor{
@@ -54268,7 +54273,7 @@ ua
 ua
 ua
 CG
-VE
+wp
 NA
 VE
 NA

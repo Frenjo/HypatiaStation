@@ -119,6 +119,30 @@
 		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
+// Mauler
+/obj/mecha/combat/marauder/mauler
+	name = "\improper Mauler"
+	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
+	icon_state = "mauler"
+
+	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
+	activation_sound_volume = 90
+
+	operation_req_access = list(ACCESS_SYNDICATE)
+
+	wreckage = /obj/structure/mecha_wreckage/mauler
+
+	zoom_sound = 'sound/mecha/voice/image_enhsyndi.ogg'
+	zoom_sound_volume = 90.5
+
+// Equipped variant
+/obj/mecha/combat/marauder/mauler/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/energy/pulse, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
+		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation/hardened
+	)
+
 // Seraph
 /obj/mecha/combat/marauder/seraph
 	name = "\improper Seraph"
@@ -145,26 +169,26 @@
 		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
 
-// Mauler
-/obj/mecha/combat/marauder/mauler
-	name = "\improper Mauler"
-	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
-	icon_state = "mauler"
+// Fiend
+/obj/mecha/combat/marauder/seraph/fiend
+	name = "\improper Fiend"
+	desc = "Heavy-duty, command-type exosuit, developed off of the existing Seraph model."
+	icon_state = "fiend"
 
 	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
 	activation_sound_volume = 90
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 
-	wreckage = /obj/structure/mecha_wreckage/mauler
+	wreckage = /obj/structure/mecha_wreckage/fiend
 
 	zoom_sound = 'sound/mecha/voice/image_enhsyndi.ogg'
 	zoom_sound_volume = 90.5
 
 // Equipped variant
-/obj/mecha/combat/marauder/mauler/equipped
+/obj/mecha/combat/marauder/seraph/fiend/equipped
 	starts_with = list(
-		/obj/item/mecha_equipment/weapon/energy/pulse, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
-		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster,
 		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
