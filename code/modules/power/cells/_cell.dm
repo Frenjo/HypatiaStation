@@ -1,11 +1,38 @@
-// the power cell
-// charge from 0 to 100%
-// fits in APC to provide backup power
+/*
+ * Power Cell
+ *
+ * They charge from 0 to 100%.
+ * Fits in an APC to provide backup power.
+ * These are not technically a "stock part" but they perform much the same function.
+ */
+/obj/item/cell
+	name = "basic power cell"
+	desc = "A rechargeable electrochemical power cell."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "cell"
+	item_state = "cell"
+	matter_amounts = /datum/design/power_cell/basic::materials
+	origin_tech = /datum/design/power_cell/basic::req_tech
+	force = 5
+	throwforce = 5
+	throw_speed = 3
+	throw_range = 5
+	w_class = 3
+
+	var/charge = 0	// note %age conveted to actual charge in New
+	var/maxcharge = 1000
+
+	var/rigged = 0		// true if rigged to explode
+	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 
 /obj/item/cell/initialise()
 	. = ..()
 	charge = maxcharge
 	updateicon()
+
+/obj/item/cell/suicide_act(mob/user)
+	user.visible_message(SPAN_DANGER("[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide."))
+	return (FIRELOSS)
 
 /obj/item/cell/proc/updateicon()
 	cut_overlays()

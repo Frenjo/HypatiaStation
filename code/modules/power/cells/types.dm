@@ -1,32 +1,8 @@
 /*
- * Power Cell
+ * Power Cells
  *
  * These are not technically a "stock part" but they perform much the same function.
  */
-/obj/item/cell
-	name = "basic power cell"
-	desc = "A rechargeable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
-	item_state = "cell"
-	matter_amounts = /datum/design/power_cell/basic::materials
-	origin_tech = /datum/design/power_cell/basic::req_tech
-	force = 5.0
-	throwforce = 5.0
-	throw_speed = 3
-	throw_range = 5
-	w_class = 3.0
-
-	var/charge = 0	// note %age conveted to actual charge in New
-	var/maxcharge = 1000
-
-	var/rigged = 0		// true if rigged to explode
-	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
-
-/obj/item/cell/suicide_act(mob/user)
-	user.visible_message(SPAN_DANGER("[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide."))
-	return (FIRELOSS)
-
 /obj/item/cell/crap
 	name = "\improper NanoTrasen brand rechargeable AA battery"
 	desc = "A rechargeable electrochemical power cell. You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
