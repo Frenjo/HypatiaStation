@@ -101,7 +101,10 @@
 	forceMove(T)
 
 /obj/item/get_examine_text(mob/user)
-	. = ..()
+	// This fuckery allows for some reordering to ensure that size appears first for items.
+	var/list/parent_result = ..()
+	. = list()
+
 	var/size
 	switch(w_class)
 		if(1)
@@ -116,6 +119,8 @@
 			size = "huge"
 	//if((MUTATION_CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
 	. += SPAN_INFO("It is a <em>[size]</em> item.")
+
+	. += parent_result
 
 /obj/item/attack_hand(mob/user)
 	if(isnull(user))
@@ -202,6 +207,9 @@
 			else if(S.can_be_inserted(src))
 				S.handle_item_insertion(src)
 
+	return
+
+/obj/item/proc/is_used_on(obj/O, mob/user)
 	return
 
 /obj/item/proc/talk_into(mob/M, text)

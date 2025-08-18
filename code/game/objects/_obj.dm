@@ -36,8 +36,14 @@
 /obj/return_air()
 	return isnotnull(loc) ? loc.return_air() : null
 
-/obj/item/proc/is_used_on(obj/O, mob/user)
-	return
+/obj/get_examine_text(mob/user)
+	. = ..()
+	if(isnotnull(matter_amounts))
+		var/list/material_names = list()
+		for(var/material_path in matter_amounts)
+			var/decl/material/mat = material_path
+			material_names += "<em>[lowertext(initial(mat.name))]</em>"
+		. += SPAN_INFO("It is made from [english_list(material_names)].")
 
 /obj/proc/process()
 	return PROCESS_KILL
