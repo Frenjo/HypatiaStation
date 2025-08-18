@@ -4633,7 +4633,7 @@
 /area/centcom/specops)
 "wp" = (
 /obj/machinery/mech_bay_recharge_floor,
-/obj/mecha/combat/marauder/seraph/fiend/equipped,
+/obj/mecha/working/ripley/sindy/equipped,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "wr" = (
@@ -7404,7 +7404,7 @@
 /area/shuttle/transport/centcom)
 "Kd" = (
 /obj/machinery/mech_bay_recharge_floor,
-/obj/mecha/medical/odysseus/eurymachus/equipped,
+/obj/mecha/combat/marauder/mauler/equipped,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "Ke" = (
@@ -9351,7 +9351,7 @@
 /area/centcom/tdome/observation)
 "TE" = (
 /obj/machinery/mech_bay_recharge_floor,
-/obj/mecha/working/ripley/sindy/equipped,
+/obj/mecha/combat/marauder/seraph/fiend/equipped,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "TF" = (
@@ -9645,8 +9645,8 @@
 	},
 /area/special/alien)
 "VE" = (
-/obj/mecha/combat/marauder/mauler/equipped,
 /obj/machinery/mech_bay_recharge_floor,
+/obj/mecha/medical/odysseus/eurymachus/equipped,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "VF" = (
