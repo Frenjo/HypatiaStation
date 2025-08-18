@@ -121,6 +121,6 @@
 		(Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "emp_insulation_alien"
 
-	energy_drain = 200 // Takes 4x the energy of the regular version.
+	energy_drain = parent_type::energy_drain * 4
 
 	severity_modifier = 0.5
