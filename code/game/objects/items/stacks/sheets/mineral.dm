@@ -16,6 +16,7 @@ Mineral Sheets
 	icon_state = "sandstone"
 	throw_speed = 4
 	throw_range = 5
+	matter_amounts = alist(/decl/material/sandstone = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 1)
 	material = /decl/material/sandstone
 
@@ -38,6 +39,7 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list(
 /obj/item/stack/sheet/diamond
 	name = "diamond"
 	icon_state = "diamond"
+	matter_amounts = alist(/decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 6)
 	material = /decl/material/diamond
 
@@ -57,6 +59,7 @@ var/global/list/datum/stack_recipe/diamond_recipes = list(
 /obj/item/stack/sheet/plasma
 	name = "solid plasma"
 	icon_state = "plasma"
+	matter_amounts = alist(/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/plasma = 2)
 	material = /decl/material/plasma
 

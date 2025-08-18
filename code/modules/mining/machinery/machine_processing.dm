@@ -300,7 +300,7 @@
 						on = FALSE
 					continue
 				if(selected == ORE_PROC_IRON + ORE_PROC_COAL + ORE_PROC_PLASMA)
-					if(ore_amounts[/obj/item/ore/iron] > 0 && ore_amounts[/obj/item/ore/plasma] > 0 && ore_amounts[/obj/item/ore/plasma] > 0)
+					if(ore_amounts[/obj/item/ore/iron] > 0 && ore_amounts[/obj/item/ore/coal] > 0 && ore_amounts[/obj/item/ore/plasma] > 0)
 						ore_amounts[/obj/item/ore/iron]--
 						ore_amounts[/obj/item/ore/coal]--
 						ore_amounts[/obj/item/ore/plasma]--

@@ -115,7 +115,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/plasteel_recipes, list(
 	desc = "Sheets made from an alloy of iron, carbon and plasma."
 	icon_state = "plasteel"
 	item_state = "sheet-metal"
-	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
+	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET)
 	throwforce = 15
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = alist(/decl/tech/materials = 2)
@@ -133,6 +133,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/silver_recipes, list(
 /obj/item/stack/sheet/silver
 	name = "silver"
 	icon_state = "silver"
+	matter_amounts = alist(/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 3)
 	material = /decl/material/silver
 
@@ -150,6 +151,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/gold_recipes, list(
 /obj/item/stack/sheet/gold
 	name = "gold"
 	icon_state = "gold"
+	matter_amounts = alist(/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 4)
 	material = /decl/material/gold
 
@@ -167,6 +169,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 /obj/item/stack/sheet/uranium
 	name = "uranium"
 	icon_state = "uranium"
+	matter_amounts = alist(/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 5)
 	material = /decl/material/uranium
 
@@ -180,6 +183,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 /obj/item/stack/sheet/enruranium
 	name = "enriched uranium"
 	icon_state = "enruranium"
+	matter_amounts = alist(/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 5)
 	material = /decl/material/enriched_uranium
 
@@ -187,6 +191,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 /obj/item/stack/sheet/bananium
 	name = "bananium"
 	icon_state = "bananium"
+	matter_amounts = alist(/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 4)
 	material = /decl/material/bananium
 
@@ -199,6 +204,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 /obj/item/stack/sheet/tranquilite
 	name = "tranquilite"
 	icon_state = "tranquilite"
+	matter_amounts = alist(/decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist (/decl/tech/materials = 4)
 	material = /decl/material/tranquilite
 
@@ -211,6 +217,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 /obj/item/stack/sheet/adamantine
 	name = "adamantine"
 	icon_state = "adamantine"
+	matter_amounts = alist(/decl/material/adamantine = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 4)
 	material = /decl/material/adamantine
 
@@ -218,5 +225,6 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 /obj/item/stack/sheet/mythril
 	name = "mythril"
 	icon_state = "mythril"
+	matter_amounts = alist(/decl/material/mythril = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = alist(/decl/tech/materials = 4)
 	material = /decl/material/mythril
