@@ -1,19 +1,7 @@
-/obj/item/projectile/energy/beam
-	invisibility = INVISIBILITY_MAXIMUM
-	pass_flags = parent_type::pass_flags | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
-
-	damage = 40
-	damage_type = BURN
-	flag = "laser"
-	eyeblur = 4
-
-	hitscan = TRUE
-
-	var/frequency = 1
-
-// Laser
 /obj/item/projectile/energy/beam/laser
 	name = "laser beam"
+
+	damage = 25
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
 	tracer_type = /obj/effect/projectile/laser/tracer
@@ -21,6 +9,8 @@
 
 /obj/item/projectile/energy/beam/laser/heavy
 	name = "heavy laser beam"
+
+	damage = 40
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
@@ -43,53 +33,6 @@
 
 	damage = 30
 
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
-
-// Disabler
-/obj/item/projectile/energy/beam/disabler
-	name = "disabler beam"
-
-	damage_type = HALLOSS
-	nodamage = TRUE
-	weaken = 5
-	agony = 20
-
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
-
-// Pulse
-/obj/item/projectile/energy/beam/pulse
-	name = "pulse beam"
-
-	damage = 50
-
-	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
-	tracer_type = /obj/effect/projectile/laser_pulse/tracer
-	impact_type = /obj/effect/projectile/laser_pulse/impact
-
-// Emitter
-/obj/item/projectile/energy/beam/emitter
-	name = "emitter beam"
-
-	damage = 30
-
-	muzzle_type = /obj/effect/projectile/emitter/muzzle
-	tracer_type = /obj/effect/projectile/emitter/tracer
-	impact_type = /obj/effect/projectile/emitter/impact
-
-// Sniper
-/obj/item/projectile/energy/beam/sniper
-	name = "sniper beam"
-
-	damage = 60
-	stun = 5
-	weaken = 5
-	stutter = 5
-
-	// This needs to be changed later.
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
 	impact_type = /obj/effect/projectile/xray/impact

@@ -1,11 +1,3 @@
-/obj/item/projectile/energy
-	name = "energy"
-	icon_state = "spark"
-
-	damage = 0
-	damage_type = BURN
-	flag = "energy"
-
 /obj/item/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"

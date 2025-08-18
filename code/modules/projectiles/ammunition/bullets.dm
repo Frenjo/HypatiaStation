@@ -14,7 +14,7 @@
 	desc = "A .418 bullet casing."
 
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/suffocationbullet
+	projectile_type = /obj/item/projectile/bullet/suffocation
 
 /obj/item/ammo_casing/a75
 	desc = "A .75 bullet casing."
@@ -26,37 +26,37 @@
 	desc = "A .666 bullet casing."
 
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/cyanideround
+	projectile_type = /obj/item/projectile/bullet/cyanide
 
 /obj/item/ammo_casing/c38
 	desc = "A .38 bullet casing."
 
 	caliber = "38"
-	projectile_type = /obj/item/projectile/bullet/weakbullet
+	projectile_type = /obj/item/projectile/bullet/weak
 
 /obj/item/ammo_casing/c9mm
 	desc = "A 9mm bullet casing."
 
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/midbullet2
+	projectile_type = /obj/item/projectile/bullet/mid2
 
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/midbullet
+	projectile_type = /obj/item/projectile/bullet/mid
 
 /obj/item/ammo_casing/c45r
 	desc = "A .45 rubber bullet casing."
 
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/weakbullet/rubber
+	projectile_type = /obj/item/projectile/bullet/weak/rubber
 
 /obj/item/ammo_casing/a12mm
 	desc = "A 12mm bullet casing."
 
 	caliber = "12mm"
-	projectile_type = /obj/item/projectile/bullet/midbullet2
+	projectile_type = /obj/item/projectile/bullet/mid2
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun shell"
@@ -82,7 +82,7 @@
 	icon_state = "bshell"
 
 	matter_amounts = /datum/design/autolathe/beanbag_shell::materials
-	projectile_type = /obj/item/projectile/bullet/weakbullet/beanbag
+	projectile_type = /obj/item/projectile/bullet/weak/beanbag
 
 /obj/item/ammo_casing/shotgun/stunshell
 	name = "stun shell"

@@ -14,7 +14,7 @@
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 
-/obj/item/projectile/bullet/weakbullet // "rubber" bullets
+/obj/item/projectile/bullet/weak // "rubber" bullets
 	sharp = FALSE
 
 	damage = 10
@@ -22,33 +22,33 @@
 	weaken = 5
 	embed = FALSE
 
-/obj/item/projectile/bullet/weakbullet/beanbag		//because beanbags are not bullets
+/obj/item/projectile/bullet/weak/beanbag		//because beanbags are not bullets
 	name = "beanbag"
 
-/obj/item/projectile/bullet/weakbullet/rubber
+/obj/item/projectile/bullet/weak/rubber
 	name = "rubber bullet"
 
-/obj/item/projectile/bullet/midbullet
+/obj/item/projectile/bullet/mid
 	damage = 20
 	stun = 5
 	weaken = 5
 
-/obj/item/projectile/bullet/midbullet2
+/obj/item/projectile/bullet/mid2
 	damage = 25
 
-/obj/item/projectile/bullet/suffocationbullet//How does this even work?
+/obj/item/projectile/bullet/suffocation //How does this even work?
 	name = "co bullet"
 
 	damage = 20
 	damage_type = OXY
 
-/obj/item/projectile/bullet/cyanideround
+/obj/item/projectile/bullet/cyanide
 	name = "poison bullet"
 
 	damage = 40
 	damage_type = TOX
 
-/obj/item/projectile/bullet/burstbullet//I think this one needs something for the on hit
+/obj/item/projectile/bullet/burst //I think this one needs something for the on hit
 	name = "exploding bullet"
 
 	damage = 20
