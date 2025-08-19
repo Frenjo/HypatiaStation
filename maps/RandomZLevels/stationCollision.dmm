@@ -287,7 +287,7 @@
 "fA" = (/obj/machinery/r_n_d/protolathe,/turf/open/floor/tiled/showroom,/area/away_mission/research)
 "fB" = (/obj/machinery/r_n_d/destructive_analyser,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/tiled/showroom,/area/away_mission/research)
 "fC" = (/obj/structure/table,/obj/item/gas_analyser,/obj/item/mass_spectrometer{pixel_x = 5; pixel_y = 5},/turf/open/floor/tiled/showroom,/area/away_mission/research)
-"fD" = (/obj/structure/table/holotable,/obj/item/gun/energy/floragun{pixel_x = 2; pixel_y = 3},/obj/machinery/light,/obj/item/gun/energy/taser{pixel_x = -2; pixel_y = -2},/turf/open/floor/tiled/showroom,/area/away_mission/research)
+"fD" = (/obj/structure/table/holo,/obj/item/gun/energy/floragun{pixel_x = 2; pixel_y = 3},/obj/machinery/light,/obj/item/gun/energy/taser{pixel_x = -2; pixel_y = -2},/turf/open/floor/tiled/showroom,/area/away_mission/research)
 "fE" = (/obj/structure/target_stake,/obj/item/grown/sunflower,/turf/open/floor/tiled/showroom,/area/away_mission/research)
 "fF" = (/obj/item/ammo_casing/c45,/obj/item/ammo_casing/c45{pixel_x = 7},/turf/open/floor/linoleum,/area/away_mission/northblock)
 "fG" = (/obj/item/clothing/suit/space/syndicate,/obj/item/clothing/under/syndicate,/obj/item/clothing/head/helmet/space/syndicate,/obj/effect/decal/remains/human{desc = "This guy seemed to have died in terrible way! Half his remains are dust."; name = "Syndicate agent remains"},/obj/item/clothing/shoes/syndigaloshes,/obj/effect/decal/cleanable/blood/splatter,/obj/item/gun/projectile/silenced/sc_silenced,/turf/open/floor/linoleum,/area/away_mission/northblock)

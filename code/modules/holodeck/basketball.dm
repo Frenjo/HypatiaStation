@@ -1,6 +1,6 @@
 //BASKETBALL OBJECTS
 // Basketball
-/obj/item/beach_ball/holoball
+/obj/item/beach_ball/holo
 	icon = 'icons/obj/basketball.dmi'
 	icon_state = "basketball"
 	name = "basketball"

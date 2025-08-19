@@ -1,6 +1,6 @@
 // Contains: Holographic Items
 // Boxing Gloves
-/obj/item/clothing/gloves/boxing/hologlove
+/obj/item/clothing/gloves/boxing/holo
 	name = "boxing gloves"
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"

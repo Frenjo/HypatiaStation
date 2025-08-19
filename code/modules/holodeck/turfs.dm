@@ -1,25 +1,25 @@
 // Contains: Holographic Turfs
 // Base
-/turf/open/floor/holofloor
+/turf/open/floor/holo
 	thermal_conductivity = 0
 
-/turf/open/floor/holofloor/attackby(obj/item/W, mob/user)
+/turf/open/floor/holo/attackby(obj/item/W, mob/user)
 	return	// HOLOFLOOR DOES NOT GIVE A FUCK
 
-/turf/open/floor/holofloor/burnmix
+/turf/open/floor/holo/burnmix
 	name = "burn-mix floor"
 	icon_state = "engine"
 	initial_gases = list(/decl/xgm_gas/oxygen = 2500, /decl/xgm_gas/plasma = 5000)
 	temperature = 370
 
 // Grass
-/turf/open/floor/holofloor/grass
+/turf/open/floor/holo/grass
 	name = "lush grass"
 	icon = 'icons/turf/floors/grass.dmi'
 	icon_state = "grass1"
 	tile_path = /obj/item/stack/tile/grass
 
-/turf/open/floor/holofloor/grass/initialise()
+/turf/open/floor/holo/grass/initialise()
 	. = ..()
 	icon_state = "grass[pick("1", "2", "3", "4")]"
 	spawn(4)

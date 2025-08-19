@@ -32,7 +32,7 @@
 					visible_message(SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"))
 				return
 
-		if(istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
+		if(istype(M.gloves, /obj/item/clothing/gloves/boxing/holo))
 			var/damage = rand(0, 9)
 			if(!damage)
 				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)

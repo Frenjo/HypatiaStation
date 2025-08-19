@@ -442,7 +442,7 @@
 "iG" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/open/floor/wood,/area/away_mission/academy/academyaft)
 "iH" = (/obj/effect/decal/cleanable/cobweb2,/turf/open/floor/reinforced,/area/away_mission/academy/academyaft)
 "iI" = (/obj/structure/shuttle/engine/heater,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/plating/metal/airless,/area/away_mission/academy/academyaft)
-"iJ" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table,/obj/item/beach_ball/holoball,/obj/effect/decal/floor/coloured/red{dir = 1},/turf/open/floor,/area/away_mission/academy/academyaft)
+"iJ" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table,/obj/item/beach_ball/holo,/obj/effect/decal/floor/coloured/red{dir = 1},/turf/open/floor,/area/away_mission/academy/academyaft)
 "iK" = (/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/floor/coloured/red{dir = 5},/turf/open/floor,/area/away_mission/academy/academyaft)
 "iL" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 1e+007},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/open/floor/plating/metal,/area/away_mission/academy/academyaft)
 "iM" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; tag = ""},/turf/open/floor/carpet,/area/away_mission/academy/academyaft)

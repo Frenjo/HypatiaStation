@@ -79,7 +79,7 @@
 		/obj/item/book/manual/chef_recipes, \
 		/obj/item/bikehorn, \
 		/obj/item/beach_ball, \
-		/obj/item/beach_ball/holoball, \
+		/obj/item/beach_ball/holo, \
 		/obj/item/banhammer, \
 		/obj/item/toy/balloon, \
 		/obj/item/toy/blink, \
