@@ -55,7 +55,7 @@
 		lastTick = world.timeofday
 		spreaded = 0
 
-		for(var/i = 1, i <= yield, i++)
+		for(var/i in 1 to yield)
 			if(prob(spreadChance))
 				var/list/possibleLocs = list()
 				var/spreadsIntoAdjacent = 0

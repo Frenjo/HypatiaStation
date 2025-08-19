@@ -10,7 +10,7 @@
 	var/i
 
 	//fill the list of weights
-	for(i = 1; i <= contents; i++)
+	for(i in 1 to contents)
 		var/datum/reagent/reagent = reagent_list[i]
 		var/reagent_weight = reagent.volume
 		if(istype(reagent, /datum/reagent/paint))
@@ -18,7 +18,7 @@
 		weight[i] = reagent_weight
 
 	//fill the lists of colours
-	for(i = 1; i <= contents; i++)
+	for(i in 1 to contents)
 		var/datum/reagent/reagent = reagent_list[i]
 		var/hue = reagent.color
 		if(length(hue) != 7)
@@ -45,14 +45,14 @@
 
 	//normalize weights
 	var/listsum = 0
-	for(i = 1; i <= contents; i++)
+	for(i in 1 to contents)
 		listsum += weight[i]
-	for(i = 1; i <= contents; i++)
+	for(i in 1 to contents)
 		weight[i] /= listsum
 
 	//mix them
 	var/mixedcolour = 0
-	for(i = 1; i <= contents; i++)
+	for(i in 1 to contents)
 		mixedcolour += weight[i] * colour[i]
 	mixedcolour = round(mixedcolour)
 

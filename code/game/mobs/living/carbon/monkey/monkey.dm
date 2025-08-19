@@ -69,7 +69,7 @@
 
 		// Set the blocks to uni_append, if needed.
 		if(length(uni_append))
-			for(var/b = 1; b <= length(uni_append); b++)
+			for(var/b in 1 to length(uni_append))
 				dna.SetUIValue(DNA_UI_LENGTH - (length(uni_append) - b), uni_append[b], 1)
 		dna.UpdateUI()
 

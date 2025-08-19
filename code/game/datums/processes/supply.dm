@@ -42,7 +42,7 @@ PROCESS_DEF(supply)
 	if(istype(A, /obj/item/radio/beacon))
 		return TRUE
 
-	for(var/i = 1, i <= length(A.contents), i++)
+	for(var/i in 1 to length(A.contents))
 		var/atom/B = A.contents[i]
 		if(.(B))
 			return TRUE

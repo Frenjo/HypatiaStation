@@ -243,7 +243,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					var/list/fibers = outputs[2]
 					if(length(fibers))
 						temp += "&nbsp<b>Fibers:</b><br>"
-						for(var/j = 1, j <= length(fibers), j++)
+						for(var/j in 1 to length(fibers))
 							temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[fibers[j]]<br>"
 					var/list/blood = outputs[3]
 					if(length(blood))
@@ -289,7 +289,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					var/list/fibers = outputs[2]
 					if(length(fibers))
 						P.info += "&nbsp<b>Fibers:</b><br>"
-						for(var/j = 1, j <= length(fibers), j++)
+						for(var/j in 1 to length(fibers))
 							P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[fibers[j]]<br>"
 					var/list/blood = outputs[3]
 					if(length(blood))

@@ -22,7 +22,7 @@
 
 /datum/chemical_reaction/slimemonkey/on_reaction(datum/reagents/holder)
 	var/turf/location = GET_TURF(holder.my_atom)
-	for(var/i = 1, i <= 3, i++)
+	for(var/i in 1 to 3)
 		new /obj/item/reagent_holder/food/snacks/monkeycube(location)
 
 //Green
@@ -81,13 +81,13 @@
 		if(M:eyecheck() <= 0)
 			flick("e_flash", M.flash)
 
-	for(var/i = 1, i <= 5, i++)
+	for(var/i in 1 to 5)
 		var/chosen = pick(critters)
 		var/mob/living/simple/hostile/C = new chosen
 		C.faction = "slimesummon"
 		C.forceMove(get_turf_loc(holder.my_atom))
 		if(prob(50))
-			for(var/j = 1, j <= rand(1, 3), j++)
+			for(var/j in 1 to rand(1, 3))
 				step(C, pick(NORTH,SOUTH,EAST,WEST))*/
 	holder.my_atom.visible_message(SPAN_WARNING("The slime core fizzles disappointingly..."))
 
@@ -110,12 +110,12 @@
 		if(M.eyecheck() <= 0)
 			flick("e_flash", M.flash)
 
-	for(var/i = 1, i <= 4 + rand(1, 2), i++)
+	for(var/i in 1 to (4 + rand(1, 2)))
 		var/chosen = pick(borks)
 		var/obj/B = new chosen(location)
 		if(isnotnull(B))
 			if(prob(50))
-				for(var/j = 1, j <= rand(1, 3), j++)
+				for(var/j in 1 to rand(1, 3))
 					step(B, pick(NORTH, SOUTH, EAST, WEST))
 
 //Blue
@@ -496,12 +496,12 @@
 		if(M:eyecheck() <= 0)
 			flick("e_flash", M.flash)
 
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i in 1 to created_volume)
 		var/chosen = pick(critters)
 		var/mob/living/simple/hostile/C = new chosen
 		C.forceMove(get_turf_loc(holder.my_atom))
 		if(prob(50))
-			for(var/j = 1, j <= rand(1, 3), j++)
+			for(var/j in 1 to rand(1, 3))
 				step(C, pick(NORTH, SOUTH, EAST, WEST))
 
 
@@ -521,13 +521,13 @@
 		if(M:eyecheck() <= 0)
 			flick("e_flash", M.flash)
 
-	for(var/i = 1, i <= created_volume + rand(1,2), i++)
+	for(var/i in 1 to (created_volume + rand(1, 2)))
 		var/chosen = pick(borks)
 		var/obj/B = new chosen
 		if(B)
 			B.forceMove(get_turf_loc(holder.my_atom))
 			if(prob(50))
-				for(var/j = 1, j <= rand(1, 3), j++)
+				for(var/j in 1 to rand(1, 3))
 					step(B, pick(NORTH, SOUTH, EAST, WEST))
 
 /datum/chemical_reaction/slimechloral

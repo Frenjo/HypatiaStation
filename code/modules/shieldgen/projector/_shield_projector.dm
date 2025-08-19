@@ -166,7 +166,7 @@
 	var/current_x = T1.x + 1 // Start next to the top left corner.
 	var/current_y = T1.y
 	var/length = (x_dist * 2) - 1
-	for(var/i = 1 to length)
+	for(var/i in 1 to length)
 		create_shield(locate(current_x, current_y, T.z), NORTH)
 		current_x++
 
@@ -177,7 +177,7 @@
 	current_x = T1.x
 	current_y = T1.y - 1
 	length = (y_dist * 2) - 1
-	for(var/i = 1 to length)
+	for(var/i in 1 to length)
 		create_shield(locate(current_x, current_y, T.z), WEST)
 		current_y--
 
@@ -188,7 +188,7 @@
 	current_x = T2.x
 	current_y = T2.y + 1
 	length = (y_dist * 2) - 1
-	for(var/i = 1 to length)
+	for(var/i in 1 to length)
 		create_shield(locate(current_x, current_y, T.z), EAST)
 		current_y++
 
@@ -196,7 +196,7 @@
 	current_x = T2.x - 1
 	current_y = T2.y
 	length = (x_dist * 2) - 1
-	for(var/i = 1 to length)
+	for(var/i in 1 to length)
 		create_shield(locate(current_x, current_y, T.z), SOUTH)
 		current_x--
 	// Finally done.
@@ -280,7 +280,7 @@
 		return FALSE
 
 	var/turf/T = GET_TURF(src) // This is another 'anchor', or will be once we move away from the projector.
-	for(var/i = 1 to offset_from_center)
+	for(var/i in 1 to offset_from_center)
 		T = get_step(T, dir)
 	if(isnull(T)) // We went off the map or something.
 		return
@@ -291,7 +291,7 @@
 	var/turf/temp_T = T
 
 	// First loop, we build the left (from a north perspective) side of the line.
-	for(var/i = 1 to length_to_build)
+	for(var/i in 1 to length_to_build)
 		temp_T = get_step(temp_T, turn(dir, 90) )
 		if(isnull(temp_T))
 			break
@@ -300,7 +300,7 @@
 	temp_T = T
 
 	// Second loop, we build the right side.
-	for(var/i = 1 to length_to_build)
+	for(var/i in 1 to length_to_build)
 		temp_T = get_step(temp_T, turn(dir, -90))
 		if(isnull(temp_T))
 			break

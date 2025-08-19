@@ -126,7 +126,7 @@
 <th>Rank</th>
 <th>Fingerprints</th>
 </tr>					"}
-						for(var/i = 1, i <= length(Perp), i += 2)
+						for(var/i in 1 to length(Perp) step 2)
 							var/crimstat = ""
 							var/datum/data/record/R = Perp[i]
 							if(istype(Perp[i+1],/datum/data/record/))
@@ -228,12 +228,12 @@ What a mess.*/
 					return //Lets not let them search too greedily.
 				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.general)
 					var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
-					for(var/i = 1, i <= length(components), i++)
+					for(var/i in 1 to length(components))
 						if(findtext(temptext,components[i]))
 							var/prelist = list(2)
 							prelist[1] = R
 							Perp += prelist
-				for(var/i = 1, i <= length(Perp), i += 2)
+				for(var/i in 1 to length(Perp) step 2)
 					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
 						var/datum/data/record/R = Perp[i]
 						if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))

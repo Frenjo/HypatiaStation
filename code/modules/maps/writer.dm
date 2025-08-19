@@ -55,9 +55,9 @@
 	var/list/templates[0]
 	var/template_buffer = {""}
 	var/dmm_text = {""}
-	for(var/pos_z = nw.z; pos_z <= se.z; pos_z++)
-		for(var/pos_y = nw.y; pos_y >= se.y; pos_y--)
-			for(var/pos_x = nw.x; pos_x <= se.x; pos_x++)
+	for(var/pos_z in nw.z to se.z)
+		for(var/pos_y in nw.y to se.y)
+			for(var/pos_x in nw.x to se.x)
 				var/turf/test_turf = locate(pos_x, pos_y, pos_z)
 				var/test_template = make_template(test_turf, flags)
 				var/template_number = templates.Find(test_template)
@@ -73,7 +73,7 @@
 
 	var/key_length = round/*floor*/(log(length(letter_digits), length(templates) - 1) + 1)
 	var/list/keys[length(templates)]
-	for(var/key_pos = 1; key_pos <= length(templates); key_pos++)
+	for(var/key_pos in 1 to length(templates))
 		keys[key_pos] = get_model_key(key_pos, key_length)
 		dmm_text += {""[keys[key_pos]]" = ([templates[key_pos]])\n"}
 

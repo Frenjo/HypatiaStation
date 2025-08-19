@@ -30,7 +30,7 @@
 			if(istype(G, /obj/item/gun/projectile/))
 				shottas++
 		if(lazors || shottas)
-			for(var/i = 0 to 2)
+			for(var/i in 0 to 2)
 				var/image/gun = image(icon(src.icon))
 
 				if(lazors > 0 && (shottas <= 0 || prob(50)))

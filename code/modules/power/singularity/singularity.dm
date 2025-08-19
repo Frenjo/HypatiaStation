@@ -366,7 +366,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		steps = step
 	var/list/turfs = list()
 	var/turf/T = src.loc
-	for(var/i = 1 to steps)
+	for(var/i in 1 to steps)
 		T = get_step(T,direction)
 	if(!isturf(T))
 		return 0
@@ -381,12 +381,12 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 			dir2 = 1
 			dir3 = 2
 	var/turf/T2 = T
-	for(var/j = 1 to steps)
+	for(var/j in 1 to steps)
 		T2 = get_step(T2, dir2)
 		if(!isturf(T2))
 			return 0
 		turfs.Add(T2)
-	for(var/k = 1 to steps)
+	for(var/k in 1 to steps)
 		T = get_step(T, dir3)
 		if(!isturf(T))
 			return 0

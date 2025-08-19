@@ -64,9 +64,9 @@
 		if(copytext(message, 1, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()
-			for(var/i = 1, i <= length(temp_message), i++)
+			for(var/i in 1 to length(temp_message))
 				pick_list += i
-			for(var/i = 1, i <= abs(length(temp_message) / 3), i++)
+			for(var/i in 1 to abs(length(temp_message) / 3))
 				var/H = pick(pick_list)
 				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
 				temp_message[H] = ninjaspeak(temp_message[H])

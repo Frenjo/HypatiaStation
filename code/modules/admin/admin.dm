@@ -124,7 +124,7 @@ var/global/floorIsLava = 0
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
-				for(var/block = 1; block <= DNA_SE_LENGTH; block++)
+				for(var/block in 1 to DNA_SE_LENGTH)
 					if(((block - 1) % 5) == 0)
 						body += "</tr><tr><th>[block-1]</th>"
 					bname = assigned_blocks[block]
@@ -219,14 +219,14 @@ var/global/floorIsLava = 0
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
 		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
 		upper_bound = min(upper_bound, length(note_keys))
-		for(var/index = lower_bound, index <= upper_bound, index++)
+		for(var/index in lower_bound to upper_bound)
 			var/t = note_keys[index]
 			dat += "<tr><td><a href='byond://?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
 
 		dat += "</table><br>"
 
 		// Display a footer to select different pages
-		for(var/index = 1, index <= number_pages, index++)
+		for(var/index in 1 to number_pages)
 			if(index == page)
 				dat += "<b>"
 			dat += "<a href='byond://?src=\ref[src];notes=list;index=[index]'>[index]</a> "

@@ -172,7 +172,7 @@
 		)
 		slices_lost = rand(1, min(1, round(slices_num / 2)))
 	var/reagents_per_slice = reagents.total_volume/slices_num
-	for(var/i = 1 to (slices_num-slices_lost))
+	for(var/i in 1 to (slices_num - slices_lost))
 		var/obj/slice = new slice_path (src.loc)
 		reagents.trans_to(slice, reagents_per_slice)
 	qdel(src)

@@ -141,7 +141,7 @@ proc/string_tolist(var/string)
 	var/list/L = list()
 
 	var/i
-	for(i=1, i<=length(string), i++)
+	for(i in 1 to length(string))
 		L.Add(copytext(string, i, i))
 
 	return L
@@ -154,7 +154,7 @@ proc/string_explode(var/string, var/separator)
 		var/lasti = 1
 		var/list/L = list()
 
-		for(i=1, i<=length(string)+1, i++)
+		for(i in 1 to (length(string) + 1))
 			if(copytext(string, i, i+1) == separator) // We found a separator
 				L.Add(copytext(string, lasti, i))
 				lasti = i+1
@@ -175,7 +175,7 @@ Just found out there was already a string explode function, did some benchmarkin
 		var/newstring = ""
 		if(length(newstring)*amount >=1000)
 			return
-		for(i=0, i<=amount, i++)
+		for(i in 0 to amount)
 			if(i>=1000)
 				break
 			newstring = newstring + string

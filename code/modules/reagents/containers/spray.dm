@@ -186,7 +186,7 @@
 //this is a big copypasta clusterfuck, but it's still better than it used to be!
 /obj/item/reagent_holder/spray/chemsprayer/Spray_at(atom/A)
 	var/Sprays[3]
-	for(var/i = 1, i <= 3, i++) // intialize sprays
+	for(var/i in 1 to 3) // intialize sprays
 		if(src.reagents.total_volume < 1)
 			break
 		var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(GET_TURF(src))
@@ -203,7 +203,7 @@
 	var/turf/T2 = get_step(T, turn(direction, -90))
 	var/list/the_targets = list(T, T1, T2)
 
-	for(var/i = 1, i <= length(Sprays), i++)
+	for(var/i in 1 to length(Sprays))
 		spawn()
 			var/obj/effect/decal/chempuff/D = Sprays[i]
 			if(isnull(D))
@@ -213,7 +213,7 @@
 			var/turf/my_target = pick(the_targets)
 			the_targets -= my_target
 
-			for(var/j = 1, j <= rand(6, 8), j++)
+			for(var/j in 1 to rand(6, 8))
 				step_towards(D, my_target)
 				var/turf/D_turf = GET_TURF(D)
 				D.reagents.reaction(D_turf)

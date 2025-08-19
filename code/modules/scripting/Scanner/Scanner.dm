@@ -108,7 +108,7 @@
 
 /n_Scanner/nS_Scanner/Scan() //Creates a list of tokens from source code
 	var/list/tokens = new
-	for(, src.codepos <= length(code), src.codepos++)
+	for(codepos in codepos to length(code))
 
 		var/char = copytext(code, codepos, codepos + 1)
 		if(char == "\n")
@@ -146,7 +146,7 @@
 */
 /n_Scanner/nS_Scanner/proc/ReadString(start)
 	var/buf
-	for(, codepos <= length(code), codepos++)//codepos to length(code))
+	for(codepos in codepos to length(code))
 		var/char=copytext(code, codepos, codepos + 1)
 		switch(char)
 			if("\\")	//Backslash (\) encountered in string

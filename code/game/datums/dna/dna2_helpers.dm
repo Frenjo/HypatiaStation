@@ -58,14 +58,14 @@
 		return
 	M.dna.check_integrity()
 	if(UI)
-		for(var/i = 1, i <= DNA_UI_LENGTH - 1, i++)
+		for(var/i in 1 to (DNA_UI_LENGTH - 1))
 			if(prob(prob))
 				M.dna.SetUIValue(i, rand(1, 4095), 1)
 		M.dna.UpdateUI()
 		M.UpdateAppearance()
 
 	else
-		for(var/i = 1, i <= DNA_SE_LENGTH - 1, i++)
+		for(var/i in 1 to (DNA_SE_LENGTH - 1))
 			if(prob(prob))
 				M.dna.SetSEValue(i, rand(1, 4095), 1)
 		M.dna.UpdateSE()

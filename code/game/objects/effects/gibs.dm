@@ -44,9 +44,9 @@
 	if(sparks)
 		make_sparks(2, TRUE, src)
 
-	for(var/i = 1, i <= length(gibtypes), i++)
+	for(var/i in 1 to length(gibtypes))
 		if(gibamounts[i])
-			for(var/j = 1, j <= gibamounts[i], j++)
+			for(var/j in 1 to gibamounts[i])
 				var/gibType = gibtypes[i]
 				gib = new gibType(location)
 

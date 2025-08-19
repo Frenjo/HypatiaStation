@@ -445,8 +445,8 @@
 	if(length(connected) < 1)
 		return list()
 
-	for(var/i = 1, i <= length(connected), i++)
-		for(var/j = i + 1, j <= length(connected), j++)
+	for(var/i in 1 to length(connected))
+		for(var/j in (i + 1) to length(connected))
 			var/d1 = connected[i]
 			var/d2 = connected[j]
 

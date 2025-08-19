@@ -44,7 +44,7 @@
 					cores_to_spawn = player_based_cores
 
 			blobs = list()
-			for(var/i = 0 to cores_to_spawn)
+			for(var/i in 0 to cores_to_spawn)
 				var/turf/location = pick(blobstart)
 				if(location && !locate(/obj/effect/blob in location))
 					blobstart -= location
@@ -71,7 +71,7 @@
 			return
 		expanding = 1
 
-		for(var/i = 1 to 2)
+		for(var/i in 1 to 2)
 			sleep(-1)
 			if(!length(blobs))
 				break

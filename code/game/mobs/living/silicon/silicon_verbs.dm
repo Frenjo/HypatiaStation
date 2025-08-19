@@ -129,7 +129,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 			lawcheck[1] = "No" // Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
 		list += {"<A href='byond://?src=\ref[src];lawc=0'>[lawcheck[1]] 0:</A> [laws.zeroth]<BR>"}
 
-	for(var/index = 1, index <= length(laws.ion), index++)
+	for(var/index in 1 to length(laws.ion))
 		var/law = laws.ion[index]
 		if(length(law) > 0)
 			if(!ioncheck[index])
@@ -138,7 +138,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 			ioncheck.len += 1
 
 	var/number = 1
-	for(var/index = 1, index <= length(laws.inherent), index++)
+	for(var/index in 1 to length(laws.inherent))
 		var/law = laws.inherent[index]
 		if(length(law) > 0)
 			lawcheck.len += 1
@@ -147,7 +147,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 			list += {"<A href='byond://?src=\ref[src];lawc=[number]'>[lawcheck[number + 1]] [number]:</A> [law]<BR>"}
 			number++
 
-	for(var/index = 1, index <= length(laws.supplied), index++)
+	for(var/index in 1 to length(laws.supplied))
 		var/law = laws.supplied[index]
 		if(length(law) > 0)
 			lawcheck.len += 1

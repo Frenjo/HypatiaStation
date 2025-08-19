@@ -39,7 +39,7 @@
 	return TRUE
 
 /datum/construction/proc/check_all_steps(obj/item/used_item, mob/living/user) //check all steps, remove matching one.
-	for(var/i = 1; i <= length(steps); i++)
+	for(var/i in 1 to length(steps))
 		var/list/step = steps[i]
 		if(istype(used_item, step["key"]))
 			if(custom_action(i, used_item, user))

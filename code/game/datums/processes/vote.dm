@@ -220,7 +220,7 @@ PROCESS_DEF(vote)
 				question = html_encode(input(usr, "What is the vote for?") as text | null)
 				if(isnull(question))
 					return 0
-				for(var/i = 1, i <= 10, i++)
+				for(var/i in 1 to 10)
 					var/option = capitalize(html_encode(input(usr, "Please enter an option or hit cancel to finish") as text | null))
 					if(!option || mode || !usr.client)
 						break
@@ -289,7 +289,7 @@ PROCESS_DEF(vote)
 		else
 			. += "<h2>Vote: [capitalize(mode)]</h2>"
 		. += "Time Left: [time_remaining] s<hr><ul>"
-		for(var/i = 1, i <= length(choices), i++)
+		for(var/i in 1 to length(choices))
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0

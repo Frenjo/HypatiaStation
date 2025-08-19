@@ -34,9 +34,9 @@
 	//to_world("[icount] images in list")
 
 
-	for(var/wx = 1 ; wx <= world.maxx; wx++)
+	for(var/wx in 1 to world.maxx)
 
-		for(var/wy = 1; wy <= world.maxy; wy++)
+		for(var/wy in 1 to world.maxy)
 
 			var/turf/T = locate(wx, wy, z)
 
@@ -191,9 +191,9 @@
 	for(var/i = 0; i<icount; i++)
 		imap += icon('icons/misc/imap.dmi', "blank")
 
-	for(var/wx = 1 ; wx <= world.maxx; wx++)
+	for(var/wx in 1 to world.maxx)
 
-		for(var/wy = 1; wy <= world.maxy; wy++)
+		for(var/wy in 1 to world.maxy)
 
 			var/turf/T = locate(wx, wy, z)
 

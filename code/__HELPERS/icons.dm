@@ -186,7 +186,7 @@ mob
 
 		Stress_Test()
 			set name = "5. Stress Test"
-			for(var/i = 0 to 1000)
+			for(var/i in 0 to 1000)
 				// The third parameter forces it to generate a new one, even if it's already cached
 				getFlatIcon(src,0,2)
 				if(prob(5))
@@ -195,7 +195,7 @@ mob
 
 		Cache_Test()
 			set name = "6. Cache Test"
-			for(var/i = 0 to 1000)
+			for(var/i in 0 to 1000)
 				getFlatIcon(src)
 			Browse_Icon()
 
@@ -749,7 +749,7 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 					currentLayer = A.layer + (1000 + currentLayer) / 1000
 
 			// Sort add into layers list
-			for(cmpIndex = 1, cmpIndex <= length(layers), cmpIndex++)
+			for(cmpIndex in 1 to length(layers))
 				compare = layers[cmpIndex]
 				if(currentLayer < layers[compare]) // Associated value is the calculated layer
 					layers.Insert(cmpIndex, current)

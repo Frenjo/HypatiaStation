@@ -302,7 +302,7 @@
 	var/image/I = image('icons/obj/machines/status_display.dmi', "blank")
 	var/len = length(tn)
 
-	for(var/d = 1 to len)
+	for(var/d in 1 to len)
 		var/char = copytext(tn, len - d + 1, len - d + 2)
 		if(char == " ")
 			continue

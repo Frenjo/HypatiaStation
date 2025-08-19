@@ -215,7 +215,7 @@
 	var/result = 0
 	var/val
 
-	for(var/i = start, i <= length(expression), i++)
+	for(var/i in start to length(expression))
 		var/op = ""
 
 		if(i > start)
@@ -333,7 +333,7 @@
 	var/list/query_list = list()
 	var/len = length(query_text)
 
-	for(var/i = 1, i <= len, i++)
+	for(var/i in 1 to len)
 		var/char = copytext(query_text, i, i + 1)
 
 		if(char in whitespace)

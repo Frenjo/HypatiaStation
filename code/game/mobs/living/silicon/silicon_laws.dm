@@ -8,7 +8,7 @@
 			say("0. [laws.zeroth]")
 			sleep(1 SECOND)
 
-	for(var/index = 1, index <= length(laws.ion), index++)
+	for(var/index in 1 to length(laws.ion))
 		var/law = laws.ion[index]
 		var/num = ionnum()
 		if(length(law) > 0)
@@ -16,7 +16,7 @@
 				say("[num]. [law]")
 				sleep(1 SECOND)
 
-	for(var/index = 1, index <= length(laws.inherent), index++)
+	for(var/index in 1 to length(laws.inherent))
 		var/law = laws.inherent[index]
 		if(length(law) > 0)
 			if(lawcheck[index + 1] == "Yes")
@@ -24,7 +24,7 @@
 				sleep(1 SECOND)
 			number++
 
-	for(var/index = 1, index <= length(laws.supplied), index++)
+	for(var/index in 1 to length(laws.supplied))
 		var/law = laws.supplied[index]
 
 		if(length(law) > 0)

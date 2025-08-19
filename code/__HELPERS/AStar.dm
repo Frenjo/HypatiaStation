@@ -163,7 +163,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 			var/ng = cur.g + call(cur.source, dist)(d)
 			if(d.bestF)
 				if(ng + call(d, dist)(end) < d.bestF)
-					for(var/i = 1; i <= length(open.L); i++)
+					for(var/i in 1 to length(open.L))
 						var/PathNode/n = open.L[i]
 						if(n.source == d)
 							open.Remove(i)
@@ -186,7 +186,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		closed.Cut(length(closed))
 
 	if(isnotnull(path))
-		for(var/i = 1; i <= length(path) / 2; i++)
+		for(var/i in 1 to (length(path) / 2))
 			path.Swap(i, length(path) - i + 1)
 
 	return path

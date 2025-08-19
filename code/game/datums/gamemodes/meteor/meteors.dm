@@ -14,7 +14,7 @@
 		return
 
 	meteor_mode.wavesecret = TRUE
-	for(var/i = 0 to number)
+	for(var/i in 0 to number)
 		spawn(rand(10, 100))
 			spawn_meteor()
 	spawn(meteor_wave_delay)

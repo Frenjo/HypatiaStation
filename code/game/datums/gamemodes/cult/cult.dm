@@ -72,7 +72,7 @@
 			if(player.assigned_role == job)
 				cultists_possible -= player
 
-	for(var/cultists_number = 1 to max_cultists_to_start)
+	for(var/cultists_number in 1 to max_cultists_to_start)
 		if(!length(cultists_possible))
 			break
 		var/datum/mind/cultist = pick(cultists_possible)
@@ -108,7 +108,7 @@
 		cult_mind.special_role = "Cultist"
 
 /datum/game_mode/cult/proc/memoize_cult_objectives(datum/mind/cult_mind)
-	for(var/obj_count = 1, obj_count <= length(objectives), obj_count++)
+	for(var/obj_count in 1 to length(objectives))
 		var/explanation
 		switch(objectives[obj_count])
 			if("survive")
@@ -279,7 +279,7 @@
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		if(length(objectives))
 			text += "<br><b>The cultists' objectives were:</b>"
-			for(var/obj_count = 1, obj_count <= length(objectives), obj_count++)
+			for(var/obj_count in 1 to length(objectives))
 				var/explanation
 				switch(objectives[obj_count])
 					if("survive")

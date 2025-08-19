@@ -144,7 +144,7 @@
 /obj/item/storage/fancy/cigarettes/New()
 	..()
 	SET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
-	for(var/i = 1 to storage_slots)
+	for(var/i in 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 

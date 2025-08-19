@@ -138,7 +138,7 @@
 		processed_reagents.len = 0
 		var/m = 0
 		var/message
-		for(var/i = 1 to known_reagents.len)
+		for(var/i in 1 to known_reagents.len)
 			if(m >= synth_speed)
 				break
 			var/reagent = topic.get("reagent_[i]")
@@ -207,7 +207,7 @@
 						"}
 
 /obj/item/mecha_equipment/medical/syringe_gun/proc/get_reagents_list()
-	for(var/i = 1 to known_reagents.len)
+	for(var/i in 1 to known_reagents.len)
 		var/reagent_id = known_reagents[i]
 		. += {"<input type="checkbox" value="[reagent_id]" name="reagent_[i]" [(reagent_id in processed_reagents) ? "checked=\"1\"" : null]> [known_reagents[reagent_id]]<br />"}
 

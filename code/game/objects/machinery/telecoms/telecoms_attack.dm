@@ -90,7 +90,7 @@
 						var/newpath = circuitboard
 						var/obj/item/circuitboard/C = new newpath
 						for(var/I in C.req_components)
-							for(var/i = 1, i <= C.req_components[I], i++)
+							for(var/i in 1 to C.req_components[I])
 								newpath = I
 								var/obj/item/s = new newpath
 								s.forceMove(user.loc)

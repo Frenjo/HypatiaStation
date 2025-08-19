@@ -187,7 +187,7 @@
 	var/distance = get_dist(ref, target)
 	if(distance >= 10)
 		return 0
-	for(var/i = 1 to distance)
+	for(var/i in 1 to distance)
 		ref = get_step_to(ref, target, 0)
 	if(ref != target)
 		return 0

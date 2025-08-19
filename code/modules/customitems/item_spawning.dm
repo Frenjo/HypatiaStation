@@ -12,7 +12,7 @@
 	for(var/line in lines)
 		// split & clean up
 		var/list/Entry = splittext(line, ":")
-		for(var/i = 1 to Entry.len)
+		for(var/i in 1 to Entry.len)
 			Entry[i] = trim(Entry[i])
 
 		if(Entry.len < 3)

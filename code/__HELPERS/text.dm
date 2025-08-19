@@ -56,7 +56,7 @@ GLOBAL_GLOBL_LIST_INIT(paper_tag_whitelist, list(
 	if(length(text) > max_length)
 		return			//message too long
 	var/non_whitespace = 0
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i in 1 to length(text))
 		switch(text2ascii(text, i))
 			if(62, 60, 92, 47)
 				return			//rejects the text if it contains these bad characters: <, >, \ or /
@@ -85,7 +85,7 @@ GLOBAL_GLOBL_LIST_INIT(paper_tag_whitelist, list(
 	var/last_char_group			= 0
 	var/t_out = ""
 
-	for(var/i = 1, i <= length(t_in), i++)
+	for(var/i in 1 to length(t_in))
 		var/ascii_char = text2ascii(t_in, i)
 		switch(ascii_char)
 			// A .. Z
@@ -229,7 +229,7 @@ GLOBAL_GLOBL_LIST_INIT(paper_tag_whitelist, list(
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for(var/i = 1 to length(text))
+	for(var/i in 1 to length(text))
 		if(text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
@@ -300,7 +300,7 @@ GLOBAL_GLOBL_LIST_INIT(paper_tag_whitelist, list(
 	if(!text || !character)
 		return 0
 	var/count = 0
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i in 1 to length(text))
 		var/a = copytext(text, i, i + 1)
 		if(a == character)
 			count++

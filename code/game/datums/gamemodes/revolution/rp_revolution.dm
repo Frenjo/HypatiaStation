@@ -41,7 +41,7 @@
 			if(player.assigned_role == job)
 				possible_headrevs -= player
 
-	for(var/i = 1 to max_headrevs)
+	for(var/i in 1 to max_headrevs)
 		if(!length(possible_headrevs))
 			break
 		var/datum/mind/lenin = pick(possible_headrevs)

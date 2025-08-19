@@ -93,7 +93,7 @@
 /turf/closed/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / length(damage_overlays)
 
-	for(var/i = 1; i <= length(damage_overlays); i++)
+	for(var/i in 1 to length(damage_overlays))
 		var/image/img = image('icons/turf/walls.dmi', "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
 		img.alpha = (i * alpha_inc) - 1

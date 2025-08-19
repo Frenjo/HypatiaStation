@@ -49,7 +49,7 @@
 		return
 	. = list()
 	for(var/entry in sp.contains)
-		for(var/i = 1 to max(1, sp.contains[entry]))
+		for(var/i in 1 to max(1, sp.contains[entry]))
 			dd_insertObjectList(., new entry(location))
 
 /decl/supply_method/proc/setup_manifest(decl/hierarchy/supply_pack/sp)
@@ -67,7 +67,7 @@
 	if(isnull(sp) || isnull(location))
 		return
 	. = list()
-	for(var/j = 1 to sp.num_contained)
+	for(var/j in 1 to sp.num_contained)
 		var/picked = pick(sp.contains)
 		. += new picked(location)
 

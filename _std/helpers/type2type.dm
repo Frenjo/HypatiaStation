@@ -230,7 +230,7 @@
 	if(islist(wordlist))
 		var/max = min(length(wordlist), 16)
 		var/bit = 1
-		for(var/i = 1, i <= max, i++)
+		for(var/i in 1 to max)
 			if(bitfield & bit)
 				. += wordlist[i]
 			bit = bit << 1

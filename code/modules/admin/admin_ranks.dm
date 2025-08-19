@@ -24,7 +24,7 @@ GLOBAL_GLOBL_ALIST_NEW(admin_ranks)	//list of all ranks with associated rights
 			if("Removed")	continue				//Reserved
 
 		var/rights = 0
-		for(var/i = 2, i <= length(List), i++)
+		for(var/i in 2 to length(List))
 			switch(ckey(List[i]))
 				if("@","prev")					rights |= previous_rights
 				if("buildmode","build")			rights |= R_BUILDMODE

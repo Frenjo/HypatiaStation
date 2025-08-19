@@ -130,10 +130,10 @@
 	if(isnotnull(material.sheet_path))
 		var/turf/T = GET_TURF(src)
 		if(!devastated)
-			for(var/i = 1, i <= oreAmount, i++)
+			for(var/i in 1 to oreAmount)
 				new material.sheet_path(T)
 		else
-			for(var/i = 3, i <= oreAmount, i++)
+			for(var/i in 3 to oreAmount)
 				new material.sheet_path(T)
 	qdel(src)
 

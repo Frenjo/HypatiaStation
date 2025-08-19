@@ -70,7 +70,7 @@
 				else
 					dat += "<a href='byond://?src=\ref[src];choice=create_account;'>Create new account</a><br><br>"
 					dat += "<table border=1 style='width:100%'>"
-					for(var/i = 1, i <= length(global.CTeconomy.all_money_accounts), i++)
+					for(var/i in 1 to length(global.CTeconomy.all_money_accounts))
 						var/datum/money_account/D = global.CTeconomy.all_money_accounts[i]
 						dat += "<tr>"
 						dat += "<td>#[D.account_number]</td>"

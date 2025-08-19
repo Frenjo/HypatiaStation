@@ -196,7 +196,7 @@
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
-		for(var/i = 1 to 7)
+		for(var/i in 1 to 7)
 			cur_oct[i] = "3"
 			cur_acc[i] = "n"
 
@@ -216,7 +216,7 @@
 					var/cur_note = text2ascii(note) - 96
 					if(cur_note < 1 || cur_note > 7)
 						continue
-					for(var/i=2 to length(note))
+					for(var/i in 2 to length(note))
 						var/ni = copytext(note,i,i+1)
 						if(!text2num(ni))
 							if(ni == "#" || ni == "b" || ni == "n")

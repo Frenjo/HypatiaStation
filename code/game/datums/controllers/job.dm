@@ -126,7 +126,7 @@ CONTROLLER_DEF(jobs)
 
 //This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 /datum/controller/jobs/proc/fill_head_position()
-	for(var/level = 1 to 3)
+	for(var/level in 1 to 3)
 		for(var/command_position in GLOBL.command_positions)
 			var/datum/job/job = get_job(command_position)
 			if(isnull(job))
@@ -194,7 +194,7 @@ CONTROLLER_DEF(jobs)
 		return 0
 
 	for(var/i = job.total_positions, i > 0, i--)
-		for(var/level = 1 to 3)
+		for(var/level in 1 to 3)
 			var/list/candidates = list()
 			if(IS_GAME_MODE(/datum/game_mode/malfunction)) // Make sure they want to malf if its malf.
 				candidates = find_occupation_candidates(job, level, BE_MALF)
@@ -275,7 +275,7 @@ CONTROLLER_DEF(jobs)
 
 	// Loop through all levels from high to low
 	var/list/datum/job/shuffledoccupations = shuffle(occupations)
-	for(var/level = 1 to 3)
+	for(var/level in 1 to 3)
 		//Check the head jobs first each level
 		check_head_positions(level)
 

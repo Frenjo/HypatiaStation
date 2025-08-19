@@ -213,7 +213,7 @@
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
-		for(var/i = 1 to 7)
+		for(var/i in 1 to 7)
 			cur_oct[i] = "3"
 			cur_acc[i] = "n"
 

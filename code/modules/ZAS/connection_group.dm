@@ -89,7 +89,7 @@ Class Procs:
 /connection_edge/proc/recheck()
 
 /connection_edge/proc/flow(list/movable, differential, repelled)
-	for(var/i = 1; i <= length(movable); i++)
+	for(var/i in 1 to length(movable))
 		var/atom/movable/M = movable[i]
 
 		//If they're already being tossed, don't do it again.

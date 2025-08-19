@@ -187,7 +187,7 @@
 	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for(var/i = 1, i <= length(GLOBL.tagger_locations), i++)
+	for(var/i in 1 to length(GLOBL.tagger_locations))
 		dat += "<td><a href='byond://?src=\ref[src];nextTag=[i]'>[GLOBL.tagger_locations[i]]</a></td>"
 
 		if (i % 4 == 0)

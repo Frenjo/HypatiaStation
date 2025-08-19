@@ -3,7 +3,7 @@
 		if(isnotstationlevel(xmas.z))
 			continue
 		for(var/turf/open/floor/T in RANGE_TURFS(xmas, 1))
-			for(var/i = 1, i <= rand(1, 5), i++)
+			for(var/i in 1 to rand(1, 5))
 				new /obj/item/a_gift(T)
 	//for(var/mob/living/simple/corgi/Ian/Ian in mob_list)
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))

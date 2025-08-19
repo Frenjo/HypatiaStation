@@ -115,7 +115,7 @@
 
 		var/obj/machinery/power/apc/target_apc = null
 		var/PRP //like ERP with the code, at least this stuff is no more 4x sametext
-		for(PRP = 1, PRP <= 4, PRP++)
+		for(PRP in 1 to 4)
 			for(var/obj/machinery/power/apc/temp_apc in current_area)
 				if(!(temp_apc.stat & BROKEN))
 					target_apc = temp_apc

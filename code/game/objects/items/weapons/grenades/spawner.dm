@@ -18,10 +18,10 @@
 			if(H.eyecheck() <= 0)
 				flick("e_flash", H.flash)
 
-		for(var/i = 1, i <= deliveryamt, i++)
+		for(var/i in 1 to deliveryamt)
 			var/atom/movable/x = new spawn_type(T)
 			if(prob(50))
-				for(var/j = 1, j <= rand(1, 3), j++)
+				for(var/j in 1 to rand(1, 3))
 					step(x, pick(GLOBL.cardinal))
 
 			// Spawn some hostile syndicate critters

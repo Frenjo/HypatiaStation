@@ -174,7 +174,7 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/i = 1; i <= length(radios); i++)
+	for(var/i in 1 to length(radios))
 		var/obj/item/radio/R = radios[i]
 		if(isnotnull(R))
 			var/turf/speaker = GET_TURF(R)
@@ -183,7 +183,7 @@
 					speaker_coverage[T] = T
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= length(GLOBL.player_list); i++)
+	for(var/i in 1 to length(GLOBL.player_list))
 		var/mob/M = GLOBL.player_list[i]
 		if(isnotnull(M))
 			var/turf/ear = GET_TURF(M)

@@ -41,7 +41,7 @@
 /obj/machinery/computer/telescience/initialise()
 	. = ..()
 	link_telepad()
-	for(var/i = 1; i <= starting_crystals; i++)
+	for(var/i in 1 to starting_crystals)
 		crystals.Add(new /obj/item/bluespace_crystal/artificial(src)) // starting crystals
 	power = power_options[1]
 
@@ -97,7 +97,7 @@
 	html += "<span class='linkOn'>Set Power</span>"
 	html += "<div class='statusDisplay'>"
 
-	for(var/i = 1; i <= length(power_options); i++)
+	for(var/i in 1 to length(power_options))
 		if(length(crystals) < i)
 			html += "<span class='linkOff'>[power_options[i]]</span>"
 			continue

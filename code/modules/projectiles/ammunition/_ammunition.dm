@@ -70,7 +70,7 @@
 
 /obj/item/ammo_magazine/New()
 	. = ..()
-	for(var/i = 1, i <= max_ammo, i++)
+	for(var/i in 1 to max_ammo)
 		stored_ammo.Add(new ammo_type(src))
 	update_icon()
 

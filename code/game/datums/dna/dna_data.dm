@@ -168,7 +168,7 @@ GLOBAL_GLOBL(datum/dna_data/dna_data)
 	for(var/x in typesof(/datum/mutations) - /datum/mutations)
 		var/datum/mutations/mut = new x
 
-		for(var/i = 1, i <= mut.required, i++)
+		for(var/i in 1 to mut.required)
 			var/datum/mutationreq/require = new/datum/mutationreq
 			require.block = rand(1, 13)
 			require.subblock = rand(1, 3)

@@ -323,7 +323,7 @@
 	for(var/entry in L)
 		if(isnum(entry))
 			var/success = FALSE
-			for(var/i = 1, i <= length(out), i++)
+			for(var/i in 1 to length(out))
 				if(entry <= out[i])
 					success = TRUE
 					out.Insert(i, entry)

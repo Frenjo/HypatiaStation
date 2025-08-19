@@ -41,7 +41,7 @@
 				candidates.Add(G.key)
 
 	if(length(candidates))
-		for(var/i = 0 to wave_size)
+		for(var/i in 0 to wave_size)
 			var/mob/living/blob/B = new /mob/living/blob(src.loc)
 			B.key = pick(candidates)
 			candidates.Remove(B.key)
@@ -53,7 +53,7 @@
 	//Looking for another blob to pulse
 	var/list/dirs = list(1,2,4,8)
 	dirs.Remove(origin_dir)//Dont pulse the guy who pulsed us
-	for(var/i = 1 to 4)
+	for(var/i in 1 to 4)
 		if(!length(dirs))
 			break
 		var/dirn = pick(dirs)

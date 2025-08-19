@@ -93,7 +93,7 @@ PROCESS_DEF(lighting)
 #undef MAX_OVERLAY_UPDATES_PER_WORK
 
 /datum/process/lighting/proc/create_all_lighting_overlays()
-	for(var/zlevel = 1 to world.maxz)
+	for(var/zlevel in 1 to world.maxz)
 		create_lighting_overlays_zlevel(zlevel)
 		CHECK_TICK
 

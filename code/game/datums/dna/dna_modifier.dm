@@ -306,7 +306,7 @@
 
 /obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(list/buffer)
 	. = list()
-	for(var/i = 1, i <= length(buffer), i++)
+	for(var/i in 1 to length(buffer))
 		. += "[i]:[EncodeDNABlock(buffer[i])]"
 
 /obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(obj/item/dnainjector/I, blk, datum/dna2/record/buffer)

@@ -351,7 +351,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 			dat += "Are you sure you want to call the shuttle? \[ <A href='byond://?src=\ref[src];operation=crewtransfer2'>OK</A> | <A href='byond://?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i <= length(messagetitle); i++)
+			for(var/i in 1 to length(messagetitle))
 				dat += "<BR><A href='byond://?src=\ref[src];operation=viewmessage;message-num=[i]'>[src.messagetitle[i]]</A>"
 		if(STATE_VIEWMESSAGE)
 			if(src.currmsg)
@@ -415,7 +415,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 			dat += "Are you sure you want to call the shuttle? \[ <A href='byond://?src=\ref[src];operation=ai-crewtransfer2'>OK</A> | <A href='byond://?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i <= length(messagetitle); i++)
+			for(var/i in 1 to length(messagetitle))
 				dat += "<BR><A href='byond://?src=\ref[src];operation=ai-viewmessage;message-num=[i]'>[src.messagetitle[i]]</A>"
 		if(STATE_VIEWMESSAGE)
 			if(src.aicurrmsg)

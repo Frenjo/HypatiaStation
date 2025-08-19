@@ -314,7 +314,7 @@
 	if(amount_grown >= 10 && !Victim && !Target)
 		if(isslimeadult(src))
 			if(!client)
-				for(var/i = 1, i <= 4, i++)
+				for(var/i in 1 to 4)
 					if(prob(70))
 						var/mob/living/carbon/slime/M = new primarytype(loc)
 						M.powerlevel = round(powerlevel / 4)

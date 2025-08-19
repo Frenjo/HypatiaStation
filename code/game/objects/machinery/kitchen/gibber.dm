@@ -159,7 +159,7 @@
 		var/sourcenutriment = H.nutrition / 15
 		var/sourcetotalreagents = H.reagents.total_volume
 
-		for(var/i=1 to totalslabs)
+		for(var/i in 1 to totalslabs)
 			var/obj/item/reagent_holder/food/snacks/meat/human/newmeat = new
 			newmeat.name = sourcename + newmeat.name
 			newmeat.subjectname = sourcename
@@ -191,7 +191,7 @@
 			totalslabs = 1
 			sourcenutriment = nutrition / 30 // small animals don't have as much nutrition
 
-		for(var/i=1 to totalslabs)
+		for(var/i in 1 to totalslabs)
 			var/obj/item/reagent_holder/food/snacks/meat/newmeat = new /obj/item/reagent_holder/food/snacks/meat()
 			newmeat.name = "[sourcename]-[newmeat.name]"
 

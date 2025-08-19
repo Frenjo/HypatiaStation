@@ -236,7 +236,7 @@
 					to_chat(user, "The option ID difference is too big. Please contact administration or the database admin.")
 					return
 
-				for(var/optionid = id_min; optionid <= id_max; optionid++)
+				for(var/optionid in id_min to id_max)
 					if(topic.has("o[optionid]")) // Test if this optionid was replied to.
 						var/rating
 						if(topic.get("o[optionid]") == "abstain")
@@ -255,7 +255,7 @@
 					to_chat(user, "The option ID difference is too big. Please contact administration or the database admin.")
 					return
 
-				for(var/optionid = id_min; optionid <= id_max; optionid++)
+				for(var/optionid in id_min to id_max)
 					if(topic.has("option_[optionid]")) // Test if this optionid was selected.
 						vote_on_poll(pollid, optionid, 1)
 		return

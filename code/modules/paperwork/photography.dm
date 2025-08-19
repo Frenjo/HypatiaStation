@@ -176,7 +176,7 @@
 				atoms.Swap(i, gap + i)
 				swapped = 1
 
-	for(var/i; i <= length(atoms); i++)
+	for(var/i in 1 to length(atoms))
 		var/atom/A = atoms[i]
 		if(A)
 			var/icon/img = getFlatIcon(A, A.dir)//build_composite_icon(A)
@@ -216,8 +216,8 @@
 	var/icon/temp = icon('icons/effects/96x96.dmi',"")
 	var/icon/black = icon('icons/turf/space.dmi', "black")
 	var/mobs = ""
-	for(var/i = 1; i <= 3; i++)
-		for(var/j = 1; j <= 3; j++)
+	for(var/i in 1 to 3)
+		for(var/j in 1 to 3)
 			var/turf/T = locate(x_c, y_c, z_c)
 			var/mob/dummy = new(T)	//Go go visibility check dummy
 			var/viewer = user

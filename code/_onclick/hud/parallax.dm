@@ -2,10 +2,10 @@ GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/space/parallax_stars)
 GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars)
 
 /proc/create_parallax()
-	for(var/i = 0; i < PARALLAX_STAR_AMOUNT; i++)
+	for(var/i in 1 to PARALLAX_STAR_AMOUNT)
 		GLOBL.parallax_stars.Add(new /atom/movable/space_star/space())
 
-	for(var/i = 0; i < PARALLAX_BLUESPACE_STAR_AMOUNT; i++)
+	for(var/i in 1 to PARALLAX_BLUESPACE_STAR_AMOUNT)
 		GLOBL.parallax_bluespace_stars.Add(new /atom/movable/space_star/bluespace())
 
 /atom/movable/parallax_master

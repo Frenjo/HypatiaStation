@@ -45,7 +45,7 @@
 	var/datum/text_parser/keyword/keyword	// the actual keyword
 	var/keypos = 0	// pos of keyword so we can grab extra text after it
 
-	for(var/i = 1, i <= keywords.len, i++)
+	for(var/i in 1 to keywords.len)
 		keyword = keywords[i]
 		for(var/j = 1, j <= keyword.phrases.len, j++)
 			keypos = findtext(input_line, " " + keyword.phrases[j])
@@ -80,7 +80,7 @@
 
 		if(keyword.conjugate)
 			// now run through conjugation pairs
-			for(var/i = 1, i <= lentext(conjugated), i++)
+			for(var/i in 1 to lentext(conjugated))
 				for(var/x = 1, x <= conjugs.len, x += 2)
 					var/cx = conjugs[x]
 					var/cxa = conjugs[x + 1]

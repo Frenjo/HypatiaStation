@@ -217,7 +217,7 @@
 					continue
 				spawn(0)
 					var/iter = 5 - get_dist(mover, target)
-					for(var/i = 0 to iter)
+					for(var/i in 0 to iter)
 						step_away(mover, target)
 						sleep(2)
 			start_cooldown()

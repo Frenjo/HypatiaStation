@@ -106,7 +106,7 @@ GLOBAL_GLOBL_NEW(datum/global_hud/global_hud)
 	darkMask[8].screen_loc = "3,14 to 13,15"
 
 	var/i
-	for(i = 1, i <= 4, i++)
+	for(i in 1 to 4)
 		vimpaired[i].icon_state = "dither50"
 		vimpaired[i].plane = FULLSCREEN_PLANE
 		vimpaired[i].mouse_opacity = FALSE
@@ -115,7 +115,7 @@ GLOBAL_GLOBL_NEW(datum/global_hud/global_hud)
 		darkMask[i].plane = FULLSCREEN_PLANE
 		darkMask[i].mouse_opacity = FALSE
 
-	for(i = 5, i <= 8, i++)
+	for(i in 5 to 8)
 		darkMask[i].icon_state = "black"
 		darkMask[i].plane = FULLSCREEN_PLANE
 		darkMask[i].mouse_opacity = FALSE

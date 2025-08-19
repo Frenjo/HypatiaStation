@@ -119,7 +119,7 @@
 
 /datum/game_mode/rp_revolution/proc/reveal_rev_heads()
 	. = ""
-	for(var/i = 1, i <= length(head_revolutionaries), i++)
+	for(var/i in 1 to length(head_revolutionaries))
 		var/datum/mind/revmind = head_revolutionaries[i]
 		if(i < length(head_revolutionaries))
 			. += "[revmind.current.real_name],"

@@ -22,7 +22,7 @@
 	var/list/tags = splittext(child_tags_txt, ";")
 
 	if(length(names) == length(tags))
-		for(var/i = 1; i <= length(tags); i++)
+		for(var/i in 1 to length(tags))
 			child_names[tags[i]] = names[i]
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)

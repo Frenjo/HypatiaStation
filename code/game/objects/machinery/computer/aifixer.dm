@@ -44,13 +44,13 @@
 			laws += "0: [src.occupant.laws.zeroth]<BR>"
 
 		var/number = 1
-		for(var/index = 1, index <= length(occupant.laws.inherent), index++)
+		for(var/index in 1 to length(occupant.laws.inherent))
 			var/law = src.occupant.laws.inherent[index]
 			if(length(law) > 0)
 				laws += "[number]: [law]<BR>"
 				number++
 
-		for(var/index = 1, index <= length(occupant.laws.supplied), index++)
+		for(var/index in 1 to length(occupant.laws.supplied))
 			var/law = src.occupant.laws.supplied[index]
 			if(length(law) > 0)
 				laws += "[number]: [law]<BR>"

@@ -65,7 +65,7 @@
 
 	var/mob/living/simple/space_worm/current = src
 
-	for(var/i = 1 to segments)
+	for(var/i in 1 to segments)
 		var/mob/living/simple/space_worm/newSegment = new /mob/living/simple/space_worm(loc)
 		current.Attach(newSegment)
 		current = newSegment

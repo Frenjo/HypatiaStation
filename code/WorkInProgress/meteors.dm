@@ -40,14 +40,14 @@
 	pickedstart = locate(startx, starty, 1)
 	pickedgoal = locate(endx, endy, 1)
 	wavesecret = 1
-	for(var/i = 0 to number)
+	for(var/i in 0 to number)
 		spawn(rand(10,100))
 			spawn_meteor(pickedstart, pickedgoal)
 	spawn(meteor_wave_delay)
 		wavesecret = 0
 
 /proc/spawn_meteors(var/turf/pickedstart, var/turf/pickedgoal, var/number = meteors_in_small_wave)
-	for(var/i = 0; i < number; i++)
+	for(var/i in 0 to number)
 		spawn(0)
 			spawn_meteor(pickedstart, pickedgoal)
 

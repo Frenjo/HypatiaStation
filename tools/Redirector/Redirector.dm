@@ -76,7 +76,7 @@ proc/extract(var/data, var/type = PLAYERS)
 
 	var/returnval = ""
 
-	for(var/i = 1, i <= 10, i++)
+	for(var/i in 1 to 10)
 
 		var/interval = copytext(data, nextpos + (i-1), nextpos + i)
 		if(interval == "&")

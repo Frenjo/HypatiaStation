@@ -109,7 +109,7 @@
 		while(i <= req_authorisations)	//fill up the rest of the list with blank entries
 			auth_list[i++] = list("auth_name" = "", "auth_hash" = null)
 	else
-		for(var/i = 1; i <= req_authorisations; i++)
+		for(var/i in 1 to req_authorisations)
 			auth_list[i] = list("auth_name" = "<font color=\"red\">ERROR</font>", "auth_hash" = null)
 
 	var/has_auth = has_authorisation()

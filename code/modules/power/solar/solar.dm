@@ -179,7 +179,7 @@
 	var/ay = y
 	var/turf/T = null
 
-	for(var/i = 1 to 20)		// 20 steps is enough
+	for(var/i in 1 to 20)		// 20 steps is enough
 		ax += global.PCsun.dx	// do step
 		ay += global.PCsun.dy
 

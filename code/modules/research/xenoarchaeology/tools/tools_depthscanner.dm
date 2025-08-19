@@ -91,7 +91,7 @@
 		dat += "<br>"
 	dat += "<hr>"
 	if(length(positive_locations))
-		for(var/index = 1, index <= length(positive_locations), index++)
+		for(var/index in 1 to length(positive_locations))
 			var/datum/depth_scan/D = positive_locations[index]
 			dat += "<A href='byond://?src=\ref[src];select=[index]'>[D.time], coords: [D.coords]</a><br>"
 	else

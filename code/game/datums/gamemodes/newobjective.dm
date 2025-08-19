@@ -102,7 +102,7 @@
 				success_weights = list(0.5, 0.75, 1.2, 2)
 				target_weight = success_ratio*300
 
-		for(var/i = 1, i <= 4, i++)
+		for(var/i in 1 to 4)
 		//Iterate through the success rates, and determine the weights to chose based on the highest to
 		//	the lowest to multiply it by the proper success ratio.
 			var/weight = max(ordered_success)

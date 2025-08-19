@@ -541,7 +541,7 @@ mob
 
 			var/start_time = world.timeofday
 
-			for(var/i=1; i<=amount; i++)
+			for(var/i in 1 to amount)
 				master_controller.process()
 
 			to_world("Ended [amount] cycles in [(world.timeofday-start_time)/10] seconds. [(world.timeofday-start_time)/10-amount] calculation lag")

@@ -630,7 +630,7 @@
 	var/target_z = targloc.z
 	targloc = null
 	spawn()
-		for(var/i = 1 to min(projectiles, projectiles_per_shot))
+		for(var/i in 1 to min(projectiles, projectiles_per_shot))
 			if(!src)
 				break
 			var/turf/curloc = GET_TURF(src)

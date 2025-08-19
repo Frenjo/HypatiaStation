@@ -67,7 +67,7 @@
 /datum/gas_mixture/proc/adjust_multi()
 	ASSERT(!(length(args) % 2))
 
-	for(var/i = 1; i < length(args); i += 2)
+	for(var/i in 1 to length(args) step 2)
 		adjust_gas(args[i], args[i + 1], update = FALSE)
 
 	update_values()
@@ -81,7 +81,7 @@
 /datum/gas_mixture/proc/adjust_multi_temp()
 	ASSERT(!(length(args) % 3))
 
-	for(var/i = 1; i < length(args); i += 3)
+	for(var/i in 1 to length(args) step 3)
 		adjust_gas_temp(args[i], args[i + 1], args[i + 2], update = FALSE)
 
 	update_values()

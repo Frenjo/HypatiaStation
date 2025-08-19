@@ -100,7 +100,7 @@
 		return
 
 	changeling.isabsorbing = 1
-	for(var/stage = 1, stage <= 3, stage++)
+	for(var/stage in 1 to 3)
 		switch(stage)
 			if(1)
 				to_chat(src, SPAN_NOTICE("This creature is compatible. We must hold still..."))

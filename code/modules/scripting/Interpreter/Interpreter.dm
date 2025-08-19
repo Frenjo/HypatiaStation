@@ -186,7 +186,7 @@
 	if(istype(def))
 		if(curFunction) functions.Push(curFunction)
 		var/scope/S = CreateScope(def.block)
-		for(var/i = 1 to length(def.parameters))
+		for(var/i in 1 to length(def.parameters))
 			var/val
 			if(length(stmt.parameters) >= i)
 				val = stmt.parameters[i]

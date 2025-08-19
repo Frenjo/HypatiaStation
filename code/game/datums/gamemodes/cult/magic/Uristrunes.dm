@@ -75,8 +75,8 @@ var/list/uristrune_cache = list()
 	I.SwapColor(rgb(0, 0, 0, 100), rgb(100, 0, 0, 200))
 	I.SwapColor(rgb(0, 0, 0, 50), rgb(150, 0, 0, 200))
 
-	for(var/x = 1, x <= 32, x++)
-		for(var/y = 1, y <= 32, y++)
+	for(var/x in 1 to 32)
+		for(var/y in 1 to 32)
 			var/p = I.GetPixel(x, y)
 
 			if(p == null)

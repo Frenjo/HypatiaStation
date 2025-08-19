@@ -147,7 +147,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 	//var/destroyed = 0 //used for breaking strange rocks
 	if(isnotnull(ore) && ore.result_amount)
 		//if the turf has already been excavated, some of it's ore has been removed
-		for(var/i = 1 to ore.result_amount - mined_ore)
+		for(var/i in 1 to (ore.result_amount - mined_ore))
 			drop_ore()
 
 	//destroyed artifacts have weird, unpleasant effects

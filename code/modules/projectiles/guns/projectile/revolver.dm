@@ -128,7 +128,7 @@
 		qdel(AC)
 	loaded = list()
 	var/random = rand(1, max_shells)
-	for(var/i = 1; i <= max_shells; i++)
+	for(var/i in 1 to max_shells)
 		if(i != random)
 			loaded.Add(i) // Basically null
 		else

@@ -295,7 +295,7 @@
 	var/time_passed = world.time
 	var/newname
 
-	for(var/i = 1, i <= 3, i++)	//we get 3 attempts to pick a suitable name.
+	for(var/i in 1 to 3)	//we get 3 attempts to pick a suitable name.
 		newname = input(src, "You are a [role]. Would you like to change your name to something else?", "Name change", oldname) as text
 		if((world.time - time_passed) > 300)
 			return	//took too long

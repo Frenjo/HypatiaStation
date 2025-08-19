@@ -166,7 +166,7 @@
 		if(!fibers)
 			fibers = list()
 		if(length(A.suit_fibers))
-			for(var/j = 1, j <= length(A.suit_fibers), j++)	//Fibers~~~
+			for(var/j in 1 to length(A.suit_fibers))	//Fibers~~~
 				if(!fibers.Find(A.suit_fibers[j]))	//It isn't!  Add!
 					fibers += A.suit_fibers[j]
 		var/list/blood = data_entry[3]

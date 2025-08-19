@@ -34,7 +34,7 @@
 	occupant_message(SPAN_WARNING("You fire [src]!"))
 	log_message("Fired from [src], targeting [target].")
 
-	for(var/i = 1 to min(projectiles, projectiles_per_shot))
+	for(var/i in 1 to min(projectiles, projectiles_per_shot))
 		var/turf/aimloc = targloc
 		if(deviation)
 			aimloc = locate(targloc.x + GaussRandRound(deviation, 1), targloc.y + GaussRandRound(deviation, 1), targloc.z)

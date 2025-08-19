@@ -108,7 +108,7 @@ Doing this because FindTurfs() isn't even used
 
 		var/len = lentext(tn)
 
-		for(var/d = 1 to lentext(tn))
+		for(var/d in 1 to lentext(tn))
 
 
 			var/char = copytext(tn, len-d+1, len-d+2)

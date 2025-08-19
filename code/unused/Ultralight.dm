@@ -147,7 +147,7 @@ atom
 				var/x = (ref.x - src.x)
 				var/y = (ref.y - src.y)
 				if ((x*x + y*y) > ul_FastRoot.len)
-					for(var/i = ul_FastRoot.len, i <= x*x+y*y, i++)
+					for(var/i in ul_FastRoot.len to (x * x + y * y))
 						ul_FastRoot += round(sqrt(x*x+y*y))
 				return round(ul_LightingResolution * ul_FastRoot[x*x + y*y + 1], 1)
 

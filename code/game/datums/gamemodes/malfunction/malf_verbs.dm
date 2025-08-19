@@ -52,7 +52,7 @@
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		SOUND_TO(M, 'sound/machines/Alarm.ogg')
 	to_world("Self-destructing in 10...")
-	for(var/i = 9 to 1 step -1)
+	for(var/i in 9 to 1 step -1)
 		sleep(10)
 		to_world(i + "...")
 	sleep(10)

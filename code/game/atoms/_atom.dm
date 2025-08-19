@@ -221,7 +221,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x = 1, cur_x <= length(GLOBL.global_map), cur_x++)
+	for(cur_x in 1 to length(GLOBL.global_map))
 		y_arr = GLOBL.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)

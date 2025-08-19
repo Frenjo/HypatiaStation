@@ -247,7 +247,7 @@
 		return
 
 /obj/machinery/microwave/proc/wzhzhzh(seconds as num)
-	for(var/i = 1 to seconds)
+	for(var/i in 1 to seconds)
 		if(stat & (NOPOWER | BROKEN))
 			return 0
 		use_power(500)

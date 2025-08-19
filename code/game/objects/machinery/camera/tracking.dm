@@ -189,7 +189,7 @@
 	var/obj/machinery/camera/b
 
 	for(var/i = length(L), i > 0, i--)
-		for(var/j = 1 to i - 1)
+		for(var/j in 1 to (i - 1))
 			a = L[j]
 			b = L[j + 1]
 			if(a.c_tag_order != b.c_tag_order)

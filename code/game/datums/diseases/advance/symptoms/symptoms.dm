@@ -19,7 +19,7 @@ GLOBAL_GLOBL_LIST_NEW(dictionary_symptoms)
 
 /datum/symptom/New()
 	var/list/S = GLOBL.list_symptoms
-	for(var/i = 1; i <= length(S); i++)
+	for(var/i in 1 to length(S))
 		if(src.type == S[i])
 			id = "[i]"
 			return

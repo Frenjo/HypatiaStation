@@ -19,7 +19,7 @@
 
 /obj/item/gun/projectile/New()
 	. = ..()
-	for(var/i = 1, i <= max_shells, i++)
+	for(var/i in 1 to max_shells)
 		loaded.Add(new ammo_type(src))
 	if(load_method == MAGAZINE)
 		empty_mag = new mag_type(src)

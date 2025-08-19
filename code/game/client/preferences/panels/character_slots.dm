@@ -6,7 +6,7 @@
 		html += "<b>Select a character slot to load</b>"
 		html += "<hr>"
 		var/name
-		for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)
+		for(var/i in 1 to MAX_SAVE_SLOTS)
 			S.cd = "/character[i]"
 			FROM_SAVEFILE(S, "real_name", name)
 			if(!name)

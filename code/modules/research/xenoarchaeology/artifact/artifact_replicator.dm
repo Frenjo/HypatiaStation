@@ -98,7 +98,7 @@
 /obj/machinery/replicator/interact(mob/user)
 	var/dat = "The control panel displays an incomprehensible selection of controls, many with unusual markings or text around them.<br>"
 	dat += "<br>"
-	for(var/index = 1, index <= length(construction), index++)
+	for(var/index in 1 to length(construction))
 		dat += "<A href='byond://?src=\ref[src];activate=[index]'>\[[construction[index]]\]</a><br>"
 
 	SHOW_BROWSER(user, dat, "window=alien_replicator")

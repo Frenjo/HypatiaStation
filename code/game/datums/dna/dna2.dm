@@ -89,7 +89,7 @@
 	new_dna.mutantrace = mutantrace
 	new_dna.real_name = real_name
 	new_dna.species = species
-	for(var/b = 1, b <= DNA_SE_LENGTH, b++)
+	for(var/b in 1 to DNA_SE_LENGTH)
 		new_dna.SE[b] = SE[b]
 		if(b <= DNA_UI_LENGTH)
 			new_dna.UI[b] = UI[b]
@@ -102,7 +102,7 @@
 
 // Create random UI.
 /datum/dna/proc/ResetUI(defer = 0)
-	for(var/i = 1, i <= DNA_UI_LENGTH, i++)
+	for(var/i in 1 to DNA_UI_LENGTH)
 		switch(i)
 			if(DNA_UI_SKIN_TONE)
 				SetUIValueRange(DNA_UI_SKIN_TONE, rand(1, 220), 220, 1) // Otherwise, it gets fucked
@@ -228,7 +228,7 @@
 		return
 	var/oldBlock = GetUIBlock(block)
 	var/newBlock = ""
-	for(var/i = 1, i <= length(oldBlock), i++)
+	for(var/i in 1 to length(oldBlock))
 		if(i == subBlock)
 			newBlock += newSubBlock
 		else
@@ -241,7 +241,7 @@
 
 // "Zeroes out" all of the blocks.
 /datum/dna/proc/ResetSE()
-	for(var/i = 1, i <= DNA_SE_LENGTH, i++)
+	for(var/i in 1 to DNA_SE_LENGTH)
 		SetSEValue(i, rand(1, 1024), 1)
 	UpdateSE()
 
@@ -324,7 +324,7 @@
 		return
 	var/oldBlock = GetSEBlock(block)
 	var/newBlock = ""
-	for(var/i = 1, i <= length(oldBlock), i++)
+	for(var/i in 1 to length(oldBlock))
 		if(i == subBlock)
 			newBlock += newSubBlock
 		else

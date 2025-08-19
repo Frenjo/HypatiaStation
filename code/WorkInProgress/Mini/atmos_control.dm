@@ -345,13 +345,13 @@ table tr:first-child th:first-child { border: none;}
 
 			tlv = current.TLV["pressure"]
 			output += "<TR><th>Pressure</th>"
-			for(var/i = 1, i <= 4, i++)
+			for(var/i in 1 to 4)
 				output += "<td><A href='byond://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=pressure;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
 			output += "</TR>"
 
 			tlv = current.TLV["temperature"]
 			output += "<TR><th>Temperature</th>"
-			for(var/i = 1, i <= 4, i++)
+			for(var/i in 1 to 4)
 				output += "<td><A href='byond://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=temperature;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
 			output += "</TR>"
 			output += "</table>"

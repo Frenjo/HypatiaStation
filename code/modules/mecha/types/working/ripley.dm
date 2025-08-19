@@ -18,7 +18,7 @@
 	var/static/max_goliath_hides = 3
 
 /obj/mecha/working/ripley/Destroy()
-	for(var/i = 1, i <= goliath_hides, i++)
+	for(var/i in 1 to goliath_hides)
 		new /obj/item/stack/goliath_hide(loc)
 	damage_resistance["brute"] = initial(damage_resistance["brute"])
 	return ..()

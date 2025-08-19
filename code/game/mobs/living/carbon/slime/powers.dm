@@ -208,7 +208,7 @@
 			var/list/babies = list()
 			var/new_nutrition = round(nutrition * 0.9)
 			var/new_powerlevel = round(powerlevel / 4)
-			for(var/i = 1, i <= 4, i++)
+			for(var/i in 1 to 4)
 				if(prob(80))
 					var/mob/living/carbon/slime/M = new primarytype(loc)
 					M.nutrition = new_nutrition

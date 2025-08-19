@@ -44,20 +44,20 @@
 	if(isnotnull(zeroth))
 		to_chat(who, "0. [zeroth]")
 
-	for(var/index = 1, index <= length(ion), index++)
+	for(var/index in 1 to length(ion))
 		var/law = ion[index]
 		var/num = ionnum()
 		to_chat(who, "[num]. [law]")
 
 	var/number = 1
-	for(var/index = 1, index <= length(inherent), index++)
+	for(var/index in 1 to length(inherent))
 		var/law = inherent[index]
 
 		if(length(law) > 0)
 			to_chat(who, "[number]. [law]")
 			number++
 
-	for(var/index = 1, index <= length(supplied), index++)
+	for(var/index in 1 to length(supplied))
 		var/law = supplied[index]
 		if(length(law) > 0)
 			to_chat(who, "[number]. [law]")

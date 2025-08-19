@@ -147,7 +147,7 @@
 	else if(NSEW == 8)
 		oNSEW = 4
 
-	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for another generator
+	for(var/dist in 0 to 9) // checks out to 8 tiles away for another generator
 		T = get_step(T2, NSEW)
 		T2 = T
 		steps += 1
@@ -219,7 +219,7 @@
 	var/turf/T = loc
 	var/turf/T2 = loc
 
-	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for fields
+	for(var/dist in 0 to 9) // checks out to 8 tiles away for fields
 		T = get_step(T2, NSEW)
 		T2 = T
 		if(locate(/obj/effect/shield_wall) in T)

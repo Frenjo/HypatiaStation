@@ -21,7 +21,7 @@ GLOBAL_GLOBL_INIT(blobevent, FALSE)
 /proc/dotheblobbaby()
 	if(GLOBL.blobevent)
 		if(length(GLOBL.blob_cores))
-			for(var/i = 1 to 5)
+			for(var/i in 1 to 5)
 				sleep(-1)
 				if(!length(GLOBL.blob_cores))
 					break

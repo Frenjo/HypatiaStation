@@ -77,7 +77,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/atmos_initialise()
 	. = ..()
-	for(var/i = 1 to length(nodes))
+	for(var/i in 1 to length(nodes))
 		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
 		if(isnotnull(node))
 			supply.nodes[i] = node.supply

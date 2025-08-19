@@ -24,7 +24,7 @@
 	var/list/types = list()
 
 	var/i
-	for(i = 2; i <= length(query_list); i += 2)
+	for(i in 2 to length(query_list) step 2)
 		types += query_list[i]
 
 		if(i + 1 >= length(query_list) || query_list[i + 1] != ",")
@@ -210,7 +210,7 @@
 				return
 
 			var/j
-			for(j = i, j <= length(where), j++)
+			for(j in 1 to length(where))
 				if(lowertext(where[j]) in list("and", "or", ";"))
 					break
 
@@ -394,7 +394,7 @@
 	var/list/query_list = list()
 	var/len = length(query_text)
 
-	for(var/i = 1, i <= len, i++)
+	for(var/i in 1 to len)
 		var/char = copytext(query_text, i, i + 1)
 
 		if(char in whitespace)

@@ -31,7 +31,7 @@
 				msg+=" "*/
 			seperate = splittext(msg, " ")
 
-		for(var/Xa = 1, Xa < length(seperate), Xa++)
+		for(var/Xa in 1 to length(seperate))
 			var/next = Xa + 1
 			if(length(heard_words) > 20 + rand(10, 20))
 				heard_words.Remove(heard_words[1])

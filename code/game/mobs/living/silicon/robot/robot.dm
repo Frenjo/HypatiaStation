@@ -165,7 +165,7 @@
 		for(var/line in lines)
 		// split & clean up
 			var/list/Entry = splittext(line, "-")
-			for(var/i = 1 to length(Entry))
+			for(var/i in 1 to length(Entry))
 				Entry[i] = trim(Entry[i])
 
 			if(length(Entry) < 2)

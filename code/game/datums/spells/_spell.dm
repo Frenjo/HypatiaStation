@@ -240,7 +240,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			var/list/possible_targets = list()
 			for(var/mob/living/target in view_or_range(range, user, selection_type))
 				possible_targets += target
-			for(var/i = 1, i <= max_targets, i++)
+			for(var/i in 1 to max_targets)
 				if(!length(possible_targets))
 					break
 				if(target_ignore_prev)

@@ -53,7 +53,7 @@
 
 /datum/chemical_reaction/tofu/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = GET_TURF(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i in 1 to created_volume)
 		new /obj/item/reagent_holder/food/snacks/tofu(location)
 
 /datum/chemical_reaction/chocolate_bar
@@ -63,7 +63,7 @@
 
 /datum/chemical_reaction/chocolate_bar/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = GET_TURF(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
+	for(var/i in 1 to created_volume)
 		new /obj/item/reagent_holder/food/snacks/chocolatebar(location)
 
 /datum/chemical_reaction/chocolate_bar/secondary

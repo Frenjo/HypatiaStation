@@ -63,7 +63,7 @@
 	//Looking for another blob to pulse
 	var/list/dirs = list(1, 2, 4, 8)
 	dirs.Remove(origin_dir)//Dont pulse the guy who pulsed us
-	for(var/i = 1 to 4)
+	for(var/i in 1 to 4)
 		if(!length(dirs))
 			break
 		var/dirn = pick(dirs)
@@ -95,7 +95,7 @@
 		return
 	if(isnull(T))
 		var/list/dirs = list(1, 2, 4, 8)
-		for(var/i = 1 to 4)
+		for(var/i in 1 to 4)
 			var/dirn = pick(dirs)
 			dirs.Remove(dirn)
 			T = get_step(src, dirn)

@@ -368,7 +368,7 @@
 				var/num_bullets = rand(1, new_gun.max_shells)
 				if(num_bullets < length(new_gun.loaded))
 					new_gun.loaded.Cut()
-					for(var/i = 1, i <= num_bullets, i++)
+					for(var/i in 1 to num_bullets)
 						var/A = text2path(new_gun.ammo_type)
 						new_gun.loaded += new A(new_gun)
 				else
@@ -490,7 +490,7 @@
 			descriptors.Add("menaces with spikes of [pick("solid plasma", "uranium", "white pearl", "black steel")]")
 		if(length(descriptors))
 			decorations = "It "
-			for(var/index = 1, index <= length(descriptors), index++)
+			for(var/index in 1 to length(descriptors))
 				if(index > 1)
 					if(index == length(descriptors))
 						decorations += " and "

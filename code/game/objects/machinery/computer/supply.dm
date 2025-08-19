@@ -345,7 +345,7 @@
 		var/datum/supply_order/O
 		var/decl/hierarchy/supply_pack/P
 		temp = "Invalid Request"
-		for(var/i = 1, i <= length(global.PCsupply.requestlist), i++) // Edited this to reflect 'shuttles' port. -Frenjo
+		for(var/i in 1 to length(global.PCsupply.requestlist)) // Edited this to reflect 'shuttles' port. -Frenjo
 			var/datum/supply_order/SO = global.PCsupply.requestlist[i] // Edited this to reflect 'shuttles' port. -Frenjo
 			if(SO.ordernum == ordernum)
 				O = SO
@@ -396,7 +396,7 @@
 		temp = "Invalid Request.<BR>"
 
 		// Edited this to reflct 'shuttles' port. -Frenjo
-		for(var/i = 1, i <= length(global.PCsupply.requestlist), i++)
+		for(var/i in 1 to length(global.PCsupply.requestlist))
 			var/datum/supply_order/SO = global.PCsupply.requestlist[i]
 			if(SO.ordernum == ordernum)
 				global.PCsupply.requestlist.Cut(i,i + 1) // Edited this to reflct 'shuttles' port. -Frenjo

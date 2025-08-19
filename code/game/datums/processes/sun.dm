@@ -72,7 +72,7 @@ PROCESS_DEF(sun)
 	var/ax = S.x		// start at the solar panel
 	var/ay = S.y
 
-	for(var/i = 1 to 20)		// 20 steps is enough
+	for(var/i in 1 to 20)		// 20 steps is enough
 		ax += dx	// do step
 		ay += dy
 

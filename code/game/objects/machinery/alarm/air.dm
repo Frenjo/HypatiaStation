@@ -873,19 +873,19 @@ table tr:first-child th:first-child { border: none;}
 			for(var/g in gases)
 				output += "<TR><th>[gases[g]]</th>"
 				selected = TLV[g]
-				for(var/i = 1, i <= 4, i++)
+				for(var/i in 1 to 4)
 					output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=[g];var=[i]'>[selected[i] >= 0 ? selected[i] :"OFF"]</A></td>"
 				output += "</TR>"
 
 			selected = TLV["pressure"]
 			output += "<TR><th>Pressure</th>"
-			for(var/i = 1, i <= 4, i++)
+			for(var/i in 1 to 4)
 				output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=pressure;var=[i]'>[selected[i] >= 0 ? selected[i] :"OFF"]</A></td>"
 			output += "</TR>"
 
 			selected = TLV["temperature"]
 			output += "<TR><th>Temperature</th>"
-			for(var/i = 1, i <= 4, i++)
+			for(var/i in 1 to 4)
 				output += "<td><A href='byond://?src=\ref[src];command=set_threshold;env=temperature;var=[i]'>[selected[i] >= 0 ? selected[i] :"OFF"]</A></td>"
 			output += "</TR></table>"
 

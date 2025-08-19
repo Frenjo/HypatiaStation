@@ -58,7 +58,7 @@
 			uni_identity = temp
 		if(length(struc_enzymes)!= 3*STRUCDNASIZE)
 			var/mutstring = ""
-			for(var/i = 1, i <= STRUCDNASIZE, i++)
+			for(var/i in 1 to STRUCDNASIZE)
 				mutstring += add_zero2(num2hex(rand(1,1024)),3)
 
 			struc_enzymes = mutstring
@@ -116,7 +116,7 @@
 	uni_identity = temp
 
 	var/mutstring = ""
-	for(var/i = 1, i <= STRUCDNASIZE, i++)
+	for(var/i in 1 to STRUCDNASIZE)
 		mutstring += add_zero2(num2hex(rand(1,1024)),3)
 
 

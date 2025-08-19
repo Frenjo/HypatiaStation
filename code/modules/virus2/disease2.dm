@@ -17,7 +17,7 @@
 	. = ..()
 
 /datum/disease2/disease/proc/makerandom(greater = 0)
-	for(var/i = 1 ; i <= max_stage ; i++)
+	for(var/i in 1 to max_stage)
 		var/datum/disease2/effectholder/holder = new /datum/disease2/effectholder
 		holder.stage = i
 		if(greater)

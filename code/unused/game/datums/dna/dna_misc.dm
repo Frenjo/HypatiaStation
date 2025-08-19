@@ -22,7 +22,7 @@
 	var/blockpos = 1 // keeps track of the current block
 
 
-	for(var/i = 1, i <= length(input), i++) // loop through each letter
+	for(var/i in 1 to length(input)) // loop through each letter
 
 		var/pushstring
 
@@ -54,7 +54,7 @@
 /proc/getblockbuffer(input,blocknumber,blocksize)
 	var/result[3]
 	var/block = copytext(input ,(blocksize*blocknumber)-(blocksize-1),(blocksize*blocknumber)+1)
-	for(var/i = 1, i <= 3, i++)
+	for(var/i in 1 to 3)
 		result[i] = copytext(block, i, i+1)
 	return result
 
@@ -186,13 +186,13 @@
 	if(!M)	return
 	M.dna.check_integrity()
 	if(type)
-		for(var/i = 1, i <= STRUCDNASIZE-1, i++)
+		for(var/i in 1 to (STRUCDNASIZE - 1))
 			if(prob(p))
 				M.dna.uni_identity = setblock(M.dna.uni_identity, i, add_zero2(num2hex(rand(1,4095), 1), 3), 3)
 		updateappearance(M, M.dna.uni_identity)
 
 	else
-		for(var/i = 1, i <= STRUCDNASIZE-1, i++)
+		for(var/i in 1 to (STRUCDNASIZE - 1))
 			if(prob(p))
 				M.dna.struc_enzymes = setblock(M.dna.struc_enzymes, i, add_zero2(num2hex(rand(1,4095), 1), 3), 3)
 		domutcheck(M, null)

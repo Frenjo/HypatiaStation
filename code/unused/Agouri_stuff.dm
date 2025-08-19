@@ -1917,8 +1917,8 @@ turf/open/floor/return_siding_icon_state()
 
 	var/z = location.z
 
-	for(var/i = lowBoundX,i<=hiBoundX,i++)
-		for(var/j = lowBoundY,j<=hiBoundY,j++)
+	for(var/i in lowBoundX to hiBoundX)
+		for(var/j in lowBoundY to hiBoundY)
 			if(i == lowBoundX || i == hiBoundX || j == lowBoundY || j == hiBoundY)
 				new /turf/closed/wall/vault(locate(i,j,z),type)
 			else

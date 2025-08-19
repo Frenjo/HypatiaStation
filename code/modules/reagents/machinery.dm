@@ -492,14 +492,14 @@
 				reagents.trans_to(P, 50)
 		else if(href_list["change_pill"])
 			var/dat = "<table>"
-			for(var/i = 1 to MAX_PILL_SPRITE)
+			for(var/i in 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href='byond://?src=\ref[src]&pill_sprite=[i]'><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			SHOW_BROWSER(usr, dat, "window=chem_master")
 			return
 		else if(href_list["change_bottle"])
 			var/dat = "<table>"
-			for(var/i = 1 to MAX_BOTTLE_SPRITE)
+			for(var/i in 1 to MAX_BOTTLE_SPRITE)
 				dat += "<tr><td><a href='byond://?src=\ref[src]&bottle_sprite=[i]'><img src=\"bottle[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			SHOW_BROWSER(usr, dat, "window=chem_master")
@@ -525,9 +525,9 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
-			for(var/i = 1 to MAX_PILL_SPRITE)
+			for(var/i in 1 to MAX_PILL_SPRITE)
 				SEND_RSC(usr, icon('icons/obj/chemical.dmi', "pill" + num2text(i)), "pill[i].png")
-			for(var/i = 1 to MAX_BOTTLE_SPRITE)
+			for(var/i in 1 to MAX_BOTTLE_SPRITE)
 				SEND_RSC(usr, icon('icons/obj/chemical.dmi', "bottle" + num2text(i)), "bottle[i].png")
 	var/dat = ""
 	if(!beaker)
@@ -1188,7 +1188,7 @@
 		var/allowed = get_allowed_by_id(O)
 		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
-		for(var/i = 1; i <= round(O.amount, 1); i++)
+		for(var/i in 1 to round(O.amount, 1))
 			for(var/r_id in allowed)
 				var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 				var/amount = allowed[r_id]
