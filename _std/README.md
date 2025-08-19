@@ -12,7 +12,7 @@ Something should be included in the Hypatia Standard Library if:
 * It's a common compiler-level, linter-level or SpacemanDMM feature. IE: ```RETURN_TYPE()```, ```VAR_FINAL```.
 * It's an extension or feature for a core DM type. IE: ```/proc/mutable_appearance()```, ```/image/proc/add_overlay()```.
 * It's a macro that's pretending to be a language built-in. IE: ```isnotnull()```, ```subtypesof()```.
-* It's a define related to a core BYOND feature. IE: ```SCALING_MODE_NORMAL```, ```PANEL_STATUS```.
+* It's a define related to a core BYOND feature. IE: ```SCALING_MODE_NORMAL```, ```SECONDS```.
 * It's a generally useful helper macro that's codebase-agnostic. IE: ```GET_TURF()```, ```RANGE_TURFS()```.
 
 ### Licensing
