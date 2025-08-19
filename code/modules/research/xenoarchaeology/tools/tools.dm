@@ -6,7 +6,7 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "locator"
 	item_state = "locator"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gps/attack_self(mob/user)
 	var/turf/T = GET_TURF(src)
@@ -17,6 +17,6 @@
 	desc = "A coiled metallic tape used to check dimensions and lengths."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "measuring"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 //todo: dig site tape

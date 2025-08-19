@@ -2,7 +2,6 @@
 	name = "sheet"
 	icon = 'icons/obj/items/stacks/sheets.dmi'
 
-	w_class = 3.0
 	force = 5
 	throwforce = 5
 	max_amount = 50

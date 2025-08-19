@@ -8,7 +8,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 10.0
 	throwforce = 2.0
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/moneybag/attack_hand(mob/user)
 	var/list/num_coins_by_material = list()

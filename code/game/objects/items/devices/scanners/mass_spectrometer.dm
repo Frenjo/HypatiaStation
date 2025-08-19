@@ -8,7 +8,7 @@
 	icon_state = "spectrometer"
 	item_state = "analyser"
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT

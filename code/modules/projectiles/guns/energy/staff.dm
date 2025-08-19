@@ -4,7 +4,7 @@
 	icon_state = "staffofchange"
 	item_state = "staffofchange"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
 	origin_tech = null
 

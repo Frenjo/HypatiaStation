@@ -6,7 +6,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick_brush"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 0.5
 	dig_time = 2 SECONDS
@@ -19,7 +19,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick1"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 1
 	dig_time = 2 SECONDS
@@ -32,7 +32,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick2"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 2
 	dig_time = 2 SECONDS
@@ -45,7 +45,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick3"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 3
 	dig_time = 2 SECONDS
@@ -58,7 +58,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick4"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 4
 	dig_time = 2 SECONDS
@@ -71,7 +71,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick5"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 5
 	dig_time = 2 SECONDS
@@ -84,7 +84,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick6"
 	item_state = "syringe_0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	excavation_amount = 6
 	dig_time = 2 SECONDS
@@ -97,7 +97,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick_hand"
 	item_state = "syringe_0"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	excavation_amount = 15
 	dig_time = 3 SECONDS
@@ -115,7 +115,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	storage_slots = 7
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/pickaxe/brush,
 		/obj/item/pickaxe/one_pick,
@@ -126,7 +126,7 @@
 		/obj/item/pickaxe/six_pick
 	)
 	max_combined_w_class = 17
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 	starts_with = list(

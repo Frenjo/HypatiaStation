@@ -79,7 +79,7 @@
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
 	storage_slots = 7
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_combined_w_class = 21
 	can_hold = list(
 		/obj/item/grenade/flashbang,
@@ -139,7 +139,7 @@
 	icon_state = "swatbelt"
 	item_state = "swatbelt"
 	storage_slots = 9
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_combined_w_class = 21
 	can_hold = list(
 		/obj/item/grenade/flashbang,

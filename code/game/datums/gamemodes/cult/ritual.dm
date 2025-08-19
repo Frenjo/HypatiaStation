@@ -188,7 +188,7 @@ var/engwords = list(
 	icon_state ="tome"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/notedat = ""
 	var/tomedat = ""
 	var/list/words = list(
@@ -498,7 +498,6 @@ var/engwords = list(
 		. += SPAN_WARNING("The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though.")
 
 /obj/item/tome/imbued //admin tome, spawns working runes without waiting
-	w_class = 2.0
 	var/cultistsonly = 1
 
 /obj/item/tome/imbued/attack_self(mob/user)

@@ -347,8 +347,6 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	icon = 'icons/mob/bot/cleanbot.dmi'
 	icon_state = "bucket_proxy"
 
-	w_class = 3
-
 	force = 3
 	throwforce = 10
 	throw_speed = 2

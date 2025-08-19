@@ -8,7 +8,6 @@
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 7
-	w_class = 3
 	origin_tech = alist(/decl/tech/combat = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 

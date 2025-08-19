@@ -4,7 +4,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 30
 	throwforce = 10
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -91,7 +91,7 @@
 	icon_state = "cult_armour"
 	item_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space proof."
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	can_store = list(
 		/obj/item/tome,
 		/obj/item/melee/cultblade,

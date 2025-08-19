@@ -91,7 +91,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /*
  * Fake telebeacon
@@ -123,7 +123,6 @@
 	item_state = "gun"
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
-	w_class = 3.0
 	matter_amounts = alist(/decl/material/steel = 10, /decl/material/plastic = 10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 
@@ -178,7 +177,7 @@
 	icon = 'icons/obj/weapons/ammo.dmi'
 	icon_state = "357-7"
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	matter_amounts = alist(/decl/material/plastic = 20)
 
 	var/amount_left = 7.0
@@ -198,7 +197,7 @@
 	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/bullets = 5
 
@@ -298,7 +297,7 @@
 	name = "foam dart"
 	desc = "It's nerf or nothing! Ages 8 and up."
 	icon_state = "foamdart"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/effect/foam_dart_dummy
 	name = ""
@@ -316,7 +315,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_flags = ITEM_FLAG_NO_SHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
@@ -355,7 +354,6 @@
 	slot_flags = SLOT_BELT | SLOT_BACK
 	force = 5
 	throwforce = 5
-	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 
 /*
@@ -366,7 +364,7 @@
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "coloured")
 	var/colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
@@ -385,7 +383,7 @@
 	name = "snap pop"
 	desc = "Wow!"
 	icon_state = "snappop"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/snappop/throw_impact(atom/hit_atom)
 	..()

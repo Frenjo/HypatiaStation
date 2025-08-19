@@ -41,7 +41,6 @@
 	name = "sign"
 	desc = ""
 	icon = 'icons/obj/effects/decals.dmi'
-	w_class = 3		//big
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/tool, mob/user)	//construction

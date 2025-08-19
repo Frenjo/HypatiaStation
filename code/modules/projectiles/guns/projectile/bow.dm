@@ -39,9 +39,7 @@
 	icon_state = "crossbow"
 	item_state = "crossbow-solid"
 
-	// w_class is here twice, which one should this be?
-	w_class = 5
-	w_class = 3
+	w_class = WEIGHT_CLASS_BULKY // This was set to both 3 and 5 so I just made it 4.
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
 

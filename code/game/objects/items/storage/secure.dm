@@ -12,8 +12,7 @@
 // -----------------------------
 /obj/item/storage/secure
 	name = "secstorage"
-	w_class = 3.0
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	max_combined_w_class = 14
 
 	var/icon_locking = "secureb"
@@ -150,7 +149,7 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/secure/briefcase/New()
 	..()

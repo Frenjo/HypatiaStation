@@ -45,7 +45,7 @@
 	damtype = "fire"
 	force = 0
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
 	throw_range = 3
 	plant_type = 1

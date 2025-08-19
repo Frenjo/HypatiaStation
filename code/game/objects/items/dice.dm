@@ -3,7 +3,7 @@
 	desc = "A dice with six sides."
 	icon = 'icons/obj/items/dice.dmi'
 	icon_state = "d66"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/sides = 6
 	attack_verb = list("diced")
 

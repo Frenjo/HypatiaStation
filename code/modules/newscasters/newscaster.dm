@@ -685,7 +685,7 @@
 	desc = "An issue of The Griffon, the newspaper circulating aboard NanoTrasen Space Stations."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "newspaper"
-	w_class = 2	//Let's make it fit in trashbags!
+	w_class = WEIGHT_CLASS_SMALL //Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	var/screen = 0
 	var/pages = 0

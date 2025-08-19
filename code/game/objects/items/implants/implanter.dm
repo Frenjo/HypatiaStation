@@ -8,7 +8,7 @@
 	item_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/imp_type = null
 	var/obj/item/implant/imp = null

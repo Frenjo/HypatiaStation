@@ -7,7 +7,7 @@
 	matter_amounts = /datum/design/intellicard::materials
 	origin_tech = /datum/design/intellicard::req_tech
 
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = SLOT_BELT
 	var/flush = null
 

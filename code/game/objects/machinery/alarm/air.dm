@@ -27,7 +27,7 @@
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "Looks like a circuit. Probably is."
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = /datum/design/autolathe/air_alarm_electronics::materials
 
 //all air alarms in area are connected via magic

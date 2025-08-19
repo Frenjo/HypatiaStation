@@ -7,9 +7,9 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "backpack"
 	item_state = "backpack"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK	//ERROOOOO
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_combined_w_class = 21
 
 /obj/item/storage/backpack/attackby(obj/item/W, mob/user)
@@ -37,9 +37,7 @@
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"
-	w_class = 4.0
 	storage_slots = 20
-	max_w_class = 3
 	max_combined_w_class = 400 // can store a ton of shit!
 
 /obj/item/storage/backpack/cultpack

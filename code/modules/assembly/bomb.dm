@@ -3,7 +3,6 @@
 	icon = 'icons/obj/atmospherics/tank.dmi'
 	item_state = "assembly"
 	throwforce = 5
-	w_class = 3.0
 	throw_speed = 2
 	throw_range = 4
 	obj_flags = OBJ_FLAG_CONDUCT //Copied this from old code, so this may or may not be necessary

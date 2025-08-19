@@ -4,7 +4,7 @@
 	icon_state = "balaclava"
 	item_state = "balaclava"
 	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/mask/balaclava/tactical
 	name = "green balaclava"
@@ -12,7 +12,7 @@
 	icon_state = "swatclava"
 	item_state = "balaclava"
 	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/mask/luchador
 	name = "luchador mask"
@@ -20,7 +20,7 @@
 	icon_state = "luchag"
 	item_state = "luchag"
 	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	siemens_coefficient = 3.0
 
 /obj/item/clothing/mask/luchador/tecnicos

@@ -5,7 +5,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	matter_amounts = alist(/decl/material/iron = 60)
 
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
@@ -35,7 +35,7 @@
 	)
 
 /obj/item/light/tube/large
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "large light tube"
 	broken_chance = 5
 

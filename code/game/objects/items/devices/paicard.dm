@@ -3,7 +3,7 @@
 	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "pai"
 	item_state = "electronic"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = SLOT_BELT
 	matter_amounts = /datum/design/paicard::materials
 	origin_tech = /datum/design/paicard::req_tech

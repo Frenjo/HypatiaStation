@@ -11,7 +11,7 @@
 	throwforce = 5
 	sharp = TRUE
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 // Launcher.
 /obj/item/spikethrower

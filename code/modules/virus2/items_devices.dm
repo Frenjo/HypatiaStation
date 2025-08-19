@@ -9,7 +9,7 @@
 	desc = "Used to scan living beings for antibodies in their blood."
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "antibody"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 

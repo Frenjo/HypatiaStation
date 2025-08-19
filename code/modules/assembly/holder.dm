@@ -5,7 +5,7 @@
 	item_state = "assembly"
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 10
 

@@ -9,7 +9,7 @@ GLOBAL_GLOBL_ALIST_NEW(cached_icons)
 	item_state = "paintcan"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	matter_amounts = alist(/decl/material/steel = 200)
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(10,20,30,50,70)
 	volume = 70

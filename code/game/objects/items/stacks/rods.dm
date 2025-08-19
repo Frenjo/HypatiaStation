@@ -4,7 +4,6 @@
 	singular_name = "metal rod"
 	icon_state = "rods"
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 3.0
 	force = 9.0
 	throwforce = 15.0
 	throw_speed = 5

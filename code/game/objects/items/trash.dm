@@ -4,7 +4,7 @@
 //Added by Jack Rost
 /obj/item/trash
 	icon = 'icons/obj/items/trash.dmi'
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	desc = "This is rubbish."
 
 /obj/item/trash/raisins

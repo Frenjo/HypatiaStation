@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "taperecorderidle"
 	item_state = "analyser"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	matter_amounts = /datum/design/autolathe/tape_recorder::materials
 
 	obj_flags = OBJ_FLAG_CONDUCT

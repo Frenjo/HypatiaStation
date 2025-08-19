@@ -95,7 +95,7 @@
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonbox"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 6
 	icon_type = "crayon"
 	can_hold = list(/obj/item/toy/crayon)
@@ -134,7 +134,7 @@
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	storage_slots = 6
@@ -205,7 +205,7 @@
 	icon = 'icons/obj/items/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(/obj/item/reagent_holder/glass/beaker/vial)
 	max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6

@@ -4,7 +4,7 @@
 
 /obj/item/fluff // so that they don't spam up the object tree
 	icon = 'icons/obj/custom_items.dmi'
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 
 //////////////////////////////////
 ////////// Fluff Items ///////////
@@ -245,7 +245,6 @@
 /obj/item/fluff/cado_keppel_1 //sparklysheep: Cado Keppel
 	name = "purple comb"
 	desc = "A pristine purple comb made from flexible plastic. It has a small K etched into its side."
-	w_class = 1.0
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "purplecomb"
 	item_state = "purplecomb"
@@ -351,7 +350,7 @@
 	icon_state = "cigon"
 	throw_speed = 0.5
 	item_state = "ciglit"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	body_parts_covered = null
 
 //Strange penlight, Nerezza: Asher Spock
@@ -794,7 +793,7 @@
 	item_state = "altair_locket"
 	item_color = "altair_locket"
 	slot_flags = 0
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	slot_flags = SLOT_MASK
 
 ////// Silver locket - Konaa Hirano - Konaa_Hirano
@@ -807,7 +806,7 @@
 	item_state = "konaahirano"
 	item_color = "konaahirano"
 	slot_flags = 0
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	slot_flags = SLOT_MASK
 	var/obj/item/held //Item inside locket.
 
@@ -836,7 +835,7 @@
 	desc = "This silvered medallion bears the symbol of the Hadii Clan of the Tajaran."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "nasir_khayyam_1"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	slot_flags = SLOT_MASK
 
 ////// Emerald necklace - Ty Foster - Nega
@@ -846,7 +845,7 @@
 	desc = "A brass necklace with a green emerald placed at the end. It has a small inscription on the top of the chain, saying \'Foster\'"
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "ty_foster"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 ////// Apollon Pendant - Michael Guess - Dragor23
 /obj/item/clothing/mask/michael_guess_1
@@ -854,7 +853,7 @@
 	desc = "A pendant with the form of a sacrificial tripod, used in acient greece. It's a symbol of the Olympian Apollon, a god associated with oracles, poetry, the sun and healing."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "michael_guess_1"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	slot_flags = SLOT_MASK
 //////////// Shoes ////////////
 

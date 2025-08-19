@@ -16,7 +16,7 @@
 	density = FALSE
 	anchored = FALSE
 
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	origin_tech = alist(/decl/tech/programming = 2)
 

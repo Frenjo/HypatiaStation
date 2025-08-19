@@ -8,7 +8,7 @@
 	force = 1
 	throw_speed = 1
 	throw_range = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/worth = 0
 

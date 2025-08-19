@@ -4,7 +4,7 @@
 	name = "airlock electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
-	w_class = 2.0 // It should be tiny! -Agouri
+	w_class = WEIGHT_CLASS_SMALL // It should be tiny! -Agouri
 	matter_amounts = /datum/design/autolathe/airlock_electronics::materials
 
 	req_access = list(ACCESS_ENGINE)

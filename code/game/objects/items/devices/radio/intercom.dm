@@ -3,7 +3,7 @@
 	desc = "Talk through this."
 	icon_state = "intercom"
 	anchored = TRUE
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
 	atom_flags = ATOM_FLAG_NO_BLOODY
 	obj_flags = OBJ_FLAG_CONDUCT

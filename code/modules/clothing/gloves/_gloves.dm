@@ -4,7 +4,7 @@
 /obj/item/clothing/gloves
 	name = "gloves"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/clothing/gloves.dmi'
 	siemens_coefficient = 0.50
 

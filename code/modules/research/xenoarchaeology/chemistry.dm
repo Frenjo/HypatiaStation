@@ -72,7 +72,7 @@
 	icon_state = "solution_tray"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	matter_amounts = alist(/decl/material/glass = 5)
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = list(1, 2)
 	volume = 2

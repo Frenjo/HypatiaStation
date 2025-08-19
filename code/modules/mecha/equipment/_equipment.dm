@@ -9,7 +9,7 @@
 	icon_state = "blank"
 
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 
 	force = 5
 	origin_tech = alist(/decl/tech/materials = 2)

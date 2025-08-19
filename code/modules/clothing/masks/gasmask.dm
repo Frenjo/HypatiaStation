@@ -4,7 +4,6 @@
 	icon_state = "gas_alt"
 	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT | ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	inv_flags = INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE
-	w_class = 3.0
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01

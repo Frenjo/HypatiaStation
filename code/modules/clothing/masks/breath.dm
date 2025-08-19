@@ -5,7 +5,7 @@
 	item_state = "breath"
 	icon_action_button = "action_mask"
 	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_COVERS_MOUTH
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
 	var/hanging = 0

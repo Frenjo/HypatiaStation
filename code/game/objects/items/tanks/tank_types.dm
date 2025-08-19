@@ -136,7 +136,7 @@
 	desc = "Used for emergencies."
 	force = 4
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = SLOT_BELT
 
 	volume = 2 // Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)

@@ -344,7 +344,7 @@
 	desc = "An advanced suit that protects against injuries during special operations. Property of Gorlex Marauders."
 	item_state = "syndie_hardsuit"
 	slowdown = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 60)
 	can_store = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/gun,
@@ -373,7 +373,7 @@
 	obj_flags = OBJ_FLAG_UNACIDABLE
 	item_state = "wiz_hardsuit"
 	slowdown = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	armor = list(melee = 40, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
 	sprite_sheets = null

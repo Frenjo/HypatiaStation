@@ -91,7 +91,7 @@
 
 ///////////OFFHAND///////////////
 /obj/item/twohanded/offhand
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "offhand"
 	name = "offhand"
@@ -114,7 +114,7 @@
 	force = 5
 	sharp = 1
 	edge = 1
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
 	force_unwielded = 10
 	force_wielded = 40
@@ -155,7 +155,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	force_unwielded = 3
 	force_wielded = 30
 	wieldsound = 'sound/weapons/melee/saberon.ogg'

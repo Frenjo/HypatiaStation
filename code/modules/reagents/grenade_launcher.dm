@@ -2,7 +2,7 @@
 	name = "grenade launcher"
 	icon_state = "riotgun"
 	item_state = "riotgun"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0

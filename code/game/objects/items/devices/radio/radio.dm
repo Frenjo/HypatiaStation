@@ -13,7 +13,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = /datum/design/autolathe/bounced_radio::materials
 
 	var/on = 1 // 0 for off

@@ -6,7 +6,6 @@
 	item_state = "render"
 	force = 15
 	throwforce = 10
-	w_class = 3
 	var/charged = 1
 
 /obj/item/veilrender/attack_self(mob/user)

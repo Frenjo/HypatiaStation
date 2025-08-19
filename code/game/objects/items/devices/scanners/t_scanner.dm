@@ -8,7 +8,7 @@
 	icon_state = "t-ray0"
 	item_state = "electronic"
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = SLOT_BELT
 
 	matter_amounts = /datum/design/autolathe/t_scanner::materials

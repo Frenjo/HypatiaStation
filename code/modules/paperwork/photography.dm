@@ -15,7 +15,7 @@
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
 	item_state = "electropack"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 
 /********
 * photo *
@@ -25,7 +25,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "photo"
 	item_state = "paper"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
 
@@ -111,7 +111,7 @@
 	desc = "A polaroid camera. 10 photos left."
 	icon_state = "camera"
 	item_state = "electropack"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = alist(/decl/material/plastic = 2000)

@@ -7,7 +7,7 @@
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = /datum/design/autolathe/fire_alarm_electronics::materials
 
 /*

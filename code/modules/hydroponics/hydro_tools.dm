@@ -23,7 +23,7 @@
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	force = 5.0
 	throwforce = 7.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = alist(/decl/material/steel = 50)
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
@@ -39,7 +39,7 @@
 	force = 12.0
 	sharp = 1
 	edge = 1
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15.0
 	throw_speed = 4
 	throw_range = 4
@@ -65,7 +65,7 @@
 	edge = 1
 	throw_speed = 1
 	throw_range = 3
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	item_flags = ITEM_FLAG_NO_SHIELD
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2)
@@ -93,7 +93,7 @@
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	slot_flags = SLOT_BELT
 	throwforce = 4
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 10
 
@@ -117,7 +117,7 @@
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	slot_flags = SLOT_BELT
 	throwforce = 4
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 10
 
@@ -213,7 +213,7 @@
 	name = "bottle of nutrient"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 
 	var/mutmod = 0
 	var/yieldmod = 0
@@ -256,7 +256,7 @@
 	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20

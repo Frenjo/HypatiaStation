@@ -12,7 +12,7 @@
 	// It requires an artificial bluespace crystal to assemble.
 	origin_tech = /datum/design/bluespace/bluespace_crystal::req_tech
 
-	max_w_class = 4
+	max_w_class = WEIGHT_CLASS_BULKY
 	max_combined_w_class = 28
 
 /obj/item/storage/backpack/holding/attack_by(obj/item/I, mob/user)
@@ -62,7 +62,7 @@
 	matter_amounts = /datum/design/bluespace/bag_holding::materials
 	origin_tech = /datum/design/bluespace/bag_holding::req_tech
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 
 	var/datum/construction/reversible/construct = null
 

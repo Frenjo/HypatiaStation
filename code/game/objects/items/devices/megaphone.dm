@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "megaphone"
 	item_state = "radio"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	obj_flags = OBJ_FLAG_CONDUCT
 
 	var/spamcheck = 0

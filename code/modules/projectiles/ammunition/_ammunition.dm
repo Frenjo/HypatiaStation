@@ -4,7 +4,7 @@
 	icon = 'icons/obj/weapons/ammo.dmi'
 	icon_state = "s-casing"
 
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
@@ -59,7 +59,7 @@
 	matter_amounts = alist(/decl/material/steel = 50000)
 
 	throwforce = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4
 	throw_range = 10
 

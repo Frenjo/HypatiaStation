@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/assemblies/new_assemblies.dmi'
 	icon_state = ""
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = alist(/decl/material/plastic = 100)
 	throwforce = 2
 	throw_speed = 3

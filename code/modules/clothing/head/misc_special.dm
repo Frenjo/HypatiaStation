@@ -23,7 +23,7 @@
 	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	var/up = 0
 
@@ -117,7 +117,7 @@
 	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clothing/head/pumpkinhead/attack_self(mob/user)
 	if(!isturf(user.loc))

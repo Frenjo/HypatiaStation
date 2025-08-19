@@ -7,7 +7,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	var/has_sensor = 1 // For the crew computer, 2 = unable to change mode.
 	var/sensor_mode = 0

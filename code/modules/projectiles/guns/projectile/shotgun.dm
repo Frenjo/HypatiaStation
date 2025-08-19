@@ -4,7 +4,7 @@
 	icon_state = "shotgun"
 	item_state = "shotgun"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 4)
@@ -71,7 +71,7 @@
 	icon_state = "dshotgun"
 	item_state = "shotgun"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/combat = 3)

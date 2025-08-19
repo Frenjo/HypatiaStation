@@ -4,7 +4,6 @@
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
 	throwforce = 1
-	w_class = 3
 	throw_speed = 3
 	throw_range = 7
 	pressure_resistance = 10

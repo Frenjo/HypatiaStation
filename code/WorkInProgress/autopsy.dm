@@ -8,7 +8,7 @@
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "autopsy"
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	var/list/datum/autopsy_data_scanner/wdata = list()
 	var/list/datum/autopsy_data_scanner/chemtraces = list()

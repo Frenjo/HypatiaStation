@@ -17,7 +17,6 @@ RSF
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	w_class = 3.0
 
 	var/matter = 0
 	var/mode = MODE_DOSH
@@ -167,7 +166,6 @@ RSF
 	name = "cookie synthesiser"
 	desc = "A self-recharging device used to rapidly deploy cookies."
 	matter = 10
-	w_class = 3
 
 	var/toxin = FALSE
 	var/emagged = FALSE

@@ -7,7 +7,6 @@
 	icon_state = "forensic1"
 	var/amount = 20.0
 	var/list/stored = list()
-	w_class = 3.0
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_NO_BLUDGEON

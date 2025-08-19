@@ -18,7 +18,7 @@
  */
 /obj/item/kitchen/utensil
 	force = 5.0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
@@ -161,7 +161,6 @@
 	sharp = 1
 	edge = 1
 	force = 10.0
-	w_class = 3.0
 	throwforce = 6.0
 	throw_speed = 3
 	throw_range = 6
@@ -193,7 +192,7 @@
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
@@ -219,7 +218,6 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 7
-	w_class = 3.0
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
 
 /obj/item/kitchen/rollingpin/attack(mob/living/M, mob/living/user)
@@ -271,7 +269,6 @@
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	matter_amounts = alist(/decl/material/steel = 3000)
 	/* // NOPE

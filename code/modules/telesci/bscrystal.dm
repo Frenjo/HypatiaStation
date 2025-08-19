@@ -4,7 +4,7 @@
 	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/bluespace = 4)
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 

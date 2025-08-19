@@ -6,7 +6,7 @@
 	frequency = 1449
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 	matter_amounts = /datum/design/autolathe/electropack::materials
 
 	var/code = 2

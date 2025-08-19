@@ -9,7 +9,6 @@
 	force = 15
 	sharp = 0
 	throwforce = 7
-	w_class = 3
 	origin_tech = alist(/decl/tech/combat = 2)
 	attack_verb = list("beaten")
 	var/stunforce = 7

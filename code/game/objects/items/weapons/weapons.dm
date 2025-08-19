@@ -13,7 +13,7 @@
 	throwforce = 2.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/melee/ring.ogg'
 
@@ -23,7 +23,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "c_tube"
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4
 	throw_range = 5
 
@@ -36,7 +36,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 5.0
 	throwforce = 7.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = alist(/decl/material/plastic = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
@@ -59,7 +59,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift3"
 	item_state = "gift"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 	var/size = 3.0
 	var/obj/item/gift = null
@@ -72,7 +72,6 @@
 	icon_state = "handcuff"
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 0
-	w_class = 3.0
 	origin_tech = alist(/decl/tech/materials = 1)
 
 	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
@@ -129,7 +128,7 @@
 	throwforce = 3.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 
 /obj/item/caution/cone
@@ -152,7 +151,7 @@
 	sharp = 1
 	edge = 1
 	desc = "Could probably be used as ... a throwing weapon?"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	force = 5.0
 	throwforce = 8.0
 	item_state = "shard-glass"
@@ -217,7 +216,7 @@
 	slot_flags = SLOT_BELT
 	item_state = "radio"
 	throwforce = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20
 	matter_amounts = alist(/decl/material/plastic = 100)
@@ -256,7 +255,7 @@
 	name = "camera bug"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "flash"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
@@ -293,7 +292,7 @@
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "meat"
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	origin_tech = alist(/decl/tech/biotech = 2)
 
 /obj/item/hatchet/soghunknife
@@ -330,7 +329,7 @@
 	icon_state = "toyhammer"
 	slot_flags = SLOT_BELT
 	throwforce = 0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
 	attack_verb = list("banned")
@@ -350,7 +349,7 @@
 	throw_speed = 1
 	throw_range = 4
 	throwforce = 10
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/nullrod/suicide_act(mob/user)
 	user.visible_message(SPAN_DANGER("[user] is impaling \himself with \the [src]! It looks like \he's trying to commit suicide."))
@@ -401,7 +400,6 @@
 	throwforce = 1
 	sharp = 1
 	edge = 1
-	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/sord/suicide_act(mob/user)
@@ -424,7 +422,6 @@
 	throwforce = 10
 	sharp = 1
 	edge = 1
-	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/claymore/IsShield()
@@ -449,7 +446,6 @@
 	throwforce = 10
 	sharp = 1
 	edge = 1
-	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/katana/suicide_act(mob/user)
@@ -473,5 +469,4 @@
 	edge = 0
 	force = 20
 	throwforce = 15
-	w_class = 3
 	attack_verb = list("jabbed", "stabbed", "ripped")

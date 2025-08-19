@@ -66,7 +66,7 @@
 	slot_flags = SLOT_BELT
 	force = 15
 	throwforce = 4
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
@@ -153,7 +153,7 @@
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	icon_state = "plasmacutter"
 	item_state = "gun"
-	w_class = 3 //it is smaller than the pickaxe
+	w_class = WEIGHT_CLASS_NORMAL //it is smaller than the pickaxe
 	damtype = "fire"
 
 	matter_amounts = /datum/design/mining/plasmacutter::materials
@@ -180,7 +180,6 @@
 	force = 8
 	throwforce = 4
 	item_state = "shovel"
-	w_class = 3
 	matter_amounts = alist(/decl/material/steel = 50)
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
@@ -192,7 +191,7 @@
 	item_state = "spade"
 	force = 5
 	throwforce = 7
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /*
  * Mining Car

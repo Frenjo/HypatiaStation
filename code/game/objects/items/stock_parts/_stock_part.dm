@@ -6,7 +6,7 @@
 	desc = "What?"
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/rating = 1
 

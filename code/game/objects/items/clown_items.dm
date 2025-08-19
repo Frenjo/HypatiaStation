@@ -12,7 +12,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -38,7 +38,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -98,7 +98,7 @@
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	throwforce = 3
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
 	attack_verb = list("HONKED")

@@ -8,7 +8,7 @@
 	icon_state = "reagent_scanner"
 	item_state = "analyser"
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 

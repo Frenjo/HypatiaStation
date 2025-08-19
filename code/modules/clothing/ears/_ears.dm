@@ -5,7 +5,7 @@
  */
 /obj/item/clothing/ears
 	name = "ears"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
 
@@ -44,7 +44,7 @@
 
 /obj/item/clothing/ears/offear
 	name = "other ear"
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/hud/screen1_Midnight.dmi'
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS

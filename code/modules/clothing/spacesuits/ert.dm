@@ -28,7 +28,7 @@
 	desc = "A suit worn by members of the NanoTrasen Emaergency Response Team. Armoured, space ready, and fire resistant."
 	icon_state = "ert_commander"
 	item_state = "suit-command"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	can_store = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/t_scanner, /obj/item/rcd, /obj/item/crowbar,
 		/obj/item/screwdriver, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/multitool,

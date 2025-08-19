@@ -7,7 +7,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_flags = ITEM_FLAG_NO_SHIELD
 	attack_verb = list("bludgeoned", "whacked", "disciplined")
 
@@ -33,5 +33,5 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_flags = ITEM_FLAG_NO_SHIELD

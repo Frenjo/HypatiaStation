@@ -7,7 +7,6 @@
 	hitsound = 'sound/weapons/melee/smash.ogg'
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 10
-	w_class = 3.0
 	throw_speed = 2
 	throw_range = 10
 	force = 10.0
@@ -26,7 +25,7 @@
 	item_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
 	throwforce = 2
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	force = 3.0
 	matter_amounts = alist()
 	max_water = 30

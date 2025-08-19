@@ -6,4 +6,4 @@
 	icon = 'icons/obj/items/clothing/hats.dmi'
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL

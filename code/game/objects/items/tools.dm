@@ -26,7 +26,7 @@
 
 	force = 5.0
 	throwforce = 7.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = /datum/design/autolathe/wrench::materials
 	origin_tech = /datum/design/autolathe/wrench::req_tech
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -45,7 +45,7 @@
 	tool_flags = TOOL_FLAG_SCREWDRIVER
 
 	force = 5.0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
@@ -114,7 +114,7 @@
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = /datum/design/autolathe/wirecutters::materials
 	origin_tech = /datum/design/autolathe/wirecutters::req_tech
 	attack_verb = list("pinched", "nipped")
@@ -160,7 +160,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	//Cost to make in the autolathe
 	matter_amounts = /datum/design/autolathe/welding_tool::materials
@@ -439,14 +439,14 @@
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter_amounts = alist(/decl/material/steel = 70, /decl/material/glass = 120)
 	origin_tech = alist(/decl/tech/engineering = 3)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter_amounts = alist(/decl/material/steel = 70, /decl/material/glass = 120)
 	origin_tech = alist(/decl/tech/engineering = 4, /decl/tech/plasma = 3)
 
@@ -474,7 +474,7 @@
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter_amounts = /datum/design/autolathe/crowbar::materials
 	origin_tech = /datum/design/autolathe/crowbar::req_tech
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -499,7 +499,7 @@
 	tool_flags = TOOL_FLAG_MULTITOOL
 
 	force = 5.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3

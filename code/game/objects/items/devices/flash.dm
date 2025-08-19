@@ -5,7 +5,7 @@
 	icon_state = "flash"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	throwforce = 5
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4
 	throw_range = 10
 	obj_flags = OBJ_FLAG_CONDUCT

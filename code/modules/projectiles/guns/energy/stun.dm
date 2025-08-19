@@ -61,7 +61,7 @@
 	icon_state = "crossbow"
 	item_state = "crossbow"
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 5)
 
 	fire_sound = 'sound/weapons/melee/genhit.ogg'
@@ -85,7 +85,7 @@
 	name = "Energy Crossbow"
 	desc = "A weapon favored by Syndicate infiltration teams."
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	//matter_amounts = /datum/design/weapon/largecrossbow::materials
 	//origin_tech = /datum/design/weapon/largecrossbow::req_tech
 

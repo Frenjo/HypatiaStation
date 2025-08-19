@@ -134,7 +134,7 @@
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(/obj/item/reagent_holder/pill, /obj/item/dice, /obj/item/paper)
 	allow_quick_gather = 1
 	use_to_pickup = 1

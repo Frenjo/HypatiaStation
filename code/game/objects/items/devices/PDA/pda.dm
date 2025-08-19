@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	slot_flags = SLOT_ID | SLOT_BELT
 
 	matter_amounts = /datum/design/pda::materials

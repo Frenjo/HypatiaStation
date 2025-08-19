@@ -517,7 +517,6 @@
 	desc = "A water tank with a robot arm permanently grafted to it."
 	icon = 'icons/mob/bot/farmbot.dmi'
 	icon_state = "water_arm"
-	w_class = 3.0
 
 	var/build_step = 0
 	var/created_name = "Farmbot" //To preserve the name if it's a unique farmbot I guess

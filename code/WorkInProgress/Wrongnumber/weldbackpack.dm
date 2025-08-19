@@ -4,7 +4,7 @@
 	slot_flags = SLOT_BACK
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "welderpack"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 
 	var/max_fuel = 350
 

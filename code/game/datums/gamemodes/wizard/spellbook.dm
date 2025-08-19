@@ -5,7 +5,7 @@
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/uses = 5
 	var/temp = null
 	var/max_uses = 5

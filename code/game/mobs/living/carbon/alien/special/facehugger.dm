@@ -14,7 +14,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	icon = 'icons/mob/simple/alien.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
-	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
+	w_class = WEIGHT_CLASS_TINY //note: can be picked up by aliens unlike most other items of w_class below 4
 	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	throw_range = 5
 

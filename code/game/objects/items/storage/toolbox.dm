@@ -9,7 +9,7 @@
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 7
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	origin_tech = alist(/decl/tech/combat = 1)
 	attack_verb = list("robusted")
 

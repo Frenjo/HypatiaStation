@@ -8,7 +8,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 0
 	throwforce = 0
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/decl/material/material
 	var/string_attached = FALSE

@@ -6,7 +6,7 @@
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	item_flags = ITEM_FLAG_NO_BLUDGEON
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = alist(/decl/tech/syndicate = 2)
 
 	var/datum/wires/explosive/c4/wires = null

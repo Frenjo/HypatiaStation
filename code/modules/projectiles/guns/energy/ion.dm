@@ -3,7 +3,7 @@
 	desc = "A man portable anti-armour weapon designed to disable mechanical threats."
 	icon_state = "ionrifle"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/magnets = 4, /decl/tech/combat = 2)
 

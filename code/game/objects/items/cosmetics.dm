@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lipstick"
 	gender = PLURAL
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/colour = "red"
 	var/open = 0

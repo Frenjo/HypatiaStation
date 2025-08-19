@@ -4,7 +4,7 @@
 	icon_state = "rocket"
 	item_state = "rocket"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_HAS_USE_DELAY
 	slot_flags = null

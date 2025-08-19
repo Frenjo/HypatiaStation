@@ -7,7 +7,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter_amounts = /datum/design/autolathe/handcuffs::materials

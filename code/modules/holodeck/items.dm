@@ -19,7 +19,7 @@
 	throw_speed = 1
 	throw_range = 5
 	throwforce = 0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_flags = ITEM_FLAG_NO_SHIELD
 
 	var/active = 0

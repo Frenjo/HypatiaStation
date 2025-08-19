@@ -6,7 +6,7 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "powersink0"
 	item_state = "electronic"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 5
 	throw_speed = 1

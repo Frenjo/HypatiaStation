@@ -111,7 +111,6 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the Syndicate space suit, you'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
-	w_class = 3
 	can_store = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/toy)
 	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 

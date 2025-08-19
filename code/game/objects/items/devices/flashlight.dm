@@ -4,7 +4,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
 	item_state = "flashlight"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = /datum/design/autolathe/flashlight::materials
@@ -117,7 +117,7 @@
 	icon_state = "lamp"
 	item_state = "lamp"
 	brightness_on = 5
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	matter_amounts = alist()
 	on = 1
 
@@ -140,7 +140,6 @@
 /obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red NanoTrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = 2.0
 	brightness_on = 7 // Pretty bright.
 	icon_state = "flare"
 	item_state = "flare"
@@ -200,7 +199,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	matter_amounts = alist()
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.

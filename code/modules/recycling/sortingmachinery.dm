@@ -97,7 +97,6 @@
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
-	w_class = 3.0
 
 	var/amount = 25.0
 
@@ -172,7 +171,7 @@
 	desc = "Used to set the destination of properly wrapped packages."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "dest_tagger"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT

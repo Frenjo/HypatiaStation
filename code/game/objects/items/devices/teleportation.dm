@@ -14,7 +14,7 @@
 	icon_state = "locator"
 
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
@@ -130,7 +130,7 @@ Frequency:
 	icon_state = "hand_tele"
 	item_state = "electronic"
 	throwforce = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
 	matter_amounts = alist(/decl/material/plastic = 10000)

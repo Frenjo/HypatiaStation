@@ -77,7 +77,7 @@
 	desc = "A small, easily concealable gun. Uses 9mm rounds."
 	icon_state = "pistol"
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 2)
 
 	silenced = FALSE
@@ -134,4 +134,4 @@
 	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "silencer"
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL

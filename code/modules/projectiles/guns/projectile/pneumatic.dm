@@ -5,11 +5,11 @@
 	icon_state = "pneumatic"
 	item_state = "pneumatic"
 
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_combined_w_class = 20
 
 	var/obj/item/tank/tank = null							// Tank of gas for use in firing the cannon.

@@ -6,7 +6,7 @@
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/evidencebag/afterattack(obj/item/I, mob/user, proximity)
 	if(!proximity)
@@ -98,7 +98,7 @@
 	var/amount = 10.0
 	item_state = "paper"
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 5
 

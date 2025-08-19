@@ -4,7 +4,7 @@
 	icon_state = "muzzle"
 	item_state = "muzzle"
 	item_flags = ITEM_FLAG_COVERS_MOUTH
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 
 //Monkeys can not take the muzzle off of themself! Call PETA!
@@ -20,7 +20,7 @@
 	desc = "A sterile mask designed to help prevent the spread of diseases."
 	icon_state = "sterile"
 	item_state = "sterile"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	item_flags = ITEM_FLAG_COVERS_MOUTH
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
@@ -45,7 +45,7 @@
 	icon_state = "blueneckscarf"
 	item_state = "blueneckscarf"
 	item_flags = ITEM_FLAG_COVERS_MOUTH
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/redscarf
@@ -54,7 +54,7 @@
 	icon_state = "redwhite_scarf"
 	item_state = "redwhite_scarf"
 	item_flags = ITEM_FLAG_COVERS_MOUTH
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/greenscarf
@@ -63,7 +63,7 @@
 	icon_state = "green_scarf"
 	item_state = "green_scarf"
 	item_flags = ITEM_FLAG_COVERS_MOUTH
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 
 /obj/item/clothing/mask/ninjascarf
@@ -72,7 +72,7 @@
 	icon_state = "ninja_scarf"
 	item_state = "ninja_scarf"
 	item_flags = ITEM_FLAG_COVERS_MOUTH
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 	siemens_coefficient = 0
 
@@ -82,7 +82,7 @@
 	icon_state = "pig"
 	item_state = "pig"
 	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/mask/horsehead
@@ -91,6 +91,6 @@
 	icon_state = "horsehead"
 	item_state = "horsehead"
 	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/voicechange = 0
 	siemens_coefficient = 0.9

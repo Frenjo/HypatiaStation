@@ -10,7 +10,7 @@
 	icon_state = "hacktool-g"
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 5.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3

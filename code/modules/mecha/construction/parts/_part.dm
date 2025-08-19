@@ -6,7 +6,7 @@
 	icon = 'icons/obj/mecha/parts/common.dmi'
 	icon_state = "blank"
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/programming = 2)
 
 /obj/item/mecha_part/chassis

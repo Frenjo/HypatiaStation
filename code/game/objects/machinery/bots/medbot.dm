@@ -534,7 +534,6 @@
 	desc = "A first aid kit with a robot arm permanently grafted to it."
 	icon = 'icons/mob/bot/medibot.dmi'
 	icon_state = "firstaid_arm"
-	w_class = 3.0
 
 	var/build_step = 0
 	var/created_name = "Medibot" // To preserve the name if it's a unique medbot I guess

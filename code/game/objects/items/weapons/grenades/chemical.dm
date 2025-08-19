@@ -3,7 +3,6 @@
 	desc = "A hand made chemical grenade."
 	icon_state = "chemg"
 	item_state = "flashbang"
-	w_class = 2
 	force = 2
 
 	var/stage = 0

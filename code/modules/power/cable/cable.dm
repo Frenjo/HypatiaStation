@@ -462,7 +462,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	color = COLOR_RED
 	item_color = COLOR_RED
 	throwforce = 10
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter_amounts = alist(/decl/material/steel = 50, /decl/material/plastic = 20)

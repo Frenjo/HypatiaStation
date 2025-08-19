@@ -2,7 +2,7 @@
 	name = "pack of seeds"
 	icon = 'icons/obj/flora/seeds.dmi'
 	icon_state = "seed" // unknown plant seed - these shouldn't exist in-game
-	w_class = 1.0 // Makes them pocketable
+	w_class = WEIGHT_CLASS_TINY // Makes them pocketable
 
 	var/plantname = "Plants"
 	var/productname

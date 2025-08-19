@@ -19,7 +19,6 @@
 	throwforce = 25.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_NO_SHIELD
 	origin_tech = alist(/decl/tech/combat = 3)
@@ -41,7 +40,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_flags = ITEM_FLAG_NO_SHIELD
 	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -64,7 +63,7 @@
 	throwforce = 1//Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = 4.0//So you can't hide it in your pocket or some such.
+	w_class = WEIGHT_CLASS_BULKY //So you can't hide it in your pocket or some such.
 	item_flags = ITEM_FLAG_NO_SHIELD
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/datum/effect/system/spark_spread/spark_system

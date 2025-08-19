@@ -28,7 +28,7 @@
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
-	var/w_class = 3.0
+	var/w_class = WEIGHT_CLASS_NORMAL
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 
@@ -107,15 +107,15 @@
 
 	var/size
 	switch(w_class)
-		if(1)
+		if(WEIGHT_CLASS_TINY)
 			size = "tiny"
-		if(2)
+		if(WEIGHT_CLASS_SMALL)
 			size = "small"
-		if(3)
+		if(WEIGHT_CLASS_NORMAL)
 			size = "normal-sized"
-		if(4)
+		if(WEIGHT_CLASS_BULKY)
 			size = "bulky"
-		if(5)
+		if(WEIGHT_CLASS_HUGE)
 			size = "huge"
 	//if((MUTATION_CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
 	. += SPAN_INFO("It is a <em>[size]</em> item.")

@@ -22,7 +22,7 @@
 	matter_amounts = /datum/design/autolathe/retractor::materials
 	origin_tech = /datum/design/autolathe/retractor::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 /*
  * Hemostat
@@ -35,7 +35,7 @@
 	matter_amounts = /datum/design/autolathe/hemostat::materials
 	origin_tech = /datum/design/autolathe/hemostat::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "pinched")
 
 /*
@@ -49,7 +49,7 @@
 	matter_amounts = /datum/design/autolathe/cautery::materials
 	origin_tech = /datum/design/autolathe/cautery::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("burnt")
 
 /*
@@ -65,7 +65,7 @@
 	origin_tech = /datum/design/autolathe/surgical_drill::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("drilled")
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
@@ -88,7 +88,7 @@
 	force = 10.0
 	sharp = 1
 	edge = 1
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
@@ -153,7 +153,7 @@
 	hitsound = 'sound/weapons/melee/circsawhit.ogg'
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
@@ -173,7 +173,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone-gel"
 	force = 0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 1.0
 
 /*
@@ -186,7 +186,7 @@
 	force = 0
 	throwforce = 1.0
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/biotech = 3)
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/usage_amount = 10
 
@@ -201,5 +201,5 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "hit", "bludgeoned")

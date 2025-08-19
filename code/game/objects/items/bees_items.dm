@@ -4,7 +4,7 @@
 	desc = "Place her into an apiary so she can get busy."
 	icon = 'icons/obj/flora/seeds.dmi'
 	icon_state = "seed-kudzu"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/bee_net
 	name = "bee net"
@@ -12,7 +12,6 @@
 	icon = 'icons/obj/apiary_bees_etc.dmi'
 	icon_state = "bee_net"
 	item_state = "bedsheet"
-	w_class = 3
 	var/caught_bees = 0
 
 /obj/item/bee_net/attack_self(mob/user)
@@ -60,7 +59,7 @@
 	icon = 'icons/obj/apiary_bees_etc.dmi'
 	icon_state = "apiary_item"
 	item_state = "giftbag"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 
 /obj/item/beezeez
 	name = "bottle of BeezEez"

@@ -9,7 +9,7 @@
 
 	abstract = 1
 	item_state = "nothing"
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 
 	var/atom/movable/screen/grab/hud = null
 	var/mob/living/affecting = null

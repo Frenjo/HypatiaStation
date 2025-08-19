@@ -7,13 +7,13 @@
 	name = "disk"
 	icon = 'icons/obj/items.dmi'
 	item_state = "card-id"
+	w_class = WEIGHT_CLASS_TINY
 
 // Nuclear authentication disk
 /obj/item/disk/nuclear
 	name = "nuclear authentication disk"
 	desc = "Better keep this safe."
 	icon_state = "nucleardisk"
-	w_class = 1.0
 
 // Technology datum disk
 /obj/item/disk/tech
@@ -21,7 +21,6 @@
 	desc = "A disk for storing technology data for further research."
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
-	w_class = 1.0
 	matter_amounts = /datum/design/tech_disk::materials
 	origin_tech = /datum/design/tech_disk::req_tech
 
@@ -38,7 +37,6 @@
 	desc = "A disk for storing device design data for construction in lathes."
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
-	w_class = 1.0
 	matter_amounts = /datum/design/design_disk::materials
 	origin_tech = /datum/design/design_disk::req_tech
 
@@ -55,7 +53,6 @@
 	name = "cloning data disk"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
-	w_class = 1
 
 	var/datum/dna2/record/buf = null
 	var/read_only = FALSE // Well, it's still a floppy disk.

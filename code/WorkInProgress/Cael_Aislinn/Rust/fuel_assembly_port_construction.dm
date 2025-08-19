@@ -5,7 +5,7 @@
 	name = "Fuel Assembly Port frame"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "port2"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = OBJ_FLAG_CONDUCT
 
 /obj/item/rust_fuel_assembly_port_frame/attack_tool(obj/item/tool, mob/user)

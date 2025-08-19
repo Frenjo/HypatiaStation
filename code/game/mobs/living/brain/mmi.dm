@@ -5,7 +5,6 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "mmi_empty"
-	w_class = 3
 
 	matter_amounts = /datum/design/medical/mmi::materials
 	origin_tech = /datum/design/medical/mmi::req_tech

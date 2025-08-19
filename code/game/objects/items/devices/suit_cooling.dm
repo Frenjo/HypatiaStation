@@ -1,7 +1,6 @@
 /obj/item/suit_cooling_unit
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
-	w_class = 4
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "suitcooler0"
 	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
@@ -12,6 +11,8 @@
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 4
+
+	w_class = WEIGHT_CLASS_BULKY
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/magnets = 2)
 

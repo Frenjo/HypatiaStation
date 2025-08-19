@@ -4,7 +4,7 @@
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "grenade"
 	item_state = "flashbang"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20
 	obj_flags = OBJ_FLAG_CONDUCT

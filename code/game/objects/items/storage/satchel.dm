@@ -6,9 +6,9 @@
 	desc = "It's a very fancy satchel made with fine leather."
 	icon = 'icons/obj/storage/satchel.dmi'
 	icon_state = "satchel"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_combined_w_class = 21
 
 /obj/item/storage/satchel/withwallet

@@ -8,7 +8,7 @@
 	slot_flags = SLOT_OCLOTHING
 
 	siemens_coefficient = 0.9
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	var/fire_resist = T0C + 100
 	var/blood_overlay_type = "suit"

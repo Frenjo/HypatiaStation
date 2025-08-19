@@ -52,7 +52,7 @@
 	icon_state = "riotgun"
 	item_state = "c20r"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 
 	clumsy_check = FALSE // Admin spawn only, might as well let clowns use it.
 
@@ -74,7 +74,7 @@
 	icon_state = "pen"
 	item_state = "pen"
 
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gun/energy/mindflayer
 	name = "mind flayer"
@@ -105,7 +105,7 @@
 	desc = "A rifle constructed of lightweight materials, fitted with a SMART aiming-system scope."
 	icon_state = "sniper"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/materials = 5, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 

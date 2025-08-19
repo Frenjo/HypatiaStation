@@ -14,7 +14,7 @@
 	desc = "A bulky, heavy-duty piece of exclusive NanoTrasen armour. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
@@ -83,7 +83,7 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	can_store = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency/oxygen

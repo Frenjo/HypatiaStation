@@ -68,7 +68,7 @@
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = null
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/combat = 5, /decl/tech/syndicate = 2)
 

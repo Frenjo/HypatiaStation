@@ -385,8 +385,6 @@
 	icon = 'icons/mob/bot/floorbot.dmi'
 	icon_state = "toolbox_tiles"
 
-	w_class = 3
-
 	force = 3
 	throwforce = 10
 	throw_speed = 2

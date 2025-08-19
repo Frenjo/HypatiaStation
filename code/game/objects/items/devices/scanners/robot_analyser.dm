@@ -9,7 +9,7 @@
 	icon_state = "robot"
 	item_state = "analyser"
 
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 

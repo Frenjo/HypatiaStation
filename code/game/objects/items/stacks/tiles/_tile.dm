@@ -12,7 +12,6 @@
 	throw_speed = 5
 	throw_range = 20
 
-	w_class = 3
 	max_amount = 60
 
 	var/turf_path = null

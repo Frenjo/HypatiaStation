@@ -5,7 +5,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	desc = "Helping lost spacemen find their way through the planets since 2016."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "gps-c"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = SLOT_BELT
 	origin_tech = alist(/decl/tech/engineering = 2, /decl/tech/programming = 3)
 

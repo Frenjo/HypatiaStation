@@ -5,7 +5,7 @@
 	name = "Fuel Compressor frame"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "fuel_compressor0"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = OBJ_FLAG_CONDUCT
 
 /obj/item/rust_fuel_compressor_frame/attack_tool(obj/item/tool, mob/user)

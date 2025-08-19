@@ -8,7 +8,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
 	item_state = "electropack"
-	w_class = 4 // Pretty big!
+	w_class = WEIGHT_CLASS_BULKY // Pretty big!
 	anchored = FALSE
 
 	var/tracker = FALSE

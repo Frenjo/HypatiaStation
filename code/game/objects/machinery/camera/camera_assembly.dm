@@ -3,7 +3,7 @@
 	desc = "The basic construction for NanoTrasen-Always-Watching-You cameras."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "cameracase"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	anchored = FALSE
 
 	matter_amounts = /datum/design/autolathe/camera_assembly::materials

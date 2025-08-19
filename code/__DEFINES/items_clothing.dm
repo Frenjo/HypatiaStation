@@ -122,3 +122,10 @@
 #define GUN_SETTING_KILL	"kill"
 #define GUN_SETTING_DESTROY	"destroy"
 #define GUN_SETTING_SPECIAL	"special"
+
+// Item weight classes
+#define WEIGHT_CLASS_TINY 1
+#define WEIGHT_CLASS_SMALL 2
+#define WEIGHT_CLASS_NORMAL 3
+#define WEIGHT_CLASS_BULKY 4
+#define WEIGHT_CLASS_HUGE 5
