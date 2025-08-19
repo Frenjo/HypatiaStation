@@ -1,21 +1,21 @@
-/obj/item/projectile/forcebolt
+/obj/projectile/forcebolt
 	name = "force bolt"
 	icon_state = "ice_1"
 
 	damage = 20
 	flag = "energy"
 
-/obj/item/projectile/forcebolt/strong
+/obj/projectile/forcebolt/strong
 	name = "force bolt"
 
-/obj/item/projectile/forcebolt/on_hit(atom/target, blocked = 0)
+/obj/projectile/forcebolt/on_hit(atom/target, blocked = 0)
 	var/obj/T = target
 	var/throwdir = get_dir(firer, target)
 	T.throw_at(get_edge_target_turf(target, throwdir), 10, 10)
 	return 1
 
 /*
-/obj/item/projectile/forcebolt/strong/on_hit(var/atom/target, var/blocked = 0)
+/obj/projectile/forcebolt/strong/on_hit(var/atom/target, var/blocked = 0)
 	// NONE OF THIS WORKS. DO NOT USE.
 	var/throwdir = null
 

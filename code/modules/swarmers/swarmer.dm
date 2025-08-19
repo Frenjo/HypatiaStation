@@ -35,7 +35,7 @@
 	unsuitable_atoms_damage = 0
 
 	ranged = TRUE
-	projectiletype = /obj/item/projectile/energy/pulse/disabler
+	projectiletype = /obj/projectile/energy/pulse/disabler
 	projectilesound = 'sound/weapons/gun/taser2.ogg'
 
 	max_ranged_cooldown = 2

@@ -15,7 +15,7 @@
 	charge_cost = 200
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/change)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/change)
 
 	self_charging = TRUE
 	recharge_time = 0.4 SECONDS
@@ -39,7 +39,7 @@
 
 	charge_cost = 100
 
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/animate)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/animate)
 
 /obj/item/gun/energy/staff/focus
 	name = "mental focus"
@@ -49,15 +49,15 @@
 	item_state = "focus"
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/forcebolt)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/forcebolt)
 	/*
 	attack_self(mob/living/user)
-		if(projectile_type == "/obj/item/projectile/forcebolt")
+		if(projectile_type == "/obj/projectile/forcebolt")
 			charge_cost = 200
 			user << "\red The [name] will now strike a small area."
-			projectile_type = "/obj/item/projectile/forcebolt/strong"
+			projectile_type = "/obj/projectile/forcebolt/strong"
 		else
 			charge_cost = 100
 			user << "\red The [name] will now strike only a single person."
-			projectile_type = "/obj/item/projectile/forcebolt"
+			projectile_type = "/obj/projectile/forcebolt"
 	*/

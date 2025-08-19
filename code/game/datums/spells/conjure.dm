@@ -75,7 +75,7 @@
 	opacity = FALSE
 	density = TRUE
 
-/obj/effect/forcefield/bullet_act(obj/item/projectile/Proj, def_zone)
+/obj/effect/forcefield/bullet_act(obj/projectile/Proj, def_zone)
 	var/turf/T = GET_TURF(src)
 	if(isnotnull(T))
 		for(var/mob/M in T)

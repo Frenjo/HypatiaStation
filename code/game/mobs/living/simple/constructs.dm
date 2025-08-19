@@ -118,8 +118,8 @@
 	weakened = 0
 	..()
 
-/mob/living/simple/construct/armoured/bullet_act(obj/item/projectile/P)
-	if(istype(P, /obj/item/projectile/energy))
+/mob/living/simple/construct/armoured/bullet_act(obj/projectile/P)
+	if(istype(P, /obj/projectile/energy))
 		var/reflectchance = 80 - round(P.damage / 3)
 		if(prob(reflectchance))
 			adjustBruteLoss(P.damage * 0.5)

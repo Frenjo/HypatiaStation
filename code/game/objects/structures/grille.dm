@@ -83,12 +83,12 @@
 	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GRILLE))
 		return TRUE
 	else
-		if(istype(mover, /obj/item/projectile))
+		if(istype(mover, /obj/projectile))
 			return prob(30)
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(obj/item/projectile/bullet)
+/obj/structure/grille/bullet_act(obj/projectile/bullet)
 	if(isnull(bullet))
 		return
 	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)

@@ -236,25 +236,25 @@
 	var/turf/U = GET_TURF(target)
 	if(isnull(T) || isnull(U))
 		return
-	var/obj/item/projectile/A
+	var/obj/projectile/A
 	if(src.lasers)
 		switch(lasertype)
 			if(1)
-				A = new /obj/item/projectile/energy/beam/laser(loc)
+				A = new /obj/projectile/energy/beam/laser(loc)
 			if(2)
-				A = new /obj/item/projectile/energy/beam/laser/heavy(loc)
+				A = new /obj/projectile/energy/beam/laser/heavy(loc)
 			if(3)
-				A = new /obj/item/projectile/energy/beam/pulse(loc)
+				A = new /obj/projectile/energy/beam/pulse(loc)
 			if(4)
-				A = new /obj/item/projectile/change(loc)
+				A = new /obj/projectile/change(loc)
 			if(5)
-				A = new /obj/item/projectile/energy/beam/laser/tag/blue(loc)
+				A = new /obj/projectile/energy/beam/laser/tag/blue(loc)
 			if(6)
-				A = new /obj/item/projectile/energy/beam/laser/tag/red(loc)
+				A = new /obj/projectile/energy/beam/laser/tag/red(loc)
 		A.original = target
 		use_power(500)
 	else
-		A = new /obj/item/projectile/energy/electrode(loc)
+		A = new /obj/projectile/energy/electrode(loc)
 		use_power(200)
 	A.current = T
 	A.starting = T
@@ -292,7 +292,7 @@
 				invisibility = INVISIBILITY_LEVEL_TWO
 				popping = 0
 
-/obj/machinery/turret/bullet_act(obj/item/projectile/bullet)
+/obj/machinery/turret/bullet_act(obj/projectile/bullet)
 	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
 		health -= bullet.damage
 		..()
@@ -513,7 +513,7 @@
 		qdel(src)
 	return
 
-/obj/structure/turret/gun_turret/bullet_act(obj/item/projectile/Proj)
+/obj/structure/turret/gun_turret/bullet_act(obj/projectile/Proj)
 	take_damage(Proj.damage)
 	..()
 	return
@@ -640,7 +640,7 @@
 			if(targloc == curloc)
 				continue
 			playsound(src, 'sound/weapons/gun/gunshot.ogg', 50, 1)
-			var/obj/item/projectile/A = new /obj/item/projectile(curloc)
+			var/obj/projectile/A = new /obj/projectile(curloc)
 			src.projectiles--
 			A.current = curloc
 			A.yo = targloc.y - curloc.y

@@ -191,7 +191,7 @@
 					return
 				if(isnull(in_chamber))
 					return
-				var/obj/item/projectile/P = new AC.projectile_type
+				var/obj/projectile/P = new AC.projectile_type
 				playsound(user, fire_sound, 50, 1)
 				user.visible_message(
 					SPAN_DANGER("[user.name] fires [src] at \his head!"),

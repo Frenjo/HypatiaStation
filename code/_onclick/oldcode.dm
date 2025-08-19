@@ -358,7 +358,7 @@
 					usr:nutrition -= rand(1,5)
 					usr:handle_regular_hud_updates()
 
-				var/obj/item/projectile/beam/A = new /obj/item/projectile/beam( usr.loc )
+				var/obj/projectile/beam/A = new /obj/projectile/beam( usr.loc )
 				A.icon = 'icons/effects/genetics.dmi'
 				A.icon_state = "eyelasers"
 				playsound(usr.loc, 'sound/weapons/gun/taser2.ogg', 75, 1)

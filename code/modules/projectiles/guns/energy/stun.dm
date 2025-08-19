@@ -10,7 +10,7 @@
 
 	gun_setting = GUN_SETTING_STUN
 	pulse_projectile_types = list(
-		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode
+		GUN_SETTING_STUN = /obj/projectile/energy/electrode
 	)
 
 /obj/item/gun/energy/taser/cyborg
@@ -31,7 +31,7 @@
 
 	gun_setting = GUN_SETTING_STUN
 	pulse_projectile_types = list(
-		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode
+		GUN_SETTING_STUN = /obj/projectile/energy/electrode
 	)
 
 /obj/item/gun/energy/disabler
@@ -45,10 +45,10 @@
 
 	gun_setting = GUN_SETTING_DISABLE
 	pulse_projectile_types = list(
-		GUN_SETTING_DISABLE = /obj/item/projectile/energy/pulse/disabler
+		GUN_SETTING_DISABLE = /obj/projectile/energy/pulse/disabler
 	)
 	beam_projectile_types = list(
-		GUN_SETTING_DISABLE = /obj/item/projectile/energy/beam/disabler
+		GUN_SETTING_DISABLE = /obj/projectile/energy/beam/disabler
 	)
 
 /obj/item/gun/energy/disabler/cyborg
@@ -72,7 +72,7 @@
 
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(
-		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt
+		GUN_SETTING_SPECIAL = /obj/projectile/energy/bolt
 	)
 
 	self_charging = TRUE
@@ -92,5 +92,5 @@
 	force = 10
 
 	pulse_projectile_types = list(
-		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt/large
+		GUN_SETTING_SPECIAL = /obj/projectile/energy/bolt/large
 	)

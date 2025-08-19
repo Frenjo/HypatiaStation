@@ -126,7 +126,7 @@
 	return
 
 
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/am_control_unit/bullet_act(var/obj/projectile/Proj)
 	if(Proj.flag != "bullet")
 		stability -= Proj.force
 	return 0

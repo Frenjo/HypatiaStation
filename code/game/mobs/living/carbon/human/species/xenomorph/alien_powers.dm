@@ -184,12 +184,12 @@
 	if(!isturf(T))
 		return
 	if(U == T)
-		usr.bullet_act(new /obj/item/projectile/energy/neurotoxin(usr.loc), get_organ_target())
+		usr.bullet_act(new /obj/projectile/energy/neurotoxin(usr.loc), get_organ_target())
 		return
 	if(!isturf(U))
 		return
 
-	var/obj/item/projectile/energy/neurotoxin/A = new /obj/item/projectile/energy/neurotoxin(usr.loc)
+	var/obj/projectile/energy/neurotoxin/A = new /obj/projectile/energy/neurotoxin(usr.loc)
 	A.current = U
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x

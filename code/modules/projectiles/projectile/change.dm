@@ -1,4 +1,4 @@
-/obj/item/projectile/change
+/obj/projectile/change
 	name = "bolt of change"
 	icon_state = "ice_1"
 
@@ -7,10 +7,10 @@
 	nodamage = TRUE
 	flag = "energy"
 
-/obj/item/projectile/change/on_hit(atom/change)
+/obj/projectile/change/on_hit(atom/change)
 	wabbajack(change)
 
-/obj/item/projectile/change/proc/wabbajack(mob/M as mob in GLOBL.living_mob_list)
+/obj/projectile/change/proc/wabbajack(mob/M as mob in GLOBL.living_mob_list)
 	if(isliving(M) && M.stat != DEAD)
 		if(M.monkeyizing)
 			return

@@ -33,7 +33,7 @@
 	corpse = /obj/effect/landmark/mobcorpse/russian/ranged
 	weapon1 = /obj/item/gun/projectile/mateba
 	ranged = 1
-	projectiletype = /obj/item/projectile/bullet
+	projectiletype = /obj/projectile/bullet
 	projectilesound = 'sound/weapons/gun/gunshot.ogg'
 	casingtype = /obj/item/ammo_casing/a357
 

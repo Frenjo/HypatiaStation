@@ -10,14 +10,14 @@
 
 	charge_cost = 100 // How much energy is needed to fire.
 
-	projectile_type = /obj/item/projectile/energy/electrode
+	projectile_type = /obj/projectile/energy/electrode
 	pulse_projectile_types = list(
-		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
-		GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser
+		GUN_SETTING_STUN = /obj/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/projectile/energy/pulse/laser
 	)
 	beam_projectile_types = list(
-		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
-		GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser
+		GUN_SETTING_STUN = /obj/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/projectile/energy/beam/laser
 	)
 
 /obj/item/gun/energy/gun/attack_self(mob/living/user)

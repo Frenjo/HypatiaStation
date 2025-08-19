@@ -1,4 +1,4 @@
-/obj/item/projectile/ion
+/obj/projectile/ion
 	name = "ion bolt"
 	icon_state = "ion"
 
@@ -7,26 +7,26 @@
 	nodamage = TRUE
 	flag = "energy"
 
-/obj/item/projectile/ion/on_hit(atom/target, blocked = 0)
+/obj/projectile/ion/on_hit(atom/target, blocked = 0)
 	empulse(target, 1, 1)
 	return 1
 
-/obj/item/projectile/ion/pistol/on_hit(atom/target, blocked = 0)
+/obj/projectile/ion/pistol/on_hit(atom/target, blocked = 0)
 	empulse(target, 0, 0, 0)
 	return 1
 
-/obj/item/projectile/bullet/gyro
+/obj/projectile/bullet/gyro
 	name = "explosive bolt"
 	icon_state = "bolter"
 
 	damage = 50
 	edge = TRUE
 
-/obj/item/projectile/bullet/gyro/on_hit(atom/target, blocked = 0)
+/obj/projectile/bullet/gyro/on_hit(atom/target, blocked = 0)
 	explosion(target, -1, 0, 2)
 	return 1
 
-/obj/item/projectile/temp
+/obj/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
 
@@ -37,13 +37,13 @@
 
 	var/temperature = 300
 
-/obj/item/projectile/temp/on_hit(atom/target, blocked = 0)//These two could likely check temp protection on the mob
+/obj/projectile/temp/on_hit(atom/target, blocked = 0)//These two could likely check temp protection on the mob
 	if(ismob(target))
 		var/mob/M = target
 		M.bodytemperature = temperature
 	return 1
 
-/obj/item/projectile/meteor
+/obj/projectile/meteor
 	name = "meteor"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "smallf"
@@ -51,7 +51,7 @@
 	damage = 0
 	nodamage = TRUE
 
-/obj/item/projectile/meteor/Bump(atom/A)
+/obj/projectile/meteor/Bump(atom/A)
 	if(A == firer)
 		loc = A.loc
 		return

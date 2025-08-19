@@ -9,8 +9,8 @@
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 	gun_setting = GUN_SETTING_KILL
-	pulse_projectile_types = list(GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser)
-	beam_projectile_types = list(GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser)
+	pulse_projectile_types = list(GUN_SETTING_KILL = /obj/projectile/energy/pulse/laser)
+	beam_projectile_types = list(GUN_SETTING_KILL = /obj/projectile/energy/beam/laser)
 
 /obj/item/gun/energy/laser/practice
 	name = "practice laser gun"
@@ -19,8 +19,8 @@
 	clumsy_check = FALSE
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/practice)
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/practice)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/pulse/laser/practice)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/laser/practice)
 
 /obj/item/gun/energy/laser/retro
 	name = "retro laser gun"
@@ -63,8 +63,8 @@
 	fire_delay = 2 SECONDS
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/heavy)
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/heavy)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/pulse/laser/heavy)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/laser/heavy)
 
 /obj/item/gun/energy/lasercannon/isHandgun()
 	return FALSE
@@ -96,8 +96,8 @@
 	charge_cost = 50
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/xray)
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/xray)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/pulse/laser/xray)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/laser/xray)
 
 /*
  * Laser Tag Guns
@@ -132,15 +132,15 @@
 /obj/item/gun/energy/laser/tag/blue
 	icon_state = "bluetag"
 
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/tag/blue)
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/blue)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/pulse/laser/tag/blue)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/laser/tag/blue)
 
 	vest_type = /obj/item/clothing/suit/laser_tag/blue
 
 /obj/item/gun/energy/laser/tag/red
 	icon_state = "redtag"
 
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/tag/red)
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/red)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/pulse/laser/tag/red)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/laser/tag/red)
 
 	vest_type = /obj/item/clothing/suit/laser_tag/red

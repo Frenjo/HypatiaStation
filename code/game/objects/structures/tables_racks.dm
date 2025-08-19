@@ -244,7 +244,7 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
 		return TRUE
-	if(istype(mover, /obj/item/projectile))
+	if(istype(mover, /obj/projectile))
 		return (check_cover(mover, target))
 	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
 		return TRUE
@@ -256,7 +256,7 @@
 	return FALSE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
-/obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
+/obj/structure/table/proc/check_cover(obj/projectile/P, turf/from)
 	var/turf/cover = flipped ? GET_TURF(src) : get_step(loc, get_dir(from, loc))
 	if(get_dist(P.starting, loc) <= 1) //Tables won't help you if people are THIS close
 		return 1

@@ -264,15 +264,15 @@
 			to_chat(M, "<b>You accidentally touch [src].<b>")
 	..()
 
-/obj/machinery/artifact/bullet_act(obj/item/projectile/P)
-	if(istype(P,/obj/item/projectile/bullet) ||\
-		istype(P,/obj/item/projectile/hivebotbullet))
+/obj/machinery/artifact/bullet_act(obj/projectile/P)
+	if(istype(P,/obj/projectile/bullet) ||\
+		istype(P,/obj/projectile/hivebotbullet))
 		if(my_effect.trigger == TRIGGER_FORCE)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
 			secondary_effect.ToggleActivate(0)
 
-	else if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/ion))
+	else if(istype(P, /obj/projectile/energy) || istype(P, /obj/projectile/ion))
 		if(my_effect.trigger == TRIGGER_ENERGY)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_ENERGY && prob(25))

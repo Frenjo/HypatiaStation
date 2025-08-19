@@ -11,7 +11,7 @@
 	cell_type = /obj/item/cell/crap
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/temp)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/temp)
 
 	var/temperature = T20C
 	var/current_temperature = T20C

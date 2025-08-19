@@ -7,7 +7,7 @@
 
 	equip_cooldown = 1 SECOND
 
-	projectile = /obj/item/projectile/bullet/weak
+	projectile = /obj/projectile/bullet/weak
 	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	projectiles = 300
 	projectiles_per_shot = 3
@@ -27,7 +27,7 @@
 
 	equip_cooldown = 1.5 SECONDS
 
-	projectile = /obj/item/projectile/bullet/mime
+	projectile = /obj/projectile/bullet/mime
 	fire_sound = 'sound/weapons/gun/gunshot_silenced.ogg'
 	projectiles = 6
 	projectile_energy_cost = 50
@@ -41,7 +41,7 @@
 
 	equip_cooldown = 2 SECONDS
 
-	projectile = /obj/item/projectile/bullet/mid
+	projectile = /obj/projectile/bullet/mid
 	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	fire_volume = 80
 	projectiles = 40

@@ -39,7 +39,7 @@
 	health -= damage
 	healthcheck()
 
-/obj/effect/spider/bullet_act(obj/item/projectile/Proj)
+/obj/effect/spider/bullet_act(obj/projectile/Proj)
 	..()
 	health -= Proj.damage
 	healthcheck()
@@ -71,7 +71,7 @@
 		if(prob(50))
 			to_chat(mover, SPAN_WARNING("You get stuck in \the [src] for a moment."))
 			return FALSE
-	else if(istype(mover, /obj/item/projectile))
+	else if(istype(mover, /obj/projectile))
 		return prob(30)
 	return TRUE
 

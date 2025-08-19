@@ -226,7 +226,7 @@
 			if(HALLOSS)
 				adjustHalLoss(damage)
 
-/mob/living/simple/bullet_act(obj/item/projectile/bullet)
+/mob/living/simple/bullet_act(obj/projectile/bullet)
 	if(isnull(bullet))
 		return
 	if(bullet.damage_type != HALLOSS)

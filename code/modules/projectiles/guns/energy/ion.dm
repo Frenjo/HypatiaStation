@@ -10,7 +10,7 @@
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/ion)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/ion)
 
 /obj/item/gun/energy/ion/emp_act(severity)
 	if(severity <= 2)

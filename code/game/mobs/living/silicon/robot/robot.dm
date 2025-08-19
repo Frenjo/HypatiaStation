@@ -104,7 +104,7 @@
 			adjustFireLoss(40)
 		updatehealth()
 
-/mob/living/silicon/robot/bullet_act(obj/item/projectile/proj)
+/mob/living/silicon/robot/bullet_act(obj/projectile/proj)
 	..(proj)
 	if(prob(75) && proj.damage > 0)
 		spark_system.start()

@@ -200,7 +200,7 @@
 	if(target == start)
 		return
 
-	var/obj/item/projectile/A = new projectiletype(GET_TURF(src))
+	var/obj/projectile/A = new projectiletype(GET_TURF(src))
 	playsound(user, projectilesound, 100, 1)
 	if(isnull(A))
 		return

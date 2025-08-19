@@ -187,7 +187,7 @@
 		stat(null,"Power Level: [powerlevel]")
 
 
-/mob/living/carbon/metroid/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/carbon/metroid/bullet_act(var/obj/projectile/Proj)
 	attacked += 10
 	..(Proj)
 	return 0

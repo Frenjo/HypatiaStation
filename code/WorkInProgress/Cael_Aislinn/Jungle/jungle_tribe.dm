@@ -1,6 +1,6 @@
 
 
-/obj/item/projectile/jungle_spear
+/obj/projectile/jungle_spear
 	damage = 10
 	damage_type = TOX
 	icon_state = "bullet"

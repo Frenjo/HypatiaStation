@@ -55,7 +55,7 @@
 				set_broken()
 		else
 
-/obj/machinery/computer/bullet_act(obj/item/projectile/bullet)
+/obj/machinery/computer/bullet_act(obj/projectile/bullet)
 	if(prob(bullet.damage))
 		if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
 			set_broken()

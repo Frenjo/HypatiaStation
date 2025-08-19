@@ -762,23 +762,23 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	if(!projectile)
 		if(!lasercolor)
 			if(emagged == 2)
-				projectile = /obj/item/projectile/energy/beam/laser
+				projectile = /obj/projectile/energy/beam/laser
 			else
-				projectile = /obj/item/projectile/energy/electrode
+				projectile = /obj/projectile/energy/electrode
 		else if(lasercolor == "b")
 			if(emagged == 2)
-				projectile = /obj/item/projectile/energy/beam/laser/tag/omni
+				projectile = /obj/projectile/energy/beam/laser/tag/omni
 			else
-				projectile = /obj/item/projectile/energy/beam/laser/tag/blue
+				projectile = /obj/projectile/energy/beam/laser/tag/blue
 		else if(lasercolor == "r")
 			if(emagged == 2)
-				projectile = /obj/item/projectile/energy/beam/laser/tag/omni
+				projectile = /obj/projectile/energy/beam/laser/tag/omni
 			else
-				projectile = /obj/item/projectile/energy/beam/laser/tag/red
+				projectile = /obj/projectile/energy/beam/laser/tag/red
 
 	if(!isturf(U))
 		return
-	var/obj/item/projectile/A = new projectile(loc)
+	var/obj/projectile/A = new projectile(loc)
 	A.current = U
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x
@@ -821,9 +821,9 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 						target = toarrest
 						mode = SECBOT_HUNT
 
-/obj/machinery/bot/ed209/bullet_act(obj/item/projectile/proj)
+/obj/machinery/bot/ed209/bullet_act(obj/projectile/proj)
 	if(lasercolor == "b" && !disabled)
-		if(istype(proj, /obj/item/projectile/energy/beam/laser/tag/red))
+		if(istype(proj, /obj/projectile/energy/beam/laser/tag/red))
 			disabled = TRUE
 			qdel(proj)
 			sleep(100)
@@ -831,7 +831,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		else
 			..()
 	else if(lasercolor == "r" && !disabled)
-		if(istype(proj, /obj/item/projectile/energy/beam/laser/tag/blue))
+		if(istype(proj, /obj/projectile/energy/beam/laser/tag/blue))
 			disabled = TRUE
 			qdel(proj)
 			sleep(100)

@@ -1,4 +1,4 @@
-/obj/item/projectile/energy/electrode
+/obj/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"
 
@@ -12,12 +12,12 @@
 	agony = 40
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
-/obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
+/obj/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
 	if(!ismob(target) || blocked >= 2) //Fully blocked by mob or collided with dense object - burst into sparks!
 		make_sparks(1, TRUE, src)
 	. = ..()
 
-/obj/item/projectile/energy/declone
+/obj/projectile/energy/declone
 	name = "declone"
 	icon_state = "declone"
 
@@ -25,7 +25,7 @@
 	nodamage = TRUE
 	irradiate = 40
 
-/obj/item/projectile/energy/dart
+/obj/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
 
@@ -33,7 +33,7 @@
 	damage_type = TOX
 	weaken = 5
 
-/obj/item/projectile/energy/bolt
+/obj/projectile/energy/bolt
 	name = "bolt"
 	icon_state = "cbbolt"
 
@@ -42,11 +42,11 @@
 	agony = 40
 	stutter = 10
 
-/obj/item/projectile/energy/bolt/large
+/obj/projectile/energy/bolt/large
 	name = "largebolt"
 	damage = 20
 
-/obj/item/projectile/energy/neurotoxin
+/obj/projectile/energy/neurotoxin
 	name = "neuro"
 	icon_state = "neurotoxin"
 
@@ -54,7 +54,7 @@
 	damage_type = TOX
 	weaken = 5
 
-/obj/item/projectile/energy/plasma
+/obj/projectile/energy/plasma
 	name = "plasma bolt"
 	icon_state = "energy"
 

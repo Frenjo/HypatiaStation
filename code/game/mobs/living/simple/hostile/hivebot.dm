@@ -1,4 +1,4 @@
-/obj/item/projectile/hivebotbullet
+/obj/projectile/hivebotbullet
 	damage = 10
 	damage_type = BRUTE
 
@@ -15,7 +15,7 @@
 	melee_damage_upper = 3
 	attacktext = "claws"
 	projectilesound = 'sound/weapons/gun/gunshot.ogg'
-	projectiletype = /obj/item/projectile/hivebotbullet
+	projectiletype = /obj/projectile/hivebotbullet
 	faction = "hivebot"
 
 	min_oxy = 0

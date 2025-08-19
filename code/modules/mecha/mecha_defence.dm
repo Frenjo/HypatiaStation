@@ -88,7 +88,7 @@
 			take_damage(round(O.throwforce * damage_coefficient))
 			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 
-/obj/mecha/bullet_act(obj/item/projectile/bullet) //wrapper
+/obj/mecha/bullet_act(obj/projectile/bullet) //wrapper
 	log_message("Hit by projectile. Type: [bullet.name]([bullet.flag]).", 1)
 	var/deflection_chance = deflect_chance
 	var/damage_coefficient = 1
@@ -111,7 +111,7 @@
 	if(bullet.flag == "taser")
 		use_power(200)
 		return
-	if(istype(bullet, /obj/item/projectile/energy/beam/pulse))
+	if(istype(bullet, /obj/projectile/energy/beam/pulse))
 		ignore_threshold = 1
 	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
 		take_damage(round(bullet.damage * damage_coefficient), bullet.flag)

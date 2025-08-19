@@ -262,7 +262,7 @@
 	return ..()
 
 //Bullets
-/mob/living/simple/parrot/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple/parrot/bullet_act(var/obj/projectile/Proj)
 	..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)

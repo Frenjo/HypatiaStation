@@ -9,7 +9,7 @@
 #define SET "set"
 */
 
-/obj/item/projectile
+/obj/projectile
 	name = "projectile"
 	icon = 'icons/obj/weapons/projectiles.dmi'
 	icon_state = "bullet"
@@ -40,7 +40,7 @@
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/flag = "bullet" //Defines what armor to use when it hits things. Must be set to bullet, laser, energy, or bomb	//Cael - bio and rad are also valid
-	var/projectile_type = /obj/item/projectile
+	var/projectile_type = /obj/projectile
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
 
 	// Effects
@@ -64,7 +64,7 @@
 	var/tracer_type = null
 	var/impact_type = null
 
-/obj/item/projectile/Bump(atom/A)
+/obj/projectile/Bump(atom/A)
 	if(A == src)
 		return FALSE
 	if(A == firer)
@@ -113,14 +113,14 @@
 	qdel(src)
 	return TRUE
 
-/obj/item/projectile/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/projectile/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
 		return TRUE
-	if(istype(mover, /obj/item/projectile))
+	if(istype(mover, /obj/projectile))
 		return prob(95)
 	return TRUE
 
-/obj/item/projectile/process()
+/obj/projectile/process()
 	var/first_step = TRUE
 
 	// Plots the initial trajectory.
@@ -156,7 +156,7 @@
 		if(!hitscan)
 			sleep(1) // Adds delay if the projectile isn't hitscan.
 
-/obj/item/projectile/proc/on_hit(atom/target, blocked = 0)
+/obj/projectile/proc/on_hit(atom/target, blocked = 0)
 	if(blocked >= 2)
 		return FALSE // Full block.
 	if(!isliving(target))
@@ -169,39 +169,38 @@
 	return TRUE
 
 // Called when the projectile stops flying because it hit something.
-/obj/item/projectile/proc/on_impact(atom/A)
+/obj/projectile/proc/on_impact(atom/A)
 	impact_effect(effect_transform)
 	return
 
 // Returns TRUE if the projectile penetrates, FALSE if not.
-/obj/item/projectile/proc/on_penetrate(atom/A)
+/obj/projectile/proc/on_penetrate(atom/A)
 	return FALSE
 
-/obj/item/projectile/proc/check_fire(atom/target, mob/living/user) // Checks if you can hit them or not.
+/obj/projectile/proc/check_fire(atom/target, mob/living/user) // Checks if you can hit them or not.
 	if(!istype(target) || !istype(user))
 		return 0
 
-	var/obj/item/projectile/test/trace = new /obj/item/projectile/test(get_step_to(user, target)) //Making the test....
+	var/obj/projectile/test/trace = new /obj/projectile/test(get_step_to(user, target)) //Making the test....
 	trace.target = target
 	// Sets the flags to that of the real projectile.
 	SET_ATOM_FLAGS(trace, atom_flags)
 	SET_PASS_FLAGS(trace, pass_flags)
 	trace.obj_flags = obj_flags
-	SET_ITEM_FLAGS(trace, item_flags)
 	trace.firer = user
 	var/output = trace.process() // Test it!
 	qdel(trace) // No need for it anymore
 	return output // Send it back to the gun!
 
 // Sets the click point of the projectile using mouse input params.
-/obj/item/projectile/proc/set_clickpoint(params)
+/obj/projectile/proc/set_clickpoint(params)
 	var/list/mouse_control = params2list(params)
 	if(mouse_control["icon-x"])
 		p_x = text2num(mouse_control["icon-x"])
 	if(mouse_control["icon-y"])
 		p_y = text2num(mouse_control["icon-y"])
 
-/obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset = 0, y_offset = 0)
+/obj/projectile/proc/launch(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset = 0, y_offset = 0)
 	var/turf/curloc = GET_TURF(user)
 	var/turf/targloc = GET_TURF(target)
 	if(!istype(targloc) || !istype(curloc))
@@ -236,7 +235,7 @@
 	return TRUE
 
 // Called when the projectile intercepts a mob. Returns TRUE if hit, FALSE if missed.
-/obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier = -30)
+/obj/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier = -30)
 	// Accuracy modifier from aiming.
 	if(istype(shot_from, /obj/item/gun)) // If you aim at someone beforehead, it'll hit more often.
 		var/obj/item/gun/daddy = shot_from // Kinda balanced by fact you need like 2 seconds to aim.
@@ -273,7 +272,7 @@
 
 	return TRUE
 
-/obj/item/projectile/proc/setup_trajectory()
+/obj/projectile/proc/setup_trajectory()
 	// Plots the initial trajectory.
 	trajectory = new /datum/plot_vector()
 	trajectory.setup(starting, original, pixel_x, pixel_y)
@@ -283,7 +282,7 @@
 	effect_transform.Scale(trajectory.return_hypotenuse(), 1)
 	effect_transform.Turn(-trajectory.return_angle()) // No idea why this has to be inverted, but it works!
 
-/obj/item/projectile/proc/muzzle_effect(matrix/mat)
+/obj/projectile/proc/muzzle_effect(matrix/mat)
 	if(silenced)
 		return
 	if(isnull(muzzle_type))
@@ -296,7 +295,7 @@
 		proj.pixel_y = location.pixel_y
 		proj.activate()
 
-/obj/item/projectile/proc/tracer_effect(matrix/mat)
+/obj/projectile/proc/tracer_effect(matrix/mat)
 	if(isnull(tracer_type))
 		return
 
@@ -307,7 +306,7 @@
 		proj.pixel_y = location.pixel_y
 		proj.activate()
 
-/obj/item/projectile/proc/impact_effect(matrix/mat)
+/obj/projectile/proc/impact_effect(matrix/mat)
 	if(isnull(tracer_type))
 		return
 
@@ -319,7 +318,7 @@
 		proj.activate()
 
 // "Tracing" projectile
-/obj/item/projectile/test // Used to see if you can hit them.
+/obj/projectile/test // Used to see if you can hit them.
 	invisibility = INVISIBILITY_MAXIMUM // Nope! Can't see me!
 	yo = null
 	xo = null
@@ -327,18 +326,18 @@
 	var/atom/target = null
 	var/result = 0 // To pass the message back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A)
+/obj/projectile/test/Bump(atom/A)
 	if(A == firer)
 		loc = A.loc
 		return //cannot shoot yourself
-	if(istype(A, /obj/item/projectile))
+	if(istype(A, /obj/projectile))
 		return
 	if(isliving(A))
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1
 
-/obj/item/projectile/test/process()
+/obj/projectile/test/process()
 	var/turf/curloc = GET_TURF(src)
 	var/turf/targloc = GET_TURF(target)
 	if(isnull(curloc) || isnull(targloc))

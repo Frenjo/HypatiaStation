@@ -431,7 +431,7 @@
 	visible_message("[src] beeps, \"[message]\"")
 	return
 
-/obj/machinery/bot/medbot/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/bot/medbot/bullet_act(obj/projectile/Proj)
 	if(Proj.flag == "taser")
 		stunned = min(stunned + 10, 20)
 	..()

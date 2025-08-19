@@ -73,7 +73,7 @@
 	playsound(src, "shatter", 70, 1)
 	desc = "Oh no, seven years of bad luck!"
 
-/obj/structure/mirror/bullet_act(obj/item/projectile/bullet)
+/obj/structure/mirror/bullet_act(obj/projectile/bullet)
 	if(prob(bullet.damage * 2))
 		if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
 			if(!shattered)

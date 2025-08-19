@@ -12,7 +12,7 @@
 
 	var/caliber = ""								// Which kind of guns it can be loaded into
 	var/projectile_type = null						// The bullet type to create when New() is called
-	var/obj/item/projectile/loaded_bullet = null 	// The loaded bullet
+	var/obj/projectile/loaded_bullet = null 	// The loaded bullet
 
 /obj/item/ammo_casing/New()
 	. = ..()

@@ -8,7 +8,7 @@ emp_act
 
 */
 
-/mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone)
+/mob/living/carbon/human/bullet_act(obj/projectile/P, def_zone)
 
 // BEGIN TASER NERF
 					/* Commenting out new-old taser nerf.
@@ -20,7 +20,7 @@ emp_act
 */
 /* Commenting out old Taser nerf
 	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/armor))
-		if(istype(P, /obj/item/projectile/energy/electrode))
+		if(istype(P, /obj/projectile/energy/electrode))
 			visible_message("\red <B>The [P.name] gets deflected by [src]'s [wear_suit.name]!</B>")
 			del P
 		return -1
@@ -28,7 +28,7 @@ emp_act
 // END TASER NERF
 
 	if(isnotnull(wear_suit) && istype(wear_suit, /obj/item/clothing/suit/armor/laserproof))
-		if(istype(P, /obj/item/projectile/energy))
+		if(istype(P, /obj/projectile/energy))
 			var/reflectchance = 40 - round(P.damage / 3)
 			if(!(def_zone in list("chest", "groin")))
 				reflectchance /= 2
@@ -57,7 +57,7 @@ emp_act
 		return 2
 
 //BEGIN BOOK'S TASER NERF.
-	if(istype(P, /obj/item/projectile/energy/electrode))
+	if(istype(P, /obj/projectile/energy/electrode))
 		var/datum/organ/external/select_area = get_organ(def_zone) // We're checking the outside, buddy!
 		var/list/body_parts = list(head, wear_mask, wear_suit, wear_uniform, gloves, shoes) // What all are we checking?
 		// var/deflectchance=90 //Is it a CRITICAL HIT with that taser?

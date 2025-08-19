@@ -314,7 +314,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		return 1
 	return 0
 
-/obj/machinery/power/rust_core/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/power/rust_core/bullet_act(obj/projectile/Proj)
 	if(owned_field)
 		return owned_field.bullet_act(Proj)
 	return 0

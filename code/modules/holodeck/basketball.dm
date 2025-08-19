@@ -40,7 +40,7 @@
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(isitem(mover) && mover.throwing)
 		var/obj/item/I = mover
-		if(istype(I, /obj/item/projectile))
+		if(istype(I, /obj/projectile))
 			return
 		if(prob(50))
 			I.forceMove(loc)

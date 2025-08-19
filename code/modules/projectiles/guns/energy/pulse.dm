@@ -14,14 +14,14 @@
 
 	gun_setting = GUN_SETTING_DESTROY
 	pulse_projectile_types = list(
-		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
-		GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser,
-		GUN_SETTING_DESTROY = /obj/item/projectile/energy/pulse/pulse
+		GUN_SETTING_STUN = /obj/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/projectile/energy/pulse/laser,
+		GUN_SETTING_DESTROY = /obj/projectile/energy/pulse/pulse
 	)
 	beam_projectile_types = list(
-		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
-		GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser,
-		GUN_SETTING_DESTROY = /obj/item/projectile/energy/beam/pulse
+		GUN_SETTING_STUN = /obj/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/projectile/energy/beam/laser,
+		GUN_SETTING_DESTROY = /obj/projectile/energy/beam/pulse
 	)
 
 /obj/item/gun/energy/pulse_rifle/attack_self(mob/living/user)

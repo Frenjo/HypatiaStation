@@ -38,7 +38,7 @@
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	return FALSE
 
-/obj/structure/inflatable/bullet_act(obj/item/projectile/Proj)
+/obj/structure/inflatable/bullet_act(obj/projectile/Proj)
 	health -= Proj.damage
 	..()
 	if(health <= 0)

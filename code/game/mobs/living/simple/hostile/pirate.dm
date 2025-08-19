@@ -38,7 +38,7 @@
 	projectilesound = 'sound/weapons/gun/laser.ogg'
 	ranged = 1
 	rapid = 1
-	projectiletype = /obj/item/projectile/energy/beam/laser
+	projectiletype = /obj/projectile/energy/beam/laser
 	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged
 	weapon1 = /obj/item/gun/energy/laser
 

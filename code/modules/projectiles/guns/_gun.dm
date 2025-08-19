@@ -29,7 +29,7 @@
 	var/clumsy_check = TRUE
 	var/automatic = FALSE	// Used to determine if you can target multiple people.
 
-	var/obj/item/projectile/in_chamber = null
+	var/obj/projectile/in_chamber = null
 
 	var/tmp/list/mob/living/aim_targets = null	// List of who yer targeting.
 	var/tmp/lock_time = -100
@@ -129,9 +129,9 @@
 			user.update_inv_r_hand()
 
 /obj/item/gun/proc/process_projectile(obj/projectile, atom/target, mob/living/user, target_zone, params = null, point_blank = FALSE)
-	if(!istype(projectile, /obj/item/projectile))
+	if(!istype(projectile, /obj/projectile))
 		return FALSE
-	var/obj/item/projectile/bullet = projectile
+	var/obj/projectile/bullet = projectile
 
 	var/x_offset = 0
 	var/y_offset = 0
@@ -215,7 +215,7 @@
 		playsound(user, fire_sound, 10, 1)
 	else
 		playsound(user, fire_sound, 50, 1)
-	if(istype(in_chamber, /obj/item/projectile/energy/beam/laser/tag))
+	if(istype(in_chamber, /obj/projectile/energy/beam/laser/tag))
 		user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
 		mouthshoot = FALSE
 		return

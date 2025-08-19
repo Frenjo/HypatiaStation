@@ -1,5 +1,5 @@
 // Disabler
-/obj/item/projectile/energy/pulse/disabler
+/obj/projectile/energy/pulse/disabler
 	name = "disabler pulse"
 	icon_state = "bluespark"
 
@@ -11,14 +11,14 @@
 	agony = 20
 
 // Emitter
-/obj/item/projectile/energy/pulse/emitter
+/obj/projectile/energy/pulse/emitter
 	name = "emitter pulse"
 	icon_state = "emitter"
 
 	damage = 30
 
 // Sniper
-/obj/item/projectile/energy/pulse/sniper
+/obj/projectile/energy/pulse/sniper
 	name = "sniper pulse"
 	icon_state = "xray"
 

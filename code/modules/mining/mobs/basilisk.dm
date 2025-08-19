@@ -12,7 +12,7 @@
 	health = 100
 
 	move_to_delay = 20
-	projectiletype = /obj/item/projectile/temp/basilisk
+	projectiletype = /obj/projectile/temp/basilisk
 	projectilesound = 'sound/weapons/melee/pierce.ogg'
 	ranged = TRUE
 	vision_range = 2
@@ -46,6 +46,6 @@
 			L.bodytemperature = 261
 			visible_message(SPAN_DANGER("\The [src]'s stare chills \the [L] to the bone!"))
 
-/obj/item/projectile/temp/basilisk
+/obj/projectile/temp/basilisk
 	name = "freezing blast"
 	temperature = 50

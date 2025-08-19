@@ -55,8 +55,8 @@
 /obj/effect/directional_shield/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0))
 		return TRUE
-	else if(istype(mover, /obj/item/projectile))
-		var/obj/item/projectile/P = mover
+	else if(istype(mover, /obj/projectile))
+		var/obj/projectile/P = mover
 		var/bad_arc = reverse_direction(dir) // Arc of directions from which we cannot block.
 		if(check_shield_arc(src, bad_arc, P)) // This is actually for mobs but it will work for our purposes as well.
 			return FALSE
@@ -64,7 +64,7 @@
 			return TRUE
 	return TRUE
 
-/obj/effect/directional_shield/bullet_act(obj/item/projectile/P)
+/obj/effect/directional_shield/bullet_act(obj/projectile/P)
 	adjust_health(-P.damage)
 	P.on_hit()
 	playsound(GET_TURF(src), 'sound/effects/EMPulse.ogg', 75, 1)

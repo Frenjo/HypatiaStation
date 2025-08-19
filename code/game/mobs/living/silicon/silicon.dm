@@ -52,7 +52,7 @@
 		return 1
 	return 0
 
-/mob/living/silicon/bullet_act(obj/item/projectile/bullet)
+/mob/living/silicon/bullet_act(obj/projectile/bullet)
 	switch(bullet.damage_type)
 		if(BRUTE)
 			adjustBruteLoss(bullet.damage)

@@ -1,6 +1,6 @@
 
 //high frequency photon (laser beam)
-/obj/item/projectile/energy/beam/ehf_beam
+/obj/projectile/energy/beam/ehf_beam
 
 /obj/machinery/rust/gyrotron
 	name = "gyrotron"
@@ -91,7 +91,7 @@
 			comp.updateDialog()
 		return
 /*
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		var/obj/projectile/beam/emitter/A = new /obj/projectile/beam/emitter( src.loc )
 		playsound(src.loc, 'sound/weapons/gun/emitter.ogg', 25, 1)
 		if(prob(35))
 			make_sparks(5, TRUE, src)
@@ -115,7 +115,7 @@
 */
 
 /obj/machinery/rust/gyrotron/proc/Emit()
-	var/obj/item/projectile/energy/beam/emitter/A = new /obj/item/projectile/energy/beam/emitter( src.loc )
+	var/obj/projectile/energy/beam/emitter/A = new /obj/projectile/energy/beam/emitter( src.loc )
 	A.frequency = frequency
 	A.damage = mega_energy * 500
 	//

@@ -51,7 +51,7 @@
 	else
 		gen_secondary.storedpower -= 10
 
-/obj/effect/shield_wall/bullet_act(obj/item/projectile/Proj)
+/obj/effect/shield_wall/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(!needs_power)
 		return
@@ -96,7 +96,7 @@
 	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
 		return prob(20)
 	else
-		if(istype(mover, /obj/item/projectile))
+		if(istype(mover, /obj/projectile))
 			return prob(10)
 		else
 			return !density

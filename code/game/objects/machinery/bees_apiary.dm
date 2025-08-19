@@ -29,10 +29,10 @@
 	..()
 	add_overlay(image('icons/obj/apiary_bees_etc.dmi', icon_state = "apiary"))
 
-/obj/machinery/apiary/bullet_act(var/obj/item/projectile/Proj) //Works with the Somatoray to modify plant variables.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut))
+/obj/machinery/apiary/bullet_act(var/obj/projectile/Proj) //Works with the Somatoray to modify plant variables.
+	if(istype(Proj ,/obj/projectile/energy/floramut))
 		mut++
-	else if(istype(Proj ,/obj/item/projectile/energy/florayield))
+	else if(istype(Proj ,/obj/projectile/energy/florayield))
 		if(!yieldmod)
 			yieldmod += 1
 			//to_world("Yield increased by 1, from 0, to a total of [myseed.yield]")

@@ -66,7 +66,7 @@
 		if(src)
 			set_opacity(FALSE)
 
-/obj/effect/shield/bullet_act(obj/item/projectile/Proj)
+/obj/effect/shield/bullet_act(obj/projectile/Proj)
 	health -= Proj.damage
 	..()
 	if(health <= 0)

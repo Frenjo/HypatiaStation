@@ -178,7 +178,7 @@ field_generator power level display
 /obj/machinery/containment_field/meteorhit()
 	return 0
 
-/obj/machinery/field_generator/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/field_generator/bullet_act(obj/projectile/Proj)
 	if(Proj.flag != "bullet")
 		power += Proj.damage
 		update_icon()

@@ -222,7 +222,7 @@
 	var/turf/T = GET_TURF(src)
 	var/turf/U = GET_TURF(A)
 
-	var/obj/item/projectile/energy/beam/LE = new /obj/item/projectile/energy/beam(loc)
+	var/obj/projectile/energy/beam/LE = new /obj/projectile/energy/beam(loc)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
 	playsound(usr.loc, 'sound/weapons/gun/taser2.ogg', 75, 1)

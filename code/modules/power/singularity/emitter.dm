@@ -138,12 +138,12 @@
 			src.fire_delay = rand(20, 100)
 			src.shot_number = 0
 
-		var/obj/item/projectile/energy/A
+		var/obj/projectile/energy/A
 		switch(fire_mode)
 			if(GUN_MODE_BEAM)
-				A = new /obj/item/projectile/energy/beam/emitter(src.loc)
+				A = new /obj/projectile/energy/beam/emitter(src.loc)
 			if(GUN_MODE_PULSE)
-				A = new /obj/item/projectile/energy/pulse/emitter(src.loc)
+				A = new /obj/projectile/energy/pulse/emitter(src.loc)
 		if(!A)
 			return // Something went very wrong.
 

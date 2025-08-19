@@ -23,11 +23,11 @@
 	var/harvest = 0 //Ready to harvest?
 	var/obj/item/seeds/myseed = null // The currently planted seed
 
-/obj/machinery/hydroponics/bullet_act(obj/item/projectile/Proj) //Works with the Somatoray to modify plant variables.
-	if(istype(Proj, /obj/item/projectile/energy/floramut))
+/obj/machinery/hydroponics/bullet_act(obj/projectile/Proj) //Works with the Somatoray to modify plant variables.
+	if(istype(Proj, /obj/projectile/energy/floramut))
 		if(planted)
 			mutate()
-	else if(istype(Proj, /obj/item/projectile/energy/florayield))
+	else if(istype(Proj, /obj/projectile/energy/florayield))
 		if(planted && myseed.yield == 0)//Oh god don't divide by zero you'll doom us all.
 			myseed.yield += 1
 			//to_world("Yield increased by 1, from 0, to a total of [myseed.yield]")

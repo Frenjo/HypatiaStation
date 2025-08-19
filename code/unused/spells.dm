@@ -137,7 +137,7 @@
 	unacidable = 1
 
 
-	bullet_act(var/obj/item/projectile/Proj, var/def_zone)
+	bullet_act(var/obj/projectile/Proj, var/def_zone)
 		var/turf/T = GET_TURF(src)
 		if(isnotnull(T))
 			for(var/mob/M in T)

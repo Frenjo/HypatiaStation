@@ -9,7 +9,7 @@
 	equip_cooldown = 0.8 SECONDS
 	energy_drain = 30
 
-	projectile = /obj/item/projectile/energy/pulse/disabler
+	projectile = /obj/projectile/energy/pulse/disabler
 	fire_sound = 'sound/weapons/gun/taser2.ogg'
 
 /obj/item/mecha_equipment/weapon/energy/disabler/rigged

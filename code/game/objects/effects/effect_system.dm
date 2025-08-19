@@ -255,8 +255,8 @@ steam.start() -- spawns the effect
 /obj/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
 		return TRUE
-	if(istype(mover, /obj/item/projectile/energy/beam))
-		var/obj/item/projectile/energy/beam/B = mover
+	if(istype(mover, /obj/projectile/energy/beam))
+		var/obj/projectile/energy/beam/B = mover
 		B.damage = (B.damage / 2)
 	return TRUE
 

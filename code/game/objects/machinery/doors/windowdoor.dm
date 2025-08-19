@@ -146,7 +146,7 @@
 		qdel(src)
 		return
 
-/obj/machinery/door/window/bullet_act(obj/item/projectile/bullet)
+/obj/machinery/door/window/bullet_act(obj/projectile/bullet)
 	if(bullet.damage)
 		if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
 			take_damage(round(bullet.damage / 2))

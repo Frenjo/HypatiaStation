@@ -55,7 +55,7 @@
 		if(isnotnull(target) && prob(25))
 			give_target(FindTarget())
 
-/mob/living/simple/hostile/asteroid/bullet_act(obj/item/projectile/bullet)
+/mob/living/simple/hostile/asteroid/bullet_act(obj/projectile/bullet)
 	if(bullet.damage < 30)
 		visible_message(SPAN_DANGER("\The [bullet] had no effect on \the [src]!"))
 		return

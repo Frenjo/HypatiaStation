@@ -34,7 +34,7 @@
 /mob/living/proc/getarmor(def_zone, type)
 	return 0
 
-/mob/living/bullet_act(obj/item/projectile/P, def_zone)
+/mob/living/bullet_act(obj/projectile/P, def_zone)
 	var/obj/item/cloaking_device/C = locate(/obj/item/cloaking_device) in src
 	if(C && C.active)
 		C.attack_self(src) //Should shut it off

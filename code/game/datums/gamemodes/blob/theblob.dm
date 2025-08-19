@@ -141,7 +141,7 @@
 //		icon_state = "blob_damaged2"
 //		return
 
-/obj/effect/blob/bullet_act(obj/item/projectile/proj)
+/obj/effect/blob/bullet_act(obj/projectile/proj)
 	if(isnull(proj))
 		return
 

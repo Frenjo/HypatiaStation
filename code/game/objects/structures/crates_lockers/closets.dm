@@ -159,7 +159,7 @@
 					mover.ex_act(severity++)
 				qdel(src)
 
-/obj/structure/closet/bullet_act(obj/item/projectile/bullet)
+/obj/structure/closet/bullet_act(obj/projectile/bullet)
 	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
 		health -= bullet.damage
 		..()

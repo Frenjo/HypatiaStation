@@ -9,7 +9,7 @@
 	fire_sound = 'sound/weapons/gun/pulse3.ogg'
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/declone)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/declone)
 
 /obj/item/gun/energy/floragun
 	name = "floral somatoray"
@@ -25,8 +25,8 @@
 
 	gun_setting = GUN_SETTING_KILL
 	pulse_projectile_types = list(
-		GUN_SETTING_KILL = /obj/item/projectile/energy/floramut,
-		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/florayield
+		GUN_SETTING_KILL = /obj/projectile/energy/floramut,
+		GUN_SETTING_SPECIAL = /obj/projectile/energy/florayield
 	)
 
 	self_charging = TRUE
@@ -59,7 +59,7 @@
 	cell_type = /obj/item/cell/potato
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/meteor)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/meteor)
 
 	self_charging = TRUE
 	recharge_time = 0.5 SECONDS // Time it takes for shots to recharge (in ticks)
@@ -85,7 +85,7 @@
 
 	gun_mode = GUN_MODE_BEAM
 	gun_setting = GUN_SETTING_SPECIAL
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/mindflayer)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/mindflayer)
 
 /obj/item/gun/energy/toxgun
 	name = "plasma pistol"
@@ -98,7 +98,7 @@
 	fire_sound = 'sound/effects/stealthoff.ogg'
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/plasma)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/plasma)
 
 /obj/item/gun/energy/sniperrifle
 	name = "\improper L.W.A.P. Sniper Rifle"
@@ -115,8 +115,8 @@
 	charge_cost = 250
 
 	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/sniper)
-	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/sniper)
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/pulse/sniper)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/projectile/energy/beam/sniper)
 
 	var/zoom = FALSE
 

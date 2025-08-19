@@ -205,7 +205,7 @@
 
 	return 1
 
-/obj/machinery/power/supermatter/bullet_act(obj/item/projectile/proj)
+/obj/machinery/power/supermatter/bullet_act(obj/projectile/proj)
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
 		return 0	// This stops people from being able to really power up the supermatter

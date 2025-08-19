@@ -1,5 +1,5 @@
 // Disabler
-/obj/item/projectile/energy/beam/disabler
+/obj/projectile/energy/beam/disabler
 	name = "disabler beam"
 
 	// It's INTENDED that disabler BEAMS do not pass through Swarmers like pulses do, since Swarmers don't use beams!
@@ -14,7 +14,7 @@
 	impact_type = /obj/effect/projectile/laser_omni/impact
 
 // This refers to actual pulse rifle pulses.
-/obj/item/projectile/energy/beam/pulse
+/obj/projectile/energy/beam/pulse
 	name = "pulse beam"
 
 	damage = 50
@@ -24,7 +24,7 @@
 	impact_type = /obj/effect/projectile/laser_pulse/impact
 
 // Emitter
-/obj/item/projectile/energy/beam/emitter
+/obj/projectile/energy/beam/emitter
 	name = "emitter beam"
 
 	damage = 30
@@ -34,7 +34,7 @@
 	impact_type = /obj/effect/projectile/emitter/impact
 
 // Sniper
-/obj/item/projectile/energy/beam/sniper
+/obj/projectile/energy/beam/sniper
 	name = "sniper beam"
 
 	damage = 60
@@ -48,13 +48,13 @@
 	impact_type = /obj/effect/projectile/xray/impact
 
 // Mindflayer
-/obj/item/projectile/energy/beam/mindflayer
+/obj/projectile/energy/beam/mindflayer
 	name = "flayer ray"
 
 	damage = 0
 	nodamage = TRUE
 
-/obj/item/projectile/energy/beam/mindflayer/on_hit(atom/target, blocked = 0)
+/obj/projectile/energy/beam/mindflayer/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.adjustBrainLoss(20)

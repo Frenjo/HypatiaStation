@@ -8,7 +8,7 @@
 	equip_cooldown = 4 SECONDS
 	energy_drain = 120
 
-	projectile = /obj/item/projectile/ion
+	projectile = /obj/projectile/ion
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 /obj/item/mecha_equipment/weapon/energy/ion/rigged
@@ -23,4 +23,4 @@
 	equip_cooldown = 5 SECONDS
 	energy_drain = 100
 
-	projectile = /obj/item/projectile/ion/pistol
+	projectile = /obj/projectile/ion/pistol

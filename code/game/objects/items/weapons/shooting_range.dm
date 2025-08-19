@@ -85,12 +85,12 @@
 	desc = "A shooting target with a threatening silhouette."
 	hp = 2350 // alium onest too kinda
 
-/obj/item/target/bullet_act(obj/item/projectile/Proj)
+/obj/item/target/bullet_act(obj/projectile/Proj)
 	var/p_x = Proj.p_x + pick(0, 0, 0, 0, 0, -1, 1) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + pick(0, 0, 0, 0, 0, -1, 1)
 	var/decaltype = 1 // 1 - scorch, 2 - bullet
 
-	if(istype(/obj/item/projectile/bullet, Proj))
+	if(istype(/obj/projectile/bullet, Proj))
 		decaltype = 2
 
 	virtualIcon = new(icon, icon_state)
@@ -118,7 +118,7 @@
 			bmark.pixel_x--
 			bmark.pixel_y--
 
-			if(Proj.damage >= 20 || istype(Proj, /obj/item/projectile/energy/beam/laser/practice))
+			if(Proj.damage >= 20 || istype(Proj, /obj/projectile/energy/beam/laser/practice))
 				bmark.icon_state = "scorch"
 				bmark.set_dir(pick(NORTH, SOUTH, EAST, WEST)) // random scorch design
 

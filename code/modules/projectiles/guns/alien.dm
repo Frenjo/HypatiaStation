@@ -134,7 +134,7 @@
 
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(
-		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/sonic
+		GUN_SETTING_SPECIAL = /obj/projectile/energy/sonic
 	)
 
 	var/mode = 1
@@ -157,7 +157,7 @@
 	return
 
 //Projectile.
-/obj/item/projectile/energy/sonic
+/obj/projectile/energy/sonic
 	name = "distortion"
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "particle"
@@ -171,6 +171,6 @@
 	weaken = 5
 	embed = FALSE
 
-/obj/item/projectile/energy/sonic/proc/split()
+/obj/projectile/energy/sonic/proc/split()
 	//TODO: create two more projectiles to either side of this one, fire at targets to the side of target turf.
 	return

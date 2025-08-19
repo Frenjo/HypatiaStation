@@ -231,7 +231,7 @@
 			if(!G.active)
 				break
 
-/obj/machinery/shieldwallgen/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/shieldwallgen/bullet_act(obj/projectile/Proj)
 	storedpower -= Proj.damage
 	..()
 

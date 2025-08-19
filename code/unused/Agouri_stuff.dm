@@ -408,14 +408,14 @@
 	return 0
 
 
-/turf/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj ,/obj/item/projectile/beam/pulse))
+/turf/bullet_act(var/obj/projectile/Proj)
+	if(istype(Proj ,/obj/projectile/beam/pulse))
 		src.ex_act(2)
 	..()
 	return 0
 
-/turf/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj ,/obj/item/projectile/bullet/gyro))
+/turf/bullet_act(var/obj/projectile/Proj)
+	if(istype(Proj ,/obj/projectile/bullet/gyro))
 		explosion(src, -1, 0, 2)
 	..()
 	return 0

@@ -2,7 +2,7 @@
 
 //automated turret that shoots missiles at meteors
 
-/obj/item/projectile/missile
+/obj/projectile/missile
 	name = "missile"
 	icon = 'code/WorkInProgress/Cael_Aislinn/meteor_turret.dmi'
 	icon_state = "missile"
@@ -11,28 +11,28 @@
 	density = TRUE
 	desc = "It's sparking and shaking slightly."
 
-/obj/item/projectile/missile/process(var/turf/newtarget)
+/obj/projectile/missile/process(var/turf/newtarget)
 	target = newtarget
 	dir = get_dir(src.loc, target)
 	walk_towards(src, target, MISSILE_SPEED)
 
-/obj/item/projectile/missile/Bump(atom/A)
+/obj/projectile/missile/Bump(atom/A)
 	spawn(0)
 		if(istype(A,/obj/effect/meteor))
 			del(A)
 		explode()
 	return
 
-/obj/item/projectile/missile/proc/explode()
+/obj/projectile/missile/proc/explode()
 	explosion(src.loc, 1, 1, 2, 7, 0)
 	playsound(src.loc, "explosion", 50, 1)
 	del(src)
 
-/obj/item/projectile/missile/attack_hand(mob/user)
+/obj/projectile/missile/attack_hand(mob/user)
 	..()
 	return attackby(null, user)
 
-/obj/item/projectile/missile/attackby(obj/item/W, mob/user)
+/obj/projectile/missile/attackby(obj/item/W, mob/user)
 	//can't touch this
 	..()
 	explode()
@@ -116,7 +116,7 @@
 		return
 
 	//update our missiles
-	for(var/obj/item/projectile/missile/M in fired_missiles)
+	for(var/obj/projectile/missile/M in fired_missiles)
 		if(!M)
 			fired_missiles.Remove(M)
 			continue
@@ -175,7 +175,7 @@
 	if(isnull(T) || isnull(U))
 		return
 	use_power(500)
-	var/obj/item/projectile/missile/A = new(T)
+	var/obj/projectile/missile/A = new(T)
 	A.tracking = tracking_missiles
 	fired_missiles.Add(A)
 	spawn(0)
@@ -207,7 +207,7 @@
 				invisibility = 2
 				popping = 0
 
-/obj/machinery/meteor_battery/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/meteor_battery/bullet_act(var/obj/projectile/Proj)
 	src.health -= Proj.damage
 	..()
 	if(prob(45) && Proj.damage > 0) src.spark_system.start()

@@ -2,61 +2,61 @@
 	desc = "A .357 bullet casing."
 
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet
+	projectile_type = /obj/projectile/bullet
 
 /obj/item/ammo_casing/a50
 	desc = "A .50AE bullet casing."
 
 	caliber = ".50"
-	projectile_type = /obj/item/projectile/bullet
+	projectile_type = /obj/projectile/bullet
 
 /obj/item/ammo_casing/a418
 	desc = "A .418 bullet casing."
 
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/suffocation
+	projectile_type = /obj/projectile/bullet/suffocation
 
 /obj/item/ammo_casing/a75
 	desc = "A .75 bullet casing."
 
 	caliber = "75"
-	projectile_type = /obj/item/projectile/bullet/gyro
+	projectile_type = /obj/projectile/bullet/gyro
 
 /obj/item/ammo_casing/a666
 	desc = "A .666 bullet casing."
 
 	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/cyanide
+	projectile_type = /obj/projectile/bullet/cyanide
 
 /obj/item/ammo_casing/c38
 	desc = "A .38 bullet casing."
 
 	caliber = "38"
-	projectile_type = /obj/item/projectile/bullet/weak
+	projectile_type = /obj/projectile/bullet/weak
 
 /obj/item/ammo_casing/c9mm
 	desc = "A 9mm bullet casing."
 
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/mid2
+	projectile_type = /obj/projectile/bullet/mid2
 
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/mid
+	projectile_type = /obj/projectile/bullet/mid
 
 /obj/item/ammo_casing/c45r
 	desc = "A .45 rubber bullet casing."
 
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/weak/rubber
+	projectile_type = /obj/projectile/bullet/weak/rubber
 
 /obj/item/ammo_casing/a12mm
 	desc = "A 12mm bullet casing."
 
 	caliber = "12mm"
-	projectile_type = /obj/item/projectile/bullet/mid2
+	projectile_type = /obj/projectile/bullet/mid2
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun shell"
@@ -66,7 +66,7 @@
 	matter_amounts = /datum/design/autolathe/shotgun_shell::materials
 
 	caliber = "shotgun"
-	projectile_type = /obj/item/projectile/bullet
+	projectile_type = /obj/projectile/bullet
 
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
@@ -82,7 +82,7 @@
 	icon_state = "bshell"
 
 	matter_amounts = /datum/design/autolathe/beanbag_shell::materials
-	projectile_type = /obj/item/projectile/bullet/weak/beanbag
+	projectile_type = /obj/projectile/bullet/weak/beanbag
 
 /obj/item/ammo_casing/shotgun/stunshell
 	name = "stun shell"
@@ -91,7 +91,7 @@
 
 	matter_amounts = /datum/design/weapon/stunshell::materials
 	origin_tech = /datum/design/weapon/stunshell::req_tech
-	projectile_type = /obj/item/projectile/bullet/stunshot
+	projectile_type = /obj/projectile/bullet/stunshot
 
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun darts"
@@ -100,13 +100,13 @@
 
 	matter_amounts = /datum/design/autolathe/shotgun_dart::materials
 
-	projectile_type = /obj/item/projectile/energy/dart
+	projectile_type = /obj/projectile/energy/dart
 
 /obj/item/ammo_casing/a762
 	desc = "A 7.62 bullet casing."
 
 	caliber = "a762"
-	projectile_type = /obj/item/projectile/bullet/a762
+	projectile_type = /obj/projectile/bullet/a762
 
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"

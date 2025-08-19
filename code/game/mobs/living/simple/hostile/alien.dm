@@ -49,7 +49,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	ranged = 1
-	projectiletype = /obj/item/projectile/neurotox
+	projectiletype = /obj/projectile/neurotox
 	projectilesound = 'sound/weapons/melee/pierce.ogg'
 
 
@@ -64,7 +64,7 @@
 	melee_damage_upper = 15
 	ranged = 1
 	move_to_delay = 3
-	projectiletype = /obj/item/projectile/neurotox
+	projectiletype = /obj/projectile/neurotox
 	projectilesound = 'sound/weapons/melee/pierce.ogg'
 	rapid = 1
 	status_flags = 0
@@ -79,7 +79,7 @@
 	maxHealth = 400
 	health = 400
 
-/obj/item/projectile/neurotox
+/obj/projectile/neurotox
 	damage = 30
 	icon_state = "toxin"
 

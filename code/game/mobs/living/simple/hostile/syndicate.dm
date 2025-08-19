@@ -67,7 +67,7 @@
 		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 
-/mob/living/simple/hostile/syndicate/melee/bullet_act(obj/item/projectile/bullet)
+/mob/living/simple/hostile/syndicate/melee/bullet_act(obj/projectile/bullet)
 	if(isnull(bullet))
 		return
 	if(prob(65))
@@ -104,7 +104,7 @@
 	icon_living = "syndicateranged"
 	casingtype = /obj/item/ammo_casing/a12mm
 	projectilesound = 'sound/weapons/gun/gunshot_smg.ogg'
-	projectiletype = /obj/item/projectile/bullet/mid2
+	projectiletype = /obj/projectile/bullet/mid2
 
 	weapon1 = /obj/item/gun/projectile/automatic/c20r
 

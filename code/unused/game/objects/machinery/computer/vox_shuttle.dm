@@ -138,7 +138,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 	add_fingerprint(usr)
 	updateUsrDialog()
 
-/obj/machinery/computer/vox_station/bullet_act(obj/item/projectile/proj)
+/obj/machinery/computer/vox_station/bullet_act(obj/projectile/proj)
 	visible_message("[proj] ricochets off [src]!")
 
 #undef VOX_SHUTTLE_MOVE_TIME

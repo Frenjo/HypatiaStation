@@ -7,8 +7,8 @@
 	var/state = 0
 	var/health = 200
 
-/obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj, /obj/item/projectile/energy))
+/obj/structure/girder/bullet_act(var/obj/projectile/Proj)
+	if(istype(Proj, /obj/projectile/energy))
 		health -= Proj.damage
 		..()
 		if(health <= 0)
@@ -206,7 +206,7 @@
 	if(prob(40))
 		qdel(src)
 
-/obj/structure/cultgirder/bullet_act(var/obj/item/projectile/Proj) //No beam check- How else will you destroy the cult girder with silver bullets?????
+/obj/structure/cultgirder/bullet_act(var/obj/projectile/Proj) //No beam check- How else will you destroy the cult girder with silver bullets?????
 	health -= Proj.damage
 	..()
 	if(health <= 0)

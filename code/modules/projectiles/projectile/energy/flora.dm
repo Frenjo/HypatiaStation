@@ -1,11 +1,11 @@
-/obj/item/projectile/energy/floramut
+/obj/projectile/energy/floramut
 	name = "alpha somatoray"
 	icon_state = "energy"
 
 	damage_type = TOX
 	nodamage = TRUE
 
-/obj/item/projectile/energy/floramut/on_hit(atom/target, blocked = 0)
+/obj/projectile/energy/floramut/on_hit(atom/target, blocked = 0)
 	var/mob/living/M = target
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //Plantmen possibly get mutated and damaged by the rays.
 	if(ishuman(target))
@@ -39,14 +39,14 @@
 	else
 		return 1
 
-/obj/item/projectile/energy/florayield
+/obj/projectile/energy/florayield
 	name = "beta somatoray"
 	icon_state = "energy2"
 
 	damage_type = TOX
 	nodamage = TRUE
 
-/obj/item/projectile/energy/florayield/on_hit(atom/target, blocked = 0)
+/obj/projectile/energy/florayield/on_hit(atom/target, blocked = 0)
 	var/mob/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M

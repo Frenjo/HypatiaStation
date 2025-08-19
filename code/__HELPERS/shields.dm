@@ -2,8 +2,8 @@
 /proc/check_shield_arc(mob/user, bad_arc, atom/damage_source = null, mob/attacker = null)
 	//check attack direction
 	var/attack_dir = 0 //direction from the user to the source of the attack
-	if(istype(damage_source, /obj/item/projectile))
-		var/obj/item/projectile/P = damage_source
+	if(istype(damage_source, /obj/projectile))
+		var/obj/projectile/P = damage_source
 		attack_dir = get_dir(GET_TURF(user), P.starting)
 	else if(attacker)
 		attack_dir = get_dir(GET_TURF(user), GET_TURF(attacker))

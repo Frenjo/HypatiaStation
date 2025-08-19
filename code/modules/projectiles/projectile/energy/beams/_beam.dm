@@ -1,4 +1,4 @@
-/obj/item/projectile/energy/beam
+/obj/projectile/energy/beam
 	invisibility = INVISIBILITY_MAXIMUM
 	pass_flags = parent_type::pass_flags | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 

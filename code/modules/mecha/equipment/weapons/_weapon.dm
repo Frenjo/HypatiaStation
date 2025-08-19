@@ -54,7 +54,7 @@
 	return TRUE
 
 /obj/item/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)
-	var/obj/item/projectile/P = A
+	var/obj/projectile/P = A
 	P.shot_from = src
 	P.original = target
 	P.starting = P.loc

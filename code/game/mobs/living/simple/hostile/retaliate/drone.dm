@@ -20,7 +20,7 @@
 	health = 300
 	maxHealth = 300
 	speed = 8
-	projectiletype = /obj/item/projectile/energy/beam/laser/drone
+	projectiletype = /obj/projectile/energy/beam/laser/drone
 	projectilesound = 'sound/weapons/gun/laser3.ogg'
 	destroy_surroundings = 0
 
@@ -49,7 +49,7 @@
 /mob/living/simple/hostile/retaliate/malf_drone/New()
 	..()
 	if(prob(5))
-		projectiletype = /obj/item/projectile/energy/beam/pulse/drone
+		projectiletype = /obj/projectile/energy/beam/pulse/drone
 		projectilesound = 'sound/weapons/gun/pulse2.ogg'
 	ion_trail = new
 	ion_trail.set_up(src)
@@ -253,8 +253,8 @@
 
 	return ..()
 
-/obj/item/projectile/energy/beam/laser/drone
+/obj/projectile/energy/beam/laser/drone
 	damage = 15
 
-/obj/item/projectile/energy/beam/pulse/drone
+/obj/projectile/energy/beam/pulse/drone
 	damage = 10

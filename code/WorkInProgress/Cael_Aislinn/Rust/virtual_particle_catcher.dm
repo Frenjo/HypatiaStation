@@ -41,7 +41,7 @@
 		//invisibility = INVISIBILITY_MAXIMUM
 		name = "collector [mysize] OFF"
 
-/obj/effect/rust_particle_catcher/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/rust_particle_catcher/bullet_act(var/obj/projectile/Proj)
 	if(Proj.flag != "bullet" && parent)
 		parent.AddEnergy(Proj.damage * 20, 0, 1)
 		update_icon()

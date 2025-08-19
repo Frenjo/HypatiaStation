@@ -8,7 +8,7 @@
 	equip_cooldown = 0.8 SECONDS
 	energy_drain = 30
 
-	projectile = /obj/item/projectile/energy/pulse/laser
+	projectile = /obj/projectile/energy/pulse/laser
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 /obj/item/mecha_equipment/weapon/energy/laser/heavy
@@ -20,7 +20,7 @@
 	equip_cooldown = 1.5 SECONDS
 	energy_drain = 60
 
-	projectile = /obj/item/projectile/energy/pulse/laser/heavy
+	projectile = /obj/projectile/energy/pulse/laser/heavy
 	fire_sound = 'sound/weapons/gun/lasercannonfire.ogg'
 
 /obj/item/mecha_equipment/weapon/energy/laser/rigged
@@ -48,7 +48,7 @@
 	equip_cooldown = 0.6 SECONDS
 	energy_drain = 150
 
-	projectile = /obj/item/projectile/energy/pulse/laser/xray
+	projectile = /obj/projectile/energy/pulse/laser/xray
 	fire_sound = 'sound/weapons/gun/laser3.ogg'
 
 /obj/item/mecha_equipment/weapon/energy/laser/xray/rigged
@@ -81,5 +81,5 @@
 	allow_duplicates = FALSE
 	allow_detach = FALSE
 
-	projectile = /obj/item/projectile/energy/beam/emitter
+	projectile = /obj/projectile/energy/beam/emitter
 	fire_sound = 'sound/weapons/gun/emitter.ogg'

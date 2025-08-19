@@ -307,7 +307,7 @@ Alien plants should do something if theres a lot of poison
 
 //hostile entities or npcs
 
-/obj/item/projectile/slimeglob
+/obj/projectile/slimeglob
 	icon = 'icons/obj/weapons/projectiles.dmi'
 	icon_state = "toxin"
 	damage = 20
@@ -435,7 +435,7 @@ Alien plants should do something if theres a lot of poison
 		if(target == start)
 			return
 
-		var/obj/item/projectile/slimeglob/A = new /obj/item/projectile/slimeglob(user:loc)
+		var/obj/projectile/slimeglob/A = new /obj/projectile/slimeglob(user:loc)
 		playsound(user, 'sound/weapons/melee/bite.ogg', 100, 1)
 
 		if(!A)	return

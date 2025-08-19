@@ -1,5 +1,5 @@
 // This refers to actual pulse rifle pulses.
-/obj/item/projectile/energy/pulse/pulse
+/obj/projectile/energy/pulse/pulse
 	name = "pulse"
 	icon_state = "u_laser"
 
@@ -7,7 +7,7 @@
 
 	muzzle_type = /obj/effect/projectile/pulse/muzzle
 
-/obj/item/projectile/energy/pulse/death
+/obj/projectile/energy/pulse/death
 	name = "death pulse"
 	icon_state = "heavylaser"
 
