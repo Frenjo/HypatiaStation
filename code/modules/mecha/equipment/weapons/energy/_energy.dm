@@ -28,7 +28,7 @@
 	fire_sound = 'sound/weapons/gun/marauder.ogg'
 
 /obj/projectile/energy/beam/pulse/heavy
-	name = "heavy pulse laser"
+	name = "heavy pulse"
 	icon_state = "pulse1_bl"
 
 	var/life = 20
