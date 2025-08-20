@@ -27,7 +27,8 @@
 		"Syndiehound - Treaded" = "syndiehound+tread",
 		"Syndiemate" = "syndiemate",
 		"Syndiemate - Treaded" = "syndiemate+tread",
-		"Qualified Syndoctor" = "qualified-syndoctor"
+		"Qualified Syndoctor" = "qualified-syndoctor",
+		"Syndspider" = "syndspider"
 	)
 	model_select_sprite = "syndefault"
 
