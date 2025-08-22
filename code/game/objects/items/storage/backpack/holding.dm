@@ -6,8 +6,8 @@
 	// These amounts reflect that as well as the inert item, you also need an artificial bluespace crystal and a piece of cable to assemble it.
 	matter_amounts = alist(
 		/decl/material/steel = 50, /decl/material/plastic = 50,
-		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 2.5, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 2.75,
-		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET, /decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 0.25
+		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 2.75 MATERIAL_SHEETS,
+		/decl/material/plasma = 1 MATERIAL_SHEET, /decl/material/uranium = 0.25 MATERIAL_SHEETS
 	)
 	// It requires an artificial bluespace crystal to assemble.
 	origin_tech = /datum/design/bluespace/bluespace_crystal::req_tech

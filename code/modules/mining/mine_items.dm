@@ -67,7 +67,7 @@
 	force = 15
 	throwforce = 4
 	w_class = WEIGHT_CLASS_BULKY
-	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
+	matter_amounts = alist(/decl/material/steel = 1 MATERIAL_SHEET) //one sheet, but where can you make them?
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1

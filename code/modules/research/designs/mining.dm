@@ -43,7 +43,7 @@
 	req_tech = alist(/decl/tech/materials = 6, /decl/tech/engineering = 5, /decl/tech/power_storage = 4)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(
-		/decl/material/steel = 3000, /decl/material/glass = 1000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
+		/decl/material/steel = 3000, /decl/material/glass = 1000, /decl/material/diamond = 1 MATERIAL_SHEET
 	) //Yes, a whole diamond is needed.
 	reliability_base = 79
 	build_path = /obj/item/pickaxe/drill/diamond

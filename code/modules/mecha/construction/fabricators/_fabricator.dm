@@ -63,7 +63,7 @@
 	var/total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
-	materials.set_max_capacity((MATERIAL_AMOUNT_PER_SHEET * 50) + (total_rating * (MATERIAL_AMOUNT_PER_SHEET * 100)))
+	materials.set_max_capacity((50 MATERIAL_SHEETS) + (total_rating * (100 MATERIAL_SHEETS)))
 
 	total_rating = 0
 	for(var/obj/item/stock_part/micro_laser/laser in component_parts)

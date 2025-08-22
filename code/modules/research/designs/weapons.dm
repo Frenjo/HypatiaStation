@@ -97,7 +97,7 @@
 	name = "Ammunition Box (9mm)"
 	desc = "A box of prototype 9mm ammunition."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 4)
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET, /decl/material/silver = 100)
+	materials = alist(/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/silver = 100)
 	build_path = /obj/item/ammo_magazine/c9mm
 
 /datum/design/weapon/stunshell

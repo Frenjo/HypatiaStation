@@ -20,7 +20,7 @@ The currently supported non-reagent materials are:
 - /decl/material/plasma
 - /decl/material/bananium
 - /decl/material/tranquilite
-- All values are that one sheet = MATERIAL_AMOUNT_PER_SHEET units.
+- All values are that one sheet = 1 MATERIAL_SHEET units.
 (Insert new ones here)
 
 Don't add new keyword/IDs if they are made from an existing one (such as rods which are made from metal). Only add raw materials.
@@ -30,7 +30,7 @@ Design Guidlines
 reliability_mod (starts at 0, gets improved through experimentation). Example: PACMAN generator. 79 base reliablity + 6 tech
 (3 plasmatech, 3 powerstorage) + 0 (since it's completely new) = 85% reliability. Reliability is the chance it works CORRECTLY.
 - When adding new designs, check rdreadme.dm to see what kind of things have already been made and where new stuff is needed.
-- A single sheet of anything is MATERIAL_AMOUNT_PER_SHEET units of material. Materials besides metal/glass require help from other jobs (mining for
+- A single sheet of anything is 1 MATERIAL_SHEET units of material. Materials besides metal/glass require help from other jobs (mining for
 other types of metals and chemistry for reagents).
 - Add the AUTOLATHE tag to
 

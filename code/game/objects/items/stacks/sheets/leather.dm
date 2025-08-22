@@ -23,6 +23,6 @@
 	singular_name = "leather piece"
 	desc = "The by-product of mob grinding."
 	icon_state = "leather"
-	matter_amounts = alist(/decl/material/leather = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/leather = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 2)
 	material = /decl/material/leather

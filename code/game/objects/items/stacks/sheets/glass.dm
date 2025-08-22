@@ -15,7 +15,7 @@
 	desc = "HOLY SHEET! That is a lot of glass."
 	singular_name = "glass sheet"
 	icon_state = "glass"
-	matter_amounts = alist(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/glass = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 1)
 	material = /decl/material/glass
 
@@ -137,7 +137,7 @@
 	desc = "Glass which seems to have rods or something stuck in it."
 	singular_name = "reinforced glass sheet"
 	icon_state = "rglass"
-	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 2)
 
 	material = /decl/material/reinforced_glass
@@ -338,7 +338,7 @@
 	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
 	singular_name = "plasma glass sheet"
 	icon_state = "plasmaglass"
-	matter_amounts = alist(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/glass = 1 MATERIAL_SHEET, /decl/material/plasma = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/plasma = 2)
 	material = /decl/material/plasma_glass
 
@@ -369,8 +369,8 @@
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "plasmarglass"
 	matter_amounts = alist(
-		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET,
-		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET
+		/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 1 MATERIAL_SHEET,
+		/decl/material/plasma = 1 MATERIAL_SHEET
 	)
 	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/plasma = 2)
 	material = /decl/material/reinforced_plasma_glass
