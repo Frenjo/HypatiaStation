@@ -6,7 +6,7 @@
 /obj/item/robot_upgrade/tasercooler
 	name = "security robot rapid taser cooling module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
-	icon_state = "robot_upgrade3"
+	icon_state = "taser_cooler" //upgrade3
 
 	matter_amounts = /datum/design/robofab/robot_upgrade/taser_cooler::materials
 

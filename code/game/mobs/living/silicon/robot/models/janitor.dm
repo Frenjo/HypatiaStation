@@ -13,7 +13,7 @@
 		/obj/item/mop,
 		/obj/item/lightreplacer
 	)
-	emag_modules = list(/obj/item/reagent_holder/spray/lube)
+	emag_modules = list(/obj/item/reagent_holder/spray/lube, /obj/item/soap/syndie)
 
 	channels = list(CHANNEL_SERVICE)
 
@@ -72,3 +72,12 @@
 	if(robby.emagged)
 		var/obj/item/reagent_holder/spray/lube/spray = locate() in modules
 		spray.reagents.add_reagent("lube", 2)
+
+/obj/item/robot_model/janitor/on_emag(mob/living/silicon/robot/robby)
+	var/obj/item/soap/nanotrasen/soap = locate() in modules // Removes the regular soap.
+	qdel(soap)
+	. = ..()
+
+/obj/item/robot_model/janitor/on_unemag(mob/living/silicon/robot/robby)
+	modules.Add(new /obj/item/soap/nanotrasen(src)) // Re-adds the regular soap.
+	. = ..()

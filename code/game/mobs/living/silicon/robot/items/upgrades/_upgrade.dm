@@ -4,8 +4,8 @@
 /obj/item/robot_upgrade
 	name = "robot upgrade module"
 	desc = "Protected by FRM."
-	icon = 'icons/obj/items/module.dmi'
-	icon_state = "robot_upgrade"
+	icon = 'icons/obj/items/robot_upgrades.dmi'
+	icon_state = "upgrade"
 
 	var/locked = FALSE
 	var/installed = FALSE

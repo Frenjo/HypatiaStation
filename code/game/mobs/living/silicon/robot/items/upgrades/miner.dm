@@ -2,7 +2,7 @@
 /obj/item/robot_upgrade/jetpack
 	name = "miner robot jetpack module"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
-	icon_state = "robot_upgrade3"
+	icon_state = "jetpack" //upgrade3
 
 	matter_amounts = /datum/design/robofab/robot_upgrade/jetpack::materials
 
@@ -27,7 +27,7 @@
 /obj/item/robot_upgrade/holding_satchel
 	name = "miner robot holding satchel module"
 	desc = "A modified holding satchel designed for a miner robot."
-	icon_state = "robot_upgrade3"
+	icon_state = "holding_satchel" //upgrade3
 
 	matter_amounts = /datum/design/robofab/robot_upgrade/holding_satchel::materials
 	origin_tech = /datum/design/robofab/robot_upgrade/holding_satchel::req_tech

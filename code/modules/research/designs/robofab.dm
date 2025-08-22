@@ -105,7 +105,7 @@
 /datum/design/robofab/robot_upgrade/reset
 	name = "Model Reset Module"
 	desc = "Allows for the construction of robot model reset modules."
-	materials = alist(/decl/material/steel = 10000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_path = /obj/item/robot_upgrade/reset
 
 /datum/design/robofab/robot_upgrade/rename
@@ -124,16 +124,27 @@
 	name = "VTEC Module"
 	desc = "Allows for the construction of robot VTEC modules."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/engineering = 3)
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3
+	)
 	build_path = /obj/item/robot_upgrade/vtec
+
+/datum/design/robofab/robot_upgrade/expander
+	name = "Expander Module"
+	desc = "Allows for the construction of robot expander modules."
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3)
+	// This is the total amount of steel it costs to build a whole other robot endoskeleton.
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 90.5)
+	build_path = /obj/item/robot_upgrade/expander
 
 /datum/design/robofab/robot_upgrade/taser_cooler
 	name = "Security Rapid Taser Cooling Module"
 	desc = "Allows for the construction of rapid taser cooling modules for security robots."
 	req_tech = alist(/decl/tech/combat = 2, /decl/tech/engineering = 3)
 	materials = alist(
-		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000,
-		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
 	)
 	build_path = /obj/item/robot_upgrade/tasercooler
 
@@ -141,7 +152,10 @@
 	name = "Miner Jetpack Module"
 	desc = "Allows for the construction of jetpack modules for miner robots."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2)
-	materials = alist(/decl/material/steel = 10000, /decl/material/uranium = 20000, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 8)
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 10,
+		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 8
+	)
 	build_path = /obj/item/robot_upgrade/jetpack
 
 /datum/design/robofab/robot_upgrade/holding_satchel
@@ -152,27 +166,23 @@
 	reliability_base = /datum/design/bluespace/mining_satchel_holding::reliability_base
 	build_path = /obj/item/robot_upgrade/holding_satchel
 
-/datum/design/robofab/robot_upgrade/syndicate
+/datum/design/robofab/robot_upgrade/scrambled
 	name = "Scrambled Equipment Module"
 	desc = "Allows for the construction of illegal upgrades for robots."
 	req_tech = alist(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
-	materials = alist(/decl/material/steel = 10000, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = 10000)
-	build_path = /obj/item/robot_upgrade/syndicate
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8,
+		/decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 5
+	)
+	build_path = /obj/item/robot_upgrade/scrambled
 
 /datum/design/robofab/robot_upgrade/flashproof
 	name = "Flash Suppression Module"
 	desc = "Allows for the construction of robot flash-suppression modules."
 	req_tech = alist(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
 	materials = alist(
-		/decl/material/steel = 10000, /decl/material/glass = 2000, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2,
-		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET,
+		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET,
+		/decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
 	build_path = /obj/item/robot_upgrade/flashproof
-
-/datum/design/robofab/robot_upgrade/expander
-	name = "Expander Module"
-	desc = "Allows for the construction of robot expander modules."
-	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3)
-	// This is the total amount of steel it costs to build a whole other robot endoskeleton.
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 90.5)
-	build_path = /obj/item/robot_upgrade/expander
