@@ -1,6 +1,6 @@
 // Tesla Energy Relay
 /obj/item/mecha_equipment/tesla_energy_relay
-	name = "tesla energy relay"
+	name = "exosuit tesla energy relay"
 	desc = "An exosuit module that wirelessly drains energy from any available power channel in the local area. The performance index is quite low. \
 		(Can be attached to: Any Exosuit)"
 	icon_state = "tesla"

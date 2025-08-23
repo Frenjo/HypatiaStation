@@ -100,7 +100,7 @@
 
 // Cable Layer
 /obj/item/mecha_equipment/tool/cable_layer
-	name = "cable layer"
+	name = "mounted cable layer"
 	desc = "An exosuit-mounted cable layer. (Can be attached to: Working Exosuits)"
 	icon_state = "cable_layer"
 

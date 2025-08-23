@@ -114,7 +114,7 @@
 	locked = TRUE
 
 /obj/item/mmi/radio_enabled
-	name = "Radio-enabled Man-Machine Interface"
+	name = "radio-enabled man-machine interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 
 	matter_amounts = /datum/design/medical/mmi_radio::materials

@@ -1,6 +1,6 @@
 // Drill
 /obj/item/mecha_equipment/tool/drill
-	name = "drill"
+	name = "mounted drill"
 	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "drill"
 
@@ -52,7 +52,7 @@
 
 // Diamond Drill
 /obj/item/mecha_equipment/tool/drill/diamond
-	name = "diamond drill"
+	name = "mounted diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "diamond_drill"
 	matter_amounts = /datum/design/mechfab/equipment/working/diamond_drill::materials

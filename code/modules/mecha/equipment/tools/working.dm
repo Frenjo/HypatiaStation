@@ -1,6 +1,6 @@
 // Hydraulic Clamp
 /obj/item/mecha_equipment/tool/hydraulic_clamp
-	name = "hydraulic clamp"
+	name = "mounted hydraulic clamp"
 	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
 	icon_state = "clamp"
 
@@ -105,7 +105,7 @@
 // Safety Clamp (Kill Clamp)
 // This is pretty much just for the death-ripley so that it is harmless.
 /obj/item/mecha_equipment/tool/hydraulic_clamp/safety
-	name = "kill clamp"
+	name = "mounted kill clamp"
 	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY. (Can be attached to: Working Exosuits)"
 
 	energy_drain = 0
@@ -115,7 +115,7 @@
 // Rescue Jaw
 // A special variant of the hydraulic clamp for medical exosuits, it doesn't have cargo loading functionality.
 /obj/item/mecha_equipment/tool/hydraulic_clamp/rescue
-	name = "rescue jaw"
+	name = "mounted rescue jaw"
 	desc = "An exosuit-mounted jaws of life used to extricate casualties from dangerous areas. (Can be attached to: Any Medical exosuit except Rescue Ranger)"
 	icon_state = "rescue_jaw"
 
@@ -127,7 +127,7 @@
 
 // Extinguisher
 /obj/item/mecha_equipment/tool/extinguisher
-	name = "extinguisher"
+	name = "mounted extinguisher"
 	desc = "An exosuit-mounted fire extinguisher. (Can be attached to: Working Exosuits)"
 	icon_state = "exting"
 

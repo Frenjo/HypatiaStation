@@ -1,6 +1,6 @@
 // Repair Droid
 /obj/item/mecha_equipment/repair_droid
-	name = "repair droid"
+	name = "exosuit repair droid"
 	desc = "An automated repair droid which scans an exosuit for damage and repairs it. Can fix almost all types of external or internal damage. \
 		(Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"

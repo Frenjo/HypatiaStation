@@ -235,3 +235,15 @@ research holder datum.
 	desc = "The development of advanced automated, autonomous machines."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/programming = 3)
 */
+
+// Debug item for easily maxing out all tech levels.
+/obj/item/disk/research_debug
+	name = "debug research disk"
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "datadisk0"
+
+/obj/item/disk/research_debug/initialise()
+	. = ..()
+	origin_tech = alist()
+	for(var/path in subtypesof(/decl/tech))
+		origin_tech[path] = 21

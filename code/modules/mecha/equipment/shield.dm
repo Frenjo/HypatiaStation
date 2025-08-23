@@ -1,5 +1,5 @@
 /obj/item/mecha_equipment/shield_droid
-	name = "shield droid"
+	name = "exosuit shield droid"
 	icon_state = "shield_droid"
 
 	equip_cooldown = 1 SECOND
@@ -78,7 +78,7 @@
 
 // Linear
 /obj/item/mecha_equipment/shield_droid/linear
-	name = "linear shield droid"
+	name = "exosuit linear shield droid"
 	desc = "An automated shield droid that forms a rectangular, unidirectionally projectile-blocking wall in front of an exosuit. \
 		(Can be attached to: Any Exosuit)"
 	matter_amounts = /datum/design/mechfab/equipment/general/linear_shield_droid::materials
@@ -88,7 +88,7 @@
 
 // Omnidirectional
 /obj/item/mecha_equipment/shield_droid/omnidirectional
-	name = "omnidirectional shield droid"
+	name = "exosuit omnidirectional shield droid"
 	desc = "An automated shield droid that forms a rectangular, unidirectionally projectile-blocking wall around an exosuit. \
 		(Can be attached to: Any Exosuit)"
 	matter_amounts = /datum/design/mechfab/equipment/general/omnidirectional_shield_droid::materials

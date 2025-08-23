@@ -1,6 +1,6 @@
 // Syringe Gun
 /obj/item/mecha_equipment/medical/syringe_gun
-	name = "syringe gun"
+	name = "mounted syringe gun"
 	desc = "An exosuit-mounted syringe gun with integrated chemical synthesiser. Any contained reagents are held in stasis, so no reactions will occur. \
 		(Can be attached to: Medical Exosuits)"
 	icon_state = "syringe_gun"
