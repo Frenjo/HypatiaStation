@@ -154,8 +154,8 @@
 	req_tech = /datum/design/experimental_welder::req_tech
 	// These are the values from /datum/design/experimental_welder except all of the MATERIAL_SHEETS values have +0.25.
 	materials = alist(
-		/decl/material/steel = (0.5 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.75 MATERIAL_SHEETS) * 1.2,
-		/decl/material/plasma = (0.75 MATERIAL_SHEETS) * 1.5, /decl/material/uranium = (0.5 MATERIAL_SHEETS) * 2
+		/decl/material/steel = HALF_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = (0.75 MATERIAL_SHEETS) * 1.2,
+		/decl/material/plasma = (0.75 MATERIAL_SHEETS) * 1.5, /decl/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 2
 	)
 	build_path = /obj/item/robot_upgrade/experimental_welder
 

@@ -20,12 +20,12 @@
 /datum/design/autolathe/welding_torch
 	name = "Welding Torch"
 	req_tech = alist(/decl/tech/engineering = 1)
-	materials = alist(/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.25 MATERIAL_SHEETS) * 0.3)
+	materials = alist(/decl/material/steel = QUARTER_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = QUARTER_SHEET_MATERIAL_AMOUNT * 0.3)
 	build_path = /obj/item/welding_torch
 
 /datum/design/autolathe/industrial_welding_torch
 	name = "Industrial Welding Torch"
-	materials = alist(/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.25 MATERIAL_SHEETS) * 0.6)
+	materials = alist(/decl/material/steel = QUARTER_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = QUARTER_SHEET_MATERIAL_AMOUNT * 0.6)
 	build_path = /obj/item/welding_torch/industrial
 	hidden = TRUE
 

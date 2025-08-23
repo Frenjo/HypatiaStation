@@ -11,7 +11,7 @@
 	// The type path of the associated coin item.
 	var/coin_path
 	// The amount of this material that each sheet holds.
-	var/per_unit = MATERIAL_AMOUNT_PER_SHEET
+	var/per_unit = SHEET_MATERIAL_AMOUNT
 
 	/*
 	 * Wall

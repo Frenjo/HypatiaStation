@@ -440,7 +440,7 @@
 	name = "upgraded welding torch"
 	max_fuel = 80
 	w_class = WEIGHT_CLASS_NORMAL
-	matter_amounts = alist(/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.25 MATERIAL_SHEETS) * 1.2)
+	matter_amounts = alist(/decl/material/steel = QUARTER_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = QUARTER_SHEET_MATERIAL_AMOUNT * 1.2)
 	origin_tech = alist(/decl/tech/engineering = 3)
 
 /obj/item/welding_torch/experimental
