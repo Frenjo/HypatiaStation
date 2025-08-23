@@ -153,7 +153,7 @@
 		return TRUE
 
 	if(iswelder(tool) && user.a_intent != "hurt")
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(!welder.remove_fuel(0, user))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE

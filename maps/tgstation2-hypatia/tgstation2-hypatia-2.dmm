@@ -9768,7 +9768,7 @@
 /turf/open/floor/shuttle/white,
 /area/centcom/rescue_shuttle/one)
 "Wr" = (
-/obj/item/weldingtool,
+/obj/item/welding_torch,
 /obj/structure/window/reinforced{
 	dir = 1
 	},

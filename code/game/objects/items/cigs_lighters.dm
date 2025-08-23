@@ -87,8 +87,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user)
 	..()
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
-		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a welding tool
+		var/obj/item/welding_torch/WT = W
+		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a welding torch.
 			light(SPAN_NOTICE("[user] casually lights the [name] with [W]."))
 
 	else if(istype(W, /obj/item/lighter/zippo))
@@ -250,7 +250,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/cigar/attackby(obj/item/W, mob/user)
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.isOn())
 			light(SPAN_NOTICE("[user] insults [name] by lighting it with [W]."))
 
@@ -329,7 +329,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/pipe/attackby(obj/item/W, mob/user)
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.isOn())//
 			light(SPAN_NOTICE("[user] recklessly lights [name] with [W]."))
 

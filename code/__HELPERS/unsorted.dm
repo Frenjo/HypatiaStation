@@ -405,8 +405,8 @@
 
 /proc/is_hot(obj/item/W)
 	switch(W.type)
-		if(/obj/item/weldingtool)
-			var/obj/item/weldingtool/WT = W
+		if(/obj/item/welding_torch)
+			var/obj/item/welding_torch/WT = W
 			if(WT.isOn())
 				return 3800
 			else
@@ -464,7 +464,7 @@
 		W.sharp											|| \
 		istype(W, /obj/item/screwdriver)			|| \
 		istype(W, /obj/item/pen)					|| \
-		istype(W, /obj/item/weldingtool)			|| \
+		istype(W, /obj/item/welding_torch)			|| \
 		istype(W, /obj/item/lighter/zippo)		|| \
 		istype(W, /obj/item/match)				|| \
 		istype(W, /obj/item/clothing/mask/cigarette)

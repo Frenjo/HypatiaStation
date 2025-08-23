@@ -56,7 +56,7 @@
 		/obj/item/pickaxe,
 		/obj/item/shovel,
 		/obj/item/table_parts,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
 		/obj/item/screwdriver,

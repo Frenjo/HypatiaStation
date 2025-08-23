@@ -230,7 +230,7 @@
 		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
 		return
 	else if(iswelder(W) && opened && has_electronics == 0 && !terminal)
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.get_fuel() < 3)
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return

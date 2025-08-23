@@ -132,7 +132,7 @@
 	if(prob(70))
 		starts_with.Add(/obj/item/wrench)
 	if(prob(70))
-		starts_with.Add(/obj/item/weldingtool)
+		starts_with.Add(/obj/item/welding_torch)
 	if(prob(70))
 		starts_with.Add(/obj/item/crowbar)
 	if(prob(70))

@@ -20,7 +20,7 @@
 					anchored = TRUE
 					state = 1
 			if(iswelder(object))
-				var/obj/item/weldingtool/WT = object
+				var/obj/item/welding_torch/WT = object
 				if(!WT.isOn())
 					to_chat(user, "The welder must be on for this task.")
 					return

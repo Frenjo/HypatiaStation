@@ -120,9 +120,9 @@
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
-		/obj/item/weldingtool/largetank,
-		/obj/item/weldingtool/largetank,
-		/obj/item/weldingtool/largetank,
+		/obj/item/welding_torch/industrial,
+		/obj/item/welding_torch/industrial,
+		/obj/item/welding_torch/industrial,
 		/obj/item/weldpack,
 		/obj/item/weldpack,
 		/obj/item/weldpack

@@ -265,7 +265,7 @@
 		/obj/item/cautery = 100,
 		/obj/item/clothing/mask/cigarette = 75,
 		/obj/item/lighter = 50,
-		/obj/item/weldingtool = 25
+		/obj/item/welding_torch = 25
 	)
 
 	min_duration = 70

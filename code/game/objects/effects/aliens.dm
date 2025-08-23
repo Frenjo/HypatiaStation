@@ -239,7 +239,7 @@ Alien plants should do something if theres a lot of poison
 	var/damage = W.force / 4.0
 
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
@@ -415,7 +415,7 @@ Alien plants should do something if theres a lot of poison
 	var/damage = W.force / 4.0
 
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

@@ -224,7 +224,7 @@
 
 	else if(iswelder(I))
 		if(anchored)
-			var/obj/item/weldingtool/W = I
+			var/obj/item/welding_torch/W = I
 			if(W.remove_fuel(0, user))
 				playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 				to_chat(user, "Welding the [nicetype] in place.")

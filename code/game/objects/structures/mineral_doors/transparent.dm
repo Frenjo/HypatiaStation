@@ -12,7 +12,7 @@
 
 /obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W, mob/user)
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			TemperatureAct(100)
 	..()

@@ -10,7 +10,7 @@
 		/obj/item/fire_extinguisher,
 		/obj/item/robot_module/sight/meson,
 		/obj/item/rcd/borg,
-		/obj/item/weldingtool/largetank,
+		/obj/item/welding_torch/industrial,
 		/obj/item/screwdriver,
 		/obj/item/wrench,
 		/obj/item/crowbar,

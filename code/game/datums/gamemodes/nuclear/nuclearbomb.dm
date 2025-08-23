@@ -97,7 +97,7 @@ var/bomb_set
 		switch(removal_stage)
 			if(0)
 				if(iswelder(tool))
-					var/obj/item/weldingtool/welder = tool
+					var/obj/item/welding_torch/welder = tool
 					if(!welder.isOn())
 						return TRUE
 					if(welder.get_fuel() < 5) // uses up 5 fuel.
@@ -136,7 +136,7 @@ var/bomb_set
 
 			if(2)
 				if(iswelder(tool))
-					var/obj/item/weldingtool/welder = tool
+					var/obj/item/welding_torch/welder = tool
 					if(!welder.isOn())
 						return TRUE
 					if(welder.get_fuel() < 5) // uses up 5 fuel.

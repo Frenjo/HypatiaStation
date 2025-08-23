@@ -237,7 +237,7 @@
 		return TRUE
 
 	if(iswelder(tool) && !(operating > 0) && density)
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(!welder.remove_fuel(0, user))
 			return TRUE
 		user.visible_message(

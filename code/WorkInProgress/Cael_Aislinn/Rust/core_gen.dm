@@ -130,7 +130,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		return TRUE
 
 	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(isnotnull(owned_field))
 			FEEDBACK_TURN_OFF_FIRST(user)
 			return TRUE

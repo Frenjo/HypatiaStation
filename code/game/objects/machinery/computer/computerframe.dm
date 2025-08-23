@@ -24,9 +24,9 @@
 					anchored = TRUE
 					state = 1
 			if(iswelder(P))
-				var/obj/item/weldingtool/WT = P
+				var/obj/item/welding_torch/WT = P
 				if(!WT.remove_fuel(0, user))
-					to_chat(user, SPAN_WARNING("The welding tool must be on to complete this task."))
+					to_chat(user, SPAN_WARNING("\The [WT] must be on to complete this task."))
 					return
 				playsound(src, 'sound/items/Welder.ogg', 50, 1)
 				if(do_after(user, 20))

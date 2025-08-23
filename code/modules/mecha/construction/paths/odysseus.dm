@@ -34,7 +34,7 @@
 		// 11
 		list(
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WRENCHED,
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"message" = "welded internal armour layer",
 			"back_key" = /obj/item/wrench,
 			"back_message" = "unfastened internal armour layer"
@@ -45,7 +45,7 @@
 			"key" = /obj/item/mecha_part/part/odysseus/carapace,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed external carapace",
-			"back_key" = /obj/item/weldingtool,
+			"back_key" = /obj/item/welding_torch,
 			"back_message" = "cut away internal armour layer"
 		),
 		// 13
@@ -59,7 +59,7 @@
 		// 14
 		list(
 			"desc" = "The external carapace is wrenched.",
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"message" = "welded external carapace",
 			"back_key" = /obj/item/wrench,
 			"back_message" = "unfastened external carapace"

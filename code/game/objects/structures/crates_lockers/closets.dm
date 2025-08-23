@@ -196,7 +196,7 @@
 		if(istype(W, /obj/item/tk_grab))
 			return 0
 		if(iswelder(W))
-			var/obj/item/weldingtool/WT = W
+			var/obj/item/welding_torch/WT = W
 			if(!WT.remove_fuel(0, user))
 				return
 			new /obj/item/stack/sheet/steel(loc)
@@ -214,7 +214,7 @@
 	else if(istype(W, /obj/item/package_wrap))
 		return
 	else if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(!WT.remove_fuel(0, user))
 			return
 		src.welded = !src.welded

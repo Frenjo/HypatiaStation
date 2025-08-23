@@ -15,7 +15,7 @@
 
 /obj/item/weldpack/attack_tool(obj/item/tool, mob/user)
 	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(welder.welding && prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")

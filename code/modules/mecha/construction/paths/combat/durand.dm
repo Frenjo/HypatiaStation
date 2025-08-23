@@ -32,7 +32,7 @@
 		// 20
 		list(
 			"desc" = "The external armour plates are wrenched.",
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"message" = "welded external armour plates",
 			"back_key" = /obj/item/wrench,
 			"back_message" = "unfastened external armour plates"

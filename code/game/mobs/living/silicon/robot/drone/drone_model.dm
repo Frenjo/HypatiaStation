@@ -11,7 +11,7 @@
 
 	basic_modules = list(
 		/obj/item/fire_extinguisher/mini,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/screwdriver,
 		/obj/item/wrench,
 		/obj/item/crowbar,

@@ -68,3 +68,14 @@
 	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
+
+/datum/design/experimental_welder
+	name = "Tool Design (Experimental Welding Torch)"
+	desc = "An advanced welding torch design that regenerates its internal fuel reserve over time."
+	req_tech = alist(/decl/tech/engineering = 4, /decl/tech/plasma = 3)
+	build_type = DESIGN_TYPE_PROTOLATHE
+	materials = alist(
+		/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.5 MATERIAL_SHEETS) * 1.2,
+		/decl/material/plasma = (0.5 MATERIAL_SHEETS) * 1.5, /decl/material/uranium = (0.25 MATERIAL_SHEETS) * 2
+	)
+	build_path = /obj/item/welding_torch/experimental

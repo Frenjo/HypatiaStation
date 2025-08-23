@@ -48,7 +48,7 @@
 
 /obj/item/ore/strangerock/attackby(obj/item/W, mob/user)
 	if(iswelder(W))
-		var/obj/item/weldingtool/w = W
+		var/obj/item/welding_torch/w = W
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)
 				if(inside)

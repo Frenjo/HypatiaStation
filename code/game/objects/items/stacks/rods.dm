@@ -14,7 +14,7 @@
 
 /obj/item/stack/rods/attack_tool(obj/item/tool, mob/user)
 	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(amount < 2)
 			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
 			return TRUE

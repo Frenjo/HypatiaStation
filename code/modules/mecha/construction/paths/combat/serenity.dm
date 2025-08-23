@@ -26,7 +26,7 @@
 		// 20
 		list(
 			"desc" = "The external carapace is wrenched.",
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"icon_state" = "serenity19",
 			"message" = "welded external carapace",
 			"back_key" = /obj/item/wrench,

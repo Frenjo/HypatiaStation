@@ -17,7 +17,7 @@
 	var/lit = 0	//on or off
 	var/operating = 0//cooldown
 	var/turf/previousturf = null
-	var/obj/item/weldingtool/weldtool = null
+	var/obj/item/welding_torch/weldtool = null
 	var/obj/item/assembly/igniter/igniter = null
 	var/obj/item/tank/plasma/ptank = null
 
@@ -203,7 +203,7 @@
 
 /obj/item/flamethrower/full/New(loc)
 	..()
-	weldtool = new /obj/item/weldingtool(src)
+	weldtool = new /obj/item/welding_torch(src)
 	weldtool.status = 0
 	igniter = new /obj/item/assembly/igniter(src)
 	igniter.secured = 0

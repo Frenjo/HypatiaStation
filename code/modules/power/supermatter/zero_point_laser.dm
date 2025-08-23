@@ -153,7 +153,7 @@
 		return
 
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(active)
 			FEEDBACK_TURN_OFF_FIRST(user)
 			return

@@ -78,7 +78,7 @@
 		return
 
 	else if(icon_state == "ladderdown" && d_state == 1 && iswelder(C))
-		var/obj/item/weldingtool/WT = C
+		var/obj/item/welding_torch/WT = C
 		if(WT.remove_fuel(0,user))
 
 			user << "<span class='notice'>You begin to remove the ladder.</span>"

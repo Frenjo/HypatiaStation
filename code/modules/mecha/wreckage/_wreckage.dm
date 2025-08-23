@@ -35,7 +35,7 @@
 		if(salvage_num <= 0)
 			to_chat(user, SPAN_WARNING("You don't see anything that can be cut with \the [tool]."))
 			return TRUE
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(!isemptylist(welder_salvage) && welder.remove_fuel(0, user))
 			var/type = prob(70) ? pick(welder_salvage) : null
 			if(isnotnull(type))

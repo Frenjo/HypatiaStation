@@ -725,7 +725,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		return TRUE
 
 	if(iswelder(I) && !build_step)
-		var/obj/item/weldingtool/WT = I
+		var/obj/item/welding_torch/WT = I
 		if(WT.remove_fuel(0, user))
 			build_step++
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)

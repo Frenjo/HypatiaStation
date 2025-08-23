@@ -31,7 +31,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	can_store = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/t_scanner, /obj/item/rcd, /obj/item/crowbar,
-		/obj/item/screwdriver, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/multitool,
+		/obj/item/screwdriver, /obj/item/welding_torch, /obj/item/wirecutters, /obj/item/wrench, /obj/item/multitool,
 		/obj/item/radio, /obj/item/gas_analyser, /obj/item/gun/energy/laser, /obj/item/gun/energy/pulse_rifle,
 		/obj/item/gun/energy/taser, /obj/item/melee/baton, /obj/item/gun/energy/gun
 	)

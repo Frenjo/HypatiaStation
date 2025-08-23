@@ -230,7 +230,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			to_chat(user, SPAN_INFO("You begin to weld the vent."))
 			if(do_after(user, 20))
@@ -254,7 +254,7 @@
 					welded = FALSE
 					update_icon()
 			else
-				to_chat(user, SPAN_INFO("The welding tool needs to be on to start this task."))
+				to_chat(user, SPAN_INFO("\The [WT] needs to be on to start this task."))
 		else
 			return 1
 

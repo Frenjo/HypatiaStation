@@ -148,6 +148,17 @@
 	)
 	build_path = /obj/item/robot_upgrade/tasercooler
 
+/datum/design/robofab/robot_upgrade/experimental_welder
+	name = "Engineering Experimental Welding Torch Module"
+	desc = "Allows for the construction of experimental welding torch modules for engineering robots."
+	req_tech = /datum/design/experimental_welder::req_tech
+	// These are the values from /datum/design/experimental_welder except all of the MATERIAL_SHEETS values have +0.25.
+	materials = alist(
+		/decl/material/steel = (0.5 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.75 MATERIAL_SHEETS) * 1.2,
+		/decl/material/plasma = (0.75 MATERIAL_SHEETS) * 1.5, /decl/material/uranium = (0.5 MATERIAL_SHEETS) * 2
+	)
+	build_path = /obj/item/robot_upgrade/experimental_welder
+
 /datum/design/robofab/robot_upgrade/jetpack
 	name = "Miner Jetpack Module"
 	desc = "Allows for the construction of jetpack modules for miner robots."

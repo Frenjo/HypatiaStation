@@ -128,7 +128,7 @@
 	if(operating)
 		return//Already doing something.
 	if(iswelder(C))
-		var/obj/item/weldingtool/W = C
+		var/obj/item/welding_torch/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
 			user.visible_message(

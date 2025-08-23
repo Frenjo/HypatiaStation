@@ -17,16 +17,16 @@
 	materials = alist(/decl/material/steel = 80)
 	build_path = /obj/item/wirecutters
 
-/datum/design/autolathe/welding_tool
-	name = "Welding Tool"
+/datum/design/autolathe/welding_torch
+	name = "Welding Torch"
 	req_tech = alist(/decl/tech/engineering = 1)
-	materials = alist(/decl/material/steel = 70, /decl/material/glass = 30)
-	build_path = /obj/item/weldingtool
+	materials = alist(/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.25 MATERIAL_SHEETS) * 0.3)
+	build_path = /obj/item/welding_torch
 
-/datum/design/autolathe/industrial_welding_tool
-	name = "Industrial Welding Tool"
-	materials = alist(/decl/material/steel = 70, /decl/material/glass = 60)
-	build_path = /obj/item/weldingtool/largetank
+/datum/design/autolathe/industrial_welding_torch
+	name = "Industrial Welding Torch"
+	materials = alist(/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.25 MATERIAL_SHEETS) * 0.6)
+	build_path = /obj/item/welding_torch/industrial
 	hidden = TRUE
 
 /datum/design/autolathe/crowbar

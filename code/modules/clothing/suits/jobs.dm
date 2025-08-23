@@ -122,7 +122,7 @@
 	can_store = list(
 		/obj/item/gas_analyser, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter,
 		/obj/item/radio, /obj/item/t_scanner, /obj/item/crowbar, /obj/item/screwdriver,
-		/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency/oxygen,
+		/obj/item/welding_torch, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
 

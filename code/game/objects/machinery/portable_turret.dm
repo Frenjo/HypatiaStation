@@ -732,7 +732,7 @@ Status: []<BR>"},
 				return
 
 			else if(iswelder(W))
-				var/obj/item/weldingtool/WT = W
+				var/obj/item/welding_torch/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5) // uses up 5 fuel.
 					to_chat(user, SPAN_WARNING("You need more fuel to complete this task."))
@@ -800,7 +800,7 @@ Status: []<BR>"},
 
 		if(7)
 			if(iswelder(W))
-				var/obj/item/weldingtool/WT = W
+				var/obj/item/welding_torch/WT = W
 				if(!WT.isOn()) return
 				if(WT.get_fuel() < 5)
 					to_chat(user, SPAN_WARNING("You need more fuel to complete this task."))

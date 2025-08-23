@@ -306,7 +306,7 @@
 			to_chat(user, "You attach the screws around the power connection.")
 			return
 	else if(iswelder(I) && c_mode == 1)
-		var/obj/item/weldingtool/W = I
+		var/obj/item/welding_torch/W = I
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 			to_chat(user, "You start slicing the floorweld off the delivery chute.")

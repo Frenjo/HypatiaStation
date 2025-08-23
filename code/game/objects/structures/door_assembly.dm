@@ -142,7 +142,7 @@
 		return
 
 	if(iswelder(W) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 			if(istext(glass))

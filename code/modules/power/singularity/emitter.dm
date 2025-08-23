@@ -208,7 +208,7 @@
 		return TRUE
 
 	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(active)
 			FEEDBACK_TURN_OFF_FIRST(user)
 			return TRUE

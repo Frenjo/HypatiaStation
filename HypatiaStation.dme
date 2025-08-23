@@ -719,6 +719,7 @@
 #include "code\game\mobs\living\silicon\robot\items\modules\service.dm"
 #include "code\game\mobs\living\silicon\robot\items\modules\sight.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\_upgrade.dm"
+#include "code\game\mobs\living\silicon\robot\items\upgrades\engineering.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\generic.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\illegal.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\maintenance.dm"

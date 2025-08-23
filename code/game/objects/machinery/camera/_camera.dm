@@ -130,7 +130,7 @@
 		return TRUE
 
 	if(iswelder(tool) && wires.CanDeconstruct())
-		var/obj/item/weldingtool/WT = tool
+		var/obj/item/welding_torch/WT = tool
 		if(weld(WT, user))
 			if(isnotnull(assembly))
 				assembly.forceMove(loc)
@@ -275,7 +275,7 @@
 			return C
 	return null
 
-/obj/machinery/camera/proc/weld(obj/item/weldingtool/WT, mob/user)
+/obj/machinery/camera/proc/weld(obj/item/welding_torch/WT, mob/user)
 	if(busy)
 		return 0
 	if(!WT.isOn())

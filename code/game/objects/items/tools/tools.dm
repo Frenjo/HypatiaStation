@@ -6,7 +6,7 @@
  *	Wrench
  *	Screwdriver
  *	Wirecutters
- *	Welding Tool
+ *	Welding Torch
  *	Crowbar
  *	Multitool
  */
@@ -141,13 +141,13 @@
 		..()
 
 /*
- * Welding Tool
+ * Welding Torch
  */
-#define WELDING_TOOL_OFF 0
-#define WELDING_TOOL_ON 1
-#define WELDING_TOOL_WELDING 2
-/obj/item/weldingtool
-	name = "welding tool"
+#define WELDING_TORCH_OFF 0
+#define WELDING_TORCH_ON 1
+#define WELDING_TORCH_WELDING 2
+/obj/item/welding_torch
+	name = "welding torch"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 
@@ -163,29 +163,29 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	//Cost to make in the autolathe
-	matter_amounts = /datum/design/autolathe/welding_tool::materials
+	matter_amounts = /datum/design/autolathe/welding_torch::materials
 
 	//R&D tech level
-	origin_tech = /datum/design/autolathe/welding_tool::req_tech
+	origin_tech = /datum/design/autolathe/welding_torch::req_tech
 
-	//Welding tool specific stuff
-	var/welding = WELDING_TOOL_OFF	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
+	//Welding torch specific stuff
+	var/welding = WELDING_TORCH_OFF	//Whether or not the welding torch is off(0), on(1) or currently welding(2)
 	var/status = 1					//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
 	var/max_fuel = 20				//The max amount of fuel the welder can hold
 
-/obj/item/weldingtool/New()
+/obj/item/welding_torch/New()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	create_reagents(max_fuel)
 	reagents.add_reagent("fuel", max_fuel)
 	. = ..()
 
-/obj/item/weldingtool/get_examine_text(mob/user)
+/obj/item/welding_torch/get_examine_text(mob/user)
 	. = ..()
 	if(!in_range(src, user))
 		return
 	. += SPAN_INFO("It has <em>[get_fuel()]/[max_fuel]</em> units of fuel left!")
 
-/obj/item/weldingtool/attack_tool(obj/item/tool, mob/user)
+/obj/item/welding_torch/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))
 		if(welding)
 			FEEDBACK_TURN_OFF_FIRST(user)
@@ -200,7 +200,7 @@
 
 	return ..()
 
-/obj/item/weldingtool/attack_by(obj/item/I, mob/user)
+/obj/item/welding_torch/attack_by(obj/item/I, mob/user)
 	if(!status && istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
 		R.use(1)
@@ -221,10 +221,10 @@
 		return TRUE
 	return ..()
 
-/obj/item/weldingtool/process()
+/obj/item/welding_torch/process()
 	switch(welding)
 		//If off
-		if(WELDING_TOOL_OFF)
+		if(WELDING_TORCH_OFF)
 			if(src.icon_state != "welder") //Check that the sprite is correct, if it isnt, it means toggle() was not called
 				src.force = 3
 				src.damtype = "brute"
@@ -232,7 +232,7 @@
 				src.welding = 0
 			return PROCESS_KILL
 		//Welders left on now use up fuel, but lets not have them run out quite that fast
-		if(WELDING_TOOL_ON)
+		if(WELDING_TORCH_ON)
 			if(src.icon_state != "welder1") //Check that the sprite is correct, if it isnt, it means toggle() was not called
 				src.force = 15
 				src.damtype = "fire"
@@ -242,7 +242,7 @@
 
 		//If you're actually actively welding, use fuel faster.
 		//Is this actually used or set anywhere? - Nodrak
-		if(WELDING_TOOL_WELDING)
+		if(WELDING_TORCH_WELDING)
 			if(prob(75))
 				remove_fuel(1)
 
@@ -255,7 +255,7 @@
 			location = GET_TURF(M)
 	location?.hotspot_expose(700, 5)
 
-/obj/item/weldingtool/afterattack(obj/O, mob/user, proximity)
+/obj/item/welding_torch/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src, O) <= 1 && !src.welding)
@@ -279,16 +279,16 @@
 		location?.hotspot_expose(700, 50, 1)
 	return
 
-/obj/item/weldingtool/attack_self(mob/user)
+/obj/item/welding_torch/attack_self(mob/user)
 	toggle()
 	return
 
 //Returns the amount of fuel in the welder
-/obj/item/weldingtool/proc/get_fuel()
+/obj/item/welding_torch/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-//Removes fuel from the welding tool. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
+//Removes fuel from the welding torch. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
+/obj/item/welding_torch/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding || !check_fuel())
 		return 0
 	if(get_fuel() >= amount)
@@ -302,13 +302,13 @@
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(M)
 		return 0
 
-//Returns whether or not the welding tool is currently on.
-/obj/item/weldingtool/proc/isOn()
+//Returns whether or not the welding torch is currently on.
+/obj/item/welding_torch/proc/isOn()
 	return src.welding
 
-//Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
-//so that the welding tool updates accordingly
-/obj/item/weldingtool/proc/setWelding(temp_welding)
+//Sets the welding state of the welding torch. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
+//so that the welding torch updates accordingly
+/obj/item/welding_torch/proc/setWelding(temp_welding)
 	//If we're turning it on
 	if(temp_welding > 0)
 		if(remove_fuel(1))
@@ -319,7 +319,7 @@
 			START_PROCESSING(PCobj, src)
 		else
 			to_chat(usr, SPAN_INFO("Need more fuel!"))
-			src.welding = WELDING_TOOL_OFF
+			src.welding = WELDING_TORCH_OFF
 			return
 	//Otherwise
 	else
@@ -327,17 +327,17 @@
 		src.force = 3
 		src.damtype = "brute"
 		src.icon_state = "welder"
-		src.welding = WELDING_TOOL_OFF
+		src.welding = WELDING_TORCH_OFF
 
 //Turns off the welder if there is no more fuel (does this really need to be its own proc?)
-/obj/item/weldingtool/proc/check_fuel()
+/obj/item/welding_torch/proc/check_fuel()
 	if(get_fuel() <= 0 && welding)
 		toggle(1)
 		return 0
 	return 1
 
 //Toggles the welder off and on
-/obj/item/weldingtool/proc/toggle(message = 0)
+/obj/item/welding_torch/proc/toggle(message = 0)
 	if(!status)
 		return
 	src.welding = !src.welding
@@ -350,7 +350,7 @@
 			START_PROCESSING(PCobj, src)
 		else
 			to_chat(usr, SPAN_INFO("Need more fuel!"))
-			src.welding = WELDING_TOOL_OFF
+			src.welding = WELDING_TORCH_OFF
 			return
 	else
 		if(!message)
@@ -360,11 +360,11 @@
 		src.force = 3
 		src.damtype = "brute"
 		src.icon_state = "welder"
-		src.welding = WELDING_TOOL_OFF
+		src.welding = WELDING_TORCH_OFF
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/weldingtool/proc/eyecheck(mob/user)
+/obj/item/welding_torch/proc/eyecheck(mob/user)
 	if(!iscarbon(user))
 		return 1
 	var/safety = user:eyecheck()
@@ -401,7 +401,7 @@
 					H.disabilities &= ~NEARSIGHTED
 	return
 
-/obj/item/weldingtool/attack(mob/M, mob/user)
+/obj/item/welding_torch/attack(mob/M, mob/user)
 	if(hasorgans(M))
 		var/datum/organ/external/S = M:organs_by_name[user.zone_sel.selecting]
 		if(!S)
@@ -426,33 +426,33 @@
 			to_chat(user, "Nothing to fix!")
 	else
 		return ..()
-#undef WELDING_TOOL_OFF
-#undef WELDING_TOOL_ON
-#undef WELDING_TOOL_WELDING
+#undef WELDING_TORCH_OFF
+#undef WELDING_TORCH_ON
+#undef WELDING_TORCH_WELDING
 
-/obj/item/weldingtool/largetank
-	name = "industrial welding tool"
+/obj/item/welding_torch/industrial
+	name = "industrial welding torch"
 	max_fuel = 40
-	matter_amounts = /datum/design/autolathe/industrial_welding_tool::materials
+	matter_amounts = /datum/design/autolathe/industrial_welding_torch::materials
 	origin_tech = alist(/decl/tech/engineering = 2)
 
-/obj/item/weldingtool/hugetank
-	name = "upgraded welding tool"
+/obj/item/welding_torch/upgraded
+	name = "upgraded welding torch"
 	max_fuel = 80
 	w_class = WEIGHT_CLASS_NORMAL
-	matter_amounts = alist(/decl/material/steel = 70, /decl/material/glass = 120)
+	matter_amounts = alist(/decl/material/steel = (0.25 MATERIAL_SHEETS) * 0.7, /decl/material/glass = (0.25 MATERIAL_SHEETS) * 1.2)
 	origin_tech = alist(/decl/tech/engineering = 3)
 
-/obj/item/weldingtool/experimental
-	name = "experimental welding tool"
+/obj/item/welding_torch/experimental
+	name = "experimental welding torch"
 	max_fuel = 40
 	w_class = WEIGHT_CLASS_NORMAL
-	matter_amounts = alist(/decl/material/steel = 70, /decl/material/glass = 120)
-	origin_tech = alist(/decl/tech/engineering = 4, /decl/tech/plasma = 3)
+	matter_amounts = /datum/design/experimental_welder::materials
+	origin_tech = /datum/design/experimental_welder::req_tech
 
 	var/last_gen = 0
 
-/obj/item/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
+/obj/item/welding_torch/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
 	var/gen_amount = (world.time - last_gen) / 25
 	reagents += gen_amount
 	if(reagents > max_fuel)

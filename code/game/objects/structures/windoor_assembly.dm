@@ -62,7 +62,7 @@
 	switch(state)
 		if("01")
 			if(iswelder(W) && !anchored)
-				var/obj/item/weldingtool/WT = W
+				var/obj/item/welding_torch/WT = W
 				if(WT.remove_fuel(0, user))
 					user.visible_message(
 						"[user] dissassembles the windoor assembly.",

@@ -15,7 +15,7 @@
 	can_hold = list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
 		/obj/item/multitool,
@@ -30,7 +30,7 @@
 	starts_with = list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
 		/obj/item/multitool
@@ -44,7 +44,7 @@
 	starts_with = list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
 		/obj/item/t_scanner,

@@ -174,7 +174,7 @@
 "ds" = (/obj/machinery/hydroponics,/obj/item/seeds/eggy,/turf/open/floor,/area/away_mission/academy/classrooms)
 "dt" = (/obj/machinery/hydroponics,/turf/open/floor,/area/away_mission/academy/classrooms)
 "du" = (/obj/effect/decal/floor/coloured/green{dir = 4},/turf/open/floor,/area/away_mission/academy/classrooms)
-"dv" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/effect/landmark{name = "awaystart"},/obj/item/weldingtool,/turf/open/floor/circuit_grid/green,/area/away_mission/academy/classrooms)
+"dv" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/effect/landmark{name = "awaystart"},/obj/item/welding_torch,/turf/open/floor/circuit_grid/green,/area/away_mission/academy/classrooms)
 "dw" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; tag = ""},/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/circuit_grid/green,/area/away_mission/academy/classrooms)
 "dx" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; tag = ""},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/circuit_grid/green,/area/away_mission/academy/classrooms)
 "dy" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/open/floor,/area/away_mission/academy/classrooms)

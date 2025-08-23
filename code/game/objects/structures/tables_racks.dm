@@ -490,7 +490,7 @@
 
 /obj/structure/table/reinforced/attackby(obj/item/W, mob/user)
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			if(src.status == 2)
 				to_chat(user, SPAN_INFO("Now weakening the reinforced table."))

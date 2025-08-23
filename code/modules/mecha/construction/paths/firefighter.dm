@@ -45,7 +45,7 @@
 		// 11
 		list(
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WRENCHED,
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"message" = "welded internal armour layer",
 			"back_key" = /obj/item/wrench,
 			"back_message" = "unfastened internal armour layer"
@@ -56,7 +56,7 @@
 			"key" = /obj/item/stack/sheet/plasteel,
 			"amount" = 5,
 			"message" = "installed external armour layer",
-			"back_key" = /obj/item/weldingtool,
+			"back_key" = /obj/item/welding_torch,
 			"back_message" = "cut away internal armour layer"
 		),
 		// 13
@@ -79,7 +79,7 @@
 		// 15
 		list(
 			"desc" = "The external reinforced armour layer is secured.",
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"message" = "welded external armour layer",
 			"back_key" = /obj/item/wrench,
 			"back_message" = "unfastened external armour layer"

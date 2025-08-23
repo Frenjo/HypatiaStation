@@ -8,7 +8,7 @@
 
 /turf/open/floor/plating/metal/attack_tool(obj/item/tool, mob/user)
 	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(welder.isOn())
 			if(broken || burnt)
 				if(welder.remove_fuel(0, user))

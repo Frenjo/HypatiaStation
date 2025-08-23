@@ -107,7 +107,7 @@
 		return TRUE
 
 	if(iswelder(tool) && opened && !has_electronics)
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(welder.get_fuel() < 3)
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE

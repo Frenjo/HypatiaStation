@@ -154,7 +154,7 @@
 	if(!anchored)
 		..()
 
-/obj/item/camera_assembly/proc/weld(obj/item/weldingtool/welder, mob/user)
+/obj/item/camera_assembly/proc/weld(obj/item/welding_torch/welder, mob/user)
 	if(busy)
 		return 0
 	if(!welder.isOn())

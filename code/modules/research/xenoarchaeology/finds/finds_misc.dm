@@ -24,7 +24,7 @@
 /obj/item/shard/plasma/attackby(obj/item/W, mob/user)
 	..()
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			var/obj/item/stack/sheet/glass/plasma/NG = new(user.loc)
 			for(var/obj/item/stack/sheet/glass/plasma/G in user.loc)

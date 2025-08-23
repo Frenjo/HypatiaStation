@@ -39,7 +39,7 @@
 		if(!getBruteLoss())
 			to_chat(user, SPAN_WARNING("Nothing to fix here!"))
 			return TRUE
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(welder.remove_fuel(0, user))
 			adjustBruteLoss(-30)
 			updatehealth()

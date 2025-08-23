@@ -45,7 +45,7 @@
 	starts_with = list(
 		/obj/item/screwdriver,
 		/obj/item/wrench,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/crowbar,
 		/obj/item/gas_analyser,
 		/obj/item/wirecutters
@@ -83,7 +83,7 @@
 	starts_with = list(
 		/obj/item/screwdriver,
 		/obj/item/wrench,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/crowbar,
 		/obj/item/wirecutters,
 		/obj/item/multitool

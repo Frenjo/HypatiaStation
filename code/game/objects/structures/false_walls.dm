@@ -88,7 +88,7 @@
 			qdel(src)
 
 		if(iswelder(W))
-			var/obj/item/weldingtool/WT = W
+			var/obj/item/welding_torch/WT = W
 			if( WT:welding )
 				T.ChangeTurf(material.wall_path)
 				if(!istype(material, /decl/material/plasma)) // Stupid shit keeps me from pushing the attackby() to plasma walls -Sieve
@@ -165,7 +165,7 @@
 		qdel(src)
 
 	if(iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			var/turf/T = GET_TURF(src)
 			T.ChangeTurf(/turf/closed/wall/steel)

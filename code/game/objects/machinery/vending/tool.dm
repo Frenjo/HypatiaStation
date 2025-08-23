@@ -26,10 +26,10 @@
 	//req_access = list(access_maint_tunnels) // Maintenance access.
 
 	products = list(
-		/obj/item/stack/cable_coil/random = 10, /obj/item/crowbar = 5, /obj/item/weldingtool = 3, /obj/item/wirecutters = 5,
+		/obj/item/stack/cable_coil/random = 10, /obj/item/crowbar = 5, /obj/item/welding_torch = 3, /obj/item/wirecutters = 5,
 		/obj/item/wrench = 5, /obj/item/gas_analyser = 5, /obj/item/t_scanner = 5, /obj/item/screwdriver = 5
 	)
-	contraband = list(/obj/item/weldingtool/hugetank = 2, /obj/item/clothing/gloves/fyellow = 2)
+	contraband = list(/obj/item/welding_torch/upgraded = 2, /obj/item/clothing/gloves/fyellow = 2)
 	premium = list(/obj/item/clothing/gloves/yellow = 1)
 
 /obj/machinery/vending/engivend
@@ -61,7 +61,7 @@
 		/obj/item/clothing/head/hardhat = 4, /obj/item/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4,
 		/obj/item/clothing/gloves/yellow = 4, /obj/item/screwdriver = 12, /obj/item/crowbar = 12, /obj/item/wirecutters = 12,
 		/obj/item/multitool = 12, /obj/item/wrench = 12, /obj/item/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8,
-		/obj/item/cell = 8, /obj/item/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/light/tube = 10,
+		/obj/item/cell = 8, /obj/item/welding_torch = 8, /obj/item/clothing/head/welding = 8, /obj/item/light/tube = 10,
 		/obj/item/clothing/suit/fire = 4, /obj/item/stock_part/scanning_module = 5, /obj/item/stock_part/micro_laser = 5,
 		/obj/item/stock_part/matter_bin = 5, /obj/item/stock_part/manipulator = 5, /obj/item/stock_part/console_screen = 5
 	)

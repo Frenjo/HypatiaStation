@@ -51,7 +51,7 @@
 			if(istype(W, /obj/item/melee/energy/sword))
 				qdel(src)
 			else if(iswelder(W))
-				var/obj/item/weldingtool/WT = W
+				var/obj/item/welding_torch/WT = W
 				if(WT.remove_fuel(0, user))
 					qdel(src)
 			else

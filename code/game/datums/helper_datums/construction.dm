@@ -105,7 +105,7 @@
 	. = TRUE
 
 	if(iswelder(used_item))
-		var/obj/item/weldingtool/W = used_item
+		var/obj/item/welding_torch/W = used_item
 		if(!W.remove_fuel(0, user))
 			return FALSE
 		playsound(holder, 'sound/items/Welder2.ogg', 50, 1)

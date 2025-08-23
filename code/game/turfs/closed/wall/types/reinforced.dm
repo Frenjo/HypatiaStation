@@ -63,7 +63,7 @@
 
 	if(rotting)
 		if(iswelder(W))
-			var/obj/item/weldingtool/WT = W
+			var/obj/item/welding_torch/WT = W
 			if(WT.remove_fuel(0, user))
 				to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [WT]."))
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
@@ -79,7 +79,7 @@
 	//THERMITE related stuff. Calls thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
 		if(iswelder(W))
-			var/obj/item/weldingtool/WT = W
+			var/obj/item/welding_torch/WT = W
 			if(WT.remove_fuel(0, user))
 				thermitemelt(user)
 				return
@@ -104,7 +104,7 @@
 		return
 
 	if(damage && iswelder(W))
-		var/obj/item/weldingtool/WT = W
+		var/obj/item/welding_torch/WT = W
 		if(WT.remove_fuel(0, user))
 			to_chat(user, SPAN_NOTICE("You start repairing the damage to [src]."))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -158,7 +158,7 @@
 
 		if(2)
 			if(iswelder(W))
-				var/obj/item/weldingtool/WT = W
+				var/obj/item/welding_torch/WT = W
 				if(WT.remove_fuel(0, user))
 					to_chat(user, SPAN_NOTICE("You begin slicing through the metal cover."))
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -219,7 +219,7 @@
 
 		if(5)
 			if(iswelder(W))
-				var/obj/item/weldingtool/WT = W
+				var/obj/item/welding_torch/WT = W
 				if(WT.remove_fuel(0, user))
 					to_chat(user, SPAN_NOTICE("You begin slicing through the support rods."))
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)

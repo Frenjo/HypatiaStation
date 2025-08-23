@@ -8759,7 +8759,7 @@
 "NW" = (
 /obj/structure/rack,
 /obj/item/clothing/head/welding,
-/obj/item/weldingtool,
+/obj/item/welding_torch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "NX" = (

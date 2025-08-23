@@ -1643,7 +1643,7 @@ turf/open/floor/return_siding_icon_state()
 			user << "\red You cannot shovel this."
 
 	if(iswelder(C))
-		var/obj/item/weldingtool/welder = C
+		var/obj/item/welding_torch/welder = C
 		if(welder.welding && (is_plating()))
 			if(broken || burnt)
 				if(welder.remove_fuel(0, user))

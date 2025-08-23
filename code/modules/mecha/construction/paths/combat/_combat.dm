@@ -84,7 +84,7 @@
 		),
 		list(
 			"desc" = "The internal armour layer is wrenched.",
-			"key" = /obj/item/weldingtool,
+			"key" = /obj/item/welding_torch,
 			"message" = "welded internal armour layer",
 			"back_key" = /obj/item/wrench,
 			"back_message" = "unfastened internal armour layer"
@@ -94,7 +94,7 @@
 			"key" = external_armour,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed external [is_external_carapace ? "carapace" : "armour plates"]",
-			"back_key" = /obj/item/weldingtool,
+			"back_key" = /obj/item/welding_torch,
 			"back_message" = "cut away internal armour layer"
 		),
 		list(

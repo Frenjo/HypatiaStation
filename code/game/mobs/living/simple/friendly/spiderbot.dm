@@ -62,7 +62,7 @@
 		if(health >= maxHealth)
 			to_chat(user, SPAN_INFO("\The [src] is undamaged!"))
 			return TRUE
-		var/obj/item/weldingtool/WT = tool
+		var/obj/item/welding_torch/WT = tool
 		if(!WT.remove_fuel(0, user))
 			return TRUE
 

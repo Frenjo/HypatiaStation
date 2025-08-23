@@ -32,7 +32,7 @@
 
 /obj/item/target/attack_tool(obj/item/tool, mob/user)
 	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
+		var/obj/item/welding_torch/welder = tool
 		if(welder.remove_fuel(0, user))
 			user.visible_message(
 				SPAN_NOTICE("[user] slices uneven and scorched chunks of aluminium off \the [src]."),

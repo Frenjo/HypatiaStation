@@ -13,7 +13,7 @@
 		/obj/item/storage/bag/ore,
 		/obj/item/pickaxe/drill/cyborg,
 		/obj/item/storage/bag/sheetsnatcher/borg,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/crowbar
 	)
 	emag_modules = list(/obj/item/robot_module/stun, /obj/item/pickaxe/drill/diamond)

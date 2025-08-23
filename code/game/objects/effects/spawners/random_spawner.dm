@@ -30,7 +30,7 @@
 	possible_items = list(
 		/obj/item/screwdriver,
 		/obj/item/wirecutters,
-		/obj/item/weldingtool,
+		/obj/item/welding_torch,
 		/obj/item/crowbar,
 		/obj/item/wrench,
 		/obj/item/flashlight,

@@ -75,7 +75,7 @@
 			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
-			var/obj/item/weldingtool/W = I
+			var/obj/item/welding_torch/W = I
 			if(W.remove_fuel(0, user))
 				playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 				to_chat(user, "You start slicing the floorweld off the disposal unit.")
@@ -844,7 +844,7 @@
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
 	if(iswelder(I))
-		var/obj/item/weldingtool/W = I
+		var/obj/item/welding_torch/W = I
 
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
@@ -1254,7 +1254,7 @@
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
 	if(iswelder(I))
-		var/obj/item/weldingtool/W = I
+		var/obj/item/welding_torch/W = I
 
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
@@ -1376,7 +1376,7 @@
 			to_chat(user, "You attach the screws around the power connection.")
 			return
 	else if(iswelder(I) && mode == 1)
-		var/obj/item/weldingtool/W = I
+		var/obj/item/welding_torch/W = I
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 			to_chat(user, "You start slicing the floorweld off the disposal outlet.")

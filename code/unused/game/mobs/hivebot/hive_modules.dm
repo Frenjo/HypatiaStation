@@ -30,7 +30,7 @@
 
 	src.modules += new /obj/item/fire_extinguisher(src)
 	src.modules += new /obj/item/screwdriver(src)
-	src.modules += new /obj/item/weldingtool(src)
+	src.modules += new /obj/item/welding_torch(src)
 	src.modules += new /obj/item/wrench(src)
 	src.modules += new /obj/item/gas_analyser(src)
 	src.modules += new /obj/item/flashlight(src)
