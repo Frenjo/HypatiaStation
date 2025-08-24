@@ -196,8 +196,8 @@
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
-	matter_amounts = alist(/decl/material/steel = 12000)
-	origin_tech = alist(/decl/tech/materials = 1)
+	matter_amounts = /datum/design/autolathe/cleaver::materials
+	origin_tech = /datum/design/autolathe/cleaver::req_tech
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
 	edge = 1

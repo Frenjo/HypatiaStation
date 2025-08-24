@@ -114,7 +114,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
-	matter_amounts = alist(/decl/material/plastic = 2000)
+	matter_amounts = /datum/design/autolathe/camera::materials
 
 	var/pictures_max = 10
 	var/pictures_left = 10

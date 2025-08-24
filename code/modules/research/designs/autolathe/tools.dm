@@ -57,12 +57,24 @@
 	materials = alist(/decl/material/steel = 90)
 	build_path = /obj/item/fire_extinguisher
 
+/datum/design/autolathe/gas_analyser
+	name = "Gas Analyser"
+	req_tech = alist(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
+	materials = alist(/decl/material/plastic = 30, /decl/material/glass = 20)
+	build_path = /obj/item/gas_analyser
+
 // Miscellaneous
 /datum/design/autolathe/kitchen_knife
 	name = "Kitchen Knife"
 	req_tech = alist(/decl/tech/materials = 1)
-	materials = alist(/decl/material/steel = 12000)
+	materials = alist(/decl/material/steel = 6 MATERIAL_SHEETS)
 	build_path = /obj/item/kitchenknife
+
+/datum/design/autolathe/cleaver
+	name = "Butcher's Cleaver"
+	req_tech = alist(/decl/tech/materials = 1)
+	materials = alist(/decl/material/steel = 8 MATERIAL_SHEETS)
+	build_path = /obj/item/butch
 
 /datum/design/autolathe/tape_recorder
 	name = "Tape Recorder"

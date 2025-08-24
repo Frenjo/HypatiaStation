@@ -16,8 +16,8 @@
 	throw_speed = 4
 	throw_range = 20
 
-	matter_amounts = alist(/decl/material/plastic = 30, /decl/material/glass = 20)
-	origin_tech = alist(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
+	matter_amounts = /datum/design/autolathe/gas_analyser::materials
+	origin_tech = /datum/design/autolathe/gas_analyser::req_tech
 
 /obj/item/gas_analyser/attack_self(mob/user)
 	if(user.stat)

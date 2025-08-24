@@ -25,3 +25,8 @@
 	materials = alist(/decl/material/plastic = 10000, /decl/material/glass = 2500)
 	build_type = /obj/item/radio/electropack
 	hidden = TRUE
+
+/datum/design/autolathe/camera
+	name = "Camera"
+	materials = alist(/decl/material/plastic = 2000)
+	build_type = /obj/item/camera
