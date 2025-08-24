@@ -377,7 +377,7 @@
 
 	created_window = /obj/structure/window/plasmareinforced
 
-/obj/item/stack/sheet/glass/plasma/reinforced/attackby(obj/item/I, mob/user)
+/obj/item/stack/sheet/glass/plasma/reinforced/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		return TRUE
 	return ..()

@@ -20,24 +20,32 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
-/obj/item/candle/attackby(obj/item/W, mob/user)
-	..()
-	if(iswelder(W))
-		var/obj/item/welding_torch/WT = W
+/obj/item/candle/attack_by(obj/item/I, mob/user)
+	if(iswelder(I))
+		var/obj/item/welding_torch/WT = I
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding torch.
-			light(SPAN_WARNING("[user] casually lights the [name] with [W]."))
-	else if(istype(W, /obj/item/lighter))
-		var/obj/item/lighter/L = W
+			light(SPAN_WARNING("[user] casually lights the [name] with [I]."))
+		return TRUE
+
+	if(istype(I, /obj/item/lighter))
+		var/obj/item/lighter/L = I
 		if(L.lit)
 			light()
-	else if(istype(W, /obj/item/match))
-		var/obj/item/match/M = W
+		return TRUE
+
+	if(istype(I, /obj/item/match))
+		var/obj/item/match/M = I
 		if(M.lit)
 			light()
-	else if(istype(W, /obj/item/candle))
-		var/obj/item/candle/C = W
+		return TRUE
+
+	if(istype(I, /obj/item/candle))
+		var/obj/item/candle/C = I
 		if(C.lit)
 			light()
+		return TRUE
+
+	return ..()
 
 /obj/item/candle/light(flavor_text = SPAN_WARNING("[usr] lights the [name]."))
 	if(!src.lit)

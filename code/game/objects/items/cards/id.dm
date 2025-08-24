@@ -40,16 +40,16 @@
 /obj/item/card/id/get_id()
 	return src
 
-/obj/item/card/id/attackby(obj/item/W, mob/user)
-	. = ..()
-	if(istype(W, /obj/item/id_wallet))
-		to_chat(user, "You slip [src] into [W].")
-		name = "[registered_name]'s [W.name] ([assignment])"
-		desc = W.desc
-		icon = W.icon
-		icon_state = W.icon_state
-		qdel(W)
-		return
+/obj/item/card/id/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/id_wallet))
+		to_chat(user, "You slip [src] into [I].")
+		name = "[registered_name]'s [I.name] ([assignment])"
+		desc = I.desc
+		icon = I.icon
+		icon_state = I.icon_state
+		qdel(I)
+		return TRUE
+	return ..()
 
 /obj/item/card/id/verb/read()
 	set category = PANEL_OBJECT

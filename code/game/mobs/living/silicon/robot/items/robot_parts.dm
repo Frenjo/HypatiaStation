@@ -108,10 +108,9 @@
 				return TRUE
 	return FALSE
 
-/obj/item/robot_part/chassis/attackby(obj/item/W, mob/user)
-	. = ..()
-	if(istype(W, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(torso) && isnull(head))
-		var/obj/item/stack/sheet/steel/M = W
+/obj/item/robot_part/chassis/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(torso) && isnull(head))
+		var/obj/item/stack/sheet/steel/M = I
 		var/obj/item/ed209_assembly/B = new /obj/item/ed209_assembly(GET_TURF(src))
 		to_chat(user, SPAN_INFO("You reinforce the robot frame."))
 		M.use(1)
@@ -119,43 +118,44 @@
 			user.before_take_item(src)
 			user.put_in_inactive_hand(B)
 		qdel(src)
+		return TRUE
 
-	if(istype(W, /obj/item/robot_part/l_leg))
-		if(isnotnull(l_leg))
-			return
-		user.drop_item()
-		W.forceMove(src)
-		l_leg = W
-		updateicon()
+	if(istype(I, /obj/item/robot_part/l_leg))
+		if(isnull(l_leg))
+			user.drop_item()
+			I.forceMove(src)
+			l_leg = I
+			updateicon()
+		return TRUE
 
-	if(istype(W, /obj/item/robot_part/r_leg))
-		if(isnotnull(r_leg))
-			return
-		user.drop_item()
-		W.forceMove(src)
-		r_leg = W
-		updateicon()
+	if(istype(I, /obj/item/robot_part/r_leg))
+		if(isnull(r_leg))
+			user.drop_item()
+			I.forceMove(src)
+			r_leg = I
+			updateicon()
+		return TRUE
 
-	if(istype(W, /obj/item/robot_part/l_arm))
-		if(isnotnull(l_arm))
-			return
-		user.drop_item()
-		W.forceMove(src)
-		l_arm = W
-		updateicon()
+	if(istype(I, /obj/item/robot_part/l_arm))
+		if(isnull(l_arm))
+			user.drop_item()
+			I.forceMove(src)
+			l_arm = I
+			updateicon()
+		return TRUE
 
-	if(istype(W, /obj/item/robot_part/r_arm))
-		if(isnotnull(r_arm))
-			return
-		user.drop_item()
-		W.forceMove(src)
-		r_arm = W
-		updateicon()
+	if(istype(I, /obj/item/robot_part/r_arm))
+		if(isnull(r_arm))
+			user.drop_item()
+			I.forceMove(src)
+			r_arm = I
+			updateicon()
+		return TRUE
 
-	if(istype(W, /obj/item/robot_part/torso))
+	if(istype(I, /obj/item/robot_part/torso))
 		if(isnotnull(torso))
-			return
-		var/obj/item/robot_part/torso/part_torso = W
+			return TRUE
+		var/obj/item/robot_part/torso/part_torso = I
 		if(part_torso.wires && isnotnull(part_torso.cell))
 			user.drop_item()
 			part_torso.forceMove(src)
@@ -165,11 +165,12 @@
 			to_chat(user, SPAN_INFO("You need to attach wires to it first!"))
 		else
 			to_chat(user, SPAN_INFO("You need to attach a cell to it first!"))
+		return TRUE
 
-	if(istype(W, /obj/item/robot_part/head))
+	if(istype(I, /obj/item/robot_part/head))
 		if(isnotnull(head))
-			return
-		var/obj/item/robot_part/head/part_head = W
+			return TRUE
+		var/obj/item/robot_part/head/part_head = I
 		if(isnotnull(part_head.flash1) && isnotnull(part_head.flash2))
 			user.drop_item()
 			part_head.forceMove(src)
@@ -177,16 +178,17 @@
 			updateicon()
 		else
 			to_chat(user, SPAN_INFO("You need to attach a flash to it first!"))
+		return TRUE
 
-	if(isMMI(W))
-		var/obj/item/mmi/M = W
+	if(isMMI(I))
+		var/obj/item/mmi/M = I
 		if(check_completion())
 			if(!isturf(loc))
-				to_chat(user, SPAN_WARNING("You can't put the [W] in, the frame has to be standing on the ground to be perfectly precise."))
-				return
+				to_chat(user, SPAN_WARNING("You can't put the [I] in, the frame has to be standing on the ground to be perfectly precise."))
+				return TRUE
 			if(isnull(M.brainmob))
-				to_chat(user, SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose."))
-				return
+				to_chat(user, SPAN_WARNING("Sticking an empty [I] into the frame would sort of defeat the purpose."))
+				return TRUE
 			if(isnull(M.brainmob.key))
 				var/ghost_can_reenter = 0
 				if(isnotnull(M.brainmob.mind))
@@ -195,28 +197,28 @@
 							ghost_can_reenter = TRUE
 							break
 				if(!ghost_can_reenter)
-					to_chat(user, SPAN_NOTICE("The [W] is completely unresponsive; there's no point."))
-					return
+					to_chat(user, SPAN_NOTICE("The [I] is completely unresponsive; there's no point."))
+					return TRUE
 
 			if(M.brainmob.stat == DEAD)
-				to_chat(user, SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose."))
-				return
+				to_chat(user, SPAN_WARNING("Sticking a dead [I] into the frame would sort of defeat the purpose."))
+				return TRUE
 
 			if(M.brainmob.mind in global.PCticker.mode.head_revolutionaries)
-				to_chat(user, SPAN_WARNING("The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [W]."))
-				return
+				to_chat(user, SPAN_WARNING("The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [I]."))
+				return TRUE
 
 			if(jobban_isbanned(M.brainmob, "Cyborg"))
-				to_chat(user, SPAN_WARNING("This [W] does not seem to fit."))
-				return
+				to_chat(user, SPAN_WARNING("This [I] does not seem to fit."))
+				return TRUE
 
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(GET_TURF(src), unfinished = 1)
 			if(isnull(O))
-				return
+				return TRUE
 
 			user.drop_item()
 
-			O.mmi = W
+			O.mmi = I
 			O.invisibility = 0
 			O.custom_name = created_name
 			O.updatename()
@@ -230,7 +232,7 @@
 
 			O.cell = torso.cell
 			O.cell.forceMove(O)
-			W.forceMove(O) // Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
+			I.forceMove(O) // Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 
 			// Since we "magically" installed a cell, we also have to update the correct component.
 			if(isnotnull(O.cell))
@@ -244,56 +246,62 @@
 			qdel(src)
 		else
 			to_chat(user, SPAN_INFO("The MMI must go in after everything else!"))
+		return TRUE
 
-	if(istype(W, /obj/item/pen))
+	if(istype(I, /obj/item/pen))
 		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
-		if(!t)
-			return
-		if(!in_range(src, usr) && src.loc != usr)
-			return
+		if(isnotnull(t) && in_range(src, user))
+			created_name = t
+		return TRUE
 
-		src.created_name = t
+	return ..()
 
-/obj/item/robot_part/torso/attackby(obj/item/W, mob/user)
-	. = ..()
-	if(istype(W, /obj/item/cell))
+/obj/item/robot_part/torso/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/cell))
 		if(isnotnull(cell))
 			to_chat(user, SPAN_INFO("You have already inserted a cell!"))
-			return
 		else
 			user.drop_item()
-			W.forceMove(src)
-			src.cell = W
+			I.forceMove(src)
+			cell = I
 			to_chat(user, SPAN_INFO("You insert the cell!"))
-	if(iscable(W))
+		return TRUE
+
+	if(iscable(I))
 		if(wires)
 			to_chat(user, SPAN_INFO("You have already inserted wire!"))
-			return
 		else
-			var/obj/item/stack/cable_coil/coil = W
+			var/obj/item/stack/cable_coil/coil = I
 			coil.use(1)
 			wires = TRUE
 			to_chat(user, SPAN_INFO("You insert the wire!"))
+		return TRUE
 
-/obj/item/robot_part/head/attackby(obj/item/W, mob/user)
+	return ..()
+
+/obj/item/robot_part/head/attack_by(obj/item/I, mob/user)
 	. = ..()
-	if(istype(W, /obj/item/flash))
+	if(istype(I, /obj/item/flash))
 		if(isnotnull(flash1) && isnotnull(flash2))
 			to_chat(user, SPAN_INFO("You have already inserted the eyes!"))
-			return
 		else if(isnotnull(flash1))
 			user.drop_item()
-			W.forceMove(src)
-			flash2 = W
+			I.forceMove(src)
+			flash2 = I
 			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
 		else
 			user.drop_item()
-			W.forceMove(src)
-			flash1 = W
+			I.forceMove(src)
+			flash1 = I
 			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
-	else if(istype(W, /obj/item/stock_part/manipulator))
+		return TRUE
+
+	if(istype(I, /obj/item/stock_part/manipulator))
 		to_chat(user, SPAN_INFO("You install some manipulators and modify the head, creating a functional spider-bot!"))
 		new /mob/living/simple/spiderbot(GET_TURF(src))
 		user.drop_item()
-		qdel(W)
+		qdel(I)
 		qdel(src)
+		return TRUE
+
+	return ..()
