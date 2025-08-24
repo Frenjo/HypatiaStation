@@ -5,7 +5,7 @@
 
 /datum/design/autolathe/beanbag_shell
 	name = "Beanbag Shell"
-	materials = alist(/decl/material/steel = 500)
+	materials = alist(/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/shotgun/beanbag
 
 /datum/design/autolathe/c45r
@@ -16,7 +16,7 @@
 /datum/design/autolathe/flamethrower
 	name = "Flamethrower"
 	req_tech = alist(/decl/tech/combat = 1, /decl/tech/plasma = 1)
-	materials = alist(/decl/material/steel = 500)
+	materials = alist(/decl/material/steel = 1.25 MATERIAL_SHEETS)
 	build_path = /obj/item/flamethrower/full
 	hidden = TRUE
 
@@ -40,6 +40,6 @@
 
 /datum/design/autolathe/shotgun_dart
 	name = "Shotgun Dart"
-	materials = alist(/decl/material/plastic = 12500)
+	materials = alist(/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/ammo_casing/shotgun/dart
 	hidden = TRUE

@@ -137,7 +137,7 @@
 	desc = "Glass which seems to have rods or something stuck in it."
 	singular_name = "reinforced glass sheet"
 	icon_state = "rglass"
-	matter_amounts = alist(/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 1 MATERIAL_SHEET)
+	matter_amounts = alist(/decl/material/steel = 0.5 MATERIAL_SHEETS, /decl/material/glass = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 2)
 
 	material = /decl/material/reinforced_glass

@@ -152,7 +152,6 @@
 	name = "Engineering Experimental Welding Torch Module"
 	desc = "Allows for the construction of experimental welding torch modules for engineering robots."
 	req_tech = /datum/design/experimental_welder::req_tech
-	// These are the values from /datum/design/experimental_welder except all of the MATERIAL_SHEETS values have +0.25.
 	materials = alist(
 		/decl/material/steel = HALF_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = (0.75 MATERIAL_SHEETS) * 1.2,
 		/decl/material/plasma = (0.75 MATERIAL_SHEETS) * 1.5, /decl/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 2
