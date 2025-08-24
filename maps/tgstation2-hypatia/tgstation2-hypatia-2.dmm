@@ -3114,6 +3114,7 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "oL" = (
+/obj/effect/decal/floor/industrial/vault,
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
@@ -3121,13 +3122,12 @@
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
-/obj/item/reagent_holder/hypospray,
-/obj/item/reagent_holder/hypospray,
-/obj/item/reagent_holder/hypospray,
+/obj/item/reagent_holder/hypospray/preloaded,
+/obj/item/reagent_holder/hypospray/preloaded,
+/obj/item/reagent_holder/hypospray/preloaded,
 /obj/item/storage/box/syringes,
 /obj/item/flash,
 /obj/item/flash,
-/obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
 "oM" = (

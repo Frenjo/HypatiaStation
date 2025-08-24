@@ -133,7 +133,7 @@
 "cC" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor,/area/away_mission/labs/researchdivision)
 "cD" = (/obj/structure/table/reinforced,/obj/item/reagent_holder/glass/beaker/large,/obj/item/reagent_holder/spray/cleaner,/obj/machinery/light/small{dir = 8},/turf/open/floor{tag = "icon-vault (NORTHEAST)"; icon_state = "vault"; dir = 5},/area/away_mission/labs/researchdivision)
 "cE" = (/obj/structure/table/reinforced,/obj/item/reagent_holder/blood/empty,/obj/item/storage/body_bag_box,/turf/open/floor{tag = "icon-vault (NORTHEAST)"; icon_state = "vault"; dir = 5},/area/away_mission/labs/researchdivision)
-"cF" = (/obj/structure/table/reinforced,/obj/item/reagent_holder/hypospray,/turf/open/floor{tag = "icon-vault (NORTHEAST)"; icon_state = "vault"; dir = 5},/area/away_mission/labs/researchdivision)
+"cF" = (/obj/structure/table/reinforced,/obj/item/reagent_holder/hypospray/preloaded,/turf/open/floor{tag = "icon-vault (NORTHEAST)"; icon_state = "vault"; dir = 5},/area/away_mission/labs/researchdivision)
 "cG" = (/obj/structure/table/reinforced,/obj/item/FixOVein,/obj/item/retractor,/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
 "cH" = (/obj/machinery/optable,/obj/item/stack/sheet/animalhide/lizard,/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
 "cI" = (/obj/structure/table/reinforced,/obj/item/bonesetter,/obj/item/bonegel,/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)

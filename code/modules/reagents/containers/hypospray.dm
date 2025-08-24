@@ -15,13 +15,12 @@
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
 
+// Preloaded variant for the CMO's closet.
+/obj/item/reagent_holder/hypospray/preloaded
+	starting_reagents = alist("tricordrazine" = 30)
+
 /obj/item/reagent_holder/hypospray/attack_paw(mob/user)
 	return src.attack_hand(user)
-
-/obj/item/reagent_holder/hypospray/initialise() //comment this to make hypos start off empty
-	. = ..()
-	//reagents.add_reagent("tricordrazine", 30) // Commented this, planning on adding hypos to the RnD protolathe. -Frenjo
-
 /obj/item/reagent_holder/hypospray/attack(mob/M, mob/user)
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_WARNING("[src] is empty."))

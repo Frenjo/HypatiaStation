@@ -129,7 +129,7 @@
 		/obj/item/radio/headset/heads/cmo,
 		/obj/item/storage/belt/medical,
 		/obj/item/flash,
-		/obj/item/reagent_holder/hypospray
+		/obj/item/reagent_holder/hypospray/preloaded
 	)
 
 /obj/structure/closet/secure/medical/cmo/New()
