@@ -6,12 +6,14 @@
 	name = "ambrosia vulgaris branch"
 	desc = "This is a plant containing various healing chemicals."
 	icon_state = "ambrosiavulgaris"
+
+	starting_reagents = alist("nutriment" = 1)
+
 	potency = 10
 	filling_color = "#125709"
 
 /obj/item/reagent_holder/food/snacks/grown/ambrosiavulgaris/initialise()
 	. = ..()
-	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("space_drugs", 1 + round(potency / 8, 1))
 	reagents.add_reagent("kelotane", 1 + round(potency / 8, 1))
 	reagents.add_reagent("bicaridine", 1 + round(potency / 10, 1))
@@ -26,12 +28,14 @@
 	name = "ambrosia deus branch"
 	desc = "Eating this makes you feel immortal!"
 	icon_state = "ambrosiadeus"
+
+	starting_reagents = alist("nutriment" = 1)
+
 	potency = 10
 	filling_color = "#229E11"
 
 /obj/item/reagent_holder/food/snacks/grown/ambrosiadeus/initialise()
 	. = ..()
-	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("bicaridine", 1 + round(potency / 8, 1))
 	reagents.add_reagent("synaptizine", 1 + round(potency / 8, 1))
 	reagents.add_reagent("hyperzine", 1 + round(potency / 10, 1))

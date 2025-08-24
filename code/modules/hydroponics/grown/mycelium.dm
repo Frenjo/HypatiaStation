@@ -6,12 +6,14 @@
 	name = "reishi"
 	desc = "<I>Ganoderma lucidum</I>: A special fungus believed to help relieve stress."
 	icon_state = "reishi"
+
+	starting_reagents = alist("nutriment" = 1)
+
 	potency = 10
 	filling_color = "#FF4800"
 
 /obj/item/reagent_holder/food/snacks/grown/mushroom/reishi/initialise()
 	. = ..()
-	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("stoxin", 3 + round(potency / 3, 1))
 	reagents.add_reagent("space_drugs", 1 + round(potency / 25, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -30,12 +32,14 @@
 	name = "fly amanita"
 	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
 	icon_state = "amanita"
+
+	starting_reagents = alist("nutriment" = 1)
+
 	potency = 10
 	filling_color = "#FF0000"
 
 /obj/item/reagent_holder/food/snacks/grown/mushroom/amanita/initialise()
 	. = ..()
-	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("amatoxin", 3 + round(potency / 3, 1))
 	reagents.add_reagent("psilocybin", 1 + round(potency / 25, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
