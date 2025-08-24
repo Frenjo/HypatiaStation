@@ -9,7 +9,7 @@
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/engineering = 2, /decl/tech/power_storage = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/steel = 2000, /decl/material/glass = 500, /decl/material/silver = 500)
+	materials = alist(/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 0.25 MATERIAL_SHEETS, /decl/material/silver = 0.25 MATERIAL_SHEETS)
 	build_path = /obj/item/pickaxe/jackhammer
 
 /datum/design/mining/drill
@@ -17,7 +17,7 @@
 	desc = "Yours is the drill that will pierce through the rock walls."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/steel = 6000, /decl/material/glass = 1000) //expensive, but no need for miners.
+	materials = alist(/decl/material/steel = 3 MATERIAL_SHEETS, /decl/material/glass = 1 MATERIAL_SHEET) //expensive, but no need for miners.
 	build_path = /obj/item/pickaxe/drill
 
 /datum/design/mining/plasmacutter
@@ -25,7 +25,10 @@
 	desc = "You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/engineering = 3, /decl/tech/plasma = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/steel = 1500, /decl/material/glass = 500, /decl/material/gold = 500, /decl/material/plasma = 500)
+	materials = alist(
+		/decl/material/steel = HALF_SHEET_MATERIAL_AMOUNT * 1.5, /decl/material/glass = 0.25 MATERIAL_SHEETS,
+		/decl/material/gold = 0.25 MATERIAL_SHEETS, /decl/material/plasma = 0.25 MATERIAL_SHEETS
+	)
 	reliability_base = 79
 	build_path = /obj/item/pickaxe/plasmacutter
 
@@ -43,7 +46,7 @@
 	req_tech = alist(/decl/tech/materials = 6, /decl/tech/engineering = 5, /decl/tech/power_storage = 4)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(
-		/decl/material/steel = 3000, /decl/material/glass = 1000, /decl/material/diamond = 1 MATERIAL_SHEET
+		/decl/material/steel = 1.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS, /decl/material/diamond = 1 MATERIAL_SHEET
 	) //Yes, a whole diamond is needed.
 	reliability_base = 79
 	build_path = /obj/item/pickaxe/drill/diamond
@@ -53,5 +56,5 @@
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	req_tech = alist(/decl/tech/magnets = 2, /decl/tech/engineering = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
+	materials = alist(/decl/material/plastic = 0.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS)
 	build_path = /obj/item/clothing/glasses/meson

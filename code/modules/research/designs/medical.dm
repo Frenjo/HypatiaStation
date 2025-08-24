@@ -148,7 +148,7 @@
 	desc = "Protects you from brainwashing."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 7000, /decl/material/glass = 7000)
+	materials = alist(/decl/material/plastic = 1.75 MATERIAL_SHEETS, /decl/material/glass = 1.75 MATERIAL_SHEETS)
 	build_path = /obj/item/implantcase/mindshield
 
 /datum/design/implant/loyal
@@ -156,7 +156,7 @@
 	desc = "Makes you loyal or such."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 7000, /decl/material/glass = 7000)
+	materials = alist(/decl/material/plastic = 1.75 MATERIAL_SHEETS, /decl/material/glass = 1.75 MATERIAL_SHEETS)
 	build_path = /obj/item/implantcase/loyalty
 
 /datum/design/implant/chem
@@ -164,7 +164,7 @@
 	desc = "Injects things."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
+	materials = alist(/decl/material/plastic = 0.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS)
 	build_path = /obj/item/implantcase/chem
 
 /datum/design/implant/free
@@ -172,7 +172,7 @@
 	desc = "Use this to escape from those evil Red Shirts."
 	req_tech = alist(/decl/tech/biotech = 3, /decl/tech/syndicate = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
+	materials = alist(/decl/material/plastic = 0.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS)
 	build_path = /obj/item/implantcase/freedom
 
 /datum/design/implant/sad_trombone
@@ -180,5 +180,5 @@
 	desc = "Makes death amusing."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/biotech = 3) // Contains bananium.
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 2000, /decl/material/bananium = 2000)
+	materials = alist(/decl/material/plastic = 1 MATERIAL_SHEET, /decl/material/bananium = 1 MATERIAL_SHEET)
 	build_path = /obj/item/implantcase/sad_trombone

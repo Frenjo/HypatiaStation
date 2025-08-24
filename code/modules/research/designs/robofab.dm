@@ -90,7 +90,7 @@
 	desc = "When a problem arises, SCIENCE is the solution."
 	req_tech = alist(/decl/tech/magnets = 3, /decl/tech/combat = 2)
 	reliability_base = 76
-	materials = alist(/decl/material/plastic = 750, /decl/material/glass = 750)
+	materials = alist(/decl/material/plastic = HALF_SHEET_MATERIAL_AMOUNT * 0.75, /decl/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 0.75)
 	build_time = 10 SECONDS
 	build_path = /obj/item/flash/synthetic
 	categories = list("Robot Internal Components")
@@ -105,19 +105,19 @@
 /datum/design/robofab/robot_upgrade/reset
 	name = "Model Reset Module"
 	desc = "Allows for the construction of robot model reset modules."
-	materials = alist(/decl/material/steel = 5 MATERIAL_SHEETS)
+	materials = alist(/decl/material/steel = 2.5 MATERIAL_SHEETS)
 	build_path = /obj/item/robot_upgrade/reset
 
 /datum/design/robofab/robot_upgrade/rename
 	name = "Reclassification Module"
 	desc = "Allows for the construction of robot reclassification modules."
-	materials = alist(/decl/material/steel = 11 MATERIAL_SHEETS)
+	materials = alist(/decl/material/steel = 6.5 MATERIAL_SHEETS)
 	build_path = /obj/item/robot_upgrade/rename
 
 /datum/design/robofab/robot_upgrade/restart
 	name = "Emergency Restart Module"
 	desc = "Allows for the construction of robot emergency restart modules."
-	materials = alist(/decl/material/steel = 18 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS)
+	materials = alist(/decl/material/steel = 9 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS)
 	build_path = /obj/item/robot_upgrade/restart
 
 /datum/design/robofab/robot_upgrade/vtec
@@ -125,7 +125,7 @@
 	desc = "Allows for the construction of robot VTEC modules."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/engineering = 3)
 	materials = alist(
-		/decl/material/steel = 24 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS,
+		/decl/material/steel = 12 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS,
 		/decl/material/gold = 3 MATERIAL_SHEETS
 	)
 	build_path = /obj/item/robot_upgrade/vtec
@@ -143,7 +143,7 @@
 	desc = "Allows for the construction of rapid taser cooling modules for security robots."
 	req_tech = alist(/decl/tech/combat = 2, /decl/tech/engineering = 3)
 	materials = alist(
-		/decl/material/steel = 24 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS,
+		/decl/material/steel = 12 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS,
 		/decl/material/gold = 1 MATERIAL_SHEET, /decl/material/diamond = 1 MATERIAL_SHEET
 	)
 	build_path = /obj/item/robot_upgrade/tasercooler
@@ -153,8 +153,8 @@
 	desc = "Allows for the construction of experimental welding torch modules for engineering robots."
 	req_tech = /datum/design/experimental_welder::req_tech
 	materials = alist(
-		/decl/material/steel = HALF_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = (0.75 MATERIAL_SHEETS) * 1.2,
-		/decl/material/plasma = (0.75 MATERIAL_SHEETS) * 1.5, /decl/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 2
+		/decl/material/steel = 7 MATERIAL_SHEETS, /decl/material/glass = 1.2 MATERIAL_SHEETS,
+		/decl/material/plasma = 1.5 MATERIAL_SHEETS, /decl/material/uranium = 1.5 MATERIAL_SHEETS
 	)
 	build_path = /obj/item/robot_upgrade/experimental_welder
 

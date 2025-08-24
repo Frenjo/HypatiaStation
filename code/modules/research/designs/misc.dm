@@ -6,7 +6,7 @@
 	desc = "Produce additional disks for storing device designs."
 	req_tech = alist(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
-	materials = alist(/decl/material/iron = 15, /decl/material/plastic = 15)
+	materials = alist(/decl/material/iron = QUARTER_SHEET_MATERIAL_AMOUNT * 3, /decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/disk/design
 
 /datum/design/tech_disk
@@ -14,7 +14,7 @@
 	desc = "Produce additional disks for storing technology data."
 	req_tech = alist(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
-	materials = alist(/decl/material/iron = 15, /decl/material/plastic = 15)
+	materials = alist(/decl/material/iron = QUARTER_SHEET_MATERIAL_AMOUNT * 3, /decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 3)
 	build_path = /obj/item/disk/tech
 
 ////////////////////////////////////////////////
@@ -25,7 +25,7 @@
 	desc = "Allows for the construction of an intellicard."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/programming = 4)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/glass = 1000, /decl/material/gold = 200)
+	materials = alist(/decl/material/glass = 0.5 MATERIAL_SHEETS, /decl/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 0.25)
 	build_path = /obj/item/aicard
 
 /datum/design/paicard
@@ -33,7 +33,7 @@
 	desc = "Allows for the construction of a pAI Card"
 	req_tech = alist(/decl/tech/programming = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 500, /decl/material/glass = 500)
+	materials = alist(/decl/material/plastic = 0.25 MATERIAL_SHEETS, /decl/material/glass = 0.25 MATERIAL_SHEETS)
 	build_path = /obj/item/paicard
 
 /datum/design/posibrain
@@ -42,8 +42,8 @@
 	req_tech = alist(/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
 	materials = alist(
-		/decl/material/steel = 2000, /decl/material/glass = 1000, /decl/material/silver = 1000,
-		/decl/material/gold = 500, /decl/material/diamond = 100, /decl/material/plasma = 500
+		/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 0.5 MATERIAL_SHEETS, /decl/material/silver = 0.5 MATERIAL_SHEETS,
+		/decl/material/gold = 0.25 MATERIAL_SHEETS, /decl/material/diamond = 0.1 MATERIAL_SHEETS, /decl/material/plasma = 0.25 MATERIAL_SHEETS
 	)
 	build_time = 7.5 SECONDS
 	build_path = /obj/item/mmi/posibrain
@@ -57,7 +57,10 @@
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/magnets = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/steel = 1500, /decl/material/glass = 3000, /decl/material/silver = 150)
+	materials = alist(
+		/decl/material/steel = 0.75 MATERIAL_SHEETS, /decl/material/glass = 1.5 MATERIAL_SHEETS,
+		/decl/material/silver = QUARTER_SHEET_MATERIAL_AMOUNT * 1.5
+	)
 	build_path = /obj/item/lightreplacer
 
 /datum/design/security_hud
@@ -65,7 +68,7 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
 	req_tech = alist(/decl/tech/magnets = 3, /decl/tech/combat = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
+	materials = alist(/decl/material/plastic = 0.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS)
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
 
@@ -76,6 +79,6 @@
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(
 		/decl/material/steel = QUARTER_SHEET_MATERIAL_AMOUNT * 0.7, /decl/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 1.2,
-		/decl/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5, /decl/material/uranium = QUARTER_SHEET_MATERIAL_AMOUNT * 2
+		/decl/material/plasma = HALF_SHEET_MATERIAL_AMOUNT * 1.5, /decl/material/uranium = HALF_SHEET_MATERIAL_AMOUNT * 1.5
 	)
 	build_path = /obj/item/welding_torch/experimental

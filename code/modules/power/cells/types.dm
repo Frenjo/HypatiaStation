@@ -73,8 +73,9 @@
 	desc = "A rechargeable power cell. This one appears to be electromagnetic instead of electrochemical, and utilises \"alien\" technology for extreme capacity."
 	icon_state = "bscell"
 	matter_amounts = alist(
-		/decl/material/steel = 750, /decl/material/glass = 90, /decl/material/silver = 200,
-		/decl/material/gold = 200, /decl/material/diamond = 200, /decl/material/plasma = 200
+		/decl/material/steel = 1.75 MATERIAL_SHEETS, /decl/material/glass = QUARTER_SHEET_MATERIAL_AMOUNT * 0.9,
+		/decl/material/silver = QUARTER_SHEET_MATERIAL_AMOUNT * 1.5, /decl/material/gold = QUARTER_SHEET_MATERIAL_AMOUNT * 1.5,
+		/decl/material/diamond = QUARTER_SHEET_MATERIAL_AMOUNT * 1.5, /decl/material/plasma = QUARTER_SHEET_MATERIAL_AMOUNT * 1.5
 	)
 	origin_tech = alist(/decl/tech/materials = 6, /decl/tech/magnets = 6, /decl/tech/power_storage = 6, /decl/tech/bluespace = 4)
 	maxcharge = 40000
@@ -85,7 +86,7 @@
 	icon_state = "icell"
 	origin_tech = null
 	maxcharge = 40000
-	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 100)
+	matter_amounts = alist(/decl/material/steel = 1.75 MATERIAL_SHEETS, /decl/material/glass = 0.25 MATERIAL_SHEETS)
 
 /obj/item/cell/infinite/use()
 	return 1

@@ -9,7 +9,7 @@
 	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	req_tech = alist(/decl/tech/materials = 5, /decl/tech/combat = 3, /decl/tech/power_storage = 3)
-	materials = alist(/decl/material/steel = 5000, /decl/material/glass = 1000, /decl/material/uranium = 500)
+	materials = alist(/decl/material/steel = 2.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS, /decl/material/uranium = 0.25 MATERIAL_SHEETS)
 	reliability_base = 76
 	build_path = /obj/item/gun/energy/gun/nuclear
 	locked = 1
@@ -18,7 +18,7 @@
 	name = "Stun Revolver"
 	desc = "The prize of the Head of Security."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 2)
-	materials = alist(/decl/material/steel = 4000)
+	materials = alist(/decl/material/steel = 2 MATERIAL_SHEETS)
 	build_path = /obj/item/gun/energy/stunrevolver
 	locked = 1
 
@@ -26,7 +26,10 @@
 	name = "Laser Cannon"
 	desc = "A heavy duty laser cannon."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 4, /decl/tech/power_storage = 3)
-	materials = alist(/decl/material/steel = 10000, /decl/material/glass = 1000, /decl/material/diamond = 2000)
+	materials = alist(
+		/decl/material/steel = 5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS,
+		/decl/material/diamond = 1 MATERIAL_SHEET, /decl/material/uranium = 1 MATERIAL_SHEET
+	)
 	build_path = /obj/item/gun/energy/lasercannon
 	locked = 1
 
@@ -34,7 +37,10 @@
 	name = "Decloner"
 	desc = "Your opponent will bubble into a messy pile of goop."
 	req_tech = alist(/decl/tech/materials = 7, /decl/tech/biotech = 5, /decl/tech/combat = 8, /decl/tech/power_storage = 6)
-	materials = alist(/decl/material/gold = 5000, /decl/material/uranium = 10000, "mutagen" = 40)
+	materials = alist(
+		/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/gold = 2.5 MATERIAL_SHEETS,
+		/decl/material/uranium = 5 MATERIAL_SHEETS, "mutagen" = 40
+	)
 	build_path = /obj/item/gun/energy/decloner
 	locked = 1
 
@@ -42,7 +48,7 @@
 	name = "Chem Sprayer"
 	desc = "An advanced chem spraying device."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/biotech = 2, /decl/tech/engineering = 3)
-	materials = alist(/decl/material/steel = 5000, /decl/material/glass = 1000)
+	materials = alist(/decl/material/steel = 2.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS)
 	reliability_base = 100
 	build_path = /obj/item/reagent_holder/spray/chemsprayer
 
@@ -50,7 +56,7 @@
 	name = "Rapid Syringe Gun"
 	desc = "A gun that fires many syringes."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/biotech = 2, /decl/tech/combat = 3, /decl/tech/engineering = 3)
-	materials = alist(/decl/material/steel = 5000, /decl/material/glass = 1000)
+	materials = alist(/decl/material/steel = 2.5 MATERIAL_SHEETS, /decl/material/glass = 0.5 MATERIAL_SHEETS)
 	build_path = /obj/item/gun/syringe/rapidsyringe
 
 /*
@@ -66,7 +72,7 @@
 	name = "Temperature Gun"
 	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/magnets = 2, /decl/tech/combat = 3, /decl/tech/power_storage = 3)
-	materials = alist(/decl/material/steel = 5000, /decl/material/glass = 500, /decl/material/silver = 3000)
+	materials = alist(/decl/material/steel = 2.5 MATERIAL_SHEETS, /decl/material/glass = 0.25 MATERIAL_SHEETS, /decl/material/silver = 1.5 MATERIAL_SHEETS)
 	build_path = /obj/item/gun/energy/temperature
 	locked = 1
 
@@ -74,14 +80,14 @@
 	name = "Floral Somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells. Harmless to other organic life."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 3, /decl/tech/power_storage = 3)
-	materials = alist(/decl/material/steel = 2000, /decl/material/glass = 500, /decl/material/uranium = 500)
+	materials = alist(/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 0.25 MATERIAL_SHEETS, /decl/material/uranium = 0.25 MATERIAL_SHEETS)
 	build_path = /obj/item/gun/energy/floragun
 
 /datum/design/weapon/large_grenade
 	name = "Large Grenade"
 	desc = "A grenade that affects a larger area and use larger containers."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 3)
-	materials = alist(/decl/material/steel = 3000)
+	materials = alist(/decl/material/steel = 1.5 MATERIAL_SHEETS)
 	reliability_base = 79
 	build_path = /obj/item/grenade/chemical/large
 

@@ -9,7 +9,7 @@
 	name = "Tracking Beacon"
 	desc = "A bluespace tracking beacon."
 	req_tech = alist(/decl/tech/bluespace = 1)
-	materials = alist(/decl/material/plastic = 20, /decl/material/glass = 10)
+	materials = alist(/decl/material/plastic = 0.5 MATERIAL_SHEETS, /decl/material/glass = QUARTER_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/radio/beacon
 
 /datum/design/bluespace/bluespace_crystal

@@ -78,8 +78,8 @@
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 3, /decl/tech/plasma = 3)
 	materials = alist(
 		/decl/material/steel = 4.25 MATERIAL_SHEETS, /decl/material/plastic = 1 MATERIAL_SHEET,
-		/decl/material/glass = 1.25 MATERIAL_SHEETS, /decl/material/silver = 0.0625 MATERIAL_SHEETS,
-		/decl/material/gold = 1 MATERIAL_SHEET, /decl/material/plasma = 0.5 MATERIAL_SHEETS
+		/decl/material/glass = 1.25 MATERIAL_SHEETS, /decl/material/silver = 0.5 MATERIAL_SHEETS,
+		/decl/material/gold = 1 MATERIAL_SHEET, /decl/material/plasma = 0.25 MATERIAL_SHEETS
 	)
 	build_path = /obj/item/mecha_equipment/weapon/energy/laser/xray/rigged
 
