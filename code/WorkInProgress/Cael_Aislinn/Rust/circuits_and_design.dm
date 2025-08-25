@@ -72,7 +72,7 @@
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
 		/obj/item/stock_part/micro_laser/ultra = 1,
-		/obj/item/stock_part/subspace/crystal = 1,
+		/obj/item/stock_part/subspace_crystal = 1,
 		/obj/item/stock_part/console_screen = 1,
 		/obj/item/stack/cable_coil = 5
 	)

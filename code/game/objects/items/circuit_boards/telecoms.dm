@@ -36,8 +36,8 @@
 	board_type = "machine"
 	frame_desc = "Requires 1 subspace ansible, 1 hyperwave filter, 2 micro-manipulators, and 1 micro-laser."
 	req_components = list(
-		/obj/item/stock_part/subspace/ansible = 1,
-		/obj/item/stock_part/subspace/filter = 1,
+		/obj/item/stock_part/subspace_ansible = 1,
+		/obj/item/stock_part/subspace_filter = 1,
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stock_part/micro_laser = 1
 	)
@@ -52,7 +52,7 @@
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 2,
-		/obj/item/stock_part/subspace/filter = 2
+		/obj/item/stock_part/subspace_filter = 2
 	)
 
 /obj/item/circuitboard/telecoms/relay
@@ -65,7 +65,7 @@
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 2,
-		/obj/item/stock_part/subspace/filter = 2
+		/obj/item/stock_part/subspace_filter = 2
 	)
 
 /obj/item/circuitboard/telecoms/bus
@@ -78,7 +78,7 @@
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 1,
-		/obj/item/stock_part/subspace/filter = 1
+		/obj/item/stock_part/subspace_filter = 1
 	)
 
 /obj/item/circuitboard/telecoms/processor
@@ -90,11 +90,11 @@
 	frame_desc = "Requires 3 micro-manipulators, 1 hyperwave filter, 2 treatment disks, 1 wavelength analyser, 2 pieces of cable and 1 subspace amplifier."
 	req_components = list(
 		/obj/item/stock_part/manipulator = 3,
-		/obj/item/stock_part/subspace/filter = 1,
-		/obj/item/stock_part/subspace/treatment = 2,
-		/obj/item/stock_part/subspace/analyser = 1,
+		/obj/item/stock_part/subspace_filter = 1,
+		/obj/item/stock_part/subspace_treatment = 2,
+		/obj/item/stock_part/subspace_analyser = 1,
 		/obj/item/stack/cable_coil = 2,
-		/obj/item/stock_part/subspace/amplifier = 1
+		/obj/item/stock_part/subspace_amplifier = 1
 	)
 
 /obj/item/circuitboard/telecoms/server
@@ -107,7 +107,7 @@
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 1,
-		/obj/item/stock_part/subspace/filter = 1
+		/obj/item/stock_part/subspace_filter = 1
 	)
 
 /obj/item/circuitboard/telecoms/broadcaster
@@ -120,7 +120,7 @@
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 1,
-		/obj/item/stock_part/subspace/filter = 1,
-		/obj/item/stock_part/subspace/crystal = 1,
+		/obj/item/stock_part/subspace_filter = 1,
+		/obj/item/stock_part/subspace_crystal = 1,
 		/obj/item/stock_part/micro_laser/high = 2
 	)

@@ -311,10 +311,7 @@
 			apply_image_decorations = 0
 			apply_material_decorations = 0
 		if(24)
-			var/list/possible_spawns = typesof(/obj/item/stock_part)
-			possible_spawns -= /obj/item/stock_part
-			possible_spawns -= /obj/item/stock_part/subspace
-
+			var/list/possible_spawns = subtypesof(/obj/item/stock_part)
 			var/new_type = pick(possible_spawns)
 			new_item = new new_type(src.loc)
 			item_type = new_item.name

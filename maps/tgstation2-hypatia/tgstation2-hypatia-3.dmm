@@ -1688,12 +1688,12 @@
 /area/space)
 "xv" = (
 /obj/structure/table,
-/obj/item/stock_part/subspace/treatment,
-/obj/item/stock_part/subspace/treatment,
-/obj/item/stock_part/subspace/treatment,
-/obj/item/stock_part/subspace/analyser,
-/obj/item/stock_part/subspace/analyser,
-/obj/item/stock_part/subspace/analyser,
+/obj/item/stock_part/subspace_treatment,
+/obj/item/stock_part/subspace_treatment,
+/obj/item/stock_part/subspace_treatment,
+/obj/item/stock_part/subspace_analyser,
+/obj/item/stock_part/subspace_analyser,
+/obj/item/stock_part/subspace_analyser,
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "xE" = (
@@ -1753,12 +1753,12 @@
 /area/external/tcomsat/exterior)
 "yw" = (
 /obj/structure/table,
-/obj/item/stock_part/subspace/transmitter,
-/obj/item/stock_part/subspace/transmitter,
-/obj/item/stock_part/subspace/transmitter,
-/obj/item/stock_part/subspace/ansible,
-/obj/item/stock_part/subspace/ansible,
-/obj/item/stock_part/subspace/ansible,
+/obj/item/stock_part/subspace_transmitter,
+/obj/item/stock_part/subspace_transmitter,
+/obj/item/stock_part/subspace_transmitter,
+/obj/item/stock_part/subspace_ansible,
+/obj/item/stock_part/subspace_ansible,
+/obj/item/stock_part/subspace_ansible,
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "yz" = (
@@ -2484,14 +2484,14 @@
 /turf/open/floor/plating/metal,
 /area/turret_protected/tcomsat)
 "HI" = (
-/obj/item/stock_part/subspace/filter,
-/obj/item/stock_part/subspace/filter,
-/obj/item/stock_part/subspace/filter,
-/obj/item/stock_part/subspace/filter,
-/obj/item/stock_part/subspace/filter,
-/obj/item/stock_part/subspace/crystal,
-/obj/item/stock_part/subspace/crystal,
-/obj/item/stock_part/subspace/crystal,
+/obj/item/stock_part/subspace_filter,
+/obj/item/stock_part/subspace_filter,
+/obj/item/stock_part/subspace_filter,
+/obj/item/stock_part/subspace_filter,
+/obj/item/stock_part/subspace_filter,
+/obj/item/stock_part/subspace_crystal,
+/obj/item/stock_part/subspace_crystal,
+/obj/item/stock_part/subspace_crystal,
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -3570,9 +3570,9 @@
 /area/turret_protected/tcomsat)
 "Xs" = (
 /obj/structure/table,
-/obj/item/stock_part/subspace/amplifier,
-/obj/item/stock_part/subspace/amplifier,
-/obj/item/stock_part/subspace/amplifier,
+/obj/item/stock_part/subspace_amplifier,
+/obj/item/stock_part/subspace_amplifier,
+/obj/item/stock_part/subspace_amplifier,
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat)
 "Xv" = (

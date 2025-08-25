@@ -10,9 +10,9 @@
 	frame_desc = "Requires 2 pico-manipulators, 1 subspace transmitter, 5 pieces of cable, 1 ansible crystal, 1 subspace amplifier and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
-		/obj/item/stock_part/subspace/transmitter = 1,
-		/obj/item/stock_part/subspace/crystal = 1,
-		/obj/item/stock_part/subspace/amplifier = 1,
+		/obj/item/stock_part/subspace_transmitter = 1,
+		/obj/item/stock_part/subspace_crystal = 1,
+		/obj/item/stock_part/subspace_amplifier = 1,
 		/obj/item/stock_part/console_screen = 1,
 		/obj/item/stack/cable_coil = 5
 	)
@@ -38,9 +38,9 @@
 	frame_desc = "Requires 2 pico-manipulators, 1 subspace transmitter, 5 pieces of cable, 1 ansible crystal, 1 subspace amplifier and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
-		/obj/item/stock_part/subspace/transmitter = 1,
-		/obj/item/stock_part/subspace/crystal = 1,
-		/obj/item/stock_part/subspace/amplifier = 1,
+		/obj/item/stock_part/subspace_transmitter = 1,
+		/obj/item/stock_part/subspace_crystal = 1,
+		/obj/item/stock_part/subspace_amplifier = 1,
 		/obj/item/stock_part/console_screen = 1,
 		/obj/item/stack/cable_coil = 5
 	)
@@ -66,9 +66,9 @@
 	frame_desc = "Requires 2 pico-manipulators, 1 subspace filter, 5 pieces of cable, 1 subspace treatment disk, 1 subspace analyser and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
-		/obj/item/stock_part/subspace/filter = 1,
-		/obj/item/stock_part/subspace/treatment = 1,
-		/obj/item/stock_part/subspace/analyser = 1,
+		/obj/item/stock_part/subspace_filter = 1,
+		/obj/item/stock_part/subspace_treatment = 1,
+		/obj/item/stock_part/subspace_analyser = 1,
 		/obj/item/stock_part/console_screen = 1,
 		/obj/item/stack/cable_coil = 5
 	)

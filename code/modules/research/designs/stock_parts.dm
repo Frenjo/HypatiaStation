@@ -178,14 +178,14 @@
 	desc = "A compact module capable of sensing extradimensional activity."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/magnets = 5, /decl/tech/programming = 3, /decl/tech/bluespace = 2)
 	materials = alist(/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 0.8, /decl/material/silver = QUARTER_SHEET_MATERIAL_AMOUNT * 0.2)
-	build_path = /obj/item/stock_part/subspace/ansible
+	build_path = /obj/item/stock_part/subspace_ansible
 
 /datum/design/stock_part/hyperwave_filter
 	name = "Hyperwave Filter"
 	desc = "A tiny device capable of filtering and converting super-intense radiowaves."
 	req_tech = alist(/decl/tech/magnets = 3, /decl/tech/programming = 3)
 	materials = alist(/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 0.4, /decl/material/silver = QUARTER_SHEET_MATERIAL_AMOUNT * 0.1)
-	build_path = /obj/item/stock_part/subspace/filter
+	build_path = /obj/item/stock_part/subspace_filter
 
 /datum/design/stock_part/subspace_amplifier
 	name = "Subspace Amplifier"
@@ -195,21 +195,21 @@
 		/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 0.1, /decl/material/gold = QUARTER_SHEET_MATERIAL_AMOUNT * 0.3,
 		/decl/material/uranium = QUARTER_SHEET_MATERIAL_AMOUNT * 0.15
 	)
-	build_path = /obj/item/stock_part/subspace/amplifier
+	build_path = /obj/item/stock_part/subspace_amplifier
 
 /datum/design/stock_part/subspace_treatment
 	name = "Subspace Treatment Disk"
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/magnets = 2, /decl/tech/programming = 3, /decl/tech/bluespace = 2)
 	materials = alist(/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 0.1, /decl/material/silver = QUARTER_SHEET_MATERIAL_AMOUNT * 0.2)
-	build_path = /obj/item/stock_part/subspace/treatment
+	build_path = /obj/item/stock_part/subspace_treatment
 
 /datum/design/stock_part/subspace_analyser
 	name = "Subspace Analyser"
 	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
 	req_tech = alist(/decl/tech/materials = 4, /decl/tech/magnets = 4, /decl/tech/programming = 3, /decl/tech/bluespace = 2)
 	materials = alist(/decl/material/plastic = QUARTER_SHEET_MATERIAL_AMOUNT * 0.1, /decl/material/gold = QUARTER_SHEET_MATERIAL_AMOUNT * 0.15)
-	build_path = /obj/item/stock_part/subspace/analyser
+	build_path = /obj/item/stock_part/subspace_analyser
 
 /datum/design/stock_part/ansible_crystal
 	name = "Ansible Crystal"
@@ -219,7 +219,7 @@
 		/decl/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 0.5, /decl/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 0.25,
 		/decl/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 0.25
 	)
-	build_path = /obj/item/stock_part/subspace/crystal
+	build_path = /obj/item/stock_part/subspace_crystal
 
 /datum/design/stock_part/subspace_transmitter
 	name = "Subspace Transmitter"
@@ -229,7 +229,7 @@
 		/decl/material/glass = HALF_SHEET_MATERIAL_AMOUNT * 0.1, /decl/material/silver = QUARTER_SHEET_MATERIAL_AMOUNT * 0.1,
 		/decl/material/uranium = QUARTER_SHEET_MATERIAL_AMOUNT * 0.15
 	)
-	build_path = /obj/item/stock_part/subspace/transmitter
+	build_path = /obj/item/stock_part/subspace_transmitter
 
 ///////////////////////////
 ////////// Power //////////
