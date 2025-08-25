@@ -1726,33 +1726,11 @@
 /turf/open/floor/tiled/dark,
 /area/station/security/evidence_storage)
 "aGa" = (
-/obj/structure/closet/crate{
-	name = "solar pack crate"
-	},
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/circuitboard/solar_control,
-/obj/item/tracker_electronics,
-/obj/item/paper/solar,
 /obj/machinery/light{
 	dir = 1;
 	on = 1
 	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/closet/crate/solar,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "caution"
@@ -3671,6 +3649,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
 "bqy" = (
@@ -5792,25 +5771,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "bZo" = (
-/obj/structure/closet/crate{
-	name = "solar pack crate"
-	},
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/circuitboard/solar_control,
-/obj/item/tracker_electronics,
-/obj/item/paper/solar,
+/obj/structure/closet/crate/solar,
 /turf/open/floor/plating/metal,
 /area/station/engineering/storage/hard)
 "bZs" = (
@@ -8207,6 +8168,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
 "cPC" = (
@@ -41550,7 +41512,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/flashlight/flare,
 /obj/effect/decal/floor/industrial/bot,
 /turf/open/floor/tiled/grey,
 /area/station/security/main)
@@ -50381,6 +50342,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
 "rwP" = (
@@ -57262,8 +57224,8 @@
 /turf/open/floor/tiled/grey,
 /area/station/cargo/bay)
 "tXb" = (
-/obj/structure/closet/secure/chemical,
 /obj/effect/decal/floor/coloured/light_yellow/full,
+/obj/structure/closet/wardrobe/chemistry,
 /turf/open/floor/tiled/white,
 /area/station/medical/chemistry)
 "tXo" = (
@@ -59054,6 +59016,10 @@
 /obj/structure/sign/securearea,
 /turf/closed/wall/reinforced,
 /area/station/storage/tech)
+"uDI" = (
+/obj/effect/decal/floor/industrial/warning/border,
+/turf/open/floor/tiled/grey,
+/area/station/engineering/storage/emergency)
 "uDZ" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -59197,6 +59163,9 @@
 /obj/machinery/power/apc/standard/apc{
 	name = "south bump";
 	pixel_y = -24
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
 	},
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
@@ -59621,7 +59590,6 @@
 	c_tag = "Chemistry";
 	network = list("SS13","Medical")
 	},
-/obj/structure/closet/wardrobe/chemistry,
 /obj/effect/decal/floor/coloured/light_yellow{
 	dir = 1
 	},
@@ -59629,6 +59597,7 @@
 	name = "north bump";
 	pixel_y = 24
 	},
+/obj/structure/closet/secure/chemical,
 /turf/open/floor/tiled/white,
 /area/station/medical/chemistry)
 "uQR" = (
@@ -96959,7 +96928,7 @@ gGX
 fUC
 vpN
 aUc
-snN
+uDI
 eYm
 gtD
 mha

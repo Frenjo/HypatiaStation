@@ -199,7 +199,8 @@
 		/obj/item/hailer,
 		/obj/item/clothing/tie/storage/black_vest,
 		/obj/item/clothing/head/soft/sec/corp,
-		/obj/item/clothing/under/rank/security/corp
+		/obj/item/clothing/under/rank/security/corp,
+		/obj/item/flashlight/flare
 	)
 
 /obj/structure/closet/secure/security/New()
