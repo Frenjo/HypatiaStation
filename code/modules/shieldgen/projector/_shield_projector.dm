@@ -210,6 +210,14 @@
 	size_x = 2
 	size_y = 2
 
+// Peacekeeper shield projector upgrade variant.
+/obj/item/shield_projector/rectangle/peacekeeper
+	name = "rectangular shield projector"
+	shield_health = 100 // A quarter of the health of the default.
+	max_shield_health = 100
+	size_x = 1 // Only protects the single tile the peacekeeper is on since it's more for interference than actual combat use.
+	size_y = 1
+
 // A shortcut for admins to spawn in to put into simple animals or other things where it needs to reactivate automatically.
 /obj/item/shield_projector/rectangle/automatic
 	always_on = TRUE

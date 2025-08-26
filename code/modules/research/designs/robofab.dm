@@ -148,6 +148,17 @@
 	)
 	build_path = /obj/item/robot_upgrade/tasercooler
 
+/datum/design/robofab/robot_upgrade/shield_projector
+	name = "Peacekeeper Shield Projector Module"
+	desc = "Allows for the construction of shield projector modules for peacekeeper robots."
+	req_tech = alist(/decl/tech/magnets = 6, /decl/tech/plasma = 6, /decl/tech/syndicate = 2)
+	materials = alist(
+		/decl/material/steel = 8 MATERIAL_SHEETS, /decl/material/glass = 4 MATERIAL_SHEETS,
+		/decl/material/silver = 3 MATERIAL_SHEETS, /decl/material/gold = 2 MATERIAL_SHEETS,
+		/decl/material/plasma = 4 MATERIAL_SHEETS
+	)
+	build_path = /obj/item/robot_upgrade/shield_projector
+
 /datum/design/robofab/robot_upgrade/experimental_welder
 	name = "Engineering Experimental Welding Torch Module"
 	desc = "Allows for the construction of experimental welding torch modules for engineering robots."
