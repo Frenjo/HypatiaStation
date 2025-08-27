@@ -9,6 +9,8 @@
 // Used for rapidly calling qdel() properly on list entries.
 #define QDEL_LIST(X) \
 	if(isnotnull(X)) \
+	{ \
 		for(var/I in X) \
 			qdel(I); \
-		X.Cut();
+		X.Cut(); \
+	}

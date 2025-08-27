@@ -8,7 +8,6 @@
 
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
-	var/datum/material_container/materials
 	var/newCoins = 0	//how many coins the machine made in it's last load
 	var/processing = FALSE
 	var/decl/material/chosen = /decl/material/iron	//which material will be used to make coins
@@ -16,7 +15,7 @@
 
 /obj/machinery/mineral/mint/initialise()
 	. = ..()
-	materials = new /datum/material_container(src, list(
+	AddComponent(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel, /decl/material/silver,
 		/decl/material/gold, /decl/material/diamond, /decl/material/uranium,
 		/decl/material/plasma, /decl/material/bananium, /decl/material/tranquilite,
@@ -40,6 +39,7 @@
 	if(isnotnull(input))
 		var/obj/item/stack/sheet/O = locate(/obj/item/stack/sheet, input.loc)
 		if(isnotnull(O))
+			GET_COMPONENT(materials, /datum/component/material_container)
 			materials.add_sheets(O)
 
 /obj/machinery/mineral/mint/attack_hand(mob/user)
@@ -52,6 +52,7 @@
 		dat += "<br>output connection status: "
 		dat += "<b><font color='red'>NOT CONNECTED</font></b><br>"
 
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/material_path in materials.stored_materials)
 		var/decl/material/mat = material_path
 		dat += "<br><font color='[initial(mat.colour_code)]'><b>[initial(mat.name)] inserted: </b>[materials.get_type_amount(mat)]cm<sup>3</sup></font> "
@@ -97,6 +98,7 @@
 			processing = TRUE
 			icon_state = "coinpress1"
 			var/obj/item/moneybag/M
+			GET_COMPONENT(materials, /datum/component/material_container)
 			while(materials.can_remove_amount(chosen, 20) && coinsToProduce > 0)
 				if(locate(/obj/item/moneybag, output.loc))
 					M = locate(/obj/item/moneybag, output.loc)

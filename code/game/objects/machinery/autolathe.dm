@@ -12,8 +12,6 @@
 		USE_POWER_ACTIVE = 100
 	)
 
-	var/datum/material_container/materials
-
 	var/panel_open = FALSE
 
 	var/datum/research/files
@@ -27,7 +25,7 @@
 	var/busy = FALSE
 
 /obj/machinery/autolathe/New()
-	materials = new /datum/material_container(src, list(
+	AddComponent(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel,
 		/decl/material/plastic, /decl/material/glass
 	))
@@ -36,7 +34,6 @@
 	wires = new /datum/wires/autolathe(src)
 
 /obj/machinery/autolathe/Destroy()
-	QDEL_NULL(materials)
 	QDEL_NULL(files)
 	QDEL_NULL(wires)
 	return ..()
@@ -57,6 +54,7 @@
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
 	total_rating *= 25000
+	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.set_max_capacity(total_rating * 2)
 
 /obj/machinery/autolathe/interact(mob/user)
@@ -86,6 +84,7 @@
 /obj/machinery/autolathe/proc/regular_win(mob/user)
 	var/dat = "<html><head><title>[name]</title></head><body>"
 	dat += "<tt>"
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/material_path in materials.stored_materials)
 		var/decl/material/mat = material_path
 		dat += "<font color='[initial(mat.colour_code)]'><b>[initial(mat.name)]:</b></font> [materials.get_type_amount(mat)]cm<sup>3</sup>"
@@ -161,6 +160,7 @@
 				part.forceMove(loc)
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = TRUE
+			GET_COMPONENT(materials, /datum/component/material_container)
 			materials.eject_all_sheets()
 			qdel(src)
 			return TRUE
@@ -176,6 +176,7 @@
 		to_chat(user, SPAN_WARNING("\The [I] does not contain sufficient material to be accepted by \the [src]."))
 		return TRUE
 
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/material_path in I.matter_amounts)
 		// If it has any matter that we can't accept, then we also can't recycle it.
 		if(!materials.can_contain(material_path))
@@ -220,6 +221,7 @@
 
 /obj/machinery/autolathe/proc/output_item_cost(datum/design/D)
 	var/i = 0
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/material_path in D.materials)
 		if(materials.can_contain(material_path))
 			var/decl/material/mat = material_path
@@ -233,6 +235,7 @@
 
 /obj/machinery/autolathe/proc/build_item(datum/design/D, multiplier)
 	busy = TRUE
+	GET_COMPONENT(materials, /datum/component/material_container)
 	var/total_amount_used = materials.remove_materials(D.materials)
 	icon_state = "autolathe_n"
 	power_usage[USE_POWER_ACTIVE] = max(2000, total_amount_used * multiplier / 5)
@@ -255,6 +258,7 @@
 
 /obj/machinery/autolathe/proc/add_item(obj/item/I, mob/user)
 	var/amount = 1
+	GET_COMPONENT(materials, /datum/component/material_container)
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/input_stack = I
 		if(!do_after(user, 0.25 SECONDS))

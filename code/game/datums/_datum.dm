@@ -44,9 +44,10 @@
 /datum/proc/AddComponent(component_type, ...)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
+	var/new_type = component_type
 	args[1] = src
-	var/datum/component/new_component = new component_type(arglist(args))
-	return GC_DESTROYED(new_component) ? GetComponent(component_type) : new_component
+	var/datum/component/new_component = new new_type(args) // This doesn't use argslist for a reason.
+	return GC_DESTROYED(new_component) ? GetComponent(new_type) : new_component
 
 // Returns the component of component_type attached to the datum, if any, or null.
 /datum/proc/GetComponent(component_type)

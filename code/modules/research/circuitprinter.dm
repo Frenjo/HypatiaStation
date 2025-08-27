@@ -10,7 +10,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 /obj/machinery/r_n_d/circuit_imprinter/initialise()
-	materials = new /datum/material_container(src, list(
+	AddComponent(/datum/component/material_container, list(
 		/decl/material/plastic, /decl/material/glass, /decl/material/gold, /decl/material/diamond,
 		/decl/material/uranium
 	), FALSE)
@@ -34,6 +34,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
+	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.set_max_capacity(total_rating * 75000)
 
 /obj/machinery/r_n_d/circuit_imprinter/blob_act()
@@ -71,6 +72,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = TRUE
 				part.forceMove(loc)
+			GET_COMPONENT(materials, /datum/component/material_container)
 			materials.eject_all_sheets()
 			qdel(src)
 			return TRUE
@@ -96,6 +98,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		return 1
 
 	var/obj/item/stack/sheet/sheets = O
+	GET_COMPONENT(materials, /datum/component/material_container)
 	if(!materials.can_contain(sheets.material.type))
 		to_chat(user, SPAN_WARNING("\The [src] cannot accept this material!"))
 		return 1

@@ -16,7 +16,6 @@
 	var/time_coeff = 1.5 //can be upgraded with research
 	var/resource_coeff = 1.5 //can be upgraded with research
 	var/list/accepted_materials = list() // A list of /decl/material typepaths of materials this machine can accept and store.
-	var/datum/material_container/materials
 
 	var/ui_id = null
 
@@ -36,7 +35,7 @@
 
 /obj/machinery/robotics_fabricator/initialise()
 	. = ..()
-	materials = new /datum/material_container(src, accepted_materials)
+	AddComponent(/datum/component/material_container, accepted_materials)
 	files = new /datum/research(src) // Sets up the research data holder.
 
 /obj/machinery/robotics_fabricator/Destroy()
@@ -63,6 +62,7 @@
 	var/total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
+	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.set_max_capacity((50 MATERIAL_SHEETS) + (total_rating * (100 MATERIAL_SHEETS)))
 
 	total_rating = 0
@@ -140,6 +140,7 @@
 
 /obj/machinery/robotics_fabricator/proc/output_part_cost(datum/design/D)
 	var/i = 0
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/material_path in D.materials)
 		if(materials.can_contain(material_path))
 			var/decl/material/mat = material_path
@@ -147,6 +148,7 @@
 			i++
 
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
+	GET_COMPONENT(materials, /datum/component/material_container)
 	for(var/material_path in materials.stored_materials)
 		var/decl/material/mat = material_path
 		var/amount = materials.get_type_amount(material_path)
@@ -452,6 +454,7 @@
 
 	if(topic.has("remove_mat") && topic.has("material"))
 		var/decl/material/mat = topic.get_path("material")
+		GET_COMPONENT(materials, /datum/component/material_container)
 		temp = "Ejected [materials.eject_sheets(mat, topic.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
@@ -489,6 +492,7 @@
 			if(part.reliability != 100 && crit_fail)
 				part.crit_fail = TRUE
 			part.forceMove(loc)
+		GET_COMPONENT(materials, /datum/component/material_container)
 		materials.eject_all_sheets()
 		qdel(src)
 		return TRUE
@@ -508,6 +512,7 @@
 	if(being_built)
 		to_chat(user, SPAN_WARNING("\The [src] is currently processing. Please wait until completion."))
 		return
+	GET_COMPONENT(materials, /datum/component/material_container)
 	if(!materials.can_contain(stack.material.type))
 		to_chat(user, SPAN_WARNING("\The [src] cannot accept [stack.name]!"))
 		return
@@ -524,10 +529,12 @@
 
 // Returns TRUE if the internal container has all of the required material amounts.
 /obj/machinery/robotics_fabricator/proc/has_materials(datum/design/D)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	return materials.has_materials(calculate_materials_with_coeff(D))
 
 // Removes the provided material amounts from the internal container's stored materials.
 /obj/machinery/robotics_fabricator/proc/remove_materials(datum/design/D)
+	GET_COMPONENT(materials, /datum/component/material_container)
 	return materials.remove_materials(calculate_materials_with_coeff(D))
 
 // Helper procs related to calculating material and time coefficients.

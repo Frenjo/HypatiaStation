@@ -13,7 +13,7 @@ Note: Must be placed west/left of and R&D console to function.
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 /obj/machinery/r_n_d/protolathe/initialise()
-	materials = new /datum/material_container(src, list(
+	AddComponent(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel, /decl/material/plastic, /decl/material/glass,
 		/decl/material/silver, /decl/material/gold, /decl/material/diamond, /decl/material/uranium,
 		/decl/material/plasma, /decl/material/bananium, /decl/material/adamantine
@@ -40,6 +40,7 @@ Note: Must be placed west/left of and R&D console to function.
 	total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
+	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.set_max_capacity(total_rating * 75000)
 
 /obj/machinery/r_n_d/protolathe/attack_tool(obj/item/tool, mob/user)
@@ -69,6 +70,7 @@ Note: Must be placed west/left of and R&D console to function.
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = TRUE
 				part.forceMove(loc)
+			GET_COMPONENT(materials, /datum/component/material_container)
 			materials.eject_all_sheets()
 			qdel(src)
 			return TRUE
@@ -94,6 +96,7 @@ Note: Must be placed west/left of and R&D console to function.
 		return 1
 
 	var/obj/item/stack/sheet/sheets = O
+	GET_COMPONENT(materials, /datum/component/material_container)
 	if(!materials.can_contain(sheets.material.type))
 		to_chat(user, SPAN_WARNING("\The [src] cannot accept this material!"))
 		return 1
