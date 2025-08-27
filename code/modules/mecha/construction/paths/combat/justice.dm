@@ -1,6 +1,6 @@
 // Justice Chassis
-/datum/construction/mecha_chassis/justice
-	result = /datum/construction/reversible/mecha/combat/justice
+/datum/component/construction/mecha_chassis/justice
+	result = /datum/component/construction/reversible/mecha/combat/justice
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/justice/torso),
 		list("key" = /obj/item/mecha_part/part/justice/left_arm),
@@ -10,7 +10,7 @@
 	)
 
 // Justice
-/datum/construction/reversible/mecha/combat/justice
+/datum/component/construction/reversible/mecha/combat/justice
 	result = /obj/mecha/combat/justice
 
 	base_icon_state = "justice"
@@ -19,7 +19,7 @@
 	capacitor = /obj/item/stock_part/capacitor/adv
 
 // This one is a weirdo and has no peripherals board.
-/datum/construction/reversible/mecha/combat/justice/get_circuit_steps()
+/datum/component/construction/reversible/mecha/combat/justice/get_circuit_steps()
 	. = list(
 		list(
 			"desc" = "The wiring is adjusted.",
@@ -53,7 +53,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/justice/get_other_steps()
+/datum/component/construction/reversible/mecha/combat/justice/get_other_steps()
 	. = list(
 		list(
 			"desc" = "The [capacitor::name] is secured.",

@@ -4,7 +4,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/dreadnought_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/ripley/dreadnought
+	construct_type = /datum/component/construction/mecha_chassis/ripley/dreadnought
 	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 
 // Circuit Boards

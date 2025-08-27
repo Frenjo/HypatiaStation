@@ -1,5 +1,5 @@
 // Chassis
-/datum/construction/mecha_chassis/reticence
+/datum/component/construction/mecha_chassis/reticence
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/reticence/torso),
 		list("key" = /obj/item/mecha_part/part/reticence/head),
@@ -9,14 +9,14 @@
 		list("key" = /obj/item/mecha_part/part/reticence/right_leg)
 	)
 
-/datum/construction/mecha_chassis/reticence/spawn_result()
-	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/mecha_reticence(const_holder)
+/datum/component/construction/mecha_chassis/reticence/spawn_result()
+	var/obj/item/mecha_part/chassis/const_holder = parent_datum
+	const_holder.RemoveComponent(src)
+	const_holder.AddComponent(/datum/component/construction/mecha_reticence)
 	const_holder.density = TRUE
-	qdel(src)
 
 // Reticence
-/datum/construction/mecha_reticence
+/datum/component/construction/mecha_reticence
 	result = /obj/mecha/combat/reticence
 	steps = list(
 		list("key" = /obj/item/toy/crayon/mime),							//1
@@ -34,9 +34,11 @@
 		list("key" = /obj/item/toy/crayon/mime)								//13
 	)
 
-/datum/construction/mecha_reticence/custom_action(step, obj/item/used_item, mob/living/user)
+/datum/component/construction/mecha_reticence/custom_action(step, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
+
+	var/atom/holder = parent_datum
 
 	if(istype(used_item, /obj/item/toy/crayon/mime))
 		holder.balloon_alert_visible("...")
@@ -69,6 +71,6 @@
 			qdel(used_item)
 	return TRUE
 
-/datum/construction/mecha_reticence/spawn_result()
+/datum/component/construction/mecha_reticence/spawn_result()
 	. = ..()
 	feedback_inc("mecha_reticence_created", 1)

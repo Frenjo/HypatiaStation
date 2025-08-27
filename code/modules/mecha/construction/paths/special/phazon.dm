@@ -1,6 +1,6 @@
 // Phazon Chassis
-/datum/construction/mecha_chassis/phazon
-	result = /datum/construction/reversible/mecha/special/phazon
+/datum/component/construction/mecha_chassis/phazon
+	result = /datum/component/construction/reversible/mecha/special/phazon
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/phazon/torso),
 		list("key" = /obj/item/mecha_part/part/phazon/head),
@@ -11,7 +11,7 @@
 	)
 
 // Phazon
-/datum/construction/reversible/mecha/special/phazon
+/datum/component/construction/reversible/mecha/special/phazon
 	result = /obj/mecha/combat/phazon
 
 	base_icon_state = "phazon"
@@ -26,6 +26,6 @@
 	internal_armour = /obj/item/stack/sheet/plasteel
 	external_armour = /obj/item/mecha_part/part/phazon/armour
 
-/datum/construction/reversible/mecha/special/phazon/spawn_result()
+/datum/component/construction/reversible/mecha/special/phazon/spawn_result()
 	. = ..()
 	feedback_inc("mecha_phazon_created", 1)

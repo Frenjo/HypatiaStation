@@ -1,5 +1,5 @@
 // H.O.N.K Chassis
-/datum/construction/mecha_chassis/honk
+/datum/component/construction/mecha_chassis/honk
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/honk/torso),
 		list("key" = /obj/item/mecha_part/part/honk/head),
@@ -9,14 +9,14 @@
 		list("key" = /obj/item/mecha_part/part/honk/right_leg)
 	)
 
-/datum/construction/mecha_chassis/honk/spawn_result()
-	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/mecha_honk(const_holder)
+/datum/component/construction/mecha_chassis/honk/spawn_result()
+	var/obj/item/mecha_part/chassis/const_holder = parent_datum
+	const_holder.RemoveComponent(src)
+	const_holder.AddComponent(/datum/component/construction/mecha_honk)
 	const_holder.density = TRUE
-	qdel(src)
 
 // H.O.N.K
-/datum/construction/mecha_honk
+/datum/component/construction/mecha_honk
 	result = /obj/mecha/combat/honk
 	steps = list(
 		list("key" = /obj/item/bikehorn),								//1
@@ -32,9 +32,11 @@
 		list("key" = /obj/item/bikehorn)								//11
 	)
 
-/datum/construction/mecha_honk/custom_action(step, obj/item/used_item, mob/living/user)
+/datum/component/construction/mecha_honk/custom_action(step, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
+
+	var/atom/holder = parent_datum
 
 	if(istype(used_item, /obj/item/bikehorn))
 		playsound(holder, 'sound/items/bikehorn.ogg', 50, 1)
@@ -65,6 +67,6 @@
 			qdel(used_item)
 	return TRUE
 
-/datum/construction/mecha_honk/spawn_result()
+/datum/component/construction/mecha_honk/spawn_result()
 	. = ..()
 	feedback_inc("mecha_honk_created", 1)

@@ -1,9 +1,9 @@
 // Chassis
-/datum/construction/mecha_chassis/ripley/rescue_ranger
-	result = /datum/construction/reversible/mecha/rescue_ranger
+/datum/component/construction/mecha_chassis/ripley/rescue_ranger
+	result = /datum/component/construction/reversible/mecha/rescue_ranger
 
 // Rescue Ranger
-/datum/construction/reversible/mecha/rescue_ranger
+/datum/component/construction/reversible/mecha/rescue_ranger
 	result = /obj/mecha/working/ripley/rescue_ranger
 	steps = list(
 		// 9
@@ -64,6 +64,6 @@
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals
 
-/datum/construction/reversible/mecha/rescue_ranger/spawn_result()
+/datum/component/construction/reversible/mecha/rescue_ranger/spawn_result()
 	. = ..()
 	feedback_inc("mecha_rescue_ranger_created", 1)

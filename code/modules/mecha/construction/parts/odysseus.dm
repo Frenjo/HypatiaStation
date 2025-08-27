@@ -4,7 +4,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/odysseus_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/odysseus
+	construct_type = /datum/component/construction/mecha_chassis/odysseus
 	target_icon = 'icons/obj/mecha/construction/odysseus.dmi'
 
 /obj/item/mecha_part/part/odysseus

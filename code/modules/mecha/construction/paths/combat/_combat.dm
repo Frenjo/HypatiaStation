@@ -1,4 +1,4 @@
-/datum/construction/reversible/mecha/combat
+/datum/component/construction/reversible/mecha/combat
 	var/optional_circuit = null
 	var/optional_circuit_name = "targeting" // This should either be "targeting" or "medical".
 
@@ -9,7 +9,7 @@
 	var/external_armour = null
 	var/is_external_carapace = FALSE
 
-/datum/construction/reversible/mecha/combat/get_circuit_steps()
+/datum/component/construction/reversible/mecha/combat/get_circuit_steps()
 	. = ..()
 	. += list(
 		list(
@@ -29,7 +29,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/get_stock_part_steps()
+/datum/component/construction/reversible/mecha/combat/get_stock_part_steps()
 	. = ..()
 	. += list(
 		list(
@@ -64,7 +64,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/get_other_steps()
+/datum/component/construction/reversible/mecha/combat/get_other_steps()
 	. = ..()
 	. += list(
 		list(

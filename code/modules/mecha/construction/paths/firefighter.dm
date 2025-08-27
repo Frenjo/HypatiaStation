@@ -1,6 +1,6 @@
 // Firefighter Chassis
-/datum/construction/mecha_chassis/firefighter
-	result = /datum/construction/reversible/mecha/firefighter
+/datum/component/construction/mecha_chassis/firefighter
+	result = /datum/component/construction/reversible/mecha/firefighter
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/ripley/torso),
 		list("key" = /obj/item/mecha_part/part/ripley/left_arm),
@@ -10,7 +10,8 @@
 		list("key" = /obj/item/clothing/suit/fire)
 	)
 
-/datum/construction/mecha_chassis/firefighter/custom_action(step, obj/item/used_item, mob/living/user)
+/datum/component/construction/mecha_chassis/firefighter/custom_action(step, obj/item/used_item, mob/living/user)
+	var/atom/holder = parent_datum
 	// This has to be very special snowflake for player-facing neatness reasons.
 	var/is_firesuit = used_item.type == /obj/item/clothing/suit/fire
 	holder.balloon_alert_visible("[is_firesuit ? "added" : "connected"] [used_item.name]")
@@ -22,7 +23,7 @@
 	return TRUE
 
 // Firefighter
-/datum/construction/reversible/mecha/firefighter
+/datum/component/construction/reversible/mecha/firefighter
 	result = /obj/mecha/working/ripley/firefighter
 	steps = list(
 		// 9
@@ -91,6 +92,6 @@
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals
 
-/datum/construction/reversible/mecha/firefighter/spawn_result()
+/datum/component/construction/reversible/mecha/firefighter/spawn_result()
 	. = ..()
 	feedback_inc("mecha_firefighter_created", 1)

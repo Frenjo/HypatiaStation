@@ -64,13 +64,11 @@
 
 	w_class = WEIGHT_CLASS_BULKY
 
-	var/datum/construction/reversible/construct = null
-
-/obj/item/inert_bag_of_holding/New()
+/obj/item/inert_bag_of_holding/initialise()
 	. = ..()
-	construct = new /datum/construction/reversible/bag_of_holding(src)
+	AddComponent(/datum/component/construction/reversible/bag_of_holding)
 
-/datum/construction/reversible/bag_of_holding
+/datum/component/construction/reversible/bag_of_holding
 	result = /obj/item/storage/backpack/holding
 
 	steps = list(
@@ -97,12 +95,8 @@
 		)
 	)
 
-/obj/item/inert_bag_of_holding/Destroy()
-	if(isnotnull(construct))
-		QDEL_NULL(construct)
-	return ..()
-
 /obj/item/inert_bag_of_holding/attack_by(obj/item/I, mob/user)
+	GET_COMPONENT(construct, /datum/component/construction/reversible/bag_of_holding)
 	if(!construct?.action(I, user))
 		return ..()
 	return TRUE

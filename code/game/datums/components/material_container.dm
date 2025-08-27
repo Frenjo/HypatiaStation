@@ -6,8 +6,8 @@
 /datum/component/material_container/initialise(list/accepted_materials, per_material_storage = TRUE)
 	. = ..()
 	if(!isatom(parent_datum))
+		. = FALSE
 		CRASH("A material container component was added to a non-atom: [parent_datum.type]!")
-		return FALSE
 
 	for(var/material_path in accepted_materials)
 		stored_materials[material_path] = 0

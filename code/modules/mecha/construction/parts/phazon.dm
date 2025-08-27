@@ -6,7 +6,7 @@
 	matter_amounts = /datum/design/mechfab/part/phazon_chassis::materials
 	origin_tech = /datum/design/mechfab/part/phazon_chassis::req_tech
 
-	construct_type = /datum/construction/mecha_chassis/phazon
+	construct_type = /datum/component/construction/mecha_chassis/phazon
 	target_icon = 'icons/obj/mecha/construction/phazon.dmi'
 
 /obj/item/mecha_part/part/phazon

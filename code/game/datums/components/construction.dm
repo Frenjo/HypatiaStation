@@ -1,44 +1,43 @@
-/datum/construction
+/datum/component/construction
 	var/list/steps
-	var/atom/holder
 	var/result
 	var/list/steps_desc
 
-/datum/construction/New(atom, update_holder = TRUE)
+/datum/component/construction/initialise(update_holder = TRUE)
 	. = ..()
-	holder = atom
-	if(!holder) //don't want this without a holder
-		qdel(src)
+	if(!isatom(parent_datum))
+		. = FALSE
+		CRASH("A construction component was added to a non-atom: [parent_datum.type]!")
 	if(update_holder)
 		set_desc(length(steps))
 
-/datum/construction/proc/next_step()
+/datum/component/construction/proc/next_step()
 	steps.len--
 	if(!length(steps))
 		spawn_result()
 	else
 		set_desc(length(steps))
 
-/datum/construction/proc/action(obj/item/used_item, mob/living/user)
+/datum/component/construction/proc/action(obj/item/used_item, mob/living/user)
 	return check_step(used_item, user)
 
-/datum/construction/proc/check_step(obj/item/used_item, mob/living/user) //check last step only
+/datum/component/construction/proc/check_step(obj/item/used_item, mob/living/user) //check last step only
 	var/valid_step = is_right_key(used_item)
 	if(valid_step && custom_action(valid_step, used_item, user))
 		next_step()
 		return TRUE
 	return FALSE
 
-/datum/construction/proc/is_right_key(obj/item/used_item) // returns current step num if used_item is of the right type.
+/datum/component/construction/proc/is_right_key(obj/item/used_item) // returns current step num if used_item is of the right type.
 	var/list/step = steps[length(steps)]
 	if(istype(used_item, step["key"]))
 		return length(steps)
 	return FALSE
 
-/datum/construction/proc/custom_action(step, obj/item/used_item, mob/living/user)
+/datum/component/construction/proc/custom_action(step, obj/item/used_item, mob/living/user)
 	return TRUE
 
-/datum/construction/proc/check_all_steps(obj/item/used_item, mob/living/user) //check all steps, remove matching one.
+/datum/component/construction/proc/check_all_steps(obj/item/used_item, mob/living/user) //check all steps, remove matching one.
 	for(var/i in 1 to length(steps))
 		var/list/step = steps[i]
 		if(istype(used_item, step["key"]))
@@ -50,43 +49,44 @@
 				return TRUE
 	return FALSE
 
-/datum/construction/proc/spawn_result()
+/datum/component/construction/proc/spawn_result()
 	if(isnotnull(result))
-		new result(GET_TURF(holder))
-		qdel(holder)
+		new result(GET_TURF(parent_datum))
+		qdel(parent_datum)
 
-/datum/construction/proc/set_desc(index)
+/datum/component/construction/proc/set_desc(index)
 	var/list/step = steps[index]
+	var/atom/holder = parent_datum
 	if(isnotnull(step["desc"]))
 		holder.desc = step["desc"]
 
 /*
  * Reversible Construction
  *
- * This is a heavily modified version of tgstation's /datum/construction, but here it's applied only to the /reversible subtype.
+ * This is a heavily modified version of tgstation's /datum/component/construction, but here it's applied only to the /reversible subtype.
  */
 #define FORWARD 1
 #define BACKWARD -1
 
 #define CONSTRUCTION_ACTION_DELETE "delete"
 
-/datum/construction/reversible
+/datum/component/construction/reversible
 	var/index = 1
 
 	var/radial_messages = FALSE // If TRUE, balloon alerts for step completion will be displayed radially instead of just to the user.
 
-/datum/construction/reversible/New(atom)
-	. = ..(atom, FALSE)
+/datum/component/construction/reversible/initialise()
+	. = ..(FALSE)
 	update_holder(index)
 
-/datum/construction/reversible/check_step(obj/item/used_item, mob/living/user)
+/datum/component/construction/reversible/check_step(obj/item/used_item, mob/living/user)
 	var/diff = is_right_key(used_item)
 	if(diff && custom_action(diff, used_item, user))
 		update_index(diff)
 		return TRUE
 	return FALSE
 
-/datum/construction/reversible/is_right_key(obj/item/used_item) // returns index step
+/datum/component/construction/reversible/is_right_key(obj/item/used_item) // returns index step
 	var/list/step = steps[index]
 	if(istype(used_item, step["key"]))
 		return FORWARD //to the first step -> forward
@@ -94,7 +94,7 @@
 		return BACKWARD //to the last step -> backwards
 	return FALSE
 
-/datum/construction/reversible/custom_action(diff, obj/item/used_item, mob/living/user)
+/datum/component/construction/reversible/custom_action(diff, obj/item/used_item, mob/living/user)
 	var/target_index = index + diff
 	var/list/current_step = steps[index]
 	var/list/target_step
@@ -104,6 +104,7 @@
 
 	. = TRUE
 
+	var/atom/holder = parent_datum
 	if(iswelder(used_item))
 		var/obj/item/welding_torch/W = used_item
 		if(!W.remove_fuel(0, user))
@@ -155,19 +156,20 @@
 			else
 				holder.balloon_alert(user, message)
 
-/datum/construction/reversible/proc/update_holder()
+/datum/component/construction/reversible/proc/update_holder()
 	var/list/step = steps[index]
+	var/atom/holder = parent_datum
 	if(isnotnull(step["desc"]))
 		holder.desc = step["desc"]
 	if(isnotnull(step["icon_state"]))
 		holder.icon_state = step["icon_state"]
 
-/datum/construction/reversible/proc/on_step()
+/datum/component/construction/reversible/proc/on_step()
 	if(index >= length(steps))
 		spawn_result()
 	else
 		update_holder()
 
-/datum/construction/reversible/proc/update_index(diff)
+/datum/component/construction/reversible/proc/update_index(diff)
 	index += diff
 	on_step()

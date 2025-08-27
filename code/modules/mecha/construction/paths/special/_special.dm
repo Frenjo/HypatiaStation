@@ -1,6 +1,6 @@
 // Special
 // This is only used for the Phazon and Eidolon currently.
-/datum/construction/reversible/mecha/special
+/datum/component/construction/reversible/mecha/special
 	var/optional_circuit = null
 	var/optional_circuit_name = "targeting" // This will basically never change but is here for future-proofing.
 
@@ -10,7 +10,7 @@
 	var/internal_armour = null
 	var/external_armour = null
 
-/datum/construction/reversible/mecha/special/get_circuit_steps()
+/datum/component/construction/reversible/mecha/special/get_circuit_steps()
 	. = ..()
 	. += list(
 		list(
@@ -30,7 +30,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/special/get_stock_part_steps()
+/datum/component/construction/reversible/mecha/special/get_stock_part_steps()
 	. = ..()
 	. += list(
 		list(
@@ -65,7 +65,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/special/get_other_steps()
+/datum/component/construction/reversible/mecha/special/get_other_steps()
 	. = ..()
 	. += list(
 		list(

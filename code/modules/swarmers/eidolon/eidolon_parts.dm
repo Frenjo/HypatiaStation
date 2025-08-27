@@ -2,7 +2,7 @@
 /obj/item/mecha_part/chassis/eidolon
 	name = "\improper Eidolon chassis"
 
-	construct_type = /datum/construction/mecha_chassis/eidolon
+	construct_type = /datum/component/construction/mecha_chassis/eidolon
 	target_icon = 'icons/obj/mecha/construction/eidolon.dmi'
 
 /obj/item/mecha_part/part/eidolon

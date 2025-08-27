@@ -1,9 +1,9 @@
 // Dreadnought Chassis
-/datum/construction/mecha_chassis/ripley/dreadnought
-	result = /datum/construction/reversible/mecha/dreadnought
+/datum/component/construction/mecha_chassis/ripley/dreadnought
+	result = /datum/component/construction/reversible/mecha/dreadnought
 
 // Dreadnought
-/datum/construction/reversible/mecha/dreadnought
+/datum/component/construction/reversible/mecha/dreadnought
 	result = /obj/mecha/working/dreadnought
 	steps = list(
 		// 9
@@ -68,6 +68,6 @@
 	central_circuit = /obj/item/circuitboard/mecha/dreadnought/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/dreadnought/peripherals
 
-/datum/construction/reversible/mecha/dreadnought/spawn_result()
+/datum/component/construction/reversible/mecha/dreadnought/spawn_result()
 	. = ..()
 	feedback_inc("mecha_dreadnought_created", 1)

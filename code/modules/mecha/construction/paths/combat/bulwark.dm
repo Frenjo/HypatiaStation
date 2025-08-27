@@ -1,9 +1,9 @@
 // Bulwark Chassis
-/datum/construction/mecha_chassis/ripley/bulwark
-	result = /datum/construction/reversible/mecha/combat/bulwark
+/datum/component/construction/mecha_chassis/ripley/bulwark
+	result = /datum/component/construction/reversible/mecha/combat/bulwark
 
 // Bulwark
-/datum/construction/reversible/mecha/combat/bulwark
+/datum/component/construction/reversible/mecha/combat/bulwark
 	result = /obj/mecha/working/dreadnought/bulwark
 
 	base_icon_state = "durand"
@@ -18,7 +18,7 @@
 	internal_armour = /obj/item/stack/sheet/steel
 	external_armour = /obj/item/mecha_part/part/durand/armour
 
-/datum/construction/reversible/mecha/combat/bulwark/get_other_steps()
+/datum/component/construction/reversible/mecha/combat/bulwark/get_other_steps()
 	. = ..()
 	. += list(
 		// 20
@@ -32,6 +32,6 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/bulwark/spawn_result()
+/datum/component/construction/reversible/mecha/combat/bulwark/spawn_result()
 	. = ..()
 	feedback_inc("mecha_bulwark_created", 1)

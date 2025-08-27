@@ -14,21 +14,16 @@
 	icon_state = "backbone"
 	density = TRUE
 
-	var/datum/construction/construct
 	var/construct_type
 	var/target_icon = null
 
 /obj/item/mecha_part/chassis/initialise()
 	. = ..()
 	if(isnotnull(construct_type))
-		construct = new construct_type(src)
-
-/obj/item/mecha_part/chassis/Destroy()
-	if(isnotnull(construct))
-		QDEL_NULL(construct)
-	return ..()
+		AddComponent(construct_type)
 
 /obj/item/mecha_part/chassis/attackby(obj/item/W, mob/user)
+	GET_COMPONENT(construct, /datum/component/construction/reversible/mecha)
 	if(!construct || !construct.action(W, user))
 		. = ..()
 

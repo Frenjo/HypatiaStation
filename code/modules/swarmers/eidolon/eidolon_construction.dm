@@ -1,6 +1,6 @@
 // Eidolon Chassis
-/datum/construction/mecha_chassis/eidolon
-	result = /datum/construction/reversible/mecha/special/eidolon
+/datum/component/construction/mecha_chassis/eidolon
+	result = /datum/component/construction/reversible/mecha/special/eidolon
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/eidolon/torso),
 		list("key" = /obj/item/mecha_part/part/eidolon/head),
@@ -11,7 +11,7 @@
 	)
 
 // Eidolon
-/datum/construction/reversible/mecha/special/eidolon
+/datum/component/construction/reversible/mecha/special/eidolon
 	result = /obj/mecha/combat/eidolon/salvaged
 
 	base_icon_state = "eidolon"
@@ -26,6 +26,6 @@
 	internal_armour = /obj/item/stack/sheet/steel
 	external_armour = /obj/item/mecha_part/part/eidolon/armour
 
-/datum/construction/reversible/mecha/special/eidolon/spawn_result()
+/datum/component/construction/reversible/mecha/special/eidolon/spawn_result()
 	. = ..()
 	feedback_inc("mecha_eidolon_created", 1)

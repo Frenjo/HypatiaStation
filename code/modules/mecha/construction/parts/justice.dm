@@ -3,7 +3,7 @@
 	name = "\improper Justice chassis"
 	desc = "The chassis of a Justice-type exosuit."
 
-	construct_type = /datum/construction/mecha_chassis/justice
+	construct_type = /datum/component/construction/mecha_chassis/justice
 	target_icon = 'icons/obj/mecha/construction/justice.dmi'
 
 /obj/item/mecha_part/part/justice

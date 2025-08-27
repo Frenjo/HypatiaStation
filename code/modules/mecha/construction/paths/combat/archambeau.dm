@@ -1,9 +1,9 @@
 // Archambeau Chassis
-/datum/construction/mecha_chassis/durand/archambeau
-	result = /datum/construction/reversible/mecha/combat/archambeau
+/datum/component/construction/mecha_chassis/durand/archambeau
+	result = /datum/component/construction/reversible/mecha/combat/archambeau
 
 // Archambeau
-/datum/construction/reversible/mecha/combat/archambeau
+/datum/component/construction/reversible/mecha/combat/archambeau
 	result = /obj/mecha/combat/durand/archambeau
 
 	base_icon_state = "durand"
@@ -18,7 +18,7 @@
 	internal_armour = /obj/item/stack/sheet/steel
 	external_armour = /obj/item/mecha_part/part/durand/armour/archambeau
 
-/datum/construction/reversible/mecha/combat/archambeau/get_other_steps()
+/datum/component/construction/reversible/mecha/combat/archambeau/get_other_steps()
 	. = ..()
 	. += list(
 		// 20
@@ -32,6 +32,6 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/archambeau/spawn_result()
+/datum/component/construction/reversible/mecha/combat/archambeau/spawn_result()
 	. = ..()
 	feedback_inc("mecha_archambeau_created", 1)

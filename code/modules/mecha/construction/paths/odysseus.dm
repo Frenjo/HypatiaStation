@@ -1,6 +1,6 @@
 // Odysseus Chassis
-/datum/construction/mecha_chassis/odysseus
-	result = /datum/construction/reversible/mecha/odysseus
+/datum/component/construction/mecha_chassis/odysseus
+	result = /datum/component/construction/reversible/mecha/odysseus
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/odysseus/torso),
 		list("key" = /obj/item/mecha_part/part/odysseus/head),
@@ -11,7 +11,7 @@
 	)
 
 // Odysseus
-/datum/construction/reversible/mecha/odysseus
+/datum/component/construction/reversible/mecha/odysseus
 	result = /obj/mecha/medical/odysseus
 	steps = list(
 		// 9
@@ -71,6 +71,6 @@
 	central_circuit = /obj/item/circuitboard/mecha/odysseus/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/odysseus/peripherals
 
-/datum/construction/reversible/mecha/odysseus/spawn_result()
+/datum/component/construction/reversible/mecha/odysseus/spawn_result()
 	. = ..()
 	feedback_inc("mecha_odysseus_created", 1)
