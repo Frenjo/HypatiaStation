@@ -1040,7 +1040,7 @@
 	filling_color = "#211F02"
 	bitesize = 2
 
-/obj/item/reagent_holder/food/snacks/meatsteak
+/obj/item/reagent_holder/food/snacks/meat/steak
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
 	icon_state = "meatstake"
@@ -2332,7 +2332,7 @@
 		qdel(src)
 
 	// Bun + cutlet = hamburger
-	else if(istype(W,/obj/item/reagent_holder/food/snacks/cutlet))
+	else if(istype(W,/obj/item/reagent_holder/food/snacks/meat/cutlet))
 		new /obj/item/reagent_holder/food/snacks/monkeyburger(src)
 		to_chat(user, SPAN_INFO("You make a burger."))
 		qdel(W)
@@ -2374,14 +2374,14 @@
 	starting_reagents = alist("nutriment" = 7)
 	bitesize = 3
 
-/obj/item/reagent_holder/food/snacks/rawcutlet
+/obj/item/reagent_holder/food/snacks/meat/rawcutlet
 	name = "raw cutlet"
 	desc = "A thin piece of raw meat."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "rawcutlet"
 	starting_reagents = alist("nutriment" = 1)
 
-/obj/item/reagent_holder/food/snacks/cutlet
+/obj/item/reagent_holder/food/snacks/meat/cutlet
 	name = "cutlet"
 	desc = "A tasty meat slice."
 	icon = 'icons/obj/items/food_ingredients.dmi'

@@ -15,7 +15,7 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	emote_see = list("pecks at the ground","flaps its wings viciously")
 	speak_chance = 2
 	turns_per_move = 3
-	meat_type = /obj/item/reagent_holder/food/snacks/meat
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/slab
 	meat_amount = 2
 	response_help  = "pets the"
 	response_disarm = "gently pushes aside the"
@@ -98,7 +98,7 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	emote_see = list("pecks at the ground","flaps its tiny wings")
 	speak_chance = 2
 	turns_per_move = 2
-	meat_type = /obj/item/reagent_holder/food/snacks/meat
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/slab
 	meat_amount = 1
 	response_help  = "pets the"
 	response_disarm = "gently pushes aside the"

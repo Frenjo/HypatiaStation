@@ -19,7 +19,7 @@
 
 	turns_per_move = 8
 
-	meat_type = /obj/item/reagent_holder/food/snacks/meat
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/slab
 	meat_amount = 2
 
 	response_help = "pets the"

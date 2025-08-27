@@ -5,7 +5,7 @@
 /* No telebacon. just no...
 /datum/recipe/telebacon
 	items = list(
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/assembly/signaler
 	)
 	result = /obj/item/reagent_holder/food/snacks/telebacon
@@ -95,7 +95,7 @@ I said no!
 	make_food(var/obj/container)
 		var/human_name
 		var/human_job
-		for (var/obj/item/reagent_holder/food/snacks/meat/human/HM in container)
+		for (var/obj/item/reagent_holder/food/snacks/meat/slab/human/HM in container)
 			if (!HM.subjectname)
 				continue
 			human_name = HM.subjectname
@@ -114,7 +114,7 @@ I said no!
 
 /datum/recipe/human/burger
 	items = list(
-		/obj/item/reagent_holder/food/snacks/meat/human,
+		/obj/item/reagent_holder/food/snacks/meat/slab/human,
 		/obj/item/reagent_holder/food/snacks/bun
 	)
 	result = /obj/item/reagent_holder/food/snacks/human/burger
@@ -124,7 +124,7 @@ I said no!
 /datum/recipe/monkeyburger
 	items = list(
 		/obj/item/reagent_holder/food/snacks/bun,
-		/obj/item/reagent_holder/food/snacks/meat/monkey
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey
 	)
 	result = /obj/item/reagent_holder/food/snacks/monkeyburger
 */
@@ -133,7 +133,7 @@ I said no!
 /datum/recipe/plainburger
 	items = list(
 		/obj/item/reagent_holder/food/snacks/bun,
-		/obj/item/reagent_holder/food/snacks/meat //do not place this recipe before /datum/recipe/humanburger
+		/obj/item/reagent_holder/food/snacks/meat/slab //do not place this recipe before /datum/recipe/humanburger
 	)
 	result = /obj/item/reagent_holder/food/snacks/monkeyburger
 
@@ -267,9 +267,9 @@ I said no!
 		/obj/item/reagent_holder/food/snacks/dough,
 		/obj/item/reagent_holder/food/snacks/dough,
 		/obj/item/reagent_holder/food/snacks/dough,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/cheesewedge,
 		/obj/item/reagent_holder/food/snacks/cheesewedge,
 		/obj/item/reagent_holder/food/snacks/cheesewedge,
@@ -360,8 +360,8 @@ I said no!
 		/obj/item/reagent_holder/food/snacks/flour,
 		/obj/item/reagent_holder/food/snacks/flour,
 		/obj/item/reagent_holder/food/snacks/flour,
-		/obj/item/reagent_holder/food/snacks/meat/human,
-		/obj/item/reagent_holder/food/snacks/meat/human,
+		/obj/item/reagent_holder/food/snacks/meat/slab/human,
+		/obj/item/reagent_holder/food/snacks/meat/slab/human,
 	)
 	result = /obj/item/reagent_holder/food/snacks/soylentgreen
 
@@ -404,7 +404,7 @@ I said no!
 /datum/recipe/meatpie
 	items = list(
 		/obj/item/reagent_holder/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 	)
 	result = /obj/item/reagent_holder/food/snacks/meatpie
 
@@ -470,8 +470,8 @@ I said no!
 /datum/recipe/human/kabob
 	items = list(
 		/obj/item/stack/rods,
-		/obj/item/reagent_holder/food/snacks/meat/human,
-		/obj/item/reagent_holder/food/snacks/meat/human,
+		/obj/item/reagent_holder/food/snacks/meat/slab/human,
+		/obj/item/reagent_holder/food/snacks/meat/slab/human,
 	)
 	result = /obj/item/reagent_holder/food/snacks/human/kabob
 
@@ -479,8 +479,8 @@ I said no!
 /datum/recipe/monkeykabob
 	items = list(
 		/obj/item/stack/rods,
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
 	)
 	result = /obj/item/reagent_holder/food/snacks/monkeykabob
 
@@ -586,9 +586,9 @@ I said no!
 /datum/recipe/meatsteak
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
-		/obj/item/reagent_holder/food/snacks/meat
+		/obj/item/reagent_holder/food/snacks/meat/slab
 	)
-	result = /obj/item/reagent_holder/food/snacks/meatsteak
+	result = /obj/item/reagent_holder/food/snacks/meat/steak
 
 
 /datum/recipe/syntisteak
@@ -596,7 +596,7 @@ I said no!
 	items = list(
 		/obj/item/syntiflesh
 	)
-	result = /obj/item/reagent_holder/food/snacks/meatsteak
+	result = /obj/item/reagent_holder/food/snacks/meat/steak
 
 
 /datum/recipe/pizzamargherita
@@ -614,9 +614,9 @@ I said no!
 /datum/recipe/meatpizza
 	items = list(
 		/obj/item/reagent_holder/food/snacks/sliceable/flatdough,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/cheesewedge,
 		/obj/item/reagent_holder/food/snacks/grown/tomato,
 	)
@@ -724,7 +724,7 @@ I said no!
 
 /datum/recipe/hotchili
 	items = list(
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/grown/chili,
 		/obj/item/reagent_holder/food/snacks/grown/tomato,
 	)
@@ -733,7 +733,7 @@ I said no!
 
 /datum/recipe/coldchili
 	items = list(
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/grown/icepepper,
 		/obj/item/reagent_holder/food/snacks/grown/tomato,
 	)
@@ -775,9 +775,9 @@ I said no!
 /datum/recipe/bigbiteburger
 	items = list(
 		/obj/item/reagent_holder/food/snacks/monkeyburger,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/egg,
 	)
 	result = /obj/item/reagent_holder/food/snacks/bigbiteburger
@@ -785,7 +785,7 @@ I said no!
 
 /datum/recipe/enchiladas
 	items = list(
-		/obj/item/reagent_holder/food/snacks/cutlet,
+		/obj/item/reagent_holder/food/snacks/meat/cutlet,
 		/obj/item/reagent_holder/food/snacks/grown/chili,
 		/obj/item/reagent_holder/food/snacks/grown/chili,
 		/obj/item/reagent_holder/food/snacks/grown/corn,
@@ -852,7 +852,7 @@ I said no!
 
 /datum/recipe/sandwich
 	items = list(
-		/obj/item/reagent_holder/food/snacks/meatsteak,
+		/obj/item/reagent_holder/food/snacks/meat/steak,
 		/obj/item/reagent_holder/food/snacks/breadslice,
 		/obj/item/reagent_holder/food/snacks/breadslice,
 		/obj/item/reagent_holder/food/snacks/cheesewedge,
@@ -898,7 +898,7 @@ I said no!
 	reagents = list("water" = 10)
 	items = list(
 		/obj/item/reagent_holder/food/snacks/grown/tomato,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/grown/potato,
 		/obj/item/reagent_holder/food/snacks/grown/carrot,
 		/obj/item/reagent_holder/food/snacks/grown/eggplant,
@@ -1014,7 +1014,7 @@ I said no!
 	items = list(
 		/obj/item/reagent_holder/food/snacks/bigbiteburger,
 		/obj/item/reagent_holder/food/snacks/dough,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/grown/tomato,
 		/obj/item/reagent_holder/food/snacks/cheesewedge,
 		/obj/item/reagent_holder/food/snacks/boiledegg,
@@ -1210,7 +1210,7 @@ I said no!
 /datum/recipe/sausage
 	items = list(
 		/obj/item/reagent_holder/food/snacks/meatball,
-		/obj/item/reagent_holder/food/snacks/cutlet,
+		/obj/item/reagent_holder/food/snacks/meat/cutlet,
 	)
 	result = /obj/item/reagent_holder/food/snacks/sausage
 
@@ -1363,7 +1363,7 @@ I said no!
 /datum/recipe/taco
 	items = list(
 		/obj/item/reagent_holder/food/snacks/doughslice,
-		/obj/item/reagent_holder/food/snacks/cutlet,
+		/obj/item/reagent_holder/food/snacks/meat/cutlet,
 		/obj/item/reagent_holder/food/snacks/cheesewedge
 	)
 	result = /obj/item/reagent_holder/food/snacks/taco
@@ -1392,9 +1392,9 @@ I said no!
 
 /datum/recipe/cutlet
 	items = list(
-		/obj/item/reagent_holder/food/snacks/rawcutlet
+		/obj/item/reagent_holder/food/snacks/meat/rawcutlet
 	)
-	result = /obj/item/reagent_holder/food/snacks/cutlet
+	result = /obj/item/reagent_holder/food/snacks/meat/cutlet
 
 
 /datum/recipe/fries

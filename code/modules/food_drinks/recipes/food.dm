@@ -84,4 +84,4 @@
 	result_amount = 1
 
 /datum/chemical_reaction/syntiflesh/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/reagent_holder/food/snacks/meat/syntiflesh(GET_TURF(holder.my_atom))
+	new /obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh(GET_TURF(holder.my_atom))

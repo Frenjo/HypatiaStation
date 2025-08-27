@@ -25,9 +25,9 @@
 		/obj/item/reagent_holder/food/snacks/flour,
 		/obj/item/reagent_holder/food/snacks/flour,
 		/obj/item/reagent_holder/food/snacks/flour,
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
-		/obj/item/reagent_holder/food/snacks/meat/monkey
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey
 	)
 
 /obj/structure/closet/secure/freezer/kitchen/mining
@@ -46,10 +46,10 @@
 	icon_off = "fridge1"
 
 	starts_with = list(
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
-		/obj/item/reagent_holder/food/snacks/meat/monkey,
-		/obj/item/reagent_holder/food/snacks/meat/monkey
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/slab/monkey
 	)
 
 /*

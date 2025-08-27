@@ -27,7 +27,7 @@
 
 /* objs */
 /datum/food_processor_process/meat
-	input = /obj/item/reagent_holder/food/snacks/meat
+	input = /obj/item/reagent_holder/food/snacks/meat/slab
 	output = /obj/item/reagent_holder/food/snacks/meatball
 
 /datum/food_processor_process/meat2
@@ -35,11 +35,11 @@
 	output = /obj/item/reagent_holder/food/snacks/meatball
 /*
 /datum/food_processor_process/monkeymeat
-	input = /obj/item/reagent_holder/food/snacks/meat/monkey
+	input = /obj/item/reagent_holder/food/snacks/meat/slab/monkey
 	output = /obj/item/reagent_holder/food/snacks/meatball
 
 /datum/food_processor_process/humanmeat
-	input = /obj/item/reagent_holder/food/snacks/meat/human
+	input = /obj/item/reagent_holder/food/snacks/meat/slab/human
 	output = /obj/item/reagent_holder/food/snacks/meatball
 */
 /datum/food_processor_process/potato

@@ -12,7 +12,7 @@
 	emote_see = list("shakes its head", "shivers")
 	speak_chance = 1
 	turns_per_move = 10
-	meat_type = /obj/item/reagent_holder/food/snacks/meat/corgi
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/slab/corgi
 	meat_amount = 3
 	response_help  = "pets the"
 	response_disarm = "bops the"
@@ -319,10 +319,6 @@
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					dir = i
 					sleep(1)
-
-/obj/item/reagent_holder/food/snacks/meat/corgi
-	name = "Corgi meat"
-	desc = "Tastes like... well you know..."
 
 /mob/living/simple/corgi/attack_by(obj/item/I, mob/user) //Marker -Agouri
 	if(istype(I, /obj/item/newspaper))

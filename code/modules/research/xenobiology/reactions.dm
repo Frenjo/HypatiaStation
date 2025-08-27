@@ -368,7 +368,7 @@
 
 /datum/chemical_reaction/slimesynthi/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/location = GET_TURF(holder.my_atom)
-	new /obj/item/reagent_holder/food/snacks/meat/syntiflesh(location)
+	new /obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh(location)
 
 /datum/chemical_reaction/slimeenzyme
 	name = "Slime Enzyme"

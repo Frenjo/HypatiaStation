@@ -60,11 +60,11 @@
 		if(src.meattype == MEAT_TYPE_MONKEY)
 			if(src.meat > 1)
 				src.meat--
-				new /obj/item/reagent_holder/food/snacks/meat/monkey(src.loc)
+				new /obj/item/reagent_holder/food/snacks/meat/slab/monkey(src.loc)
 				to_chat(user, "You remove some meat from the monkey.")
 			else if(src.meat == 1)
 				src.meat--
-				new /obj/item/reagent_holder/food/snacks/meat/monkey(src.loc)
+				new /obj/item/reagent_holder/food/snacks/meat/slab/monkey(src.loc)
 				to_chat(user, "You remove the last piece of meat from the monkey!")
 				src.icon_state = "spike"
 				src.occupied = 0

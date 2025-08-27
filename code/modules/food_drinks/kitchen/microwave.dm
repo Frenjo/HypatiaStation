@@ -144,7 +144,7 @@
 			if(istype(O, /obj/item/reagent_holder/food/snacks/tofu))
 				items_measures[display_name] = "tofu chunk"
 				items_measures_p[display_name] = "tofu chunks"
-			if(istype(O, /obj/item/reagent_holder/food/snacks/meat)) //any meat
+			if(istype(O, /obj/item/reagent_holder/food/snacks/meat/slab)) //any meat
 				items_measures[display_name] = "slab of meat"
 				items_measures_p[display_name] = "slabs of meat"
 			if(istype(O, /obj/item/reagent_holder/food/snacks/donkpocket))

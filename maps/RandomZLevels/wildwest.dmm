@@ -89,7 +89,7 @@
 "bK" = (/obj/structure/table/woodentable,/obj/item/book/manual/chef_recipes,/turf/open/floor/tiled/cafeteria,/area/away_mission/wwmines)
 "bL" = (/obj/structure/table/woodentable,/obj/machinery/microwave,/turf/open/floor/tiled/cafeteria,/area/away_mission/wwmines)
 "bM" = (/obj/structure/table/woodentable,/turf/open/floor/tiled/cafeteria,/area/away_mission/wwmines)
-"bN" = (/obj/structure/closet/secure/freezer/meat,/obj/item/reagent_holder/food/snacks/meat/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/syntiflesh,/turf/open/floor/tiled/cafeteria,/area/away_mission/wwmines)
+"bN" = (/obj/structure/closet/secure/freezer/meat,/obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh,/obj/item/reagent_holder/food/snacks/meat/slab/syntiflesh,/turf/open/floor/tiled/cafeteria,/area/away_mission/wwmines)
 "bO" = (/obj/structure/lattice,/obj/structure/window/reinforced{dir = 4; icon_state = "fwindow"; tag = "icon-fwindow (EAST)"},/turf/space,/area/space)
 "bP" = (/turf/closed/wall/sandstone,/area/away_mission/wwgov)
 "bQ" = (/obj/structure/window/reinforced{dir = 1; icon_state = "fwindow"; tag = "icon-fwindow (NORTH)"},/obj/structure/window/reinforced{icon_state = "fwindow"; tag = "icon-fwindow"},/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plating/metal/ironsand{icon_state = "ironsand1"; tag = "icon-ironsand1"},/area/away_mission/wwgov)

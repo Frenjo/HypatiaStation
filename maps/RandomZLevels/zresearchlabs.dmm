@@ -644,7 +644,7 @@
 "mt" = (/obj/machinery/door/airlock/glass_large{icon_state = "door_locked"; locked = 1; name = "Cargo Bay Door"},/turf/open/floor,/area/away_mission/labs/cargo)
 "mu" = (/turf/open/floor{density = TRUE},/area/away_mission/labs/cargo)
 "mv" = (/obj/structure/grille{layer = 3.3},/obj/structure/window/reinforced{dir = 5; health = 1e+007; layer = 3.4},/obj/machinery/door/poddoor{density = TRUE; icon_state = "pdoor1"; id = "sandstorm shutters"; layer = 2.4; name = "Sandstorm Shutters"; opacity = TRUE},/turf/open/floor,/area/away_mission/labs/cargo)
-"mw" = (/obj/structure/closet/crate/freezer,/obj/item/reagent_holder/food/snacks/meat,/obj/item/reagent_holder/food/snacks/meat,/obj/item/reagent_holder/food/snacks/meat,/turf/open/floor,/area/away_mission/labs/cargo)
+"mw" = (/obj/structure/closet/crate/freezer,/obj/item/reagent_holder/food/snacks/meat/slab,/obj/item/reagent_holder/food/snacks/meat/slab,/obj/item/reagent_holder/food/snacks/meat/slab,/turf/open/floor,/area/away_mission/labs/cargo)
 "mx" = (/turf/closed/wall/steel,/area/away_mission/labs/civilian)
 "my" = (/obj/structure/grille{layer = 3.3},/obj/structure/window/reinforced{dir = 5; health = 1e+007; layer = 3.4},/obj/machinery/door/poddoor{density = TRUE; icon_state = "pdoor1"; id = "sandstorm shutters"; layer = 2.4; name = "Sandstorm Shutters"; opacity = TRUE},/turf/open/floor,/area/away_mission/labs/civilian)
 "mz" = (/obj/effect/landmark{name = "awaystart"},/turf/open/floor/plating/metal,/area/away_mission/labs/civilian)

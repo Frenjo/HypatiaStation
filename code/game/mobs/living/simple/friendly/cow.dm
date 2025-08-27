@@ -13,7 +13,7 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	meat_type = /obj/item/reagent_holder/food/snacks/meat
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/slab
 	meat_amount = 6
 	response_help  = "pets the"
 	response_disarm = "gently pushes aside the"

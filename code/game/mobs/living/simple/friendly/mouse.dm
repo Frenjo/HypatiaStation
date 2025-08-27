@@ -16,7 +16,7 @@
 	see_in_dark = 6
 	maxHealth = 5
 	health = 5
-	meat_type = /obj/item/reagent_holder/food/snacks/meat
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/slab
 	response_help  = "pets the"
 	response_disarm = "gently pushes aside the"
 	response_harm   = "stamps on the"

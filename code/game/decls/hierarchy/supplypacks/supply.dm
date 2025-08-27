@@ -14,8 +14,8 @@
 		/obj/item/storage/fancy/egg_box,
 		/obj/item/reagent_holder/food/snacks/tofu,
 		/obj/item/reagent_holder/food/snacks/tofu,
-		/obj/item/reagent_holder/food/snacks/meat,
-		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
+		/obj/item/reagent_holder/food/snacks/meat/slab,
 		/obj/item/reagent_holder/food/snacks/grown/banana,
 		/obj/item/reagent_holder/food/snacks/grown/banana
 	)
