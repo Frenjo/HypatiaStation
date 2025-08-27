@@ -392,9 +392,9 @@
 	starting_reagents = alist("inaprovaline" = 15)
 
 /obj/item/reagent_holder/syringe/preloaded/antitoxin
-	name = "syringe (anti-toxin)"
-	desc = "Contains anti-toxins."
-	starting_reagents = alist("anti_toxin" = 15)
+	name = "syringe (dylovene)"
+	desc = "Contains a broad-spectrum antitoxin."
+	starting_reagents = alist("dylovene" = 15)
 
 /obj/item/reagent_holder/syringe/preloaded/antiviral
 	name = "syringe (spaceacillin)"

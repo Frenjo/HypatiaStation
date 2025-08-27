@@ -41,11 +41,11 @@
 	starting_reagents = alist("cyanide" = 30)
 
 /obj/item/reagent_holder/glass/bottle/stoxin
-	name = "sleep-toxin bottle"
-	desc = "A small bottle of sleep toxins. Just the fumes make you sleepy."
+	name = "soporific bottle"
+	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
-	starting_reagents = alist("stoxin" = 30)
+	starting_reagents = alist("soporific" = 30)
 
 /obj/item/reagent_holder/glass/bottle/chloralhydrate
 	name = "Chloral Hydrate Bottle"
@@ -54,12 +54,12 @@
 	icon_state = "bottle20"
 	starting_reagents = alist("chloralhydrate" = 15) // Intentionally low since it is so strong. Still enough to knock someone out.
 
-/obj/item/reagent_holder/glass/bottle/antitoxin
-	name = "anti-toxin bottle"
-	desc = "A small bottle of Anti-toxins. Counters poisons, and repairs damage, a wonder drug."
+/obj/item/reagent_holder/glass/bottle/dylovene
+	name = "dylovene bottle"
+	desc = "A small bottle of dylovene. Counters poisons, and repairs damage, a wonder drug."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
-	starting_reagents = alist("anti_toxin" = 30)
+	starting_reagents = alist("dylovene" = 30)
 
 /obj/item/reagent_holder/glass/bottle/mutagen
 	name = "unstable mutagen bottle"

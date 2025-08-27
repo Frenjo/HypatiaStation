@@ -28,7 +28,7 @@
 	var/datum/effect/system/spark_spread/spark_system	//To create sparks.
 	var/list/reagent_list = list(							//The reagents ids which are added to the suit at New().
 		"tricordrazine", "dexalinp", "spaceacillin",
-		"anti_toxin", "nutriment", "radium", "hyronalin"
+		"dylovene", "nutriment", "radium", "hyronalin"
 	)
 
 	var/list/stored_research = list()			// For stealing station research.

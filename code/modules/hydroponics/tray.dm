@@ -514,8 +514,8 @@
 							to_chat(user, "Nothing happens...")
 
 				// Antitoxin binds shit pretty well. So the tox goes significantly down
-				if(S.reagents.has_reagent("anti_toxin", 1))
-					toxic -= round(S.reagents.get_reagent_amount("anti_toxin") * 2)
+				if(S.reagents.has_reagent("dylovene", 1))
+					toxic -= round(S.reagents.get_reagent_amount("dylovene") * 2)
 
 				// NIGGA, YOU JUST WENT ON FULL RETARD.
 				if(S.reagents.has_reagent("toxin", 1))

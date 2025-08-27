@@ -299,7 +299,7 @@
 	desc = "A small gas-powered dartgun, fitted for nonhuman hands."
 
 /obj/item/gun/dartgun/vox/medical
-	starting_chems = list("kelotane", "bicaridine", "anti_toxin")
+	starting_chems = list("kelotane", "bicaridine", "dylovene")
 
 /obj/item/gun/dartgun/vox/raider
-	starting_chems = list("space_drugs", "stoxin", "impedrezene")
+	starting_chems = list("space_drugs", "soporific", "impedrezene")

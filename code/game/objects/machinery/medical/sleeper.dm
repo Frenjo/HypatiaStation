@@ -146,9 +146,9 @@
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list(
 		"inaprovaline" = "Inaprovaline",
-		"stoxin" = "Soporific",
+		"soporific" = "Soporific",
 		"paracetamol" = "Paracetamol",
-		"anti_toxin" = "Dylovene",
+		"dylovene" = "Dylovene",
 		"dexalin" = "Dexalin"
 	)
 	var/amounts = list(5, 10)

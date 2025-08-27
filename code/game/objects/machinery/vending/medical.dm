@@ -12,13 +12,13 @@
 	req_access = list(ACCESS_MEDICAL)
 
 	products = list(
-		/obj/item/reagent_holder/glass/bottle/antitoxin = 4, /obj/item/reagent_holder/glass/bottle/inaprovaline = 4,
+		/obj/item/reagent_holder/glass/bottle/dylovene = 4, /obj/item/reagent_holder/glass/bottle/inaprovaline = 4,
 		/obj/item/reagent_holder/glass/bottle/stoxin = 4, /obj/item/reagent_holder/glass/bottle/toxin = 4,
 		/obj/item/reagent_holder/syringe/preloaded/antiviral = 4, /obj/item/reagent_holder/syringe = 12,
 		/obj/item/health_analyser = 5, /obj/item/reagent_holder/glass/beaker = 4, /obj/item/reagent_holder/dropper = 2,
 		/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2
 	)
-	contraband = list(/obj/item/reagent_holder/pill/tox = 3, /obj/item/reagent_holder/pill/stox = 4, /obj/item/reagent_holder/pill/antitox = 6)
+	contraband = list(/obj/item/reagent_holder/pill/tox = 3, /obj/item/reagent_holder/pill/soporific = 4, /obj/item/reagent_holder/pill/antitox = 6)
 
 	ad_list = list(
 		"Go save some lives!", "The best stuff for your medbay.", "Only the finest tools.",

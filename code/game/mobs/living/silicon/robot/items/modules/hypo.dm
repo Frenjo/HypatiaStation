@@ -16,7 +16,7 @@
 
 	var/list/datum/reagents/reagent_list = list()
 	//var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
-	var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
+	var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "dylovene", "inaprovaline", "spaceacillin")
 
 /obj/item/reagent_holder/borghypo/initialise()
 	. = ..()
@@ -105,4 +105,4 @@
 /obj/item/reagent_holder/borghypo/emagged
 	icon_state = "hypo_s"
 
-	reagent_ids = list("chloralhydrate", "cyanide", "lexorin", "stoxin", "toxin")
+	reagent_ids = list("chloralhydrate", "cyanide", "lexorin", "soporific", "toxin")

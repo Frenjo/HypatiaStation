@@ -77,7 +77,7 @@ mob/living/parasite/meme/Life()
 	meme_points = min(meme_points + gain, MAXIMUM_MEME_POINTS)
 
 	// if there are sleep toxins in the host's body, that's bad
-	if(host.reagents.has_reagent("stoxin"))
+	if(host.reagents.has_reagent("soporific"))
 		src << "\red <b>Something in your host's blood makes you lose consciousness.. you fade away..</b>"
 		src.death()
 		return

@@ -14,14 +14,14 @@
 
 /obj/item/reagent_holder/food/snacks/grown/mushroom/reishi/initialise()
 	. = ..()
-	reagents.add_reagent("stoxin", 3 + round(potency / 3, 1))
+	reagents.add_reagent("soporific", 3 + round(potency / 3, 1))
 	reagents.add_reagent("space_drugs", 1 + round(potency / 25, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 /obj/item/reagent_holder/food/snacks/grown/mushroom/reishi/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(istype(O, /obj/item/plant_analyser))
-		to_chat(user, SPAN_INFO("- Sleep Toxin: <i>[reagents.get_reagent_amount("stoxin")]%</i>"))
+		to_chat(user, SPAN_INFO("- Soporific: <i>[reagents.get_reagent_amount("soporific")]%</i>"))
 		to_chat(user, SPAN_INFO("- Space Drugs: <i>[reagents.get_reagent_amount("space_drugs")]%</i>"))
 
 /*

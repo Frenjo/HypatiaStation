@@ -253,7 +253,7 @@
 						dat += "[(blood_volume > 448 ?"<font color='blue'>" : "<font color='red'>")]\tBlood Level %: [blood_percent] ([blood_volume] units)</FONT><BR>"
 					if(occupant.reagents)
 						dat += "Inaprovaline units: [occupant.reagents.get_reagent_amount("inaprovaline")] units<BR>"
-						dat += "Soporific (Sleep Toxin): [occupant.reagents.get_reagent_amount("stoxin")] units<BR>"
+						dat += "Soporific units: [occupant.reagents.get_reagent_amount("soporific")] units<BR>"
 						dat += "[(occupant.reagents.get_reagent_amount("dermaline") < 30 ? "<font color='black'>" : "<font color='red'>")]\tDermaline: [occupant.reagents.get_reagent_amount("dermaline")] units</FONT><BR>"
 						dat += "[(occupant.reagents.get_reagent_amount("bicaridine") < 30 ? "<font color='black'>" : "<font color='red'>")]\tBicaridine: [occupant.reagents.get_reagent_amount("bicaridine")] units<BR>"
 						dat += "[(occupant.reagents.get_reagent_amount("dexalin") < 30 ? "<font color='black'>" : "<font color='red'>")]\tDexalin: [occupant.reagents.get_reagent_amount("dexalin")] units<BR>"

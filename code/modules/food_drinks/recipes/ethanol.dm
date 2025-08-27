@@ -420,7 +420,7 @@
 /datum/chemical_reaction/neurotoxin
 	name = "Neurotoxin"
 	result = /datum/reagent/neurotoxin
-	required_reagents = alist("gargleblaster" = 1, "stoxin" = 1)
+	required_reagents = alist("gargleblaster" = 1, "soporific" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/hippiesdelight

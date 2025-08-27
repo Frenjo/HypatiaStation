@@ -82,10 +82,10 @@
 
 //Pills
 /obj/item/reagent_holder/pill/antitox
-	name = "Anti-toxins pill"
+	name = "Dylovene pill"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
-	starting_reagents = alist("anti_toxin" = 25)
+	starting_reagents = alist("dylovene" = 25)
 
 /obj/item/reagent_holder/pill/tox
 	name = "Toxins pill"
@@ -105,11 +105,11 @@
 	icon_state = "pill16"
 	starting_reagents = alist("adminordrazine" = 50)
 
-/obj/item/reagent_holder/pill/stox
+/obj/item/reagent_holder/pill/soporific
 	name = "Sleeping pill"
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill8"
-	starting_reagents = alist("stoxin" = 15)
+	starting_reagents = alist("soporific" = 15)
 
 /obj/item/reagent_holder/pill/kelotane
 	name = "Kelotane pill"

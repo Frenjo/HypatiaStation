@@ -23,8 +23,8 @@
 		/obj/item/storage/firstaid/o2,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/storage/firstaid/radiation, // Added this so we can get the kit from somewhere before I try editing the map. -Frenjo
-		/obj/item/reagent_holder/glass/bottle/antitoxin,
 		/obj/item/reagent_holder/glass/bottle/inaprovaline,
+		/obj/item/reagent_holder/glass/bottle/dylovene,
 		/obj/item/reagent_holder/glass/bottle/stoxin,
 		/obj/item/storage/box/syringes,
 		/obj/item/storage/box/autoinjectors

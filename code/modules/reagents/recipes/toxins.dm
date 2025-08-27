@@ -22,13 +22,13 @@
 /datum/chemical_reaction/zombiepowder
 	name = "Zombie Powder"
 	result = /datum/reagent/toxin/zombiepowder
-	required_reagents = alist("carpotoxin" = 5, "stoxin" = 5, "copper" = 5)
+	required_reagents = alist("carpotoxin" = 5, "soporific" = 5, "copper" = 5)
 	result_amount = 2
 
 /datum/chemical_reaction/mindbreaker
 	name = "Mindbreaker Toxin"
 	result = /datum/reagent/toxin/mindbreaker
-	required_reagents = alist("silicon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
+	required_reagents = alist("silicon" = 1, "hydrogen" = 1, "dylovene" = 1)
 	result_amount = 3
 
 // Synthesizing this chemical is pretty complex in real life, but fuck it, it's just a game!

@@ -75,14 +75,14 @@
 	C.heal_organ_damage(0, 2 * REM)
 	. = ..()
 
-/datum/reagent/anti_toxin
-	name = "Anti-Toxin (Dylovene)"
-	id = "anti_toxin"
+/datum/reagent/dylovene
+	name = "Dylovene"
+	id = "dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/anti_toxin/on_mob_life(mob/living/carbon/C, alien)
+/datum/reagent/dylovene/on_mob_life(mob/living/carbon/C, alien)
 	if(!alien || alien != IS_DIONA)
 		C.reagents.remove_all_type(/datum/reagent/toxin, 1 * REM, 0, 1)
 		C.drowsyness = max(C.drowsyness - 2 * REM, 0)
@@ -176,9 +176,9 @@
 	custom_metabolism = 0.01
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/stoxin
-	name = "Sleep Toxin"
-	id = "stoxin"
+/datum/reagent/toxin/soporific
+	name = "Soporific"
+	id = "soporific"
 	description = "An effective hypnotic used to treat insomnia."
 	reagent_state = REAGENT_LIQUID
 	color = "#E895CC" // rgb: 232, 149, 204
@@ -186,7 +186,7 @@
 	custom_metabolism = 0.1
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/stoxin/on_mob_life(mob/living/carbon/C)
+/datum/reagent/toxin/soporific/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
 		data["special"] = 1
 	switch(data["special"])

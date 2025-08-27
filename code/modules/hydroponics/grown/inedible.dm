@@ -86,7 +86,7 @@
 /obj/item/reagent_holder/food/snacks/grown/kudzupod/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
-	reagents.add_reagent("anti_toxin", 1 + round((potency / 25), 1))
+	reagents.add_reagent("dylovene", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 /*

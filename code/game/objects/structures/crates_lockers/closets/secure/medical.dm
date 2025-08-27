@@ -21,8 +21,8 @@
 		/obj/item/reagent_holder/glass/beaker,
 		/obj/item/reagent_holder/glass/bottle/inaprovaline,
 		/obj/item/reagent_holder/glass/bottle/inaprovaline,
-		/obj/item/reagent_holder/glass/bottle/antitoxin,
-		/obj/item/reagent_holder/glass/bottle/antitoxin
+		/obj/item/reagent_holder/glass/bottle/dylovene,
+		/obj/item/reagent_holder/glass/bottle/dylovene
 	)
 
 /*

@@ -515,7 +515,7 @@
 	name = "Tofurkey"
 	desc = "A fake turkey made from tofu."
 	icon_state = "tofurkey"
-	starting_reagents = alist("nutriment" = 12, "stoxin" = 3)
+	starting_reagents = alist("nutriment" = 12, "soporific" = 3)
 	filling_color = "#FFFEE0"
 	bitesize = 3
 

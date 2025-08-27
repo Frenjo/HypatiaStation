@@ -25,9 +25,9 @@
 	required_reagents = alist("silicon" = 1, "carbon" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/anti_toxin
-	name = "Anti-Toxin (Dylovene)"
-	result = /datum/reagent/anti_toxin
+/datum/chemical_reaction/dylovene
+	name = "Dylovene"
+	result = /datum/reagent/dylovene
 	required_reagents = alist("silicon" = 1, "potassium" = 1, "nitrogen" = 1)
 	result_amount = 3
 
@@ -42,7 +42,7 @@
 /datum/chemical_reaction/cordrazine
 	name = "Cordrazine"
 	result = /datum/reagent/cordrazine
-	required_reagents = alist("inaprovaline" = 1, "anti_toxin" = 1)
+	required_reagents = alist("inaprovaline" = 1, "dylovene" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/tricordrazine
@@ -54,7 +54,7 @@
 /datum/chemical_reaction/hyronalin
 	name = "Hyronalin"
 	result = /datum/reagent/hyronalin
-	required_reagents = alist("radium" = 1, "anti_toxin" = 1)
+	required_reagents = alist("radium" = 1, "dylovene" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/spaceacillin
@@ -63,9 +63,9 @@
 	required_reagents = alist("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/stoxin
-	name = "Sleep Toxin"
-	result = /datum/reagent/toxin/stoxin
+/datum/chemical_reaction/soporific
+	name = "Soporific"
+	result = /datum/reagent/toxin/soporific
 	required_reagents = alist("chloralhydrate" = 1, "sugar" = 4)
 	result_amount = 5
 
@@ -98,13 +98,13 @@
 /datum/chemical_reaction/alkysine
 	name = "Alkysine"
 	result = /datum/reagent/alkysine
-	required_reagents = alist("chlorine" = 1, "nitrogen" = 1, "anti_toxin" = 1)
+	required_reagents = alist("chlorine" = 1, "nitrogen" = 1, "dylovene" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/imidazoline
 	name = "Imidazoline"
 	result = /datum/reagent/imidazoline
-	required_reagents = alist("carbon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
+	required_reagents = alist("carbon" = 1, "hydrogen" = 1, "dylovene" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/synaptizine
@@ -136,7 +136,7 @@
 /datum/chemical_reaction/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	result = /datum/reagent/ethylredoxrazine
-	required_reagents = alist("oxygen" = 1, "anti_toxin" = 1, "carbon" = 1)
+	required_reagents = alist("oxygen" = 1, "dylovene" = 1, "carbon" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/ethanoloxidation
@@ -191,5 +191,5 @@
 /datum/chemical_reaction/sterilizine
 	name = "Sterilizine"
 	result = /datum/reagent/sterilizine
-	required_reagents = alist("ethanol" = 1, "anti_toxin" = 1, "chlorine" = 1)
+	required_reagents = alist("ethanol" = 1, "dylovene" = 1, "chlorine" = 1)
 	result_amount = 3

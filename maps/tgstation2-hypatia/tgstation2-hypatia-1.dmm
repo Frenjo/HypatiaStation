@@ -3321,7 +3321,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/reagent_holder/glass/bottle/antitoxin{
+/obj/item/reagent_holder/glass/bottle/dylovene{
 	pixel_x = -4;
 	pixel_y = 4
 	},
@@ -29434,7 +29434,7 @@
 	pixel_x = 7;
 	pixel_y = -3
 	},
-/obj/item/reagent_holder/glass/bottle/antitoxin{
+/obj/item/reagent_holder/glass/bottle/dylovene{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -54267,11 +54267,11 @@
 	},
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
-/obj/item/reagent_holder/glass/bottle/antitoxin{
+/obj/item/reagent_holder/glass/bottle/dylovene{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/reagent_holder/glass/bottle/antitoxin{
+/obj/item/reagent_holder/glass/bottle/dylovene{
 	pixel_x = 4;
 	pixel_y = 4
 	},

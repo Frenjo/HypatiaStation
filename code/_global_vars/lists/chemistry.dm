@@ -11,7 +11,7 @@ GLOBAL_GLOBL_LIST_INIT(tachycardics, list(
 //decreases heart rate
 GLOBAL_GLOBL_LIST_INIT(bradycardics, list(
 	/datum/reagent/neurotoxin, /datum/reagent/cryoxadone, /datum/reagent/clonexadone,
-	/datum/reagent/space_drugs, /datum/reagent/toxin/stoxin
+	/datum/reagent/space_drugs, /datum/reagent/toxin/soporific
 ))
 //stops the heart
 GLOBAL_GLOBL_LIST_INIT(heartstopper, list(/datum/reagent/toxin/potassium_chlorophoride, /datum/reagent/toxin/zombiepowder))

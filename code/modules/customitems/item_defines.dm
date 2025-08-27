@@ -341,7 +341,7 @@
 	name = "anti-depressant pill"
 	desc = "Used to deal with depression."
 	icon_state = "pill9"
-	starting_reagents = alist("stoxin" = 5, "sugar" = 10, "ethanol" = 5)
+	starting_reagents = alist("soporific" = 5, "sugar" = 10, "ethanol" = 5)
 
 /obj/item/clothing/mask/fluff/electriccig //CubeJackal: Barry Sharke
 	name = "Electronic cigarette"

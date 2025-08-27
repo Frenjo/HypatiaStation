@@ -26,7 +26,7 @@
 	syringes = list()
 	known_reagents = list(
 		"inaprovaline" = "Inaprovaline",
-		"anti_toxin" = "Anti-Toxin (Dylovene)"
+		"dylovene" = "Dylovene"
 	)
 	processed_reagents = list()
 	create_reagents(max_volume)
