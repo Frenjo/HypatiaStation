@@ -25,8 +25,6 @@ var/airtunnel_bottom = 72 // default
 
 //list/traitors = list()	//traitor list
 
-var/datum/debug/debugobj
-
 var/shuttlecoming = 0
 
 var/forceblob = 0

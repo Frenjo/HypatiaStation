@@ -116,10 +116,10 @@
 
 /obj/structure/filingcabinet/security/proc/populate()
 	if(virgin)
-		for_no_type_check(var/datum/data/record/G, GLOBL.data_core.general)
-			var/datum/data/record/S
-			for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
-				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
+		for_no_type_check(var/datum/record/G, GLOBL.data_core.general)
+			var/datum/record/S
+			for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
+				if(R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"])
 					S = R
 					break
 			var/obj/item/paper/P = new /obj/item/paper(src)
@@ -151,10 +151,10 @@
 
 /obj/structure/filingcabinet/medical/proc/populate()
 	if(virgin)
-		for_no_type_check(var/datum/data/record/G, GLOBL.data_core.general)
-			var/datum/data/record/M
-			for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
-				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
+		for_no_type_check(var/datum/record/G, GLOBL.data_core.general)
+			var/datum/record/M
+			for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
+				if(R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"])
 					M = R
 					break
 			var/obj/item/paper/P = new /obj/item/paper(src)

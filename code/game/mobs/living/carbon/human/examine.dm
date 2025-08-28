@@ -415,9 +415,9 @@
 			perpname = name
 
 		if(perpname)
-			for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
+			for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
+					for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
@@ -437,9 +437,9 @@
 		else
 			perpname = name
 
-		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
+		for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
 			if(E.fields["name"] == perpname)
-				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.general)
+				for_no_type_check(var/datum/record/R, GLOBL.data_core.general)
 					if(R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
 

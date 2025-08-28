@@ -527,10 +527,10 @@
 				else*/
 				perpname = src.name
 
-				for (var/datum/data/record/E in global.data_core.general)
-					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in global.data_core.security)
-							if (R.fields["id"] == E.fields["id"])
+				for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
+					if(E.fields["name"] == perpname)
+						for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
+							if(R.fields["id"] == E.fields["id"])
 
 								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
 

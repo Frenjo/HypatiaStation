@@ -624,7 +624,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			threatcount -= 2
 
 	if(check_records)
-		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
+		for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
 			var/perpname = perp.name
 			if(isnotnull(perp.id_store))
 				var/obj/item/card/id/id = perp.id_store.get_id()
@@ -632,7 +632,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					perpname = id.registered_name
 
 			if(E.fields["name"] == perpname)
-				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
+				for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						threatcount = 4
 						break

@@ -167,8 +167,8 @@ var/global/list/virusDB = list()
 
 /datum/disease2/disease/proc/name()
 	.= "stamm #[add_zero("[uniqueID]", 4)]"
-	if ("[uniqueID]" in virusDB)
-		var/datum/data/record/V = virusDB["[uniqueID]"]
+	if("[uniqueID]" in virusDB)
+		var/datum/record/V = virusDB["[uniqueID]"]
 		.= V.fields["name"]
 
 /datum/disease2/disease/proc/get_info()
@@ -188,7 +188,7 @@ var/global/list/virusDB = list()
 /datum/disease2/disease/proc/addToDB()
 	if ("[uniqueID]" in virusDB)
 		return 0
-	var/datum/data/record/v = new()
+	var/datum/record/v = new()
 	v.fields["id"] = uniqueID
 	v.fields["name"] = name()
 	v.fields["description"] = get_info()

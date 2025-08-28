@@ -78,18 +78,18 @@ obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	print.info = text
 	print.stamped = 1
 
-	for(var/datum/data/record/test in global.data_core.general)
-		if (test.fields["name"] == mname)
+	for_no_type_check(var/datum/record/test, GLOBL.data_core.general)
+		if(test.fields["name"] == mname)
 			return
 
-	var/datum/data/record/G = new()
-	var/datum/data/record/M = new()
-	var/datum/data/record/S = new()
-	var/datum/data/record/L = new()
+	var/datum/record/G = new()
+	var/datum/record/M = new()
+	var/datum/record/S = new()
+	var/datum/record/L = new()
 	G.fields["rank"] = "Unassigned"
 	G.fields["real_rank"] = G.fields["rank"]
 	G.fields["name"] = mname
-	G.fields["id"] = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
+	G.fields["id"] = "[add_zero(num2hex(rand(1, 1.6777215E7)), 6)]"
 	M.fields["name"] = G.fields["name"]
 	M.fields["id"] = G.fields["id"]
 	S.fields["name"] = G.fields["name"]
@@ -134,7 +134,7 @@ obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	L.fields["image"] = getFlatIcon(user,0)//What the person looks like. Naked, in this case.
 	//End locked reporting
 
-	global.data_core.general += G
-	global.data_core.medical += M
-	global.data_core.security += S
-	global.data_core.locked += L
+	GLOBL.data_core.general += G
+	GLOBL.data_core.medical += M
+	GLOBL.data_core.security += S
+	GLOBL.data_core.locked += L

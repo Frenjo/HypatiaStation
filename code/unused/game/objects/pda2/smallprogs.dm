@@ -18,7 +18,7 @@
 		dat += "<h4>Crew Manifest</h4>"
 		dat += "Entries cannot be modified from this terminal.<br><br>"
 
-		for (var/datum/data/record/t in global.data_core.general)
+		for_no_type_check(var/datum/record/t, GLOBL.data_core.general)
 			dat += "[t.fields["name"]] - [t.fields["rank"]]<br>"
 		dat += "<br>"
 
