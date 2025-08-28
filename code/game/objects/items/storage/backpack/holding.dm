@@ -98,8 +98,7 @@
 	)
 
 /obj/item/inert_bag_of_holding/Destroy()
-	if(isnotnull(construct))
-		QDEL_NULL(construct)
+	QDEL_NULL(construct)
 	return ..()
 
 /obj/item/inert_bag_of_holding/attack_by(obj/item/I, mob/user)

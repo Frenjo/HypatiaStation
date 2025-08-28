@@ -42,8 +42,7 @@
 	START_PROCESSING(PCobj, src)
 
 /obj/item/tank/Destroy()
-	if(isnotnull(air_contents))
-		QDEL_NULL(air_contents)
+	QDEL_NULL(air_contents)
 	STOP_PROCESSING(PCobj, src)
 	return ..()
 

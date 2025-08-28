@@ -24,8 +24,7 @@
 		construct = new construct_type(src)
 
 /obj/item/mecha_part/chassis/Destroy()
-	if(isnotnull(construct))
-		QDEL_NULL(construct)
+	QDEL_NULL(construct)
 	return ..()
 
 /obj/item/mecha_part/chassis/attackby(obj/item/W, mob/user)

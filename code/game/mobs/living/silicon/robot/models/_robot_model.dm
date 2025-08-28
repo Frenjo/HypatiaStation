@@ -47,7 +47,7 @@
 		model_select_sprite = sprites[sprites[1]]
 
 /obj/item/robot_model/Destroy()
-	QDEL_NULL(modules)
+	QDEL_LIST(modules)
 	return ..()
 
 /obj/item/robot_model/emp_act(severity)

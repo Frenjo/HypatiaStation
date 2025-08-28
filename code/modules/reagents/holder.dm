@@ -12,9 +12,8 @@
 	maximum_volume = maximum
 
 /datum/reagents/Destroy()
-	for_no_type_check(var/datum/reagent/R, reagent_list)
-		qdel(R)
-	LAZYCLEARLIST(reagent_list)
+	QDEL_LIST(reagent_list)
+	reagent_list = null
 	if(my_atom?.reagents == src)
 		my_atom.reagents = null
 	return ..()

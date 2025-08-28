@@ -20,8 +20,7 @@
 	hide(T.intact)
 
 /obj/machinery/bluespace_beacon/Destroy()
-	if(isnotnull(Beacon))
-		QDEL_NULL(Beacon)
+	QDEL_NULL(Beacon)
 	return ..()
 
 // update the invisibility and icon

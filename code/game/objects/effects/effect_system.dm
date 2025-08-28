@@ -19,8 +19,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/life = 15.0
 
 /obj/effect/Destroy()
-	if(isnotnull(reagents))
-		QDEL_NULL(reagents)
+	QDEL_NULL(reagents)
 	return ..()
 
 /obj/effect/water/Move(turf/newloc)

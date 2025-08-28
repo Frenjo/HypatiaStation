@@ -43,8 +43,7 @@
 	make_blood()
 
 /mob/living/carbon/human/Destroy()
-	for(var/organ in organs)
-		qdel(organ)
+	QDEL_LIST(organs)
 	return ..()
 
 /mob/living/carbon/human/Stat()

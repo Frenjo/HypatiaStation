@@ -71,8 +71,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	invisibility = INVISIBILITY_MAXIMUM
 	set_opacity(0)
 
-	if(isnotnull(reagents))
-		QDEL_NULL(reagents)
+	QDEL_NULL(reagents)
 
 	return ..()
 

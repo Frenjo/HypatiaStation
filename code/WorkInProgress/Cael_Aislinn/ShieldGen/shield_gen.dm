@@ -42,9 +42,8 @@
 			break
 
 /obj/machinery/shield_gen/Destroy()
-	for_no_type_check(var/obj/effect/energy_field/D, field)
-		field.Remove(D)
-		qdel(D)
+	QDEL_LIST(field)
+	field = null
 	return ..()
 
 /obj/machinery/shield_gen/attack_emag(obj/item/card/emag/emag, mob/user, uses)

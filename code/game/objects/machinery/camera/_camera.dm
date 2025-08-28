@@ -54,8 +54,7 @@
 /obj/machinery/camera/Destroy()
 	deactivate(null, 0) //kick anyone viewing out
 	QDEL_NULL(wires)
-	if(isnotnull(assembly))
-		QDEL_NULL(assembly)
+	QDEL_NULL(assembly)
 	return ..()
 
 /obj/machinery/camera/emp_act(severity)

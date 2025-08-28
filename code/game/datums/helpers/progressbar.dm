@@ -22,8 +22,7 @@
 		client = user.client
 
 /datum/progressbar/Destroy()
-	if(isnotnull(client))
-		client.images.Remove(bar)
+	client?.images.Remove(bar)
 	QDEL_NULL(bar)
 	return ..()
 
