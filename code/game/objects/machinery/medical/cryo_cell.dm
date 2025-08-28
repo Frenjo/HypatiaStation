@@ -335,13 +335,3 @@
 		return
 	put_mob(usr)
 	return
-
-
-/datum/data/function/proc/reset()
-	return
-
-/datum/data/function/proc/r_input(href, href_list, mob/user)
-	return
-
-/datum/data/function/proc/display()
-	return

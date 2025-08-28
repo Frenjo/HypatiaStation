@@ -255,7 +255,7 @@
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
 		for_no_type_check(var/list/L, list(GLOBL.data_core.general, GLOBL.data_core.medical, GLOBL.data_core.security, GLOBL.data_core.locked))
-			for_no_type_check(var/datum/data/record/R, L)
+			for_no_type_check(var/datum/record/R, L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
 					break

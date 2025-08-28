@@ -10,8 +10,8 @@
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
-	var/datum/data/record/active1 = null
-	var/datum/data/record/active2 = null
+	var/datum/record/active1 = null
+	var/datum/record/active2 = null
 	var/a_id = null
 	var/temp = null
 	var/printing = null
@@ -48,7 +48,7 @@
 				if(2.0)
 					dat += "<B>Record List</B>:<HR>"
 					if(isnotnull(GLOBL.data_core.general))
-						for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
+						for_no_type_check(var/datum/record/R, sortRecord(GLOBL.data_core.general))
 							dat += text("<A href='byond://?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
 					dat += text("<HR><A href='byond://?src=\ref[];screen=1'>Back</A>", src)
@@ -60,7 +60,7 @@
 					SEND_RSC(user, front, "front.png")
 					SEND_RSC(user, side, "side.png")
 					dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
-					if(istype(src.active1, /datum/data/record) && GLOBL.data_core.general.Find(src.active1))
+					if(istype(active1, /datum/record) && GLOBL.data_core.general.Find(active1))
 						dat += "<table><tr><td>Name: [active1.fields["name"]] \
 								ID: [active1.fields["id"]]<BR>\n	\
 								Sex: <A href='byond://?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n	\
@@ -71,11 +71,11 @@
 								Photo:<br><img src=front.png height=64 width=64 border=5><img src=side.png height=64 width=64 border=5></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
-					if(istype(src.active2, /datum/data/record) && GLOBL.data_core.medical.Find(src.active2))
+					if(istype(active2, /datum/record) && GLOBL.data_core.medical.Find(active2))
 						dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond://?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='byond://?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond://?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond://?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='byond://?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond://?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond://?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, src.active2.fields["b_type"], src, src.active2.fields["b_dna"], src, src.active2.fields["mi_dis"], src, src.active2.fields["mi_dis_d"], src, src.active2.fields["ma_dis"], src, src.active2.fields["ma_dis_d"], src, src.active2.fields["alg"], src, src.active2.fields["alg_d"], src, src.active2.fields["cdi"], src, src.active2.fields["cdi_d"], src, src.active2.fields["notes"])
 						var/counter = 1
-						while(src.active2.fields[text("com_[]", counter)])
-							dat += text("[]<BR><A href='byond://?src=\ref[];del_c=[]'>Delete Entry</A><BR><BR>", src.active2.fields[text("com_[]", counter)], src, counter)
+						while(active2.fields["com_[counter]"])
+							dat += "[active2.fields["com_[counter]"]]<BR><A href='byond://?src=\ref[src];del_c=[counter]'>Delete Entry</A><BR><BR>"
 							counter++
 						dat += text("<A href='byond://?src=\ref[];add_c=1'>Add Entry</A><BR><BR>", src)
 						dat += text("<A href='byond://?src=\ref[];del_r=1'>Delete Record (Medical Only)</A><BR><BR>", src)
@@ -95,7 +95,7 @@
 						dat += "<br><a href='byond://?src=\ref[src];vir=[Dt]'>[Dis.name]</a>"
 					*/
 					for (var/ID in virusDB)
-						var/datum/data/record/v = virusDB[ID]
+						var/datum/record/v = virusDB[ID]
 						dat += "<br><a href='byond://?src=\ref[src];vir=\ref[v]'>[v.fields["name"]]</a>"
 
 					dat += "<br><a href='byond://?src=\ref[src];screen=1'>Back</a>"
@@ -207,7 +207,7 @@
 				src.active2 = null
 
 			if(href_list["vir"])
-				var/datum/data/record/v = locate(href_list["vir"])
+				var/datum/record/v = locate(href_list["vir"])
 				src.temp = "<center>GNAv2 based virus lifeform V-[v.fields["id"]]</center>"
 				src.temp += "<br><b>Name:</b> <A href='byond://?src=\ref[src];field=vir_name;edit_vir=\ref[v]'>[v.fields["name"]]</A>"
 				src.temp += "<br><b>Antigen:</b> [v.fields["antigen"]]"
@@ -218,7 +218,7 @@
 				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='byond://?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>No</A><br>", src, src)
 
 			if(href_list["del_all2"])
-				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
+				for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
 					//R = null
 					qdel(R)
 					//Foreach goto(494)
@@ -229,101 +229,101 @@
 				var/a2 = src.active2
 				switch(href_list["field"])
 					if("fingerprint")
-						if(istype(src.active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input fingerprint hash:", "Med. records", src.active1.fields["fingerprint"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !(src.authenticated) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active1 != a1))
 								return
 							src.active1.fields["fingerprint"] = t1
 					if("sex")
-						if(istype(src.active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							if(src.active1.fields["sex"] == "Male")
 								src.active1.fields["sex"] = "Female"
 							else
 								src.active1.fields["sex"] = "Male"
 					if("age")
-						if(istype(src.active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = input("Please input age:", "Med. records", src.active1.fields["age"], null)  as num
 							if((!(t1) || !(src.authenticated) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active1 != a1))
 								return
 							src.active1.fields["age"] = t1
 					if("mi_dis")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input minor disabilities list:", "Med. records", src.active2.fields["mi_dis"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["mi_dis"] = t1
 					if("mi_dis_d")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize minor dis.:", "Med. records", src.active2.fields["mi_dis_d"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["mi_dis_d"] = t1
 					if("ma_dis")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input major diabilities list:", "Med. records", src.active2.fields["ma_dis"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["ma_dis"] = t1
 					if("ma_dis_d")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize major dis.:", "Med. records", src.active2.fields["ma_dis_d"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["ma_dis_d"] = t1
 					if("alg")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please state allergies:", "Med. records", src.active2.fields["alg"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["alg"] = t1
 					if("alg_d")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize allergies:", "Med. records", src.active2.fields["alg_d"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["alg_d"] = t1
 					if("cdi")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please state diseases:", "Med. records", src.active2.fields["cdi"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["cdi"] = t1
 					if("cdi_d")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize diseases:", "Med. records", src.active2.fields["cdi_d"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["cdi_d"] = t1
 					if("notes")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize notes:", "Med. records", src.active2.fields["notes"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["notes"] = t1
 					if("p_stat")
-						if(istype(src.active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							src.temp = text("<B>Physical Condition:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=disabled'>Disabled</A><BR>", src, src, src, src, src)
 					if("m_stat")
-						if(istype(src.active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							src.temp = text("<B>Mental Condition:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=stable'>Stable</A><BR>", src, src, src, src)
 					if("b_type")
-						if(istype(src.active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							src.temp = text("<B>Blood Type:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=an'>A-</A> <A href='byond://?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='byond://?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='byond://?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=on'>O-</A> <A href='byond://?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
 					if("b_dna")
-						if(istype(src.active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input DNA hash:", "Med. records", src.active1.fields["dna"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active1 != a1))
 								return
 							src.active1.fields["dna"] = t1
 					if("vir_name")
-						var/datum/data/record/v = locate(href_list["edit_vir"])
+						var/datum/record/v = locate(href_list["edit_vir"])
 						if(v)
 							var/t1 = copytext(sanitize(input("Please input pathogen name:", "VirusDB", v.fields["name"], null)  as text),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active1 != a1))
 								return
 							v.fields["name"] = t1
 					if("vir_desc")
-						var/datum/data/record/v = locate(href_list["edit_vir"])
+						var/datum/record/v = locate(href_list["edit_vir"])
 						if(v)
 							var/t1 = copytext(sanitize(input("Please input information about pathogen:", "VirusDB", v.fields["description"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active1 != a1))
@@ -389,12 +389,12 @@
 					qdel(src.active2)
 
 			if(href_list["d_rec"])
-				var/datum/data/record/R = locate(href_list["d_rec"])
-				var/datum/data/record/M = locate(href_list["d_rec"])
+				var/datum/record/R = locate(href_list["d_rec"])
+				var/datum/record/M = locate(href_list["d_rec"])
 				if(!GLOBL.data_core.general.Find(R))
 					src.temp = "Record Not Found!"
 					return
-				for_no_type_check(var/datum/data/record/E, GLOBL.data_core.medical)
+				for_no_type_check(var/datum/record/E, GLOBL.data_core.medical)
 					if((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						M = E
 					else
@@ -404,11 +404,11 @@
 				src.screen = 4
 
 			if(href_list["new"])
-				if((istype(src.active1, /datum/data/record) && !(istype(src.active2, /datum/data/record))))
-					var/datum/data/record/R = new /datum/data/record(  )
+				if(istype(active1, /datum/record) && !istype(active2, /datum/record))
+					var/datum/record/R = new /datum/record()
 					R.fields["name"] = src.active1.fields["name"]
 					R.fields["id"] = src.active1.fields["id"]
-					R.name = text("Medical Record #[]", R.fields["id"])
+					R.name = "Medical Record #[R.fields["id"]]"
 					R.fields["b_type"] = "Unknown"
 					R.fields["b_dna"] = "Unknown"
 					R.fields["mi_dis"] = "None"
@@ -425,20 +425,20 @@
 					src.screen = 4
 
 			if(href_list["add_c"])
-				if(!(istype(src.active2, /datum/data/record)))
+				if(!istype(active2, /datum/record))
 					return
 				var/a2 = src.active2
 				var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
 				if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 					return
 				var/counter = 1
-				while(src.active2.fields[text("com_[]", counter)])
+				while(active2.fields["com_[counter]"])
 					counter++
-				src.active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
+				active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 
 			if (href_list["del_c"])
-				if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))
-					src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+				if(istype(active2, /datum/record) && active2.fields["com_[href_list["del_c"]]"])
+					src.active2.fields["com_[href_list["del_c"]]"] = "<B>Deleted</B>"
 
 			if (href_list["search"])
 				var/t1 = input("Search String: (Name, DNA, or ID)", "Med. records", null, null)  as text
@@ -447,7 +447,7 @@
 				src.active1 = null
 				src.active2 = null
 				t1 = lowertext(t1)
-				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
+				for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
 					if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
 						src.active2 = R
 					else
@@ -455,8 +455,8 @@
 				if (!( src.active2 ))
 					src.temp = text("Could not locate record [].", t1)
 				else
-					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
-						if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
+					for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
+						if(E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"])
 							src.active1 = E
 						else
 							//Foreach continue //goto(3334)
@@ -468,15 +468,15 @@
 					sleep(50)
 					var/obj/item/paper/P = new /obj/item/paper( src.loc )
 					P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
-					if(istype(src.active1, /datum/data/record) && GLOBL.data_core.general.Find(src.active1))
+					if(istype(active1, /datum/record) && GLOBL.data_core.general.Find(active1))
 						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src.active1.fields["name"], src.active1.fields["id"], src.active1.fields["sex"], src.active1.fields["age"], src.active1.fields["fingerprint"], src.active1.fields["p_stat"], src.active1.fields["m_stat"])
 					else
 						P.info += "<B>General Record Lost!</B><BR>"
-					if(istype(src.active2, /datum/data/record) && GLOBL.data_core.medical.Find(src.active2))
+					if(istype(active2, /datum/record) && GLOBL.data_core.medical.Find(active2))
 						P.info += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: []<BR>\nDNA: []<BR>\n<BR>\nMinor Disabilities: []<BR>\nDetails: []<BR>\n<BR>\nMajor Disabilities: []<BR>\nDetails: []<BR>\n<BR>\nAllergies: []<BR>\nDetails: []<BR>\n<BR>\nCurrent Diseases: [] (per disease info placed in log/comment section)<BR>\nDetails: []<BR>\n<BR>\nImportant Notes:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src.active2.fields["b_type"], src.active2.fields["b_dna"], src.active2.fields["mi_dis"], src.active2.fields["mi_dis_d"], src.active2.fields["ma_dis"], src.active2.fields["ma_dis_d"], src.active2.fields["alg"], src.active2.fields["alg_d"], src.active2.fields["cdi"], src.active2.fields["cdi_d"], src.active2.fields["notes"])
 						var/counter = 1
-						while(src.active2.fields[text("com_[]", counter)])
-							P.info += text("[]<BR>", src.active2.fields[text("com_[]", counter)])
+						while(active2.fields["com_[counter]"])
+							P.info += "[active2.fields["com_[counter]"]]<BR>"
 							counter++
 					else
 						P.info += "<B>Medical Record Lost!</B><BR>"
@@ -493,7 +493,7 @@
 		..(severity)
 		return
 
-	for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
+	for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

@@ -92,7 +92,7 @@
 		if(length(C.virus2))
 			for(var/virus_id in C.virus2)
 				if(virus_id in virusDB)
-					var/datum/data/record/V = virusDB[virus_id]
+					var/datum/record/V = virusDB[virus_id]
 					output.Add(SPAN_WARNING("Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen: [V.fields["antigen"]]"))
 			//user.show_message("\red Warning: Unknown pathogen detected in subject's blood.")
 

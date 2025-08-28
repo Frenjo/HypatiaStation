@@ -63,7 +63,7 @@
 
 		/*var/crew = ""
 		var/list/L = list()
-		for (var/datum/data/record/t in global.data_core.general)
+		for(var/datum/record/t in GLOBL.data_core.general)
 			var/R = t.fields["name"] + " - " + t.fields["rank"]
 			L += R
 		for(var/R in sortList(L))
@@ -300,7 +300,7 @@
 				var/obj/item/paper/P = new /obj/item/paper(loc)
 				/*var/t1 = "<B>Crew Manifest:</B><BR>"
 				var/list/L = list()
-				for (var/datum/data/record/t in global.data_core.general)
+				for(var/datum/record/t in GLOBL.data_core.general)
 					var/R = t.fields["name"] + " - " + t.fields["rank"]
 					L += R
 				for(var/R in sortList(L))

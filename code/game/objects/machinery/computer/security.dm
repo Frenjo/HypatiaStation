@@ -11,8 +11,8 @@
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
-	var/datum/data/record/active1 = null
-	var/datum/data/record/active2 = null
+	var/datum/record/active1 = null
+	var/datum/record/active2 = null
 	var/a_id = null
 	var/temp = null
 	var/printing = null
@@ -76,10 +76,10 @@
 <th>Criminal Status</th>
 </tr>"}
 					if(isnotnull(GLOBL.data_core.general))
-						for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general, sortBy, order))
+						for(var/datum/record/R in sortRecord(GLOBL.data_core.general, sortBy, order))
 							var/crimstat = ""
-							for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
-								if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))
+							for_no_type_check(var/datum/record/E, GLOBL.data_core.security)
+								if(E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"])
 									crimstat = E.fields["criminal"]
 							var/background
 							switch(crimstat)
@@ -109,7 +109,7 @@
 					dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>Back</A>"
 				if(3.0)
 					dat += "<CENTER><B>Security Record</B></CENTER><BR>"
-					if(istype(active1, /datum/data/record) && GLOBL.data_core.general.Find(active1))
+					if(istype(active1, /datum/record) && GLOBL.data_core.general.Find(active1))
 						var/icon/front = new(active1.fields["photo"], dir = SOUTH)
 						var/icon/side = new(active1.fields["photo"], dir = WEST)
 						SEND_RSC(user, front, "front.png")
@@ -127,11 +127,11 @@
 						<img src=side.png height=80 width=80 border=4></td></tr></table>")
 					else
 						dat += "<B>General Record Lost!</B><BR>"
-					if(istype(active2, /datum/data/record) && GLOBL.data_core.security.Find(active2))
+					if(istype(active2, /datum/record) && GLOBL.data_core.security.Find(active2))
 						dat += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: <A href='byond://?src=\ref[];choice=Edit Field;field=criminal'>[]</A><BR>\n<BR>\nMinor Crimes: <A href='byond://?src=\ref[];choice=Edit Field;field=mi_crim'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];choice=Edit Field;field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='byond://?src=\ref[];choice=Edit Field;field=ma_crim'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];choice=Edit Field;field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=\ref[];choice=Edit Field;field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, active2.fields["criminal"], src, active2.fields["mi_crim"], src, active2.fields["mi_crim_d"], src, active2.fields["ma_crim"], src, active2.fields["ma_crim_d"], src, active2.fields["notes"])
 						var/counter = 1
-						while(active2.fields[text("com_[]", counter)])
-							dat += text("[]<BR><A href='byond://?src=\ref[];choice=Delete Entry;del_c=[]'>Delete Entry</A><BR><BR>", active2.fields[text("com_[]", counter)], src, counter)
+						while(active2.fields["com_[counter]"])
+							dat += "[active2.fields["com_[counter]"]]<BR><A href='byond://?src=\ref[src];choice=Delete Entry;del_c=[counter]'>Delete Entry</A><BR><BR>"
 							counter++
 						dat += text("<A href='byond://?src=\ref[];choice=Add Entry'>Add Entry</A><BR><BR>", src)
 						dat += text("<A href='byond://?src=\ref[];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>", src)
@@ -160,9 +160,9 @@
 </tr>					"}
 						for(var/i in 1 to length(Perp) step 2)
 							var/crimstat = ""
-							var/datum/data/record/R = Perp[i]
-							if(istype(Perp[i+1],/datum/data/record/))
-								var/datum/data/record/E = Perp[i+1]
+							var/datum/record/R = Perp[i]
+							if(istype(Perp[i+1], /datum/record))
+								var/datum/record/E = Perp[i+1]
 								crimstat = E.fields["criminal"]
 							var/background
 							switch(crimstat)
@@ -278,7 +278,7 @@ What a mess.*/
 				var/list/components = splittext(t1, " ")
 				if(length(components) > 5)
 					return //Lets not let them search too greedily.
-				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.general)
+				for_no_type_check(var/datum/record/R, GLOBL.data_core.general)
 					var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 					for(var/i in 1 to length(components))
 						if(findtext(temptext,components[i]))
@@ -286,9 +286,9 @@ What a mess.*/
 							prelist[1] = R
 							Perp += prelist
 				for(var/i in 1 to length(Perp) step 2)
-					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
-						var/datum/data/record/R = Perp[i]
-						if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))
+					for_no_type_check(var/datum/record/E, GLOBL.data_core.security)
+						var/datum/record/R = Perp[i]
+						if(E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"])
 							Perp[i+1] = E
 				tempname = t1
 				screen = 4
@@ -299,13 +299,13 @@ What a mess.*/
 				active2 = null
 
 			if ("Browse Record")
-				var/datum/data/record/R = locate(href_list["d_rec"])
+				var/datum/record/R = locate(href_list["d_rec"])
 				var/S = locate(href_list["d_rec"])
 				if(!GLOBL.data_core.general.Find(R))
 					temp = "Record Not Found!"
 				else
-					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
-						if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+					for_no_type_check(var/datum/record/E, GLOBL.data_core.security)
+						if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 							S = E
 					active1 = R
 					active2 = S
@@ -318,13 +318,13 @@ What a mess.*/
 				active1 = null
 				active2 = null
 				t1 = lowertext(t1)
-				for(var/datum/data/record/R in data_core.general)
+				for(var/datum/record/R in data_core.general)
 					if (lowertext(R.fields["fingerprint"]) == t1)
 						active1 = R
 				if (!( active1 ))
 					temp = text("Could not locate record [].", t1)
 				else
-					for(var/datum/data/record/E in data_core.security)
+					for(var/datum/record/E in data_core.security)
 						if ((E.fields["name"] == active1.fields["name"] || E.fields["id"] == active1.fields["id"]))
 							active2 = E
 					screen = 3	*/
@@ -335,15 +335,15 @@ What a mess.*/
 					sleep(50)
 					var/obj/item/paper/P = new /obj/item/paper( loc )
 					P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
-					if(istype(active1, /datum/data/record) && GLOBL.data_core.general.Find(active1))
+					if(istype(active1, /datum/record) && GLOBL.data_core.general.Find(active1))
 						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", active1.fields["name"], active1.fields["id"], active1.fields["sex"], active1.fields["age"], active1.fields["fingerprint"], active1.fields["p_stat"], active1.fields["m_stat"])
 					else
 						P.info += "<B>General Record Lost!</B><BR>"
-					if(istype(active2, /datum/data/record) && GLOBL.data_core.security.Find(active2))
+					if(istype(active2, /datum/record) && GLOBL.data_core.security.Find(active2))
 						P.info += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: []<BR>\nDetails: []<BR>\n<BR>\nMajor Crimes: []<BR>\nDetails: []<BR>\n<BR>\nImportant Notes:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", active2.fields["criminal"], active2.fields["mi_crim"], active2.fields["mi_crim_d"], active2.fields["ma_crim"], active2.fields["ma_crim_d"], active2.fields["notes"])
 						var/counter = 1
-						while(active2.fields[text("com_[]", counter)])
-							P.info += text("[]<BR>", active2.fields[text("com_[]", counter)])
+						while(active2.fields["com_[counter]"])
+							P.info += "[active2.fields["com_[counter]"]]<BR>"
 							counter++
 					else
 						P.info += "<B>Security Record Lost!</B><BR>"
@@ -359,21 +359,21 @@ What a mess.*/
 				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Purge All Records")
-				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
+				for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 					qdel(R)
 				temp = "All Security records deleted."
 
 			if ("Add Entry")
-				if (!( istype(active2, /datum/data/record) ))
+				if(!istype(active2, /datum/record))
 					return
 				var/a2 = active2
 				var/t1 = copytext(sanitize(input("Add Comment:", "Secure. records", null, null)  as message),1,MAX_MESSAGE_LEN)
 				if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 					return
 				var/counter = 1
-				while(active2.fields[text("com_[]", counter)])
+				while(active2.fields["com_[counter]"])
 					counter++
-				active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
+				active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 
 			if ("Delete Record (ALL)")
 				if (active1)
@@ -388,15 +388,15 @@ What a mess.*/
 					temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Delete Entry")
-				if ((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
-					active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+				if(istype(active2, /datum/record) && active2.fields["com_[href_list["del_c"]]"])
+					active2.fields["com_[href_list["del_c"]]"] = "<B>Deleted</B>"
 //RECORD CREATE
 			if ("New Record (Security)")
-				if ((istype(active1, /datum/data/record) && !( istype(active2, /datum/data/record) )))
-					var/datum/data/record/R = new /datum/data/record()
+				if(istype(active1, /datum/record) && !istype(active2, /datum/record))
+					var/datum/record/R = new /datum/record()
 					R.fields["name"] = active1.fields["name"]
 					R.fields["id"] = active1.fields["id"]
-					R.name = text("Security Record #[]", R.fields["id"])
+					R.name = "Security Record #[R.fields["id"]]"
 					R.fields["criminal"] = "None"
 					R.fields["mi_crim"] = "None"
 					R.fields["mi_crim_d"] = "No minor crime convictions."
@@ -408,7 +408,7 @@ What a mess.*/
 					screen = 3
 
 			if ("New Record (General)")
-				var/datum/data/record/G = new /datum/data/record()
+				var/datum/record/G = new /datum/record()
 				G.fields["name"] = "New Record"
 				G.fields["id"] = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
 				G.fields["rank"] = "Unassigned"
@@ -429,67 +429,67 @@ What a mess.*/
 				var/a2 = active2
 				switch(href_list["field"])
 					if("name")
-						if (istype(active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = input("Please input name:", "Secure. records", active1.fields["name"], null)  as text
 							if ((!( t1 ) || !length(trim(t1)) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr)))) || active1 != a1)
 								return
 							active1.fields["name"] = t1
 					if("id")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 								return
 							active1.fields["id"] = t1
 					if("fingerprint")
-						if (istype(active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"], null)  as text),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 								return
 							active1.fields["fingerprint"] = t1
 					if("sex")
-						if (istype(active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							if (active1.fields["sex"] == "Male")
 								active1.fields["sex"] = "Female"
 							else
 								active1.fields["sex"] = "Male"
 					if("age")
-						if (istype(active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = input("Please input age:", "Secure. records", active1.fields["age"], null)  as num
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 								return
 							active1.fields["age"] = t1
 					if("mi_crim")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input minor disabilities list:", "Secure. records", active2.fields["mi_crim"], null)  as text),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 								return
 							active2.fields["mi_crim"] = t1
 					if("mi_crim_d")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize minor dis.:", "Secure. records", active2.fields["mi_crim_d"], null)  as message),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 								return
 							active2.fields["mi_crim_d"] = t1
 					if("ma_crim")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please input major diabilities list:", "Secure. records", active2.fields["ma_crim"], null)  as text),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 								return
 							active2.fields["ma_crim"] = t1
 					if("ma_crim_d")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize major dis.:", "Secure. records", active2.fields["ma_crim_d"], null)  as message),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 								return
 							active2.fields["ma_crim_d"] = t1
 					if("notes")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							var/t1 = copytext(sanitize(input("Please summarize notes:", "Secure. records", active2.fields["notes"], null)  as message),1,MAX_MESSAGE_LEN)
 							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 								return
 							active2.fields["notes"] = t1
 					if("criminal")
-						if (istype(active2, /datum/data/record))
+						if(istype(active2, /datum/record))
 							temp = "<h5>Criminal Status:</h5>"
 							temp += "<ul>"
 							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=none'>None</a></li>"
@@ -501,7 +501,7 @@ What a mess.*/
 					if("rank")
 						var/list/L = list( "Head of Personnel", "Captain", "AI" )
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
-						if ((istype(active1, /datum/data/record) && L.Find(rank)))
+						if((istype(active1, /datum/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
 							for(var/rank in GLOBL.all_jobs)
@@ -510,7 +510,7 @@ What a mess.*/
 						else
 							alert(usr, "You do not have the required rank to do this!")
 					if("species")
-						if(istype(active1, /datum/data/record))
+						if(istype(active1, /datum/record))
 							var/t1 = copytext(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message),1,MAX_MESSAGE_LEN)
 							if((!(t1) || !(authenticated) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 								return
@@ -548,7 +548,7 @@ What a mess.*/
 
 					if("Delete Record (ALL) Execute")
 						if(active1)
-							for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
+							for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
 								if((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)
 								else
@@ -567,7 +567,7 @@ What a mess.*/
 		..(severity)
 		return
 
-	for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
+	for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

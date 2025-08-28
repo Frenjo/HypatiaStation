@@ -46,9 +46,9 @@
 	var/obj/item/disk/data/fixed_disk/hd = null
 	var/fon = 0 //Is the flashlight function on?
 	var/f_lum = 3 //Luminosity for the flashlight function
-//	var/datum/data/record/active1 = null //General
-//	var/datum/data/record/active2 = null //Medical
-//	var/datum/data/record/active3 = null //Security
+//	var/datum/record/active1 = null //General
+//	var/datum/record/active2 = null //Medical
+//	var/datum/record/active3 = null //Security
 //	var/obj/item/integrated_uplink/uplink = null //Maybe replace uplink with some remote ~syndicate~ server
 	var/frequency = 1149
 	var/datum/radio_frequency/radio_connection

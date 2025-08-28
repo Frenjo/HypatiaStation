@@ -5,11 +5,11 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 	GLOBL.data_core = new /datum/datacore()
 
 /datum/datacore
-	var/list/datum/data/record/general = list()
-	var/list/datum/data/record/medical = list()
-	var/list/datum/data/record/security = list()
+	var/list/datum/record/general = list()
+	var/list/datum/record/medical = list()
+	var/list/datum/record/security = list()
 	// This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
-	var/list/datum/data/record/locked = list()
+	var/list/datum/record/locked = list()
 	// This was originally a global variable, but why not just put it on the datacore since that in itself is global anyway?!
 	var/list/pda_manifest = list()
 
@@ -39,7 +39,7 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 	var/even = FALSE
 
 	// sort mobs
-	for_no_type_check(var/datum/data/record/t, general)
+	for_no_type_check(var/datum/record/t, general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
@@ -146,7 +146,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/list/bot = list()
 	var/list/misc = list()
 
-	for_no_type_check(var/datum/data/record/t, general)
+	for_no_type_check(var/datum/record/t, general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
 		var/real_rank = t.fields["real_rank"]
@@ -227,9 +227,9 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	if(length(pda_manifest))
 		pda_manifest.Cut()
 
-	var/datum/data/record/foundrecord
+	var/datum/record/foundrecord
 	var/real_title = assignment
-	for_no_type_check(var/datum/data/record/t, general)
+	for_no_type_check(var/datum/record/t, general)
 		if(isnotnull(t))
 			if(t.fields["name"] == name)
 				foundrecord = t
@@ -265,7 +265,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
 		//General Record
-		var/datum/data/record/G = new /datum/data/record()
+		var/datum/record/G = new /datum/record()
 		G.fields["id"]			= id
 		G.fields["name"]		= H.real_name
 		G.fields["real_rank"]	= H.mind.assigned_role
@@ -284,7 +284,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		general.Add(G)
 
 		//Medical Record
-		var/datum/data/record/M = new /datum/data/record()
+		var/datum/record/M = new /datum/record()
 		M.fields["id"]			= id
 		M.fields["name"]		= H.real_name
 		M.fields["b_type"]		= H.b_type
@@ -304,7 +304,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		medical.Add(M)
 
 		//Security Record
-		var/datum/data/record/S = new /datum/data/record()
+		var/datum/record/S = new /datum/record()
 		S.fields["id"]			= id
 		S.fields["name"]		= H.real_name
 		S.fields["criminal"]	= "None"
@@ -320,7 +320,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		security.Add(S)
 
 		//Locked Record
-		var/datum/data/record/L = new /datum/data/record()
+		var/datum/record/L = new /datum/record()
 		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role

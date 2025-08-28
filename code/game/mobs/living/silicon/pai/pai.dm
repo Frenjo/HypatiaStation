@@ -39,11 +39,11 @@
 	var/secHUD = FALSE		// Toggles whether the Security HUD is active or not
 	var/medHUD = FALSE		// Toggles whether the Medical  HUD is active or not
 
-	var/datum/data/record/medicalActive1		// Datacore record declarations for record software
-	var/datum/data/record/medicalActive2
+	var/datum/record/medicalActive1		// Datacore record declarations for record software
+	var/datum/record/medicalActive2
 
-	var/datum/data/record/securityActive1		// Could probably just combine all these into one
-	var/datum/data/record/securityActive2
+	var/datum/record/securityActive1		// Could probably just combine all these into one
+	var/datum/record/securityActive2
 
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
 	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
