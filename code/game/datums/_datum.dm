@@ -44,6 +44,7 @@
 /datum/proc/AddComponent(component_type, ...)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
+	// We have to store this beforehand, because doing args[1] = src actually changes the component_type variable's value to src.
 	var/new_type = component_type
 	args[1] = src
 	var/datum/component/new_component = new new_type(args) // This doesn't use argslist for a reason.
