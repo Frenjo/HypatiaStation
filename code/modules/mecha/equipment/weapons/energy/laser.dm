@@ -25,8 +25,7 @@
 
 /obj/item/mecha_equipment/weapon/energy/laser/rigged
 	name = "jury-rigged welder-laser"
-	desc = "While not regulation, this inefficient weapon can be attached to working exosuits in desperate, or malicious, times. \
-		(Can be attached to: Working and Combat Exosuits)"
+	desc = "While not regulation, this inefficient weapon can be attached to working exosuits in desperate, or malicious, times."
 	icon_state = "laser_rigged"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_laser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_laser::req_tech
@@ -36,11 +35,12 @@
 	equip_cooldown = 1.6 SECONDS
 	energy_drain = 60
 
+	attaches_to_string = "<em><i>working</i></em> and <em><i>combat</i></em> exosuits"
+
 // X-ray
 /obj/item/mecha_equipment/weapon/energy/laser/xray
 	name = "\improper CH-XS \"Penetrator\" X-ray laser"
-	desc = "A large exosuit-mounted variant of the anti-armor xray rifle. \
-		(Can be attached to: Combat Exosuits)"
+	desc = "A large exosuit-mounted variant of the anti-armor xray rifle."
 	icon_state = "xray"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/xray::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/xray::req_tech
@@ -53,8 +53,7 @@
 
 /obj/item/mecha_equipment/weapon/energy/laser/xray/rigged
 	name = "jury-rigged X-ray laser"
-	desc = "A modified wormhole modulation array and meson-scanning control system allow this abomination to produce concentrated blasts of xrays. \
-		(Can be attached to: Working and Combat Exosuits)"
+	desc = "A modified wormhole modulation array and meson-scanning control system allow this abomination to produce concentrated blasts of xrays."
 	icon_state = "xray_rigged"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_xray::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_xray::req_tech
@@ -64,11 +63,12 @@
 	equip_cooldown = 1.2 SECONDS
 	energy_drain = 175
 
+	attaches_to_string = "<em><i>working</i></em> and <em><i>combat</i></em> exosuits"
+
 // Emitter
 /obj/item/mecha_equipment/weapon/energy/brigand_emitter
 	name = "\improper NT-EM \"BR1-G4ND\" mounted emitter"
-	desc = "An engineering-grade emitter fitted with a specially-designed mounting socket compatible with Brigand-type exosuits. \
-		(Can be attached to: Brigand)"
+	desc = "An engineering-grade emitter fitted with a specially-designed mounting socket compatible with Brigand-type exosuits."
 	icon_state = "xray" // Temporary sprite, but should basically never be seen anyway.
 
 	mecha_types = MECHA_TYPE_BRIGAND
@@ -80,6 +80,8 @@
 
 	allow_duplicates = FALSE
 	allow_detach = FALSE
+
+	attaches_to_string = "the <em><i>Brigand</i></em> exosuit"
 
 	projectile = /obj/projectile/energy/beam/emitter
 	fire_sound = 'sound/weapons/gun/emitter.ogg'

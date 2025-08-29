@@ -1,7 +1,7 @@
 // RCD
 /obj/item/mecha_equipment/tool/rcd
 	name = "mounted RCD"
-	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted rapid-construction-device."
 	icon_state = "rcd"
 	matter_amounts = /datum/design/mechfab/equipment/working/rcd::materials
 	origin_tech = /datum/design/mechfab/equipment/working/rcd::req_tech
@@ -101,7 +101,7 @@
 // Cable Layer
 /obj/item/mecha_equipment/tool/cable_layer
 	name = "mounted cable layer"
-	desc = "An exosuit-mounted cable layer. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted cable layer."
 	icon_state = "cable_layer"
 
 	equip_range = MECHA_EQUIP_MELEE

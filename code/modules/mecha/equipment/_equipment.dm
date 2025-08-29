@@ -31,6 +31,8 @@
 	var/allow_duplicates = TRUE // Can duplicates of this equipment be fitted?
 	var/allow_detach = TRUE // Can this equipment detach once fitted?
 
+	var/attaches_to_string = "<em><i>any</i></em> exosuit"
+
 /obj/item/mecha_equipment/Destroy() //missiles detonating, teleporter creating singularity?
 	if(isnotnull(chassis))
 		chassis.equipment.Remove(src)
@@ -48,6 +50,10 @@
 	if(isnull(chassis))
 		set_ready_state(TRUE)
 		return PROCESS_KILL
+
+/obj/item/mecha_equipment/get_examine_text(mob/user)
+	. = ..()
+	. += SPAN_INFO("It can be attached to [attaches_to_string].")
 
 /obj/item/mecha_equipment/proc/can_attach(obj/mecha/mech)
 	if(!istype(mech))

@@ -1,7 +1,7 @@
 // Sleeper
 /obj/item/mecha_equipment/medical/sleeper
 	name = "mounted sleeper"
-	desc = "An exosuit-mounted medical sleeper. (Can be attached to: Medical Exosuits)"
+	desc = "An exosuit-mounted medical sleeper."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	matter_amounts = /datum/design/mechfab/equipment/sleeper::materials

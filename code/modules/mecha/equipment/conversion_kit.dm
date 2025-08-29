@@ -58,6 +58,8 @@
 	matter_amounts = /datum/design/mechfab/equipment/conversion_kit/paddy::materials
 	origin_tech = /datum/design/mechfab/equipment/conversion_kit/paddy::req_tech
 
+	attaches_to_string = "the <em><i>Ripley</i></em> exosuit"
+
 	required_type = /obj/mecha/working/ripley
 	target_type = /obj/mecha/working/ripley/paddy
 

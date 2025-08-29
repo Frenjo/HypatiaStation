@@ -440,6 +440,8 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "royce_kit"
 
+	attaches_to_string = "the <em><i>Ripley</i></em> exosuit"
+
 	required_type = /obj/mecha/working/ripley
 	target_type = /obj/mecha/working/ripley/titan
 
@@ -461,6 +463,8 @@
 	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an old APLU \"Strike the Earth\" mercenary mech."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "sven_kit"
+
+	attaches_to_string = "the <em><i>Ripley</i></em> exosuit"
 
 	required_type = /obj/mecha/working/ripley
 	target_type = /obj/mecha/working/ripley/earth

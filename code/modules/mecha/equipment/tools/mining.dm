@@ -1,7 +1,7 @@
 // Drill
 /obj/item/mecha_equipment/tool/drill
 	name = "mounted drill"
-	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
+	desc = "This is the drill that'll pierce the heavens!"
 	icon_state = "drill"
 
 	force = 15
@@ -11,6 +11,8 @@
 	equip_cooldown = 3 SECONDS
 	energy_drain = 10
 	equip_range = MECHA_EQUIP_MELEE
+
+	attaches_to_string = "<em><i>working</i></em> and <em><i>combat</i></em> exosuits"
 
 	var/can_drill_reinforced = FALSE
 
@@ -53,7 +55,7 @@
 // Diamond Drill
 /obj/item/mecha_equipment/tool/drill/diamond
 	name = "mounted diamond drill"
-	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
+	desc = "This is an upgraded version of the drill that'll pierce the heavens!"
 	icon_state = "diamond_drill"
 	matter_amounts = /datum/design/mechfab/equipment/working/diamond_drill::materials
 	origin_tech = /datum/design/mechfab/equipment/working/diamond_drill::req_tech

@@ -8,6 +8,8 @@
 
 	destruction_sound = 'sound/mecha/voice/weapdestr.ogg'
 
+	attaches_to_string = "<em><i>combat</i></em> exosuits"
+
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.

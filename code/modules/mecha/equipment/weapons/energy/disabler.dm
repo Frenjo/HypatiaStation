@@ -1,7 +1,7 @@
 // Disabler
 /obj/item/mecha_equipment/weapon/energy/disabler
 	name = "\improper CH-DS \"Peacemaker\" disabler"
-	desc = "A weapon for combat exosuits. Shoots basic disablers. (Can be attached to: Combat Exosuits)"
+	desc = "A weapon for combat exosuits. Shoots basic disablers."
 	icon_state = "disabler"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/disabler::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/disabler::req_tech
@@ -14,7 +14,7 @@
 
 /obj/item/mecha_equipment/weapon/energy/disabler/rigged
 	name = "jury-rigged \"Peacebringer\" disabler"
-	desc = "A crude exosuit-mounted disabler. (Can be attached to: Working and Combat Exosuits)" // Write a better description later.
+	desc = "A crude exosuit-mounted disabler." // Write a better description later.
 	icon_state = "disabler_rigged"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_disabler::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_disabler::req_tech
@@ -23,3 +23,5 @@
 
 	equip_cooldown = 1.6 SECONDS
 	energy_drain = 60
+
+	attaches_to_string = "<em><i>working</i></em> and <em><i>combat</i></em> exosuits"
