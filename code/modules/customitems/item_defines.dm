@@ -435,7 +435,7 @@
 ////// Ripley customisation kit - Butchery Royce - MayeDay
 
 /obj/item/mecha_equipment/conversion_kit/titan
-	name = "APLU \"Titan's Fist\" conversion kit"
+	name = "\improper APLU \"Titan's Fist\" conversion kit"
 	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an APLU \"Titan's Fist\" worker mech."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "royce_kit"
@@ -446,7 +446,7 @@
 	target_type = /obj/mecha/working/ripley/titan
 
 /obj/mecha/working/ripley/titan
-	name = "APLU \"Titan's Fist\""
+	name = "\improper APLU \"Titan's Fist\""
 	desc = "This ordinary Ripley has been customized to look like a unit of the Titan's Fist."
 	icon_state = "titan"
 
@@ -459,7 +459,7 @@
 ////// Ripley customisation kit - Sven Fjeltson - Mordeth221
 
 /obj/item/mecha_equipment/conversion_kit/earth
-	name = "APLU \"Strike the Earth\" conversion kit"
+	name = "\improper APLU \"Strike the Earth\" conversion kit"
 	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an old APLU \"Strike the Earth\" mercenary mech."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "sven_kit"
@@ -470,7 +470,7 @@
 	target_type = /obj/mecha/working/ripley/earth
 
 /obj/mecha/working/ripley/earth
-	name = "APLU \"Strike the Earth\""
+	name = "\improper APLU \"Strike the Earth\""
 	desc = "Looks like an overworked, under-maintained Ripley with some horrific damage."
 	icon_state = "earth"
 

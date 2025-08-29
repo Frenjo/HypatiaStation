@@ -51,7 +51,7 @@
 
 // Ripley -> Paddy conversion kit
 /obj/item/mecha_equipment/conversion_kit/paddy
-	name = "APLU \"Paddy\" conversion kit"
+	name = "\improper APLU \"Paddy\" conversion kit"
 	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an APLU \"Paddy\" light security mech."
 	icon_state = "paddy_upgrade"
 

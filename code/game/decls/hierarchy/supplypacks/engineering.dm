@@ -206,7 +206,7 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
-	containername = "APLU \"Ripley\" circuit crate"
+	containername = "\improper APLU \"Ripley\" circuit crate"
 	access = ACCESS_ROBOTICS
 
 
