@@ -58,7 +58,9 @@
 
 /mob/living/simple/hostile/swarmer/Die()
 	. = ..()
-	new /obj/effect/decal/remains/robot(GET_TURF(src))
+	var/turf/T = GET_TURF(src)
+	new /obj/effect/decal/remains/robot(T)
+	new /obj/item/bluespace_crystal/artificial(T) // Need to ask Ergovisavi whether this should be regular or artificial.
 	ghostize(FALSE)
 	qdel(src)
 
