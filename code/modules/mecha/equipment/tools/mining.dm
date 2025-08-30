@@ -4,6 +4,8 @@
 	desc = "This is the drill that'll pierce the heavens!"
 	icon_state = "drill"
 
+	matter_amounts = /datum/design/mechfab/equipment/working/drill::materials
+
 	force = 15
 
 	mecha_types = MECHA_TYPE_WORKING | MECHA_TYPE_COMBAT

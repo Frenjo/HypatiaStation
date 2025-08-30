@@ -104,6 +104,8 @@
 	desc = "An exosuit-mounted cable layer."
 	icon_state = "cable_layer"
 
+	matter_amounts = /datum/design/mechfab/equipment/working/cable_layer::materials
+
 	equip_range = MECHA_EQUIP_MELEE
 
 	var/turf/old_turf

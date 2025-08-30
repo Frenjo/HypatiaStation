@@ -119,6 +119,8 @@
 	desc = "An exosuit-mounted jaws of life used to extricate casualties from dangerous areas."
 	icon_state = "rescue_jaw"
 
+	matter_amounts = /datum/design/mechfab/equipment/rescue_jaw::materials
+
 	mecha_types = MECHA_TYPE_MEDICAL
 
 	energy_drain = 5 // Half the energy drain of the regular clamp.
@@ -132,6 +134,8 @@
 	name = "mounted extinguisher"
 	desc = "An exosuit-mounted fire extinguisher."
 	icon_state = "exting"
+
+	matter_amounts = /datum/design/mechfab/equipment/working/extinguisher::materials
 
 	equip_cooldown = 0.5 SECONDS
 	energy_drain = 0
