@@ -303,11 +303,10 @@
 
 /obj/item/paicard/proc/alertUpdate()
 	var/turf/T = GET_TURF(src)
-	for(var/mob/M in viewers(T))
-		M.show_message(
-			SPAN_INFO("[src] flashes a message across its screen, \"Additional personalities available for download.\""), 3,
-			SPAN_INFO("[src] bleeps electronically."), 2
-		)
+	T.visible_message(
+		SPAN_INFO("[src] flashes a message across its screen, \"Additional personalities available for download.\""),
+		SPAN_INFO("[src] bleeps electronically.")
+	)
 
 /obj/item/paicard/emp_act(severity)
 	for(var/mob/M in src)

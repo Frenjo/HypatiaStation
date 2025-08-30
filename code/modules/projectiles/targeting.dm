@@ -232,8 +232,7 @@
 
 /mob/living/proc/NotTargeted(obj/item/gun/I)
 	if(!I.silenced)
-		for(var/mob/living/M in viewers(src))
-			SOUND_TO(M, 'sound/weapons/gun/target_off.ogg')
+		SOUND_TO(viewers(src), 'sound/weapons/gun/target_off.ogg')
 	targeted_by -= I
 	I.aim_targets.Remove(src) //De-target them
 	if(!length(I.aim_targets))

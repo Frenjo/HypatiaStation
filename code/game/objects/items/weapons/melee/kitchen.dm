@@ -335,16 +335,14 @@
 			M.take_organ_damage(3)
 		else
 			M.take_organ_damage(5)
-		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
-			return
-		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
-			return
+
+		playsound(M, prob(50) ? 'sound/items/trayhit1.ogg' : 'sound/items/trayhit2.ogg', 50, TRUE)
+		M.visible_message(
+			SPAN_DANGER("[user] slams [M] with \the [src]!"),
+			SPAN_DANGER("You slam [M] with \the [src]!")
+		)
+		//we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
+		return
 
 	if(ishuman(M) && M.are_eyes_covered())
 		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray, against your mask!"))
@@ -360,14 +358,11 @@
 			if(isopenturf(location))     //Addin' blood! At least on the floor and item :v
 				location.add_blood(H)
 
-		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
-		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin'
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
+		playsound(M, prob(50) ? 'sound/items/trayhit1.ogg' : 'sound/items/trayhit2.ogg', 50, TRUE)
+		M.visible_message(
+			SPAN_DANGER("[user] slams [M] with \the [src]!"),
+			SPAN_DANGER("You slam [M] with \the [src]!")
+		)
 		if(prob(10))
 			M.Stun(rand(1,3))
 			M.take_organ_damage(3)
@@ -384,14 +379,11 @@
 			if(isopenturf(location))
 				location.add_blood(H)
 
-		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] in the face with the tray!</B>", user, M), 1)
-		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin' again
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] in the face with the tray!</B>", user, M), 1)
+		playsound(M, prob(50) ? 'sound/items/trayhit1.ogg' : 'sound/items/trayhit2.ogg', 50, TRUE)
+		M.visible_message(
+			SPAN_DANGER("[user] slams [M] in the face with \the [src]!"),
+			SPAN_DANGER("You slam [M] in the face with \the [src]!")
+		)
 		if(prob(30))
 			M.Stun(rand(2,4))
 			M.take_organ_damage(4)

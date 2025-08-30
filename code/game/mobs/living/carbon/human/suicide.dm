@@ -185,11 +185,10 @@
 		var/obj/item/paicard/card = loc
 		card.removePersonality()
 		var/turf/T = GET_TURF(card)
-		for(var/mob/M in viewers(T))
-			M.show_message(
-				SPAN_INFO("[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""), 3,
-				SPAN_INFO("[src] bleeps electronically."), 2
-			)
+		T.visible_message(
+			SPAN_INFO("[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""),
+			SPAN_INFO("[src] bleeps electronically.")
+		)
 		death(0)
 	else
 		to_chat(src, "Aborting suicide attempt.")

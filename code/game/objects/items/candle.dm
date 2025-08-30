@@ -51,8 +51,7 @@
 	if(!src.lit)
 		src.lit = 1
 		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+		visible_message("[flavor_text]")
 		//SetLuminosity(CANDLE_LUM)
 		set_light(CANDLE_LUM)
 		START_PROCESSING(PCobj, src)

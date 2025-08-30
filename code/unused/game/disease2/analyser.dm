@@ -14,15 +14,13 @@
 	if(istype(I,/obj/item/virusdish))
 		var/mob/living/carbon/c = user
 		if(!dish)
-
 			dish = I
 			c.drop_item()
 			I.forceMove(src)
-			for(var/mob/M in viewers(src))
-				if(M == user)	continue
-				M.show_message("\blue [user.name] inserts the [dish.name] in the [src.name]", 3)
-
-
+			user.visible_message(
+				SPAN_INFO("[user] inserts \the [dish] into \the [src]."),
+				SPAN_INFO("You insert \the [dish] into \the [src].")
+			)
 		else
 			user << "There is already a dish inserted"
 
