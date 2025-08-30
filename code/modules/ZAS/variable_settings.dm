@@ -41,7 +41,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 	var/airflow_stun_pressure_NAME = "Airflow - Mob Stunning Threshold %"
 	var/airflow_stun_pressure_DESC = "Percent of 1 Atm. at which mobs will be stunned by airflow."
 
-	var/airflow_stun_cooldown = 60
+	var/airflow_stun_cooldown = 6 SECONDS
 	var/airflow_stun_cooldown_NAME = "Aiflow Stunning - Cooldown"
 	var/airflow_stun_cooldown_DESC = "How long, in tenths of a second, to wait before stunning them again."
 
@@ -258,7 +258,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 			airflow_heavy_pressure = 65
 			airflow_dense_pressure = 85
 			airflow_stun_pressure = 60
-			airflow_stun_cooldown = 60
+			airflow_stun_cooldown = 6 SECONDS
 			airflow_stun = 1
 			airflow_damage = 2
 			airflow_speed_decay = 1.5
@@ -272,7 +272,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 			airflow_heavy_pressure = 110
 			airflow_dense_pressure = 200
 			airflow_stun_pressure = 150
-			airflow_stun_cooldown = 90
+			airflow_stun_cooldown = 9 SECONDS
 			airflow_stun = 0.15
 			airflow_damage = 0.15
 			airflow_speed_decay = 1.5
@@ -286,7 +286,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 			airflow_heavy_pressure = 55
 			airflow_dense_pressure = 70
 			airflow_stun_pressure = 50
-			airflow_stun_cooldown = 50
+			airflow_stun_cooldown = 5 SECONDS
 			airflow_stun = 2
 			airflow_damage = 3
 			airflow_speed_decay = 1.2
@@ -300,7 +300,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 			airflow_heavy_pressure = 50
 			airflow_dense_pressure = 60
 			airflow_stun_pressure = 40
-			airflow_stun_cooldown = 40
+			airflow_stun_cooldown = 4 SECONDS
 			airflow_stun = 3
 			airflow_damage = 4
 			airflow_speed_decay = 1

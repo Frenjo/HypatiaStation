@@ -385,15 +385,17 @@
 	inv_flags = INV_FLAG_HIDE_SHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 
+	//COOLDOWN_DECLARE(extinguish_cooldown)
+
 /obj/item/clothing/under/plasmalin/proc/extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 
 	if(H.on_fire)
 		//if(extinguishes_left)
-			//if(next_extinguish > world.time)
+			//if(!COOLDOWN_FINISHED(src, extinguish_cooldown))
 			//	return
-			//next_extinguish = world.time + extinguish_cooldown
+			//START_COOLDOWN(src, extinguish_cooldown, 10 SECONDS)
 			//extinguishes_left--
 		H.visible_message(
 			SPAN_WARNING("[H]'s suit automatically extinguishes them!"),

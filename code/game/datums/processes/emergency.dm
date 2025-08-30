@@ -66,7 +66,7 @@ PROCESS_DEF(emergency)
 // Begins the launch countdown and sets the amount of time left until launch.
 /datum/process/emergency/proc/set_launch_countdown(seconds)
 	wait_for_launch = TRUE
-	launch_time = world.time + seconds * 10
+	launch_time = world.time + seconds
 
 /datum/process/emergency/proc/stop_launch_countdown()
 	wait_for_launch = FALSE
@@ -190,7 +190,7 @@ PROCESS_DEF(emergency)
 		eta = shuttle.arrive_time
 	else
 		//otherwise we need to estimate the arrival time using the scheduled launch time
-		eta = launch_time + shuttle.move_time * 10 + shuttle.warmup_time * 10
+		eta = launch_time + shuttle.move_time + shuttle.warmup_time
 	return (eta - world.time) / 10
 
 // Returns the time left until the shuttle launches, in seconds.

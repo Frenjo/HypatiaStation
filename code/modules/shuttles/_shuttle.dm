@@ -8,7 +8,7 @@
 //shuttle moving state defines are in setup.dm
 
 /datum/shuttle
-	var/warmup_time = 0
+	var/warmup_time = 0 SECONDS
 	var/moving_status = SHUTTLE_IDLE
 
 	var/docking_controller_tag	= null//tag of the controller used to coordinate docking
@@ -22,7 +22,7 @@
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
-	spawn(warmup_time * 10)
+	spawn(warmup_time)
 		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
@@ -37,11 +37,11 @@
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
-	spawn(warmup_time * 10)
+	spawn(warmup_time)
 		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
-		arrive_time = world.time + travel_time * 10
+		arrive_time = world.time + travel_time
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 

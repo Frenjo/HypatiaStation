@@ -3,12 +3,12 @@ Contains helper procs for airflow, handled in /connection_group.
 */
 
 /mob
-	var/tmp/last_airflow_stun = 0
+	COOLDOWN_DECLARE(tmp/airflow_stun_cooldown)
 
 /mob/proc/airflow_stun()
 	if(stat == DEAD)
 		return 0
-	if(last_airflow_stun > world.time - global.vsc.airflow_stun_cooldown)
+	if(!COOLDOWN_FINISHED(src, airflow_stun_cooldown))
 		return 0
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
 		to_chat(src, SPAN_INFO("You stay upright as the air rushes past you."))
@@ -16,7 +16,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(weakened <= 0)
 		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
 	weakened = max(weakened, 5)
-	last_airflow_stun = world.time
+	COOLDOWN_START(src, airflow_stun_cooldown, global.vsc.airflow_stun_cooldown)
 
 /mob/living/silicon/airflow_stun()
 	return
@@ -25,7 +25,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	return
 
 /mob/living/carbon/human/airflow_stun()
-	if(last_airflow_stun > world.time - global.vsc.airflow_stun_cooldown)
+	if(!COOLDOWN_FINISHED(src, airflow_stun_cooldown))
 		return 0
 	if(buckled)
 		return 0
@@ -37,7 +37,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(weakened <= 0)
 		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
 	apply_effect(rand(1, 5), WEAKEN)
-	last_airflow_stun = world.time
+	COOLDOWN_START(src, airflow_stun_cooldown, global.vsc.airflow_stun_cooldown)
 
 /atom/movable/proc/check_airflow_movable(n)
 	if(anchored && !ismob(src))

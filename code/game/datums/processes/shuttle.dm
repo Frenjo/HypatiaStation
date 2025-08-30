@@ -110,7 +110,8 @@ PROCESS_DEF(shuttle)
 	shuttle.dock_target_station = "arrivalshuttle_dock"
 	shuttle.dock_target_offsite = "arrivalshuttle_centcomdock"
 	shuttle.transit_direction = WEST
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-15, 15) // Since it ends up docking ass-backwards, this gives it a bit of "manoeuvring time".
+	// Since it ends up docking ass-backwards, this gives it a bit of "manoeuvring time".
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-(1.5 SECONDS), 1.5 SECONDS)
 	shuttles["Arrival"] = shuttle
 	process_shuttles.Add(shuttle)
 
@@ -138,7 +139,8 @@ PROCESS_DEF(shuttle)
 	shuttle.dock_target_station = "escape_pod_1_berth"
 	shuttle.dock_target_offsite = "escape_pod_1_recovery"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	// randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-(3 SECONDS), 6 SECONDS)
 	shuttles["Escape Pod 1"] = shuttle
 	process_shuttles.Add(shuttle)
 
@@ -151,7 +153,8 @@ PROCESS_DEF(shuttle)
 	shuttle.dock_target_station = "escape_pod_2_berth"
 	shuttle.dock_target_offsite = "escape_pod_2_recovery"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	// randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-(3 SECONDS), 6 SECONDS)
 	shuttles["Escape Pod 2"] = shuttle
 	process_shuttles.Add(shuttle)
 
@@ -164,7 +167,8 @@ PROCESS_DEF(shuttle)
 	shuttle.dock_target_station = "escape_pod_3_berth"
 	shuttle.dock_target_offsite = "escape_pod_3_recovery"
 	shuttle.transit_direction = EAST
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	// randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-(3 SECONDS), 6 SECONDS)
 	shuttles["Escape Pod 3"] = shuttle
 	process_shuttles.Add(shuttle)
 
@@ -177,7 +181,8 @@ PROCESS_DEF(shuttle)
 	shuttle.dock_target_station = "escape_pod_4_berth"
 	shuttle.dock_target_offsite = "escape_pod_4_recovery"
 	shuttle.transit_direction = SOUTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	// randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-(3 SECONDS), 6 SECONDS)
 	shuttles["Escape Pod 4"] = shuttle
 	process_shuttles.Add(shuttle)
 
@@ -190,7 +195,8 @@ PROCESS_DEF(shuttle)
 	shuttle.dock_target_station = "escape_pod_5_berth"
 	shuttle.dock_target_offsite = "escape_pod_5_recovery"
 	shuttle.transit_direction = WEST
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	// randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-(3 SECONDS), 6 SECONDS)
 	shuttles["Escape Pod 5"] = shuttle
 	process_shuttles.Add(shuttle)
 
@@ -211,7 +217,7 @@ PROCESS_DEF(shuttle)
 	// CentCom Shuttle
 	shuttle = new /datum/shuttle/ferry()
 	shuttle.location = 1
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/transport/centcom)
 	shuttle.area_station = locate(/area/shuttle/transport/station)
 	shuttle.docking_controller_tag = "centcom_shuttle"
@@ -223,7 +229,7 @@ PROCESS_DEF(shuttle)
 	// Administration Shuttle
 	shuttle = new /datum/shuttle/ferry()
 	shuttle.location = 1
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/administration/centcom)
 	shuttle.area_station = locate(/area/shuttle/administration/station)
 	shuttle.docking_controller_tag = "admin_shuttle"
@@ -245,7 +251,7 @@ PROCESS_DEF(shuttle)
 	// Supply Shuttle
 	shuttle = new /datum/shuttle/ferry/supply()
 	shuttle.location = 1
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/supply/centcom)
 	shuttle.area_station = locate(/area/shuttle/supply/station)
 	shuttle.docking_controller_tag = "supply_shuttle"
@@ -256,7 +262,7 @@ PROCESS_DEF(shuttle)
 	// Engineering Shuttle
 	// Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo
 	shuttle = new /datum/shuttle/ferry()
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/engineering/outpost)
 	shuttle.area_station = locate(/area/shuttle/engineering/station)
 	shuttle.docking_controller_tag = "engineering_shuttle"
@@ -267,7 +273,7 @@ PROCESS_DEF(shuttle)
 
 	// Mining Shuttle
 	shuttle = new /datum/shuttle/ferry()
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/mining/outpost)
 	shuttle.area_station = locate(/area/shuttle/mining/station)
 	shuttle.docking_controller_tag = "mining_shuttle"
@@ -278,7 +284,7 @@ PROCESS_DEF(shuttle)
 
 	// Research Shuttle
 	shuttle = new /datum/shuttle/ferry()
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/research/outpost)
 	shuttle.area_station = locate(/area/shuttle/research/station)
 	shuttle.docking_controller_tag = "research_shuttle"
@@ -289,7 +295,7 @@ PROCESS_DEF(shuttle)
 
 	// Prison Shuttle
 	shuttle = new /datum/shuttle/ferry()
-	shuttle.warmup_time = 7
+	shuttle.warmup_time = 7 SECONDS
 	shuttle.area_offsite = locate(/area/shuttle/prison/prison)
 	shuttle.area_station = locate(/area/shuttle/prison/station)
 	shuttle.docking_controller_tag = "prison_shuttle"
@@ -301,7 +307,7 @@ PROCESS_DEF(shuttle)
 /datum/process/shuttle/proc/setup_special_shuttles()
 	// ERT Shuttle
 	var/datum/shuttle/ferry/multidock/specops/ert = new /datum/shuttle/ferry/multidock/specops()
-	ert.warmup_time = 7
+	ert.warmup_time = 7 SECONDS
 	ert.area_offsite = locate(/area/shuttle/specops/station)	// CentCom is the home station, the station is offsite.
 	ert.area_station = locate(/area/shuttle/specops/centcom)
 	ert.docking_controller_tag = "specopsshuttle_port"

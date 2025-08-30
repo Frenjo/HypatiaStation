@@ -1,5 +1,5 @@
-#define UPGRADE_COOLDOWN	40
-#define UPGRADE_KILL_TIMER	100
+#define UPGRADE_COOLDOWN 4 SECONDS
+#define UPGRADE_KILL_TIMER 10 SECONDS
 
 /obj/item/grab
 	name = "grab"
@@ -17,7 +17,7 @@
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = TRUE
-	var/last_upgrade = 0
+	COOLDOWN_DECLARE(upgrade_cooldown)
 
 	var/destroying = FALSE
 
@@ -130,13 +130,13 @@
 		return
 	if(assailant.next_move > world.time)
 		return
-	if(world.time < (last_upgrade + UPGRADE_COOLDOWN))
+	if(COOLDOWN_FINISHED(src, upgrade_cooldown))
 		return
 	if(!assailant.canmove || assailant.lying)
 		qdel(src)
 		return
 
-	last_upgrade = world.time
+	COOLDOWN_START(src, upgrade_cooldown, UPGRADE_COOLDOWN)
 
 	if(state < GRAB_AGGRESSIVE)
 		if(!allow_upgrade)

@@ -479,23 +479,24 @@
 /obj/item/toy/prize
 	icon_state = "ripleytoy"
 
-	var/cooldown = 0
+	COOLDOWN_DECLARE(play_cooldown)
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user)
-	if(cooldown < world.time - 8)
-		to_chat(user, SPAN_NOTICE("You play with [src]."))
-		playsound(user, 'sound/mecha/movement/mechstep.ogg', 20, 1)
-		cooldown = world.time
+	play_with(user, TRUE)
 
 /obj/item/toy/prize/attack_hand(mob/user)
 	if(loc == user)
-		if(cooldown < world.time - 8)
-			to_chat(user, SPAN_NOTICE("You play with [src]."))
-			playsound(user, 'sound/mecha/movement/mechturn.ogg', 20, 1)
-			cooldown = world.time
-			return
-	..()
+		play_with(user, FALSE)
+	return ..()
+
+/obj/item/toy/prize/proc/play_with(mob/user, is_self)
+	if(!COOLDOWN_FINISHED(src, play_cooldown))
+		return FALSE
+	to_chat(user, SPAN_NOTICE("You play with [src]."))
+	playsound(user, is_self ? 'sound/mecha/movement/mechstep.ogg' : 'sound/mecha/movement/mechturn.ogg', 20, TRUE)
+	COOLDOWN_START(src, play_cooldown, 0.8 SECONDS)
+	return TRUE
 
 /obj/item/toy/prize/ripley
 	name = "toy ripley"

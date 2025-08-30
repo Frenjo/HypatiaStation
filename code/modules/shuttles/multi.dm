@@ -8,8 +8,8 @@
 	var/at_origin = 1
 	var/returned_home = FALSE
 	var/move_time = 240
-	var/cooldown = 20
-	var/last_move = 0	//the time at which we last moved
+	var/cooldown = 20 SECONDS
+	COOLDOWN_DECLARE(move_cooldown)
 
 	var/announcer
 	var/arrival_message
@@ -28,7 +28,7 @@
 
 /datum/shuttle/multi_shuttle/move(area/origin, area/destination)
 	. = ..()
-	last_move = world.time
+	COOLDOWN_START(src, move_cooldown, cooldown)
 	if(destination == src.origin)
 		returned_home = TRUE
 

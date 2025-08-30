@@ -17,20 +17,20 @@
 	origin_tech = alist(/decl/tech/materials = 2)
 	attack_verb = list("shoved", "bashed")
 
-	var/cooldown = 0 //shield bash cooldown. based on world.time
+	COOLDOWN_DECLARE(bash_cooldown) // shield bash cooldown
 
 /obj/item/shield/riot/IsShield()
 	return 1
 
 /obj/item/shield/riot/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/melee/baton))
-		if(cooldown < (world.time - (2.5 SECONDS)))
+		if(COOLDOWN_FINISHED(src, bash_cooldown))
 			user.visible_message(
 				SPAN_WARNING("[user] bashes \the [src] with \the [I]!"),
 				SPAN_WARNING("You bash \the [src] with \the [I]!")
 			)
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
-			cooldown = world.time
+			COOLDOWN_START(src, bash_cooldown, 2.5 SECONDS)
 		return TRUE
 	return ..()
 

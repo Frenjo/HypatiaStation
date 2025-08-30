@@ -291,6 +291,8 @@
 					   // w_class = 2 -- takes up 3
 					   // w_class = 3 -- takes up 5
 
+	COOLDOWN_DECLARE(bash_cooldown) // shield bash cooldown
+
 /obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
 	// Drop all the things. All of them.
 	cut_overlays()
@@ -395,17 +397,15 @@
 				return
 			return
 
-/obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
-
 /obj/item/tray/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/kitchen/rollingpin))
-		if(cooldown < (world.time - (2.5 SECONDS)))
+		if(COOLDOWN_FINISHED(src, bash_cooldown))
 			user.visible_message(
 				SPAN_WARNING("[user] bashes \the [src] with \the [I]!"),
 				SPAN_WARNING("You bash \the [src] with \the [I]!")
 			)
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
-			cooldown = world.time
+			COOLDOWN_START(src, bash_cooldown, 2.5 SECONDS)
 		return TRUE
 	return ..()
 
