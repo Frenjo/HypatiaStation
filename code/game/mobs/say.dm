@@ -54,17 +54,18 @@
 		alt_name = " (died as [real_name])"
 
 	message = src.say_quote(message)
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[message]</span></span>"
+	var/rendered = "<span class='game deadsay'><span class='name'>[name]</span>[alt_name] <span class='message'>[message]</span></span>"
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnewplayer(M))
 			continue
-		if((M.client?.holder.rights & R_ADMIN|R_MOD) && (M.client?.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
-			to_chat(M, rendered)	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
-
-		else if(M.stat == DEAD && (M.client?.prefs.toggles & CHAT_DEAD)) // Show the message to regular ghosts with deadchat toggled on.
-			M.show_message(rendered, 2) //Takes into account blindness and such.
-	return
+		if(isnull(M.client))
+			continue
+		var/chat_tag = create_chat_tag_icon("dead", M.client)
+		if((M.client.holder?.rights & R_ADMIN|R_MOD) && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
+			to_chat(M, "[chat_tag] [rendered]")	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
+		else if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to regular ghosts with deadchat toggled on.
+			M.show_message("[chat_tag] [rendered]", 2) //Takes into account blindness and such.
 
 /mob/proc/say_understands_language(mob/other, datum/language/speaking = null)
 	if(isnotnull(speaking)) // Language check.

@@ -61,23 +61,23 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			// Formatted OOC chat so it looks a bit better, the double : was eye cancer. -Frenjo
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>(OOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+			var/chat_tag = create_chat_tag_icon("ooc", C)
+			to_chat(C, "[chat_tag] <font color='[display_colour]'><span class='ooc'><EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 
 			/*
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(holder.rights & R_ADMIN)
-						to_chat(C, "<font color=[CONFIG_GET(/decl/configuration_entry/allow_admin_ooccolor) ? prefs.ooccolor :"#b82e00" ]><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
+						to_chat(C, "[chat_tag] <font color=[CONFIG_GET(/decl/configuration_entry/allow_admin_ooccolor) ? prefs.ooccolor :"#b82e00" ]><b><EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
 					else if(holder.rights & R_MOD)
-						to_chat(C, "<font color=#184880><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
+						to_chat(C, "[chat_tag] <font color=#184880><b><EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
 					else
-						to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
+						to_chat(C, "[chat_tag] <font color='[normal_ooc_colour]'><span class='ooc'><EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
 
 				else
-					to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message'>[msg]</span></span></font>")
+					to_chat(C, "[chat_tag] <font color='[normal_ooc_colour]'><span class='ooc'><EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message'>[msg]</span></span></font>")
 			else
-				to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
+				to_chat(C, "[chat_tag] <font color='[normal_ooc_colour]'><span class='ooc'><EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
 			*/
 
 /client/proc/set_ooc(new_colour)
@@ -145,10 +145,11 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>(LOOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+			var/chat_tag = create_chat_tag_icon("looc", C)
+			to_chat(C, "[chat_tag] <font color='#6699CC'><span class='ooc'><EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if(C.prefs.toggles & CHAT_LOOC)
-			var/prefix = "(R)LOOC"
-			if(C.mob in heard)
-				prefix = "LOOC"
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>[prefix]:</span> <EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
+			var/chat_tag = create_chat_tag_icon("looc", C)
+			if(!(C.mob in heard))
+				chat_tag += "(R)"
+			to_chat(C, "[chat_tag] <font color='#6699CC'><span class='ooc'><EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")

@@ -33,16 +33,17 @@
 	if(!msg)
 		return
 
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[stafftype]([src.holder.fakekey ? pick("BADMIN", "hornigranny", "TLF", "scaredforshadows", "KSI", "Silnazi", "HerpEs", "BJ69", "SpoofedEdd", "Uhangay", "Wario90900", "Regarity", "MissPhareon", "LastFish", "unMportant", "Deurpyn", "Fatbeaver") : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
+	var/rendered = "<span class='game deadsay'><span class='name'>[stafftype]([src.holder.fakekey ? pick("BADMIN", "hornigranny", "TLF", "scaredforshadows", "KSI", "Silnazi", "HerpEs", "BJ69", "SpoofedEdd", "Uhangay", "Wario90900", "Regarity", "MissPhareon", "LastFish", "unMportant", "Deurpyn", "Fatbeaver") : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnewplayer(M))
 			continue
-
+		if(isnull(M.client))
+			continue
+		var/chat_tag = create_chat_tag_icon("dead", M.client)
 		if(M.client && M.client.holder && (M.client.prefs.toggles & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
-			M.show_message(rendered, 2)
-
+			M.show_message("[chat_tag] [rendered]", 2)
 		else if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // show the message to regular ghosts who have deadchat toggled on
-			M.show_message(rendered, 2)
+			M.show_message("[chat_tag] [rendered]", 2)
 
 	feedback_add_details("admin_verb", "D") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
