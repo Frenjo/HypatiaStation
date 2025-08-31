@@ -49,6 +49,7 @@
 #include "code\__DEFINES\access.dm"
 #include "code\__DEFINES\admin.dm"
 #include "code\__DEFINES\announcements.dm"
+#include "code\__DEFINES\asteroid.dm"
 #include "code\__DEFINES\chat.dm"
 #include "code\__DEFINES\chemistry.dm"
 #include "code\__DEFINES\colours.dm"

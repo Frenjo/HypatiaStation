@@ -415,7 +415,7 @@ Implants;
 /datum/game_mode/proc/get_living_heads()
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
-		if(player.stat != DEAD && (player.mind?.assigned_role in GLOBL.command_positions))
+		if(player.stat != DEAD && player.mind?.assigned_job.head_position)
 			. += player.mind
 
 ////////////////////////////
@@ -424,7 +424,7 @@ Implants;
 /datum/game_mode/proc/get_all_heads()
 	. = list()
 	for_no_type_check(var/mob/player, GLOBL.mob_list)
-		if((player.mind?.assigned_role in GLOBL.command_positions))
+		if(player.mind?.assigned_job.head_position)
 			. += player.mind
 
 //////////////////////////

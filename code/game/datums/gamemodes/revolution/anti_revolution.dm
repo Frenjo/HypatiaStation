@@ -32,7 +32,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/anti_revolution/pre_setup()
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-		if(player.mind?.assigned_role in command_positions)
+		if(player.mind?.assigned_job.head_position)
 			heads += player.mind
 		else
 			if(length(execute_targets) < recommended_execute_targets)
@@ -193,7 +193,7 @@
 	if(emergency_shuttle.departed)
 		return
 
-	if(character.mind.assigned_role in command_positions)
+	if(character.mind.assigned_job.head_position)
 		heads += character.mind
 		modePlayer += character.mind
 		add_head_objectives(character.mind)

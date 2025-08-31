@@ -99,7 +99,7 @@ CONTROLLER_DEF(jobs)
 		if(istype(job, get_job("Assistant"))) // We don't want to give him assistant, that's boring!
 			continue
 
-		if(job in GLOBL.command_positions) //If you want a command position, select it!
+		if(job.head_position) // If you want a command position, select it!
 			continue
 
 		if(jobban_isbanned(player, job.title))

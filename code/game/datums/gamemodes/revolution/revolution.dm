@@ -49,7 +49,7 @@
 
 	var/head_check = 0
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-		if(player.mind.assigned_role in GLOBL.command_positions)
+		if(player.mind.assigned_job.head_position)
 			head_check = 1
 			break
 
@@ -182,7 +182,7 @@
 //Deals with converting players to the revolution//
 ///////////////////////////////////////////////////
 /datum/game_mode/proc/add_revolutionary(datum/mind/rev_mind)
-	if(rev_mind.assigned_role in GLOBL.command_positions)
+	if(rev_mind.assigned_job.head_position)
 		return 0
 	var/mob/living/carbon/human/H = rev_mind.current//Check to see if the potential rev is implanted
 	if(H.is_mindshield_implanted() || H.is_loyalty_implanted())
@@ -423,5 +423,5 @@
 		to_world(text)
 
 /proc/is_convertable_to_rev(datum/mind/mind)
-	return istype(mind) && ishuman(mind.current) && !(mind.assigned_role in GLOBL.command_positions) \
+	return istype(mind) && ishuman(mind.current) && !(mind.assigned_job.head_position) \
 	&& !(mind.assigned_role in list("Security Officer", "Detective", "Warden"))
