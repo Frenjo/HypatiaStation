@@ -6,14 +6,14 @@
 		return
 
 	if(global.PCticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, "This option is currently only usable during pregame. This may change at a later date.")
+		to_chat(usr, SPAN_WARNING("This option is currently only usable during pregame. This may change at a later date."))
 		return
 
 	var/datum/job/job = global.CTjobs.get_job("AI")
 	if(isnull(job))
-		to_chat(usr, "Unable to locate the AI job")
+		to_chat(usr, SPAN_WARNING("Unable to locate the AI job!"))
 		return
 
 	global.PCticker.triai = !global.PCticker.triai
-	to_chat(usr, "[global.PCticker.triai ? "There will be an AI Triumvirate" : "Only one AI will be spawned"] at round start.")
+	to_chat(usr, SPAN_INFO("[global.PCticker.triai ? "There will be an AI Triumvirate" : "Only one AI will be spawned"] at round start."))
 	message_admins(SPAN_INFO("[key_name_admin(usr)] has toggled [global.PCticker.triai ? "on" : "off"] triple AIs at round start."), 1)

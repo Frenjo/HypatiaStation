@@ -30,8 +30,8 @@
 	set name = "Custom Event Info"
 
 	if(!GLOBL.custom_event_msg || GLOBL.custom_event_msg == "")
-		to_chat(src, "There currently is no known custom event taking place.")
-		to_chat(src, "Keep in mind: it is possible that an admin has not properly set this.")
+		to_chat(src, SPAN_NOTICE("There currently is no known custom event taking place."))
+		to_chat(src, SPAN_NOTICE("Keep in mind: it is possible that an admin has not properly set this."))
 		return
 
 	to_chat(src, "<h1 class='alert'>Custom Event</h1>")

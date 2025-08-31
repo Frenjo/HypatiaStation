@@ -11,7 +11,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Admin-PM: You cannot send adminhelps (Muted).</font>")
+		to_chat(src, SPAN_WARNING("ERROR: Admin-PM: You cannot send adminhelps (muted)."))
 		return
 	if(src.handle_spam_prevention(msg, MUTE_ADMINHELP))
 		return
