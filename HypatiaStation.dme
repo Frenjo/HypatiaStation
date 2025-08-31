@@ -213,6 +213,7 @@
 #include "code\game\atoms\_atom.dm"
 #include "code\game\atoms\atom_act.dm"
 #include "code\game\atoms\atom_air.dm"
+#include "code\game\atoms\atom_examine.dm"
 #include "code\game\atoms\atom_flags.dm"
 #include "code\game\atoms\atom_prints.dm"
 #include "code\game\atoms\atom_procs.dm"
