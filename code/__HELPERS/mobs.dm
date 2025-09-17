@@ -301,7 +301,7 @@
 			return	//took too long
 		newname = reject_bad_name(newname, allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-		for(var/mob/living/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(M == src)
 				continue
 			if(!newname || M.real_name == newname)
@@ -360,10 +360,10 @@
 //Returns a list of all mobs with their name
 /proc/getmobs()
 	. = list()
-	var/list/mobs = sortmobs()
+	var/list/mob/mobs = sortmobs()
 	var/list/names = list()
 	var/list/namecounts = list()
-	for(var/mob/M in mobs)
+	for_no_type_check(var/mob/M, mobs)
 		var/name = M.name
 		if(name in names)
 			namecounts[name]++
@@ -383,7 +383,7 @@
 //Orders mobs by type then by name
 /proc/sortmobs()
 	. = list()
-	var/list/sorted_mob_list = sortAtom(GLOBL.mob_list)
+	var/list/mob/sorted_mob_list = sortAtom(GLOBL.mob_list)
 	for(var/mob/living/silicon/ai/M in sorted_mob_list)
 		. += M
 	for(var/mob/living/silicon/pai/M in sorted_mob_list)

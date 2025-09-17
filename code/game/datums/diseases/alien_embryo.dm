@@ -111,7 +111,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 	spawn(0)
 		for (var/mob/living/carbon/alien/alien in player_list)
 			if (alien.client)
-				for(var/image/I in alien.client.images)
+				for_no_type_check(var/image/I, alien.client.images)
 					if(dd_hasprefix_case(I.icon_state, "infected"))
 						del(I)
 
@@ -146,7 +146,7 @@ Des: Removes the alien infection image from all aliens in the world located in p
 	if (C)
 		for (var/mob/living/carbon/alien/alien in player_list)
 			if (alien.client)
-				for(var/image/I in alien.client.images)
+				for_no_type_check(var/image/I, alien.client.images)
 					if(I.loc == C)
 						if(dd_hasprefix_case(I.icon_state, "infected"))
 							del(I)

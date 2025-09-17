@@ -64,7 +64,7 @@
 	. += SPAN_INFO("It contains:")
 	for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
 		if(length(B.reagents?.reagent_list))
-			for(var/datum/reagent/R in B.reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, B.reagents.reagent_list)
 				. += SPAN_INFO("<em>[R.volume]</em> units of <em>[R.name]</em>")
 
 /obj/item/gun/dartgun/attackby(obj/item/I, mob/user)
@@ -173,7 +173,7 @@
 					//Syringe gun attack logging by Yvarov
 					var/R
 					if(D.reagents)
-						for(var/datum/reagent/A in D.reagents.reagent_list)
+						for_no_type_check(var/datum/reagent/A, D.reagents.reagent_list)
 							R += A.id + " ("
 							R += num2text(A.volume) + "),"
 					if(ismob(M))
@@ -223,7 +223,7 @@
 		for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
 			dat += "Beaker [i] contains: "
 			if(B.reagents && length(B.reagents.reagent_list))
-				for(var/datum/reagent/R in B.reagents.reagent_list)
+				for_no_type_check(var/datum/reagent/R, B.reagents.reagent_list)
 					dat += "<br>    [R.volume] units of [R.name], "
 				if(check_beaker_mixing(B))
 					dat += text("<A href='byond://?src=\ref[src];stop_mix=[i]'><font color='green'>Mixing</font></A> ")

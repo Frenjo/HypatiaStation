@@ -172,7 +172,7 @@
 		if(beaker)
 			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
 				src.occupant.vessel.trans_to(beaker, 1)
-				for(var/datum/reagent/x in src.occupant.reagents.reagent_list)
+				for_no_type_check(var/datum/reagent/x, occupant.reagents.reagent_list)
 					src.occupant.reagents.trans_to(beaker, 3)
 					src.occupant.vessel.trans_to(beaker, 1)
 	src.updateUsrDialog()

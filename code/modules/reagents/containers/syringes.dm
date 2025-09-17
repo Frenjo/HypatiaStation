@@ -160,7 +160,7 @@
 				if(isliving(target))
 					var/mob/living/M = target
 					var/list/injected = list()
-					for(var/datum/reagent/R in src.reagents.reagent_list)
+					for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 						injected += R.name
 					var/contained = english_list(injected)
 					M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"

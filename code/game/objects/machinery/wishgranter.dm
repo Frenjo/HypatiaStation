@@ -62,12 +62,12 @@
 		global.PCticker.mode.traitors += user.mind
 		user.mind.special_role = "Avatar of the Wish Granter"
 
-		var/datum/objective/silence/silence = new
+		var/datum/objective/silence/silence = new /datum/objective/silence()
 		silence.owner = user.mind
 		user.mind.objectives += silence
 
 		var/obj_count = 1
-		for(var/datum/objective/OBJ in user.mind.objectives)
+		for_no_type_check(var/datum/objective/OBJ, user.mind.objectives)
 			to_chat(user, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
 			obj_count++
 

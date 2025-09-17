@@ -528,7 +528,7 @@ steam.start() -- spawns the effect
 		if(!metal)
 			F.create_reagents(10)
 			if(reagents)
-				for(var/datum/reagent/R in reagents.reagent_list)
+				for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 					F.reagents.add_reagent(R.id, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
 
 // foam disolves when heated
@@ -576,7 +576,7 @@ steam.start() -- spawns the effect
 	// this makes a list of the reagent ids and spawns 1 unit of that reagent when the foam disolves.
 
 	if(carry && !metal)
-		for(var/datum/reagent/R in carry.reagent_list)
+		for_no_type_check(var/datum/reagent/R, carry.reagent_list)
 			carried_reagents += R.id
 
 /datum/effect/system/foam_spread/start()

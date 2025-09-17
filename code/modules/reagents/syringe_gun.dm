@@ -81,7 +81,7 @@
 					//Syringe gun attack logging by Yvarov
 					var/R
 					if(D.reagents)
-						for(var/datum/reagent/A in D.reagents.reagent_list)
+						for_no_type_check(var/datum/reagent/A, D.reagents.reagent_list)
 							R += A.id + " ("
 							R += num2text(A.volume) + "),"
 					if(ismob(M))

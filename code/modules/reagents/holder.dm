@@ -46,7 +46,7 @@
 /datum/reagents/proc/get_master_reagent_name()
 	var/the_name = null
 	var/the_volume = 0
-	for(var/datum/reagent/A in reagent_list)
+	for_no_type_check(var/datum/reagent/A, reagent_list)
 		if(A.volume > the_volume)
 			the_volume = A.volume
 			the_name = A.name
@@ -56,7 +56,7 @@
 /datum/reagents/proc/get_master_reagent_id()
 	var/the_id = null
 	var/the_volume = 0
-	for(var/datum/reagent/A in reagent_list)
+	for_no_type_check(var/datum/reagent/A, reagent_list)
 		if(A.volume > the_volume)
 			the_volume = A.volume
 			the_id = A.id
@@ -70,7 +70,7 @@
 	amount = min(min(amount, total_volume), R.maximum_volume - R.total_volume)
 	var/part = amount / total_volume
 	var/trans_data = null
-	for(var/datum/reagent/current_reagent in reagent_list)
+	for_no_type_check(var/datum/reagent/current_reagent, reagent_list)
 		if(isnull(current_reagent))
 			continue
 		if(istype(current_reagent, /datum/reagent/blood) && ishuman(target))
@@ -145,7 +145,7 @@
 	amount = min(min(amount, total_volume), R.maximum_volume - R.total_volume)
 	var/part = amount / total_volume
 	var/trans_data = null
-	for(var/datum/reagent/current_reagent in reagent_list)
+	for_no_type_check(var/datum/reagent/current_reagent, reagent_list)
 		var/current_reagent_transfer = current_reagent.volume * part
 		if(preserve_data)
 			trans_data = current_reagent.data
@@ -167,7 +167,7 @@
 		amount = get_reagent_amount(reagent)
 	amount = min(amount, R.maximum_volume - R.total_volume)
 	var/trans_data = null
-	for(var/datum/reagent/current_reagent in reagent_list)
+	for_no_type_check(var/datum/reagent/current_reagent, reagent_list)
 		if(current_reagent.id == reagent)
 			if(preserve_data)
 				trans_data = current_reagent.data
@@ -218,18 +218,18 @@
 */
 
 /datum/reagents/proc/metabolize(mob/living/carbon/C, alien)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(isnotnull(C) && isnotnull(R))
 			R.on_mob_life(C, alien)
 	update_total()
 
 /datum/reagents/proc/conditional_update_move(atom/A, Running = 0)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		R.on_move(A, Running)
 	update_total()
 
 /datum/reagents/proc/conditional_update(atom/A)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		R.on_update(A)
 	update_total()
 
@@ -240,7 +240,7 @@
 	var/reaction_occured = 0
 	do
 		reaction_occured = 0
-		for(var/datum/reagent/R in reagent_list) // Usually a small list
+		for_no_type_check(var/datum/reagent/R, reagent_list) // Usually a small list
 			// Was a big list but now it should be smaller since we filtered it with our reagent id.
 			for_no_type_check(var/datum/chemical_reaction/C, GLOBL.chemical_reactions_list[R.id])
 				if(isnull(C))
@@ -350,13 +350,13 @@
 	return 0
 
 /datum/reagents/proc/isolate_reagent(reagent_type)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.type != reagent_type)
 			del_reagent(R.type)
 			update_total()
 
 /datum/reagents/proc/del_reagent(reagent_type)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.type == reagent_type)
 			reagent_list.Remove(R)
 			qdel(R)
@@ -367,7 +367,7 @@
 
 /datum/reagents/proc/update_total()
 	total_volume = 0
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.volume < 0.1)
 			del_reagent(R.type)
 		else
@@ -375,14 +375,14 @@
 	return 0
 
 /datum/reagents/proc/clear_reagents()
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		del_reagent(R.type)
 		return 0
 
 /datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 0)
 	switch(method)
 		if(TOUCH)
-			for(var/datum/reagent/R in reagent_list)
+			for_no_type_check(var/datum/reagent/R, reagent_list)
 				if(ismob(A))
 					spawn(0)
 						if(isnull(R))
@@ -399,7 +399,7 @@
 							return
 						R.reaction_obj(A, R.volume + volume_modifier)
 		if(INGEST)
-			for(var/datum/reagent/R in reagent_list)
+			for_no_type_check(var/datum/reagent/R, reagent_list)
 				if(ismob(A))
 					spawn(0)
 						if(isnull(R))
@@ -423,7 +423,7 @@
 	if(total_volume + amount > maximum_volume)
 		amount = (maximum_volume - total_volume) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
 
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.id == reagent)
 			R.volume += amount
 			update_total()
@@ -486,7 +486,7 @@
 	if(!isnum(amount))
 		return 1
 
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.id == reagent)
 			R.volume -= amount
 			update_total()
@@ -498,7 +498,7 @@
 	return 1
 
 /datum/reagents/proc/has_reagent(reagent, amount = -1)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.id == reagent)
 			if(!amount)
 				return R
@@ -510,7 +510,7 @@
 	return 0
 
 /datum/reagents/proc/get_reagent_amount(reagent)
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		if(R.id == reagent)
 			return R.volume
 
@@ -518,7 +518,7 @@
 
 /datum/reagents/proc/get_reagents()
 	var/res = ""
-	for(var/datum/reagent/A in reagent_list)
+	for_no_type_check(var/datum/reagent/A, reagent_list)
 		if(res != "")
 			res += ","
 		res += A.name
@@ -531,7 +531,7 @@
 
 	var/has_removed_reagent = 0
 
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		var/matches = 0
 		// Switch between how we check the reagent type
 		if(strict)
@@ -549,13 +549,13 @@
 
 //two helper functions to preserve data across reactions (needed for xenoarch)
 /datum/reagents/proc/get_data(reagent_id)
-	for(var/datum/reagent/D in reagent_list)
+	for_no_type_check(var/datum/reagent/D, reagent_list)
 		if(D.id == reagent_id)
 			//to_world("proffering a data-carrying reagent ([reagent_id])")
 			return D.data
 
 /datum/reagents/proc/set_data(reagent_id, new_data)
-	for(var/datum/reagent/D in reagent_list)
+	for_no_type_check(var/datum/reagent/D, reagent_list)
 		if(D.id == reagent_id)
 			//to_world("reagent data set ([reagent_id])")
 			D.data = new_data

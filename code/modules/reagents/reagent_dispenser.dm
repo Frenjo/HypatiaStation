@@ -26,7 +26,7 @@
 
 	. += SPAN_INFO("It contains:")
 	if(length(reagents?.reagent_list))
-		for(var/datum/reagent/R in reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 			. += SPAN_INFO("<em>[R.volume]</em> units of <em>[R.name]</em>.")
 	else
 		. += SPAN_INFO("Nothing.")

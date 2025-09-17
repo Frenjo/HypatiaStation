@@ -66,10 +66,10 @@
 	// Handles limb damage.
 	if(ishuman(target) && show_limb_damage)
 		var/mob/living/carbon/human/H = target
-		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
+		var/list/datum/organ/external/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
 		if(length(damaged_organs) > 0)
 			output.Add(SPAN_INFO("Localised Damage (<font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Burn</em></font>):"))
-			for(var/datum/organ/external/organ in damaged_organs)
+			for_no_type_check(var/datum/organ/external/organ, damaged_organs)
 				var/organ_bleeding = (organ.status & ORGAN_BLEEDING) ? SPAN_DANGER("\[Bleeding\]") : ""
 				output.Add("\t [SPAN_INFO(capitalize(organ.display_name))]: [SPAN_WARNING(organ.brute_dam)][organ_bleeding] [SPAN_INFO("-")] <font color='#FFA500'>[organ.burn_dam]</font>")
 		else
@@ -101,7 +101,7 @@
 		output.Add(SPAN_WARNING("Subject appears to have been imperfectly cloned."))
 
 	// Handles diseases.
-	for(var/datum/disease/D in target.viruses)
+	for_no_type_check(var/datum/disease/D, target.viruses)
 		if(D.hidden[DISEASE_INFO_SCANNER])
 			continue
 		output.Add(SPAN_DANGER("Warning: [D.form] detected!"))
@@ -197,10 +197,10 @@
 	// Handles robot components and emagging.
 	if(isrobot(target))
 		var/mob/living/silicon/robot/H = target
-		var/list/damaged_components = H.get_damaged_components(TRUE, TRUE, TRUE)
+		var/list/datum/robot_component/damaged_components = H.get_damaged_components(TRUE, TRUE, TRUE)
 		if(length(damaged_components) > 0)
 			output.Add(SPAN_INFO("Localised Damage (<font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Electronics</em></font>):"))
-			for(var/datum/robot_component/component in damaged_components)
+			for_no_type_check(var/datum/robot_component/component, damaged_components)
 				var/component_destroyed = (component.installed == -1) ? SPAN_DANGER("\[DESTROYED\] -") : ""
 				var/component_toggle = component.toggled ? "Toggled ON" : "<font color='red'>Toggled OFF</font>"
 				var/component_power = component.powered ? "Power ON" : "<font color='red'>Power OFF</font>"
@@ -216,10 +216,10 @@
 		var/mob/living/carbon/human/H = target
 		if(!HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC))
 			return
-		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
+		var/list/datum/organ/external/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
 		if(length(damaged_organs) > 0)
 			output.Add(SPAN_INFO("Localised Damage (<font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Electronics</em></font>):"))
-			for(var/datum/organ/external/organ in damaged_organs)
+			for_no_type_check(var/datum/organ/external/organ, damaged_organs)
 				output.Add("\t [SPAN_INFO(capitalize(organ.display_name))]: <font color='red'>[organ.brute_dam]</font> - <font color='#FFA500'>[organ.burn_dam]</font>")
 		else
 			output.Add("\t [SPAN_INFO("Components are OK.")]")

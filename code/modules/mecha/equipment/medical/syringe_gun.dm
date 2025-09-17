@@ -211,7 +211,7 @@
 		. += {"<input type="checkbox" value="[reagent_id]" name="reagent_[i]" [(reagent_id in processed_reagents) ? "checked=\"1\"" : null]> [known_reagents[reagent_id]]<br />"}
 
 /obj/item/mecha_equipment/medical/syringe_gun/proc/get_current_reagents()
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 		if(R.volume > 0)
 			. += "[R]: [round(R.volume, 0.001)] - <a href='byond://?src=\ref[src];purge_reagent=[R.type]'>Purge Reagent</a><br />"
 	if(.)
@@ -248,7 +248,7 @@
 		occupant_message(SPAN_ALERT("No reagent info gained from \the [A]."))
 		return 0
 	occupant_message(SPAN_INFO_B("Analysing reagents..."))
-	for(var/datum/reagent/R in A.reagents.reagent_list)
+	for_no_type_check(var/datum/reagent/R, A.reagents.reagent_list)
 		if(R.reagent_state == 2 && add_known_reagent(R.id, R.name))
 			occupant_message(SPAN_INFO("Reagent analysed, identified as [R.name] and added to database."))
 			send_byjax(chassis.occupant, "msyringegun.browser", "reagents_form", get_reagents_form())

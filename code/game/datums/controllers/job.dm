@@ -92,7 +92,7 @@ CONTROLLER_DEF(jobs)
 
 /datum/controller/jobs/proc/give_random_job(mob/dead/new_player/player)
 	debug("GRJ Giving random job, Player: [player]")
-	for(var/datum/job/job in shuffle(occupations))
+	for_no_type_check(var/datum/job/job, shuffle(occupations))
 		if(isnull(job))
 			continue
 

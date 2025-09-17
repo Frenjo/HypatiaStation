@@ -196,7 +196,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	B.data["blood_type"] = copytext(src.dna.b_type, 1, 0)
 
 	var/list/temp_chem = list()
-	for(var/datum/reagent/R in src.reagents.reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 		temp_chem += R.id
 		temp_chem[R.id] = R.volume
 	B.data["trace_chem"] = list2params(temp_chem)

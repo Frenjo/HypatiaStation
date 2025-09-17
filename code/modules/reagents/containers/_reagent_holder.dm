@@ -49,7 +49,7 @@
 /obj/item/reagent_holder/proc/reagentlist(obj/item/reagent_holder/snack) //Attack logs for regents in pills
 	var/data
 	if(length(snack.reagents.reagent_list)) //find a reagent list if there is and check if it has entries
-		for(var/datum/reagent/R in snack.reagents.reagent_list) //no reagents will be left behind
+		for_no_type_check(var/datum/reagent/R, snack.reagents.reagent_list) //no reagents will be left behind
 			data += "[R.id]([R.volume] units); " //Using IDs because SOME chemicals(I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
 		return data
 	else

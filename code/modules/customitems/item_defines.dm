@@ -398,7 +398,7 @@
 		return // Only the owner knows how to examine the contents.
 	if(length(reagents?.reagent_list))
 		. += SPAN_INFO("It contains:")
-		for(var/datum/reagent/R in reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 			. += SPAN_INFO("[R.volume] units of [R.name] stored.")
 	else
 		. += SPAN_INFO("It is currently empty.")

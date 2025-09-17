@@ -319,7 +319,7 @@
 
 	//If they're injured, we're using a beaker, and don't have one of our WONDERCHEMS.
 	if(reagent_glass && use_beaker && ((C.getBruteLoss() >= heal_threshold) || (C.getToxLoss() >= heal_threshold) || (C.getToxLoss() >= heal_threshold) || (C.getOxyLoss() >= (heal_threshold + 15))))
-		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, reagent_glass.reagents.reagent_list)
 			if(!C.reagents.has_reagent(R))
 				return 1
 			continue

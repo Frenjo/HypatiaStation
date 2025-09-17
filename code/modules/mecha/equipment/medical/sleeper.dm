@@ -192,7 +192,7 @@
 /obj/item/mecha_equipment/medical/sleeper/proc/get_available_reagents()
 	var/obj/item/mecha_equipment/medical/syringe_gun/SG = locate(/obj/item/mecha_equipment/medical/syringe_gun) in chassis
 	if(isnotnull(SG) && isnotnull(SG.reagents) && islist(SG.reagents.reagent_list))
-		for(var/datum/reagent/R in SG.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, SG.reagents.reagent_list)
 			if(R.volume > 0)
 				. += "<a href='byond://?src=\ref[src];inject=\ref[R];source=\ref[SG]'>Inject [R.name]</a><br />"
 

@@ -287,16 +287,16 @@
 	O.screen_loc = screen_loc
 	return O
 
-/proc/Show2Group4Delay(obj/O, list/group, delay = 0)
+/proc/Show2Group4Delay(obj/O, list/client/group, delay = 0)
 	if(!isobj(O))
 		return
 	if(isnull(group))
 		group = GLOBL.clients
-	for(var/client/C in group)
+	for_no_type_check(var/client/C, group)
 		C.screen.Add(O)
 	if(delay)
 		spawn(delay)
-			for(var/client/C in group)
+			for_no_type_check(var/client/C, group)
 				C.screen.Remove(O)
 
 /datum/projectile_data

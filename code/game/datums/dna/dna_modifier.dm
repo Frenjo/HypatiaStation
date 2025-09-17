@@ -389,7 +389,7 @@
 	data["disk"] = diskData
 
 	var/list/new_buffers = list()
-	for(var/datum/dna2/record/buf in src.buffers)
+	for_no_type_check(var/datum/dna2/record/buf, buffers)
 		new_buffers += list(buf.GetData())
 	data["buffers"] = new_buffers
 

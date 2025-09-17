@@ -101,7 +101,7 @@
 	else if(istype(O, /obj/item/reagent_holder/glass) || istype(O, /obj/item/reagent_holder/food/drinks) || istype(O, /obj/item/reagent_holder/food/condiment))
 		if(!O.reagents)
 			return 1
-		for(var/datum/reagent/R in O.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, O.reagents.reagent_list)
 			if(!(R.id in acceptable_reagents))
 				to_chat(user, SPAN_WARNING("Your [O] contains components unsuitable for cookery."))
 				return 1
@@ -165,7 +165,7 @@
 				else
 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
 
-		for(var/datum/reagent/R in reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 			var/display_name = R.name
 			if(istype(R, /datum/reagent/capsaicin))
 				display_name = "Hotsauce"

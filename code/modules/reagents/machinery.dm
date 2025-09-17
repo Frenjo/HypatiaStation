@@ -130,7 +130,7 @@
 	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
 	if(has_beaker && isnotnull(beaker.reagents) && length(beaker.reagents.reagent_list))
-		for(var/datum/reagent/R in beaker.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	data["beakerContents"] = beakerContents
@@ -385,7 +385,7 @@
 			if(!condi)
 				if(href_list["name"] == "Blood")
 					var/datum/reagent/blood/G
-					for(var/datum/reagent/F in R.reagent_list)
+					for_no_type_check(var/datum/reagent/F, R.reagent_list)
 						if(F.name == href_list["name"])
 							G = F
 							break
@@ -548,7 +548,7 @@
 			dat += "Beaker is empty."
 		else
 			dat += "Add to buffer:<BR>"
-			for(var/datum/reagent/G in R.reagent_list)
+			for_no_type_check(var/datum/reagent/G, R.reagent_list)
 				dat += "[G.name], [G.volume] Units - " // Removed a space between [G.name] and the folllowing comma for OCD reasons. -Frenjo
 				dat += "<A href='byond://?src=\ref[src];analyse=1;desc=[G.description];name=[G.name]'>(Analyse)</A> "
 				dat += "<A href='byond://?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
@@ -559,7 +559,7 @@
 
 		dat += "<HR>Transfer to <A href='byond://?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
-			for(var/datum/reagent/N in reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/N, reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='byond://?src=\ref[src];analyse=1;desc=[N.description];name=[N.name]'>(Analyse)</A> "
 				dat += "<A href='byond://?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
@@ -1004,7 +1004,7 @@
 			is_beaker_ready = 1
 			beaker_contents = "<B>The beaker contains:</B><br>"
 			var/anything = 0
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, beaker.reagents.reagent_list)
 				anything = 1
 				beaker_contents += "[R.volume] - [R.name]<br>"
 			if(!anything)
