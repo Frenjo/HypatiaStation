@@ -62,7 +62,7 @@
 
 /decl/hierarchy/supply_pack/medsci/coolanttank
 	name = "Coolant tank crate"
-	contains = list(/obj/structure/reagent_dispensers/coolanttank)
+	contains = list(/obj/structure/reagent_dispenser/coolanttank)
 	cost = 16
 	containertype = /obj/structure/largecrate
 	containername = "coolant tank crate"

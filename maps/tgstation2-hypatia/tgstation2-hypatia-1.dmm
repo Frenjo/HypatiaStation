@@ -1629,7 +1629,7 @@
 /turf/open/floor/tiled/white,
 /area/station/research/xenobiology)
 "aEH" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "aEK" = (
@@ -2958,7 +2958,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "bdJ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard)
 "bdP" = (
@@ -4832,7 +4832,7 @@
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispenser/water_cooler,
 /obj/effect/decal/floor/coloured/neutral{
 	dir = 10
 	},
@@ -4943,7 +4943,7 @@
 /turf/open/floor/tiled/dark,
 /area/station/crew/hydroponics)
 "bKa" = (
-/obj/structure/reagent_dispensers/peppertank{
+/obj/structure/reagent_dispenser/peppertank{
 	pixel_x = -30
 	},
 /obj/effect/decal/floor/coloured/red{
@@ -5261,7 +5261,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
 "bQI" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "bQM" = (
@@ -11106,7 +11106,7 @@
 /area/station/hallway/primary/central)
 "dQf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "dQH" = (
@@ -11948,7 +11948,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/foyer)
 "efg" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -12737,7 +12737,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/warden)
 "exU" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/tiled/grey,
 /area/station/crew/hydroponics)
 "exY" = (
@@ -13134,7 +13134,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard)
 "eFa" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -13901,7 +13901,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/security/range)
 "eRN" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/air_alarm{
 	name = "north bump";
 	pixel_y = 24
@@ -14222,7 +14222,7 @@
 /turf/open/floor/wood,
 /area/station/medical/dormitories)
 "eWQ" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
@@ -15336,7 +15336,7 @@
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/starboard)
 "fvc" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/reinforced,
 /area/station/research/miscellaneous)
 "fvg" = (
@@ -15422,7 +15422,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/eva)
 "fvW" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "fwc" = (
@@ -16732,7 +16732,7 @@
 /turf/open/floor/tiled/showroom,
 /area/station/medical/surgery/one)
 "fRQ" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispenser/water_cooler,
 /obj/machinery/status_display{
 	dir = 4;
 	layer = 4;
@@ -18946,7 +18946,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard)
 "gDb" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/auxiliary)
 "gDn" = (
@@ -19427,7 +19427,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "gKs" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/starboard)
 "gKw" = (
@@ -23342,7 +23342,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
 "ieB" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/primary)
 "ieN" = (
@@ -24564,7 +24564,7 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "iwT" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "ixf" = (
@@ -26115,7 +26115,7 @@
 /turf/open/floor/tiled/cafeteria,
 /area/station/command/office/rd)
 "iXt" = (
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/reagent_dispenser/beerkeg,
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
@@ -27013,7 +27013,7 @@
 /turf/open/floor/carpet,
 /area/station/crew/bar)
 "joN" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
@@ -29348,7 +29348,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/cargo/bay)
 "kjT" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/auxiliary)
 "kkg" = (
@@ -30092,7 +30092,7 @@
 /turf/open/floor/tiled/white,
 /area/station/research/robotics/lab)
 "kuD" = (
-/obj/structure/reagent_dispensers/peppertank{
+/obj/structure/reagent_dispenser/peppertank{
 	pixel_x = -30
 	},
 /obj/structure/closet/secure/security,
@@ -31217,7 +31217,7 @@
 /turf/open/floor/wood,
 /area/station/command/office/captain)
 "kRB" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
 "kRI" = (
@@ -33733,7 +33733,7 @@
 	name = "engineering requests console";
 	pixel_x = 30
 	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -35706,7 +35706,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -37277,7 +37277,7 @@
 	c_tag = "Mining Dock External";
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/tiled/grey,
 /area/station/cargo/mining_dock)
@@ -38268,7 +38268,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "noI" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard)
 "noJ" = (
@@ -39910,7 +39910,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/reception)
 "nRU" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "nSo" = (
@@ -40152,7 +40152,7 @@
 /turf/open/floor/tiled/dark,
 /area/station/security/evidence_storage)
 "nWt" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "nWv" = (
@@ -40167,7 +40167,7 @@
 /obj/item/reagent_holder/spray/cleaner,
 /obj/item/reagent_holder/syringe/preloaded/antiviral,
 /obj/machinery/light,
-/obj/structure/reagent_dispensers/virusfood{
+/obj/structure/reagent_dispenser/virusfood{
 	pixel_x = -30
 	},
 /obj/machinery/status_display{
@@ -40287,7 +40287,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/aft)
 "nYc" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispenser/water_cooler,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/open/floor/tiled/cafeteria,
 /area/station/research/breakroom)
@@ -43014,7 +43014,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "oXA" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
@@ -43228,7 +43228,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/aft)
 "paL" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "paR" = (
@@ -45134,7 +45134,7 @@
 /turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "pEX" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/light/small/emergency,
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/port)
@@ -45338,7 +45338,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/research/robotics/lab)
 "pKi" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispenser/water_cooler,
 /obj/machinery/air_alarm{
 	name = "north bump";
 	pixel_y = 24
@@ -45671,7 +45671,7 @@
 /turf/open/floor/circuit_grid/blue/server,
 /area/station/research/server)
 "pTC" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/tiled/grey,
 /area/station/research/robotics/chargebay)
 "pTN" = (
@@ -47122,7 +47122,7 @@
 	},
 /area/station/research/toxins/mixing)
 "qsc" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -50013,7 +50013,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_starboard)
 "rpS" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/primary)
 "rqm" = (
@@ -50935,7 +50935,7 @@
 /turf/open/floor/wood,
 /area/station/command/office/captain)
 "rGx" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "rGH" = (
@@ -52526,7 +52526,7 @@
 /turf/open/floor/tiled/white,
 /area/station/research/xenobiology)
 "sgL" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "shc" = (
@@ -52698,7 +52698,7 @@
 /turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "skB" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/storage/emergency/central)
 "skM" = (
@@ -54077,7 +54077,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/office/hop)
 "sNy" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "sNF" = (
@@ -55442,7 +55442,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/bridge)
 "tqV" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /obj/machinery/status_display/ai{
 	dir = 8;
 	layer = 4;
@@ -56510,7 +56510,7 @@
 /turf/open/floor/reinforced/n2o,
 /area/station/engineering/atmospherics)
 "tJL" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "tJO" = (
@@ -56881,7 +56881,7 @@
 /turf/space,
 /area/space)
 "tRz" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/camera{
 	c_tag = "Hydroponics South";
 	dir = 8
@@ -58704,7 +58704,7 @@
 /turf/closed/wall/steel,
 /area/station/medical/cloning)
 "uye" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispenser/water_cooler,
 /turf/open/floor/wood,
 /area/station/command/bridge/meeting_room)
 "uyp" = (
@@ -58775,7 +58775,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "uzo" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispenser/water_cooler,
 /turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "uzE" = (
@@ -59351,7 +59351,7 @@
 	},
 /area/station/medical/treatment)
 "uLW" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "uMd" = (
@@ -61379,7 +61379,7 @@
 	},
 /area/station/security/warden)
 "vBx" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central/port)
 "vBH" = (
@@ -61682,7 +61682,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/teleporter)
 "vHB" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -64546,7 +64546,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "wGk" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -65333,7 +65333,7 @@
 /area/station/security/warden)
 "wTX" = (
 /obj/machinery/light,
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 1
 	},
@@ -67482,7 +67482,7 @@
 /turf/open/floor/tiled/white,
 /area/station/research/miscellaneous)
 "xDb" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
@@ -67750,7 +67750,7 @@
 /turf/closed/wall/steel,
 /area/station/maintenance/fore/starboard)
 "xIT" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/reinforced,
 /area/station/research/miscellaneous)
 "xJi" = (
@@ -68984,7 +68984,7 @@
 /turf/space,
 /area/shuttle/syndicate/mercenary/south)
 "ygX" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "yhv" = (
@@ -69020,7 +69020,7 @@
 /turf/open/floor/reinforced,
 /area/station/research/toxins/mixing)
 "yhO" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "yhT" = (

@@ -29,7 +29,7 @@
 	if(istype(A, /obj/effect/proc_holder/spell))
 		return
 
-	if(istype(A, /obj/structure/reagent_dispensers) && get_dist(src, A) <= 1) //this block copypasted from reagent_containers/glass, for lack of a better solution
+	if(istype(A, /obj/structure/reagent_dispenser) && get_dist(src, A) <= 1) //this block copypasted from reagent_containers/glass, for lack of a better solution
 		if(!A.reagents.total_volume && A.reagents)
 			to_chat(user, SPAN_NOTICE("\The [A] is empty."))
 			return

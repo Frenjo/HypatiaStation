@@ -34,12 +34,12 @@
 	return ..()
 
 /obj/item/weldpack/afterattack(obj/O as obj, mob/user as mob)
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.reagents.total_volume < max_fuel)
+	if (istype(O, /obj/structure/reagent_dispenser/fueltank) && get_dist(src,O) <= 1 && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
 		to_chat(user, SPAN_INFO("You crack the cap off the top of the pack and fill it back up again from the tank."))
 		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.reagents.total_volume == max_fuel)
+	else if (istype(O, /obj/structure/reagent_dispenser/fueltank) && get_dist(src,O) <= 1 && src.reagents.total_volume == max_fuel)
 		to_chat(user, SPAN_INFO("The pack is already full!"))
 		return
 

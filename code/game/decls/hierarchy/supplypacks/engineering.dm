@@ -100,7 +100,7 @@
 
 /decl/hierarchy/supply_pack/engineering/fueltank
 	name = "Fuel tank crate"
-	contains = list(/obj/structure/reagent_dispensers/fueltank)
+	contains = list(/obj/structure/reagent_dispenser/fueltank)
 	cost = 8
 	containertype = /obj/structure/largecrate
 	containername = "fuel tank crate"

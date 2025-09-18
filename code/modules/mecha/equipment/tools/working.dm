@@ -152,7 +152,7 @@
 	if(get_dist(chassis, target) > 2)
 		return FALSE
 	if(do_after_cooldown(target))
-		if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis, target) <= 1)
+		if(istype(target, /obj/structure/reagent_dispenser/watertank) && get_dist(chassis, target) <= 1)
 			var/obj/o = target
 			o.reagents.trans_to(src, 200)
 			occupant_message(SPAN_INFO("Extinguisher refilled."))

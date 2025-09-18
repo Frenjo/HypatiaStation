@@ -113,7 +113,7 @@
 					to_chat(user, SPAN_WARNING("[target] is empty."))
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser) && !istype(target, /obj/item/slime_extract))
 					to_chat(user, SPAN_WARNING("You cannot directly remove reagents from this object."))
 					return
 
@@ -313,7 +313,7 @@
 					to_chat(user, SPAN_WARNING("[target] is empty."))
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser))
 					to_chat(user, SPAN_WARNING("You cannot directly remove reagents from this object."))
 					return
 

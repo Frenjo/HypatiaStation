@@ -81,7 +81,7 @@
 			icon_state = "dropper[filled]"
 
 	else
-		if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers))
+		if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser))
 			to_chat(user, SPAN_WARNING("You cannot directly remove reagents from [target]."))
 			return
 

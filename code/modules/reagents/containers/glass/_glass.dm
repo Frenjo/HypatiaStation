@@ -96,7 +96,7 @@
 		spawn(5)
 			src.reagents.clear_reagents()
 		return
-	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+	else if(istype(target, /obj/structure/reagent_dispenser)) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume && target.reagents)
 			to_chat(user, SPAN_WARNING("[target] is empty."))
 			return

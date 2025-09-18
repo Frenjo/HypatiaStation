@@ -36,7 +36,7 @@
 /obj/item/toy/balloon/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
-	if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src, A) <= 1)
+	if(istype(A, /obj/structure/reagent_dispenser/watertank) && get_dist(src, A) <= 1)
 		A.reagents.trans_to(src, 10)
 		to_chat(user, SPAN_INFO("You fill the balloon with the contents of [A]."))
 		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
@@ -432,7 +432,7 @@
 	else if(locate(/obj/structure/table, src.loc))
 		return
 
-	else if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src, A) <= 1)
+	else if(istype(A, /obj/structure/reagent_dispenser/watertank) && get_dist(src, A) <= 1)
 		A.reagents.trans_to(src, 10)
 		to_chat(user, SPAN_INFO("You refill your flower!"))
 		return

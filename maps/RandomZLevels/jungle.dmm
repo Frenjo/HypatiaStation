@@ -158,7 +158,7 @@
 "db" = (/obj/machinery/gateway{dir = 8; tag = "icon-off (WEST)"},/turf/open/floor,/area/jungle)
 "dc" = (/obj/machinery/gateway/centeraway,/turf/open/floor,/area/jungle)
 "dd" = (/obj/machinery/gateway{dir = 4; tag = "icon-off (EAST)"},/turf/open/floor,/area/jungle)
-"de" = (/obj/structure/reagent_dispensers,/turf/open/jungle/clear,/area/jungle)
+"de" = (/obj/structure/reagent_dispenser,/turf/open/jungle/clear,/area/jungle)
 "df" = (/obj/structure/rack,/obj/item/pen,/turf/open/floor,/area/jungle)
 "dg" = (/obj/machinery/gateway{dir = 10; tag = "icon-off (SOUTHWEST)"},/turf/open/floor,/area/jungle)
 "dh" = (/obj/machinery/gateway,/turf/open/floor,/area/jungle)
