@@ -102,16 +102,20 @@
 	SHOW_BROWSER(user, dat,"window=depth_scanner;size=300x500")
 	onclose(user, "depth_scanner")
 
-/obj/item/depth_scanner/Topic(href, href_list)
-	..()
-	usr.set_machine(src)
+/obj/item/depth_scanner/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["select"])
-		var/index = text2num(href_list["select"])
+	user.set_machine(src)
+
+	if(topic.has("select"))
+		var/index = topic.get_num("select")
 		if(index && index <= length(positive_locations))
 			current = positive_locations[index]
-	else if(href_list["clear"])
-		var/index = text2num(href_list["clear"])
+
+	else if(topic.has("clear"))
+		var/index = topic.get_num("clear")
 		if(index)
 			if(index <= length(positive_locations))
 				var/datum/depth_scan/D = positive_locations[index]
@@ -121,8 +125,9 @@
 			//GC will hopefully pick them up before too long
 			positive_locations = list()
 			qdel(current)
-	else if(href_list["close"])
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=depth_scanner")
+
+	else if(topic.has("close"))
+		user.unset_machine()
+		CLOSE_BROWSER(user, "window=depth_scanner")
 
 	updateSelfDialog()

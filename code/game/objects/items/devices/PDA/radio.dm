@@ -80,13 +80,16 @@
 
 //	if (istype(P)) P.updateSelfDialog()
 
-/obj/item/radio/integrated/beepsky/Topic(href, href_list)
-	..()
+/obj/item/radio/integrated/beepsky/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
 	var/obj/item/pda/PDA = src.hostpda
 
-	switch(href_list["op"])
+	switch(topic.get_str("op"))
 		if("control")
-			active = locate(href_list["bot"])
+			active = topic.get_and_locate("bot")
 			post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
 
 		if("scanbots")		// find all bots
@@ -97,7 +100,7 @@
 			active = null
 
 		if("stop", "go")
-			post_signal(control_freq, "command", href_list["op"], "active", active, s_filter = RADIO_SECBOT)
+			post_signal(control_freq, "command", topic.get_str("op"), "active", active, s_filter = RADIO_SECBOT)
 			post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
 
 		if("summon")
@@ -156,15 +159,18 @@
 
 //	if(istype(P)) P.updateSelfDialog()
 
-/obj/item/radio/integrated/mule/Topic(href, href_list)
-	..()
+/obj/item/radio/integrated/mule/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
 	var/cmd = "command"
 	if(active)
 		cmd = "command [active.suffix]"
 
-	switch(href_list["op"])
+	switch(topic.get_str("op"))
 		if("control")
-			active = locate(href_list["bot"])
+			active = topic.get_and_locate("bot")
 			post_signal(control_freq, cmd, "bot_status", s_filter = RADIO_MULEBOT)
 
 		if("scanbots")		// find all bots
@@ -199,7 +205,7 @@
 			post_signal(control_freq, cmd, "bot_status", s_filter = RADIO_MULEBOT)
 
 		if("stop", "go", "home")
-			post_signal(control_freq, cmd, href_list["op"], s_filter = RADIO_MULEBOT)
+			post_signal(control_freq, cmd, topic.get_str("op"), s_filter = RADIO_MULEBOT)
 			post_signal(control_freq, cmd, "bot_status", s_filter = RADIO_MULEBOT)
 
 

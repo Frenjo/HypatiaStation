@@ -221,26 +221,29 @@
 	onclose(user, "paicard")
 	return
 
-/obj/item/paicard/Topic(href, href_list)
+/obj/item/paicard/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(!usr || usr.stat)
-		return
+	if(!.)
+		return FALSE
+	if(!user || user.stat)
+		return FALSE
 
-	if(href_list["setdna"])
-		if(pai.master_dna)
+	if(topic.has("setdna"))
+		if(isnotnull(pai.master_dna))
 			return
-		var/mob/M = usr
-		if(!iscarbon(M))
-			to_chat(usr, "<font color=blue>You don't have any DNA, or your DNA is incompatible with this device.</font>")
+		if(!iscarbon(user))
+			to_chat(user, SPAN_WARNING("You don't have any DNA, or your DNA is incompatible with this device."))
 		else
-			var/datum/dna/dna = usr.dna
-			pai.master = M.real_name
+			var/datum/dna/dna = user.dna
+			pai.master = user.real_name
 			pai.master_dna = dna.unique_enzymes
 			to_chat(pai, SPAN_WARNING("<h3>You have been bound to a new master.</h3>"))
-	if(href_list["request"])
+
+	if(topic.has("request"))
 		src.looking_for_personality = 1
-		global.CTpai.find_pAI(src, usr)
-	if(href_list["wipe"])
+		global.CTpai.find_pAI(src, user)
+
+	if(topic.has("wipe"))
 		var/confirm = input("Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe") in list("Yes", "No")
 		if(confirm == "Yes")
 			for(var/mob/living/L in src)
@@ -250,20 +253,22 @@
 				to_chat(L, "<font color = #ffc4c4><h5>oblivion... </h5></font>")
 				L.death(FALSE)
 			removePersonality()
-	if(href_list["wires"])
-		var/t1 = text2num(href_list["wires"])
+
+	if(topic.has("wires"))
+		var/t1 = topic.get_num("wires")
 		if(radio.wires & t1)
 			radio.wires &= ~t1
 		else
 			radio.wires |= t1
-	if(href_list["setlaws"])
+
+	if(topic.has("setlaws"))
 		var/newlaws = copytext(sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message), 1, MAX_MESSAGE_LEN)
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
 			to_chat(pai, "Prime Directive: <br>[pai.pai_law0]")
 			to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
-	attack_self(usr)
+	attack_self(user)
 
 // 		WIRE_SIGNAL = 1
 //		WIRE_RECEIVE = 2

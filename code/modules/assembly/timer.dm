@@ -74,27 +74,26 @@
 	onclose(user, "timer")
 	return
 
-/obj/item/assembly/timer/Topic(href, href_list)
-	..()
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		CLOSE_BROWSER(usr, "window=timer")
-		onclose(usr, "timer")
-		return
+/obj/item/assembly/timer/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
+		CLOSE_BROWSER(user, "window=timer")
+		onclose(user, "timer")
+		return FALSE
 
-	if(href_list["time"])
-		timing = text2num(href_list["time"])
+	if(topic.has("time"))
+		timing = topic.get_num("time")
 		update_icon()
 
-	if(href_list["tp"])
-		var/tp = text2num(href_list["tp"])
-		time += tp
+	if(topic.has("tp"))
+		time += topic.get_num("tp")
 		time = min(max(round(time), 0), 600)
 
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=timer")
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=timer")
 		return
 
-	if(usr)
-		attack_self(usr)
-
-	return
+	if(isnotnull(user))
+		attack_self(user)

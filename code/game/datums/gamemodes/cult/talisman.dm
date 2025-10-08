@@ -71,45 +71,45 @@
 	SHOW_BROWSER(usr, dat, "window=id_com;size=350x200")
 	return
 
-/obj/item/paper/talisman/Topic(href, href_list)
+/obj/item/paper/talisman/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-
+	if(!.)
+		return FALSE
 	if(!src)
-		return
-	if(usr.stat || usr.restrained() || !in_range(src, usr))
-		return
+		return FALSE
+	if(user.stat || user.restrained() || !in_range(src, user))
+		return FALSE
 
-	if(href_list["rune"])
-		switch(href_list["rune"])
+	if(topic.has("rune"))
+		switch(topic.get_str("rune"))
 			if("newtome")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "newtome"
 			if("teleport")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "[pick("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri", "orkan", "allaq")]"
 				T.info = "[T.imbue]"
 			if("emp")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "emp"
 			if("conceal")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "conceal"
 			if("communicate")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "communicate"
 			if("runestun")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "runestun"
 			if("armor")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(user))
 				T.imbue = "armor"
 			if("soulstone")
-				new /obj/item/soulstone(GET_TURF(usr))
+				new /obj/item/soulstone(GET_TURF(user))
 			if("construct")
-				new /obj/structure/constructshell(GET_TURF(usr))
-		src.uses--
+				new /obj/structure/constructshell(GET_TURF(user))
+		uses--
 		supply()
-	return
 
 /obj/item/paper/talisman/supply
 	imbue = "supply"

@@ -51,32 +51,33 @@
 	onclose(user, "aicard")
 	return
 
-/obj/item/soulstone/Topic(href, href_list)
+/obj/item/soulstone/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	var/mob/U = usr
-	if(!in_range(src, U) || U.machine != src)
-		CLOSE_BROWSER(U, "window=aicard")
-		U.unset_machine()
-		return
+	if(!.)
+		return FALSE
+	if(!in_range(src, user) || user.machine != src)
+		CLOSE_BROWSER(user, "window=aicard")
+		user.unset_machine()
+		return FALSE
 
-	add_fingerprint(U)
-	U.set_machine(src)
+	add_fingerprint(user)
+	user.set_machine(src)
 
-	switch(href_list["choice"])//Now we switch based on choice.
+	switch(topic.get_str("choice")) // Now we switch based on choice.
 		if("Close")
-			CLOSE_BROWSER(U, "window=aicard")
-			U.unset_machine()
+			CLOSE_BROWSER(user, "window=aicard")
+			user.unset_machine()
 			return
 
 		if("Summon")
 			for(var/mob/living/simple/shade/A in src)
 				A.status_flags &= ~GODMODE
 				A.canmove = TRUE
-				to_chat(A, "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>")
-				A.forceMove(U.loc)
+				to_chat(A, "<b>You have been released from your prison, but you are still bound to [user.name]'s will. Help them suceed in their goals at all costs.</b>")
+				A.forceMove(user.loc)
 				A.cancel_camera()
-				src.icon_state = "soulstone"
-	attack_self(U)
+				icon_state = "soulstone"
+	attack_self(user)
 
 
 ///////////////////////////Transferring to constructs/////////////////////////////////////////////////////

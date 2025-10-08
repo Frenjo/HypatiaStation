@@ -118,35 +118,35 @@
 	onclose(user, "prox")
 	return
 
-/obj/item/assembly/prox_sensor/Topic(href, href_list)
-	..()
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		CLOSE_BROWSER(usr, "window=prox")
-		onclose(usr, "prox")
-		return
+/obj/item/assembly/prox_sensor/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
+		CLOSE_BROWSER(user, "window=prox")
+		onclose(user, "prox")
+		return FALSE
 
-	if(href_list["scanning"])
+	if(topic.has("scanning"))
 		toggle_scan()
 
-	if(href_list["time"])
-		timing = text2num(href_list["time"])
+	if(topic.has("time"))
+		timing = topic.get_num("time")
 		update_icon()
 
-	if(href_list["tp"])
-		var/tp = text2num(href_list["tp"])
+	if(topic.has("tp"))
+		var/tp = topic.get_num("tp")
 		time += tp
 		time = min(max(round(time), 0), 600)
 
-	if(href_list["range"])
-		var/r = text2num(href_list["range"])
+	if(topic.has("range"))
+		var/r = topic.get_num("range")
 		range += r
 		range = min(max(range, 1), 5)
 
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=prox")
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=prox")
 		return
 
-	if(usr)
-		attack_self(usr)
-
-	return
+	if(isnotnull(user))
+		attack_self(user)

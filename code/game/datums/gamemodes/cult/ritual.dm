@@ -300,14 +300,16 @@ var/engwords = list(
 				</html>
 				"}
 
-/obj/item/tome/Topic(href, list/href_list)
+/obj/item/tome/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
+	if(!.)
+		return FALSE
 
-	if(src.loc == usr)
-		var/number = text2num(href_list["number"])
-		if(usr.stat|| usr.restrained())
-			return
-		switch(href_list["action"])
+	if(loc == user)
+		var/number = topic.get_num("number")
+		if(user.stat || user.restrained())
+			return FALSE
+		switch(topic.get_str("action"))
 			if("clear")
 				words[words[number]] = words[number]
 			if("change")
@@ -328,11 +330,10 @@ var/engwords = list(
 					[words[9]] is <a href='byond://?src=\ref[src];number=9;action=change'>[words[words[9]]]</A> <A href='byond://?src=\ref[src];number=9;action=clear'>Clear</A><BR>
 					[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 					"}
-		SHOW_BROWSER(usr, "[notedat]", "window=notes")
+		SHOW_BROWSER(user, "[notedat]", "window=notes")
 //		call(/obj/item/tome/proc/edit_notes)()
 	else
-		CLOSE_BROWSER(usr, "window=notes")
-		return
+		CLOSE_BROWSER(user, "window=notes")
 
 
 //	proc/edit_notes()     FUCK IT. Cant get it to work properly. - K0000

@@ -80,68 +80,69 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/clipboard/Topic(href, href_list)
-	..()
-	if((usr.stat || usr.restrained()))
-		return
+/obj/item/clipboard/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if((user.stat || user.restrained()))
+		return FALSE
+	if(!user.contents.Find(src))
+		return FALSE
 
-	if(usr.contents.Find(src))
-		if(href_list["pen"])
-			if(haspen)
-				haspen.forceMove(usr.loc)
-				usr.put_in_hands(haspen)
-				haspen = null
+	if(topic.has("pen"))
+		if(isnotnull(haspen))
+			haspen.forceMove(user.loc)
+			user.put_in_hands(haspen)
+			haspen = null
 
-		if(href_list["addpen"])
-			if(!haspen)
-				if(istype(usr.get_active_hand(), /obj/item/pen))
-					var/obj/item/pen/W = usr.get_active_hand()
-					usr.drop_item()
-					W.forceMove(src)
-					haspen = W
-					to_chat(usr, SPAN_NOTICE("You slot the pen into \the [src]."))
+	if(topic.has("addpen"))
+		if(isnull(haspen))
+			if(istype(user.get_active_hand(), /obj/item/pen))
+				var/obj/item/pen/W = user.get_active_hand()
+				user.drop_item()
+				W.forceMove(src)
+				haspen = W
+				to_chat(user, SPAN_NOTICE("You slot the pen into \the [src]."))
 
-		if(href_list["write"])
-			var/obj/item/P = locate(href_list["write"])
-			if(P)
-				if(usr.get_active_hand())
-					P.attackby(usr.get_active_hand(), usr)
+	if(topic.has("write"))
+		var/obj/item/P = topic.get_and_locate("write")
+		if(isnotnull(P))
+			if(user.get_active_hand())
+				P.attackby(user.get_active_hand(), user)
 
-		if(href_list["remove"])
-			var/obj/item/P = locate(href_list["remove"])
-			if(P)
-				P.forceMove(usr.loc)
-				usr.put_in_hands(P)
-				if(P == toppaper)
-					toppaper = null
-					var/obj/item/paper/newtop = locate(/obj/item/paper) in src
-					if(newtop && (newtop != P))
-						toppaper = newtop
-					else
-						toppaper = null
-
-		if(href_list["read"])
-			var/obj/item/paper/P = locate(href_list["read"])
-			if(P)
-				if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-					SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+	if(topic.has("remove"))
+		var/obj/item/P = topic.get_and_locate("remove")
+		if(isnotnull(P))
+			P.forceMove(user.loc)
+			user.put_in_hands(P)
+			if(P == toppaper)
+				toppaper = null
+				var/obj/item/paper/newtop = locate(/obj/item/paper) in src
+				if(newtop && (newtop != P))
+					toppaper = newtop
 				else
-					SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+					toppaper = null
 
-		if(href_list["look"])
-			var/obj/item/photo/P = locate(href_list["look"])
-			if(P)
-				P.show(usr)
+	if(topic.has("read"))
+		var/obj/item/paper/P = topic.get_and_locate("read")
+		if(isnotnull(P))
+			if(!(ishuman(user) || isghost(user) || issilicon(user)))
+				SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+				onclose(user, "[P.name]")
+			else
+				SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+				onclose(user, "[P.name]")
 
-		if(href_list["top"])
-			var/obj/item/P = locate(href_list["top"])
-			if(P)
-				toppaper = P
-				to_chat(usr, SPAN_NOTICE("You move [P.name] to the top."))
+	if(topic.has("look"))
+		var/obj/item/photo/P = topic.get_and_locate("look")
+		P?.show(user)
 
-		//Update everything
-		attack_self(usr)
-		update_icon()
-	return
+	if(topic.has("top"))
+		var/obj/item/P = topic.get_and_locate("top")
+		if(isnotnull(P))
+			toppaper = P
+			to_chat(user, SPAN_NOTICE("You move [P.name] to the top."))
+
+	//Update everything
+	attack_self(user)
+	update_icon()

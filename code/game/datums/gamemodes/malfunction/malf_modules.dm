@@ -279,14 +279,15 @@ rcd light flash thingy on matter drain
 	SHOW_BROWSER(user, dat, "window=modpicker")
 	onclose(user, "modpicker")
 
-/datum/malf_module/module_picker/Topic(href, href_list)
+/datum/malf_module/module_picker/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
+	if(!.)
+		return FALSE
+	if(!isAI(user))
+		return FALSE
+	var/mob/living/silicon/ai/malf = user
 
-	if(!isAI(usr))
-		return
-	var/mob/living/silicon/ai/malf = usr
-
-	if(href_list["coreup"])
+	if(topic.has("coreup"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/large/fireproof_core))
@@ -299,7 +300,7 @@ rcd light flash thingy on matter drain
 		else
 			temp = "This module is only needed once."
 
-	else if(href_list["turret"])
+	else if(topic.has("turret"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/large/upgrade_turrets))
@@ -312,7 +313,7 @@ rcd light flash thingy on matter drain
 		else
 			temp = "This module is only needed once."
 
-	else if(href_list["rcd"])
+	else if(topic.has("rcd"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/large/disable_rcd))
@@ -326,7 +327,7 @@ rcd light flash thingy on matter drain
 			temp = "Additional use added to RCD disabler."
 		processing_time -= 50
 
-	else if(href_list["overload"])
+	else if(topic.has("overload"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/overload_machine))
@@ -340,7 +341,7 @@ rcd light flash thingy on matter drain
 			temp = "Two additional uses added to Overload module."
 		processing_time -= 15
 
-	else if(href_list["blackout"])
+	else if(topic.has("blackout"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/blackout))
@@ -354,7 +355,7 @@ rcd light flash thingy on matter drain
 			temp = "Three additional uses added to Blackout module."
 		processing_time -= 15
 
-	else if(href_list["interhack"])
+	else if(topic.has("interhack"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/interhack))
@@ -367,7 +368,7 @@ rcd light flash thingy on matter drain
 		else
 			temp = "This module is only needed once."
 
-	else if(href_list["recam"])
+	else if(topic.has("recam"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/reactivate_camera))
@@ -381,7 +382,7 @@ rcd light flash thingy on matter drain
 			temp = "Ten additional uses added to ReCam module."
 		processing_time -= 15
 
-	else if(href_list["upgradecam"])
+	else if(topic.has("upgradecam"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/upgrade_camera))
@@ -396,7 +397,7 @@ rcd light flash thingy on matter drain
 		processing_time -= 15
 
 	else
-		if(href_list["temp"])
+		if(topic.has("temp"))
 			temp = null
 
-	use(usr)
+	use(user)

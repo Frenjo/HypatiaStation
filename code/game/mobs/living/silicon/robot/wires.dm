@@ -115,32 +115,38 @@
 		SHOW_BROWSER(user, t1, "window=borgwires")
 		onclose(user, "borgwires")
 
-/mob/living/silicon/robot/Topic(href, href_list)
-	..()
-	if(((in_range(src, usr) && isturf(src.loc))) && !issilicon(usr))
-		usr.set_machine(src)
-		if (href_list["borgwires"])
-			var/t1 = text2num(href_list["borgwires"])
-			if(!iswirecutter(usr.get_active_hand()))
-				to_chat(usr, SPAN_WARNING("You need wirecutters!"))
+/mob/living/silicon/robot/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(((in_range(src, user) && isturf(loc))) && !issilicon(user))
+		user.set_machine(src)
+
+		if(topic.has("borgwires"))
+			var/t1 = topic.get_num("borgwires")
+			if(!iswirecutter(user.get_active_hand()))
+				to_chat(user, SPAN_WARNING("You need wirecutters!"))
 				return
-			if (src.isWireColorCut(t1))
-				src.mend(t1)
+			if(isWireColorCut(t1))
+				mend(t1)
 			else
-				src.cut(t1)
-		else if (href_list["pulse"])
-			var/t1 = text2num(href_list["pulse"])
-			if(!ismultitool(usr.get_active_hand()))
-				to_chat(usr, SPAN_WARNING("You need a multitool!"))
+				cut(t1)
+
+		else if(topic.has("pulse"))
+			var/t1 = topic.get_num("pulse")
+			if(!ismultitool(user.get_active_hand()))
+				to_chat(user, SPAN_WARNING("You need a multitool!"))
 				return
-			if (src.isWireColorCut(t1))
-				to_chat(usr, SPAN_WARNING("You can't pulse a cut wire."))
+			if(isWireColorCut(t1))
+				to_chat(user, SPAN_WARNING("You can't pulse a cut wire."))
 				return
 			else
-				src.pulse(t1)
-		else if (href_list["close2"])
-			CLOSE_BROWSER(usr, "window=borgwires")
-			usr.unset_machine()
+				pulse(t1)
+
+		else if(topic.has("close2"))
+			CLOSE_BROWSER(user, "window=borgwires")
+			user.unset_machine()
 			return
 
 #undef BORG_WIRE_LAWCHECK

@@ -146,10 +146,13 @@
 	else
 		..()
 
-/obj/item/eftpos/Topic(href, href_list)
+/obj/item/eftpos/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["choice"])
-		switch(href_list["choice"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("choice"))
+		switch(topic.get_str("choice"))
 			if("change_code")
 				var/attempt_code = input("Re-enter the current EFTPOS access code", "Confirm old EFTPOS code") as num
 				if(attempt_code == access_code)
@@ -160,21 +163,21 @@
 						alert("That is not a valid code!")
 					print_reference()
 				else
-					to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Incorrect code entered."))
+					to_chat(user, SPAN_WARNING("[icon2html(src, user)] Incorrect code entered."))
 			if("change_id")
 				var/attempt_code = text2num(input("Re-enter the current EFTPOS access code", "Confirm EFTPOS code"))
 				if(attempt_code == access_code)
 					eftpos_name = input("Enter a new terminal ID for this device", "Enter new EFTPOS ID") + " EFTPOS scanner"
 					print_reference()
 				else
-					to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Incorrect code entered."))
+					to_chat(user, SPAN_WARNING("[icon2html(src, user)] Incorrect code entered."))
 			if("link_account")
 				var/attempt_account_num = input("Enter account number to pay EFTPOS charges into", "New account number") as num
 				var/attempt_pin = input("Enter pin code", "Account pin") as num
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account.suspended)
 					linked_account = null
-					to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Account has been suspended."))
+					to_chat(user, SPAN_WARNING("[icon2html(src, user)] Account has been suspended."))
 			if("trans_purpose")
 				transaction_purpose = input("Enter reason for EFTPOS transaction", "Transaction purpose")
 			if("trans_value")
@@ -196,27 +199,27 @@
 				else if(linked_account)
 					transaction_locked = 1
 				else
-					to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] No account connected to send transactions to."))
+					to_chat(user, SPAN_WARNING("[icon2html(src, user)] No account connected to send transactions to."))
 			if("scan_card")
 				if(linked_account)
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = user.get_active_hand()
 					if(istype(I, /obj/item/card))
 						scan_card(I)
 				else
-					to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Unable to link accounts."))
+					to_chat(user, SPAN_WARNING("[icon2html(src, user)] Unable to link accounts."))
 			if("reset")
 				//reset the access code - requires HoP/captain access
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = user.get_active_hand()
 				if(istype(I, /obj/item/card))
 					var/obj/item/card/id/C = I
 					if((ACCESS_CENT_CAPTAIN in C.access) || (ACCESS_HOP in C.access) || (ACCESS_CAPTAIN in C.access))
 						access_code = 0
-						to_chat(usr, SPAN_INFO("[icon2html(src, usr)] Access code reset to 0."))
+						to_chat(user, SPAN_INFO("[icon2html(src, user)] Access code reset to 0."))
 				else if(istype(I, /obj/item/card/emag))
 					access_code = 0
-					to_chat(usr, SPAN_INFO("[icon2html(src, usr)] Access code reset to 0."))
+					to_chat(user, SPAN_INFO("[icon2html(src, user)] Access code reset to 0."))
 
-	src.attack_self(usr)
+	attack_self(user)
 
 /obj/item/eftpos/proc/scan_card(obj/item/card/I)
 	if(istype(I, /obj/item/card/id))

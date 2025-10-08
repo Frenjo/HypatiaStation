@@ -92,9 +92,12 @@
 			return 1
 	return ..() //check for shuttle and nuke
 
-/datum/game_mode/malfunction/Topic(href, href_list)
+/datum/game_mode/malfunction/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(href_list["ai_win"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("ai_win"))
 		ai_win()
 
 /datum/game_mode/malfunction/declare_completion()

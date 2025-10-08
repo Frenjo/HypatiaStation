@@ -66,34 +66,33 @@ Code:
 	onclose(user, "radio")
 	return
 
-/obj/item/assembly/signaler/Topic(href, href_list)
-	..()
+/obj/item/assembly/signaler/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
+		CLOSE_BROWSER(user, "window=radio")
+		onclose(user, "radio")
+		return FALSE
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		CLOSE_BROWSER(usr, "window=radio")
-		onclose(usr, "radio")
-		return
-
-	if(href_list["freq"])
-		var/new_frequency = (frequency + text2num(href_list["freq"]))
+	if(topic.has("freq"))
+		var/new_frequency = (frequency + topic.get_num("freq"))
 		if(new_frequency < 1200 || new_frequency > 1600)
 			new_frequency = sanitize_frequency(new_frequency)
 		radio_connection = register_radio(src, new_frequency, new_frequency, RADIO_CHAT)
 
-	if(href_list["code"])
-		src.code += text2num(href_list["code"])
+	if(topic.has("code"))
+		src.code += topic.get_num("code")
 		src.code = round(src.code)
 		src.code = min(100, src.code)
 		src.code = max(1, src.code)
 
-	if(href_list["send"])
+	if(topic.has("send"))
 		spawn(0)
 			signal()
 
-	if(usr)
-		attack_self(usr)
-
-	return
+	if(isnotnull(user))
+		attack_self(user)
 
 /obj/item/assembly/signaler/proc/signal()
 	if(!radio_connection)

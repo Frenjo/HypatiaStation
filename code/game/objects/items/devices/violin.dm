@@ -288,19 +288,23 @@
 	SHOW_BROWSER(user, dat, "window=violin;size=700x300")
 	onclose(user, "violin")
 
-/obj/item/violin/Topic(href, href_list)
+/obj/item/violin/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
-		CLOSE_BROWSER(usr, "window=violin;size=700x300")
-		onclose(usr, "violin")
-		return
+	if(!.)
+		return FALSE
 
-	if(href_list["newsong"])
-		song = new()
-	else if(song)
-		if(href_list["repeat"]) //Changing this from a toggle to a number of repeats to avoid infinite loops.
+	if(!in_range(src, user) || issilicon(user) || !isliving(user) || !user.canmove || user.restrained())
+		CLOSE_BROWSER(user, "window=violin;size=700x300")
+		onclose(user, "violin")
+		return FALSE
+
+	if(topic.has("newsong"))
+		song = new /datum/song()
+
+	else if(isnotnull(song))
+		if(topic.has("repeat")) // Changing this from a toggle to a number of repeats to avoid infinite loops.
 			if(playing)
-				return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
+				return // So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
 			var/tempnum = input("How many times do you want to repeat this piece? (max: 10)") as num|null
 			if(tempnum > 10)
 				tempnum = 10
@@ -308,17 +312,17 @@
 				tempnum = 0
 			repeat = round(tempnum)
 
-		else if(href_list["tempo"])
-			song.tempo += round(text2num(href_list["tempo"]))
+		else if(topic.has("tempo"))
+			song.tempo += round(topic.get_num("tempo"))
 			if(song.tempo < 1)
 				song.tempo = 1
 
-		else if(href_list["play"])
-			if(song)
+		else if(topic.has("play"))
+			if(isnotnull(song))
 				playing = 1
 				spawn() playsong()
 
-		else if(href_list["newline"])
+		else if(topic.has("newline"))
 			var/newline = html_encode(input("Enter your line: ", "violin") as text|null)
 			if(!newline)
 				return
@@ -328,14 +332,14 @@
 				newline = copytext(newline, 1, 50)
 			song.lines.Add(newline)
 
-		else if(href_list["deleteline"])
-			var/num = round(text2num(href_list["deleteline"]))
+		else if(topic.has("deleteline"))
+			var/num = round(topic.get_num("deleteline"))
 			if(num > length(song.lines) || num < 1)
 				return
 			song.lines.Cut(num, num + 1)
 
-		else if(href_list["modifyline"])
-			var/num = round(text2num(href_list["modifyline"]), 1)
+		else if(topic.has("modifyline"))
+			var/num = round(topic.get_num("modifyline"), 1)
 			var/content = html_encode(input("Enter your line: ", "violin", song.lines[num]) as text|null)
 			if(!content)
 				return
@@ -345,24 +349,24 @@
 				return
 			song.lines[num] = content
 
-		else if(href_list["stop"])
+		else if(topic.has("stop"))
 			playing = 0
 
-		else if(href_list["help"])
-			help = text2num(href_list["help"]) - 1
+		else if(topic.has("help"))
+			help = topic.get_num("help") - 1
 
-		else if(href_list["edit"])
-			edit = text2num(href_list["edit"]) - 1
+		else if(topic.has("edit"))
+			edit = topic.get_num("edit") - 1
 
-		else if(href_list["import"])
+		else if(topic.has("import"))
 			var/t = ""
 			do
-				t = html_encode(input(usr, "Please paste the entire song, formatted:", "[name]", t) as message)
-				if(!in_range(src, usr))
+				t = html_encode(input(user, "Please paste the entire song, formatted:", "[name]", t) as message)
+				if(!in_range(src, user))
 					return
 
 				if(length(t) >= 3072)
-					var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
+					var/cont = input(user, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 					if(cont == "no")
 						break
 			while(length(t) > 3072)
@@ -375,21 +379,20 @@
 					tempo = 600 / text2num(copytext(lines[1], 6))
 					lines.Cut(1, 2)
 				if(length(lines) > 50)
-					to_chat(usr, "Too many lines!")
+					to_chat(user, "Too many lines!")
 					lines.Cut(51)
 				var/linenum = 1
 				for(var/l in lines)
 					if(length(l) > 50)
-						to_chat(usr, "Line [linenum] too long!")
+						to_chat(user, "Line [linenum] too long!")
 						lines.Remove(l)
 					else
 						linenum++
-				song = new()
+				song = new /datum/song()
 				song.lines = lines
 				song.tempo = tempo
 
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	for(var/mob/M in viewers(1, loc))
 		if((M.client && M.machine == src))
 			attack_self(M)
-	return

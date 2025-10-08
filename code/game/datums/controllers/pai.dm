@@ -18,12 +18,14 @@ CONTROLLER_DEF(pai)
 
 	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
 
-/datum/controller/pai/Topic(href, list/href_list)
+/datum/controller/pai/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["download"])
-		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
-		var/obj/item/paicard/card = locate(href_list["device"])
+	if(topic.has("download"))
+		var/datum/pAI_candidate/candidate = topic.get_and_locate("candidate")
+		var/obj/item/paicard/card = topic.get_and_locate("device")
 		if(isnotnull(card.pai))
 			return
 		if(istype(card, /obj/item/paicard) && istype(candidate, /datum/pAI_candidate))
@@ -42,11 +44,11 @@ CONTROLLER_DEF(pai)
 			global.PCticker.mode.update_rev_icons_removed(card.pai.mind)
 
 			candidates.Remove(candidate)
-			CLOSE_BROWSER(usr, "window=findPai")
+			CLOSE_BROWSER(user, "window=findPai")
 
-	if(href_list["new"])
-		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
-		var/option = href_list["option"]
+	if(topic.has("new"))
+		var/datum/pAI_candidate/candidate = topic.get_and_locate("candidate")
+		var/option = topic.get_str("option")
 		var/t = ""
 
 		switch(option)
@@ -67,9 +69,9 @@ CONTROLLER_DEF(pai)
 				if(t)
 					candidate.comments = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 			if("save")
-				candidate.savefile_save(usr)
+				candidate.savefile_save(user)
 			if("load")
-				candidate.savefile_load(usr)
+				candidate.savefile_load(user)
 				// In case people have saved unsanitized stuff.
 				if(isnotnull(candidate.name))
 					candidate.name = copytext(sanitize(candidate.name), 1, MAX_NAME_LEN)
@@ -87,9 +89,9 @@ CONTROLLER_DEF(pai)
 				for(var/obj/item/paicard/p in GLOBL.movable_atom_list)
 					if(p.looking_for_personality == 1)
 						p.alertUpdate()
-				CLOSE_BROWSER(usr, "window=paiRecruit")
+				CLOSE_BROWSER(user, "window=paiRecruit")
 				return
-		recruit_window(usr)
+		recruit_window(user)
 
 /datum/controller/pai/proc/recruit_window(mob/M)
 	var/datum/pAI_candidate/candidate

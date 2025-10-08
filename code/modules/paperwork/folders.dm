@@ -52,33 +52,35 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/folder/Topic(href, href_list)
-	..()
-	if((usr.stat || usr.restrained()))
-		return
+/obj/item/folder/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if((user.stat || user.restrained()))
+		return FALSE
+	if(!user.contents.Find(src))
+		return FALSE
 
-	if(usr.contents.Find(src))
-		if(href_list["remove"])
-			var/obj/item/P = locate(href_list["remove"])
-			if(P && P.loc == src)
-				P.forceMove(usr.loc)
-				usr.put_in_hands(P)
+	if(topic.has("remove"))
+		var/obj/item/P = topic.get_and_locate("remove")
+		if(P?.loc == src)
+			P.forceMove(user.loc)
+			user.put_in_hands(P)
 
-		if(href_list["read"])
-			var/obj/item/paper/P = locate(href_list["read"])
-			if(P)
-				if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-					SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
-				else
-					SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
-		if(href_list["look"])
-			var/obj/item/photo/P = locate(href_list["look"])
-			if(P)
-				P.show(usr)
+	if(topic.has("read"))
+		var/obj/item/paper/P = topic.get_and_locate("read")
+		if(isnotnull(P))
+			if(!(ishuman(user) || isghost(user) || issilicon(user)))
+				SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+				onclose(user, "[P.name]")
+			else
+				SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+				onclose(user, "[P.name]")
 
-		//Update everything
-		attack_self(usr)
-		update_icon()
-	return
+	if(topic.has("look"))
+		var/obj/item/photo/P = topic.get_and_locate("look")
+		P?.show(user)
+
+	//Update everything
+	attack_self(user)
+	update_icon()

@@ -1,30 +1,32 @@
-/datum/mind/Topic(href, href_list)
+/datum/mind/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
+	if(!.)
+		return FALSE
 
 	if(!check_rights(R_ADMIN))
-		return
+		return FALSE
 
-	if(href_list["role_edit"])
+	if(topic.has("role_edit"))
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null | anything in GLOBL.all_jobs
 		if(isnull(new_role))
-			return
+			return FALSE
 		assigned_role = new_role
 
-	else if(href_list["memory_edit"])
+	else if(topic.has("memory_edit"))
 		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null | message), 1, MAX_MESSAGE_LEN)
 		if(isnull(new_memo))
-			return
+			return FALSE
 		memory = new_memo
 
-	else if(href_list["obj_edit"] || href_list["obj_add"])
+	else if(topic.has("obj_edit") || topic.has("obj_add"))
 		var/datum/objective/objective
 		var/objective_pos
 		var/def_value
 
-		if(href_list["obj_edit"])
-			objective = locate(href_list["obj_edit"])
+		if(topic.has("obj_edit"))
+			objective = topic.get_and_locate("obj_edit")
 			if(!objective)
-				return
+				return FALSE
 			objective_pos = objectives.Find(objective)
 
 			// Text strings are easy to manipulate. Revised for simplicity.
@@ -35,7 +37,7 @@
 
 		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null | anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "nuclear", "capture", "absorb", "custom")
 		if(isnull(new_obj_type))
-			return
+			return FALSE
 
 		var/datum/objective/new_objective = null
 
@@ -59,7 +61,7 @@
 
 				var/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
 				if(isnull(new_target))
-					return
+					return FALSE
 
 				var/objective_path = text2path("/datum/objective/[new_obj_type]")
 				if(new_target == "Free objective")
@@ -102,7 +104,7 @@
 					new_objective = objective
 				var/datum/objective/steal/steal = new_objective
 				if(!steal.select_target())
-					return
+					return FALSE
 
 			if("download", "capture", "absorb")
 				var/def_num
@@ -111,7 +113,7 @@
 
 				var/target_number = input("Input target number:", "Objective", def_num) as num | null
 				if(isnull(target_number)) // Ordinarily, you wouldn't need isnull. In this case, the value may already exist.
-					return
+					return FALSE
 
 				switch(new_obj_type)
 					if("download")
@@ -129,13 +131,13 @@
 			if("custom")
 				var/expl = copytext(sanitize(input("Custom objective:", "Objective", objective ? objective.explanation_text : "") as text | null), 1, MAX_MESSAGE_LEN)
 				if(isnull(expl))
-					return
+					return FALSE
 				new_objective = new /datum/objective()
 				new_objective.owner = src
 				new_objective.explanation_text = expl
 
 		if(isnull(new_objective))
-			return
+			return FALSE
 
 		if(isnotnull(objective))
 			objectives.Remove(objective)
@@ -143,22 +145,22 @@
 		else
 			objectives.Add(new_objective)
 
-	else if(href_list["obj_delete"])
-		var/datum/objective/objective = locate(href_list["obj_delete"])
+	else if(topic.has("obj_delete"))
+		var/datum/objective/objective = topic.get_and_locate("obj_delete")
 		if(!istype(objective))
-			return
+			return FALSE
 		objectives.Remove(objective)
 
-	else if(href_list["obj_completed"])
-		var/datum/objective/objective = locate(href_list["obj_completed"])
+	else if(topic.has("obj_completed"))
+		var/datum/objective/objective = topic.get_and_locate("obj_completed")
 		if(!istype(objective))
-			return
+			return FALSE
 		objective.completed = !objective.completed
 
-	else if(href_list["implant"])
+	else if(topic.has("implant"))
 		var/mob/living/carbon/human/H = current
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)	// Updates that players HUD images so secHUD's pick up they are implanted or not.
-		switch(href_list["implant"])
+		switch(topic.get_str("implant"))
 			if("shieldremove")
 				for(var/obj/item/implant/mindshield/I in H.contents)
 					for(var/datum/organ/external/organs in H.organs)
@@ -214,11 +216,11 @@
 					global.PCticker.mode.traitors.Remove(src)
 					special_role = null
 					to_chat(current, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a traitor to NanoTrasen. Have a nice day!</font>"))
-					log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
+					log_admin("[key_name_admin(user)] has de-traitor'ed [current].")
 
-	else if(href_list["revolution"])
+	else if(topic.has("revolution"))
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["revolution"])
+		switch(topic.get_str("revolution"))
 			if("clear")
 				if(src in global.PCticker.mode.revolutionaries)
 					global.PCticker.mode.revolutionaries.Remove(src)
@@ -231,7 +233,7 @@
 					global.PCticker.mode.update_rev_icons_removed(src)
 					special_role = null
 					current.verbs.Remove(/mob/living/carbon/human/proc/RevConvert)
-				log_admin("[key_name_admin(usr)] has de-rev'ed [current].")
+				log_admin("[key_name_admin(user)] has de-rev'ed [current].")
 
 			if("rev")
 				if(src in global.PCticker.mode.head_revolutionaries)
@@ -242,11 +244,11 @@
 					to_chat(current, SPAN_WARNING("<font size=3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</font>"))
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 				else
-					return
+					return FALSE
 				global.PCticker.mode.revolutionaries.Add(src)
 				global.PCticker.mode.update_rev_icons_added(src)
 				special_role = "Revolutionary"
-				log_admin("[key_name(usr)] has rev'ed [current].")
+				log_admin("[key_name(user)] has rev'ed [current].")
 
 			if("headrev")
 				if(src in global.PCticker.mode.revolutionaries)
@@ -257,7 +259,7 @@
 				else if(!(src in global.PCticker.mode.head_revolutionaries))
 					to_chat(current, SPAN_INFO("You are a member of the revolutionaries' leadership now!"))
 				else
-					return
+					return FALSE
 				if(length(global.PCticker.mode.head_revolutionaries))
 					// copy targets
 					var/datum/mind/valid_head = locate() in global.PCticker.mode.head_revolutionaries
@@ -273,29 +275,29 @@
 				global.PCticker.mode.head_revolutionaries.Add(src)
 				global.PCticker.mode.update_rev_icons_added(src)
 				special_role = "Head Revolutionary"
-				log_admin("[key_name_admin(usr)] has head-rev'ed [current].")
+				log_admin("[key_name_admin(user)] has head-rev'ed [current].")
 
 			if("autoobjectives")
 				global.PCticker.mode.forge_revolutionary_objectives(src)
 				global.PCticker.mode.greet_revolutionary(src, 0)
-				to_chat(usr, SPAN_INFO("The objectives for revolution have been generated and shown to [key]."))
+				to_chat(user, SPAN_INFO("The objectives for revolution have been generated and shown to [key]."))
 
 			if("flash")
 				if(!global.PCticker.mode.equip_revolutionary(current))
-					to_chat(usr, SPAN_WARNING("Spawning flash failed!"))
+					to_chat(user, SPAN_WARNING("Spawning flash failed!"))
 
 			if("takeflash")
 				var/list/L = current.get_contents()
 				var/obj/item/flash/flash = locate() in L
 				if(isnull(flash))
-					to_chat(usr, SPAN_WARNING("Deleting flash failed!"))
+					to_chat(user, SPAN_WARNING("Deleting flash failed!"))
 				qdel(flash)
 
 			if("repairflash")
 				var/list/L = current.get_contents()
 				var/obj/item/flash/flash = locate() in L
 				if(isnull(flash))
-					to_chat(usr, SPAN_WARNING("Repairing flash failed!"))
+					to_chat(user, SPAN_WARNING("Repairing flash failed!"))
 				else
 					flash.broken = 0
 
@@ -308,11 +310,11 @@
 				fail |= !global.PCticker.mode.equip_traitor(current, 1)
 				fail |= !global.PCticker.mode.equip_revolutionary(current)
 				if(fail)
-					to_chat(usr, SPAN_WARNING("Re-equipping revolutionary goes wrong!"))
+					to_chat(user, SPAN_WARNING("Re-equipping revolutionary goes wrong!"))
 
-	else if(href_list["cult"])
+	else if(topic.has("cult"))
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["cult"])
+		switch(topic.get_str("cult"))
 			if("clear")
 				if(src in global.PCticker.mode.cult)
 					global.PCticker.mode.cult.Remove(src)
@@ -324,7 +326,7 @@
 							cult.memoize_cult_objectives(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a cultist!</font>"))
 					memory = ""
-					log_admin("[key_name_admin(usr)] has de-cult'ed [current].")
+					log_admin("[key_name_admin(user)] has de-cult'ed [current].")
 			if("cultist")
 				if(!(src in global.PCticker.mode.cult))
 					global.PCticker.mode.cult.Add(src)
@@ -337,7 +339,7 @@
 					if(istype(cult))
 						if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 							cult.memoize_cult_objectives(src)
-					log_admin("[key_name_admin(usr)] has cult'ed [current].")
+					log_admin("[key_name_admin(user)] has cult'ed [current].")
 			if("tome")
 				var/mob/living/carbon/human/H = current
 				if(istype(H))
@@ -352,24 +354,24 @@
 					)
 					var/where = H.equip_in_one_of_slots(T, slots)
 					if(isnull(where))
-						to_chat(usr, SPAN_WARNING("Spawning tome failed!"))
+						to_chat(user, SPAN_WARNING("Spawning tome failed!"))
 					else
 						to_chat(H, "A tome, a message from your new master, appears in your [where].")
 
 			if("amulet")
 				if(!global.PCticker.mode.equip_cultist(current))
-					to_chat(usr, SPAN_WARNING("Spawning amulet failed!"))
+					to_chat(user, SPAN_WARNING("Spawning amulet failed!"))
 
-	else if(href_list["wizard"])
+	else if(topic.has("wizard"))
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["wizard"])
+		switch(topic.get_str("wizard"))
 			if("clear")
 				if(src in global.PCticker.mode.wizards)
 					global.PCticker.mode.wizards.Remove(src)
 					special_role = null
 					current.spellremove(current, CONFIG_GET(/decl/configuration_entry/feature_object_spell_system) ? "object": "verb")
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a wizard!</font>"))
-					log_admin("[key_name_admin(usr)] has de-wizard'ed [current].")
+					log_admin("[key_name_admin(user)] has de-wizard'ed [current].")
 			if("wizard")
 				if(!(src in global.PCticker.mode.wizards))
 					global.PCticker.mode.wizards.Add(src)
@@ -377,7 +379,7 @@
 					//ticker.mode.learn_basic_spells(current)
 					to_chat(current, SPAN_DANGER("You are the Space Wizard!"))
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
-					log_admin("[key_name_admin(usr)] has wizard'ed [current].")
+					log_admin("[key_name_admin(user)] has wizard'ed [current].")
 			if("lair")
 				current.forceMove(pick(GLOBL.wizardstart))
 			if("dressup")
@@ -387,11 +389,11 @@
 			if("autoobjectives")
 				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					global.PCticker.mode.forge_wizard_objectives(src)
-					to_chat(usr, SPAN_INFO("The objectives for wizard [key] have been generated. You can edit them and anounce manually."))
+					to_chat(user, SPAN_INFO("The objectives for wizard [key] have been generated. You can edit them and anounce manually."))
 
-	else if(href_list["changeling"])
+	else if(topic.has("changeling"))
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["changeling"])
+		switch(topic.get_str("changeling"))
 			if("clear")
 				if(src in global.PCticker.mode.changelings)
 					global.PCticker.mode.changelings.Remove(src)
@@ -401,7 +403,7 @@
 					if(isnotnull(changeling))
 						qdel(changeling)
 					to_chat(current, SPAN_DANGER("<font size=3>You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!</font>"))
-					log_admin("[key_name_admin(usr)] has de-changeling'ed [current].")
+					log_admin("[key_name_admin(user)] has de-changeling'ed [current].")
 			if("changeling")
 				if(!(src in global.PCticker.mode.changelings))
 					global.PCticker.mode.changelings.Add(src)
@@ -410,25 +412,25 @@
 					to_chat(current, SPAN_DANGER("Your powers are awoken. A flash of memory returns to us... we are a changeling!"))
 					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
-					log_admin("[key_name_admin(usr)] has changeling'ed [current].")
+					log_admin("[key_name_admin(user)] has changeling'ed [current].")
 			if("autoobjectives")
 				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					global.PCticker.mode.forge_changeling_objectives(src)
-				to_chat(usr, SPAN_INFO("The objectives for changeling [key] have been generated. You can edit them and anounce manually."))
+				to_chat(user, SPAN_INFO("The objectives for changeling [key] have been generated. You can edit them and anounce manually."))
 
 			if("initialdna")
 				if(isnull(changeling) || !length(changeling.absorbed_dna))
-					to_chat(usr, SPAN_WARNING("Resetting DNA failed!"))
+					to_chat(user, SPAN_WARNING("Resetting DNA failed!"))
 				else
 					current.dna = changeling.absorbed_dna[1]
 					current.real_name = current.dna.real_name
 					current.UpdateAppearance()
 					domutcheck(current, null)
 
-	else if(href_list["nuclear"])
+	else if(topic.has("nuclear"))
 		var/mob/living/carbon/human/H = current
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["nuclear"])
+		switch(topic.get_str("nuclear"))
 			if("clear")
 				if(src in global.PCticker.mode.syndicates)
 					global.PCticker.mode.syndicates.Remove(src)
@@ -437,7 +439,7 @@
 					for(var/datum/objective/nuclear/O in objectives)
 						objectives.Remove(O)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a Syndicate operative!</font>"))
-					log_admin("[key_name_admin(usr)] has de-nuke op'ed [current].")
+					log_admin("[key_name_admin(user)] has de-nuke op'ed [current].")
 			if("nuclear")
 				if(!(src in global.PCticker.mode.syndicates))
 					global.PCticker.mode.syndicates.Add(src)
@@ -453,7 +455,7 @@
 					else
 						global.PCticker.mode.forge_syndicate_objectives(src)
 					global.PCticker.mode.greet_syndicate(src)
-					log_admin("[key_name_admin(usr)] has nuke op'ed [current].")
+					log_admin("[key_name_admin(user)] has nuke op'ed [current].")
 			if("lair")
 				current.forceMove(GET_TURF(locate("landmark*Syndicate-Spawn")))
 			if("dressup")
@@ -469,7 +471,7 @@
 				qdel(H.wear_uniform)
 
 				if(!H.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear))
-					to_chat(usr, SPAN_WARNING("Equipping a Syndicate failed!"))
+					to_chat(user, SPAN_WARNING("Equipping a Syndicate failed!"))
 			if("tellcode")
 				var/code
 				FOR_MACHINES_TYPED(bomb, /obj/machinery/nuclearbomb)
@@ -480,17 +482,17 @@
 					store_memory("<B>Syndicate Nuclear Bomb Code</B>: [code]", 0, 0)
 					to_chat(current, "The nuclear authorisation code is: <B>[code]</B>.")
 				else
-					to_chat(usr, SPAN_WARNING("No valid nuke found!"))
+					to_chat(user, SPAN_WARNING("No valid nuke found!"))
 
-	else if(href_list["traitor"])
+	else if(topic.has("traitor"))
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["traitor"])
+		switch(topic.get_str("traitor"))
 			if("clear")
 				if(src in global.PCticker.mode.traitors)
 					global.PCticker.mode.traitors.Remove(src)
 					special_role = null
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a traitor!</font>"))
-					log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
+					log_admin("[key_name_admin(user)] has de-traitor'ed [current].")
 					if(isAI(current))
 						var/mob/living/silicon/ai/A = current
 						A.set_zeroth_law("")
@@ -501,7 +503,7 @@
 					global.PCticker.mode.traitors.Add(src)
 					special_role = "traitor"
 					to_chat(current, SPAN_DANGER("You are a traitor!"))
-					log_admin("[key_name_admin(usr)] has traitor'ed [current].")
+					log_admin("[key_name_admin(user)] has traitor'ed [current].")
 					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 					if(issilicon(current))
@@ -512,20 +514,20 @@
 			if("autoobjectives")
 				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					global.PCticker.mode.forge_traitor_objectives(src)
-					to_chat(usr, SPAN_INFO("The objectives for traitor [key] have been generated. You can edit them and anounce manually."))
+					to_chat(user, SPAN_INFO("The objectives for traitor [key] have been generated. You can edit them and anounce manually."))
 
-	else if(href_list["monkey"])
+	else if(topic.has("monkey"))
 		var/mob/living/L = current
 		if(L.monkeyizing)
-			return
-		switch(href_list["monkey"])
+			return FALSE
+		switch(topic.get_str("monkey"))
 			if("healthy")
-				if(usr.client.holder.rights & R_ADMIN)
+				if(user.client.holder.rights & R_ADMIN)
 					var/mob/living/carbon/human/H = current
 					var/mob/living/carbon/monkey/M = current
 					if(istype(H))
-						log_admin("[key_name(usr)] attempting to monkeyize [key_name(current)].")
-						message_admins(SPAN_INFO("[key_name_admin(usr)] attempting to monkeyize [key_name_admin(current)]."))
+						log_admin("[key_name(user)] attempting to monkeyize [key_name(current)].")
+						message_admins(SPAN_INFO("[key_name_admin(user)] attempting to monkeyize [key_name_admin(current)]."))
 						qdel(src)
 						M = H.monkeyize()
 						src = M.mind
@@ -535,12 +537,12 @@
 							D.cure(0)
 						sleep(0) //because deleting of virus is done through spawn(0)
 			if("infected")
-				if(usr.client.holder.rights & R_ADMIN)
+				if(user.client.holder.rights & R_ADMIN)
 					var/mob/living/carbon/human/H = current
 					var/mob/living/carbon/monkey/M = current
 					if(istype(H))
-						log_admin("[key_name(usr)] attempting to monkeyize and infect [key_name(current)].")
-						message_admins(SPAN_INFO("[key_name_admin(usr)] attempting to monkeyize and infect [key_name_admin(current)]."), 1)
+						log_admin("[key_name(user)] attempting to monkeyize and infect [key_name(current)].")
+						message_admins(SPAN_INFO("[key_name_admin(user)] attempting to monkeyize and infect [key_name_admin(current)]."), 1)
 						qdel(src)
 						M = H.monkeyize()
 						src = M.mind
@@ -554,8 +556,8 @@
 						if(istype(D, /datum/disease/jungle_fever))
 							D.cure(0)
 							sleep(0) //because deleting of virus is doing throught spawn(0)
-					log_admin("[key_name(usr)] attempting to humanize [key_name(current)].")
-					message_admins(SPAN_INFO("[key_name_admin(usr)] attempting to humanize [key_name_admin(current)]."))
+					log_admin("[key_name(user)] attempting to humanize [key_name(current)].")
+					message_admins(SPAN_INFO("[key_name_admin(user)] attempting to humanize [key_name_admin(current)]."))
 					var/obj/item/dnainjector/m2h/m2h = new
 					var/obj/item/implant/mobfinder = new(M) //hack because humanizing deletes mind --rastaf0
 					qdel(src)
@@ -564,9 +566,9 @@
 					qdel(mobfinder)
 					current.radiation -= 50
 
-	else if(href_list["silicon"])
+	else if(topic.has("silicon"))
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["silicon"])
+		switch(topic.get_str("silicon"))
 			if("unmalf")
 				if(src in global.PCticker.mode.malf_ai)
 					global.PCticker.mode.malf_ai.Remove(src)
@@ -592,27 +594,27 @@
 					current.icon_state = "ai"
 
 					to_chat(current, SPAN_DANGER("<font size=3>You have been patched! You are no longer malfunctioning!</font>"))
-					log_admin("[key_name_admin(usr)] has de-malf'ed [current].")
+					log_admin("[key_name_admin(user)] has de-malf'ed [current].")
 
 			if("malf")
 				make_ai_malfunction()
-				log_admin("[key_name_admin(usr)] has malf'ed [current].")
+				log_admin("[key_name_admin(user)] has malf'ed [current].")
 
 			if("unemag")
 				var/mob/living/silicon/robot/robby = current
 				if(istype(robby))
 					robby.unemag()
-					log_admin("[key_name_admin(usr)] has unemag'ed [robby].")
+					log_admin("[key_name_admin(user)] has unemag'ed [robby].")
 
 			if("unemagcyborgs")
 				if(isAI(current))
 					var/mob/living/silicon/ai/ai = current
 					for(var/mob/living/silicon/robot/robby in ai.connected_robots)
 						robby.unemag()
-					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
+					log_admin("[key_name_admin(user)] has unemag'ed [ai]'s Cyborgs.")
 
-	else if(href_list["common"])
-		switch(href_list["common"])
+	else if(topic.has("common"))
+		switch(topic.get_str("common"))
 			if("undress")
 				for(var/obj/item/W in current)
 					current.drop_from_inventory(W)
@@ -620,7 +622,7 @@
 				take_uplink()
 				memory = null // Remove any memory they may have had.
 			if("crystals")
-				if(usr.client.holder.rights & R_FUN)
+				if(user.client.holder.rights & R_FUN)
 					var/obj/item/uplink/hidden/suplink = find_syndicate_uplink()
 					var/crystals = suplink?.uses
 					crystals = input("Amount of telecrystals for [key]", "Syndicate uplink", crystals) as null | num
@@ -628,9 +630,9 @@
 						suplink?.uses = crystals
 			if("uplink")
 				if(!global.PCticker.mode.equip_traitor(current, !(src in global.PCticker.mode.traitors)))
-					to_chat(usr, SPAN_WARNING("Equipping a Syndicate failed!"))
+					to_chat(user, SPAN_WARNING("Equipping a Syndicate failed!"))
 
-	else if(href_list["obj_announce"])
+	else if(topic.has("obj_announce"))
 		var/obj_count = 1
 		to_chat(current, SPAN_INFO("Your current objectives:"))
 		for(var/datum/objective/objective in objectives)

@@ -111,31 +111,30 @@
 	onclose(user, "infra")
 	return
 
-/obj/item/assembly/infra/Topic(href, href_list)
-	..()
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		CLOSE_BROWSER(usr, "window=infra")
-		onclose(usr, "infra")
-		return
+/obj/item/assembly/infra/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
+		CLOSE_BROWSER(user, "window=infra")
+		onclose(user, "infra")
+		return FALSE
 
-	if(href_list["state"])
+	if(topic.has("state"))
 		on = !(on)
 		update_icon()
 
-	if(href_list["visible"])
-		visible = !(visible)
+	if(topic.has("visible"))
+		visible = !visible
 		spawn(0)
-			if(first)
-				first.vis_spread(visible)
+			first?.vis_spread(visible)
 
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=infra")
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=infra")
 		return
 
-	if(usr)
-		attack_self(usr)
-
-	return
+	if(isnotnull(user))
+		attack_self(user)
 
 /obj/item/assembly/infra/verb/rotate() //This could likely be better
 	set category = PANEL_OBJECT

@@ -372,17 +372,19 @@
 
 	return values
 
-/obj/item/cartridge/Topic(href, href_list)
-	..()
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=pda")
-		return
+/obj/item/cartridge/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
+		user.unset_machine()
+		CLOSE_BROWSER(user, "window=pda")
+		return FALSE
 
-	switch(href_list["choice"])
+	switch(topic.get_str("choice"))
 		if("Medical Records")
-			var/datum/record/R = locate(href_list["target"])
-			var/datum/record/M = locate(href_list["target"])
+			var/datum/record/R = topic.get_and_locate("target")
+			var/datum/record/M = R
 			loc:mode = 441
 			mode = 441
 			if(R in GLOBL.data_core.general)
@@ -394,8 +396,8 @@
 				active2 = M
 
 		if("Security Records")
-			var/datum/record/R = locate(href_list["target"])
-			var/datum/record/S = locate(href_list["target"])
+			var/datum/record/R = topic.get_and_locate("target")
+			var/datum/record/S = R
 			loc:mode = 451
 			mode = 451
 			if(R in GLOBL.data_core.general)
@@ -412,21 +414,21 @@
 				return
 
 		if("Signal Frequency")
-			var/new_frequency = sanitize_frequency(radio:frequency + text2num(href_list["sfreq"]))
+			var/new_frequency = sanitize_frequency(radio:frequency + topic.get_num("sfreq"))
 			radio:radio_connection = register_radio(radio, new_frequency, new_frequency, null)
 
 		if("Signal Code")
-			radio:code += text2num(href_list["scode"])
+			radio:code += topic.get_num("scode")
 			radio:code = round(radio:code)
 			radio:code = min(100, radio:code)
 			radio:code = max(1, radio:code)
 
-		if(PANEL_STATUS)
-			switch(href_list["statdisp"])
+		if("Status")
+			switch(topic.get_str("statdisp"))
 				if("message")
 					post_status("message", message1, message2)
 				if("alert")
-					post_status("alert", href_list["alert"])
+					post_status("alert", topic.get_str("alert"))
 				if("setmsg1")
 					message1 = input("Line 1", "Enter Message Text", message1) as text | null
 					updateSelfDialog()
@@ -434,11 +436,9 @@
 					message2 = input("Line 2", "Enter Message Text", message2) as text | null
 					updateSelfDialog()
 				else
-					post_status(href_list["statdisp"])
+					post_status(topic.get_str("statdisp"))
+
 		if("Power Select")
-			var/pref = href_list["target"]
-			powmonitor = locate(pref)
+			powmonitor = topic.get_and_locate("target")
 			loc:mode = 433
 			mode = 433
-
-	return 1

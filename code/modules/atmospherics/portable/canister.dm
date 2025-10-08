@@ -265,40 +265,40 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
+/obj/machinery/portable_atmospherics/canister/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict.
+	// Do not use "if(!.) return FALSE" here or canisters will stop working in unpowered areas like space or on the derelict!
 	if(!isturf(loc))
-		return 0
+		return FALSE
 
-	if(href_list["toggle"])
+	if(topic.has("toggle"))
 		if(valve_open)
 			if(isnotnull(holding))
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+				release_log += "Valve was <b>closed</b> by [user] ([user.ckey]), stopping the transfer into the [holding]<br>"
 			else
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
+				release_log += "Valve was <b>closed</b> by [user] ([user.ckey]), stopping the transfer into the [SPAN_DANGER("air")]<br>"
 		else
 			if(isnotnull(holding))
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
+				release_log += "Valve was <b>opened</b> by [user] ([user.ckey]), starting the transfer into the [holding]<br>"
 			else
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
+				release_log += "Valve was <b>opened</b> by [user] ([user.ckey]), starting the transfer into the [SPAN_DANGER("air")]<br>"
 		valve_open = !valve_open
 
-	if(href_list["remove_tank"])
+	if(topic.has("remove_tank"))
 		if(isnotnull(holding))
 			if(istype(holding, /obj/item/tank))
-				holding.manipulated_by = usr.real_name
+				holding.manipulated_by = user.real_name
 			holding.forceMove(loc)
 			holding = null
 
-	if(href_list["pressure_adj"])
-		var/diff = text2num(href_list["pressure_adj"])
+	if(topic.has("pressure_adj"))
+		var/diff = topic.get_num("pressure_adj")
 		if(diff > 0)
 			release_pressure = min(10 * ONE_ATMOSPHERE, release_pressure + diff)
 		else
 			release_pressure = max(ONE_ATMOSPHERE / 10, release_pressure + diff)
 
-	if(href_list["relabel"])
+	if(topic.has("relabel"))
 		if(can_label)
 			var/label = input("Choose canister label", "Gas Canister") as null | anything in all_colours
 			if(isnotnull(label))
@@ -306,10 +306,8 @@
 				icon_state = all_colours[label]
 				name = "Canister: [label]"
 
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	update_icon()
-
-	return 1
 
 // Edited canister icon names to be more consistent, and added a few more. -Frenjo
 // Oxygen

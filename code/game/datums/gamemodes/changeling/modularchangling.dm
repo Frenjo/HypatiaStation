@@ -448,16 +448,18 @@ var/list/datum/power/changeling/powerinstances = list()
 	SHOW_BROWSER(usr, dat, "window=powers;size=900x480")
 
 
-/datum/changeling/Topic(href, href_list)
-	..()
-	if(!ismob(usr))
-		return
+/datum/changeling/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ismob(user))
+		return FALSE
 
-	if(href_list["P"])
-		var/datum/mind/M = usr.mind
+	if(topic.has("P"))
+		var/datum/mind/M = user.mind
 		if(!istype(M))
 			return
-		purchasePower(M, href_list["P"])
+		purchasePower(M, topic.get_str("P"))
 		call(/datum/changeling/proc/EvolutionMenu)()
 
 

@@ -256,24 +256,26 @@
 				to_chat(usr, SPAN_WARNING("You must hold \the [P] steady to burn \the [src]."))
 
 
-/obj/item/paper/Topic(href, href_list)
-	..()
-	if(!usr || (usr.stat || usr.restrained()))
-		return
+/obj/item/paper/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!user || (user.stat || user.restrained()))
+		return FALSE
 
-	if(href_list["write"])
-		var/id = href_list["write"]
+	if(topic.has("write"))
+		var/id = topic.get_str("write")
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 		//var/t =  strip_html_simple(input("Enter what you want to write:", "Write", null, null)  as message, MAX_MESSAGE_LEN)
 		var/t = input("Enter what you want to write:", "Write", null, null) as message
-		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
+		var/obj/item/i = user.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/pen))
 			if(!istype(i, /obj/item/toy/crayon))
 				return
 			iscrayon = 1
 
-		if((!in_range(src, usr) && loc != usr && !(istype(loc, /obj/item/clipboard)) && loc.loc != usr && usr.get_active_hand() != i)) // Some check to see if he's allowed to write
+		if((!in_range(src, user) && loc != user && !(istype(loc, /obj/item/clipboard)) && loc.loc != user && user.get_active_hand() != i)) // Some check to see if he's allowed to write
 			return
 
 		t = checkhtml(t)
@@ -281,24 +283,23 @@
 		// check for exploits
 		for(var/bad in paper_blacklist)
 			if(findtext(t, bad))
-				to_chat(usr, SPAN_INFO("You think to yourself, \"Hm.. this is only paper...\""))
-				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
-				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
+				to_chat(user, SPAN_INFO("You think to yourself, \"Hm.. this is only paper...\""))
+				log_admin("PAPER: [user] ([user.ckey]) tried to use forbidden word in [src]: [bad].")
+				message_admins("PAPER: [user] ([user.ckey]) tried to use forbidden word in [src]: [bad].")
 				return
 
 		t = replacetext(t, "\n", "<BR>")
-		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
+		t = parsepencode(t, i, user, iscrayon) // Encode everything from pencode to html
 
-		if(id!="end")
+		if(id != "end")
 			addtofield(text2num(id), t) // He wants to edit a field, let him.
 		else
 			info += t // Oh, he wants to edit to the end of the file, let him.
 			updateinfolinks()
 
-		SHOW_BROWSER(usr, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		update_icon()
-
 
 /obj/item/paper/attackby(obj/item/P, mob/user)
 	..()

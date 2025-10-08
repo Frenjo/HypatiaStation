@@ -356,17 +356,17 @@
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0
-			else if((isnotnull(cartridge)) && (cartridge.access_medical))
+			else if(cartridge?.access_medical)
 				scanmode = 1
 		if("Reagent Scan")
 			if(scanmode == 3)
 				scanmode = 0
-			else if((isnotnull(cartridge)) && (cartridge.access_reagent_scanner))
+			else if(cartridge?.access_reagent_scanner)
 				scanmode = 3
 		if("Halogen Counter")
 			if(scanmode == 4)
 				scanmode = 0
-			else if((isnotnull(cartridge)) && (cartridge.access_engine))
+			else if(cartridge?.access_engine)
 				scanmode = 4
 		if("Honk")
 			if(!(last_honk && world.time < last_honk + 20))
@@ -375,7 +375,7 @@
 		if("Gas Scan")
 			if(scanmode == 5)
 				scanmode = 0
-			else if((isnotnull(cartridge)) && (cartridge.access_atmos))
+			else if(cartridge?.access_atmos)
 				scanmode = 5
 
 //MESSENGER/NOTE FUNCTIONS===================================
