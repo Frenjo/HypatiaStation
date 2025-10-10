@@ -9,7 +9,7 @@
 	if(isnull(mob))
 		return
 	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+		to_chat(src, SPAN_WARNING("Guests may not use OOC."))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -20,7 +20,7 @@
 		to_chat(src, SPAN_WARNING("You have OOC muted."))
 		return
 
-	if(isnull(holder) || holder.rank == "Donor") // This is ugly, but I Can't figure out any easy way without duplicating code to confirm the user is not a donor while being a holder using rights.
+	if(isnull(holder))
 		if(!CONFIG_GET(/decl/configuration_entry/ooc_allowed))
 			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
@@ -33,7 +33,7 @@
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, SPAN_DANGER("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
@@ -99,7 +99,7 @@
 	if(isnull(mob))
 		return
 	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+		to_chat(src, SPAN_WARNING("Guests may not use OOC."))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -123,9 +123,9 @@
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			to_chat(src, SPAN_DANGER("Advertising other servers is not allowed."))
+			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
 			return
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")

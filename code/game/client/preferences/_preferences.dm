@@ -134,7 +134,7 @@
 
 	character.real_name = real_name
 	character.name = character.real_name
-	if(character.dna)
+	if(isnotnull(character.dna))
 		character.dna.real_name = character.real_name
 	character.species = GLOBL.all_species[species]
 
