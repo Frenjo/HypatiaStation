@@ -2,7 +2,7 @@
 #define LAZYINITLIST(L) if(isnull(L)) L = list()
 #define LAZYINITALIST(L) if(isnull(L)) L = alist()
 
-// Removes I from list L, and sets I to null if it is now empty.
+// Removes I from list L, and sets L to null if it is now empty.
 #define LAZYREMOVE(L, I) if(isnotnull(L)) { L -= I; if(!length(L)) { L = null; } }
 
 // Adds I to L, initalizing L if necessary.

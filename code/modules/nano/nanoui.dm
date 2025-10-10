@@ -42,7 +42,7 @@ nanoui is used to open and update nano browser uis
 	// the #mainTemplate div will contain the compiled "main" template html
 	var/content = "<div id='mainTemplate'></div>"
 	// initial data, containing the full data structure, must be sent to the ui (the data structure cannot be extended later on)
-	var/list/initial_data = list()
+	var/alist/initial_data = alist()
 	// Set to TRUE to update the ui automatically every master_controller tick
 	var/is_auto_updating = FALSE
 	// the current status/visibility of the ui

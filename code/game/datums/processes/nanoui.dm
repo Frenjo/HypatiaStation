@@ -174,7 +174,7 @@ PROCESS_DEF(nanoui)
 	if(isnotnull(ui.user)) // Sanity check in case a user has been deleted, IE a blown up borg watching the alarm interface.
 		LAZYREMOVE(ui.user.opened_uis, ui)
 
-	LAZYREMOVE(src_object.open_uis[ui.ui_key], ui)
+	LAZYREMOVE(src_object.open_uis, ui.ui_key)
 	return TRUE
 
 /*
