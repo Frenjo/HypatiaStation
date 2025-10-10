@@ -150,7 +150,7 @@
 		var/amount = materials.get_type_amount(material_path)
 		. += "<span class=\"res_name\"><font color='[initial(mat.colour_code)]'>[initial(mat.name)]:</font></span> [amount]cm<sup>3</sup>"
 		if(amount > 0)
-			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.max_capacity];material=[material_path]'>All</a>\]</span>"
+			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.get_type_amount(material_path)];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
 
 /obj/machinery/robotics_fabricator/get_examine_text()

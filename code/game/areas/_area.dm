@@ -26,7 +26,7 @@
 	/*
 	 * Unique ID
 	 */
-	var/static/static_uid = 0
+	VAR_PRIVATE/static/_static_uid = 0
 	var/uid
 
 	/*
@@ -89,7 +89,7 @@
 
 /area/New()
 	icon_state = ""
-	uid = ++static_uid
+	uid = ++_static_uid
 
 	. = ..()
 	GLOBL.area_list.Add(src)

@@ -1,19 +1,19 @@
 /datum/material_container
-	var/atom/holder // The atom we're attached to.
+	VAR_PRIVATE/atom/_holder // The atom we're attached to.
 
 	var/alist/stored_materials = alist() // An associative list of /decl/material typepaths to their corresponding amounts in cm3.
-	var/max_capacity = 0 // The total amount of materials in cm3 that this container can store.
-	var/has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
+	VAR_PRIVATE/_max_capacity = 0 // The total amount of materials in cm3 that this container can store.
+	VAR_PRIVATE/_has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
 
-/datum/material_container/New(atom/_holder, list/accepted_materials, per_material_storage = TRUE)
+/datum/material_container/New(atom/holder, list/accepted_materials, per_material_storage = TRUE)
 	. = ..()
-	holder = _holder
+	_holder = holder
 	for(var/material_path in accepted_materials)
 		stored_materials[material_path] = 0
-	has_individual_storage = per_material_storage
+	_has_individual_storage = per_material_storage
 
 /datum/material_container/proc/set_max_capacity(new_max_capacity)
-	max_capacity = new_max_capacity
+	_max_capacity = new_max_capacity
 
 // Returns a boolean indicating whether the container can accept material_path.
 /datum/material_container/proc/can_contain(material_path)
@@ -23,8 +23,8 @@
 /datum/material_container/proc/can_add_amount(material_path, amount)
 	if(!can_contain(material_path))
 		return FALSE
-	var/new_amount = has_individual_storage ? (stored_materials[material_path] + amount) : (get_total_amount() + amount)
-	return new_amount < max_capacity
+	var/new_amount = _has_individual_storage ? (stored_materials[material_path] + amount) : (get_total_amount() + amount)
+	return new_amount < _max_capacity
 
 // Adds amount of material_path to the container if possible.
 /datum/material_container/proc/add_amount(material_path, amount)
@@ -70,14 +70,14 @@
 /datum/material_container/proc/get_total_type_capacity(material_path)
 	if(!can_contain(material_path))
 		return 0
-	return has_individual_storage ? max_capacity : get_total_capacity()
+	return _has_individual_storage ? _max_capacity : get_total_capacity()
 
 // Returns the remaining storage capacity of the provided material type.
 /datum/material_container/proc/get_remaining_type_capacity(material_path)
 	if(!can_contain(material_path))
 		return 0
 	var/capacity = get_total_type_capacity(material_path)
-	return has_individual_storage ? (capacity - get_type_amount(material_path)) : (capacity - get_total_amount())
+	return _has_individual_storage ? (capacity - get_type_amount(material_path)) : (capacity - get_total_amount())
 
 // Returns the total amount of all stored materials.
 /datum/material_container/proc/get_total_amount()
@@ -86,7 +86,7 @@
 
 // Returns the total capacity of the container.
 /datum/material_container/proc/get_total_capacity()
-	return has_individual_storage ? max_capacity * length(stored_materials) : max_capacity
+	return _has_individual_storage ? _max_capacity * length(stored_materials) : _max_capacity
 
 // Ejects all stored material sheets onto the ground.
 /datum/material_container/proc/eject_all_sheets()
@@ -105,7 +105,7 @@
 	var/total_amount = round(stored_materials[material_path] / per_unit)
 	var/sheet_amount = min(total_amount, number)
 	if(sheet_amount > 0 && remove_amount(material_path, sheet_amount * per_unit))
-		new sheet_path(GET_TURF(holder), sheet_amount)
+		new sheet_path(GET_TURF(_holder), sheet_amount)
 		. = sheet_amount
 
 // Adds the provided material amounts to the container's stored materials.
