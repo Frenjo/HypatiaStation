@@ -363,7 +363,7 @@
 	SHOW_BROWSER(user, dat, "window=[ui_id];size=1000x600")
 	onclose(user, ui_id)
 
-/obj/machinery/robotics_fabricator/handle_topic(mob/user, datum/topic_input/topic)
+/obj/machinery/robotics_fabricator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

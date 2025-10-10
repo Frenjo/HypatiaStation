@@ -120,7 +120,7 @@
 		return
 	. += "<br>\[Occupant: [patient] (Health: [patient.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
 
-/obj/item/mecha_equipment/medical/sleeper/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/medical/sleeper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

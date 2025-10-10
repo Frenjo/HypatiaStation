@@ -27,7 +27,7 @@
 		. += "Nothing"
 	. += "</div>"
 
-/obj/mecha/working/handle_topic(mob/user, datum/topic_input/topic)
+/obj/mecha/working/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

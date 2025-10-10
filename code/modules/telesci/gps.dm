@@ -53,7 +53,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
-/obj/item/gps/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/gps/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

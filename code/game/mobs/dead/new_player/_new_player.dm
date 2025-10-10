@@ -76,7 +76,7 @@
 				if(player.ready)
 					totalPlayersReady++
 
-/mob/dead/new_player/handle_topic(mob/user, datum/topic_input/topic)
+/mob/dead/new_player/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

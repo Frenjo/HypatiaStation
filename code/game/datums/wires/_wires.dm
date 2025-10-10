@@ -95,7 +95,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 	return html
 
-/datum/wires/handle_topic(mob/user, datum/topic_input/topic)
+/datum/wires/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!in_range(holder, user))
 		return FALSE

@@ -74,7 +74,7 @@
 	onclose(user, "timer")
 	return
 
-/obj/item/assembly/timer/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/assembly/timer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

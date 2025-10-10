@@ -31,7 +31,7 @@
 			. = channel
 			break
 
-/obj/item/mecha_equipment/tesla_energy_relay/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/tesla_energy_relay/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

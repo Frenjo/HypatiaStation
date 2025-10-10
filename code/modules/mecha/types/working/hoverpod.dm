@@ -49,7 +49,7 @@
 	. += ..()
 
 //Modified phazon code
-/obj/mecha/working/hoverpod/handle_topic(mob/user, datum/topic_input/topic)
+/obj/mecha/working/hoverpod/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

@@ -1,4 +1,4 @@
-/datum/mind/handle_topic(mob/user, datum/topic_input/topic)
+/datum/mind/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

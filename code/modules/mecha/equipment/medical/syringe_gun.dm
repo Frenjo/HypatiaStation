@@ -124,7 +124,7 @@
 		reagents.add_reagent(reagent,amount)
 		chassis.use_power(energy_drain)
 
-/obj/item/mecha_equipment/medical/syringe_gun/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/medical/syringe_gun/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

@@ -77,7 +77,7 @@
 	SHOW_BROWSER(user, dat, "window=locater;size=300x150")
 	onclose(user, "locater")
 
-/obj/item/beacon_locator/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/beacon_locator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

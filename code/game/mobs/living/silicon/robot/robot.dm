@@ -228,7 +228,7 @@
 			return 0
 	return 1
 
-/mob/living/silicon/robot/handle_topic(mob/user, datum/topic_input/topic)
+/mob/living/silicon/robot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

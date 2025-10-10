@@ -288,7 +288,7 @@
 	SHOW_BROWSER(user, dat, "window=violin;size=700x300")
 	onclose(user, "violin")
 
-/obj/item/violin/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/violin/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

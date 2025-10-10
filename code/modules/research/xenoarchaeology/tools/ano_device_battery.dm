@@ -151,7 +151,7 @@
 		if(inserted_battery.battery_effect.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
 
-/obj/item/anodevice/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/anodevice/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

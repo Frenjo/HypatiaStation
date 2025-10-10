@@ -80,7 +80,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/clipboard/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/clipboard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

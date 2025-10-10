@@ -32,7 +32,7 @@
 	STOP_PROCESSING(PCobj, src)
 	. = ..()
 
-/obj/item/mecha_equipment/generator/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/generator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

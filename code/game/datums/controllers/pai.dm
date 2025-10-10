@@ -18,7 +18,7 @@ CONTROLLER_DEF(pai)
 
 	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
 
-/datum/controller/pai/handle_topic(mob/user, datum/topic_input/topic)
+/datum/controller/pai/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

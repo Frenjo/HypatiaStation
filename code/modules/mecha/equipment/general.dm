@@ -34,7 +34,7 @@
 /obj/item/mecha_equipment/repair_droid/get_equip_info()
 	. = "[..()] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[equip_ready ? "A" : "Dea"]ctivate</a>"
 
-/obj/item/mecha_equipment/repair_droid/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/repair_droid/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -225,7 +225,7 @@
 /obj/item/mecha_equipment/gravcatapult/get_equip_info()
 	. = "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"
 
-/obj/item/mecha_equipment/gravcatapult/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/gravcatapult/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

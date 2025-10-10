@@ -90,7 +90,7 @@
 			return
 	to_chat(user, SPAN_NOTICE("You find nothing in [src]."))
 
-/obj/structure/filingcabinet/handle_topic(mob/user, datum/topic_input/topic)
+/obj/structure/filingcabinet/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

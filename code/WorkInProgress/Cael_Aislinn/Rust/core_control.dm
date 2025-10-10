@@ -102,7 +102,7 @@
 	onclose(user, "core_control")
 	user.set_machine(src)
 
-/obj/machinery/computer/rust_core_control/handle_topic(mob/user, datum/topic_input/topic)
+/obj/machinery/computer/rust_core_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

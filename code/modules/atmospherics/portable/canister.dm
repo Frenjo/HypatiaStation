@@ -265,7 +265,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/portable_atmospherics/canister/handle_topic(mob/user, datum/topic_input/topic)
+/obj/machinery/portable_atmospherics/canister/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	// Do not use "if(!.) return FALSE" here or canisters will stop working in unpowered areas like space or on the derelict!
 	if(!isturf(loc))

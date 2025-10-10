@@ -279,7 +279,7 @@ rcd light flash thingy on matter drain
 	SHOW_BROWSER(user, dat, "window=modpicker")
 	onclose(user, "modpicker")
 
-/datum/malf_module/module_picker/handle_topic(mob/user, datum/topic_input/topic)
+/datum/malf_module/module_picker/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

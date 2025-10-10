@@ -155,7 +155,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

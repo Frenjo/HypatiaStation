@@ -88,7 +88,7 @@
 /obj/item/mecha_equipment/passenger/get_equip_info()
 	. = "[..()]<br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
-/obj/item/mecha_equipment/passenger/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/passenger/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

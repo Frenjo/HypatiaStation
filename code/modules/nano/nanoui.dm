@@ -387,7 +387,7 @@ nanoui is used to open and update nano browser uis
   *
   * @return nothing
   */
-/datum/nanoui/handle_topic(mob/user, datum/topic_input/topic)
+/datum/nanoui/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

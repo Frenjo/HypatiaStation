@@ -66,7 +66,7 @@ Code:
 	onclose(user, "radio")
 	return
 
-/obj/item/assembly/signaler/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/assembly/signaler/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

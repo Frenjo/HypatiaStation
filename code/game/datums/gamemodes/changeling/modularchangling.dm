@@ -448,7 +448,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	SHOW_BROWSER(usr, dat, "window=powers;size=900x480")
 
 
-/datum/changeling/handle_topic(mob/user, datum/topic_input/topic)
+/datum/changeling/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

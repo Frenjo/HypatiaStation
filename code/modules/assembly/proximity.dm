@@ -118,7 +118,7 @@
 	onclose(user, "prox")
 	return
 
-/obj/item/assembly/prox_sensor/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/assembly/prox_sensor/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

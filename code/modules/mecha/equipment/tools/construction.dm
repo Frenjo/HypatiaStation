@@ -80,7 +80,7 @@
 					playsound(target, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 	return TRUE
 
-/obj/item/mecha_equipment/tool/rcd/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/tool/rcd/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -137,7 +137,7 @@
 	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 	return TRUE
 
-/obj/item/mecha_equipment/tool/cable_layer/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/tool/cable_layer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

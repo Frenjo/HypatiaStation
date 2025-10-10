@@ -21,9 +21,9 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
-	handle_topic(usr, new /datum/topic_input(href, href_list))
+	. = handle_topic(usr, new /datum/topic_input(href, href_list), .)
 
-/datum/proc/handle_topic(mob/user, datum/topic_input/topic)
+/datum/proc/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	SHOULD_CALL_PARENT(TRUE)
 
 	return TRUE

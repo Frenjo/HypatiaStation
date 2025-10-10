@@ -89,36 +89,38 @@
 		// auto update every Master Controller tick
 		//ui.set_auto_update(1)
 
-/obj/item/transfer_valve/Topic(href, href_list)
-	..()
-	if(usr.stat || usr.restrained())
-		return 0
-	if(src.loc != usr)
-		return 0
-	if(tank_one && href_list["tankone"])
+/obj/item/transfer_valve/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.stat || user.restrained())
+		return FALSE
+	if(loc != user)
+		return FALSE
+
+	if(isnotnull(tank_one) && topic.has("tankone"))
 		split_gases()
 		valve_open = 0
 		tank_one.forceMove(GET_TURF(src))
 		tank_one = null
 		update_icon()
-	else if(tank_two && href_list["tanktwo"])
+	else if(isnotnull(tank_two) && topic.has("tanktwo"))
 		split_gases()
 		valve_open = 0
 		tank_two.forceMove(GET_TURF(src))
 		tank_two = null
 		update_icon()
-	else if(href_list["open"])
+	else if(topic.has("open"))
 		toggle_valve()
-	else if(attached_device)
-		if(href_list["rem_device"])
+	else if(isnotnull(attached_device))
+		if(topic.has("rem_device"))
 			attached_device.forceMove(GET_TURF(src))
 			attached_device:holder = null
 			attached_device = null
 			update_icon()
-		if(href_list["device"])
+		if(topic.has("device"))
 			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
-	return 1 // Returning 1 sends an update to attached UIs
+	add_fingerprint(user)
 
 /obj/item/transfer_valve/process_activation(obj/item/D)
 	if(toggle)

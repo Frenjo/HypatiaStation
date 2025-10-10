@@ -256,7 +256,7 @@
 				to_chat(usr, SPAN_WARNING("You must hold \the [P] steady to burn \the [src]."))
 
 
-/obj/item/paper/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/paper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

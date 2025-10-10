@@ -52,7 +52,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/folder/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/folder/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

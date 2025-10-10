@@ -567,7 +567,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = FALSE
 
-/mob/handle_topic(mob/user, datum/topic_input/topic)
+/mob/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

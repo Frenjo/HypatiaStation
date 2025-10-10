@@ -254,7 +254,7 @@
 			return 1
 	return 0
 
-/obj/item/gun/dartgun/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/gun/dartgun/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

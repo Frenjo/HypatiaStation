@@ -119,26 +119,29 @@
 
 	. += CONFIG_GET(/decl/configuration_entry/monkey_delay)
 
-/mob/living/carbon/monkey/Topic(href, href_list)
-	..()
-	if (href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
+/mob/living/carbon/monkey/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("mach_close"))
+		var/t1 = "window=[topic.get_str("mach_close")]"
 		unset_machine()
 		CLOSE_BROWSER(src, t1)
-	if ((href_list["item"] && !( usr.stat ) && !( usr.restrained() ) && in_range(src, usr) ))
-		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
-		O.source = usr
+		return
+
+	if(topic.has("item") && !user.stat && !user.restrained() && in_range(src, user))
+		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey()
+		O.source = user
 		O.target = src
-		O.item = usr.get_active_hand()
-		O.s_loc = usr.loc
+		O.item = user.get_active_hand()
+		O.s_loc = user.loc
 		O.t_loc = loc
-		O.place = href_list["item"]
+		O.place = topic.get_str("item")
 		requests += O
-		spawn( 0 )
+		spawn(0)
 			O.process()
-			return
-	..()
-	return
+		return
 
 /mob/living/carbon/monkey/meteorhit(obj/O as obj)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))

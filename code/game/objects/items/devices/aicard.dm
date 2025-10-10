@@ -77,7 +77,7 @@
 	onclose(user, "aicard")
 	return
 
-/obj/item/aicard/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/aicard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

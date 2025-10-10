@@ -74,7 +74,7 @@
 			anchored = TRUE
 		return
 
-/obj/structure/dispenser/handle_topic(mob/user, datum/topic_input/topic)
+/obj/structure/dispenser/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

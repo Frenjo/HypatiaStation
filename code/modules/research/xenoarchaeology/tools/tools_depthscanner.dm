@@ -102,7 +102,7 @@
 	SHOW_BROWSER(user, dat,"window=depth_scanner;size=300x500")
 	onclose(user, "depth_scanner")
 
-/obj/item/depth_scanner/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/depth_scanner/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

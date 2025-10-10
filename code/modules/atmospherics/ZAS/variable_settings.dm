@@ -120,7 +120,7 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 		dat += "<i>[vw_desc]</i><br><br>"
 	SHOW_BROWSER(user, dat,"window=settings")
 
-/vs_control/handle_topic(mob/user, datum/topic_input/topic)
+/vs_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

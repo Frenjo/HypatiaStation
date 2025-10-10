@@ -92,7 +92,7 @@
 			return 1
 	return ..() //check for shuttle and nuke
 
-/datum/game_mode/malfunction/handle_topic(mob/user, datum/topic_input/topic)
+/datum/game_mode/malfunction/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

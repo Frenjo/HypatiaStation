@@ -35,7 +35,7 @@
 			contents += O
 		to_chat(user, SPAN_INFO("You empty the [C.name] into the bag."))
 
-/obj/item/moneybag/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/moneybag/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

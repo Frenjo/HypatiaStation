@@ -103,7 +103,7 @@ Version 1 changes (from version 0):
 	CLOSE_BROWSER(target, "window=\ref[src]")
 	return ..()
 
-/sd_alert/handle_topic(mob/user, datum/topic_input/topic)
+/sd_alert/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(user.client != target)
 		return

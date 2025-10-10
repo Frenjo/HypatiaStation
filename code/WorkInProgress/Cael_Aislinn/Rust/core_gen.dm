@@ -250,7 +250,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	onclose(user, "core_gen")
 	user.set_machine(src)
 
-/obj/machinery/power/rust_core/handle_topic(mob/user, datum/topic_input/topic)
+/obj/machinery/power/rust_core/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

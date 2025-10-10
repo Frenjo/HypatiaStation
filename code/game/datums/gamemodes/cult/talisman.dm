@@ -71,7 +71,7 @@
 	SHOW_BROWSER(usr, dat, "window=id_com;size=350x200")
 	return
 
-/obj/item/paper/talisman/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/paper/talisman/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

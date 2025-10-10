@@ -221,7 +221,7 @@
 	onclose(user, "paicard")
 	return
 
-/obj/item/paicard/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/paicard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
