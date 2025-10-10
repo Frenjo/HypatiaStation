@@ -12,7 +12,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 
 //Initializes blood vessels
 /mob/living/carbon/human/proc/make_blood()
-	if(vessel)
+	if(isnotnull(vessel))
 		return
 
 	vessel = new/datum/reagents(600)
@@ -28,11 +28,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
-		if(istype(B, /datum/reagent/blood))
-			B.data = list(
-				"donor" = src, "viruses" = null, "blood_DNA" = dna.unique_enzymes, "blood_type" = dna.b_type,
-				"resistances" = null, "trace_chem" = null, "virus2" = null, "antibodies" = null
-			)
+		B.data = list(
+			"donor" = src, "viruses" = null, "blood_DNA" = dna.unique_enzymes, "blood_type" = dna.b_type,
+			"resistances" = null, "trace_chem" = null, "virus2" = null, "antibodies" = null
+		)
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/proc/handle_blood()
@@ -45,7 +44,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		//Blood regeneration if there is some space
 		if(blood_volume < 560 && blood_volume)
 			var/datum/reagent/blood/B = locate() in vessel.reagent_list //Grab some blood
-			if(B) // Make sure there's some blood at all
+			if(isnotnull(B)) // Make sure there's some blood at all
 				if(B.data["donor"] != src) //If it's not theirs, then we look for theirs
 					for(var/datum/reagent/blood/D in vessel.reagent_list)
 						if(D.data["donor"] == src)
@@ -176,8 +175,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Gets blood from mob to the container, preserving all data in it.
 /mob/living/carbon/proc/take_blood(obj/item/reagent_holder/container, amount)
 	var/datum/reagent/B = get_blood(container.reagents)
-	if(!B)
-		B = new /datum/reagent/blood
+	if(isnull(B))
+		B = new /datum/reagent/blood()
 	B.holder = container
 	B.volume += amount
 
@@ -227,7 +226,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
-		src.reagents.add_reagent(C, (text2num(chems[C]) / 560) * amount)//adds trace chemicals to owner's blood
+		reagents.add_reagent(C, (text2num(chems[C]) / 560) * amount)//adds trace chemicals to owner's blood
 	reagents.update_total()
 
 	container.reagents.remove_reagent("blood", amount)
@@ -243,7 +242,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 
 	var/datum/reagent/blood/our = get_blood(vessel)
 
-	if(!injected || !our)
+	if(isnull(injected) || isnull(our))
 		return
 	if(blood_incompatible(injected.data["blood_type"], our.data["blood_type"]) )
 		reagents.add_reagent("toxin", amount * 0.5)
@@ -256,7 +255,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Gets human's own blood.
 /mob/living/carbon/proc/get_blood(datum/reagents/container)
 	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
-	if(res) // Make sure there's some blood at all
+	if(isnotnull(res)) // Make sure there's some blood at all
 		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
 			for(var/datum/reagent/blood/D in container.reagent_list)
 				if(D.data["donor"] == src)
