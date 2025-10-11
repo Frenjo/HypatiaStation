@@ -13,7 +13,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/security)
 
-/obj/item/robot_upgrade/tasercooler/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/tasercooler/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 

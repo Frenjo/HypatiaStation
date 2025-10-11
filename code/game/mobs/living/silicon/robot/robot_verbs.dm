@@ -47,10 +47,10 @@
 
 	var/list/installed_components = list()
 	for(var/V in components)
-		if(V == "power cell")
-			continue
 		var/datum/robot_component/C = components[V]
-		if(C.installed == 1)
+		if(!C.toggleable)
+			continue
+		if(C.installed == ROBOT_COMPONENT_INSTALLED)
 			installed_components.Add(V)
 
 	var/toggle = input(src, "Which component do you want to toggle?", "Toggle Component") as null | anything in installed_components

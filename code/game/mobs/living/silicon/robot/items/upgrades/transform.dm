@@ -10,7 +10,7 @@
 
 	var/new_model_type = /obj/item/robot_model/standard
 
-/obj/item/robot_upgrade/transform/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/transform/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	if(isnull(new_model_type))

@@ -32,7 +32,7 @@
 	for(var/V in components)
 		if(V != "power cell")
 			var/datum/robot_component/C = components[V]
-			C.installed = 1
+			C.installed = ROBOT_COMPONENT_INSTALLED
 			C.wrapped = new C.external_type()
 
 	if(isnull(cell))
@@ -41,7 +41,7 @@
 	if(isnotnull(cell))
 		var/datum/robot_component/cell_component = components["power cell"]
 		cell_component.wrapped = cell
-		cell_component.installed = 1
+		cell_component.installed = ROBOT_COMPONENT_INSTALLED
 
 	hud_list[HEALTH_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD]		= image('icons/hud/hud.dmi', src, "hudhealth100")

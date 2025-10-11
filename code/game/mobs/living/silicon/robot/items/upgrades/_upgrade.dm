@@ -13,7 +13,7 @@
 	var/require_model = FALSE
 	var/list/model_types = null
 
-/obj/item/robot_upgrade/proc/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/proc/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(robby.stat == DEAD)
 		to_chat(user, SPAN_WARNING("\The [src] will not function on a deceased robot."))
 		return FALSE

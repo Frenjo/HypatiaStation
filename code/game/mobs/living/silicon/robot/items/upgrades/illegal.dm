@@ -14,7 +14,7 @@
 
 	require_model = TRUE
 
-/obj/item/robot_upgrade/scrambled/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/scrambled/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	if(robby.emagged)
@@ -38,7 +38,7 @@
 
 	require_model = TRUE
 
-/obj/item/robot_upgrade/flashproof/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/flashproof/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 

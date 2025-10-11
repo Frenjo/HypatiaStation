@@ -2,9 +2,10 @@
 
 /datum/robot_component
 	var/name
-	var/installed = 0
-	var/powered = 0
-	var/toggled = 1
+	var/installed = ROBOT_COMPONENT_UNINSTALLED
+	var/powered = FALSE
+	var/toggleable = TRUE
+	var/toggled = TRUE
 	var/brute_damage = 0
 	var/electronics_damage = 0
 	var/energy_consumption = 0
@@ -14,8 +15,8 @@
 	var/external_type = null // The actual device object that has to be installed for this.
 	var/obj/item/wrapped = null // The wrapped device(e.g. radio), only set if external_type isn't null.
 
-/datum/robot_component/New(mob/living/silicon/robot/R)
-	src.owner = R
+/datum/robot_component/New(mob/living/silicon/robot/robby)
+	owner = robby
 
 /datum/robot_component/proc/install()
 /datum/robot_component/proc/uninstall()
@@ -24,23 +25,24 @@
 	if(wrapped)
 		qdel(wrapped)
 
-
-	wrapped = new /obj/item/broken_device
+	wrapped = new /obj/item/broken_device()
 
 	// The thing itself isn't there anymore, but some fried remains are.
-	installed = -1
+	installed = ROBOT_COMPONENT_BROKEN
 	uninstall()
 
 /datum/robot_component/proc/take_damage(brute, electronics, sharp, edge)
-	if(installed != 1) return
+	if(installed != ROBOT_COMPONENT_INSTALLED)
+		return
 
 	brute_damage += brute
 	electronics_damage += electronics
 
-	if(brute_damage + electronics_damage >= max_damage) destroy()
+	if(brute_damage + electronics_damage >= max_damage)
+		destroy()
 
 /datum/robot_component/proc/heal_damage(brute, electronics)
-	if(installed != 1)
+	if(installed != ROBOT_COMPONENT_INSTALLED)
 		// If it's not installed, can't repair it.
 		return 0
 
@@ -48,22 +50,21 @@
 	electronics_damage = max(0, electronics_damage - electronics)
 
 /datum/robot_component/proc/is_powered()
-	return (installed == 1) && (brute_damage + electronics_damage < max_damage) && (!energy_consumption || powered)
-
+	return (installed == ROBOT_COMPONENT_INSTALLED) && (brute_damage + electronics_damage < max_damage) && (!energy_consumption || powered)
 
 /datum/robot_component/proc/update_power_state()
-	if(toggled == 0)
-		powered = 0
+	if(!toggled)
+		powered = FALSE
 		return
-	if(owner.cell && owner.cell.charge >= energy_consumption)
+	if(owner.cell?.charge >= energy_consumption)
 		owner.cell.use(energy_consumption)
-		powered = 1
+		powered = TRUE
 	else
-		powered = 0
+		powered = FALSE
 
 /datum/robot_component/armour
 	name = "armour plating"
-	energy_consumption = 0
+	toggleable = FALSE
 	external_type = /obj/item/robot_part/component/armour
 	max_damage = 60
 
@@ -75,10 +76,11 @@
 
 //A fixed and much cleaner implementation of /tg/'s special snowflake code.
 /datum/robot_component/actuator/is_powered()
-	return (installed == 1) && (brute_damage + electronics_damage < max_damage)
+	return (installed == ROBOT_COMPONENT_INSTALLED) && (brute_damage + electronics_damage < max_damage)
 
 /datum/robot_component/cell
 	name = "power cell"
+	toggleable = FALSE
 	max_damage = 50
 
 /datum/robot_component/cell/destroy()
@@ -94,7 +96,6 @@
 /datum/robot_component/binary_communication
 	name = "binary communication device"
 	external_type = /obj/item/robot_part/component/binary_communication_device
-	energy_consumption = 0
 	max_damage = 30
 
 /datum/robot_component/camera
@@ -123,7 +124,7 @@
 
 /mob/living/silicon/robot/proc/is_component_functioning(module_name)
 	var/datum/robot_component/C = components[module_name]
-	return C && C.installed == 1 && C.toggled && C.is_powered()
+	return isnotnull(C) && C.installed == ROBOT_COMPONENT_INSTALLED && C.toggled && C.is_powered()
 
 /obj/item/broken_device
 	name = "broken component"

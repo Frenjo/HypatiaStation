@@ -10,7 +10,7 @@
 
 	require_model = TRUE
 
-/obj/item/robot_upgrade/reset/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/reset/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -37,7 +37,7 @@
 /obj/item/robot_upgrade/rename/attack_self(mob/user)
 	heldname = stripped_input(user, "Enter new robot name", "Robot Reclassification", heldname, MAX_NAME_LEN)
 
-/obj/item/robot_upgrade/rename/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/rename/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -56,7 +56,7 @@
 
 	matter_amounts = /datum/design/robofab/robot_upgrade/restart::materials
 
-/obj/item/robot_upgrade/restart/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/restart/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(robby.health < 0)
 		to_chat(user, SPAN_WARNING("You have to repair \the [robby] before using \the [src]!"))
 		return FALSE

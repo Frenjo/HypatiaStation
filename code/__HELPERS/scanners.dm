@@ -201,7 +201,7 @@
 		if(length(damaged_components) > 0)
 			output.Add(SPAN_INFO("Localised Damage (<font color='red'><em>Brute</em></font>/<font color='#FFA500'><em>Electronics</em></font>):"))
 			for_no_type_check(var/datum/robot_component/component, damaged_components)
-				var/component_destroyed = (component.installed == -1) ? SPAN_DANGER("\[DESTROYED\] -") : ""
+				var/component_destroyed = (component.installed == ROBOT_COMPONENT_BROKEN) ? SPAN_DANGER("\[DESTROYED\] -") : ""
 				var/component_toggle = component.toggled ? "Toggled ON" : "<font color='red'>Toggled OFF</font>"
 				var/component_power = component.powered ? "Power ON" : "<font color='red'>Power OFF</font>"
 				output.Add("\t [SPAN_INFO(capitalize(component.name))]: [component_destroyed] <font color='red'>[component.brute_damage]</font> - <font color='#FFA500'>[component.electronics_damage]</font> - [component_toggle] - [component_power]")

@@ -238,7 +238,7 @@
 			if(isnotnull(O.cell))
 				var/datum/robot_component/cell_component = O.components["power cell"]
 				cell_component.wrapped = O.cell
-				cell_component.installed = 1
+				cell_component.installed = ROBOT_COMPONENT_INSTALLED
 
 			feedback_inc("cyborg_birth", 1)
 			O.namepick()
