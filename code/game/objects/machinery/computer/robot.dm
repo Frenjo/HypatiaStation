@@ -28,9 +28,9 @@
 		to_chat(user, SPAN_WARNING("<b>Unable to establish a connection</b>: ") + "\black You're too far away from the station!")
 		return
 	user.set_machine(src)
-	var/dat
+	var/dat = "<html><body>"
 	if (src.temp)
-		dat = "<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>"
+		dat += "<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>"
 	else
 		if(screen == 0)
 			dat += "<h3>Cyborg Control Console</h3><BR>"
@@ -94,6 +94,7 @@
 				\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 			dat += "<A href='byond://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
 
+	dat += "</body></html>"
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
