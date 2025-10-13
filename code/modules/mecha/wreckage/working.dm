@@ -51,3 +51,8 @@
 /obj/structure/mecha_wreckage/ripley/dreadnought/bulwark
 	name = "Bulwark wreckage"
 	icon_state = "bulwark-broken"
+
+// Clarke
+/obj/structure/mecha_wreckage/clarke
+	name = "Clarke wreckage"
+	icon_state = "clarke-broken"

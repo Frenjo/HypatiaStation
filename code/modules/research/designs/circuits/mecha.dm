@@ -39,6 +39,20 @@
 	req_tech = alist(/decl/tech/combat = 2, /decl/tech/engineering = 3, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/bulwark/targeting
 
+// Clarke
+/datum/design/circuit/mecha/clarke
+	req_tech = alist(/decl/tech/programming = 4)
+
+/datum/design/circuit/mecha/clarke/main
+	name = "\"Clarke\" Central Control module"
+	desc = "Allows for the construction of a \"Clarke\" Central Control module."
+	build_path = /obj/item/circuitboard/mecha/clarke/main
+
+/datum/design/circuit/mecha/clarke/peripherals
+	name = "\"Clarke\" Peripherals Control module"
+	desc = "Allows for the construction of a \"Clarke\" Peripherals Control module."
+	build_path = /obj/item/circuitboard/mecha/clarke/peripherals
+
 // Odysseus
 /datum/design/circuit/mecha/odysseus
 	req_tech = alist(/decl/tech/biotech = 2, /decl/tech/programming = 3)

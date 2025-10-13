@@ -61,6 +61,53 @@
 	build_path = /obj/item/mecha_part/part/ripley/right_leg
 	categories = list("Ripley", "Firefighter", "Rescue Ranger", "Dreadnought", "Bulwark")
 
+// Clarke
+/datum/design/mechfab/part/clarke_chassis
+	materials = alist(/decl/material/steel = 10 MATERIAL_SHEETS)
+	build_path = /obj/item/mecha_part/chassis/clarke
+	categories = list("Clarke")
+
+/datum/design/mechfab/part/clarke_torso
+	name = "\"Clarke\" Torso"
+	desc = "The torso of a Clarke-type exosuit."
+	materials = alist(/decl/material/steel = 12 MATERIAL_SHEETS, /decl/material/glass = 8 MATERIAL_SHEETS)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/clarke/torso
+	categories = list("Clarke")
+
+/datum/design/mechfab/part/clarke_head
+	name = "\"Clarke\" Head"
+	desc = "The head of a Clarke-type exosuit."
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3, /decl/tech/programming = 2) // Slightly more engineering than a Ripley.
+	materials = alist(/decl/material/steel = 6 MATERIAL_SHEETS, /decl/material/glass = 5 MATERIAL_SHEETS)
+	build_path = /obj/item/mecha_part/part/clarke/head
+	categories = list("Clarke")
+
+/datum/design/mechfab/part/clarke_left_arm
+	name = "\"Clarke\" Left Arm"
+	desc = "The left arm of a Clarke-type exosuit."
+	materials = alist(/decl/material/steel = 8 MATERIAL_SHEETS)
+	build_time = 15 SECONDS
+	build_path = /obj/item/mecha_part/part/clarke/left_arm
+	categories = list("Clarke")
+
+/datum/design/mechfab/part/clarke_right_arm
+	name = "\"Clarke\" Right Arm"
+	desc = "The right arm of a Clarke-type exosuit."
+	materials = alist(/decl/material/steel = 8 MATERIAL_SHEETS)
+	build_time = 15 SECONDS
+	build_path = /obj/item/mecha_part/part/clarke/right_arm
+	categories = list("Clarke")
+
+/datum/design/mechfab/part/clarke_treads
+	name = "\"Clarke\" Treads"
+	desc = "The treads of a Clarke-type exosuit."
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3, /decl/tech/programming = 2) // Slightly more engineering than a Ripley.
+	materials = alist(/decl/material/steel = 18 MATERIAL_SHEETS)
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/clarke/treads
+	categories = list("Clarke")
+
 // Odysseus
 /datum/design/mechfab/part/odysseus_chassis
 	materials = alist(/decl/material/steel = 10 MATERIAL_SHEETS)

@@ -47,6 +47,7 @@
 
 	part_sets = list(
 		"Ripley", "Firefighter", "Rescue Ranger", "Dreadnought", "Bulwark",
+		"Clarke",
 		"Odysseus",
 		"Gygax", "Serenity",
 		"Durand", "Archambeau", "Brigand",
