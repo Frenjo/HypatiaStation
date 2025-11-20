@@ -129,6 +129,20 @@
 
 	attaches_to_string = "any <em><i>medical</i></em> exosuit except the <em><i>Rescue Ranger</i></em>"
 
+// Magnetic Clamp
+// A special variant of the hydraulic clamp with ranged capability.
+/obj/item/mecha_equipment/tool/hydraulic_clamp/magnetic
+	name = "exosuit magnetic clamp"
+	desc = "An exosuit-mounted clamp with cargo-loading capability. It seems to be constructed from \"alien\" technology, and uses magnetic force to manipulate \
+		containers at range."
+	icon_state = "clamp_alien"
+
+	equip_cooldown = parent_type::equip_cooldown * 2
+	energy_drain = parent_type::energy_drain * 4
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
+
+	dam_force = 5 // A quarter as forceful as the regular clamp because magnets.
+
 // Extinguisher
 /obj/item/mecha_equipment/tool/extinguisher
 	name = "mounted extinguisher"

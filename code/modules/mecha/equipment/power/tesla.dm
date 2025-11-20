@@ -10,6 +10,8 @@
 
 	selectable = FALSE
 
+	attaches_to_string = "<em><i>any</i></em> exosuit except the <em><i>Thales</i></em>"
+
 	var/coeff = 100
 	var/energy_amount = 12
 	var/list/use_channels = list(EQUIP, ENVIRON, LIGHT)

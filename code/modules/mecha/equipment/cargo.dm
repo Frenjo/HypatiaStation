@@ -30,4 +30,5 @@
 
 /obj/item/mecha_equipment/bluespace_cargo_module/detach(atom/moveto = null, force = FALSE)
 	. = ..()
+	cargo_holder.unload_all_cargo()
 	cargo_holder.cargo_capacity = initial(cargo_holder.cargo_capacity)

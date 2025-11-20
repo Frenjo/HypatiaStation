@@ -25,6 +25,12 @@
 
 	eyeblur = 2
 
+// Axis energy projector variant
+/obj/projectile/energy/pulse/laser/rapid
+	name = "rapid laser pulse"
+
+	damage = 10
+
 // X-ray
 /obj/projectile/energy/pulse/laser/xray
 	name = "xray pulse"

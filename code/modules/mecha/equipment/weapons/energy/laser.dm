@@ -37,6 +37,66 @@
 
 	attaches_to_string = "<em><i>working</i></em> and <em><i>combat</i></em> exosuits"
 
+/obj/item/mecha_equipment/weapon/energy/laser/axis_projector
+	name = "\improper UKN-EP \"Axis\" ocular energy projector" // UKN-EP = UnKNown Energy Projector.
+	desc = "An exosuit module that appears to be constructed from \"alien\" technology, functioning as both a sophisticated camera lens and an extremely \
+		high-power mixed-mode laser emitter. Interestingly, the vast majority of its components bear remarkable similarities to the scanning and targeting \
+		suites contained in the heads of traditional combat exosuits."
+	icon_state = "axis_projector_alien"
+
+	mecha_types = MECHA_TYPE_THALES
+
+	salvageable = FALSE
+
+	allow_duplicates = FALSE
+	allow_detach = FALSE
+
+	attaches_to_string = "the <em><i>Thales</i></em> exosuit"
+
+	var/burst_mode = TRUE
+	var/burst_fire_count = 0
+
+	var/burst_energy_drain = parent_type::energy_drain * 4
+	var/heavy_energy_drain = (parent_type::energy_drain * 4) * 4
+
+/obj/item/mecha_equipment/weapon/energy/laser/axis_projector/get_equip_info()
+	. = ..()
+	if(chassis.selected == src)
+		. += " \[<a href='byond://?src=\ref[src];burst_mode=1'>[burst_mode ? "<b>Burst</b>" : "Burst"]</a>|<a href='byond://?src=\ref[src];cannon_mode=1'>[burst_mode ? "Cannon" : "<b>Cannon</b>"]</a>\]"
+	else
+		. += " \[\"Burst\"|\"Cannon\"\]"
+
+/obj/item/mecha_equipment/weapon/energy/laser/axis_projector/handle_topic(mob/user, datum/topic_input/topic)
+	. = ..()
+	if(topic.get("burst_mode"))
+		burst_mode = TRUE
+	if(topic.get("cannon_mode"))
+		burst_mode = FALSE
+	update_equip_info()
+
+/obj/item/mecha_equipment/weapon/energy/laser/axis_projector/action_checks(atom/target)
+	if(!..())
+		return FALSE
+
+	if(burst_mode)
+		equip_cooldown = 0.5 SECONDS
+		energy_drain = burst_energy_drain
+		if(burst_fire_count == 0 || burst_fire_count >= 4)
+			fire_sound = 'sound/weapons/gun/laser.ogg'
+			projectile = /obj/projectile/energy/beam/laser/rapid
+			burst_fire_count = 0
+		else
+			fire_sound = 'sound/weapons/gun/laser_pulse.ogg'
+			projectile = /obj/projectile/energy/pulse/laser/rapid
+		burst_fire_count++
+	else
+		equip_cooldown = 3 SECONDS
+		energy_drain = heavy_energy_drain
+		fire_sound = 'sound/weapons/gun/lasercannonfire.ogg'
+		projectile = /obj/projectile/energy/beam/laser/heavy/slow
+		burst_fire_count = 0
+	return TRUE
+
 // X-ray
 /obj/item/mecha_equipment/weapon/energy/laser/xray
 	name = "\improper CH-XS \"Penetrator\" X-ray laser"
@@ -67,7 +127,7 @@
 
 // Emitter
 /obj/item/mecha_equipment/weapon/energy/brigand_emitter
-	name = "\improper NT-EM \"BR1-G4ND\" mounted emitter"
+	name = "\improper NT-EM \"BR1-G4ND\" mounted emitter" // NT-EM = NanoTrasen EMitter.
 	desc = "An engineering-grade emitter fitted with a specially-designed mounting socket compatible with Brigand-type exosuits."
 	icon_state = "xray" // Temporary sprite, but should basically never be seen anyway.
 

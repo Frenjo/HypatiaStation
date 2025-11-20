@@ -56,3 +56,8 @@
 /obj/structure/mecha_wreckage/clarke
 	name = "Clarke wreckage"
 	icon_state = "clarke-broken"
+
+// Thales
+/obj/structure/mecha_wreckage/thales
+	name = "Thales wreckage"
+	icon_state = "thales-broken"

@@ -27,6 +27,17 @@
 
 	eyeblur = 2
 
+// Axis energy projector variants
+/obj/projectile/energy/beam/laser/rapid
+	name = "rapid laser beam"
+
+	damage = 10
+
+/obj/projectile/energy/beam/laser/heavy/slow
+	name = "sustained laser beam"
+
+	damage = 45 // Does 5 more damage than a regular heavy laser.
+
 // X-ray
 /obj/projectile/energy/beam/laser/xray
 	name = "xray laser beam"
