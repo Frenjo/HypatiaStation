@@ -110,7 +110,7 @@
 		if(!O.density || O == target_atom || O.throwpass)
 			continue // throwpass is used for anything you can click through
 
-		if(HAS_ATOM_FLAGS(O, ATOM_FLAG_ON_BORDER)) // windows have throwpass but are on border, check them first
+		if(O.is_on_border()) // windows have throwpass but are on border, check them first
 			if(O.dir & target_dir || O.dir & (O.dir - 1)) // full tile windows are just diagonals mechanically
 				var/obj/structure/window/W = target_atom
 				if(istype(W))

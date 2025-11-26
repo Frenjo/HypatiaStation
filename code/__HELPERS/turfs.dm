@@ -58,7 +58,7 @@
 	new_turf.transport_properties_from(source)
 
 	for(var/obj/O in source)
-		if(!HAS_ATOM_FLAGS(O, ATOM_FLAG_UNSIMULATED))
+		if(!O.is_unsimulated())
 			O.forceMove(new_turf)
 
 	for(var/mob/M in source)
