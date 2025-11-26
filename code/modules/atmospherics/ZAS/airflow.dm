@@ -263,6 +263,6 @@ Contains helper procs for airflow, handled in /connection_group.
 	. = list()
 	for_no_type_check(var/turf/open/T, contents)
 		for_no_type_check(var/atom/movable/mover, T)
-			if(!HAS_ATOM_FLAGS(mover, ATOM_FLAG_UNSIMULATED) || mover.anchored || istype(mover, /obj/effect))
+			if(!mover.is_unsimulated() || mover.anchored || istype(mover, /obj/effect))
 				continue
 			. += mover

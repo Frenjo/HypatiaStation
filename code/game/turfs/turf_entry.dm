@@ -8,21 +8,21 @@
 
 	// First, check objects to block exit that are not on the border.
 	for(var/obj/obstacle in mover.loc)
-		if(!HAS_ATOM_FLAGS(obstacle, ATOM_FLAG_ON_BORDER) && mover != obstacle && forget != obstacle)
+		if(!obstacle.is_on_border() && mover != obstacle && forget != obstacle)
 			if(!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, 1)
 				return FALSE
 
 	// Now, check objects to block exit that are on the border.
 	for(var/obj/border_obstacle in mover.loc)
-		if(HAS_ATOM_FLAGS(border_obstacle, ATOM_FLAG_ON_BORDER) && mover != border_obstacle && forget != border_obstacle)
+		if(border_obstacle.is_on_border() && mover != border_obstacle && forget != border_obstacle)
 			if(!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, 1)
 				return FALSE
 
 	// Next, check objects to block entry that are on the border.
 	for(var/obj/border_obstacle in src)
-		if(HAS_ATOM_FLAGS(border_obstacle, ATOM_FLAG_ON_BORDER))
+		if(border_obstacle.is_on_border())
 			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && forget != border_obstacle)
 				mover.Bump(border_obstacle, 1)
 				return FALSE
@@ -34,7 +34,7 @@
 
 	// Finally, check objects/mobs to block entry that are not on the border.
 	for_no_type_check(var/atom/movable/obstacle, src)
-		if(!HAS_ATOM_FLAGS(obstacle, ATOM_FLAG_ON_BORDER))
+		if(!obstacle.is_on_border())
 			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && forget != obstacle)
 				mover.Bump(obstacle, 1)
 				return FALSE
@@ -56,7 +56,7 @@
 				break
 //^^^^^ Infared beam stuff ^^^^^
 
-	if(HAS_ATOM_FLAGS(mover, ATOM_FLAG_UNSIMULATED))
+	if(mover.is_unsimulated())
 		return
 
 	var/loopsanity = 100
@@ -77,7 +77,7 @@
 	..()
 	var/objects = 0
 	for_no_type_check(var/atom/A, range(1))
-		if(HAS_ATOM_FLAGS(A, ATOM_FLAG_UNSIMULATED))
+		if(A.is_unsimulated())
 			continue
 		if(objects > loopsanity)
 			break

@@ -101,7 +101,7 @@
 	for_no_type_check(var/turf/T, dstturfs)
 		var/turf/D = locate(T.x, throwy - 1, 1)
 		for_no_type_check(var/atom/movable/mover, T)
-			if(!HAS_ATOM_FLAGS(mover, ATOM_FLAG_UNSIMULATED))
+			if(!mover.is_unsimulated())
 				mover.Move(D)
 
 	for(var/mob/living/carbon/bug in destination)
