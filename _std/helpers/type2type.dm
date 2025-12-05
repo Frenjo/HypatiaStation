@@ -82,12 +82,16 @@
 	return hex
 
 /proc/text2numlist(text, delimiter = "\n")
+	RETURN_TYPE(/list)
+
 	. = list()
 	for(var/x in splittext(text, delimiter))
 		. += text2num(x)
 
 //Splits the text of a file at seperator and returns them in a list.
 /proc/file2list(filename, seperator = "\n")
+	RETURN_TYPE(/list)
+
 	return splittext(return_file_text(filename), seperator)
 
 //Turns a direction into text
