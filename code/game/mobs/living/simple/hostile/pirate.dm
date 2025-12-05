@@ -25,7 +25,7 @@
 	max_co2 = 5
 	unsuitable_atoms_damage = 15
 
-	faction = "pirate"
+	factions = list("pirate")
 
 	var/corpse = /obj/effect/landmark/mobcorpse/pirate
 	var/weapon1 = /obj/item/melee/energy/sword/pirate

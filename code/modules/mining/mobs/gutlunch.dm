@@ -5,7 +5,7 @@
 	icon_state = "gutlunch"
 
 	a_intent = "help"
-	faction = "neutral" // TODO: Make this into a list and have it be list("neutral", "mining")
+	factions = list("neutral", "mining")
 
 	friendly = "pinches"
 

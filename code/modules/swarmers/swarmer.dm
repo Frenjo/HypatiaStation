@@ -9,7 +9,7 @@
 	light_color = "#0066FF"
 
 	hud_type = /datum/hud/swarmer
-	faction = "swarmer"
+	factions = list("swarmer")
 
 	maxHealth = 40
 	health = 40

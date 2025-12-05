@@ -12,5 +12,5 @@
 	melee_damage_upper = 50
 	attacktext = "chomps"
 	attack_sound = 'sound/weapons/melee/bite.ogg'
-	faction = "creature"
+	factions = list("creature")
 	speed = 4

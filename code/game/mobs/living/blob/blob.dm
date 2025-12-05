@@ -11,7 +11,7 @@
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	var/ghost_name = "Unknown"
 	var/creating_blob = 0
-	faction = "blob"
+	factions = list("blob")
 	use_me = 0 //Blobs can't emote
 
 /mob/living/blob/New()

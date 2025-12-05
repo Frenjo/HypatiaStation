@@ -28,7 +28,7 @@
 	max_co2 = 0
 	minbodytemp = 0
 
-	faction = "mimic"
+	factions = list("mimic")
 	move_to_delay = 8
 
 /mob/living/simple/hostile/mimic/FindTarget()
@@ -171,7 +171,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		maxHealth = health
 		if(creator)
 			src.creator = creator
-			faction = "\ref[creator]" // very unique
+			factions += "\ref[creator]" // very unique
 		return 1
 	return
 
