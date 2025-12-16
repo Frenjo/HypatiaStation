@@ -746,6 +746,7 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 	while(TRUE)
 		if(curIndex <= length(process))
 			current = process[curIndex]
+			curIndex++
 			if(!current)
 				continue
 
@@ -759,7 +760,7 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 					currentLayer = A.layer + (1000 + currentLayer) / 1000
 
 			// Sort add into layers list
-			for(cmpIndex in 1 to length(layers))
+			for(cmpIndex = 1, cmpIndex <= length(layers), cmpIndex++)
 				compare = layers[cmpIndex]
 				if(currentLayer < layers[compare]) // Associated value is the calculated layer
 					layers.Insert(cmpIndex, current)
@@ -767,8 +768,6 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 					break
 			if(cmpIndex > length(layers)) // Reached end of list without inserting
 				layers[current] = currentLayer // Place at end
-
-			curIndex++
 
 		else if(pSet == 0) // Switch to overlays
 			curIndex = 1
