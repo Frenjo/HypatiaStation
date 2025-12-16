@@ -736,42 +736,44 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 		layers[copy] = A.layer
 
 	// Loop through the underlays, then overlays, sorting them into the layers list
-	var/list/process = A.underlays // Current list being processed
-	var/pSet = 0 // Which list is being processed: 0 = underlays, 1 = overlays
-	var/curIndex = 1 // index of 'current' in list being processed
-	var/current // Current overlay being sorted
-	var/currentLayer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
+	var/list/image/process = A.underlays // Current list being processed
+	var/process_set = 0 // Which list is being processed: 0 = underlays, 1 = overlays
+	var/image/current // Current overlay being sorted
+	var/current_index = 1 // index of 'current' in list being processed
+	var/current_layer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
 	var/compare // The overlay 'add' is being compared against
-	var/cmpIndex // The index in the layers list of 'compare'
+	var/compare_index // The index in the layers list of 'compare'
 	while(TRUE)
-		if(curIndex <= length(process))
-			current = process[curIndex]
-			curIndex++
+		if(current_index <= length(process))
+			current = process[current_index]
+			current_index++
 			if(!current)
 				continue
 
-			currentLayer = current:layer
-			if(currentLayer < 0) // Special case for FLY_LAYER
-				if(currentLayer <= -1000)
+			current_layer = current.layer
+			if(current_layer < 0) // Special case for FLY_LAYER
+				if(current_layer <= -1000)
 					return flat
-				if(pSet == 0) // Underlay
-					currentLayer = A.layer + currentLayer / 1000
+				if(process_set == 0) // Underlay
+					current_layer = A.layer + current_layer / 1000
 				else // Overlay
-					currentLayer = A.layer + (1000 + currentLayer) / 1000
+					current_layer = A.layer + (1000 + current_layer) / 1000
 
 			// Sort add into layers list
-			for(cmpIndex = 1, cmpIndex <= length(layers), cmpIndex++)
-				compare = layers[cmpIndex]
-				if(currentLayer < layers[compare]) // Associated value is the calculated layer
-					layers.Insert(cmpIndex, current)
-					layers[current] = currentLayer
+			compare_index = 1
+			while(compare_index <= length(layers))
+				compare = layers[compare_index]
+				if(current_layer < layers[compare]) // Associated value is the calculated layer
+					layers.Insert(compare_index, current)
+					layers[current] = current_layer
 					break
-			if(cmpIndex > length(layers)) // Reached end of list without inserting
-				layers[current] = currentLayer // Place at end
+				compare_index++
+			if(compare_index > length(layers)) // Reached end of list without inserting
+				layers[current] = current_layer // Place at end
 
-		else if(pSet == 0) // Switch to overlays
-			curIndex = 1
-			pSet = 1
+		else if(process_set == 0) // Switch to overlays
+			current_index = 1
+			process_set = 1
 			process = A.overlays
 		else // All done
 			break
