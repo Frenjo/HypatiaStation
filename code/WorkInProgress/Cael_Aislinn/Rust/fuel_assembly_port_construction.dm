@@ -27,7 +27,7 @@
 	if(!isfloorturf(T))
 		usr << "\red Port cannot be placed on this spot."
 		return
-	if(!A.requires_power || istype(A, /area/space))
+	if(!A.requires_power || A.always_unpowered)
 		usr << "\red Port cannot be placed in this area."
 		return
 	new /obj/machinery/rust_fuel_assembly_port(T, ndir, 1)

@@ -264,7 +264,7 @@
 
 /obj/machinery/bot/floorbot/proc/repair(turf/target)
 	if(isspace(target))
-		if(istype(target.loc, /area/space))
+		if(istype(target.loc, world.area))
 			return
 	else if(!isfloorturf(target))
 		return

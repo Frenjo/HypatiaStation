@@ -75,7 +75,7 @@ move an amendment</a> to the drawing.</p>
 	onclose(usr, "blueprints")
 
 /obj/item/blueprints/proc/get_area_type(area/A = GET_AREA(src))
-	if(istype(A, /area/space))
+	if(istype(A, world.area))
 		return AREA_SPACE
 
 	var/list/SPECIALS = list(

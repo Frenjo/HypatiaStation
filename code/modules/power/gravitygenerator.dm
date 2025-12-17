@@ -128,7 +128,7 @@
 
 /obj/machinery/gravity_generator/proc/locatelocalareas()
 	for(var/area/A in range(src, effectiverange))
-		if(istype(A, /area/space))
+		if(istype(A, world.area))
 			continue // No (de)gravitizing space.
 		if(!(A in localareas))
 			localareas += A

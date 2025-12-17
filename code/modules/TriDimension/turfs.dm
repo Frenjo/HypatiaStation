@@ -40,7 +40,7 @@
 						soft = TRUE
 						//dont break here, since we still need to be sure that it isnt blocked
 
-				if(soft || (!blocked && !(istype(areacheck, /area/space))))
+				if(soft || (!blocked && !(istype(areacheck, world.area))))
 					enterer.Move(floorbelow)
 					if(!soft && ishuman(enterer))
 						var/mob/living/carbon/human/H = enterer
