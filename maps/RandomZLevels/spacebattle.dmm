@@ -313,7 +313,7 @@
 "gd" = (/obj/structure/artilleryplaceholder{icon_state = "22"; tag = "icon-22"},/turf/open/floor/plating/metal/airless,/area/away_mission/spacebattle/cruiser)
 "ge" = (/obj/structure/artilleryplaceholder{icon_state = "23"; tag = "icon-23"},/turf/open/floor/plating/metal/airless,/area/away_mission/spacebattle/cruiser)
 "gf" = (/obj/structure/artilleryplaceholder{icon_state = "24"; tag = "icon-24"},/turf/open/floor/plating/metal/airless,/area/away_mission/spacebattle/cruiser)
-"gg" = (/obj/structure/closet/crate,/obj/item/contraband/poster,/turf/open/floor/plating/metal,/area/away_mission/spacebattle/cruiser)
+"gg" = (/obj/structure/closet/crate,/obj/item/poster,/turf/open/floor/plating/metal,/area/away_mission/spacebattle/cruiser)
 "gh" = (/obj/effect/landmark/corpse/bridgeofficer{mobname = "Robert Faver"; name = "Robert Faver"},/obj/item/ammo_casing/shotgun,/obj/effect/decal/cleanable/blood,/turf/open/floor,/area/away_mission/spacebattle/cruiser)
 "gi" = (/obj/structure/artilleryplaceholder/decorative{icon_state = "25"; tag = "icon-25"},/turf/open/floor/plating/metal/airless,/area/away_mission/spacebattle/cruiser)
 "gj" = (/obj/structure/artilleryplaceholder/decorative{icon_state = "26"; tag = "icon-26"},/turf/open/floor/plating/metal/airless,/area/away_mission/spacebattle/cruiser)

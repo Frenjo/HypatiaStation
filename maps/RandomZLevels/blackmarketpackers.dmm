@@ -432,7 +432,7 @@
 "iD" = (/turf/closed/wall/shuttle{icon_state = "swall4"; tag = "icon-swall4"},/area/away_mission)
 "iE" = (/turf/closed/wall/shuttle{icon_state = "swall12"; tag = "icon-swall12"},/area/away_mission)
 "iF" = (/obj/item/storage/box/matches,/obj/item/storage/fancy/cigarettes/dromedaryco,/turf/open/floor/plating/metal,/area/away_mission/BMPship3)
-"iG" = (/obj/item/contraband/poster,/turf/open/floor/plating/metal,/area/away_mission/BMPship3)
+"iG" = (/obj/item/poster,/turf/open/floor/plating/metal,/area/away_mission/BMPship3)
 "iH" = (/turf/closed/wall/shuttle/corner/exterior/white/se,/area/away_mission/BMPship3)
 "iI" = (/obj/item/reagent_holder/food/drinks/cans/beer,/turf/open/floor/plating/metal,/area/away_mission/BMPship3)
 "iJ" = (/turf/closed/wall/shuttle/corner/interior/white/nw{icon_state = "swall_plating"},/turf/closed/wall/shuttle{icon_state = "swall_f6"; tag = "icon-swall_f6"},/area/away_mission/BMPship3)

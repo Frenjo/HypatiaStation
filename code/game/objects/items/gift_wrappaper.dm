@@ -74,7 +74,7 @@
 		/obj/item/lipstick/random, \
 		/obj/item/grenade/smoke, \
 		/obj/item/corncob, \
-		/obj/item/contraband/poster, \
+		/obj/item/poster, \
 		/obj/item/book/manual/barman_recipes, \
 		/obj/item/book/manual/chef_recipes, \
 		/obj/item/bikehorn, \

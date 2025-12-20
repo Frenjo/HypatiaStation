@@ -499,6 +499,7 @@
 #include "code\game\decls\ores\other.dm"
 #include "code\game\decls\posters\_poster.dm"
 #include "code\game\decls\posters\bs12.dm"
+#include "code\game\decls\posters\tg.dm"
 #include "code\game\decls\surgery_steps\_surgery_step.dm"
 #include "code\game\decls\surgery_steps\appendix.dm"
 #include "code\game\decls\surgery_steps\bones.dm"

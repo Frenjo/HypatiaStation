@@ -36,7 +36,7 @@
 		/obj/item/reagent_holder/glass/paint/black,
 		/obj/item/reagent_holder/glass/paint/white,
 		/obj/item/reagent_holder/glass/paint/remover,
-		/obj/item/contraband/poster,
+		/obj/item/poster,
 		/obj/item/wrapping_paper,
 		/obj/item/wrapping_paper,
 		/obj/item/wrapping_paper
