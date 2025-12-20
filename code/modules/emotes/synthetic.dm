@@ -19,6 +19,24 @@
 	sound_path = 'sound/machines/buzz-sigh.ogg'
 	sound_volume = 50
 
+/decl/emote/synthetic/buzz2
+	key = "buzz2"
+	message = " buzzes twice."
+	message_type = EMOTE_AUDIBLE
+	accepts_target = TRUE
+
+	sound_path = 'sound/machines/buzz-two.ogg'
+	sound_volume = 50
+
+/decl/emote/synthetic/chime
+	key = "chime"
+	message = " chimes."
+	message_type = EMOTE_AUDIBLE
+	accepts_target = TRUE
+
+	sound_path = 'sound/machines/chime.ogg'
+	sound_volume = 50
+
 /decl/emote/synthetic/halt
 	key = "halt"
 	message = "'s speakers screech, \"Halt! Security!\"."
@@ -29,6 +47,16 @@
 
 /decl/emote/synthetic/halt/can_use_emote(mob/user)
 	return ..() && (isrobot(user) && istype(user:model, /obj/item/robot_model/security))
+
+/decl/emote/synthetic/honk
+	key = "honk"
+	message = " honks."
+	message_type = EMOTE_AUDIBLE
+	accepts_target = TRUE
+
+	sound_path = 'sound/items/bikehorn.ogg'
+	sound_volume = 50
+	sound_variance = TRUE
 
 /decl/emote/synthetic/law
 	key = "law"
@@ -47,4 +75,20 @@
 	accepts_target = TRUE
 
 	sound_path = 'sound/machines/ping.ogg'
+	sound_volume = 50
+
+/decl/emote/synthetic/sad
+	key = "sad"
+	message = " plays a sad trombone..."
+	message_type = EMOTE_AUDIBLE
+
+	sound_path = 'sound/misc/sadtrombone.ogg'
+	sound_volume = 50
+
+/decl/emote/synthetic/warn
+	key = "warn"
+	message = " blares an alarm!"
+	message_type = EMOTE_AUDIBLE
+
+	sound_path = 'sound/machines/warning-buzzer.ogg'
 	sound_volume = 50

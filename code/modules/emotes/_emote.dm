@@ -9,6 +9,7 @@
 
 	var/sound_path = null
 	var/sound_volume = 100
+	var/sound_variance = FALSE
 
 	var/check_muzzle = FALSE
 	var/message_muzzle = ""
@@ -62,4 +63,4 @@
 			O.show_message(output_message, message_type)
 
 	if(isnotnull(sound_path))
-		playsound(user, sound_path, sound_volume, 0)
+		playsound(user, sound_path, sound_volume, sound_variance)

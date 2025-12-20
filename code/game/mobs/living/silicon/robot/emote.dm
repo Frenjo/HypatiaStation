@@ -1,5 +1,8 @@
 /mob/living/silicon/robot/usable_emotes = list(
-	/decl/emote/synthetic/beep, /decl/emote/synthetic/buzz, /decl/emote/synthetic/halt, /decl/emote/synthetic/law, /decl/emote/synthetic/ping
+	/decl/emote/synthetic/beep, /decl/emote/synthetic/buzz, /decl/emote/synthetic/buzz2,
+	/decl/emote/synthetic/chime, /decl/emote/synthetic/honk, /decl/emote/synthetic/halt,
+	/decl/emote/synthetic/law, /decl/emote/synthetic/ping, /decl/emote/synthetic/sad,
+	/decl/emote/synthetic/warn
 )
 
 /mob/living/silicon/robot/emote(act, m_type = 1, message = null)
