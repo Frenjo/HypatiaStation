@@ -1,3 +1,7 @@
+/mob/living/silicon/robot/usable_emotes = list(
+	/decl/emote/synthetic/beep, /decl/emote/synthetic/buzz, /decl/emote/synthetic/halt, /decl/emote/synthetic/law, /decl/emote/synthetic/ping
+)
+
 /mob/living/silicon/robot/emote(act, m_type = 1, message = null)
 	var/param = null
 	if(findtext(act, "-", 1, null))
@@ -8,24 +12,29 @@
 	if(findtext(act, "s", -1) && !findtext(act, "_", -2))//Removes ending s's unless they are prefixed with a '_'
 		act = copytext(act, 1, length(act))
 
-	switch(act)
-		if("me")
-			if(src.client)
-				if(client.prefs.muted & MUTE_IC)
-					FEEDBACK_IC_MUTED(src)
-					return
-				if(src.client.handle_spam_prevention(message, MUTE_IC))
-					return
-			if(stat)
+	if(act == "me")
+		if(isnotnull(client))
+			if(client.prefs.muted & MUTE_IC)
+				FEEDBACK_IC_MUTED(src)
 				return
-			if(!(message))
+			if(client.handle_spam_prevention(message, MUTE_IC))
 				return
-			else
-				return custom_emote(m_type, message)
-
-		if("custom")
+		if(stat)
+			return
+		if(!(message))
+			return
+		else
 			return custom_emote(m_type, message)
+	else if(act == "custom")
+		return custom_emote(m_type, message)
 
+	for(var/emote_path in usable_emotes)
+		var/decl/emote/emote = GET_DECL_INSTANCE(emote_path)
+		if(act == emote.key)
+			emote.do_emote(src, param)
+			return
+
+	switch(act)
 		if("salute")
 			if(!src.buckled)
 				var/M = null
@@ -135,71 +144,6 @@
 			else
 				message = "<B>[src]</B> looks."
 			m_type = 1
-
-		if("beep")
-			var/M = null
-			if(param)
-				for (var/mob/A in view(null, null))
-					if (param == A.name)
-						M = A
-						break
-			if(!M)
-				param = null
-
-			if (param)
-				message = "<B>[src]</B> beeps at [param]."
-			else
-				message = "<B>[src]</B> beeps."
-			playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
-			m_type = 1
-
-		if("ping")
-			var/M = null
-			if(param)
-				for(var/mob/A in view(null, null))
-					if (param == A.name)
-						M = A
-						break
-			if(!M)
-				param = null
-
-			if(param)
-				message = "<B>[src]</B> pings at [param]."
-			else
-				message = "<B>[src]</B> pings."
-			playsound(src, 'sound/machines/ping.ogg', 50, 0)
-			m_type = 1
-
-		if("buzz")
-			var/M = null
-			if(param)
-				for(var/mob/A in view(null, null))
-					if(param == A.name)
-						M = A
-						break
-			if(!M)
-				param = null
-
-			if(param)
-				message = "<B>[src]</B> buzzes at [param]."
-			else
-				message = "<B>[src]</B> buzzes."
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-			m_type = 1
-
-		if("law")
-			if(istype(model, /obj/item/robot_model/security))
-				message = "<B>[src]</B> shows its legal authorisation barcode."
-
-				playsound(src, 'sound/voice/biamthelaw.ogg', 50, 0)
-				m_type = 2
-
-		if("halt")
-			if(istype(model, /obj/item/robot_model/security))
-				message = "<B>[src]</B>'s speakers skreech, \"Halt! Security!\"."
-
-				playsound(src, 'sound/voice/halt.ogg', 50, 0)
-				m_type = 2
 
 		if("help")
 			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping,<br>buzz, law, halt")
