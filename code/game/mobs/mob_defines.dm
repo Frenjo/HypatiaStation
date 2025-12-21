@@ -55,7 +55,7 @@
 	*/
 	var/atom/movable/screen/zone_sel/zone_sel = null
 
-	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
+	var/use_me = TRUE //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 
 	var/computer_id = null
 	var/lastattacker = null

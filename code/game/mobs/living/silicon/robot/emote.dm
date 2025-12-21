@@ -1,11 +1,12 @@
-/mob/living/silicon/robot/usable_emotes = list(
-	/decl/emote/synthetic/beep, /decl/emote/synthetic/buzz, /decl/emote/synthetic/buzz2,
-	/decl/emote/synthetic/chime, /decl/emote/synthetic/honk, /decl/emote/synthetic/halt,
-	/decl/emote/synthetic/law, /decl/emote/synthetic/ping, /decl/emote/synthetic/sad,
-	/decl/emote/synthetic/warn
-)
+/mob/living/silicon/robot/New()
+	. = ..()
+	useable_emotes.Add(/decl/emote/synthetic/halt, /decl/emote/synthetic/law)
 
 /mob/living/silicon/robot/emote(act, m_type = 1, message = null)
+	. = ..()
+	if(.)
+		return TRUE
+
 	var/param = null
 	if(findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
@@ -14,28 +15,6 @@
 
 	if(findtext(act, "s", -1) && !findtext(act, "_", -2))//Removes ending s's unless they are prefixed with a '_'
 		act = copytext(act, 1, length(act))
-
-	if(act == "me")
-		if(isnotnull(client))
-			if(client.prefs.muted & MUTE_IC)
-				FEEDBACK_IC_MUTED(src)
-				return
-			if(client.handle_spam_prevention(message, MUTE_IC))
-				return
-		if(stat)
-			return
-		if(!(message))
-			return
-		else
-			return custom_emote(m_type, message)
-	else if(act == "custom")
-		return custom_emote(m_type, message)
-
-	for(var/emote_path in usable_emotes)
-		var/decl/emote/emote = GET_DECL_INSTANCE(emote_path)
-		if(act == emote.key)
-			emote.do_emote(src, param)
-			return
 
 	switch(act)
 		if("salute")

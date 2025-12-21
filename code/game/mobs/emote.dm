@@ -1,5 +1,5 @@
 /mob
-	var/list/usable_emotes = list()
+	var/list/useable_emotes = list()
 
 /mob/proc/emote(act, type, message)
 	if(act == "me")
