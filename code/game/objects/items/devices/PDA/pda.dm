@@ -731,7 +731,7 @@
 		to_chat(U, SPAN_NOTICE("ERROR: Messaging server is not responding."))
 
 /obj/item/pda/verb/verb_remove_id()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Remove ID"
 	set src in usr
 
@@ -747,7 +747,7 @@
 		to_chat(usr, SPAN_NOTICE("You cannot do this while restrained."))
 
 /obj/item/pda/verb/verb_remove_pen()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Remove Pen"
 	set src in usr
 
