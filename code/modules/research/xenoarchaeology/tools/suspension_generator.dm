@@ -345,9 +345,9 @@
 	icon_state = "suspension2"
 
 /obj/machinery/suspension_gen/verb/toggle()
-	set category = PANEL_IC
-	set src in view(1)
-	set name = "Rotate suspension gen (clockwise)"
+	set category = null
+	set name = "Rotate (Clockwise)"
+	set src in oview(1)
 
 	if(anchored)
 		to_chat(usr, SPAN_WARNING("You cannot rotate [src], it has been firmly fixed to the floor."))

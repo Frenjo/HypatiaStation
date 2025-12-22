@@ -104,9 +104,9 @@
 		..()
 
 /obj/machinery/atmospherics/binary/circulator/verb/rotate_clockwise()
-	set category = PANEL_OBJECT
-	set name = "Rotate Circulator (Clockwise)"
-	set src in view(1)
+	set category = null
+	set name = "Rotate (Clockwise)"
+	set src in oview(1)
 
 	if(usr.stat || usr.restrained() || anchored)
 		return
@@ -116,9 +116,9 @@
 
 
 /obj/machinery/atmospherics/binary/circulator/verb/rotate_anticlockwise()
-	set category = PANEL_OBJECT
-	set name = "Rotate Circulator (Counterclockwise)"
-	set src in view(1)
+	set category = null
+	set name = "Rotate (Counterclockwise)"
+	set src in oview(1)
 
 	if(usr.stat || usr.restrained() || anchored)
 		return

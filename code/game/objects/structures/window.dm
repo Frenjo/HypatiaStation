@@ -253,7 +253,7 @@
 
 /obj/structure/window/verb/rotate()
 	set category = null
-	set name = "Rotate Window Counter-Clockwise"
+	set name = "Rotate Window (Counterclockwise)"
 	set src in oview(1)
 
 	if(anchored)
@@ -269,7 +269,7 @@
 
 /obj/structure/window/verb/revrotate()
 	set category = null
-	set name = "Rotate Window Clockwise"
+	set name = "Rotate Window (Clockwise)"
 	set src in oview(1)
 
 	if(anchored)

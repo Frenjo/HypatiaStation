@@ -32,9 +32,9 @@
 		. += SPAN_INFO("Nothing.")
 
 /obj/structure/reagent_dispenser/verb/set_APTFT() //set amount_per_transfer_from_this
-	set category = PANEL_OBJECT
-	set name = "Set transfer amount"
-	set src in view(1)
+	set category = null
+	set name = "Set Transfer Amount"
+	set src in oview(1)
 
 	var/N = input("Amount per transfer from this:", "[src]") as null | anything in possible_transfer_amounts
 	if(N)

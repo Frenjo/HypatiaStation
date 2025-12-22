@@ -168,9 +168,9 @@ Buildable meters
 // rotate the pipe item clockwise
 
 /obj/item/pipe/verb/rotate()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Rotate Pipe"
-	set src in view(1)
+	set src in oview(1)
 
 	if(usr.stat || usr.restrained())
 		return

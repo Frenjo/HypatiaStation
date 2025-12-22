@@ -59,7 +59,7 @@
 	add_fingerprint(user)
 
 /obj/item/health_analyser/verb/toggle_mode()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Switch Verbosity"
 
 	mode = !mode

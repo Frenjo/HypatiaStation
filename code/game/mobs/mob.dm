@@ -888,8 +888,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	return visible_implants
 
 /mob/proc/yank_out_object()
-	set category = PANEL_OBJECT
-	set name = "Yank out object"
+	set category = null
+	set name = "Yank Out Object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)
 
