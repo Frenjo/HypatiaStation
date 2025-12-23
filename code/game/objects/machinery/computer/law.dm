@@ -9,7 +9,7 @@
 	var/opened = 0
 
 /obj/machinery/computer/aiupload/verb/AccessInternals()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Access Computer's Internals"
 	set src in oview(1)
 

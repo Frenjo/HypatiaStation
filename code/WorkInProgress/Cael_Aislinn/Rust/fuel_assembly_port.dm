@@ -95,8 +95,8 @@
 	return success
 
 /obj/machinery/rust_fuel_assembly_port/verb/eject_assembly_verb()
-	set category = PANEL_OBJECT
-	set name = "Eject assembly from port"
+	set category = null
+	set name = "Eject Assembly From Port"
 	set src in oview(1)
 
 	eject_assembly()

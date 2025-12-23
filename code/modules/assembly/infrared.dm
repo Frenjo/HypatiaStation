@@ -137,12 +137,10 @@
 		attack_self(user)
 
 /obj/item/assembly/infra/verb/rotate() //This could likely be better
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Rotate Infrared Laser"
-	set src in usr
 
 	set_dir(turn(dir, 90))
-	return
 
 /***************************IBeam*********************************/
 /obj/effect/beam/i_beam

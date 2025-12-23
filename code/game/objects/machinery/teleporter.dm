@@ -324,7 +324,7 @@
 	return
 
 /obj/machinery/teleport/station/verb/testfire()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Test Fire Teleporter"
 	set src in oview(1)
 

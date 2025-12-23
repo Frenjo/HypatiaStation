@@ -348,7 +348,7 @@
 	return
 
 /obj/machinery/sleeper/verb/eject()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Eject Sleeper"
 	set src in oview(1)
 
@@ -362,7 +362,7 @@
 	return
 
 /obj/machinery/sleeper/verb/remove_beaker()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Remove Beaker"
 	set src in oview(1)
 
@@ -376,7 +376,7 @@
 	return
 
 /obj/machinery/sleeper/verb/move_inside()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Enter Sleeper"
 	set src in oview(1)
 

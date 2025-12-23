@@ -23,7 +23,7 @@
 	var/obj/crayon
 
 /obj/machinery/washing_machine/verb/start()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Start Washing"
 	set src in oview(1)
 
@@ -181,8 +181,8 @@
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()
-	set category = PANEL_OBJECT
-	set name = "Climb out"
+	set category = null
+	set name = "Climb Out"
 	set src in usr.loc
 
 	sleep(20)

@@ -76,9 +76,8 @@
 		. += SPAN_INFO("\A [hastie] is clipped to it.")
 
 /obj/item/clothing/under/verb/toggle()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Suit Sensors"
-	set src in usr
 
 	var/mob/M = usr
 	if(istype(M, /mob/dead))
@@ -118,9 +117,8 @@
 		H.update_inv_wear_uniform()
 
 /obj/item/clothing/under/verb/removetie()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Remove Accessory"
-	set src in usr
 
 	if(!isliving(usr))
 		return

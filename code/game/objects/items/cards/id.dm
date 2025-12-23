@@ -52,9 +52,8 @@
 	return ..()
 
 /obj/item/card/id/verb/read()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Read ID Card"
-	set src in usr
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")

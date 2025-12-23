@@ -114,11 +114,11 @@
 		update_icon()
 
 /obj/machinery/gibber/verb/eject()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Empty Gibber"
 	set src in oview(1)
 
-	if (usr.stat != 0)
+	if(usr.stat != 0)
 		return
 	src.go_out()
 	add_fingerprint(usr)

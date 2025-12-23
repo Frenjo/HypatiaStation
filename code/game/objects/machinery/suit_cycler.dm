@@ -375,7 +375,7 @@
 	suit.calc_breach_damage()
 
 /obj/machinery/suit_cycler/verb/leave()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Eject Cycler"
 	set src in oview(1)
 
