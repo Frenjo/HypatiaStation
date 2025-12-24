@@ -331,7 +331,7 @@ CONTROLLER_DEF(jobs)
 		return 0
 
 	var/datum/job/job = get_job(rank)
-	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/cyborg)) // AI/Cyborg checking is a temporary fix.
+	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/robot)) // AI/Cyborg checking is a temporary fix.
 		if(isnotnull(job))
 			job.equip(H, H.mind.role_alt_title)
 		else

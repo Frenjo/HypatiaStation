@@ -64,10 +64,10 @@
 		var/datum/medical_effect/M = new path()
 		GLOBL.side_effects[M.name] = M
 
-// Jobs - Initialises all /datum/job (except the base, /datum/job/ai and /datum/job/cyborg) into a list, indexed by name.
+// Jobs - Initialises all /datum/job (except the base, /datum/job/ai and /datum/job/robot) into a list, indexed by name.
 /hook/global_init/proc/init_jobs()
 	. = TRUE
-	for(var/path in typesof(/datum/job) - list(/datum/job, /datum/job/ai, /datum/job/cyborg))
+	for(var/path in typesof(/datum/job) - list(/datum/job, /datum/job/ai, /datum/job/robot))
 		var/datum/job/J = new path()
 		GLOBL.all_jobs[J.title] = J
 
