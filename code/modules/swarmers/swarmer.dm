@@ -2,14 +2,14 @@
 	name = "swarmer"
 	desc = "A robot of unknown design, they seek only to consume materials and replicate themselves indefinitely."
 	icon = 'icons/mob/simple/swarmer.dmi'
-	icon_state = "swarmer"
+	icon_state = "standard"
 
 	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_SWARMER
 
 	light_color = "#0066FF"
 
 	hud_type = /datum/hud/swarmer
-	faction = "swarmer"
+	factions = list("swarmer")
 
 	maxHealth = 40
 	health = 40
@@ -21,8 +21,8 @@
 	attack_sound = 'sound/effects/EMPulse.ogg'
 	friendly = "pinches"
 
-	icon_living = "swarmer"
-	icon_dead = "swarmer_unactivated"
+	icon_living = "standard"
+	icon_dead = "unactivated"
 
 	harm_intent_damage = 5
 
@@ -93,3 +93,28 @@
 		return FALSE
 
 	return clicked_on.swarmer_act(src)
+
+// Ranged (laser) variant
+/mob/living/simple/hostile/swarmer/ranged
+	icon_state = "ranged"
+
+	icon_living = "ranged"
+
+	projectiletype = /obj/projectile/energy/pulse/laser
+	projectilesound = 'sound/weapons/gun/laser.ogg'
+
+	max_ranged_cooldown = 3
+
+// Melee (stunner) variant
+/mob/living/simple/hostile/swarmer/melee
+	icon_state = "melee"
+
+	maxHealth = 60
+	health = 60
+
+	melee_damage_lower = 25
+	melee_damage_upper = 25
+
+	icon_living = "melee"
+
+	ranged = FALSE

@@ -27,9 +27,8 @@
 			B.target_mob = user
 
 /obj/item/bee_net/verb/empty_bees()
-	set category = PANEL_OBJECT
-	set src in usr
-	set name = "Empty bee net"
+	set category = null
+	set name = "Empty Bee Net"
 
 	var/mob/living/carbon/M
 	if(iscarbon(usr))

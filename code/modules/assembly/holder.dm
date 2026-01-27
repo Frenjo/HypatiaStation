@@ -238,9 +238,8 @@
 	..()
 
 /obj/item/assembly_holder/timer_igniter/verb/configure()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Set Timer"
-	set src in usr
 
 	if(!(usr.stat || usr.restrained()))
 		var/obj/item/assembly_holder/holder

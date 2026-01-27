@@ -31,7 +31,7 @@
 
 	break_stuff_probability = 2
 
-	faction = "carp"
+	factions = list("carp")
 
 /mob/living/simple/hostile/carp/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space carp!	//original comments do not steal

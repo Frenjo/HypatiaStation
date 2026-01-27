@@ -40,7 +40,7 @@
 	attacktext = "hits"
 	attack_sound = 'sound/weapons/melee/genhit1.ogg'
 
-	faction = "blob"
+	factions = list("blob")
 	min_oxy = 0
 	max_tox = 0
 	max_co2 = 0

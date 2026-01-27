@@ -70,9 +70,8 @@
 		onclose(user, "[name]")
 
 /obj/item/paper/verb/rename()
-	set category = PANEL_OBJECT
-	set name = "Rename paper"
-	set src in usr
+	set category = null
+	set name = "Rename Paper"
 
 	if((MUTATION_CLUMSY in usr.mutations) && prob(50))
 		to_chat(usr, SPAN_WARNING("You cut yourself on the paper."))

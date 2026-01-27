@@ -120,8 +120,8 @@
 	return
 
 /obj/machinery/juicer/verb/detach()
-	set category = PANEL_OBJECT
-	set name = "Detach Beaker from the juicer"
+	set category = null
+	set name = "Detach Beaker"
 	set src in oview(1)
 
 	if(usr.stat != 0)

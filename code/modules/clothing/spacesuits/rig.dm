@@ -168,9 +168,8 @@
 */
 
 /obj/item/clothing/suit/space/rig/verb/toggle_helmet()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Helmet"
-	set src in usr
 
 	if(!isliving(src.loc))
 		return

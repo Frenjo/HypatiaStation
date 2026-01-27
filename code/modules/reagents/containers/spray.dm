@@ -98,9 +98,8 @@
 	. += SPAN_INFO("It has <em>[round(reagents.total_volume)]</em> units left.")
 
 /obj/item/reagent_holder/spray/verb/empty()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Empty Spray Bottle"
-	set src in usr
 
 	if(alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
 		return

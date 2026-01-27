@@ -6,7 +6,7 @@
 	max_tox = 0
 	max_co2 = 0
 	unsuitable_atoms_damage = 15
-	faction = "mining"
+	factions = list("mining")
 	wall_smash = 1
 	minbodytemp = 0
 	heat_damage_per_tick = 20
@@ -94,7 +94,7 @@
 		return FALSE
 	if(isliving(target_atom))
 		var/mob/living/L = target_atom
-		if(L.stat != CONSCIOUS || L.faction == faction && !attack_same)
+		if(L.stat != CONSCIOUS || L.is_same_faction(factions) && !attack_same)
 			return FALSE
 		if(L in friends)
 			return FALSE

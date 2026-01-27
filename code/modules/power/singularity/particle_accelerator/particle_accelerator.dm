@@ -88,8 +88,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 /obj/structure/particle_accelerator/verb/rotate()
-	set category = PANEL_OBJECT
-	set name = "Rotate Clockwise"
+	set category = null
+	set name = "Rotate (Clockwise)"
 	set src in oview(1)
 
 	if(src.anchored || usr.stat)
@@ -99,8 +99,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return 1
 
 /obj/structure/particle_accelerator/verb/rotateccw()
-	set category = PANEL_OBJECT
-	set name = "Rotate Counter Clockwise"
+	set category = null
+	set name = "Rotate (Counterclockwise)"
 	set src in oview(1)
 
 	if(src.anchored || usr.stat)
@@ -287,8 +287,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	var/desc_holder = null
 
 /obj/machinery/particle_accelerator/verb/rotate()
-	set category = PANEL_OBJECT
-	set name = "Rotate Clockwise"
+	set category = null
+	set name = "Rotate (Clockwise)"
 	set src in oview(1)
 
 	if(src.anchored || usr.stat)
@@ -298,8 +298,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return 1
 
 /obj/machinery/particle_accelerator/verb/rotateccw()
-	set category = PANEL_OBJECT
-	set name = "Rotate Counter-Clockwise"
+	set category = null
+	set name = "Rotate (Counterclockwise)"
 	set src in oview(1)
 
 	if(src.anchored || usr.stat)

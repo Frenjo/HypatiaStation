@@ -15,9 +15,8 @@
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 50, rad = 0)
 
 /obj/item/clothing/suit/storage/labcoat/verb/toggle()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Labcoat Buttons"
-	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return 0

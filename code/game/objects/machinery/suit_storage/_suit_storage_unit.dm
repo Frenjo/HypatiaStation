@@ -368,7 +368,7 @@
 	update_icon()
 
 /obj/machinery/suit_storage_unit/verb/get_out()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Eject Suit Storage Unit"
 	set src in oview(1)
 
@@ -380,7 +380,7 @@
 	update_icon()
 
 /obj/machinery/suit_storage_unit/verb/move_inside()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Hide in Suit Storage Unit"
 	set src in oview(1)
 

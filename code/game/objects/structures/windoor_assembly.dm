@@ -285,7 +285,7 @@
 
 //Rotates the windoor assembly clockwise
 /obj/structure/windoor_assembly/verb/revrotate()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Rotate Windoor Assembly"
 	set src in oview(1)
 
@@ -306,7 +306,7 @@
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Flip Windoor Assembly"
 	set src in oview(1)
 

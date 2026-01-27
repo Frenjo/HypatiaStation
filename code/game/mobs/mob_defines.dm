@@ -55,7 +55,7 @@
 	*/
 	var/atom/movable/screen/zone_sel/zone_sel = null
 
-	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
+	var/use_me = TRUE //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 
 	var/computer_id = null
 	var/lastattacker = null
@@ -157,7 +157,7 @@
 
 	var/voice_name = "unidentifiable voice"
 
-	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
+	var/list/factions = list("neutral") //Used for checking whether hostile simple animals will attack you, possibly more stuff later
 	var/captured = 0 //Functionally, should give the same effect as being buckled into a chair when true.
 
 //Generic list for proc holders. Only way I can see to enable certain verbs/procs. Should be modified if needed.

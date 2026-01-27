@@ -116,6 +116,8 @@ return_location()
 	return sqrt(((offset_x / 32) ** 2) + ((offset_y / 32) ** 2))
 
 /datum/plot_vector/proc/return_location(datum/vector_loc/data)
+	RETURN_TYPE(/datum/vector_loc)
+
 	if(isnull(data))
 		data = new /datum/vector_loc()
 	data.loc = locate(round(loc_x / world.icon_size), round(loc_y / world.icon_size), loc_z)

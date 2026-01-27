@@ -712,65 +712,71 @@ world
 Get flat icon by DarkCampainger. As it says on the tin, will return an icon with all the overlays
 as a single icon. Useful for when you want to manipulate an icon via the above as overlays are not normally included.
 */
-/proc/getFlatIcon(atom/A, dir)
-	// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
-	var/list/layers = list()
+/proc/getFlatIcon(atom/A, dir = null)
+	RETURN_TYPE(/icon)
 
-	// Add the atom's icon itself
-	if(A.icon)
-		// Make a copy without pixel_x/y settings
-		var/image/copy = image(icon = A.icon, icon_state = A.icon_state, layer = A.layer, dir = A.dir)
-		layers[copy] = A.layer
+	// We start with a blank canvas, otherwise some icon procs crash silently.
+	var/icon/flat = icon('icons/effects/effects.dmi', "icon_state" = "nothing") // Final flattened icon
+	if(isnull(A) || A.alpha <= 0)
+		return flat
 
 	// dir defaults to A's dir
 	if(!dir)
 		dir = A.dir
 
+	// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
+	var/list/image/layers = list()
+	var/image/copy
+	// Add the atom's icon itself, without pixel_x/y offsets.
+	if(A.icon)
+		copy = image(icon = A.icon, icon_state = A.icon_state, layer = A.layer, dir = A.dir)
+		copy.color = A.color
+		copy.alpha = A.alpha
+		copy.blend_mode = A.blend_mode
+		layers[copy] = A.layer
+
 	// Loop through the underlays, then overlays, sorting them into the layers list
-	var/list/process = A.underlays // Current list being processed
-	var/pSet = 0 // Which list is being processed: 0 = underlays, 1 = overlays
-	var/curIndex = 1 // index of 'current' in list being processed
-	var/current // Current overlay being sorted
-	var/currentLayer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
+	var/list/image/process = A.underlays // Current list being processed
+	var/process_set = 0 // Which list is being processed: 0 = underlays, 1 = overlays
+	var/image/current // Current overlay being sorted
+	var/current_index = 1 // index of 'current' in list being processed
+	var/current_layer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
 	var/compare // The overlay 'add' is being compared against
-	var/cmpIndex // The index in the layers list of 'compare'
+	var/compare_index // The index in the layers list of 'compare'
 	while(TRUE)
-		if(curIndex <= length(process))
-			current = process[curIndex]
+		if(current_index <= length(process))
+			current = process[current_index]
+			current_index++
 			if(!current)
 				continue
-			currentLayer = current:layer
-			if(currentLayer < 0) // Special case for FLY_LAYER
-				if(currentLayer <= -1000)
-					return 0
-				if(pSet == 0) // Underlay
-					currentLayer = A.layer + currentLayer / 1000
+
+			current_layer = current.layer
+			if(current_layer < 0) // Special case for FLY_LAYER
+				if(current_layer <= -1000)
+					return flat
+				if(process_set == 0) // Underlay
+					current_layer = A.layer + current_layer / 1000
 				else // Overlay
-					currentLayer = A.layer + (1000 + currentLayer) / 1000
+					current_layer = A.layer + (1000 + current_layer) / 1000
 
 			// Sort add into layers list
-			for(cmpIndex in 1 to length(layers))
-				compare = layers[cmpIndex]
-				if(currentLayer < layers[compare]) // Associated value is the calculated layer
-					layers.Insert(cmpIndex, current)
-					layers[current] = currentLayer
+			compare_index = 1
+			while(compare_index <= length(layers))
+				compare = layers[compare_index]
+				if(current_layer < layers[compare]) // Associated value is the calculated layer
+					layers.Insert(compare_index, current)
+					layers[current] = current_layer
 					break
-			if(cmpIndex > length(layers)) // Reached end of list without inserting
-				layers[current] = currentLayer // Place at end
+				compare_index++
+			if(compare_index > length(layers)) // Reached end of list without inserting
+				layers[current] = current_layer // Place at end
 
-			curIndex++
-
-		if(curIndex > length(process))
-			if(pSet == 0) // Switch to overlays
-				curIndex = 1
-				pSet = 1
-				process = A.overlays
-			else // All done
-				break
-
-	// We start with a blank canvas, otherwise some icon procs crash silently
-	var/icon/flat = icon('icons/effects/effects.dmi', "icon_state" = "nothing") // Final flattened icon
-	var/icon/add // Icon of overlay being added
+		else if(process_set == 0) // Switch to overlays
+			current_index = 1
+			process_set = 1
+			process = A.overlays
+		else // All done
+			break
 
 	// Current dimensions of flattened icon
 	var/flatX1 = 1
@@ -784,30 +790,34 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 	var/addY1
 	var/addY2
 
-	for(var/I in layers)
-		if(I:icon)
-			if(I:icon_state)
+	var/icon/add // Icon of overlay being added
+	for_no_type_check(var/image/I, layers)
+		if(I.alpha == 0)
+			continue
+
+		if(I.icon)
+			if(I.icon_state)
 				// Has icon and state set
-				add = icon(I:icon, I:icon_state, dir)
+				add = icon(I.icon, I.icon_state, dir)
 			else
-				if(A.icon_state in icon_states(I:icon))
+				if(A.icon_state in icon_states(I.icon))
 					// Inherits icon_state from atom
-					add = icon(I:icon, A.icon_state, dir)
+					add = icon(I.icon, A.icon_state, dir)
 				else
 					// Uses default state ("")
-					add = icon(I:icon, dir = dir)
-		else if(I:icon_state)
+					add = icon(I.icon, dir = dir)
+		else if(I.icon_state)
 			// Inherits icon from atom
-			add = icon(A.icon, I:icon_state, dir)
+			add = icon(A.icon, I.icon_state, dir)
 		else
 			// Unknown
 			continue
 
 		// Find the new dimensions of the flat icon to fit the added overlay
-		addX1 = min(flatX1, I:pixel_x + 1)
-		addX2 = max(flatX2, I:pixel_x + add.Width())
-		addY1 = min(flatY1, I:pixel_y + 1)
-		addY2 = max(flatY2, I:pixel_y + add.Height())
+		addX1 = min(flatX1, I.pixel_x + 1)
+		addX2 = max(flatX2, I.pixel_x + add.Width())
+		addY1 = min(flatY1, I.pixel_y + 1)
+		addY2 = max(flatY2, I.pixel_y + add.Height())
 
 		if(addX1 != flatX1 || addX2 != flatX2 || addY1 != flatY1 || addY2 != flatY2)
 			// Resize the flattened icon so the new icon fits
@@ -817,8 +827,11 @@ as a single icon. Useful for when you want to manipulate an icon via the above a
 			flatY1 = addY1
 			flatY2 = addY2
 
-		// Blend the overlay into the flattened icon
-		flat.Blend(add, ICON_OVERLAY, I:pixel_x + 2 - flatX1, I:pixel_y + 2 - flatY1)
+		// Blends the overlay into the flattened icon.
+		var/icon_mode = ICON_OVERLAY
+		if(I in A.underlays)
+			icon_mode = ICON_UNDERLAY
+		flat.Blend(add, icon_mode, I.pixel_x + 2 - flatX1, I.pixel_y + 2 - flatY1)
 
 	return icon(flat, "", dir)
 

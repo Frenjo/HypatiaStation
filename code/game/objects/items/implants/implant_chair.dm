@@ -134,8 +134,8 @@
 	return
 
 /obj/machinery/implantchair/verb/get_out()
-	set category = PANEL_OBJECT
-	set name = "Eject occupant"
+	set category = null
+	set name = "Eject Occupant"
 	set src in oview(1)
 
 	if(usr.stat != 0)
@@ -145,7 +145,7 @@
 	return
 
 /obj/machinery/implantchair/verb/move_inside()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Move Inside"
 	set src in oview(1)
 

@@ -58,9 +58,8 @@
 	return
 
 /obj/item/photo/verb/rename()
-	set category = PANEL_OBJECT
-	set name = "Rename photo"
-	set src in usr
+	set category = null
+	set name = "Rename Photo"
 
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the photo?", "Photo Labelling", null) as text), 1, MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards

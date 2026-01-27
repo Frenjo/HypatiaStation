@@ -155,8 +155,9 @@
 	attack_hand(user)
 
 /obj/structure/closet/fireaxecabinet/verb/toggle_openness() //nice name, huh? HUH?! -Erro //YEAH -Agouri
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Open/Close"
+	set src in oview(1)
 
 	if(isrobot(usr) || src.locked || src.smashed)
 		if(src.locked)
@@ -169,8 +170,9 @@
 	update_icon()
 
 /obj/structure/closet/fireaxecabinet/verb/remove_fire_axe()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Remove Fire Axe"
+	set src in oview(1)
 
 	if(isrobot(usr))
 		return
