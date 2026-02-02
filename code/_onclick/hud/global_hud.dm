@@ -3,7 +3,7 @@
  *
  * Uses the same visual objects for all players.
  */
-GLOBAL_GLOBL_NEW(datum/global_hud/global_hud)
+GLOBAL_GLOBL_TYPED_NEW(global_hud, /datum/global_hud)
 
 /datum/global_hud
 	var/atom/movable/screen/druggy
@@ -61,6 +61,12 @@ GLOBAL_GLOBL_NEW(datum/global_hud/global_hud)
 
 /datum/global_hud/New()
 	. = ..()
+	spawn(1)
+		setup()
+
+/datum/global_hud/proc/setup()
+	set waitfor = FALSE
+	PRIVATE_PROC(TRUE)
 
 	// 420erryday psychedellic colours screen overlay for when you are high.
 	druggy = new /atom/movable/screen()

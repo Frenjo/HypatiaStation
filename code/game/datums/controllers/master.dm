@@ -4,7 +4,6 @@
  * This is an unholy abomination of GoonPS, CarnMC and StonedMC.
  *
  * Takes over after global initialisation happens and the world has been created:
- *	Generates syndicate code phrases and responses.
  *	Initialises job and radio controllers.
  *	Sets up processes.
  *	Calls initialise() on all areas, simulated turfs and movable atoms.
@@ -81,6 +80,7 @@ CONTROLLER_DEF(master)
 
 /datum/controller/master/New()
 	. = ..()
+
 	// world.tick_lag is set by this point, so there's no need to reset these later.
 	scheduler_sleep_interval = world.tick_lag
 	time_allowance = world.tick_lag * 0.5
@@ -92,12 +92,6 @@ CONTROLLER_DEF(master)
 		if(istype(global.CTmaster))
 			qdel(global.CTmaster)
 		global.CTmaster = src
-
-	// TODO: Move this somewhere more relevant. Maybe into a startup hook?
-	if(isnull(GLOBL.syndicate_code_phrase))
-		GLOBL.syndicate_code_phrase = generate_code_phrase()
-	if(isnull(GLOBL.syndicate_code_response))
-		GLOBL.syndicate_code_response = generate_code_phrase()
 
 /datum/controller/master/setup()
 	// Stores the time we started setting up the master controller.
@@ -194,8 +188,8 @@ CONTROLLER_DEF(master)
  * Status Panel Information
  */
 /datum/controller/master/proc/stat_controllers()
-	stat("Controllers:", length(GLOBL.controllers))
-	for_no_type_check(var/datum/controller/controller, GLOBL.controllers)
+	stat("Controllers:", length(global.controllers))
+	for_no_type_check(var/datum/controller/controller, global.controllers)
 		controller.stat_controller()
 
 /datum/controller/master/proc/stat_processes()

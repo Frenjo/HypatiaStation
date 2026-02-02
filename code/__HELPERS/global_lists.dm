@@ -70,6 +70,7 @@
 	for(var/path in typesof(/datum/job) - list(/datum/job, /datum/job/ai, /datum/job/robot))
 		var/datum/job/J = new path()
 		GLOBL.all_jobs[J.title] = J
+		GLOBL.all_job_names.Add(J.title)
 
 // Languages - Initialises all /datum/language and language keys into lists.
 /hook/global_init/proc/init_languages()

@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/doppler_array/doppler_arrays)
+GLOBAL_GLOBL_LIST_TYPED_NEW(doppler_arrays, /obj/machinery/doppler_array)
 
 /obj/machinery/doppler_array
 	name = "tachyon-doppler array"

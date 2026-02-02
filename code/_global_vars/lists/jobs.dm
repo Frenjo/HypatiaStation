@@ -1,4 +1,5 @@
 GLOBAL_GLOBL_ALIST_NEW(all_jobs) // Associative list of all job types, minus borg and AI, indexed by name.
+GLOBAL_GLOBL_LIST_NEW(all_job_names)
 GLOBAL_GLOBL_LIST_INIT(all_centcom_jobs, list(
 	"VIP Guest", "Custodian", "Thunderdome Overseer",
 	"Intel Officer", "Medical Officer", "Death Commando",

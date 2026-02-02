@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_NEW(dmm_suite/maploader)
+GLOBAL_GLOBL_TYPED_NEW(maploader, /dmm_suite)
 
 /*
 	dmm_suite version 1.0

@@ -24,4 +24,4 @@
 /proc/get_all_job_icons() //For all existing HUD icons
 	RETURN_TYPE(/list)
 
-	return GLOBL.all_jobs + list("Prisoner")
+	return GLOBL.all_job_names + list("Prisoner")

@@ -1,5 +1,5 @@
-GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/space/parallax_stars)
-GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars)
+GLOBAL_GLOBL_LIST_TYPED_NEW(parallax_stars, /atom/movable/space_star/space)
+GLOBAL_GLOBL_LIST_TYPED_NEW(parallax_bluespace_stars, /atom/movable/space_star/bluespace)
 
 /proc/create_parallax()
 	for(var/i in 1 to PARALLAX_STAR_AMOUNT)

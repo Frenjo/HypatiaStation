@@ -115,6 +115,13 @@ GLOBAL_GLOBL_INIT(syndicate_name, null)
 GLOBAL_GLOBL_INIT(syndicate_code_phrase, null)		// Code phrase for traitors.
 GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 
+/hook/roundstart/proc/make_syndicate_codes()
+	. = TRUE
+	if(isnull(GLOBL.syndicate_code_phrase))
+		GLOBL.syndicate_code_phrase = generate_code_phrase()
+	if(isnull(GLOBL.syndicate_code_response))
+		GLOBL.syndicate_code_response = generate_code_phrase()
+
 /*
 	Should be expanded.
 	How this works:
@@ -175,7 +182,7 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 							. += " "
 							. += pick(GLOBL.last_names)
 					if(2)
-						. += pick(GLOBL.all_jobs) // Returns a job.
+						. += pick(GLOBL.all_job_names) // Returns a job name.
 				safety -= 1
 			if(2)
 				switch(rand(1, 2))//Places or things.

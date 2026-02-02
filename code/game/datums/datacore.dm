@@ -1,4 +1,4 @@
-GLOBAL_GLOBL(datum/datacore/data_core)
+GLOBAL_GLOBL_TYPED(data_core, /datum/datacore, null)
 
 /hook/startup/proc/create_datacore()
 	. = TRUE

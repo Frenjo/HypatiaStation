@@ -2,7 +2,7 @@
  * Base Controller Datum
  */
 // If this list is explicitly typed as /datum/controller/controllers then the whole game breaks.
-GLOBAL_GLOBL_LIST_NEW(controllers)
+GLOBAL_BYOND_LIST_NEW(controllers)
 
 /datum/controller
 	// The controller's name.
@@ -14,11 +14,11 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
-	GLOBL.controllers.Add(src)
+	global.controllers.Add(src)
 	stat_click = new /atom/movable/clickable_stat(null, src, name)
 
 /datum/controller/Destroy()
-	GLOBL.controllers.Remove(src)
+	global.controllers.Remove(src)
 	QDEL_NULL(stat_click)
 	return ..()
 

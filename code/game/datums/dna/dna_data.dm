@@ -1,7 +1,7 @@
 /////////////////////////
 // DNA2 SETUP
 /////////////////////////
-GLOBAL_GLOBL(datum/dna_data/dna_data)
+GLOBAL_GLOBL_TYPED(dna_data, /datum/dna_data, null)
 
 /hook/global_init/proc/setup_genetics()
 	//to_world(SPAN_DANGER("↪ Setting up DNA2."))

@@ -12,7 +12,7 @@
 
 	Look at radio.dm for the prequel to this code.
 */
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
+GLOBAL_GLOBL_LIST_TYPED_NEW(telecoms_list, /obj/machinery/telecoms)
 
 /obj/machinery/telecoms
 	var/list/obj/machinery/telecoms/links = list() // list of machines this machine is linked to

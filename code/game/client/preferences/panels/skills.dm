@@ -52,15 +52,17 @@
 		CalculateSkillPoints()
 
 	else if(topic.has("preconfigured"))
-		var/selected = input(user, "Select a skillset", "Skillset") as null | anything in GLOBL.skill_presets
+		var/static/alist/skill_presets = alist("Engineer" = GLOBL.skills_engineer, "Roboticist" = GLOBL.skills_roboticist,
+			"Security Officer" = GLOBL.skills_security_officer, "Chemist" = GLOBL.skills_chemist)
+		var/selected = input(user, "Select a skillset", "Skillset") as null | anything in skill_presets
 		if(!selected)
 			return
 		ZeroSkills(1)
-		for(var/V in GLOBL.skill_presets[selected])
+		for(var/V in skill_presets[selected])
 			if(V == "field")
-				skill_specialization = GLOBL.skill_presets[selected]["field"]
+				skill_specialization = skill_presets[selected]["field"]
 				continue
-			skills[V] = GLOBL.skill_presets[selected][V]
+			skills[V] = skill_presets[selected][V]
 		CalculateSkillPoints()
 
 	else if(topic.has("setspecialization"))

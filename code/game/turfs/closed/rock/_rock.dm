@@ -1,8 +1,8 @@
 /*
  * Mineral Deposits
  */
-GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/all_rock_turfs)
-GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
+GLOBAL_GLOBL_LIST_TYPED_NEW(all_rock_turfs, /turf/closed/rock)
+GLOBAL_GLOBL_LIST_TYPED_NEW(artifact_spawning_turfs, /turf/closed/rock)
 
 /turf/closed/rock //wall piece
 	name = "rock"

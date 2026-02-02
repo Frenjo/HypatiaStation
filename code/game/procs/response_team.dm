@@ -5,7 +5,7 @@ GLOBAL_GLOBL_LIST_NEW(response_team_members)
 GLOBAL_GLOBL_INIT(send_emergency_team, FALSE)	// Used for automagic response teams
 												// 'admin_emergency_team' for admin-spawned response teams
 GLOBAL_GLOBL_INIT(ert_base_chance, 10)	// Default base chance. Will be incremented by increment ERT chance.
-GLOBAL_GLOBL(can_call_ert)
+GLOBAL_GLOBL_INIT(can_call_ert, FALSE)
 
 /client/proc/response_team()
 	set category = PANEL_SPECIAL_VERBS

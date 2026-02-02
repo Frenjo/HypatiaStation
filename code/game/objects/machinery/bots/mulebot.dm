@@ -69,13 +69,14 @@
 	wires = new /datum/wires/mulebot(src)
 
 	botcard = new /obj/item/card/id(src)
-	var/datum/job/cargo_tech/J = GLOBL.all_jobs["Cargo Technician"]
-	botcard.access = J.get_access()
-//	botcard.access += access_robotics //Why --Ikki
 
 // must wait for map loading to finish
 /obj/machinery/bot/mulebot/initialise()
 	. = ..()
+	var/datum/job/cargo_tech/J = GLOBL.all_jobs["Cargo Technician"]
+	botcard.access = J.get_access()
+//	botcard.access += access_robotics //Why --Ikki
+
 	register_radio(src, null, control_freq, RADIO_MULEBOT)
 	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 

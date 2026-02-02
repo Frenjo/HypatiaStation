@@ -1,10 +1,4 @@
 GLOBAL_GLOBL_ALIST_NEW(all_skills)
-GLOBAL_GLOBL_ALIST_INIT(skill_presets, alist(
-	"Engineer" = GLOBL.skills_engineer,
-	"Roboticist" = GLOBL.skills_roboticist,
-	"Security Officer" = GLOBL.skills_security_officer,
-	"Chemist" = GLOBL.skills_chemist
-))
 
 // Skill Presets
 GLOBAL_GLOBL_ALIST_INIT(skills_engineer, alist(

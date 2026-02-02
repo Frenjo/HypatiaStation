@@ -1,7 +1,7 @@
 GLOBAL_GLOBL_LIST_NEW(movable_atom_list) // A list of all movable atoms in the world. Explicitly typing this as /atom/movable causes things to break for some reason.
 
-GLOBAL_GLOBL_LIST_NEW(obj/structure/cable/cable_list)	// Index for all cables, so that powernets don't have to look through the entire world all the time
-GLOBAL_GLOBL_LIST_NEW(obj/mecha/mechas_list) // List of all mechs. Used by hostile mobs target tracking.
+GLOBAL_GLOBL_LIST_TYPED_NEW(cable_list, /obj/structure/cable) // Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_GLOBL_LIST_TYPED_NEW(mechas_list, /obj/mecha) // List of all mechs. Used by hostile mobs target tracking.
 
 // These networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 GLOBAL_GLOBL_LIST_INIT(restricted_camera_networks, list(
@@ -25,15 +25,15 @@ GLOBAL_GLOBL_LIST_INIT(tagger_locations, list(
 GLOBAL_GLOBL_LIST_NEW(light_type_cache)
 GLOBAL_GLOBL_LIST_NEW(solars_list)
 
-GLOBAL_GLOBL_LIST_NEW(obj/item/pda/pda_list)
+GLOBAL_GLOBL_LIST_TYPED_NEW(pda_list, /obj/item/pda)
 GLOBAL_GLOBL_LIST_NEW(pda_chatrooms)
 
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/door/airlock/airlocks_list)
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/door/airlock/maintenance/maintenance_airlocks_list)
+GLOBAL_GLOBL_LIST_TYPED_NEW(airlocks_list, /obj/machinery/door/airlock)
+GLOBAL_GLOBL_LIST_TYPED_NEW(maintenance_airlocks_list, /obj/machinery/door/airlock/maintenance)
 
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/conveyor/conveyors_list)
+GLOBAL_GLOBL_LIST_TYPED_NEW(conveyors_list, /obj/machinery/conveyor)
 
 // A list of all newscasters in existence.
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/newscaster/all_newscasters)
+GLOBAL_GLOBL_LIST_TYPED_NEW(all_newscasters, /obj/machinery/newscaster)
 
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/bot/bots_list)
+GLOBAL_GLOBL_LIST_TYPED_NEW(bots_list, /obj/machinery/bot)

@@ -1,5 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_consoles)
+GLOBAL_GLOBL_LIST_TYPED_NEW(communications_consoles, /obj/machinery/computer/communications)
 
 #define STATE_DEFAULT 1
 #define STATE_CALLSHUTTLE 2

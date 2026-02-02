@@ -190,10 +190,10 @@
 	registered_name = "Captain"
 	assignment = "Captain"
 
-/obj/item/card/id/captains_spare/New()
+/obj/item/card/id/captains_spare/initialise()
+	. = ..()
 	var/datum/job/captain/J = GLOBL.all_jobs["Captain"]
 	access = J.get_access()
-	. = ..()
 
 /obj/item/card/id/centcom
 	name = "\improper CentCom ID"
@@ -202,10 +202,10 @@
 	registered_name = "Central Command"
 	assignment = "General"
 
-/obj/item/card/id/centcom/New()
+/obj/item/card/id/centcom/initialise()
+	. = ..()
 	access = get_all_centcom_access()
-	. = ..()
 
-/obj/item/card/id/centcom/station/New()
-	access.Add(get_all_station_access())
+/obj/item/card/id/centcom/station/initialise()
 	. = ..()
+	access.Add(get_all_station_access())

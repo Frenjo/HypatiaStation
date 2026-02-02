@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_NEW(obj/effect/splashscreen/splashscreen)
+GLOBAL_GLOBL_TYPED_NEW(splashscreen, /obj/effect/splashscreen)
 
 /obj/effect/splashscreen
 	name = "Space Station 13"
@@ -6,3 +6,7 @@ GLOBAL_GLOBL_NEW(obj/effect/splashscreen/splashscreen)
 	icon_state = "title"
 	plane = FULLSCREEN_PLANE
 	screen_loc = "WEST,SOUTH"
+
+// Don't do anything because we're a damn splash screen.
+/obj/effect/splashscreen/New()
+	SHOULD_CALL_PARENT(FALSE)

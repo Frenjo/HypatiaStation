@@ -63,6 +63,8 @@ PROCESS_DEF(ticker)
 	return last_time_duration
 
 /datum/process/ticker/proc/pregame()
+	GLOBL.security_level = GET_DECL_INSTANCE(/decl/security_level/green)
+
 	var/list/possible_lobby_music = list(
 		/decl/music_track/endless_space,
 		/decl/music_track/absconditus,
