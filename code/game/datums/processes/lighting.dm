@@ -25,9 +25,9 @@ PROCESS_DEF(lighting)
 
 // Solves problems with lighting updates lagging shit
 // Max constraints on number of updates per doWork():
-#define MAX_LIGHT_UPDATES_PER_WORK		100
-#define MAX_CORNER_UPDATES_PER_WORK		1000
-#define MAX_OVERLAY_UPDATES_PER_WORK	2000
+#define MAX_LIGHT_UPDATES_PER_WORK 100
+#define MAX_CORNER_UPDATES_PER_WORK 1000
+#define MAX_OVERLAY_UPDATES_PER_WORK 2000
 
 /datum/process/lighting/do_work(roundstart = FALSE)
 	if(roundstart)

@@ -312,7 +312,7 @@ PROCESS_DEF(ticker)
 	for(var/mob/living/carbon/human/player in GLOBL.player_list)
 		if(isnull(player) || isnull(player.mind))
 			continue
-		if(player.mind.assigned_role)
+		if(isnotnull(player.mind.assigned_role))
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(player.mind.assigned_role != "MODE")
@@ -324,6 +324,8 @@ PROCESS_DEF(ticker)
 				to_chat(M, "Captainship not forced on anyone.")
 
 /datum/process/ticker/proc/process_internal()
+	PRIVATE_PROC(TRUE)
+
 	if(current_state != GAME_STATE_PLAYING)
 		return 0
 
