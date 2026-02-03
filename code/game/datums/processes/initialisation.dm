@@ -15,14 +15,14 @@ PROCESS_DEF(initialisation)
 		SCHECK
 
 	if(!length(GLOBL.queued_initialisations))
-		disable()	// If we've initialized all pending objects, disable ourselves
+		disable() // If we've initialized all pending objects, disable ourselves.
 
 /proc/queue_for_initialisation(atom/A)
 	if(!istype(A))
 		CRASH("Invalid type. Was [A.type].")
 	GLOBL.queued_initialisations.Add(A)
 	if(global.PCinitialisation?.disabled)
-		global.PCinitialisation.enable() // If a new object has been queued and the initializer is disabled, awaken it
+		global.PCinitialisation.enable() // If a new object has been queued and the initialiser is disabled, awaken it.
 
 /proc/dequeue_for_initialisation(atom/A)
 	GLOBL.queued_initialisations.Remove(A)

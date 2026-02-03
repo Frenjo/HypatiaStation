@@ -49,7 +49,7 @@
 	var/data
 	if(length(snack.reagents.reagent_list)) //find a reagent list if there is and check if it has entries
 		for_no_type_check(var/datum/reagent/R, snack.reagents.reagent_list) //no reagents will be left behind
-			data += "[R.id]([R.volume] units); " //Using IDs because SOME chemicals(I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
+			data += "[R.type]([R.volume] units); "
 		return data
 	else
 		return "No reagents"

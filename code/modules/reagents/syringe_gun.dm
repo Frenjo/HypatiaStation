@@ -82,7 +82,7 @@
 					var/R
 					if(D.reagents)
 						for_no_type_check(var/datum/reagent/A, D.reagents.reagent_list)
-							R += A.id + " ("
+							R += A.type + " ("
 							R += num2text(A.volume) + "),"
 					if(ismob(M))
 						M.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>syringegun</b> ([R])"
