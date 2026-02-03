@@ -21,16 +21,16 @@ GLOBAL_BYOND(datum/controller/global_variables/GLOBL) // Set in /datum/global_in
 		warning("Unable to detect all global initialisation procs! Expected [expected_len] got [global_procs.len]!")
 		if(global_procs.len)
 			var/list/expected_global_procs = vars - controller_vars
-			for(var/P in global_procs)
-				expected_global_procs -= replacetext("[P]", "InitGlobal", "")
+			for(var/p in global_procs)
+				expected_global_procs -= replacetext("[p]", "InitGlobal", "")
 			TO_WORLD_LOG("Missing procs: [expected_global_procs.Join(", ")]")
 
-	for(var/P in global_procs)
+	for(var/p in global_procs)
 		var/tick_start = world.time
-		call(src, P)()
+		call(src, p)()
 		var/tick_end = world.time
 		if(tick_end - tick_start)
-			warning("Global [replacetext("[P]", "InitGlobal", "")] slept during initialisation!")
+			warning("Global [replacetext("[p]", "InitGlobal", "")] slept during initialisation!")
 
 	spawn(1)
 		QDEL_NULL(dummy_controller)
