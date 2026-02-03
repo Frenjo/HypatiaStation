@@ -208,7 +208,7 @@ PROCESS_DEF(shuttle)
 		shuttles["Escape Pod 3"],
 		shuttles["Escape Pod 4"],
 		shuttles["Escape Pod 5"],
-		shuttles["Arrival"], // This is really hacky but okay.
+		shuttles["Arrival"] // This is really hacky but okay.
 	)
 
 /datum/process/shuttle/proc/setup_admin_shuttles()
