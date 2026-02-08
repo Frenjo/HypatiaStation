@@ -95,3 +95,13 @@
 /turf/open/floor/tiled/science
 	icon_state = "science"
 	tile_path = /obj/item/stack/tile/metal/science
+
+// Barber Tiles - Used in the CMO office for some reason.
+/turf/open/floor/tiled/barber
+	icon_state = "barber"
+	tile_path = /obj/item/stack/tile/metal/barber
+
+// CMO tiles - Used nowhere for some reason.
+/turf/open/floor/tiled/cmo
+	icon_state = "cmo"
+	tile_path = /obj/item/stack/tile/metal/cmo

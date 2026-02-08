@@ -44,7 +44,9 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/steel_recipes, list(
 		new /datum/stack_recipe("showroom floor tiles", /obj/item/stack/tile/metal/showroom, 1, 4, 20),
 		new /datum/stack_recipe("hydroponics floor tiles", /obj/item/stack/tile/metal/hydroponics, 1, 4, 20),
 		new /datum/stack_recipe("cafeteria floor tiles", /obj/item/stack/tile/metal/cafeteria, 1, 4, 20),
-		new /datum/stack_recipe("science floor tiles", /obj/item/stack/tile/metal/science, 1, 4, 20)
+		new /datum/stack_recipe("science floor tiles", /obj/item/stack/tile/metal/science, 1, 4, 20),
+		new /datum/stack_recipe("barber floor tiles", /obj/item/stack/tile/metal/barber, 1, 4, 20),
+		new /datum/stack_recipe("cmo floor tiles", /obj/item/stack/tile/metal/cmo, 1, 4, 20)
 	)),
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60),
 	null,
