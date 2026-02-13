@@ -1,10 +1,10 @@
 /obj/item/shield
 	name = "shield"
+	icon = 'icons/obj/weapons/shields.dmi'
 
 /obj/item/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
-	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "riot"
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
@@ -20,7 +20,7 @@
 	COOLDOWN_DECLARE(bash_cooldown) // shield bash cooldown
 
 /obj/item/shield/riot/IsShield()
-	return 1
+	return TRUE
 
 /obj/item/shield/riot/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/melee/baton))
@@ -34,11 +34,13 @@
 		return TRUE
 	return ..()
 
+/*
+ * Energy Shield
+ */
 /obj/item/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
-	icon = 'icons/obj/weapons/weapons.dmi'
-	icon_state = "eshield0" // eshield1 for expanded
+	icon_state = "energy" // energy_on for expanded
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 3.0
 	throwforce = 5.0
@@ -48,8 +50,37 @@
 	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 	attack_verb = list("shoved", "bashed")
 
-	var/active = 0
+	var/active = FALSE
 
+/obj/item/shield/energy/IsShield()
+	return active
+
+/obj/item/shield/energy/attack_self(mob/living/user)
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
+		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
+		user.take_organ_damage(5)
+	active = !active
+	if(active)
+		force = 10
+		icon_state = initial(icon_state) + "_on"
+		w_class = 4
+		playsound(user, 'sound/weapons/melee/saberon.ogg', 50, 1)
+		to_chat(user, SPAN_INFO("[src] is now active."))
+
+	else
+		force = 3
+		icon_state = initial(icon_state)
+		w_class = 1
+		playsound(user, 'sound/weapons/melee/saberoff.ogg', 50, 1)
+		to_chat(user, SPAN_INFO("[src] can now be concealed."))
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.update_inv_l_hand()
+		H.update_inv_r_hand()
+
+	add_fingerprint(user)
+	return
 
 /obj/item/cloaking_device
 	name = "cloaking device"
