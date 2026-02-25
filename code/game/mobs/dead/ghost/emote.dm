@@ -19,7 +19,7 @@
 		input = message
 
 	if(input)
-		message = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <b>[src]</b> [message]</span>"
+		message = "<span class='game deadsay'><b>[src]</b> [message]</span>"
 	else
 		return
 
@@ -29,9 +29,10 @@
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
-
+			if(isnull(M.client))
+				continue
+			var/chat_tag = create_chat_tag_icon("dead", M.client)
 			if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN | R_MOD) && (M.client.prefs.toggles & CHAT_DEAD)) // Show the emote to admins/mods
-				to_chat(M, message)
-
+				to_chat(M, "[chat_tag] [message]")
 			else if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // Show the emote to regular ghosts with deadchat toggled on
-				M.show_message(message, 2)
+				M.show_message("[chat_tag] [message]", 2)

@@ -12,12 +12,12 @@
 		global.PCticker.mode.traitors += H.mind
 		H.mind.special_role = "traitor"
 
-		var/datum/objective/steal/steal_objective = new
+		var/datum/objective/steal/steal_objective = new /datum/objective/steal()
 		steal_objective.owner = H.mind
 		steal_objective.set_target("nuclear authentication disk")
 		H.mind.objectives += steal_objective
 
-		var/datum/objective/hijack/hijack_objective = new
+		var/datum/objective/hijack/hijack_objective = new /datum/objective/hijack()
 		hijack_objective.owner = H.mind
 		H.mind.objectives += hijack_objective
 
@@ -34,7 +34,7 @@
 
 		H.equip_outfit(/decl/hierarchy/outfit/highlander)
 
-		var/obj/item/card/id/W = new(H)
+		var/obj/item/card/id/W = new /obj/item/card/id(H)
 		W.name = "[H.real_name]'s ID Card"
 		W.icon_state = "centcom"
 		W.access = get_all_station_access()
@@ -43,7 +43,7 @@
 		W.registered_name = H.real_name
 		H.equip_to_slot_or_del(W, SLOT_ID_ID_STORE)
 
-	message_admins("\blue [key_name_admin(usr)] used THERE CAN BE ONLY ONE!", 1)
+	message_admins(SPAN_INFO("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"), 1)
 	log_admin("[key_name(usr)] used there can be only one.")
 
 // Highlander outfit

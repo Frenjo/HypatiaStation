@@ -50,7 +50,7 @@
 */
 
 /obj/machinery/power/emitter/verb/rotate()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Rotate"
 	set src in oview(1)
 

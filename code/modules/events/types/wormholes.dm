@@ -35,9 +35,8 @@
 			hole.forceMove(T)
 
 /datum/round_event/wormholes/end()
-	for_no_type_check(var/obj/effect/portal/wormhole/hole, wormholes)
-		qdel(hole)
-	QDEL_NULL(wormholes)
+	QDEL_LIST(wormholes)
+	wormholes = null
 
 /obj/effect/portal/wormhole
 	name = "wormhole"

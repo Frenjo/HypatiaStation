@@ -277,7 +277,7 @@
 		to_chat(usr, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/verb/verb_toggleopen()
-	set category = PANEL_OBJECT
+	set category = null
 	set src in oview(1)
 	set name = "Toggle Open"
 

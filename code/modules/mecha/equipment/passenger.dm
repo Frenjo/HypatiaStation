@@ -2,7 +2,7 @@
 // Ported the passenger compartment from NSS Eternal along with the hoverpod. -Frenjo
 /obj/item/mecha_equipment/passenger
 	name = "exosuit passenger compartment"
-	desc = "A mounted passenger compartment for exosuits. Rather cramped. (Can be attached to: Any Exosuit)"
+	desc = "A mounted passenger compartment for exosuits. Rather cramped."
 	icon_state = "passenger_compartment"
 	matter_amounts = /datum/design/mechfab/equipment/general/passenger_compartment::materials
 	origin_tech = /datum/design/mechfab/equipment/general/passenger_compartment::req_tech
@@ -88,7 +88,7 @@
 /obj/item/mecha_equipment/passenger/get_equip_info()
 	. = "[..()]<br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
-/obj/item/mecha_equipment/passenger/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/passenger/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -105,7 +105,7 @@
 #define LOCKED 1
 #define OCCUPIED 2
 /obj/mecha/proc/move_inside_passenger()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Enter Passenger Compartment"
 	set src in oview(1)
 

@@ -201,7 +201,6 @@
 /obj/item/clothing/suit/armor/tactical/verb/holster()
 	set category = PANEL_OBJECT
 	set name = "Holster"
-	set src in usr
 
 	if(!isliving(usr))
 		return

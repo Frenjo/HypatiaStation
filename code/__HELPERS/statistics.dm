@@ -147,7 +147,7 @@
 		else
 			newroundid = 1
 
-		for(var/datum/feedback_variable/item in content)
+		for_no_type_check(var/datum/feedback_variable/item, content)
 			var/variable = item.get_variable()
 			var/value = item.get_value()
 

@@ -92,14 +92,14 @@ CONTROLLER_DEF(jobs)
 
 /datum/controller/jobs/proc/give_random_job(mob/dead/new_player/player)
 	debug("GRJ Giving random job, Player: [player]")
-	for(var/datum/job/job in shuffle(occupations))
+	for_no_type_check(var/datum/job/job, shuffle(occupations))
 		if(isnull(job))
 			continue
 
 		if(istype(job, get_job("Assistant"))) // We don't want to give him assistant, that's boring!
 			continue
 
-		if(job in GLOBL.command_positions) //If you want a command position, select it!
+		if(job.head_position) // If you want a command position, select it!
 			continue
 
 		if(jobban_isbanned(player, job.title))
@@ -331,7 +331,7 @@ CONTROLLER_DEF(jobs)
 		return 0
 
 	var/datum/job/job = get_job(rank)
-	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/cyborg)) // AI/Cyborg checking is a temporary fix.
+	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/robot)) // AI/Cyborg checking is a temporary fix.
 		if(isnotnull(job))
 			job.equip(H, H.mind.role_alt_title)
 		else

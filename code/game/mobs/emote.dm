@@ -1,3 +1,10 @@
+/mob
+	var/list/useable_emotes = list()
+
+/mob/proc/emote(act, type, message)
+	if(act == "me")
+		return custom_emote(type, message)
+
 // All mobs should have custom emote, really..
 /mob/proc/custom_emote(m_type = 1, message = null)
 	if(stat || !use_me && usr == src)

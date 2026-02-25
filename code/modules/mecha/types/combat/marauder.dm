@@ -92,7 +92,7 @@
 	"}
 	. += ..()
 
-/obj/mecha/combat/marauder/handle_topic(mob/user, datum/topic_input/topic)
+/obj/mecha/combat/marauder/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

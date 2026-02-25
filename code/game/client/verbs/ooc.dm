@@ -9,7 +9,7 @@
 	if(isnull(mob))
 		return
 	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+		to_chat(src, SPAN_WARNING("Guests may not use OOC."))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -20,7 +20,7 @@
 		to_chat(src, SPAN_WARNING("You have OOC muted."))
 		return
 
-	if(isnull(holder) || holder.rank == "Donor") // This is ugly, but I Can't figure out any easy way without duplicating code to confirm the user is not a donor while being a holder using rights.
+	if(isnull(holder))
 		if(!CONFIG_GET(/decl/configuration_entry/ooc_allowed))
 			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
@@ -33,7 +33,7 @@
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, SPAN_DANGER("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
@@ -61,23 +61,23 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			// Formatted OOC chat so it looks a bit better, the double : was eye cancer. -Frenjo
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>(OOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+			var/chat_tag = create_chat_tag_icon("ooc", C)
+			to_chat(C, "[chat_tag] <font color='[display_colour]'><span class='ooc'><EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 
 			/*
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(holder.rights & R_ADMIN)
-						to_chat(C, "<font color=[CONFIG_GET(/decl/configuration_entry/allow_admin_ooccolor) ? prefs.ooccolor :"#b82e00" ]><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
+						to_chat(C, "[chat_tag] <font color=[CONFIG_GET(/decl/configuration_entry/allow_admin_ooccolor) ? prefs.ooccolor :"#b82e00" ]><b><EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
 					else if(holder.rights & R_MOD)
-						to_chat(C, "<font color=#184880><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
+						to_chat(C, "[chat_tag] <font color=#184880><b><EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
 					else
-						to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
+						to_chat(C, "[chat_tag] <font color='[normal_ooc_colour]'><span class='ooc'><EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
 
 				else
-					to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message'>[msg]</span></span></font>")
+					to_chat(C, "[chat_tag] <font color='[normal_ooc_colour]'><span class='ooc'><EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message'>[msg]</span></span></font>")
 			else
-				to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
+				to_chat(C, "[chat_tag] <font color='[normal_ooc_colour]'><span class='ooc'><EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
 			*/
 
 /client/proc/set_ooc(new_colour)
@@ -99,7 +99,7 @@
 	if(isnull(mob))
 		return
 	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+		to_chat(src, SPAN_WARNING("Guests may not use OOC."))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -123,9 +123,9 @@
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			to_chat(src, SPAN_DANGER("Advertising other servers is not allowed."))
+			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
 			return
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
@@ -145,10 +145,11 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>(LOOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+			var/chat_tag = create_chat_tag_icon("looc", C)
+			to_chat(C, "[chat_tag] <font color='#6699CC'><span class='ooc'><EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if(C.prefs.toggles & CHAT_LOOC)
-			var/prefix = "(R)LOOC"
-			if(C.mob in heard)
-				prefix = "LOOC"
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>[prefix]:</span> <EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")
+			var/chat_tag = create_chat_tag_icon("looc", C)
+			if(!(C.mob in heard))
+				chat_tag += "(R)"
+			to_chat(C, "[chat_tag] <font color='#6699CC'><span class='ooc'><EM>[key]:</EM> <span class='message'>[msg]</span></span></font>")

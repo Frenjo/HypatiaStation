@@ -3,9 +3,9 @@
  */
 /datum/process
 	// Reference to the master controller.
-	var/tmp/datum/controller/master/master
+	VAR_PROTECTED/tmp/datum/controller/master/_master
 	// The clickable stat() panel button object.
-	var/atom/movable/clickable_stat/stat_click = null
+	VAR_PROTECTED/atom/movable/clickable_stat/stat_click = null
 
 	/*
 	 * Configuration
@@ -100,7 +100,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
-	src.master = master
+	_master = master
 	previous_status = "idle"
 	idle()
 	sleep_interval = (world.tick_lag / PROCESS_DEFAULT_SLEEP_INTERVAL)
@@ -113,7 +113,7 @@
 	stat_click = new /atom/movable/clickable_stat(null, src)
 
 /datum/process/Destroy()
-	master = null
+	_master = null
 	QDEL_NULL(stat_click)
 	return ..()
 
@@ -127,7 +127,7 @@
 	cpu_defer_count = 0
 
 	running()
-	master.process_started(src)
+	_master.process_started(src)
 
 	on_start()
 
@@ -136,7 +136,7 @@
 
 	ticks++
 	idle()
-	master.process_finished(src)
+	_master.process_finished(src)
 
 	on_finish()
 
@@ -198,7 +198,7 @@
 	log_debug(msg)
 	message_admins(msg)
 
-	master.restart_process(name)
+	_master.restart_process(name)
 
 /datum/process/proc/kill()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -231,7 +231,7 @@
 		handle_hung()
 		CRASH("Process [name] hung and was restarted.")
 
-	if(master.get_current_tick_elapsed_time() > master.time_allowance)
+	if(_master.get_current_tick_elapsed_time() > _master.time_allowance)
 		sleep(world.tick_lag)
 		cpu_defer_count++
 		last_slept = 0
@@ -265,9 +265,9 @@
 
 	return list(
 		"name" = name,
-		"averageRunTime" = master.average_run_time(src),
-		"lastRunTime" = master.last_run_time[src],
-		"highestRunTime" = master.highest_run_time[src],
+		"averageRunTime" = _master.average_run_time(src),
+		"lastRunTime" = _master.last_run_time[src],
+		"highestRunTime" = _master.highest_run_time[src],
 		"ticks" = ticks,
 		"schedule" = schedule_interval,
 		"status" = get_status_text(),
@@ -310,7 +310,7 @@
 /datum/process/proc/_copy_state_from(datum/process/target)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	master = target.master
+	_master = target._master
 	name = target.name
 	schedule_interval = target.schedule_interval
 	sleep_interval = target.sleep_interval
@@ -347,9 +347,9 @@
 /datum/process/proc/stat_process()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	var/average_run_time = round(master.average_run_time(src), 0.1) / 10
-	var/last_run_time = round(master.last_run_time[src], 0.1) / 10
-	var/highest_run_time = round(master.highest_run_time[src], 0.1) / 10
+	var/average_run_time = round(_master.average_run_time(src), 0.1) / 10
+	var/last_run_time = round(_master.last_run_time[src], 0.1) / 10
+	var/highest_run_time = round(_master.highest_run_time[src], 0.1) / 10
 	var/list/stats = list("T#[ticks] | AR [average_run_time] | LR [last_run_time] | HR [highest_run_time] | D [cpu_defer_count]")
 	stats.Add(stat_entry())
 	stat_click.name = jointext(stats, "\n")

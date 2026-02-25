@@ -9,7 +9,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/miner)
 
-/obj/item/robot_upgrade/jetpack/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/jetpack/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	if(isnotnull(robby.internals))
@@ -35,7 +35,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/miner)
 
-/obj/item/robot_upgrade/holding_satchel/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/holding_satchel/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	var/obj/item/robot_model/miner/model = robby.model

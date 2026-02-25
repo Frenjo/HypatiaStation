@@ -1,4 +1,4 @@
-/mob/living/silicon/handle_topic(mob/user, datum/topic_input/topic)
+/mob/living/silicon/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

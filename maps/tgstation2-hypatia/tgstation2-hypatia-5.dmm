@@ -988,7 +988,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
 "eM" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/auxiliary)
 "eN" = (
@@ -3047,7 +3047,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/storage)
 "on" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /obj/effect/decal/floor/coloured/yellow/corner,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
@@ -5814,7 +5814,7 @@
 /area/external/asteroid/mine/explored)
 "Az" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/tiled/hydroponics,
 /area/external/mining_outpost/gutlunch_farm)
 "AA" = (
@@ -7706,7 +7706,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
 "IJ" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/auxiliary)
 "IK" = (
@@ -9785,7 +9785,7 @@
 /obj/structure/transit_tube{
 	icon_state = "D-NW"
 	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/auxiliary)
 "SL" = (
@@ -11325,7 +11325,7 @@
 /turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ZV" = (
-/obj/structure/reagent_dispensers/coolanttank,
+/obj/structure/reagent_dispenser/coolanttank,
 /obj/effect/decal/floor/coloured/light_green{
 	dir = 5
 	},

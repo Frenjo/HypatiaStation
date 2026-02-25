@@ -32,7 +32,7 @@
 
 	var/head_check = 0
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-		if(player.mind.assigned_role in GLOBL.command_positions)
+		if(player.mind.assigned_job.head_position)
 			head_check = 1
 			break
 
@@ -248,7 +248,7 @@
 
 /datum/game_mode/revolution/rp_revolution/latespawn(mob/M)
 	. = ..()
-	if(M.mind.assigned_role in GLOBL.command_positions)
+	if(M.mind.assigned_job.head_position)
 		log_debug("Adding head kill/capture/convert objective for [M.name]")
 		heads += M
 

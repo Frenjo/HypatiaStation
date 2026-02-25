@@ -72,7 +72,7 @@
 	if(isnotnull(src) && isnull(key))	//we've transferred to another mob. This ghost should be deleted.
 		qdel(src)
 
-/mob/dead/ghost/handle_topic(mob/user, datum/topic_input/topic)
+/mob/dead/ghost/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

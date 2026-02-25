@@ -3,7 +3,7 @@
 	icon = 'icons/mob/silicon/robot/swarmer.dmi'
 	icon_state = "swarmmate"
 
-	faction = "swarmer"
+	factions = list("swarmer")
 
 	lawupdate = FALSE
 	scrambledcodes = TRUE

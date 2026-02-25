@@ -14,7 +14,7 @@
 	name = "abiological disintegration matrix"
 	desc = "A cyborg module which mimics the innate disintegration ability of standard Swarmer constructs."
 	icon = 'icons/mob/simple/swarmer.dmi'
-	icon_state = "swarmer"
+	icon_state = "standard"
 
 /obj/item/robot_module/swarmer_disintegrator/afterattack(atom/target, mob/living/silicon/robot/robby, proximity_flag, click_parameters)
 	if(robby.next_move > world.time)

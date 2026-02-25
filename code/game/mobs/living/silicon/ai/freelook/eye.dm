@@ -19,9 +19,8 @@
 	eyeobj.forceMove(loc)
 
 /mob/living/silicon/ai/Destroy()
-	if(isnotnull(eyeobj))
-		eyeobj.ai = null
-		QDEL_NULL(eyeobj) // No AI, no Eye
+	eyeobj?.ai = null
+	QDEL_NULL(eyeobj) // No AI, no Eye
 	return ..()
 
 /atom/proc/move_camera_by_click()

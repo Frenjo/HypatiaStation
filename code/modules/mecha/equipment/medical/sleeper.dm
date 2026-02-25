@@ -1,7 +1,7 @@
 // Sleeper
 /obj/item/mecha_equipment/medical/sleeper
 	name = "mounted sleeper"
-	desc = "An exosuit-mounted medical sleeper. (Can be attached to: Medical Exosuits)"
+	desc = "An exosuit-mounted medical sleeper."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	matter_amounts = /datum/design/mechfab/equipment/sleeper::materials
@@ -120,7 +120,7 @@
 		return
 	. += "<br>\[Occupant: [patient] (Health: [patient.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
 
-/obj/item/mecha_equipment/medical/sleeper/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/medical/sleeper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -192,7 +192,7 @@
 /obj/item/mecha_equipment/medical/sleeper/proc/get_available_reagents()
 	var/obj/item/mecha_equipment/medical/syringe_gun/SG = locate(/obj/item/mecha_equipment/medical/syringe_gun) in chassis
 	if(isnotnull(SG) && isnotnull(SG.reagents) && islist(SG.reagents.reagent_list))
-		for(var/datum/reagent/R in SG.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, SG.reagents.reagent_list)
 			if(R.volume > 0)
 				. += "<a href='byond://?src=\ref[src];inject=\ref[R];source=\ref[SG]'>Inject [R.name]</a><br />"
 

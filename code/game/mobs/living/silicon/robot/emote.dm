@@ -1,4 +1,12 @@
+/mob/living/silicon/robot/New()
+	. = ..()
+	useable_emotes.Add(/decl/emote/synthetic/halt, /decl/emote/synthetic/law)
+
 /mob/living/silicon/robot/emote(act, m_type = 1, message = null)
+	. = ..()
+	if(.)
+		return TRUE
+
 	var/param = null
 	if(findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
@@ -9,23 +17,6 @@
 		act = copytext(act, 1, length(act))
 
 	switch(act)
-		if("me")
-			if(src.client)
-				if(client.prefs.muted & MUTE_IC)
-					FEEDBACK_IC_MUTED(src)
-					return
-				if(src.client.handle_spam_prevention(message, MUTE_IC))
-					return
-			if(stat)
-				return
-			if(!(message))
-				return
-			else
-				return custom_emote(m_type, message)
-
-		if("custom")
-			return custom_emote(m_type, message)
-
 		if("salute")
 			if(!src.buckled)
 				var/M = null
@@ -135,71 +126,6 @@
 			else
 				message = "<B>[src]</B> looks."
 			m_type = 1
-
-		if("beep")
-			var/M = null
-			if(param)
-				for (var/mob/A in view(null, null))
-					if (param == A.name)
-						M = A
-						break
-			if(!M)
-				param = null
-
-			if (param)
-				message = "<B>[src]</B> beeps at [param]."
-			else
-				message = "<B>[src]</B> beeps."
-			playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
-			m_type = 1
-
-		if("ping")
-			var/M = null
-			if(param)
-				for(var/mob/A in view(null, null))
-					if (param == A.name)
-						M = A
-						break
-			if(!M)
-				param = null
-
-			if(param)
-				message = "<B>[src]</B> pings at [param]."
-			else
-				message = "<B>[src]</B> pings."
-			playsound(src, 'sound/machines/ping.ogg', 50, 0)
-			m_type = 1
-
-		if("buzz")
-			var/M = null
-			if(param)
-				for(var/mob/A in view(null, null))
-					if(param == A.name)
-						M = A
-						break
-			if(!M)
-				param = null
-
-			if(param)
-				message = "<B>[src]</B> buzzes at [param]."
-			else
-				message = "<B>[src]</B> buzzes."
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-			m_type = 1
-
-		if("law")
-			if(istype(model, /obj/item/robot_model/security))
-				message = "<B>[src]</B> shows its legal authorisation barcode."
-
-				playsound(src, 'sound/voice/biamthelaw.ogg', 50, 0)
-				m_type = 2
-
-		if("halt")
-			if(istype(model, /obj/item/robot_model/security))
-				message = "<B>[src]</B>'s speakers skreech, \"Halt! Security!\"."
-
-				playsound(src, 'sound/voice/halt.ogg', 50, 0)
-				m_type = 2
 
 		if("help")
 			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping,<br>buzz, law, halt")

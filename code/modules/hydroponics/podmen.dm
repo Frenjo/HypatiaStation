@@ -35,7 +35,7 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 		var/datum/reagent/blood/B
 
 		//Find a blood sample to inject.
-		for(var/datum/reagent/R in container.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, container.reagents.reagent_list)
 			if(istype(R, /datum/reagent/blood))
 				B = R
 				break

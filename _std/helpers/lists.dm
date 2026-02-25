@@ -48,28 +48,26 @@
 //Checks if the list is empty
 /proc/isemptylist(list/list)
 	if(!length(list))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Checks for specific types in a list
 /proc/is_type_in_list(atom/A, list/L)
 	for(var/type in L)
 		if(istype(A, type))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 //Empties the list by setting the length to 0. Hopefully the elements get garbage collected
 /proc/clearlist(list/list)
 	if(istype(list))
 		list.len = 0
-	return
 
 //Removes any null entries from the list
 /proc/listclearnulls(list/list)
 	if(istype(list))
 		while(null in list)
 			list -= null
-	return
 
 /*
  * Returns list containing all the entries from first list that are not present in second.
@@ -77,6 +75,8 @@
  * If either of arguments is not a list, returns null
  */
 /proc/difflist(list/first, list/second, skiprep = 0)
+	RETURN_TYPE(/list)
+
 	if(!islist(first) || !islist(second))
 		return null
 
@@ -94,6 +94,8 @@
  * If either of arguments is not a list, returns null
  */
 /proc/uniquemergelist(list/first, list/second, skiprep = 0)
+	RETURN_TYPE(/list)
+
 	if(!islist(first) || !islist(second))
 		return null
 
@@ -155,6 +157,8 @@
  */
 //Reverses the order of items in the list
 /proc/reverselist(list/L)
+	RETURN_TYPE(/list)
+
 	. = list()
 	if(isnotnull(L))
 		for(var/i = length(L); i >= 1; i--)
@@ -174,6 +178,8 @@
 
 //Return a list with no duplicate entries
 /proc/uniquelist(list/L)
+	RETURN_TYPE(/list)
+
 	. = list()
 	for(var/item in L)
 		if(!(item in .))
@@ -242,6 +248,8 @@
 	return sortList(Q)
 
 /proc/mergeLists(list/L, list/R)
+	RETURN_TYPE(/list)
+
 	var/Li = 1
 	var/Ri = 1
 	var/list/result = list()
@@ -263,6 +271,8 @@
 	return mergeKeyedLists(sortByKey(L.Copy(0, middle), key), sortByKey(L.Copy(middle), key), key)
 
 /proc/mergeKeyedLists(list/L, list/R, key)
+	RETURN_TYPE(/list)
+
 	var/Li = 1
 	var/Ri = 1
 	var/list/result = list()
@@ -341,12 +351,16 @@
 	return reverselist(out)
 
 /proc/dd_sortedObjectList(list/L, cache = list())
+	RETURN_TYPE(/list)
+
 	if(length(L) < 2)
 		return L
 	var/middle = length(L) / 2 + 1 // Copy is first,second-1
 	return dd_mergeObjectList(dd_sortedObjectList(L.Copy(0, middle), cache), dd_sortedObjectList(L.Copy(middle), cache), cache) //second parameter null = to end of list
 
 /proc/dd_mergeObjectList(list/L, list/R, list/cache)
+	RETURN_TYPE(/list)
+
 	var/Li = 1
 	var/Ri = 1
 	var/list/result = list()
@@ -399,6 +413,8 @@
 // Creates every subtype of the provided prototype and adds it to a list.
 // If no list is provided, one is created.
 /proc/init_subtypes(prototype, list/L = null)
+	RETURN_TYPE(/list)
+
 	LAZYINITLIST(L)
 	for(var/path in subtypesof(prototype))
 		L.Add(new path())

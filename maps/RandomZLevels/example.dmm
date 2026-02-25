@@ -120,7 +120,7 @@
 "cp" = (/obj/item/trash/pistachios,/turf/open/floor,/area/away_mission/example)
 "cq" = (/obj/effect/landmark{name = "awaystart"},/turf/open/floor,/area/away_mission/example)
 "cr" = (/obj/effect/landmark{name = "awaystart"},/obj/item/assembly/mousetrap/armed,/turf/open/floor,/area/away_mission/example)
-"cs" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor,/area/away_mission/example)
+"cs" = (/obj/structure/reagent_dispenser/watertank,/turf/open/floor,/area/away_mission/example)
 "ct" = (/obj/effect/landmark{name = "awaystart"},/obj/machinery/light_frame/small{dir = 8; tag = "icon-bulb-construct-stage1 (WEST)"},/turf/open/floor,/area/away_mission/example)
 "cu" = (/obj/effect/landmark{name = "awaystart"},/obj/item/mop,/turf/open/floor,/area/away_mission/example)
 "cv" = (/obj/structure/closet,/turf/open/floor,/area/away_mission/example)

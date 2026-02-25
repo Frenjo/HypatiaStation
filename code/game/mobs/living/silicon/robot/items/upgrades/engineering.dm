@@ -15,7 +15,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/engineering)
 
-/obj/item/robot_upgrade/experimental_welder/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/experimental_welder/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	var/obj/item/robot_model/engineering/model = robby.model

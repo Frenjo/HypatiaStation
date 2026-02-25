@@ -1,7 +1,7 @@
 // Hydraulic Clamp
 /obj/item/mecha_equipment/tool/hydraulic_clamp
 	name = "mounted hydraulic clamp"
-	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability."
 	icon_state = "clamp"
 
 	matter_amounts = /datum/design/mechfab/equipment/working/hydraulic_clamp::materials
@@ -106,7 +106,7 @@
 // This is pretty much just for the death-ripley so that it is harmless.
 /obj/item/mecha_equipment/tool/hydraulic_clamp/safety
 	name = "mounted kill clamp"
-	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY."
 
 	energy_drain = 0
 
@@ -116,8 +116,10 @@
 // A special variant of the hydraulic clamp for medical exosuits, it doesn't have cargo loading functionality.
 /obj/item/mecha_equipment/tool/hydraulic_clamp/rescue
 	name = "mounted rescue jaw"
-	desc = "An exosuit-mounted jaws of life used to extricate casualties from dangerous areas. (Can be attached to: Any Medical exosuit except Rescue Ranger)"
+	desc = "An exosuit-mounted jaws of life used to extricate casualties from dangerous areas."
 	icon_state = "rescue_jaw"
+
+	matter_amounts = /datum/design/mechfab/equipment/rescue_jaw::materials
 
 	mecha_types = MECHA_TYPE_MEDICAL
 
@@ -125,11 +127,15 @@
 
 	dam_force = 10 // Half as forceful as the regular clamp.
 
+	attaches_to_string = "any <em><i>medical</i></em> exosuit except the <em><i>Rescue Ranger</i></em>"
+
 // Extinguisher
 /obj/item/mecha_equipment/tool/extinguisher
 	name = "mounted extinguisher"
-	desc = "An exosuit-mounted fire extinguisher. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted fire extinguisher."
 	icon_state = "exting"
+
+	matter_amounts = /datum/design/mechfab/equipment/working/extinguisher::materials
 
 	equip_cooldown = 0.5 SECONDS
 	energy_drain = 0
@@ -146,7 +152,7 @@
 	if(get_dist(chassis, target) > 2)
 		return FALSE
 	if(do_after_cooldown(target))
-		if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis, target) <= 1)
+		if(istype(target, /obj/structure/reagent_dispenser/watertank) && get_dist(chassis, target) <= 1)
 			var/obj/o = target
 			o.reagents.trans_to(src, 200)
 			occupant_message(SPAN_INFO("Extinguisher refilled."))

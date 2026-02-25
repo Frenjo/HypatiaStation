@@ -19,8 +19,8 @@
 		var/turf/location = GET_TURF(src)
 		location?.hotspot_expose(1000, 1000)
 		if(istype(src.loc, /obj/item/assembly_holder))
-			if(istype(src.loc.loc, /obj/structure/reagent_dispensers/fueltank))
-				var/obj/structure/reagent_dispensers/fueltank/tank = src.loc.loc
+			if(istype(src.loc.loc, /obj/structure/reagent_dispenser/fueltank))
+				var/obj/structure/reagent_dispenser/fueltank/tank = src.loc.loc
 				if(tank && tank.modded)
 					tank.explode()
 

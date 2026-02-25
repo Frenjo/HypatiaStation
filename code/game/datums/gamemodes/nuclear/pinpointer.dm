@@ -64,9 +64,9 @@
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
 
 /obj/item/pinpointer/advanced/verb/toggle_mode()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Pinpointer Mode"
-	set src in view(1)
+	set src in oview(1)
 
 	active = FALSE
 	icon_state = "pinoff"

@@ -113,7 +113,7 @@
 					to_chat(user, SPAN_WARNING("[target] is empty."))
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser) && !istype(target, /obj/item/slime_extract))
 					to_chat(user, SPAN_WARNING("You cannot directly remove reagents from this object."))
 					return
 
@@ -160,7 +160,7 @@
 				if(isliving(target))
 					var/mob/living/M = target
 					var/list/injected = list()
-					for(var/datum/reagent/R in src.reagents.reagent_list)
+					for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 						injected += R.name
 					var/contained = english_list(injected)
 					M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"
@@ -313,7 +313,7 @@
 					to_chat(user, SPAN_WARNING("[target] is empty."))
 					return
 
-				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers))
+				if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser))
 					to_chat(user, SPAN_WARNING("You cannot directly remove reagents from this object."))
 					return
 

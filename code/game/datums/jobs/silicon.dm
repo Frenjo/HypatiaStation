@@ -24,11 +24,11 @@
 	return TRUE
 
 /*
- * Cyborg
+ * Robot (Cyborg)
  */
-/datum/job/cyborg
-	title = "Cyborg"
-	flag = JOB_CYBORG
+/datum/job/robot
+	title = "Robot"
+	flag = JOB_ROBOT
 
 	department = /decl/department/engsec
 
@@ -40,9 +40,9 @@
 
 	minimal_player_age = 1
 
-	alt_titles = list("Android", "Robot", "Drone")
+	alt_titles = list("Android", "Cyborg", "Drone")
 
-/datum/job/cyborg/equip_preview(mob/living/carbon/human/H, alt_title)
+/datum/job/robot/equip_preview(mob/living/carbon/human/H, alt_title)
 	H.set_species(SPECIES_HUMAN)
 	H.equip_outfit(/decl/hierarchy/outfit/job/assistant)
 	H.equip_to_slot(new /obj/item/clothing/head/cardborg(H), SLOT_ID_HEAD)

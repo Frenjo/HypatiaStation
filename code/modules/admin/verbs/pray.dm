@@ -22,7 +22,7 @@
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if(C.prefs.toggles & CHAT_PRAYER)
 			to_chat(C, msg)
-	to_chat(usr, "Your prayers have been received by the gods.")
+	to_chat(usr, SPAN_INFO("Your prayers have been received by the gods."))
 
 	feedback_add_details("admin_verb","PR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	//log_admin("HELP: [key_name(src)]: [msg]")

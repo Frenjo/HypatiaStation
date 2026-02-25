@@ -70,27 +70,25 @@
 	return
 
 /obj/item/powersink/attack_hand(mob/user)
-	switch(mode)
-		if(0)
-			..()
+	if(mode == 0)
+		return ..()
 
+	switch(mode)
 		if(1)
-			to_chat(user, "You activate the device!")
-			for(var/mob/M in viewers(user))
-				if(M == user)
-					continue
-				to_chat(M, "[user] activates the power sink!")
+			user.visible_message(
+				SPAN_INFO("[user] activates \the [src]!"),
+				SPAN_INFO("You activate \the [src]!")
+			)
 			mode = 2
 			icon_state = "powersink1"
 			START_PROCESSING(PCobj, src)
 			REGISTER_POWER_ITEM(src)
 
-		if(2)	//This switch option wasn't originally included. It exists now. --NeoFite
-			to_chat(user, "You deactivate the device!")
-			for(var/mob/M in viewers(user))
-				if(M == user)
-					continue
-				to_chat(M, "[user] deactivates the power sink!")
+		if(2) //This switch option wasn't originally included. It exists now. --NeoFite
+			user.visible_message(
+				SPAN_INFO("[user] deactivates \the [src]!"),
+				SPAN_INFO("You deactivate \the [src]!")
+			)
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"
@@ -100,20 +98,19 @@
 /obj/item/powersink/pwr_drain()
 	if(!attached)
 		return 0
-
-	var/datum/powernet/PN = attached.get_powernet()
-	if(!PN)
+	var/datum/powernet/attached_powernet = attached.get_powernet()
+	if(isnotnull(attached_powernet))
 		return 1
 
 	set_light(12)
 
 	// found a powernet, so drain up to max power from it
-	var/drained = PN.draw_power(drain_rate)
+	var/drained = attached_powernet.draw_power(drain_rate)
 
 	// if tried to drain more than available on powernet
 	// now look for APCs and drain their cells
 	if(drained < drain_rate)
-		for(var/obj/machinery/power/terminal/T in PN.nodes)
+		for(var/obj/machinery/power/terminal/T in attached_powernet.nodes)
 			if(istype(T.master, /obj/machinery/power/apc))
 				var/obj/machinery/power/apc/A = T.master
 				if(A.operating && A.cell)
@@ -126,5 +123,5 @@
 	if(power_drained > max_power * 0.95)
 		playsound(src, 'sound/effects/screech.ogg', 100, 1, 1)
 	if(power_drained >= max_power)
-		explosion(src.loc, 3,6,9,12)
+		explosion(loc, 3, 6, 9, 12)
 		qdel(src)

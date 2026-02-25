@@ -44,8 +44,6 @@
 	var/move_delay = 1
 	var/moving = FALSE
 	var/adminobs = FALSE
-	// Current area of the client's controlled mob.
-	var/area = null
 	// When the client last died as a mouse.
 	var/time_died_as_mouse = null
 
@@ -65,7 +63,7 @@
 	/*
 	 * Viewport
 	 */
-	var/static/list/scaling_modes = list(SCALING_MODE_NORMAL, SCALING_MODE_DISTORT, SCALING_MODE_BLUR)
+	VAR_PRIVATE/static/list/scaling_modes = list(SCALING_MODE_NORMAL, SCALING_MODE_DISTORT, SCALING_MODE_BLUR)
 	var/chosen_scaling_mode = SCALING_MODE_DISTORT
 
 	/*

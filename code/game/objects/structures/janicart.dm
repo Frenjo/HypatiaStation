@@ -98,7 +98,7 @@
 	popup.set_content(html)
 	popup.open()
 
-/obj/structure/janitorialcart/handle_topic(mob/user, datum/topic_input/topic)
+/obj/structure/janitorialcart/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

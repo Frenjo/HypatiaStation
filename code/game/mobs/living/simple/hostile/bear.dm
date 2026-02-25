@@ -29,7 +29,7 @@
 	max_co2 = 0
 	minbodytemp = 0
 
-	faction = "russian"
+	factions = list("russian")
 
 	var/stance_step = 0
 

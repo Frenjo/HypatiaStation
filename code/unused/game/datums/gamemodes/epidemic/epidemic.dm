@@ -82,7 +82,7 @@
 	var/list/crew = list()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list) if(H.client)
 		// heads should not be infected
-		if(H.mind.assigned_role in command_positions) continue
+		if(H.mind.assigned_job.head_position) continue
 		crew += H
 
 	if(length(crew) < 2)

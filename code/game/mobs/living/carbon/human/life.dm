@@ -1687,7 +1687,7 @@
 		temp = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
 	//handles different chems' influence on pulse
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 		if(R.type in GLOBL.tachycardics)
 			if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 				temp++

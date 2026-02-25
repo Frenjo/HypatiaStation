@@ -1,6 +1,6 @@
 /obj/item/mecha_equipment/weapon/energy/disabler/rapid
 	name = "\improper SW-RM \"Peaceforcer\" rapid disabler"
-	desc = "A weapon for combat exosuits of unknown origin. Uses foreign technology to streamline energy compression in order to shoot a stream of disabler shots in quick succession. (Can be attached to: Combat Exosuits)"
+	desc = "A weapon for combat exosuits of unknown origin. Uses foreign technology to streamline energy compression in order to shoot a stream of disabler shots in quick succession."
 	icon_state = "rapid_disabler"
 
 	equip_cooldown = 3 SECONDS

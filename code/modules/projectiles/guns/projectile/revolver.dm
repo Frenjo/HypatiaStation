@@ -64,7 +64,7 @@
 	)
 
 /obj/item/gun/projectile/detective/verb/rename_gun()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Name Gun"
 	set desc = "Click to rename your gun. If you're the detective."
 

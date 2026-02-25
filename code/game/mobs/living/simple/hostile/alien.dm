@@ -24,7 +24,7 @@
 	max_tox = 0
 	max_co2 = 0
 	unsuitable_atoms_damage = 15
-	faction = "alien"
+	factions = list("alien")
 	wall_smash = 1
 	status_flags = CANPUSH
 	minbodytemp = 0

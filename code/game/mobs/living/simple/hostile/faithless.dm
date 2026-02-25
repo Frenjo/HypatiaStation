@@ -25,7 +25,7 @@
 	minbodytemp = 0
 	speed = 4
 
-	faction = "faithless"
+	factions = list("faithless")
 
 /mob/living/simple/hostile/faithless/Process_Spacemove(var/check_drift = 0)
 	return 1

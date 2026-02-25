@@ -19,7 +19,7 @@
 		var/area/areacheck = GET_AREA(src)
 		dat += "Location: [areacheck.name]<br>"
 
-	if((shuttle.last_move + shuttle.cooldown*10) > world.time)
+	if(!COOLDOWN_FINISHED(shuttle, move_cooldown))
 		dat += "<font color='red'>Engines charging.</font><br>"
 	else
 		dat += "<font color='green'>Engines ready.</font><br>"
@@ -67,7 +67,7 @@
 		to_chat(usr, SPAN_WARNING("Ship stealth systems have been [(shuttle.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."))
 
 	if(href_list["move_multi"])
-		if((shuttle.last_move + shuttle.cooldown * 10) > world.time)
+		if(!COOLDOWN_FINISHED(shuttle, move_cooldown))
 			to_chat(usr, SPAN_WARNING("The ship's drive is inoperable while the engines are charging."))
 			return
 

@@ -872,8 +872,8 @@
 	else if(istype(W,/obj/item/apc_frame))
 		var/obj/item/apc_frame/AH = W
 		AH.try_build(src)
-	else if(istype(W,/obj/item/contraband/poster))
-		var/obj/item/contraband/poster/P = W
+	else if(istype(W, /obj/item/poster))
+		var/obj/item/poster/P = W
 		if(P.resulting_poster)
 			var/check = 0
 			var/stuff_on_wall = 0
@@ -1081,8 +1081,8 @@
 			else
 				del(W)
 
-	else if(istype(W,/obj/item/contraband/poster))
-		var/obj/item/contraband/poster/P = W
+	else if(istype(W, /obj/item/poster))
+		var/obj/item/poster/P = W
 		if(P.resulting_poster)
 			var/check = 0
 			var/stuff_on_wall = 0

@@ -129,7 +129,7 @@
 	if(has_beaker)
 		data["beakerLabel"] = beaker.label_text ? beaker.label_text : null
 		if(beaker.reagents && length(beaker.reagents.reagent_list))
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, beaker.reagents.reagent_list)
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -303,8 +303,8 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/cryo_cell/verb/move_eject()
-	set category = PANEL_OBJECT
-	set name = "Eject occupant"
+	set category = null
+	set name = "Eject Occupant"
 	set src in oview(1)
 
 	if(usr == occupant)//If the user is inside the tube...
@@ -323,7 +323,7 @@
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/verb/move_inside()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Move Inside"
 	set src in oview(1)
 

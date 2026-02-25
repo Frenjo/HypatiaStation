@@ -21,7 +21,7 @@
 	a_intent = "harm"
 
 	unsuitable_atoms_damage = 15
-	faction = "russian"
+	factions = list("russian")
 	status_flags = CANPUSH
 
 	var/corpse = /obj/effect/landmark/mobcorpse/russian

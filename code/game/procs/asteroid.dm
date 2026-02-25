@@ -13,8 +13,6 @@ GLOBAL_GLOBL_ALIST_INIT(space_surprises, alist(
 	/obj/mecha/working/ripley/mining = 1
 ))
 GLOBAL_GLOBL_LIST_NEW(spawned_surprises)
-GLOBAL_GLOBL_INIT(max_asteroid_secret_rooms, 3)
-GLOBAL_GLOBL_INIT(max_asteroid_caves, 12)
 
 /proc/make_mining_asteroid_cave()
 	var/valid = FALSE

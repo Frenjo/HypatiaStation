@@ -56,7 +56,7 @@
 	"}
 	. += ..()
 
-/obj/mecha/combat/reticence/handle_topic(mob/user, datum/topic_input/topic)
+/obj/mecha/combat/reticence/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

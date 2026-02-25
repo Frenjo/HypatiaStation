@@ -167,11 +167,11 @@
 				stat |= NOPOWER
 
 /obj/machinery/shield_capacitor/verb/rotate()
-	set category = PANEL_OBJECT
-	set name = "Rotate capacitor clockwise"
+	set category = null
+	set name = "Rotate (Clockwise)"
 	set src in oview(1)
 
-	if(src.anchored)
+	if(anchored)
 		to_chat(usr, SPAN_WARNING("It is fastened to the floor!"))
 		return
-	set_dir(turn(dir, 270))
+	set_dir(turn(dir, 90))

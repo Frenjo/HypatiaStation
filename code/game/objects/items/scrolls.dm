@@ -22,7 +22,7 @@
 	onclose(user, "scroll")
 	return
 
-/obj/item/teleportation_scroll/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/teleportation_scroll/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

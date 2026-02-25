@@ -64,11 +64,10 @@
 		return
 
 	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
-		if(src.mob)
-			var/mob/A = src.mob
-			A.x = tx
-			A.y = ty
-			A.z = tz
+		if(isnotnull(mob))
+			mob.x = tx
+			mob.y = ty
+			mob.z = tz
 			feedback_add_details("admin_verb", "JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
@@ -153,7 +152,7 @@
 		return
 
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
-	if(A)
+	if(isnotnull(A))
 		if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 			M.forceMove(pick(get_area_turfs(A)))
 			feedback_add_details("admin_verb", "SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

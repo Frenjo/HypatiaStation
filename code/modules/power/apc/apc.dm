@@ -102,10 +102,8 @@
 	if(occupant)
 		malfvacate(1)
 	QDEL_NULL(wires)
-	if(isnotnull(cell))
-		QDEL_NULL(cell)
-	if(isnotnull(terminal))
-		QDEL_NULL(terminal)
+	QDEL_NULL(cell)
+	QDEL_NULL(terminal)
 	return ..()
 
 /obj/machinery/power/apc/get_examine_text()

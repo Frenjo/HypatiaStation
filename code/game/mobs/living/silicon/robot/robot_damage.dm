@@ -9,14 +9,14 @@
 	. = 0
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(C.installed != 0)
+		if(C.installed != ROBOT_COMPONENT_UNINSTALLED)
 			. += C.brute_damage
 
 /mob/living/silicon/robot/getFireLoss()
 	. = 0
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(C.installed != 0)
+		if(C.installed != ROBOT_COMPONENT_UNINSTALLED)
 			. += C.electronics_damage
 
 /mob/living/silicon/robot/adjustBruteLoss(amount)
@@ -37,7 +37,7 @@
 	. = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(C.installed == 1 || (C.installed == -1 && destroyed))
+		if(C.installed == ROBOT_COMPONENT_INSTALLED || (C.installed == ROBOT_COMPONENT_BROKEN && destroyed))
 			if((brute && C.brute_damage) || (burn && C.electronics_damage) || (!C.toggled) || (!C.powered && C.toggled))
 				. += C
 
@@ -47,14 +47,14 @@
 	. = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
-		if(C.installed == 1)
+		if(C.installed == ROBOT_COMPONENT_INSTALLED)
 			. += C
 
 /mob/living/silicon/robot/proc/get_armour()
 	if(!length(components))
 		return 0
 	var/datum/robot_component/C = components["armour"]
-	if(C?.installed == 1)
+	if(C.installed == ROBOT_COMPONENT_INSTALLED)
 		return C
 	return 0
 

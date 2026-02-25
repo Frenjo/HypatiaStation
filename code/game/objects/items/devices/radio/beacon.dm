@@ -22,9 +22,9 @@
 	return null
 
 /obj/item/radio/beacon/verb/alter_signal(t as text)
-	set category = PANEL_OBJECT
-	set name = "Alter Beacon's Signal"
-	set src in usr
+	set category = null
+	set name = "Alter Signal"
+	set src in oview(1)
 
 	if(usr.canmove && !usr.restrained())
 		src.code = t

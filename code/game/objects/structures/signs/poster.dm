@@ -2,7 +2,7 @@
 /obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
-	icon = 'icons/obj/contraband.dmi'
+	icon = 'icons/obj/posters/poster.dmi'
 	anchored = TRUE
 
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
@@ -18,6 +18,7 @@
 	var/decl/poster_design/design = all_designs[serial_number]
 	name += " - [design.name]"
 	desc += " [design.desc]"
+	icon = design.icon
 	icon_state = design.icon_state // poster[serial_number]
 	. = ..()
 
@@ -43,6 +44,7 @@
 			visible_message(SPAN_WARNING("[user] rips [src] in a single, decisive motion!"))
 			playsound(src, 'sound/items/poster_ripped.ogg', 100, 1)
 			ruined = TRUE
+			icon = 'icons/obj/posters/poster.dmi'
 			icon_state = "poster_ripped"
 			name = "ripped poster"
 			desc = "You can't make out anything from the poster's original print. It's ruined."
@@ -51,14 +53,14 @@
 			return
 
 /obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
-	var/obj/item/contraband/poster/P = new(src, serial_number)
+	var/obj/item/poster/P = new(src, serial_number)
 	P.forceMove(newloc)
 	src.forceMove(P)
 	qdel(src)
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/closed/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
+/turf/closed/wall/proc/place_poster(obj/item/poster/P, mob/user)
 	if(!istype(src, /turf/closed/wall))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return

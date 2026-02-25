@@ -151,10 +151,7 @@
 					return
 		else
 			if(!inuse)
-
-				for(var/mob/O in viewers(M, null))
-					O.show_message(text("\red [] has been injected with [] by [].", M, src, user), 1)
-					//Foreach goto(192)
+				M.visible_message(SPAN_WARNING("[user] injects [M] with \the [src]."))
 				if(!(ishuman(M) || ismonkey(M)))
 					to_chat(user, SPAN_WARNING("Apparently it didn't work."))
 					return

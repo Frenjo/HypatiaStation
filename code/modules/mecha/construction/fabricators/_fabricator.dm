@@ -41,9 +41,7 @@
 /obj/machinery/robotics_fabricator/Destroy()
 	QDEL_NULL(files)
 	QDEL_NULL(being_built)
-	for_no_type_check(var/datum/design/queued, queue)
-		queue.Remove(queued)
-		qdel(queued)
+	QDEL_LIST(queue)
 	queue.Cut()
 	part_sets.Cut()
 	return ..()
@@ -154,7 +152,7 @@
 		var/amount = materials.get_type_amount(material_path)
 		. += "<span class=\"res_name\"><font color='[initial(mat.colour_code)]'>[initial(mat.name)]:</font></span> [amount]cm<sup>3</sup>"
 		if(amount > 0)
-			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.max_capacity];material=[material_path]'>All</a>\]</span>"
+			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.get_type_amount(material_path)];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
 
 /obj/machinery/robotics_fabricator/get_examine_text()
@@ -367,7 +365,7 @@
 	SHOW_BROWSER(user, dat, "window=[ui_id];size=1000x600")
 	onclose(user, ui_id)
 
-/obj/machinery/robotics_fabricator/handle_topic(mob/user, datum/topic_input/topic)
+/obj/machinery/robotics_fabricator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

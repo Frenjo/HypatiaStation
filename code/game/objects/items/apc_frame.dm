@@ -25,7 +25,7 @@
 	if(!isfloorturf(loc))
 		to_chat(usr, SPAN_WARNING("An APC cannot be placed on this spot."))
 		return
-	if(!A.requires_power || istype(A, /area/space))
+	if(!A.requires_power || A.always_unpowered)
 		to_chat(usr, SPAN_WARNING("An APC cannot be placed in this area."))
 		return
 	if(A.get_apc())

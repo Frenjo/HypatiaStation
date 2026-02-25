@@ -119,7 +119,7 @@
 				user.mind.objectives += hijack
 				to_chat(user, "<B>Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!</B>")
 				var/obj_count = 1
-				for(var/datum/objective/OBJ in user.mind.objectives)
+				for_no_type_check(var/datum/objective/OBJ, user.mind.objectives)
 					to_chat(user, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
 					obj_count++
 				user.dna.mutantrace = "shadow"

@@ -425,7 +425,7 @@
 		to_chat(user, "Turret badly positioned - loc.loc is [loc].")
 		return
 	var/area/area = loc
-	var/t = "<TT><B>Turret Control Panel</B> ([area.name])<HR>"
+	var/t = "<html><body><TT><B>Turret Control Panel</B> ([area.name])<HR>"
 
 	if(src.locked && (!issilicon(user)))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
@@ -433,6 +433,7 @@
 		t += text("Turrets [] - <A href='byond://?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
 		t += text("Currently set for [] - <A href='byond://?src=\ref[];toggleLethal=1'>Change to []?</a><br>\n", src.lethal?"lethal":"stun repeatedly", src,  src.lethal?"Stun repeatedly":"Lethal")
 
+	t += "</body></html>"
 	SHOW_BROWSER(user, t, "window=turretid")
 	onclose(user, "turretid")
 

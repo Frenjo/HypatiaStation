@@ -119,26 +119,29 @@
 
 	. += CONFIG_GET(/decl/configuration_entry/monkey_delay)
 
-/mob/living/carbon/monkey/Topic(href, href_list)
-	..()
-	if (href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
+/mob/living/carbon/monkey/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("mach_close"))
+		var/t1 = "window=[topic.get_str("mach_close")]"
 		unset_machine()
 		CLOSE_BROWSER(src, t1)
-	if ((href_list["item"] && !( usr.stat ) && !( usr.restrained() ) && in_range(src, usr) ))
-		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
-		O.source = usr
+		return
+
+	if(topic.has("item") && !user.stat && !user.restrained() && in_range(src, user))
+		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey()
+		O.source = user
 		O.target = src
-		O.item = usr.get_active_hand()
-		O.s_loc = usr.loc
+		O.item = user.get_active_hand()
+		O.s_loc = user.loc
 		O.t_loc = loc
-		O.place = href_list["item"]
+		O.place = topic.get_str("item")
 		requests += O
-		spawn( 0 )
+		spawn(0)
 			O.process()
-			return
-	..()
-	return
+		return
 
 /mob/living/carbon/monkey/meteorhit(obj/O as obj)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
@@ -188,9 +191,11 @@
 						stuttering = 5
 					Stun(5)
 
-					for(var/mob/O in viewers(src, null))
-						if (O.client)
-							O.show_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>", 1, "\red You hear someone fall", 2)
+					visible_message(
+						SPAN_DANGER("[M] touches [src] with [G]!"),
+						SPAN_DANGER("You touch [src] with your [G]!"),
+						SPAN_WARNING("You hear someone fall!")
+					)
 					return
 				else
 					to_chat(M, SPAN_WARNING("Not enough charge!"))
@@ -201,28 +206,21 @@
 	else
 		if (M.a_intent == "hurt")
 			if ((prob(75) && health > 0))
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has punched [name]!</B>", M), 1)
-
+				visible_message(SPAN_DANGER("[M] punches [src]!"))
 				playsound(loc, "punch", 25, 1, -1)
 				var/damage = rand(5, 10)
 				if (prob(40))
 					damage = rand(10, 15)
 					if (paralysis < 5)
 						Paralyse(rand(10, 15))
-						spawn( 0 )
-							for(var/mob/O in viewers(src, null))
-								if ((O.client && !( O.blinded )))
-									O.show_message(text("\red <B>[] has knocked out [name]!</B>", M), 1)
+						spawn(0)
+							visible_message(SPAN_DANGER("[M] knocks out [src]!"))
 							return
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to punch [name]!</B>", M), 1)
+				visible_message(SPAN_DANGER("[M] attempts to punch [src], but misses!"))
 		else
 			if (M.a_intent == "grab")
 				if (M == src || anchored)
@@ -238,22 +236,17 @@
 				LAssailant = M
 
 				playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
+				visible_message(SPAN_WARNING("[M] grabs [src] passively."))
 			else
 				if (!( paralysis ))
 					if (prob(25))
 						Paralyse(2)
 						playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
-						for(var/mob/O in viewers(src, null))
-							if ((O.client && !( O.blinded )))
-								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
+						visible_message(SPAN_DANGER("[M] pushes down [src]!"))
 					else
 						drop_item()
 						playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
-						for(var/mob/O in viewers(src, null))
-							if ((O.client && !( O.blinded )))
-								O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
+						visible_message(SPAN_DANGER("[M] disarms [src]!"))
 	return
 
 /mob/living/carbon/monkey/attack_animal(mob/living/M as mob)
@@ -262,8 +255,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
 		M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>"
 		attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>"
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -290,10 +282,7 @@
 	if(M.Victim) return // can't attack while eating!
 
 	if (health > -100)
-
-		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
-				O.show_message(text("\red <B>The [M.name] glomps []!</B>", src), 1)
+		visible_message(SPAN_DANGER("\The [M] glomps [src]!"))
 
 		var/damage = rand(1, 3)
 
@@ -321,9 +310,7 @@
 				if(M.powerlevel < 0)
 					M.powerlevel = 0
 
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_DANGER("The [M.name] has shocked [src]!"),  1)
+				visible_message(SPAN_DANGER("\The [M] shocks [src]!"))
 
 				Weaken(power)
 				if(stuttering < power)

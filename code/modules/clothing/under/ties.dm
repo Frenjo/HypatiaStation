@@ -280,7 +280,6 @@
 /obj/item/clothing/tie/holster/verb/holster_verb()
 	set category = PANEL_OBJECT
 	set name = "Holster"
-	set src in usr
 
 	if(!isliving(usr))
 		return

@@ -18,7 +18,7 @@
 	var/overload = FALSE
 	var/overload_coeff = 2
 
-/obj/mecha/combat/gygax/handle_topic(mob/user, datum/topic_input/topic)
+/obj/mecha/combat/gygax/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

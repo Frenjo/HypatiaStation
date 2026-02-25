@@ -36,7 +36,7 @@
 /obj/item/toy/balloon/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
-	if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src, A) <= 1)
+	if(istype(A, /obj/structure/reagent_dispenser/watertank) && get_dist(src, A) <= 1)
 		A.reagents.trans_to(src, 10)
 		to_chat(user, SPAN_INFO("You fill the balloon with the contents of [A]."))
 		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
@@ -432,7 +432,7 @@
 	else if(locate(/obj/structure/table, src.loc))
 		return
 
-	else if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src, A) <= 1)
+	else if(istype(A, /obj/structure/reagent_dispenser/watertank) && get_dist(src, A) <= 1)
 		A.reagents.trans_to(src, 10)
 		to_chat(user, SPAN_INFO("You refill your flower!"))
 		return
@@ -479,23 +479,24 @@
 /obj/item/toy/prize
 	icon_state = "ripleytoy"
 
-	var/cooldown = 0
+	COOLDOWN_DECLARE(play_cooldown)
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user)
-	if(cooldown < world.time - 8)
-		to_chat(user, SPAN_NOTICE("You play with [src]."))
-		playsound(user, 'sound/mecha/movement/mechstep.ogg', 20, 1)
-		cooldown = world.time
+	play_with(user, TRUE)
 
 /obj/item/toy/prize/attack_hand(mob/user)
 	if(loc == user)
-		if(cooldown < world.time - 8)
-			to_chat(user, SPAN_NOTICE("You play with [src]."))
-			playsound(user, 'sound/mecha/movement/mechturn.ogg', 20, 1)
-			cooldown = world.time
-			return
-	..()
+		play_with(user, FALSE)
+	return ..()
+
+/obj/item/toy/prize/proc/play_with(mob/user, is_self)
+	if(!COOLDOWN_FINISHED(src, play_cooldown))
+		return FALSE
+	to_chat(user, SPAN_NOTICE("You play with [src]."))
+	playsound(user, is_self ? 'sound/mecha/movement/mechstep.ogg' : 'sound/mecha/movement/mechturn.ogg', 20, TRUE)
+	COOLDOWN_START(src, play_cooldown, 0.8 SECONDS)
+	return TRUE
 
 /obj/item/toy/prize/ripley
 	name = "toy ripley"
@@ -550,14 +551,3 @@
 	name = "toy phazon"
 	desc = "Mini-Mecha action figure! Collect them all! 11/11."
 	icon_state = "phazonprize"
-
-/* NYET.
-/obj/item/toddler
-	name = "toddler"
-	desc = "This baby looks almost real. Wait, did it just burp?"
-	icon = 'icons/obj/weapons/weapons.dmi'
-	icon_state = "toddler"
-	force = 5
-	w_class = 4.0
-	slot_flags = SLOT_BACK
-*/

@@ -118,9 +118,7 @@
 		if(!imp)
 			continue
 		if(istype(imp, /obj/item/implant/loyalty))
-			for (var/mob/O in viewers(M, null))
-				O.show_message("\red [M] has been implanted by the [src.name].", 1)
-
+			M.visible_message(SPAN_WARNING("\The [src] successfully implants [M]."))
 			if(imp.implanted(M))
 				imp.forceMove(M)
 				imp.imp_in = M
@@ -136,8 +134,8 @@
 	return
 
 /obj/machinery/implantchair/verb/get_out()
-	set category = PANEL_OBJECT
-	set name = "Eject occupant"
+	set category = null
+	set name = "Eject Occupant"
 	set src in oview(1)
 
 	if(usr.stat != 0)
@@ -147,7 +145,7 @@
 	return
 
 /obj/machinery/implantchair/verb/move_inside()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Move Inside"
 	set src in oview(1)
 

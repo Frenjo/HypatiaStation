@@ -12,7 +12,7 @@
 
 	var/move_delay_reduction = 0.5
 
-/obj/item/robot_upgrade/vtec/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/vtec/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	if(robby.speed == (initial(robby.speed) - move_delay_reduction))
@@ -31,7 +31,7 @@
 	desc = "A robot resizer, it makes a robot huge."
 	icon_state = "expander" //upgrade3
 
-/obj/item/robot_upgrade/expander/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/expander/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 

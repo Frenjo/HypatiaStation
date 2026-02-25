@@ -309,7 +309,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	return TRUE
 
 /obj/machinery/cryopod/verb/eject()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Eject Pod"
 	set src in oview(1)
 
@@ -326,7 +326,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	return
 
 /obj/machinery/cryopod/verb/move_inside()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Enter Pod"
 	set src in oview(1)
 

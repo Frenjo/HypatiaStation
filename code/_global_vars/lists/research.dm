@@ -1,1 +1,1 @@
-GLOBAL_GLOBL_ALIST_NEW(all_designs)	// An associative list of all research designs, indexed by typepath.
+GLOBAL_GLOBL_ALIST_NEW(all_designs) // An associative list of all research designs, indexed by typepath.

@@ -54,7 +54,7 @@
 	return ..()
 
 // Explosions
-/obj/structure/reagent_dispensers/fueltank/swarmer_act(mob/living/simple/hostile/swarmer/sammy)
+/obj/structure/reagent_dispenser/fueltank/swarmer_act(mob/living/simple/hostile/swarmer/sammy)
 	to_chat(sammy, SPAN_WARNING("Destroying this object would create a chain reaction. Aborting."))
 	return FALSE
 

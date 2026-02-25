@@ -312,19 +312,19 @@
 		visible_message(SPAN_WARNING("[icon2html(src, viewers(src))] A red light flashes on \the [src]."))
 
 /obj/machinery/power/rust_fuel_injector/verb/rotate_clock()
-	set category = PANEL_OBJECT
-	set name = "Rotate Generator (Clockwise)"
-	set src in view(1)
+	set category = null
+	set name = "Rotate (Clockwise)"
+	set src in oview(1)
 
 	if(usr.stat || usr.restrained()  || anchored)
 		return
 
-	src.set_dir(turn(src.dir, 90))
+	set_dir(turn(dir, 90))
 
 /obj/machinery/power/rust_fuel_injector/verb/rotate_anticlock()
-	set category = PANEL_OBJECT
-	set name = "Rotate Generator (Counterclockwise)"
-	set src in view(1)
+	set category = null
+	set name = "Rotate (Counterclockwise)"
+	set src in oview(1)
 
 	if(usr.stat || usr.restrained()  || anchored)
 		return

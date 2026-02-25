@@ -258,16 +258,16 @@
 /obj/item/welding_torch/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
-	if(istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src, O) <= 1 && !src.welding)
+	if(istype(O, /obj/structure/reagent_dispenser/fueltank) && get_dist(src, O) <= 1 && !src.welding)
 		O.reagents.trans_to(src, max_fuel)
 		to_chat(user, SPAN_INFO("Welder refueled."))
 		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
-	else if(istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src, O) <= 1 && src.welding)
+	else if(istype(O, /obj/structure/reagent_dispenser/fueltank) && get_dist(src, O) <= 1 && src.welding)
 		message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 		log_game("[key_name(user)] triggered a fueltank explosion.")
 		to_chat(user, SPAN_WARNING("That was stupid of you."))
-		var/obj/structure/reagent_dispensers/fueltank/tank = O
+		var/obj/structure/reagent_dispenser/fueltank/tank = O
 		tank.explode()
 		return
 	if(src.welding)

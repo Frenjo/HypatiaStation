@@ -2,17 +2,17 @@
 	// Simple list of all the gas typepaths.
 	var/list/gases = list()
 	// The friendly, human-readable name for the gas.
-	var/list/name = list()
+	var/alist/name = alist()
 	// Specific heat of the gas. Used for calculating heat capacity.
-	var/list/specific_heat = list()
+	var/alist/specific_heat = alist()
 	// Molar mass of the gas. Used for calculating specific entropy.
-	var/list/molar_mass = list()
+	var/alist/molar_mass = alist()
 	// Tile overlays. /images, created from references to 'icons/effects/tile_effects.dmi'
-	var/list/tile_overlay = list()
+	var/alist/tile_overlay = alist()
 	// Overlay limits. There must be at least this many moles for the overlay to appear.
-	var/list/overlay_limit = list()
+	var/alist/overlay_limit = alist()
 	// Flags.
-	var/list/flags = list()
+	var/alist/flags = alist()
 
 /decl/xgm_gas
 	var/name = "Unnamed Gas"

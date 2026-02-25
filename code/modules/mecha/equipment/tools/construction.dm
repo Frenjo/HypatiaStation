@@ -1,7 +1,7 @@
 // RCD
 /obj/item/mecha_equipment/tool/rcd
 	name = "mounted RCD"
-	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted rapid-construction-device."
 	icon_state = "rcd"
 	matter_amounts = /datum/design/mechfab/equipment/working/rcd::materials
 	origin_tech = /datum/design/mechfab/equipment/working/rcd::req_tech
@@ -80,7 +80,7 @@
 					playsound(target, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 	return TRUE
 
-/obj/item/mecha_equipment/tool/rcd/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/tool/rcd/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -101,8 +101,10 @@
 // Cable Layer
 /obj/item/mecha_equipment/tool/cable_layer
 	name = "mounted cable layer"
-	desc = "An exosuit-mounted cable layer. (Can be attached to: Working Exosuits)"
+	desc = "An exosuit-mounted cable layer."
 	icon_state = "cable_layer"
+
+	matter_amounts = /datum/design/mechfab/equipment/working/cable_layer::materials
 
 	equip_range = MECHA_EQUIP_MELEE
 
@@ -135,7 +137,7 @@
 	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 	return TRUE
 
-/obj/item/mecha_equipment/tool/cable_layer/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/mecha_equipment/tool/cable_layer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

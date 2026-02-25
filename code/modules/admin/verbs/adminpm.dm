@@ -7,7 +7,7 @@
 		// This hasn't been converted to use FEEDBACK_COMMAND_ADMIN_ONLY because I'm debating whether or not...
 		// ... I want to convert all generic feedback to include the name of the command you tried to execute...
 		// ... like these ones currently are.
-		to_chat(src, "<font color='red'>Error: Admin-PM-Context: Only administrators may use this command.</font>")
+		to_chat(src, SPAN_WARNING("ERROR: Admin-PM-Context: Only administrators may use this command."))
 		return
 
 	if(!ismob(M) || !M.client)
@@ -24,7 +24,7 @@
 		// This hasn't been converted to use FEEDBACK_COMMAND_ADMIN_ONLY because I'm debating whether or not...
 		// ... I want to convert all generic feedback to include the name of the command you tried to execute...
 		// ... like these ones currently are.
-		to_chat(src, "<font color='red'>Error: Admin-PM-Panel: Only administrators may use this command.</font>")
+		to_chat(src, SPAN_WARNING("ERROR: Admin-PM-Panel: Only administrators may use this command."))
 		return
 	var/list/client/targets[0]
 	for(var/client/T)
@@ -46,12 +46,12 @@
 //Fetching a message if needed. src is the sender and C is the target client
 /client/proc/cmd_admin_pm(client/C, msg)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Private-Message: You are unable to use PM-s (muted).</font>")
+		to_chat(src, SPAN_WARNING("ERROR: Private-Message: You are unable to use PM-s (muted)."))
 		return
 
 	if(!isclient(C))
 		if(holder)
-			to_chat(src, "<font color='red'>Error: Private-Message: Client not found.</font>")
+			to_chat(src, SPAN_WARNING("ERROR: Private-Message: Client not found."))
 		else
 			adminhelp(msg)	//admin we are replying to left. adminhelp instead
 		return
@@ -71,7 +71,7 @@
 			return
 		if(!C)
 			if(holder)
-				to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
+				to_chat(src, SPAN_WARNING("ERROR: Admin-PM: Client not found."))
 			else
 				adminhelp(msg)	//admin we are replying to has vanished, adminhelp instead
 			return
@@ -101,7 +101,7 @@
 			recieve_pm_type = holder.rank
 
 	else if(!C.holder)
-		to_chat(src, "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>")
+		to_chat(src, SPAN_WARNING("ERROR: Admin-PM: Non-admin to non-admin PM communication is forbidden."))
 		return
 
 	var/recieve_message = ""
@@ -123,7 +123,7 @@
 
 	recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[key_name(src, C, C.holder ? 1 : 0)]</b>: [msg]</font>"
 	to_chat(C, recieve_message)
-	to_chat(src, "<font color='blue'>[send_pm_type]PM to-<b>[key_name(C, src, holder ? 1 : 0)]</b>: [msg]</font>")
+	to_chat(src, SPAN_INFO("[send_pm_type]PM to-<b>[key_name(C, src, holder ? 1 : 0)]</b>: [msg]"))
 
 	/*if(holder && !C.holder)
 		C.last_pm_recieved = world.time
@@ -193,4 +193,4 @@
 		if(X == C || X == src)
 			continue
 		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN) || (X.holder.rights & R_MOD))
-			to_chat(X, "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;[key_name(C, X, 0)]:</B> \blue [msg]</font>") //inform X
+			to_chat(X, SPAN_INFO("<B>PM: [key_name(src, X, 0)]-&gt;[key_name(C, X, 0)]:</B> [msg]")) //inform X

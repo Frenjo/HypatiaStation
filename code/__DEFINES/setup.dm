@@ -30,7 +30,7 @@
 	/obj/structure/closet,
 	/obj/machinery/photocopier,
 	/obj/structure/filingcabinet,
-	/obj/structure/reagent_dispensers,
+	/obj/structure/reagent_dispenser,
 	/obj/machinery/portable_atmospherics/canister
 )
 

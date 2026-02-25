@@ -38,6 +38,10 @@
 	name = "Paddy wreckage"
 	icon_state = "paddy-broken"
 
+/obj/structure/mecha_wreckage/ripley/rogue
+	name = "Rogue wreckage"
+	icon_state = "rogue-broken"
+
 // HoverPod
 /obj/structure/mecha_wreckage/hoverpod
 	name = "HoverPod wreckage"
@@ -51,3 +55,8 @@
 /obj/structure/mecha_wreckage/ripley/dreadnought/bulwark
 	name = "Bulwark wreckage"
 	icon_state = "bulwark-broken"
+
+// Clarke
+/obj/structure/mecha_wreckage/clarke
+	name = "Clarke wreckage"
+	icon_state = "clarke-broken"

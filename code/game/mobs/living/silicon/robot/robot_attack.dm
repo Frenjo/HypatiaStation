@@ -96,7 +96,7 @@
 				if(V == "power cell")
 					continue
 				var/datum/robot_component/C = components[V]
-				if(C.installed == 1 || C.installed == -1)
+				if(C.installed != ROBOT_COMPONENT_UNINSTALLED)
 					removable_components.Add(V)
 
 			var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null | anything in removable_components
@@ -107,9 +107,9 @@
 			to_chat(user, SPAN_NOTICE("You remove \the [I]."))
 			I.forceMove(loc)
 
-			if(C.installed == 1)
+			if(C.installed == ROBOT_COMPONENT_INSTALLED)
 				C.uninstall()
-			C.installed = 0
+			C.installed = ROBOT_COMPONENT_UNINSTALLED
 			return TRUE
 
 		if(locked)
@@ -140,13 +140,13 @@
 	if(opened) // Are they trying to insert something?
 		for(var/V in components)
 			var/datum/robot_component/C = components[V]
-			if(!C.installed && istype(I, C.external_type))
-				C.installed = 1
+			if(C.installed == ROBOT_COMPONENT_UNINSTALLED && istype(I, C.external_type))
+				C.installed = ROBOT_COMPONENT_INSTALLED
 				C.wrapped = I
 				C.install()
 				user.drop_item()
 				I.forceMove(null)
-				to_chat(usr, SPAN_NOTICE("You install \the [I]."))
+				to_chat(user, SPAN_NOTICE("You install \the [I]."))
 				return TRUE
 
 		if(istype(I, /obj/item/cell)) // Trying to put a cell inside.
@@ -161,7 +161,7 @@
 				cell = I
 				to_chat(user, SPAN_NOTICE("You insert \the [I]."))
 
-				C.installed = 1
+				C.installed = ROBOT_COMPONENT_INSTALLED
 				C.wrapped = I
 				C.install()
 			return TRUE
@@ -306,10 +306,10 @@
 			to_chat(user, "You remove \the [cell].")
 			cell = null
 			cell_component.wrapped = null
-			cell_component.installed = 0
+			cell_component.installed = ROBOT_COMPONENT_UNINSTALLED
 			updateicon()
-		else if(cell_component.installed == -1)
-			cell_component.installed = 0
+		else if(cell_component.installed == ROBOT_COMPONENT_BROKEN)
+			cell_component.installed = ROBOT_COMPONENT_UNINSTALLED
 			var/obj/item/broken_device = cell_component.wrapped
 			to_chat(user, "You remove \the [broken_device].")
 			user.put_in_active_hand(broken_device)

@@ -20,6 +20,7 @@ CONFIG_ENTRY(ticklag, 0.9, list("Defines the ticklag for the world. 0.9 is the n
  * Category: URLs
  */
 CONFIG_ENTRY(server, null, list("Sets a server location for world reboot. Don't include the byond://, just give the address and port."), CATEGORY_URLS, TYPE_STRING)
+CONFIG_ENTRY(hub_url, null, list("The URL opened when the game version string is clicked on the BYOND Hub."), CATEGORY_URLS, TYPE_STRING)
 CONFIG_ENTRY(wikiurl, null, list("Wiki address."), CATEGORY_URLS, TYPE_STRING)
 CONFIG_ENTRY(forumurl, null, list("Forum address."), CATEGORY_URLS, TYPE_STRING)
 CONFIG_ENTRY(donateurl, null, list("Donation address."), CATEGORY_URLS, TYPE_STRING) // Why is this even missing damnit Techy/Akai/Numbers! -- Marajin

@@ -156,35 +156,42 @@
 				ai_call_shuttle()
 	..()
 
-/mob/living/silicon/ai/Topic(href, href_list)
-	if(usr != src)
-		return
-	..()
-	if(href_list["mach_close"])
-		if(href_list["mach_close"] == "aialerts")
+/mob/living/silicon/ai/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user != src)
+		return FALSE
+
+	if(topic.has("mach_close"))
+		if(topic.get_str("mach_close") == "aialerts")
 			viewalerts = 0
-		var/t1 = "window=[href_list["mach_close"]]"
+		var/t1 = "window=[topic.get_str("mach_close")]"
 		unset_machine()
 		CLOSE_BROWSER(src, t1)
-	if(href_list["switchcamera"])
-		switchCamera(locate(href_list["switchcamera"])) in global.CTcameranet.cameras
-	if(href_list["showalerts"])
+		return
+	if(topic.has("switchcamera"))
+		switchCamera(topic.get_and_locate("switchcamera")) in global.CTcameranet.cameras
+		return
+	if(topic.has("showalerts"))
 		ai_alerts()
+		return
 	//Carn: holopad requests
-	if(href_list["jumptoholopad"])
-		var/obj/machinery/hologram/holopad/H = locate(href_list["jumptoholopad"])
+	if(topic.has("jumptoholopad"))
+		var/obj/machinery/hologram/holopad/H = topic.get_and_locate("jumptoholopad")
 		if(stat == CONSCIOUS)
 			if(isnotnull(H))
 				H.attack_ai(src) //may as well recycle
 			else
 				to_chat(src, SPAN_NOTICE("Unable to locate the holopad."))
-
-	if(href_list["say_word"])
-		play_vox_word(href_list["say_word"], null, src)
 		return
 
-	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
+	if(topic.has("say_word"))
+		play_vox_word(topic.get_str("say_word"), null, src)
+		return
+
+	if(topic.has("track"))
+		var/mob/target = locate(topic.get("track")) in GLOBL.mob_list
 		/*
 		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in mob_list
 		if(A && target)
@@ -194,17 +201,17 @@
 			ai_actual_track(target)
 		return
 
-	else if(href_list["faketrack"])
-		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
-		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in GLOBL.mob_list
+	if(topic.has("faketrack"))
+		var/mob/target = locate(topic.get("track")) in GLOBL.mob_list
+		var/mob/living/silicon/ai/A = locate(topic.get("track2")) in GLOBL.mob_list
 		if(isnotnull(A) && isnotnull(target))
 			A.cameraFollow = target
 			to_chat(A, "Now tracking [target.name] on camera.")
-			if(isnull(usr.machine))
-				usr.machine = usr
+			if(isnull(user.machine))
+				user.machine = user
 
 			while(cameraFollow == target)
-				to_chat(usr, "Target is not on or near any active cameras on the station. We'll check again in 5 seconds (unless you use the cancel-camera verb).")
+				to_chat(user, "Target is not on or near any active cameras on the station. We'll check again in 5 seconds (unless you use the cancel-camera verb).")
 				sleep(40)
 				continue
 

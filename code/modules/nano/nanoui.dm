@@ -42,7 +42,7 @@ nanoui is used to open and update nano browser uis
 	// the #mainTemplate div will contain the compiled "main" template html
 	var/content = "<div id='mainTemplate'></div>"
 	// initial data, containing the full data structure, must be sent to the ui (the data structure cannot be extended later on)
-	var/list/initial_data = list()
+	var/alist/initial_data = alist()
 	// Set to TRUE to update the ui automatically every master_controller tick
 	var/is_auto_updating = FALSE
 	// the current status/visibility of the ui
@@ -381,22 +381,22 @@ nanoui is used to open and update nano browser uis
 	TO_OUTPUT(user, list2params(list(json_encode(data))), "[window_id].browser:receiveUpdateData")
 
  /**
-  * This Topic() proc is called whenever a user clicks on a link within a Nano UI
-  * If the UI status is currently STATUS_INTERACTIVE then call the src_object Topic()
-  * If the src_object Topic() returns 1 (true) then update all UIs attached to src_object
+  * This handle_topic() proc is called whenever a user clicks on a link within a Nano UI.
+  * If the UI status is currently STATUS_INTERACTIVE then call the src_object's Topic().
+  * If the src_object's Topic() returns TRUE then update all UIs attached to src_object.
   *
   * @return nothing
   */
-/datum/nanoui/Topic(href, list/href_list)
+/datum/nanoui/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
 
 	update_status(FALSE) // update the status
-	if(status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user.
+	if(status != STATUS_INTERACTIVE || src.user != user) // If UI is not interactive or user calling Topic is not the UI user.
 		return
 
-	if(src_object?.Topic(href, href_list))
+	if(src_object?.Topic(topic._href, topic._href_list))
 		global.PCnanoui.update_uis(src_object) // update all UIs attached to src_object
 
  /**

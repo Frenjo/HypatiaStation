@@ -64,26 +64,27 @@
 	onclose(user, "implantpad")
 	return
 
-/obj/item/implantpad/Topic(href, href_list)
-	..()
-	if (usr.stat)
-		return
-	if(usr.contents.Find(src) || ((in_range(src, usr) && isturf(src.loc))))
-		usr.set_machine(src)
-		if (href_list["tracking_id"])
-			var/obj/item/implant/tracking/T = src.case.imp
-			T.id += text2num(href_list["tracking_id"])
+/obj/item/implantpad/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.stat)
+		return FALSE
+
+	if(user.contents.Find(src) || ((in_range(src, user) && isturf(loc))))
+		user.set_machine(src)
+		if(topic.has("tracking_id"))
+			var/obj/item/implant/tracking/T = case.imp
+			T.id += topic.get_num("tracking_id")
 			T.id = min(100, T.id)
 			T.id = max(1, T.id)
 
-		if(ismob(src.loc))
-			attack_self(src.loc)
+		if(ismob(loc))
+			attack_self(loc)
 		else
 			for(var/mob/M in viewers(1, src))
-				if(M.client)
-					src.attack_self(M)
-		src.add_fingerprint(usr)
+				if(isnotnull(M.client))
+					attack_self(M)
+		add_fingerprint(user)
 	else
-		CLOSE_BROWSER(usr, "window=implantpad")
-		return
-	return
+		CLOSE_BROWSER(user, "window=implantpad")

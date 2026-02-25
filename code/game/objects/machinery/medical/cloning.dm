@@ -273,7 +273,7 @@
 	return 1
 
 /obj/machinery/clonepod/verb/eject()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Eject Cloner"
 	set src in oview(1)
 

@@ -1,5 +1,5 @@
 /mob/living/simple/hostile
-	faction = "hostile"
+	factions = list("hostile")
 	stop_automated_movement_when_pulled = FALSE
 
 	var/stance = HOSTILE_STANCE_IDLE	//Used to determine behavior
@@ -29,7 +29,7 @@
 		return FALSE
 	if(isliving(target_atom))
 		var/mob/living/L = target_atom
-		if(L.faction == faction && !attack_same)
+		if(L.is_same_faction(factions) && !attack_same)
 			return FALSE
 		else if(L in friends)
 			return FALSE

@@ -30,7 +30,7 @@
 	max_co2 = 0
 	minbodytemp = 0
 
-	faction = "malf_drone"
+	factions = list("malf_drone")
 
 	var/datum/effect/system/ion_trail_follow/ion_trail
 

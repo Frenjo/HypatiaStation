@@ -11,8 +11,9 @@
 	QDEL_NULL(hud_used)
 	if(mind?.current == src)
 		spellremove(src)
-	for(var/infection in viruses)
-		qdel(infection)
+	for_no_type_check(var/datum/disease/D, viruses)
+		viruses.Remove(D)
+		D.cure(0)
 	ghostize()
 	GLOBL.mob_list.Remove(src)
 	GLOBL.dead_mob_list.Remove(src)
@@ -566,7 +567,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = FALSE
 
-/mob/handle_topic(mob/user, datum/topic_input/topic)
+/mob/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -887,8 +888,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	return visible_implants
 
 /mob/proc/yank_out_object()
-	set category = PANEL_OBJECT
-	set name = "Yank out object"
+	set category = null
+	set name = "Yank Out Object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)
 

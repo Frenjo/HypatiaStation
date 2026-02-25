@@ -302,17 +302,17 @@
 		return //don't let you cremate something twice or w/e
 
 	if(!length(contents))
-		for(var/mob/M in viewers(src))
-			M.show_message(SPAN_WARNING("You hear a hollow crackle."), 1)
-			return
+		visible_message(SPAN_WARNING("You hear a hollow crackle."), SPAN_INFO("You hear a hollow crackle."))
 
 	else
-		if(!isemptylist(src.search_contents_for(/obj/item/disk/nuclear)))
-			to_chat(user, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
+		if(!isemptylist(search_contents_for(/obj/item/disk/nuclear)))
+			to_chat(user, "You get the feeling that you shouldn't cremate one of the items in \the [src].")
 			return
 
-		for(var/mob/M in viewers(src))
-			M.show_message(SPAN_WARNING("You hear a roar as the crematorium activates."), 1)
+		visible_message(
+			SPAN_WARNING("You hear a roar as \the [src] activates."),
+			SPAN_INFO("You hear a roar.")
+		)
 
 		cremating = TRUE
 		locked = TRUE

@@ -42,8 +42,7 @@
 	START_PROCESSING(PCobj, src)
 
 /obj/item/tank/Destroy()
-	if(isnotnull(air_contents))
-		QDEL_NULL(air_contents)
+	QDEL_NULL(air_contents)
 	STOP_PROCESSING(PCobj, src)
 	return ..()
 
@@ -156,7 +155,7 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

@@ -12,29 +12,29 @@
 	result_amount = 3
 
 
-/obj/structure/reagent_dispensers/coolanttank
+/obj/structure/reagent_dispenser/coolanttank
 	name = "coolant tank"
 	desc = "A tank of industrial coolant"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "coolanttank"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/coolanttank/initialise()
+/obj/structure/reagent_dispenser/coolanttank/initialise()
 	. = ..()
 	reagents.add_reagent("coolant", 1000)
 
-/obj/structure/reagent_dispensers/coolanttank/bullet_act(obj/projectile/Proj)
+/obj/structure/reagent_dispenser/coolanttank/bullet_act(obj/projectile/Proj)
 	if(istype(Proj, /obj/projectile/energy) || istype(Proj, /obj/projectile/bullet))
 		if(!istype(Proj, /obj/projectile/energy/beam/laser/tag) && !istype(Proj, /obj/projectile/energy/beam/laser/practice))
 			explode()
 
-/obj/structure/reagent_dispensers/coolanttank/blob_act()
+/obj/structure/reagent_dispenser/coolanttank/blob_act()
 	explode()
 
-/obj/structure/reagent_dispensers/coolanttank/ex_act()
+/obj/structure/reagent_dispenser/coolanttank/ex_act()
 	explode()
 
-/obj/structure/reagent_dispensers/coolanttank/proc/explode()
+/obj/structure/reagent_dispenser/coolanttank/proc/explode()
 	make_smoke(5, FALSE, loc)
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 

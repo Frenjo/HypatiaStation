@@ -62,7 +62,7 @@ default behaviour is:
 				if(mover == src)
 					continue
 				if(mover.density)
-					if(HAS_ATOM_FLAGS(mover, ATOM_FLAG_ON_BORDER))
+					if(mover.is_on_border())
 						dense = !mover.CanPass(src, loc)
 					else
 						dense = 1

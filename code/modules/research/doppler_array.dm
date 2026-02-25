@@ -33,8 +33,8 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/doppler_array/doppler_arrays)
 	return ..()
 
 /obj/machinery/doppler_array/verb/rotate()
-	set category = PANEL_OBJECT
-	set name = "Rotate Tachyon-doppler Dish"
+	set category = null
+	set name = "Rotate (Clockwise)"
 	set src in oview(1)
 
 	if(isnull(usr) || !isturf(usr.loc))

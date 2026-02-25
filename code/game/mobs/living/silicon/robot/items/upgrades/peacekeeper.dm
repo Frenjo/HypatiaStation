@@ -10,7 +10,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/peacekeeper)
 
-/obj/item/robot_upgrade/shield_projector/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/shield_projector/action(mob/living/silicon/robot/robby, mob/living/user)
 	if(!..())
 		return FALSE
 	var/obj/item/robot_model/peacekeeper/model = robby.model

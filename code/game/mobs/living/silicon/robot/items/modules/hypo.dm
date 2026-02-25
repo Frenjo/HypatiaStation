@@ -86,7 +86,7 @@
 		return
 
 	var/empty = TRUE
-	for(var/datum/reagents/holder in reagent_list)
+	for_no_type_check(var/datum/reagents/holder, reagent_list)
 		var/datum/reagent/reagent = locate() in holder.reagent_list
 		if(isnotnull(reagent))
 			. += SPAN_INFO("It currently has [reagent.volume] units of [reagent.name] stored.")

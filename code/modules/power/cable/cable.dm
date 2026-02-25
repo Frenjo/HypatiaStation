@@ -530,10 +530,10 @@ By design, d1 is the smallest direction and d2 is the highest
 		desc = "A coil of power cable. There are [amount] lengths of cable in the coil."
 
 /obj/item/stack/cable_coil/verb/make_restraint()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Make Cable Restraints"
-	var/mob/M = usr
 
+	var/mob/M = usr
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!isturf(usr.loc))
 			return

@@ -118,7 +118,7 @@
 		icon_state = "table2-idle"
 
 /obj/machinery/optable/verb/climb_on()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Climb On Table"
 	set src in oview(1)
 

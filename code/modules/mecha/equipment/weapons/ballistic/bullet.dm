@@ -18,7 +18,7 @@
 // Quietus Carbine
 /obj/item/mecha_equipment/weapon/ballistic/quietus
 	name = "\improper S.H.H. \"Quietus\" Carbine"
-	desc = "(Can be attached to: Reticence)" // Needs a proper description.
+	desc = "..." // Needs a proper description.
 	icon_state = "quietus"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/quietus::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/quietus::req_tech
@@ -26,6 +26,8 @@
 	mecha_types = MECHA_TYPE_RETICENCE
 
 	equip_cooldown = 1.5 SECONDS
+
+	attaches_to_string = "the <em><i>Reticence</i></em> exosuit"
 
 	projectile = /obj/projectile/bullet/mime
 	fire_sound = 'sound/weapons/gun/gunshot_silenced.ogg'

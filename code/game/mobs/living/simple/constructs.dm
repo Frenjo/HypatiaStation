@@ -20,7 +20,7 @@
 	max_tox = 0
 	max_co2 = 0
 	minbodytemp = 0
-	faction = "cult"
+	factions = list("cult")
 
 	mob_swap_flags = HUMAN|SIMPLE_ANIMAL|SLIME|MONKEY
 	mob_push_flags = ALLMOBS

@@ -43,7 +43,7 @@ var/list/alldepartments = list("Central Command")
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
 
-	var/dat = "Fax Machine<BR>"
+	var/dat = "<html><body>Fax Machine<BR>"
 
 	var/scan_name
 	if(scan)
@@ -87,6 +87,7 @@ var/list/alldepartments = list("Central Command")
 		if(tofax)
 			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
 
+	dat += "</body></html>"
 	SHOW_BROWSER(user, dat, "window=copier")
 	onclose(user, "copier")
 	return

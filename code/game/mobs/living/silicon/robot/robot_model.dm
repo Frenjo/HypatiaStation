@@ -74,6 +74,10 @@
 	choose_icon(model.sprites)
 	radio.config(model.channels)
 
+	// If the robot's emagged, then ensure that it gets the new model's emag items.
+	if(emagged)
+		model.on_emag(src)
+
 /mob/living/silicon/robot/proc/choose_icon(list/model_sprites)
 	set waitfor = FALSE
 	if(!length(model_sprites))

@@ -43,8 +43,7 @@
 						safe_thing.create_reagents(100)
 					trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
-					for(var/mob/O in viewers(world.view, user))
-						O.show_message(text("\red <B>[] tries to squirt something into []'s eyes, but fails!</B>", user, target), 1)
+					user.visible_message(SPAN_DANGER("[user] tries to squirt something into [target]'s eyes, but fails!"))
 					spawn(5)
 						src.reagents.reaction(safe_thing, TOUCH)
 
@@ -55,13 +54,12 @@
 					return
 
 
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red <B>[] squirts something into []'s eyes!</B>", user, target), 1)
+			user.visible_message(SPAN_DANGER("[user] squirts something into [target]'s eyes!"))
 			src.reagents.reaction(target, TOUCH)
 
 			var/mob/M = target
 			var/list/injected = list()
-			for(var/datum/reagent/R in src.reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 				injected += R.name
 			var/contained = english_list(injected)
 			M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been squirted with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"
@@ -77,7 +75,7 @@
 
 	else
 
-		if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
+		if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispenser))
 			to_chat(user, SPAN_WARNING("You cannot directly remove reagents from [target]."))
 			return
 

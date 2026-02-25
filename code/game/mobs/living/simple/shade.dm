@@ -26,7 +26,7 @@
 	speed = -1
 	stop_automated_movement = TRUE
 	status_flags = 0
-	faction = "cult"
+	factions = list("cult")
 	status_flags = CANPUSH
 
 /mob/living/simple/shade/Life()

@@ -22,7 +22,7 @@
 
 	unsuitable_atoms_damage = 15
 	wall_smash = 1
-	faction = "syndicate"
+	factions = list("syndicate")
 	status_flags = CANPUSH
 
 	var/corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier
@@ -142,7 +142,7 @@
 	melee_damage_upper = 15
 	attacktext = "cuts"
 	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
-	faction = "syndicate"
+	factions = list("syndicate")
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0

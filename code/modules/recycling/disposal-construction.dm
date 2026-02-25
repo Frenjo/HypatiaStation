@@ -93,9 +93,9 @@
 
 // flip and rotate verbs
 /obj/structure/disposalconstruct/verb/rotate()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Rotate Pipe"
-	set src in view(1)
+	set src in oview(1)
 
 	if(usr.stat)
 		return
@@ -108,9 +108,9 @@
 	update()
 
 /obj/structure/disposalconstruct/verb/flip()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Flip Pipe"
-	set src in view(1)
+	set src in oview(1)
 
 	if(usr.stat)
 		return

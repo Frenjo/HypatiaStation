@@ -12,20 +12,15 @@
 	starts_with = list(/obj/item/reagent_holder/pill/zoom = 7)
 
 //########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
-/obj/item/contraband
-	name = "contraband item"
-	desc = "You probably shouldn't be holding this."
-	icon = 'icons/obj/contraband.dmi'
-	force = 0
-
-/obj/item/contraband/poster
+/obj/item/poster
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
+	icon = 'icons/obj/posters/poster.dmi'
 	icon_state = "rolled_poster"
 
 	var/serial_number = 0
 
-/obj/item/contraband/poster/New(turf/loc, given_serial = 0)
+/obj/item/poster/New(turf/loc, given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, length(GET_DECL_SUBTYPE_INSTANCES(/decl/poster_design)))
 	else

@@ -47,7 +47,7 @@
 	var/atom/target //Current target, can be a human, a hydroponics tray, or a sink
 	var/mode //Which mode is being used, 0 means it is looking for work
 
-	var/obj/structure/reagent_dispensers/watertank/tank // the water tank that was used to make it, remains inside the bot.
+	var/obj/structure/reagent_dispenser/watertank/tank // the water tank that was used to make it, remains inside the bot.
 
 	var/list/path = list() // used for pathing
 	var/frustration
@@ -63,9 +63,9 @@
 	botcard.access = req_access
 
 	if(isnull(tank)) //Should be set as part of making it... but lets check anyway
-		tank = locate(/obj/structure/reagent_dispensers/watertank) in contents
+		tank = locate(/obj/structure/reagent_dispenser/watertank) in contents
 	if(isnull(tank)) //An admin must have spawned the farmbot! Better give it a tank.
-		tank = new /obj/structure/reagent_dispensers/watertank(src)
+		tank = new /obj/structure/reagent_dispenser/watertank(src)
 
 /obj/machinery/bot/farmbot/Bump(atom/M) //Leave no door unopened!
 	spawn(0)
@@ -500,7 +500,7 @@
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 
 // Farmbot Assembly
-/obj/structure/reagent_dispensers/watertank/attack_by(obj/item/I, mob/user)
+/obj/structure/reagent_dispenser/watertank/attack_by(obj/item/I, mob/user)
 	if(!istype(I, /obj/item/robot_part/l_arm) && !istype(I, /obj/item/robot_part/r_arm))
 		return ..()
 
@@ -524,9 +524,9 @@
 /obj/item/farmbot_assembly/initialise()
 	. = ..()
 	// If an admin spawned it, it won't have a watertank in it, so lets make one for em!
-	var/tank = locate(/obj/structure/reagent_dispensers/watertank) in contents
+	var/tank = locate(/obj/structure/reagent_dispenser/watertank) in contents
 	if(isnull(tank))
-		new /obj/structure/reagent_dispensers/watertank(src)
+		new /obj/structure/reagent_dispenser/watertank(src)
 
 /obj/item/farmbot_assembly/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/pen))
@@ -564,7 +564,7 @@
 		build_step++
 		to_chat(user, SPAN_INFO("You complete the Farmbot! Beep boop."))
 		var/obj/machinery/bot/farmbot/S = new /obj/machinery/bot/farmbot(GET_TURF(src))
-		for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
+		for(var/obj/structure/reagent_dispenser/watertank/wTank in contents)
 			wTank.forceMove(S)
 			S.tank = wTank
 		S.name = created_name

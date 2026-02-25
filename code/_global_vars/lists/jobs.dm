@@ -5,15 +5,6 @@ GLOBAL_GLOBL_LIST_INIT(all_centcom_jobs, list(
 	"Research Officer", "BlackOps Commander", "Supreme Commander"
 ))
 
-GLOBAL_GLOBL_LIST_INIT(departments, list(
-	"Command",
-	"Medical",
-	"Engineering",
-	"Security",
-	"Civilian",
-	"Cargo"
-))
-
 GLOBAL_GLOBL_LIST_INIT(command_positions, list(
 	"Captain",
 	"Head of Personnel",

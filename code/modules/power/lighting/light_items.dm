@@ -11,7 +11,7 @@
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	var/rigged = TRUE	// true if rigged to explode
+	var/rigged = FALSE	// true if rigged to explode
 	var/broken_chance = 2
 
 	var/brightness_range = 2 //how much light it gives off

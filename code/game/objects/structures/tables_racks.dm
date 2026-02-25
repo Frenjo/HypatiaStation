@@ -405,8 +405,8 @@
 	return 1
 
 /obj/structure/table/proc/do_put()
-	set category = PANEL_OBJECT
-	set name = "Put table back"
+	set category = null
+	set name = "Put Table Back"
 	set desc = "Puts flipped table back"
 	set src in oview(1)
 

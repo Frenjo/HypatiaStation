@@ -12,8 +12,7 @@
 		new spell_to_add(src) //should result in adding to contents, needs testing
 
 /obj/effect/proc_holder/spell/targeted/trigger/Destroy()
-	for(var/spell in contents)
-		qdel(spell)
+	QDEL_LIST(contents)
 	return ..()
 
 /obj/effect/proc_holder/spell/targeted/trigger/cast(list/targets)

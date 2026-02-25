@@ -331,7 +331,7 @@ PROCESS_DEF(vote)
 		. += "</ul><hr>"
 	. += "<a href='byond://?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
 
-/datum/process/vote/handle_topic(mob/user, datum/topic_input/topic)
+/datum/process/vote/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

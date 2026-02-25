@@ -26,7 +26,7 @@
 	/*
 	 * Unique ID
 	 */
-	var/static/static_uid = 0
+	VAR_PRIVATE/static/_static_uid = 0
 	var/uid
 
 	/*
@@ -58,6 +58,7 @@
 	 * Power
 	 */
 	var/requires_power = TRUE
+	// If set to TRUE, APCs and some other power-dependent objects can't be built here.
 	var/always_unpowered = FALSE
 	var/obj/machinery/power/apc/apc = null
 	var/alist/power_channels = alist(EQUIP = TRUE, LIGHT = TRUE, ENVIRON = TRUE)
@@ -89,7 +90,7 @@
 
 /area/New()
 	icon_state = ""
-	uid = ++static_uid
+	uid = ++_static_uid
 
 	. = ..()
 	GLOBL.area_list.Add(src)

@@ -138,9 +138,9 @@
 
 
 /obj/machinery/iv_drip/verb/toggle_mode()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Mode"
-	set src in view(1)
+	set src in oview(1)
 
 	if(!isliving(usr))
 		to_chat(usr, SPAN_WARNING("You can't do that."))

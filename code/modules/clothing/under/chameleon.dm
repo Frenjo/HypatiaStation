@@ -47,9 +47,8 @@
 	..()
 
 /obj/item/clothing/under/chameleon/verb/change()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Change Color"
-	set src in usr
 
 	if(icon_state == "psyche")
 		to_chat(usr, SPAN_WARNING("Your suit is malfunctioning."))

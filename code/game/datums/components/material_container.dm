@@ -1,7 +1,7 @@
 /datum/component/material_container
 	var/alist/stored_materials = alist() // An associative list of /decl/material typepaths to their corresponding amounts in cm3.
-	var/max_capacity = 0 // The total amount of materials in cm3 that this container can store.
-	var/has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
+	VAR_PRIVATE/_max_capacity = 0 // The total amount of materials in cm3 that this container can store.
+	VAR_PRIVATE/_has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
 
 /datum/component/material_container/initialise(list/accepted_materials, per_material_storage = TRUE)
 	. = ..()
@@ -11,7 +11,7 @@
 
 	for(var/material_path in accepted_materials)
 		stored_materials[material_path] = 0
-	has_individual_storage = per_material_storage
+	_has_individual_storage = per_material_storage
 
 /datum/component/material_container/proc/set_max_capacity(new_max_capacity)
 	max_capacity = new_max_capacity
@@ -24,8 +24,8 @@
 /datum/component/material_container/proc/can_add_amount(material_path, amount)
 	if(!can_contain(material_path))
 		return FALSE
-	var/new_amount = has_individual_storage ? (stored_materials[material_path] + amount) : (get_total_amount() + amount)
-	return new_amount < max_capacity
+	var/new_amount = _has_individual_storage ? (stored_materials[material_path] + amount) : (get_total_amount() + amount)
+	return new_amount < _max_capacity
 
 // Adds amount of material_path to the container if possible.
 /datum/component/material_container/proc/add_amount(material_path, amount)
@@ -71,14 +71,14 @@
 /datum/component/material_container/proc/get_total_type_capacity(material_path)
 	if(!can_contain(material_path))
 		return 0
-	return has_individual_storage ? max_capacity : get_total_capacity()
+	return _has_individual_storage ? _max_capacity : get_total_capacity()
 
 // Returns the remaining storage capacity of the provided material type.
 /datum/component/material_container/proc/get_remaining_type_capacity(material_path)
 	if(!can_contain(material_path))
 		return 0
 	var/capacity = get_total_type_capacity(material_path)
-	return has_individual_storage ? (capacity - get_type_amount(material_path)) : (capacity - get_total_amount())
+	return _has_individual_storage ? (capacity - get_type_amount(material_path)) : (capacity - get_total_amount())
 
 // Returns the total amount of all stored materials.
 /datum/component/material_container/proc/get_total_amount()

@@ -242,7 +242,7 @@
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "aV" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispenser/fueltank,
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/administration/centcom)
 "aW" = (
@@ -1216,7 +1216,7 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/administration/centcom)
 "eB" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
@@ -5629,7 +5629,7 @@
 	},
 /area/centcom/control)
 "By" = (
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/reagent_dispenser/beerkeg,
 /turf/open/floor/tiled/cafeteria,
 /area/centcom/living)
 "BA" = (
@@ -7957,7 +7957,7 @@
 	},
 /area/centcom/holding)
 "MK" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispenser/watertank,
 /obj/machinery/light/small,
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/administration/centcom)
@@ -9232,7 +9232,7 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "Te" = (
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/reagent_dispenser/beerkeg,
 /turf/open/floor{
 	icon_state = "redbluefull"
 	},
@@ -10118,7 +10118,7 @@
 /turf/open/floor/tiled/dark,
 /area/centcom/specops)
 "Yo" = (
-/obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/reagent_dispenser/beerkeg,
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
 "Yp" = (

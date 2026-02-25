@@ -28,14 +28,14 @@
 	toggle()
 
 /obj/item/tank/jetpack/verb/toggle_rockets()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Jetpack Stabilization"
 
 	stabilization_on = !stabilization_on
 	to_chat(usr, "You toggle the stabilization [stabilization_on ? "on" : "off"].")
 
 /obj/item/tank/jetpack/verb/toggle()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Toggle Jetpack"
 
 	on = !on

@@ -8,7 +8,7 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 	// The controller's name.
 	var/name = "controller"
 	// The clickable stat() panel button object.
-	var/atom/movable/clickable_stat/stat_click = null
+	VAR_PROTECTED/atom/movable/clickable_stat/stat_click = null
 
 /datum/controller/New()
 	SHOULD_CALL_PARENT(TRUE)

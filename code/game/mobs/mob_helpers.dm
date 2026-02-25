@@ -311,3 +311,15 @@ var/list/intents = list("help", "disarm", "grab", "hurt")
 		if(C.sdisabilities & BLIND || C.blinded)
 			return TRUE
 	return FALSE
+
+/mob/proc/is_same_faction(list/factions_to_check)
+	if(isnull(factions_to_check))
+		return FALSE
+	if(!islist(factions_to_check))
+		return FALSE
+	for(var/faction in factions)
+		for(var/faction_to_check in factions_to_check)
+			if(faction != faction_to_check)
+				continue
+			return TRUE
+	return FALSE

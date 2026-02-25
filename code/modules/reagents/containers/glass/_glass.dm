@@ -83,7 +83,7 @@
 
 		var/mob/living/M = target
 		var/list/injected = list()
-		for(var/datum/reagent/R in src.reagents.reagent_list)
+		for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 			injected += R.name
 		var/contained = english_list(injected)
 		M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been splashed with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>"
@@ -96,7 +96,7 @@
 		spawn(5)
 			src.reagents.clear_reagents()
 		return
-	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+	else if(istype(target, /obj/structure/reagent_dispenser)) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume && target.reagents)
 			to_chat(user, SPAN_WARNING("[target] is empty."))
 			return

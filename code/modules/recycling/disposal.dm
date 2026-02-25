@@ -112,15 +112,13 @@
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.affecting))
 			var/mob/GM = G.affecting
-			for(var/mob/V in viewers(usr))
-				V.show_message("[usr] starts putting [GM.name] into the disposal.", 3)
+			user.visible_message(SPAN_WARNING("[user] starts putting [GM] into \the [src]..."))
 			if(do_after(usr, 20))
 				if(GM.client)
 					GM.client.perspective = EYE_PERSPECTIVE
 					GM.client.eye = src
 				GM.forceMove(src)
-				for(var/mob/C in viewers(src))
-					C.show_message(SPAN_WARNING("[GM.name] has been placed in the [src] by [user]."), 3)
+				user.visible_message(SPAN_WARNING("[GM] has been placed in \the [src] by [user]!"))
 				qdel(G)
 				usr.attack_log += "\[[time_stamp()]\] <font color='red'>Has placed [GM.name] ([GM.ckey]) in disposals.</font>"
 				GM.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [usr.name] ([usr.ckey])</font>"
@@ -131,15 +129,11 @@
 		return
 
 	user.drop_item()
-	if(I)
-		I.forceMove(src)
-
-	to_chat(user, "You place \the [I] into the [src].")
-	for(var/mob/M in viewers(src))
-		if(M == user)
-			continue
-		M.show_message("[user.name] places \the [I] into the [src].", 3)
-
+	I?.forceMove(src)
+	user.visible_message(
+		SPAN_INFO("[user] places \the [I] into \the [src]."),
+		SPAN_INFO("You place \the [I] into \the [src].")
+	)
 	update()
 
 // mouse drop another mob or self
@@ -465,11 +459,9 @@
 			return
 		if(prob(75))
 			I.forceMove(src)
-			for(var/mob/M in viewers(src))
-				M.show_message("\the [I] lands in \the [src].", 3)
+			visible_message(SPAN_INFO("\The [I] lands in \the [src]."))
 		else
-			for(var/mob/M in viewers(src))
-				M.show_message("\the [I] bounces off of \the [src]'s rim!.", 3)
+			visible_message(SPAN_WARNING("\The [I] bounces off of \the [src]'s rim!"))
 		return 0
 	else
 		return ..(mover, target, height, air_group)

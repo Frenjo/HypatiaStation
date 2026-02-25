@@ -30,7 +30,7 @@
 	max_co2 = 0
 	minbodytemp = 0
 
-	faction = "carp"
+	factions = list("carp")
 
 /mob/living/simple/hostile/tree/FindTarget()
 	. = ..()

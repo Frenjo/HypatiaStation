@@ -79,3 +79,17 @@
 	singular_name = "science floor tile"
 	icon_state = "science"
 	turf_path = /turf/open/floor/tiled/science
+
+// Barber
+/obj/item/stack/tile/metal/barber
+	name = "barber floor tile"
+	singular_name = "barber floor tile"
+	icon_state = "barber"
+	turf_path = /turf/open/floor/tiled/barber
+
+// CMO
+/obj/item/stack/tile/metal/cmo
+	name = "cmo floor tile"
+	singular_name = "cmo floor tile"
+	icon_state = "cmo"
+	turf_path = /turf/open/floor/tiled/cmo

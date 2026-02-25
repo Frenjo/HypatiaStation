@@ -102,7 +102,7 @@
 	dat += "<br><br><A href='byond://?src=\ref[src];removeall=1'>Empty Box</A>"
 	SHOW_BROWSER(user, dat, "window=orebox")
 
-/obj/structure/ore_box/handle_topic(mob/user, datum/topic_input/topic)
+/obj/structure/ore_box/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

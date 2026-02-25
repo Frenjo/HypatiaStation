@@ -14,9 +14,8 @@
 	var/special = null
 
 /obj/item/card/data/verb/label(t as text)
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Label Disk"
-	set src in usr
 
 	name = t ? "data disk- '[t]'" : "data disk"
 	add_fingerprint(usr)

@@ -40,7 +40,7 @@
 	SHOW_BROWSER(user, dat, "window=freezegun;size=450x300;can_resize=1;can_close=1;can_minimize=1")
 	onclose(user, "window=freezegun", src)
 
-/obj/item/gun/energy/temperature/handle_topic(mob/user, datum/topic_input/topic)
+/obj/item/gun/energy/temperature/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)
 		return FALSE

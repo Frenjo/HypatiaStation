@@ -74,9 +74,9 @@
 	return
 
 /obj/machinery/dna_scannernew/verb/eject()
-	set category = PANEL_OBJECT
-	set src in oview(1)
+	set category = null
 	set name = "Eject DNA Scanner"
+	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
 		return
@@ -97,9 +97,9 @@
 			M.forceMove(T)
 
 /obj/machinery/dna_scannernew/verb/move_inside()
-	set category = PANEL_OBJECT
-	set src in oview(1)
+	set category = null
 	set name = "Enter DNA Scanner"
+	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
 		return
@@ -389,7 +389,7 @@
 	data["disk"] = diskData
 
 	var/list/new_buffers = list()
-	for(var/datum/dna2/record/buf in src.buffers)
+	for_no_type_check(var/datum/dna2/record/buf, buffers)
 		new_buffers += list(buf.GetData())
 	data["buffers"] = new_buffers
 

@@ -79,36 +79,36 @@ STI KALY - blind
 	return
 
 /datum/disease/wizarditis/proc/teleport()
-	var/list/theareas = list()
-	for(var/area/AR in orange(80, affected_mob))
-		if(theareas.Find(AR) || istype(AR, /area/space))
+	var/list/local_areas = list()
+	for(var/area/target in orange(80, affected_mob))
+		if(local_areas.Find(target) || istype(target, world.area))
 			continue
-		theareas += AR
+		local_areas.Add(target)
 
-	if(!theareas)
+	if(isemptylist(local_areas))
 		return
 
-	var/area/thearea = pick(theareas)
+	var/area/selected_area = pick(local_areas)
 
-	var/list/L = list()
-	for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
-		if(T.z != affected_mob.z)
+	var/list/turf/turfs = list()
+	for_no_type_check(var/turf/tile, get_area_turfs(selected_area.type))
+		if(tile.z != affected_mob.z)
 			continue
-		if(istype(T, /area/space))
+		if(isspace(tile))
 			continue
-		if(!T.density)
+		if(!tile.density)
 			var/clear = 1
-			for(var/obj/O in T)
+			for(var/obj/O in tile)
 				if(O.density)
 					clear = 0
 					break
 			if(clear)
-				L+=T
+				turfs.Add(tile)
 
-	if(!L)
+	if(isemptylist(turfs))
 		return
 
-	affected_mob.say("SCYAR NILA [uppertext(thearea.name)]!")
-	affected_mob.forceMove(pick(L))
+	affected_mob.say("SCYAR NILA [uppertext(selected_area.name)]!")
+	affected_mob.forceMove(pick(turfs))
 
 	return

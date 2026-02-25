@@ -49,20 +49,52 @@
 	qdel(mech)
 	qdel(src)
 
-// Ripley -> Paddy conversion kit
-/obj/item/mecha_equipment/conversion_kit/paddy
-	name = "APLU \"Paddy\" conversion kit"
+
+// Ripley variant conversion kits
+/obj/item/mecha_equipment/conversion_kit/ripley_variant
+	attaches_to_string = "the <em><i>Ripley</i></em> exosuit"
+
+	required_type = /obj/mecha/working/ripley
+
+/obj/item/mecha_equipment/conversion_kit/ripley_variant/can_attach(obj/mecha/mech)
+	if(!isemptylist(mech.equipment))
+		to_chat(loc, SPAN_WARNING("\The [src] cannot be applied to \the [mech] while it has equipment attached."))
+		return FALSE
+	. = ..()
+
+// Ripley -> Paddy
+/obj/item/mecha_equipment/conversion_kit/ripley_variant/paddy
+	name = "\improper APLU \"Paddy\" conversion kit"
 	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into an APLU \"Paddy\" light security mech."
 	icon_state = "paddy_upgrade"
 
 	matter_amounts = /datum/design/mechfab/equipment/conversion_kit/paddy::materials
 	origin_tech = /datum/design/mechfab/equipment/conversion_kit/paddy::req_tech
 
-	required_type = /obj/mecha/working/ripley
 	target_type = /obj/mecha/working/ripley/paddy
 
-/obj/item/mecha_equipment/conversion_kit/paddy/can_attach(obj/mecha/mech)
-	if(!isemptylist(mech.equipment))
-		to_chat(loc, SPAN_WARNING("\The [src] cannot be applied to \the [mech] while it has equipment attached."))
-		return FALSE
-	. = ..()
+// Ripley -> Rogue
+/obj/item/mecha_equipment/conversion_kit/ripley_variant/rogue
+	name = "\improper APLU \"Rogue\" conversion kit"
+	desc = "A kit containing all the needed tools and parts to turn an APLU \"Ripley\" into the lighter and more mobile APLU \"Rogue\" mech."
+	icon_state = "clip_upgrade"
+
+	matter_amounts = /datum/design/mechfab/equipment/conversion_kit/rogue::materials
+	origin_tech = /datum/design/mechfab/equipment/conversion_kit/rogue::req_tech
+
+	target_type = /obj/mecha/working/ripley/rogue
+
+
+// Durand -> Paladin
+/obj/item/mecha_equipment/conversion_kit/paladin
+	name = "\improper Paladin conversion kit"
+	desc = "A kit containing all the needed tools and parts to turn a Durand combat exosuit into a Paladin anti-xenofauna exosuit."
+	icon_state = "clip_upgrade"
+
+	matter_amounts = /datum/design/mechfab/equipment/conversion_kit/rogue::materials
+	origin_tech = /datum/design/mechfab/equipment/conversion_kit/rogue::req_tech
+
+	required_type = /obj/mecha/combat/durand
+	target_type = /obj/mecha/combat/durand/paladin
+
+	attaches_to_string = "the <em><i>Durand</i></em> exosuit"

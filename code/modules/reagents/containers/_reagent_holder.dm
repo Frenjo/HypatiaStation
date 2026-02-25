@@ -12,9 +12,8 @@
 	var/alist/starting_reagents = null
 
 /obj/item/reagent_holder/verb/set_APTFT() //set amount_per_transfer_from_this
-	set category = PANEL_OBJECT
-	set name = "Set transfer amount"
-	set src in range(0)
+	set category = null
+	set name = "Set Transfer Amount"
 
 	var/N = input("Amount per transfer from this:", "[src]") as null | anything in possible_transfer_amounts
 	if(isnotnull(N))
@@ -49,8 +48,8 @@
 /obj/item/reagent_holder/proc/reagentlist(obj/item/reagent_holder/snack) //Attack logs for regents in pills
 	var/data
 	if(length(snack.reagents.reagent_list)) //find a reagent list if there is and check if it has entries
-		for(var/datum/reagent/R in snack.reagents.reagent_list) //no reagents will be left behind
-			data += "[R.id]([R.volume] units); " //Using IDs because SOME chemicals(I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
+		for_no_type_check(var/datum/reagent/R, snack.reagents.reagent_list) //no reagents will be left behind
+			data += "[R.type]([R.volume] units); "
 		return data
 	else
 		return "No reagents"
