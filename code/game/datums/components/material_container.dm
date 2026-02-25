@@ -14,7 +14,7 @@
 	_has_individual_storage = per_material_storage
 
 /datum/component/material_container/proc/set_max_capacity(new_max_capacity)
-	max_capacity = new_max_capacity
+	_max_capacity = new_max_capacity
 
 // Returns a boolean indicating whether the container can accept material_path.
 /datum/component/material_container/proc/can_contain(material_path)
@@ -87,7 +87,7 @@
 
 // Returns the total capacity of the container.
 /datum/component/material_container/proc/get_total_capacity()
-	return has_individual_storage ? max_capacity * length(stored_materials) : max_capacity
+	return _has_individual_storage ? _max_capacity * length(stored_materials) : _max_capacity
 
 // Ejects all stored material sheets onto the ground.
 /datum/component/material_container/proc/eject_all_sheets()
