@@ -32,6 +32,10 @@
 		/obj/item/mecha_part/part/durand/right_leg
 	)
 
+/obj/structure/mecha_wreckage/durand/paladin
+	name = "Paladin wreckage"
+	icon_state = "paladin-broken"
+
 /obj/structure/mecha_wreckage/durand/archambeau
 	name = "Archambeau wreckage"
 	icon_state = "archambeau-broken"
