@@ -15,7 +15,7 @@
 
 /obj/machinery/mineral/mint/initialise()
 	. = ..()
-	AddComponent(/datum/component/material_container, list(
+	add_component(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel, /decl/material/silver,
 		/decl/material/gold, /decl/material/diamond, /decl/material/uranium,
 		/decl/material/plasma, /decl/material/bananium, /decl/material/tranquilite,

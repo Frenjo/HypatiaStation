@@ -11,8 +11,8 @@
 
 /datum/component/construction/mecha_chassis/reticence/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = parent_datum
-	const_holder.RemoveComponent(src)
-	const_holder.AddComponent(/datum/component/construction/mecha_reticence)
+	const_holder.remove_component(src)
+	const_holder.add_component(/datum/component/construction/mecha_reticence)
 	const_holder.density = TRUE
 
 // Reticence

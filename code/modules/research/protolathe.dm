@@ -13,7 +13,7 @@ Note: Must be placed west/left of and R&D console to function.
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 /obj/machinery/r_n_d/protolathe/initialise()
-	AddComponent(/datum/component/material_container, list(
+	add_component(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel, /decl/material/plastic, /decl/material/glass,
 		/decl/material/silver, /decl/material/gold, /decl/material/diamond, /decl/material/uranium,
 		/decl/material/plasma, /decl/material/bananium, /decl/material/adamantine

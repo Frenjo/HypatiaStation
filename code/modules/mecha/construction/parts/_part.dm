@@ -20,7 +20,7 @@
 /obj/item/mecha_part/chassis/initialise()
 	. = ..()
 	if(isnotnull(construct_type))
-		AddComponent(construct_type)
+		add_component(construct_type)
 
 /obj/item/mecha_part/chassis/attackby(obj/item/W, mob/user)
 	GET_COMPONENT(construct, /datum/component/construction/reversible/mecha)

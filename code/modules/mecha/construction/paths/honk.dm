@@ -11,8 +11,8 @@
 
 /datum/component/construction/mecha_chassis/honk/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = parent_datum
-	const_holder.RemoveComponent(src)
-	const_holder.AddComponent(/datum/component/construction/mecha_honk)
+	const_holder.remove_component(src)
+	const_holder.add_component(/datum/component/construction/mecha_honk)
 	const_holder.density = TRUE
 
 // H.O.N.K

@@ -25,7 +25,7 @@
 	var/busy = FALSE
 
 /obj/machinery/autolathe/New()
-	AddComponent(/datum/component/material_container, list(
+	add_component(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel,
 		/decl/material/plastic, /decl/material/glass
 	))

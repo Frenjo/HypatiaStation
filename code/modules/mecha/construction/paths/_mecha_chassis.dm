@@ -15,6 +15,6 @@
 	var/obj/item/mecha_part/chassis/chassis = holder
 	holder.icon = chassis.target_icon
 	holder.overlays.len = 0
-	chassis.RemoveComponent(src)
-	chassis.AddComponent(result)
+	chassis.remove_component(src)
+	chassis.add_component(result)
 	qdel(src)

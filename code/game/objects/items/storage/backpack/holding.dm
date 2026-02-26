@@ -66,7 +66,7 @@
 
 /obj/item/inert_bag_of_holding/initialise()
 	. = ..()
-	AddComponent(/datum/component/construction/reversible/bag_of_holding)
+	add_component(/datum/component/construction/reversible/bag_of_holding)
 
 /datum/component/construction/reversible/bag_of_holding
 	result = /obj/item/storage/backpack/holding

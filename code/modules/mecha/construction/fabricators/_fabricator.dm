@@ -35,7 +35,7 @@
 
 /obj/machinery/robotics_fabricator/initialise()
 	. = ..()
-	AddComponent(/datum/component/material_container, accepted_materials)
+	add_component(/datum/component/material_container, accepted_materials)
 	files = new /datum/research(src) // Sets up the research data holder.
 
 /obj/machinery/robotics_fabricator/Destroy()

@@ -41,17 +41,17 @@
 // Adds a component to the datum.
 // The variadic argument allows for in-proc construction rather than an instance parameter.
 // If the component is a duplicate, it just gets deleted and the existing one is returned.
-/datum/proc/AddComponent(component_type, ...)
+/datum/proc/add_component(component_type, ...)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	// We have to store this beforehand, because doing args[1] = src actually changes the component_type variable's value to src.
 	var/new_type = component_type
 	args[1] = src
 	var/datum/component/new_component = new new_type(args) // This doesn't use argslist for a reason.
-	return GC_DESTROYED(new_component) ? GetComponent(new_type) : new_component
+	return GC_DESTROYED(new_component) ? get_component(new_type) : new_component
 
 // Returns the component of component_type attached to the datum, if any, or null.
-/datum/proc/GetComponent(component_type)
+/datum/proc/get_component(component_type)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	for_no_type_check(var/datum/component/comp, datum_components)
@@ -60,7 +60,7 @@
 	return null
 
 // Returns the component, with the EXACT component_type, attached to the datum, if any, or null.
-/datum/proc/GetExactComponent(component_type)
+/datum/proc/get_exact_component(component_type)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	for_no_type_check(var/datum/component/comp, datum_components)
@@ -70,7 +70,7 @@
 
 // Removes the to_remove component instance from the datum.
 // Returns TRUE if successful, FALSE if not.
-/datum/proc/RemoveComponent(datum/component/to_remove)
+/datum/proc/remove_component(datum/component/to_remove)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if(isnull(to_remove))

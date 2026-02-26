@@ -14,7 +14,7 @@
 		return
 
 	// Duplicates currently aren't allowed!
-	var/datum/component/existing_component = parent_datum.GetExactComponent(type)
+	var/datum/component/existing_component = parent_datum.get_exact_component(type)
 	if(isnotnull(existing_component))
 		qdel(src)
 		return

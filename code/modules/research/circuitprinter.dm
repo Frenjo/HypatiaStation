@@ -10,7 +10,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 /obj/machinery/r_n_d/circuit_imprinter/initialise()
-	AddComponent(/datum/component/material_container, list(
+	add_component(/datum/component/material_container, list(
 		/decl/material/plastic, /decl/material/glass, /decl/material/gold, /decl/material/diamond,
 		/decl/material/uranium
 	), FALSE)
