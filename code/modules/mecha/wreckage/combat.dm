@@ -72,6 +72,14 @@
 	name = "Dark Phazon wreckage"
 	icon_state = "dark_phazon-broken"
 
+/obj/structure/mecha_wreckage/phazon/janus
+	name = "Janus wreckage"
+	icon_state = "janus-broken"
+
+/obj/structure/mecha_wreckage/phazon/imperion
+	name = "Imperion wreckage"
+	icon_state = "imperion-broken"
+
 // H.O.N.K
 /obj/structure/mecha_wreckage/honk
 	name = "H.O.N.K wreckage"
