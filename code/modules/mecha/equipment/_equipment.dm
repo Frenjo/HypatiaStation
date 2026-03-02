@@ -55,12 +55,12 @@
 	. = ..()
 	. += SPAN_INFO("It can be attached to [attaches_to_string].")
 
-/obj/item/mecha_equipment/proc/can_attach(obj/mecha/mech)
+// This checks for general things.
+// - Whether the target is actually a mecha.
+// - Whether the mecha is at or above its max equipment number.
+// - Whether the the equipment has a duplicate already fitted, if applicable.
+/obj/item/mecha_equipment/proc/can_attach_general(obj/mecha/mech)
 	if(!istype(mech))
-		return FALSE
-	if(isnotnull(mecha_types) && !(mecha_types & mech.mecha_type)) // If we have flags and they aren't right, not allowed!
-		return FALSE
-	if(is_type_in_list(src, mech.excluded_equipment)) // If it's in the special exclusions list then it's also not allowed!
 		return FALSE
 	if(length(mech.equipment) >= mech.max_equip)
 		return FALSE
@@ -68,6 +68,18 @@
 		for_no_type_check(var/obj/item/mecha_equipment/equip, mech.equipment) // Exact duplicate components aren't allowed.
 			if(equip.type == type)
 				return FALSE
+	return TRUE
+
+// If can_attach_general() passes, then we need to check various specific factors.
+// Whether the mecha has the correct flags for the equipment.
+// Whether the mecha has a special exclusion for the equipment.
+/obj/item/mecha_equipment/proc/can_attach(obj/mecha/mech)
+	if(!can_attach_general(mech))
+		return FALSE
+	if(isnotnull(mecha_types) && !(mecha_types & mech.mecha_type)) // If we have flags and they aren't right, not allowed!
+		return FALSE
+	if(is_type_in_list(src, mech.excluded_equipment)) // If it's in the special exclusions list then it's also not allowed!
+		return FALSE
 	return TRUE
 
 /obj/item/mecha_equipment/proc/attach(obj/mecha/M)

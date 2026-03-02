@@ -118,14 +118,18 @@
 	if(usr != occupant)
 		return
 
+	query_damage_type()
+
+// This is a proc so that subtypes can override it and change the functionality.
+/obj/mecha/combat/phazon/proc/query_damage_type()
 	var/new_damtype = alert(occupant, "Melee Damage Type", null, "Brute", "Burn", "Toxin")
 	switch(new_damtype)
 		if("Brute")
-			damtype = "brute"
+			damtype = BRUTE
 		if("Burn")
-			damtype = "fire"
+			damtype = BURN
 		if("Toxin")
-			damtype = "tox"
+			damtype = TOX
 	occupant_message(SPAN_INFO("Melee damage type switched to [lowertext(new_damtype)]."))
 
 // Dark Phazon
@@ -165,6 +169,7 @@
 	)
 
 // Janus
+// This is the knockoff reconstructed version of the Imperion.
 /obj/mecha/combat/phazon/janus
 	name = "\improper Janus"
 	desc = "<span class='alien'>An incredibly high-tech exosuit constructed from salvaged alien and cutting-edge modern technology. \
