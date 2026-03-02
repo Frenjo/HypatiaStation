@@ -40,7 +40,7 @@
 // X-ray
 /obj/item/mecha_equipment/weapon/energy/laser/xray
 	name = "\improper CH-XS \"Penetrator\" X-ray laser"
-	desc = "A large exosuit-mounted variant of the anti-armor xray rifle."
+	desc = "A large exosuit-mounted variant of the anti-armour xray rifle."
 	icon_state = "xray"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/xray::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/xray::req_tech

@@ -34,7 +34,7 @@
 
 	allow_duplicates = FALSE
 
-	attaches_to_string = "<em><i>any</i></em> exosuit except the <em><i>H.O.N.K</i></em> and the <em><i>Reticence</i></em>"
+	attaches_to_string = "<em><i>any</i></em> exosuit except the <em><i>H.O.N.K</i></em>, the <em><i>Reticence</i></em> and the <em><i>Paladin</i></em>"
 
 	var/active = FALSE
 	var/shock_damage = 15
