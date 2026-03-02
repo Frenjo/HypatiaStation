@@ -252,37 +252,37 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 //converts intent-strings into numbers and back
-var/list/intents = list("help", "disarm", "grab", "hurt")
+var/list/intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
-			if("help")
+			if(INTENT_HELP)
 				return 0
-			if("disarm")
+			if(INTENT_DISARM)
 				return 1
-			if("grab")
+			if(INTENT_GRAB)
 				return 2
 			else
 				return 3
 	else
 		switch(argument)
 			if(0)
-				return "help"
+				return INTENT_HELP
 			if(1)
-				return "disarm"
+				return INTENT_DISARM
 			if(2)
-				return "grab"
+				return INTENT_GRAB
 			else
-				return "hurt"
+				return INTENT_HARM
 
-// Change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left".
+// Change a mob's act-intent. Input the intent as a string such as INTENT_HELP or use "right"/"left".
 /mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
 	set hidden = 1
 
 	if(ishuman(src) || isbrain(src))
 		switch(input)
-			if("help", "disarm", "grab", "hurt")
+			if(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 				a_intent = input
 			if("right")
 				a_intent = intent_numeric((intent_numeric(a_intent) + 1) % 4)
@@ -293,17 +293,12 @@ var/list/intents = list("help", "disarm", "grab", "hurt")
 
 	else if(isrobot(src) || ismonkey(src) || islarva(src))
 		switch(input)
-			if("help")
-				a_intent = "help"
-			if("hurt")
-				a_intent = "hurt"
+			if(INTENT_HELP, INTENT_HARM)
+				a_intent = input
 			if("right", "left")
 				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
 		if(hud_used?.action_intent)
-			if(a_intent == "hurt")
-				hud_used.action_intent.icon_state = "harm"
-			else
-				hud_used.action_intent.icon_state = "help"
+			hud_used.action_intent.icon_state = a_intent
 
 /proc/is_blind(A)
 	if(iscarbon(A))

@@ -15,7 +15,7 @@
 	if(M.gloves && istype(M.gloves, /obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
+			if(M.a_intent == INTENT_HARM) //Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					visible_message(SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"))
@@ -60,7 +60,7 @@
 
 
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			if(health >= CONFIG_GET(/decl/configuration_entry/health_threshold_crit))
 				help_shake_act(M)
 				return 1
@@ -84,7 +84,7 @@
 				O.process()
 			return 1
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 			if(wear_uniform)
@@ -104,7 +104,7 @@
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 			return 1
 
-		if("hurt")
+		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
 			var/decl/unarmed_attack/attack = null
 			for(var/type in M.species.unarmed_attacks)
@@ -147,7 +147,7 @@
 			damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = attack.sharp, edge = attack.edge)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			M.attack_log += "\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>"
 			attack_log += "\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>"
 

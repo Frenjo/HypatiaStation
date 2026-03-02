@@ -76,7 +76,7 @@ default behaviour is:
 				now_pushing = 0
 				return
 
-			if((tmob.mob_always_swap || (tmob.a_intent == "help" || tmob.restrained()) && (a_intent == "help" || src.restrained())) && tmob.canmove && canmove && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
+			if((tmob.mob_always_swap || (tmob.a_intent == INTENT_HELP || tmob.restrained()) && (a_intent == INTENT_HELP || src.restrained())) && tmob.canmove && canmove && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 				var/turf/oldloc = loc
 				loc = tmob.loc
 				tmob.forceMove(oldloc)

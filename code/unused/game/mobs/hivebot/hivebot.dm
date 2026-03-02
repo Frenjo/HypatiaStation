@@ -192,7 +192,7 @@
 
 /mob/living/silicon/hivebot/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 
-	if (M.a_intent == "grab")
+	if(M.a_intent == INTENT_GRAB)
 		if (M == src)
 			return
 		var/obj/item/grab/G = new /obj/item/grab( M )
@@ -208,7 +208,7 @@
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
 
-	else if (M.a_intent == "hurt")
+	else if(M.a_intent == INTENT_HARM)
 		var/damage = rand(5, 10)
 		if (prob(90))
 		/*
@@ -231,7 +231,7 @@
 				O.show_message(text("\red <B>[] took a swipe at []!</B>", M, src), 1)
 			return
 
-	else if (M.a_intent == "disarm")
+	else if(M.a_intent == INTENT_DISARM)
 		if(!(src.lying))
 			var/randn = rand(1, 100)
 			if (randn <= 40)

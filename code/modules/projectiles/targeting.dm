@@ -84,7 +84,7 @@
 		return
 
 	//reflex firing is disabled when help intent is set
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		to_chat(M, SPAN_WARNING("You refrain from firing your [src] as your intent is set to help."))
 		return
 

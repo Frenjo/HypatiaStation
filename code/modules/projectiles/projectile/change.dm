@@ -84,7 +84,7 @@
 		for(var/obj/effect/proc_holder/spell/S in M.spell_list)
 			new_mob.spell_list.Add(new S.type())
 
-		new_mob.a_intent = "hurt"
+		new_mob.a_intent = INTENT_HARM
 		if(isnotnull(M.mind))
 			M.mind.transfer_to(new_mob)
 		else

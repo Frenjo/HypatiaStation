@@ -11,7 +11,7 @@
 /proc/do_surgery(mob/living/M, mob/living/user, obj/item/tool)
 	if(!iscarbon(M))
 		return 0
-	if(user.a_intent == "harm")	//check for Hippocratic Oath
+	if(user.a_intent == INTENT_HARM) //check for Hippocratic Oath
 		return 0
 	for_no_type_check(var/decl/surgery_step/S, GET_DECL_SUBTYPE_INSTANCES(/decl/surgery_step))
 		//check if tool is right or close enough and if this step is possible

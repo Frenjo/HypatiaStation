@@ -274,7 +274,7 @@
 			W.dropped(C)
 
 		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(C.loc)
-		new_mob.a_intent = "hurt"
+		new_mob.a_intent = INTENT_HARM
 		new_mob.universal_speak = TRUE
 		if(isnotnull(C.mind))
 			C.mind.transfer_to(new_mob)

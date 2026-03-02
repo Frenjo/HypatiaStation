@@ -174,7 +174,7 @@
 			var/mob/living/carbon/metroid/adult/new_metroid = new /mob/living/carbon/metroid/adult(loc)
 			new_metroid.nutrition = nutrition
 			new_metroid.powerlevel = max(0, powerlevel-1)
-			new_metroid.a_intent = "hurt"
+			new_metroid.a_intent = INTENT_HARM
 			new_metroid.key = key
 
 			new_metroid << "<B>You are now an adult metroid.</B>"
@@ -211,7 +211,7 @@
 					babies += M
 
 				var/mob/living/carbon/metroid/new_metroid = pick(babies)
-				new_metroid.a_intent = "hurt"
+				new_metroid.a_intent = INTENT_HARM
 				new_metroid.key = key
 
 				new_metroid << "<B>You are now a metroidbeast. Skree!</B>"

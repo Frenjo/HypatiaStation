@@ -205,7 +205,7 @@
 /obj/item/clothing/suit/space/rig/attackby(obj/item/W, mob/user)
 	if(!isliving(user))
 		return
-	if(user.a_intent == "help")
+	if(user.a_intent == INTENT_HELP)
 		if(isliving(src.loc))
 			to_chat(user, "How do you propose to modify a hardsuit while it is being worn?")
 			return

@@ -158,10 +158,10 @@
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()
 
-	if (M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		help_shake_act(M)
 	else
-		if ((M.a_intent == "hurt" && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
+		if(M.a_intent == INTENT_HARM && !istype(wear_mask, /obj/item/clothing/mask/muzzle))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/melee/bite.ogg', 50, 1, -1)
 				visible_message(SPAN_DANGER("[M] bites [src]!")) // "bites" sounds much better than "has bit" or "has bitten"
@@ -183,7 +183,7 @@
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
+			if(M.a_intent == INTENT_HARM) //Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					Weaken(5)
@@ -201,10 +201,10 @@
 					to_chat(M, SPAN_WARNING("Not enough charge!"))
 					return
 
-	if (M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		help_shake_act(M)
 	else
-		if (M.a_intent == "hurt")
+		if(M.a_intent == INTENT_HARM)
 			if ((prob(75) && health > 0))
 				visible_message(SPAN_DANGER("[M] punches [src]!"))
 				playsound(loc, "punch", 25, 1, -1)
@@ -222,7 +222,7 @@
 				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
 				visible_message(SPAN_DANGER("[M] attempts to punch [src], but misses!"))
 		else
-			if (M.a_intent == "grab")
+			if(M.a_intent == INTENT_GRAB)
 				if (M == src || anchored)
 					return
 

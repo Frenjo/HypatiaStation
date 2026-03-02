@@ -7,7 +7,7 @@
 	//Synthetic human mob goes here.
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC) && H.a_intent == "grab")
+		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC) && H.a_intent == INTENT_GRAB)
 			if(emagged || stat & BROKEN)
 				make_sparks(3, TRUE, src)
 				to_chat(H, SPAN_WARNING("The APC power currents surge eratically, damaging your chassis!"))

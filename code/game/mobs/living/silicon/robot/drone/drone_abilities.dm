@@ -31,7 +31,7 @@
 
 //Actual picking-up event.
 /mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M)
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		var/obj/item/holder/drone/D = new /obj/item/holder/drone(loc)
 		loc = D
 		D.name = loc.name

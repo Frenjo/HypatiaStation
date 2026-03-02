@@ -237,11 +237,11 @@
 /mob/living/simple/attack_hand(mob/living/carbon/human/M)
 	..()
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			if(health > 0)
 				visible_message(SPAN_INFO("[M] [response_help] [src]."))
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src)
 				return
 			if(!(status_flags & CANPUSH))
@@ -258,7 +258,7 @@
 
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 
-		if("hurt", "disarm")
+		if(INTENT_HARM, INTENT_DISARM)
 			adjustBruteLoss(harm_intent_damage)
 			visible_message(SPAN_WARNING("[M] [response_harm] [src]."))
 

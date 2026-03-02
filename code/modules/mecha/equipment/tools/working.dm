@@ -65,7 +65,7 @@
 			return FALSE
 		var/pilot_message = null
 		var/radial_message = null
-		if(chassis.occupant.a_intent == "hurt")
+		if(chassis.occupant.a_intent == INTENT_HARM)
 			if(!is_safety_clamp)
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force / 2))
@@ -75,7 +75,7 @@
 			else
 				pilot_message = SPAN_DANGER("You obliterate [target] with [name], leaving blood and guts everywhere!")
 				radial_message = SPAN_DANGER("[chassis] destroys [target] in an unholy fury!")
-		else if(chassis.occupant.a_intent == "disarm" && is_safety_clamp)
+		else if(chassis.occupant.a_intent == INTENT_DISARM && is_safety_clamp)
 			pilot_message = SPAN_DANGER("You tear [target]'s limbs off with [name]!")
 			radial_message = SPAN_DANGER("[chassis] rips [target]'s arms off!")
 		else

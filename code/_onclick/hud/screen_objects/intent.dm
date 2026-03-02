@@ -45,22 +45,22 @@
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
-	. = ..(loc, "help", ico, ui_alpha)
+	. = ..(loc, INTENT_HELP, ico, ui_alpha)
 
 /atom/movable/screen/action_intent/disarm/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
-	. = ..(loc, "disarm", ico, ui_alpha)
+	. = ..(loc, INTENT_DISARM, ico, ui_alpha)
 
 /atom/movable/screen/action_intent/grab/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
-	. = ..(loc, "grab", ico, ui_alpha)
+	. = ..(loc, INTENT_GRAB, ico, ui_alpha)
 
 /atom/movable/screen/action_intent/harm/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
-	. = ..(loc, "hurt", ico, ui_alpha) // TODO: Refactor and rename back to "harm" again.
+	. = ..(loc, INTENT_HARM, ico, ui_alpha)

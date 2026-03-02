@@ -60,7 +60,7 @@
 		to_chat(user, SPAN_WARNING("This syringe is broken!"))
 		return
 
-	if(user.a_intent == "hurt" && ismob(target))
+	if(user.a_intent == INTENT_HARM && ismob(target))
 		if((MUTATION_CLUMSY in user.mutations) && prob(50))
 			target = user
 		syringestab(target, user)
