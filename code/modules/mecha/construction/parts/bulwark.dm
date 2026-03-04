@@ -4,7 +4,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/bulwark_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/ripley/bulwark
+	construct_type = /datum/component/construction/mecha_chassis/ripley/bulwark
 	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 
 // Circuit Boards

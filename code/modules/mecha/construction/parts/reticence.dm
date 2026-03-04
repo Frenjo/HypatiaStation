@@ -3,7 +3,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/reticence_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/reticence
+	construct_type = /datum/component/construction/mecha_chassis/reticence
 
 /obj/item/mecha_part/part/reticence
 	icon = 'icons/obj/mecha/parts/reticence.dmi'

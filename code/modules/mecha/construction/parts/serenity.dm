@@ -4,7 +4,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/serenity_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/gygax/serenity
+	construct_type = /datum/component/construction/mecha_chassis/gygax/serenity
 	target_icon = 'icons/obj/mecha/construction/gygax.dmi'
 
 /obj/item/mecha_part/part/gygax/armour/serenity

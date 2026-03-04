@@ -4,7 +4,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/durand_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/durand
+	construct_type = /datum/component/construction/mecha_chassis/durand
 	target_icon = 'icons/obj/mecha/construction/durand.dmi'
 
 /obj/item/mecha_part/part/durand

@@ -1,6 +1,6 @@
 // Clarke chassis
-/datum/construction/mecha_chassis/clarke
-	result = /datum/construction/reversible/mecha/clarke
+/datum/component/construction/mecha_chassis/clarke
+	result = /datum/component/construction/reversible/mecha/clarke
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/clarke/torso),
 		list("key" = /obj/item/mecha_part/part/clarke/left_arm),
@@ -9,7 +9,7 @@
 	)
 
 // Clarke
-/datum/construction/reversible/mecha/clarke
+/datum/component/construction/reversible/mecha/clarke
 	result = /obj/mecha/working/clarke
 	steps = list(
 		// 9
@@ -69,6 +69,6 @@
 	central_circuit = /obj/item/circuitboard/mecha/clarke/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/clarke/peripherals
 
-/datum/construction/reversible/mecha/clarke/spawn_result()
+/datum/component/construction/reversible/mecha/clarke/spawn_result()
 	. = ..()
 	feedback_inc("mecha_clarke_created", 1)

@@ -1,6 +1,6 @@
 // Janus Chassis
-/datum/construction/mecha_chassis/janus
-	result = /datum/construction/reversible/mecha/special/janus
+/datum/component/construction/mecha_chassis/janus
+	result = /datum/component/construction/reversible/mecha/special/janus
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/janus/torso),
 		list("key" = /obj/item/mecha_part/part/janus/head),
@@ -11,7 +11,7 @@
 	)
 
 // Janus
-/datum/construction/reversible/mecha/special/janus
+/datum/component/construction/reversible/mecha/special/janus
 	result = /obj/mecha/combat/phazon/janus
 
 	base_icon_state = "janus"
@@ -27,7 +27,7 @@
 	internal_armour = /obj/item/stack/sheet/adamantine
 	external_armour = /obj/item/stack/sheet/mythril
 
-/datum/construction/reversible/mecha/special/janus/get_circuit_steps()
+/datum/component/construction/reversible/mecha/special/janus/get_circuit_steps()
 	. = ..()
 	. += list(
 		list(
@@ -77,7 +77,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/special/janus/get_stock_part_steps()
+/datum/component/construction/reversible/mecha/special/janus/get_stock_part_steps()
 	. += list(
 		list(
 			"desc" = "The Durand peripherals module is secured.",
@@ -111,6 +111,6 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/special/janus/spawn_result()
+/datum/component/construction/reversible/mecha/special/janus/spawn_result()
 	. = ..()
 	feedback_inc("mecha_janus_created", 1)

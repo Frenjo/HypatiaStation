@@ -4,7 +4,7 @@
 
 	matter_amounts = /datum/design/mechfab/part/honk_chassis::materials
 
-	construct_type = /datum/construction/mecha_chassis/honk
+	construct_type = /datum/component/construction/mecha_chassis/honk
 
 /obj/item/mecha_part/part/honk
 	icon = 'icons/obj/mecha/parts/honk.dmi'

@@ -1,6 +1,6 @@
 // Durand Chassis
-/datum/construction/mecha_chassis/durand
-	result = /datum/construction/reversible/mecha/combat/durand
+/datum/component/construction/mecha_chassis/durand
+	result = /datum/component/construction/reversible/mecha/combat/durand
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/durand/torso),
 		list("key" = /obj/item/mecha_part/part/durand/head),
@@ -11,7 +11,7 @@
 	)
 
 // Durand
-/datum/construction/reversible/mecha/combat/durand
+/datum/component/construction/reversible/mecha/combat/durand
 	result = /obj/mecha/combat/durand
 
 	base_icon_state = "durand"
@@ -26,7 +26,7 @@
 	internal_armour = /obj/item/stack/sheet/steel
 	external_armour = /obj/item/mecha_part/part/durand/armour
 
-/datum/construction/reversible/mecha/combat/durand/get_other_steps()
+/datum/component/construction/reversible/mecha/combat/durand/get_other_steps()
 	. = ..()
 	. += list(
 		// 20
@@ -39,6 +39,6 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/durand/spawn_result()
+/datum/component/construction/reversible/mecha/combat/durand/spawn_result()
 	. = ..()
 	feedback_inc("mecha_durand_created", 1)

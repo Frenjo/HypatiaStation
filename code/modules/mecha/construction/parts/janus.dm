@@ -6,7 +6,7 @@
 	matter_amounts = /datum/design/mechfab/part/janus_chassis::materials
 	origin_tech = /datum/design/mechfab/part/janus_chassis::req_tech
 
-	construct_type = /datum/construction/mecha_chassis/janus
+	construct_type = /datum/component/construction/mecha_chassis/janus
 	target_icon = 'icons/obj/mecha/construction/janus.dmi'
 
 /obj/item/mecha_part/part/janus
