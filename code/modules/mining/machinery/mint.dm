@@ -39,8 +39,8 @@
 	if(isnotnull(input))
 		var/obj/item/stack/sheet/O = locate(/obj/item/stack/sheet, input.loc)
 		if(isnotnull(O))
-			GET_COMPONENT(materials, /datum/component/material_container)
-			materials.add_sheets(O)
+			GET_COMPONENT(container, /datum/component/material_container)
+			container.add_sheets(O)
 
 /obj/machinery/mineral/mint/attack_hand(mob/user)
 	var/dat = "<b>Coin Press</b><br>"
@@ -52,10 +52,11 @@
 		dat += "<br>output connection status: "
 		dat += "<b><font color='red'>NOT CONNECTED</font></b><br>"
 
-	GET_COMPONENT(materials, /datum/component/material_container)
-	for(var/material_path in materials.stored_materials)
+	GET_COMPONENT(container, /datum/component/material_container)
+	var/alist/materials = container.get_all_materials()
+	for(var/material_path in materials)
 		var/decl/material/mat = material_path
-		dat += "<br><font color='[initial(mat.colour_code)]'><b>[initial(mat.name)] inserted: </b>[materials.get_type_amount(mat)]cm<sup>3</sup></font> "
+		dat += "<br><font color='[initial(mat.colour_code)]'><b>[initial(mat.name)] inserted: </b>[materials[material_path]]cm<sup>3</sup></font> "
 		if(chosen == mat)
 			dat += "chosen"
 		else
@@ -98,15 +99,15 @@
 			processing = TRUE
 			icon_state = "coinpress1"
 			var/obj/item/moneybag/M
-			GET_COMPONENT(materials, /datum/component/material_container)
-			while(materials.can_remove_amount(chosen, 20) && coinsToProduce > 0)
+			GET_COMPONENT(container, /datum/component/material_container)
+			while(container.can_remove_amount(chosen, 20) && coinsToProduce > 0)
 				if(locate(/obj/item/moneybag, output.loc))
 					M = locate(/obj/item/moneybag, output.loc)
 				else
 					M = new /obj/item/moneybag(output.loc)
 				var/coin_type = initial(chosen.coin_path)
 				new coin_type(M)
-				materials.remove_amount(chosen, 20)
+				container.remove_amount(chosen, 20)
 				coinsToProduce--
 				newCoins++
 				updateUsrDialog()
