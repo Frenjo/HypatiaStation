@@ -129,7 +129,7 @@
 	return ..()
 
 /obj/item/tape/attack_hand(mob/user as mob)
-	if (user.a_intent == "help" && src.allowed(user))
+	if(user.a_intent == INTENT_HELP && src.allowed(user))
 		user.show_viewers("\blue [user] lifts [src], allowing passage.")
 		src.density = FALSE
 		spawn(200)
@@ -141,7 +141,7 @@
 	breaktape(/obj/item/wirecutters,user)
 
 /obj/item/tape/proc/breaktape(obj/item/W, mob/user)
-	if(user.a_intent == "help" && (!can_puncture(W) && allowed(user)))
+	if(user.a_intent == INTENT_HELP && (!can_puncture(W) && allowed(user)))
 		to_chat(user, SPAN_WARNING("You can't break \the [src] with that!"))
 		return FALSE
 	user.visible_message(

@@ -482,7 +482,7 @@
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
+			if(M.a_intent == INTENT_HARM) //Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.charge -= 2500
 					for(var/mob/O in viewers(src, null))
@@ -561,12 +561,12 @@
 		return
 
 	switch(M.a_intent)
-		if ("help")
+		if(INTENT_HELP)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !( O.blinded )))
 					O.show_message(text("\blue [M] caresses [src] with its scythe like arm."), 1)
 
-		if ("hurt")
+		if(INTENT_HARM)
 
 			if ((prob(95) && health > 0))
 				attacked += 10
@@ -589,7 +589,7 @@
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("\red <B>[] has attempted to lunge at [name]!</B>", M), 1)
 
-		if ("grab")
+		if(INTENT_GRAB)
 			if (M == src)
 				return
 			var/obj/item/grab/G = new /obj/item/grab( M, M, src )
@@ -605,7 +605,7 @@
 			for(var/mob/O in viewers(src, null))
 				O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
 
-		if ("disarm")
+		if(INTENT_DISARM)
 			playsound(loc, 'sound/weapons/melee/pierce.ogg', 25, 1, -1)
 			var/damage = 5
 			attacked += 10

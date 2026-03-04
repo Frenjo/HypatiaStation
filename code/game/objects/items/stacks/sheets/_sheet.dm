@@ -18,6 +18,7 @@
 	if(isnotnull(material))
 		material = GET_DECL_INSTANCE(material)
 		perunit = material.per_unit
+		recipes = material.recipes
 	. = ..()
 
 // Since the sheetsnatcher was consolidated into weapon/storage/bag we now use

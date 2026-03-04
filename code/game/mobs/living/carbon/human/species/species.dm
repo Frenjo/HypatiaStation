@@ -200,7 +200,7 @@
 
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
-	if(H.a_intent != "hurt")
+	if(H.a_intent != INTENT_HARM)
 		return FALSE
 
 	for(var/type in unarmed_attacks)

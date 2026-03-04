@@ -103,7 +103,7 @@
 
 	var/mob/living/L = M
 
-	if(user.a_intent == "harm")
+	if(user.a_intent == INTENT_HARM)
 		..()
 
 	if(!status)

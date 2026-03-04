@@ -49,7 +49,6 @@
 	qdel(mech)
 	qdel(src)
 
-
 // Ripley variant conversion kits
 /obj/item/mecha_equipment/conversion_kit/ripley_variant
 	attaches_to_string = "the <em><i>Ripley</i></em> exosuit"
@@ -84,11 +83,10 @@
 
 	target_type = /obj/mecha/working/ripley/rogue
 
-
 // Durand -> Paladin
 /obj/item/mecha_equipment/conversion_kit/paladin
 	name = "\improper Paladin conversion kit"
-	desc = "A kit containing all the needed tools and parts to turn a Durand combat exosuit into a Paladin anti-xenofauna exosuit."
+	desc = "A kit containing all the needed tools and parts to turn a Durand into a Paladin anti-xenofauna mech."
 	icon_state = "clip_upgrade"
 
 	matter_amounts = /datum/design/mechfab/equipment/conversion_kit/rogue::materials

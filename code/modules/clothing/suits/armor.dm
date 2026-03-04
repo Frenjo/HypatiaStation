@@ -223,7 +223,7 @@
 		if(isobj(usr.get_active_hand()) && isobj(usr.get_inactive_hand()))
 			to_chat(usr, SPAN_WARNING("You need an empty hand to draw the gun!"))
 		else
-			if(usr.a_intent == "hurt")
+			if(usr.a_intent == INTENT_HARM)
 				usr.visible_message(
 					SPAN_WARNING("\The [usr] draws \the [holstered], ready to shoot!"),
 					SPAN_WARNING("You draw \the [holstered], ready to shoot!")

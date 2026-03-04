@@ -79,10 +79,10 @@
 							var/obj/item/I = movement_target
 							I.attack(src, src, "mouth")	// eat it, if it's food
 
-						if(a_intent == "hurt")		// to make raging critter harm, then disarm, then stop
-							a_intent = "disarm"
-						else if(a_intent == "disarm")
-							a_intent = "help"
+						if(a_intent == INTENT_HARM)		// to make raging critter harm, then disarm, then stop
+							a_intent = INTENT_DISARM
+						else if(a_intent == INTENT_DISARM)
+							a_intent = INTENT_HELP
 							movement_target = null
 							turns_per_move = initial(turns_per_move)
 					else if(ishuman(movement_target.loc))
@@ -93,7 +93,7 @@
 		movement_target = M		// pretty simple
 		turns_per_move = 1
 		emote("becomes enraged")
-		a_intent = "hurt"
+		a_intent = INTENT_HARM
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(nutrition < max_nutrition && istype(O,/obj/item/reagent_holder/food/snacks))
@@ -128,7 +128,7 @@
 
 	attack_hand(var/mob/user as mob)
 		..()
-		if(user.a_intent == "hurt")
+		if(user.a_intent == INTENT_HARM)
 			rage_at(user)
 
 /obj/item/reagent_holder/food/snacks/sliceable/meat/cow

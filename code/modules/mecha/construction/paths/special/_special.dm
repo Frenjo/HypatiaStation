@@ -1,6 +1,6 @@
 // Special
-// This is only used for the Phazon and Eidolon currently.
-/datum/component/construction/reversible/mecha/special
+// This is only used for Phazon variants and the Eidolon currently.
+/datum/construction/reversible/mecha/special
 	var/optional_circuit = null
 	var/optional_circuit_name = "targeting" // This will basically never change but is here for future-proofing.
 

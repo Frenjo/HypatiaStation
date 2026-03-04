@@ -141,7 +141,7 @@
 		shatter()
 	else if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(user.a_intent == "hurt")
+		if(user.a_intent == INTENT_HARM)
 			if(H.species.can_shred(H))
 				attack_generic(H, 25)
 				return

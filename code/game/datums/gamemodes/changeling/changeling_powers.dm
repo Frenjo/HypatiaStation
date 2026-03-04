@@ -263,7 +263,7 @@
 	O.setOxyLoss(C.getOxyLoss())
 	O.adjustFireLoss(C.getFireLoss())
 	O.stat = C.stat
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 	for(var/obj/item/implant/I in implants)
 		I.forceMove(O)
 		I.implanted = O

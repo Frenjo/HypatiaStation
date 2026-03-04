@@ -83,14 +83,14 @@
 	if(isnotnull(user?.client) && !(A in aim_targets))
 		var/client/C = user.client
 		//If help intent is on and we have clicked on an eligible target, switch to aim mode automatically
-		if(user.a_intent == "help" && isliving(A) && !C.gun_mode)
+		if(user.a_intent == INTENT_HELP && isliving(A) && !C.gun_mode)
 			C.ToggleGunMode()
 
 		if(C.gun_mode)
 			aiming = PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
 
 	if(!aiming)
-		if(user?.a_intent == "help") //regardless of what happens, refuse to shoot if help intent is on
+		if(user?.a_intent == INTENT_HELP) //regardless of what happens, refuse to shoot if help intent is on
 			to_chat(user, SPAN_WARNING("You refrain from firing [src] as your intent is set to help."))
 		else
 			Fire(A, user, params) //Otherwise, fire normally.
@@ -192,7 +192,7 @@
 
 	if(load_into_chamber())
 		// Point blank shooting if on harm intent or target we were targeting.
-		if(user.a_intent == "hurt")
+		if(user.a_intent == INTENT_HARM)
 			Fire(A, user, point_blank = TRUE)
 			return
 	else

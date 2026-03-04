@@ -473,6 +473,144 @@
 	build_path = /obj/item/mecha_part/part/phazon/armour
 	categories = list("Phazon")
 
+// Janus
+// Adamantine/Mythril are placeholders for Durasteel/Morphium respectively.
+/datum/design/mechfab/part/janus_chassis
+	name = "\"Janus\" Chassis"
+	desc = "The chassis of a prototype Janus-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	// Steel is a placeholder for Lead.
+	materials = alist(
+		/decl/material/steel = 1.5 MATERIAL_SHEETS, /decl/material/plasteel = 2.75 MATERIAL_SHEETS,
+		/decl/material/adamantine = 9.5 MATERIAL_SHEETS, /decl/material/mythril = 5.25 MATERIAL_SHEETS
+	)
+	build_path = /obj/item/mecha_part/chassis/janus
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_torso
+	name = "Prototype Imperion Torso"
+	desc = "The torso of a prototype Imperion-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	// Silver is a placeholder for Verdantium.
+	materials = alist(
+		/decl/material/steel = 15 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
+		/decl/material/silver = 2.5 MATERIAL_SHEETS, /decl/material/adamantine = 4 MATERIAL_SHEET,
+		/decl/material/mythril = 5 MATERIAL_SHEETS
+	)
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/janus/torso
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_head
+	name = "Prototype Imperion Head"
+	desc = "The head of a prototype Imperion-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	materials = alist(
+		/decl/material/steel = 15 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
+		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 3 MATERIAL_SHEETS
+	)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/janus/head
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_left_arm
+	name = "Prototype Gygax Left Arm"
+	desc = "The left arm of a prototype Gygax-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	// Iron is a placeholder for Metallic Hydrogen.
+	materials = alist(
+		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
+		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
+		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+	)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/janus/left_arm
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_right_arm
+	name = "Prototype Gygax Right Arm"
+	desc = "The right arm of a prototype Gygax-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	// Iron is a placeholder for Metallic Hydrogen.
+	materials = alist(
+		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
+		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
+		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+	)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/janus/right_arm
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_left_leg
+	name = "Prototype Durand Left Leg"
+	desc = "The left leg of a Phazon-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	// Iron is a placeholder for Metallic Hydrogen.
+	materials = alist(
+		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
+		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
+		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+	)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/janus/left_leg
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_right_leg
+	name = "Prototype Durand Right Leg"
+	desc = "The right leg of a prototype Durand-type exosuit."
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	// Iron is a placeholder for Metallic Hydrogen.
+	materials = alist(
+		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
+		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
+		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+	)
+	build_time = 20 SECONDS
+	build_path = /obj/item/mecha_part/part/janus/right_leg
+	categories = list("Janus")
+
+/datum/design/mechfab/part/janus_phase_coil
+	name = "Janus Phase Coil"
+	req_tech = alist(
+		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
+	)
+	materials = list(
+		MAT_SUPERMATTER = 2000
+	)
+	// Steel, Silver, Plasma, Adamantine and Mythril are placeholders for Lead, Verdantium, Supermatter, Durasteel and Morphium respectively.
+	materials = alist(
+		/decl/material/steel = 7.5 MATERIAL_SHEETS, /decl/material/plasteel = 30 MATERIAL_SHEETS,
+		/decl/material/silver = 2.5 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
+		/decl/material/diamond = 5 MATERIAL_SHEETS, /decl/material/plasma = 1 MATERIAL_SHEET,
+		/decl/material/uranium = 1.625 MATERIAL_SHEETS, /decl/material/adamantine = 1 MATERIAL_SHEET,
+		/decl/material/mythril = 1.5 MATERIAL_SHEETS
+	)
+	build_time = 60 SECONDS
+	build_path = /obj/item/prop/alien/phase_coil
+	categories = list("Janus")
+
 // H.O.N.K
 /datum/design/mechfab/part/honk_chassis
 	materials = alist(/decl/material/steel = 10 MATERIAL_SHEETS)
