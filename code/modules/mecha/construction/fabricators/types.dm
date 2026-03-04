@@ -53,7 +53,7 @@
 		"Odysseus",
 		"Gygax", "Serenity",
 		"Durand", "Archambeau", "Brigand",
-		"Phazon",
+		"Phazon", "Janus" = FALSE, "Imperion" = FALSE, // These are so high tech they need the safeties disabled (they need it emagged).
 		"H.O.N.K",
 		"Reticence",
 		"Justice" = FALSE, // This one's associative because it's hidden unless emagged.

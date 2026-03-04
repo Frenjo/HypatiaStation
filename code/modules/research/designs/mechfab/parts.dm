@@ -556,7 +556,7 @@
 
 /datum/design/mechfab/part/janus_left_leg
 	name = "Prototype Durand Left Leg"
-	desc = "The left leg of a Phazon-type exosuit."
+	desc = "The left leg of a prototype Durand-type exosuit."
 	req_tech = alist(
 		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
 		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
@@ -602,9 +602,82 @@
 		/decl/material/uranium = 1.625 MATERIAL_SHEETS, /decl/material/durasteel = 1 MATERIAL_SHEET,
 		/decl/material/morphium = 1.5 MATERIAL_SHEETS
 	)
-	build_time = 60 SECONDS
+	build_time = 1 MINUTE
 	build_path = /obj/item/prop/alien/phase_coil
-	categories = list("Janus")
+	categories = list("Janus", "Imperion")
+
+// Imperion
+/datum/design/mechfab/part/imperion_chassis
+	name = "\"Imperion\" Chassis"
+	desc = "The chassis of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/chassis/imperion
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_torso
+	name = "\"Imperion\" Torso"
+	desc = "The torso of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/imperion/torso
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_head
+	name = "\"Imperion\" Head"
+	desc = "The head of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/imperion/head
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_left_arm
+	name = "\"Imperion\" Left Arm"
+	desc = "The left arm of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/imperion/left_arm
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_right_arm
+	name = "\"Imperion\" Right Arm"
+	desc = "The right arm of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/imperion/right_arm
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_left_leg
+	name = "\"Imperion\" Left Leg"
+	desc = "The left leg of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/imperion/left_leg
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_right_leg
+	name = "\"Imperion\" Right Leg"
+	desc = "The right leg of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 30 SECONDS
+	build_path = /obj/item/mecha_part/part/imperion/right_leg
+	categories = list("Imperion")
+
+/datum/design/mechfab/part/imperion_armour
+	name = "\"Imperion\" Armour"
+	desc = "The external armour plates of an Imperion-type exosuit."
+	req_tech = alist()
+	materials = alist()
+	build_time = 1 MINUTE
+	build_path = /obj/item/mecha_part/part/imperion/armour
+	categories = list("Imperion")
 
 // H.O.N.K
 /datum/design/mechfab/part/honk_chassis
