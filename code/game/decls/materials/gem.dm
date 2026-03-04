@@ -33,3 +33,18 @@
 	. += list(
 		new /datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, one_per_turf = TRUE, on_floor = TRUE)
 	)
+
+/decl/material/valhollide
+	name = "Valhollide"
+	colour_code = "#FFF3B2"
+	sheet_path = /obj/item/stack/sheet/valhollide
+
+/decl/material/verdantium
+	name = "Verdantium"
+	colour_code = "#4FE95A"
+	sheet_path = /obj/item/stack/sheet/verdantium
+
+/decl/material/morphium
+	name = "Morphium"
+	colour_code = "#37115A"
+	sheet_path = /obj/item/stack/sheet/morphium

@@ -23,9 +23,8 @@
 	scanning_module = /obj/item/stock_part/scanning_module/hyperphasic
 	capacitor = /obj/item/stock_part/capacitor/hyper
 
-	// These are placeholders for Durasteel and Morphium respectively.
-	internal_armour = /obj/item/stack/sheet/adamantine
-	external_armour = /obj/item/stack/sheet/mythril
+	internal_armour = /obj/item/stack/sheet/durasteel
+	external_armour = /obj/item/stack/sheet/morphium
 
 /datum/component/construction/reversible/mecha/special/janus/get_circuit_steps()
 	. = ..()

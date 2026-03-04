@@ -199,3 +199,8 @@
 	colour_code = "#f30000"
 	sheet_path = /obj/item/stack/sheet/mythril
 	coin_path = /obj/item/coin/mythril
+
+/decl/material/durasteel
+	name = "Durasteel"
+	colour_code = "#6EA7BE"
+	sheet_path = /obj/item/stack/sheet/durasteel

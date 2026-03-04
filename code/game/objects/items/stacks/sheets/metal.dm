@@ -127,3 +127,11 @@
 	matter_amounts = alist(/decl/material/mythril = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 4)
 	material = /decl/material/mythril
+
+// Durasteel
+/obj/item/stack/sheet/durasteel
+	name = "durasteel"
+	icon_state = "durasteel"
+	matter_amounts = alist(/decl/material/plasteel = 1 MATERIAL_SHEET, /decl/material/diamond = 1 MATERIAL_SHEET)
+	origin_tech = alist(/decl/tech/materials = 8)
+	material = /decl/material/durasteel

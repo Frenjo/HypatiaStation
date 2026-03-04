@@ -1,6 +1,9 @@
 /datum/component/material_container
 	VAR_PRIVATE/alist/_stored_materials = alist() // An associative list of /decl/material typepaths to their corresponding amounts in cm3.
-	VAR_PRIVATE/list/_hidden_materials = list() // A list of /decl/material typepaths for materials which should only be displayed if actually present.
+	// A list of /decl/material typepaths for materials which should only be displayed if actually present.
+	VAR_PRIVATE/list/_hidden_materials = list(
+		/decl/material/durasteel, /decl/material/valhollide, /decl/material/verdantium, /decl/material/morphium
+	)
 	VAR_PRIVATE/_max_capacity = 0 // The total amount of materials in cm3 that this container can store.
 	VAR_PRIVATE/_has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
 
@@ -53,7 +56,7 @@
 /datum/component/material_container/proc/can_remove_amount(material_path, amount)
 	if(!can_contain(material_path))
 		return FALSE
-	return _stored_materials[material_path] > amount
+	return _stored_materials[material_path] >= amount
 
 // Removes amount of material_path from the container if possible.
 /datum/component/material_container/proc/remove_amount(material_path, amount)
@@ -97,9 +100,10 @@
 
 	. = alist()
 	for(var/material_path in _stored_materials)
-		if((material_path in _hidden_materials) && !include_hidden)
+		var/material_amount = get_type_amount(material_path)
+		if((material_path in _hidden_materials) && !material_amount && !include_hidden)
 			continue
-		.[material_path] = get_type_amount(material_path)
+		.[material_path] = material_amount
 
 // Ejects all stored material sheets onto the ground.
 /datum/component/material_container/proc/eject_all_sheets()

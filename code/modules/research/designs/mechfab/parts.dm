@@ -474,7 +474,6 @@
 	categories = list("Phazon")
 
 // Janus
-// Adamantine/Mythril are placeholders for Durasteel/Morphium respectively.
 /datum/design/mechfab/part/janus_chassis
 	name = "\"Janus\" Chassis"
 	desc = "The chassis of a prototype Janus-type exosuit."
@@ -485,7 +484,7 @@
 	// Steel is a placeholder for Lead.
 	materials = alist(
 		/decl/material/steel = 1.5 MATERIAL_SHEETS, /decl/material/plasteel = 2.75 MATERIAL_SHEETS,
-		/decl/material/adamantine = 9.5 MATERIAL_SHEETS, /decl/material/mythril = 5.25 MATERIAL_SHEETS
+		/decl/material/durasteel = 9.5 MATERIAL_SHEETS, /decl/material/morphium = 5.25 MATERIAL_SHEETS
 	)
 	build_path = /obj/item/mecha_part/chassis/janus
 	categories = list("Janus")
@@ -497,11 +496,10 @@
 		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
 		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
 	)
-	// Silver is a placeholder for Verdantium.
 	materials = alist(
 		/decl/material/steel = 15 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
-		/decl/material/silver = 2.5 MATERIAL_SHEETS, /decl/material/adamantine = 4 MATERIAL_SHEET,
-		/decl/material/mythril = 5 MATERIAL_SHEETS
+		/decl/material/verdantium = 2.5 MATERIAL_SHEETS, /decl/material/durasteel = 4 MATERIAL_SHEET,
+		/decl/material/morphium = 5 MATERIAL_SHEETS
 	)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/janus/torso
@@ -516,7 +514,7 @@
 	)
 	materials = alist(
 		/decl/material/steel = 15 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
-		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 3 MATERIAL_SHEETS
+		/decl/material/durasteel = 1 MATERIAL_SHEET, /decl/material/morphium = 3 MATERIAL_SHEETS
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/janus/head
@@ -533,7 +531,7 @@
 	materials = alist(
 		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
 		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
-		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+		/decl/material/durasteel = 1 MATERIAL_SHEET, /decl/material/morphium = 1.5 MATERIAL_SHEETS
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/janus/left_arm
@@ -550,7 +548,7 @@
 	materials = alist(
 		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
 		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
-		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+		/decl/material/durasteel = 1 MATERIAL_SHEET, /decl/material/morphium = 1.5 MATERIAL_SHEETS
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/janus/right_arm
@@ -567,7 +565,7 @@
 	materials = alist(
 		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
 		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
-		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+		/decl/material/durasteel = 1 MATERIAL_SHEET, /decl/material/morphium = 1.5 MATERIAL_SHEETS
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/janus/left_leg
@@ -584,7 +582,7 @@
 	materials = alist(
 		/decl/material/iron = 1.5 MATERIAL_SHEETS, /decl/material/steel = 15 MATERIAL_SHEETS,
 		/decl/material/gold = 2.5 MATERIAL_SHEETS, /decl/material/diamond = 3.5 MATERIAL_SHEETS,
-		/decl/material/adamantine = 1 MATERIAL_SHEET, /decl/material/mythril = 1.5 MATERIAL_SHEETS
+		/decl/material/durasteel = 1 MATERIAL_SHEET, /decl/material/morphium = 1.5 MATERIAL_SHEETS
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/janus/right_leg
@@ -596,16 +594,13 @@
 		/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/plasma = 3,
 		/decl/tech/bluespace = 5, /decl/tech/arcane = 1
 	)
-	materials = list(
-		MAT_SUPERMATTER = 2000
-	)
-	// Steel, Silver, Plasma, Adamantine and Mythril are placeholders for Lead, Verdantium, Supermatter, Durasteel and Morphium respectively.
+	// Steel and Plasma are placeholders for Lead and Supermatter respectively.
 	materials = alist(
 		/decl/material/steel = 7.5 MATERIAL_SHEETS, /decl/material/plasteel = 30 MATERIAL_SHEETS,
-		/decl/material/silver = 2.5 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
+		/decl/material/verdantium = 2.5 MATERIAL_SHEETS, /decl/material/gold = 2.5 MATERIAL_SHEETS,
 		/decl/material/diamond = 5 MATERIAL_SHEETS, /decl/material/plasma = 1 MATERIAL_SHEET,
-		/decl/material/uranium = 1.625 MATERIAL_SHEETS, /decl/material/adamantine = 1 MATERIAL_SHEET,
-		/decl/material/mythril = 1.5 MATERIAL_SHEETS
+		/decl/material/uranium = 1.625 MATERIAL_SHEETS, /decl/material/durasteel = 1 MATERIAL_SHEET,
+		/decl/material/morphium = 1.5 MATERIAL_SHEETS
 	)
 	build_time = 60 SECONDS
 	build_path = /obj/item/prop/alien/phase_coil
