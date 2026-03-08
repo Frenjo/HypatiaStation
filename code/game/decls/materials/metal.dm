@@ -204,3 +204,8 @@
 	name = "Durasteel"
 	colour_code = "#6EA7BE"
 	sheet_path = /obj/item/stack/sheet/durasteel
+
+/decl/material/imperium
+	name = "Imperium Alloy"
+	colour_code = "#000000"
+	sheet_path = /obj/item/stack/sheet/imperium

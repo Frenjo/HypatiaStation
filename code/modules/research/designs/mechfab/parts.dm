@@ -610,8 +610,11 @@
 /datum/design/mechfab/part/imperion_chassis
 	name = "\"Imperion\" Chassis"
 	desc = "The chassis of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 5,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	materials = alist(/decl/material/imperium = 10 MATERIAL_SHEETS)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/chassis/imperion
 	categories = list("Imperion")
@@ -619,8 +622,15 @@
 /datum/design/mechfab/part/imperion_torso
 	name = "\"Imperion\" Torso"
 	desc = "The torso of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 5,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(
+		/decl/material/glass = 5 MATERIAL_SHEETS, /decl/material/plasma = 10 MATERIAL_SHEETS,
+		/decl/material/imperium = 11 MATERIAL_SHEETS
+	)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/imperion/torso
 	categories = list("Imperion")
@@ -628,8 +638,15 @@
 /datum/design/mechfab/part/imperion_head
 	name = "\"Imperion\" Head"
 	desc = "The head of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 5,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(
+		/decl/material/glass = 3 MATERIAL_SHEETS, /decl/material/plasma = 5 MATERIAL_SHEETS,
+		/decl/material/imperium = 5 MATERIAL_SHEETS
+	)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/imperion/head
 	categories = list("Imperion")
@@ -637,8 +654,12 @@
 /datum/design/mechfab/part/imperion_left_arm
 	name = "\"Imperion\" Left Arm"
 	desc = "The left arm of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 4,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(/decl/material/plasma = 5 MATERIAL_SHEETS, /decl/material/imperium = 6 MATERIAL_SHEETS)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/imperion/left_arm
 	categories = list("Imperion")
@@ -646,8 +667,12 @@
 /datum/design/mechfab/part/imperion_right_arm
 	name = "\"Imperion\" Right Arm"
 	desc = "The right arm of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 4,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(/decl/material/plasma = 5 MATERIAL_SHEETS, /decl/material/imperium = 6 MATERIAL_SHEETS)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/imperion/right_arm
 	categories = list("Imperion")
@@ -655,8 +680,12 @@
 /datum/design/mechfab/part/imperion_left_leg
 	name = "\"Imperion\" Left Leg"
 	desc = "The left leg of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 4,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(/decl/material/plasma = 5 MATERIAL_SHEETS, /decl/material/imperium = 6 MATERIAL_SHEETS)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/imperion/left_leg
 	categories = list("Imperion")
@@ -664,8 +693,12 @@
 /datum/design/mechfab/part/imperion_right_leg
 	name = "\"Imperion\" Right Leg"
 	desc = "The right leg of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 4,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(/decl/material/plasma = 5 MATERIAL_SHEETS, /decl/material/imperium = 6 MATERIAL_SHEETS)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/imperion/right_leg
 	categories = list("Imperion")
@@ -673,8 +706,12 @@
 /datum/design/mechfab/part/imperion_armour
 	name = "\"Imperion\" Armour"
 	desc = "The external armour plates of an Imperion-type exosuit."
-	req_tech = alist()
-	materials = alist()
+	req_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/magnets = 7, /decl/tech/plasma = 5,
+		/decl/tech/bluespace = 5, /decl/tech/arcane = 2
+	)
+	// The Plasma here is possibly a placeholder for Supermatter.
+	materials = alist(/decl/material/plasma = 9 MATERIAL_SHEETS, /decl/material/imperium = 14 MATERIAL_SHEETS)
 	build_time = 1 MINUTE
 	build_path = /obj/item/mecha_part/part/imperion/armour
 	categories = list("Imperion")

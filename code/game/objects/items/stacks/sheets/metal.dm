@@ -135,3 +135,30 @@
 	matter_amounts = alist(/decl/material/plasteel = 1 MATERIAL_SHEET, /decl/material/diamond = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/materials = 8)
 	material = /decl/material/durasteel
+
+// Imperium
+/obj/item/stack/sheet/imperium
+	name = "imperium alloy"
+	icon_state = "imperium"
+	blend_mode = BLEND_OVERLAY
+
+	matter_amounts = alist(/decl/material/durasteel = 1 MATERIAL_SHEET, /decl/material/morphium = 1 MATERIAL_SHEET)
+	origin_tech = alist(
+		/decl/tech/materials = 8, /decl/tech/plasma = 4, /decl/tech/bluespace = 5,
+		/decl/tech/syndicate = 1, /decl/tech/arcane = 1
+	)
+	material = /decl/material/imperium
+
+/obj/item/stack/sheet/imperium/initialise()
+	. = ..()
+	start_hue_rotation()
+
+/obj/item/stack/sheet/imperium/proc/start_hue_rotation()
+	animate(src, color = color_matrix_rotate_hue(1), loop = -1, time = 0.25 SECONDS) // Start the loop.
+	var/step_precision = 18 // Larger is more precise rotations.
+	for(var/current_step in 1 to step_precision - 1) // We do the -1 here because 360 == 0 when it comes to angles.
+		animate(
+			color = color_matrix_rotate_hue(current_step * 360 / step_precision),
+			loop = -1,
+			time = 0.25 SECONDS
+		)

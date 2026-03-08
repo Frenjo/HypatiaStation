@@ -59,6 +59,7 @@
 	name = "alien circuit"
 	icon = 'icons/obj/mecha/parts/janus.dmi'
 	icon_state = "circuit"
+	matter_amounts = alist(/decl/material/morphium = 1 MATERIAL_SHEET)
 	origin_tech = alist(/decl/tech/programming = 5, /decl/tech/bluespace = 3)
 
 /obj/item/circuitboard/mecha/imperion/main
@@ -70,7 +71,6 @@
 /obj/item/circuitboard/mecha/imperion/targeting
 	desc = "It is marked with an <span class='alien'>ominous glyph</span>."
 
-// This one's intended for the actual Imperion later down the line.
 /obj/item/circuitboard/mecha/imperion/phasing
 	desc = "It is marked with a <span class='alien'>disturbing glyph</span>."
 
