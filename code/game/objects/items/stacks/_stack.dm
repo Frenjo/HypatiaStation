@@ -11,7 +11,7 @@
 /obj/item/stack
 	gender = PLURAL
 	origin_tech = alist(/decl/tech/materials = 1)
-	var/list/datum/stack_recipe/recipes
+	var/list/datum/recipes
 	var/singular_name
 	var/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount

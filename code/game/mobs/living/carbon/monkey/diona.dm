@@ -52,7 +52,7 @@
 
 /mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M)
 	//Let people pick the little buggers up.
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		if(M.species && istype(M.species, /datum/species/diona))
 			to_chat(M, SPAN_INFO("You feel your being twine with that of [src] as it merges with your biomass."))
 			to_chat(src, SPAN_INFO("You feel your being twine with that of [M] as you merge with its biomass."))

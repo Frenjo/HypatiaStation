@@ -12,8 +12,6 @@
 		USE_POWER_ACTIVE = 100
 	)
 
-	var/datum/material_container/materials
-
 	var/panel_open = FALSE
 
 	var/datum/research/files
@@ -27,7 +25,7 @@
 	var/busy = FALSE
 
 /obj/machinery/autolathe/New()
-	materials = new /datum/material_container(src, list(
+	add_component(/datum/component/material_container, list(
 		/decl/material/iron, /decl/material/steel,
 		/decl/material/plastic, /decl/material/glass
 	))
@@ -36,7 +34,6 @@
 	wires = new /datum/wires/autolathe(src)
 
 /obj/machinery/autolathe/Destroy()
-	QDEL_NULL(materials)
 	QDEL_NULL(files)
 	QDEL_NULL(wires)
 	return ..()
@@ -57,7 +54,8 @@
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
 	total_rating *= 25000
-	materials.set_max_capacity(total_rating * 2)
+	GET_COMPONENT(container, /datum/component/material_container)
+	container.set_max_capacity(total_rating * 2)
 
 /obj/machinery/autolathe/interact(mob/user)
 	if(..())
@@ -86,12 +84,14 @@
 /obj/machinery/autolathe/proc/regular_win(mob/user)
 	var/dat = "<html><head><title>[name]</title></head><body>"
 	dat += "<tt>"
-	for(var/material_path in materials.stored_materials)
+	GET_COMPONENT(container, /datum/component/material_container)
+	var/alist/materials = container.get_all_materials()
+	for(var/material_path in materials)
 		var/decl/material/mat = material_path
-		dat += "<font color='[initial(mat.colour_code)]'><b>[initial(mat.name)]:</b></font> [materials.get_type_amount(mat)]cm<sup>3</sup>"
-		dat += " (MAX: [materials.get_total_type_capacity(mat)]cm<sup>3</sup>)"
+		dat += "<font color='[initial(mat.colour_code)]'><b>[initial(mat.name)]:</b></font> [materials[material_path]]cm<sup>3</sup>"
+		dat += " (MAX: [container.get_total_type_capacity(mat)]cm<sup>3</sup>)"
 		dat += "<br>"
-	dat += "<b>Total Amount:</b> [materials.get_total_amount()]cm<sup>3</sup> (MAX: [materials.get_total_capacity()]cm<sup>3</sup>)"
+	dat += "<b>Total Amount:</b> [container.get_total_amount()]cm<sup>3</sup> (MAX: [container.get_total_capacity()]cm<sup>3</sup>)"
 	dat += "<hr>"
 
 	for_no_type_check(var/datum/design/D, files.known_designs)
@@ -99,7 +99,7 @@
 			continue
 		var/obj/thing = D.build_path
 		var/title = "[initial(thing.name)] ([output_item_cost(D)])"
-		if(!materials.has_materials(D.materials))
+		if(!container.has_materials(D.materials))
 			dat += title
 			dat += "<br>"
 			continue
@@ -109,7 +109,7 @@
 			var/max_multiplier = initial(S.max_amount)
 			var/list/matter_amounts = initial(S.matter_amounts)
 			for(var/material_path in matter_amounts)
-				max_multiplier = min(max_multiplier, round(materials.get_type_amount(material_path) / matter_amounts[material_path]))
+				max_multiplier = min(max_multiplier, round(container.get_type_amount(material_path) / matter_amounts[material_path]))
 			if(max_multiplier > 1)
 				dat += " |"
 			if(max_multiplier > 10)
@@ -161,7 +161,8 @@
 				part.forceMove(loc)
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = TRUE
-			materials.eject_all_sheets()
+			GET_COMPONENT(container, /datum/component/material_container)
+			container.eject_all_sheets()
 			qdel(src)
 			return TRUE
 
@@ -176,13 +177,14 @@
 		to_chat(user, SPAN_WARNING("\The [I] does not contain sufficient material to be accepted by \the [src]."))
 		return TRUE
 
+	GET_COMPONENT(container, /datum/component/material_container)
 	for(var/material_path in I.matter_amounts)
 		// If it has any matter that we can't accept, then we also can't recycle it.
-		if(!materials.can_contain(material_path))
+		if(!container.can_contain(material_path))
 			to_chat(user, SPAN_WARNING("\The [src] cannot accept \the [I]!"))
 			return TRUE
 		// Finally, if any of the required material storages are full, then we again can't recycle it.
-		if(!materials.can_add_amount(material_path, I.matter_amounts[material_path]))
+		if(!container.can_add_amount(material_path, I.matter_amounts[material_path]))
 			var/decl/material/mat = material_path
 			to_chat(user, SPAN_WARNING("\The [src] is full. Please remove [lowertext(initial(mat.name))] from \the [src] in order to insert more."))
 			return TRUE
@@ -220,8 +222,9 @@
 
 /obj/machinery/autolathe/proc/output_item_cost(datum/design/D)
 	var/i = 0
+	GET_COMPONENT(container, /datum/component/material_container)
 	for(var/material_path in D.materials)
-		if(materials.can_contain(material_path))
+		if(container.can_contain(material_path))
 			var/decl/material/mat = material_path
 			. += "[i ? " / " : null][D.materials[material_path]]cm<sup>3</sup> [lowertext(initial(mat.name))]"
 			i++
@@ -233,7 +236,8 @@
 
 /obj/machinery/autolathe/proc/build_item(datum/design/D, multiplier)
 	busy = TRUE
-	var/total_amount_used = materials.remove_materials(D.materials)
+	GET_COMPONENT(container, /datum/component/material_container)
+	var/total_amount_used = container.remove_materials(D.materials)
 	icon_state = "autolathe_n"
 	power_usage[USE_POWER_ACTIVE] = max(2000, total_amount_used * multiplier / 5)
 	update_power_state(USE_POWER_ACTIVE)
@@ -255,6 +259,7 @@
 
 /obj/machinery/autolathe/proc/add_item(obj/item/I, mob/user)
 	var/amount = 1
+	GET_COMPONENT(container, /datum/component/material_container)
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/input_stack = I
 		if(!do_after(user, 0.25 SECONDS))
@@ -262,14 +267,14 @@
 			return TRUE
 		amount = input_stack.amount
 		for(var/material_path in I.matter_amounts)
-			amount = min(amount, round(materials.get_remaining_type_capacity(material_path) / I.matter_amounts[material_path]))
+			amount = min(amount, round(container.get_remaining_type_capacity(material_path) / I.matter_amounts[material_path]))
 		input_stack.use(amount)
 		to_chat(user, SPAN_INFO("You insert [amount] [input_stack.singular_name]\s into \the [src]."))
 	else
 		to_chat(user, SPAN_INFO("You insert \the [I] into \the [src]."))
 
 	busy = TRUE
-	var/total_amount_added = materials.add_materials(I.matter_amounts, amount)
+	var/total_amount_added = container.add_materials(I.matter_amounts, amount)
 	use_power(max(1000, (total_amount_added * amount) / 10))
 	if(isnotnull(I))
 		user.drop_from_inventory(I)

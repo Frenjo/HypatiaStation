@@ -23,10 +23,12 @@
 
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200
+	var/custom_phasing_animation = FALSE
 
 /obj/mecha/combat/phazon/initialise()
 	. = ..()
-	add_filter("phasing", list(type = "blur", size = 0))
+	if(!custom_phasing_animation)
+		add_filter("phasing", list(type = "blur", size = 0))
 
 /obj/mecha/combat/phazon/mechstep(direction)
 	. = ..()
@@ -39,11 +41,11 @@
 		. = handle_phasing_step(.) || .
 
 /obj/mecha/combat/phazon/proc/handle_phasing_step(movement_result)
-	do_phasing_effects()
 	if(movement_result) // If the movement was initially successful then we don't need to "actually" phase as we weren't blocked.
 		return FALSE
 	if(get_charge() <= phasing_energy_drain)
 		return FALSE
+	do_phasing_effects() // Only do the phasing effects if we actually phase.
 	forceMove(get_step(src, dir))
 	use_power(phasing_energy_drain)
 	COOLDOWN_INCREMENT(src, cooldown_mecha_move, move_delay * 3)
@@ -52,9 +54,13 @@
 	return TRUE
 
 /obj/mecha/combat/phazon/proc/do_phasing_effects()
-	// This mostly replicates the original appearance of the manual method as closely as I possibly can.
-	animate(get_filter("phasing"), size = 2, time = 3, flags = ANIMATION_END_NOW)
-	animate(size = 0, time = 2)
+	if(!custom_phasing_animation)
+		// This mostly replicates the original appearance of the manual method as closely as I possibly can.
+		animate(get_filter("phasing"), size = 2, time = 3, flags = ANIMATION_END_NOW)
+		animate(size = 0, time = 2)
+	else
+		// Some animations for variants we can't do with filters.
+		flick("[icon_state]-phase", src)
 
 /obj/mecha/combat/phazon/click_action(atom/target, mob/user)
 	if(phasing)
@@ -112,14 +118,18 @@
 	if(usr != occupant)
 		return
 
+	query_damage_type()
+
+// This is a proc so that subtypes can override it and change the functionality.
+/obj/mecha/combat/phazon/proc/query_damage_type()
 	var/new_damtype = alert(occupant, "Melee Damage Type", null, "Brute", "Burn", "Toxin")
 	switch(new_damtype)
 		if("Brute")
-			damtype = "brute"
+			damtype = BRUTE
 		if("Burn")
-			damtype = "fire"
+			damtype = BURN
 		if("Toxin")
-			damtype = "tox"
+			damtype = TOX
 	occupant_message(SPAN_INFO("Melee damage type switched to [lowertext(new_damtype)]."))
 
 // Dark Phazon
@@ -127,8 +137,8 @@
 /obj/mecha/combat/phazon/dark
 	name = "\improper Dark Phazon"
 	desc = "This is a Dark Phazon exosuit. \
-			A sinister variant of the pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace technology and even more expensive materials. \
-			To most, it can only be described as 'WTF?'."
+			A sinister variant of the pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace \
+			technology and even more expensive materials. To most, it can only be described as 'WTF?'."
 	icon_state = "dark_phazon"
 
 	health = 300
@@ -157,3 +167,45 @@
 		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay,
 		/obj/item/mecha_equipment/emp_insulation/hardened
 	)
+
+// Janus
+// This is the knockoff reconstructed version of the Imperion.
+/obj/mecha/combat/phazon/janus
+	name = "\improper Janus"
+	desc = "<span class='alien'>An incredibly high-tech exosuit constructed from salvaged alien and cutting-edge modern technology. \
+			This machine, theoretically, is capable of travelling through time, however due to the strange nature of its miniaturized \
+			supermatter-fueled bluespace drive, it is uncertain how this ability manifests. \
+			<i>A more crude civilisation, such as yours, might describe it as 'WTF?'.</i></span>"
+	icon_state = "janus"
+
+	health = 250
+	max_temperature = 10000
+	damage_resistance = list("brute" = 50, "fire" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50)
+
+	max_equip = 4
+
+	wreckage = /obj/structure/mecha_wreckage/phazon/janus
+
+	phasing_energy_drain = 300
+	custom_phasing_animation = TRUE
+
+// Imperion
+// This is the Real Deal Precursor Version.
+/obj/mecha/combat/phazon/imperion
+	name = "\improper Imperion"
+	desc = "<span class='alien'>This is an Imperion exosuit. \
+			Although resembling a simple repainted Phazon-type exosuit, this particular model appears to have been constructed using \
+			technology from an alternate timeline. <i>This makes it, in fact, even more 'WTF?'.</i></span>"
+	icon_state = "imperion"
+
+	health = 500
+	max_temperature = 10000
+	deflect_chance = 50
+	damage_resistance = list("brute" = 60, "fire" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60)
+
+	max_equip = 5
+
+	wreckage = /obj/structure/mecha_wreckage/phazon/imperion
+
+	phasing_energy_drain = 200
+	custom_phasing_animation = TRUE

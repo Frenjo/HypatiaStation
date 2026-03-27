@@ -32,6 +32,10 @@
 		/obj/item/mecha_part/part/durand/right_leg
 	)
 
+/obj/structure/mecha_wreckage/durand/paladin
+	name = "Paladin wreckage"
+	icon_state = "paladin-broken"
+
 /obj/structure/mecha_wreckage/durand/archambeau
 	name = "Archambeau wreckage"
 	icon_state = "archambeau-broken"
@@ -67,6 +71,14 @@
 /obj/structure/mecha_wreckage/phazon/dark
 	name = "Dark Phazon wreckage"
 	icon_state = "dark_phazon-broken"
+
+/obj/structure/mecha_wreckage/phazon/janus
+	name = "Janus wreckage"
+	icon_state = "janus-broken"
+
+/obj/structure/mecha_wreckage/phazon/imperion
+	name = "Imperion wreckage"
+	icon_state = "imperion-broken"
 
 // H.O.N.K
 /obj/structure/mecha_wreckage/honk

@@ -551,14 +551,3 @@
 	name = "toy phazon"
 	desc = "Mini-Mecha action figure! Collect them all! 11/11."
 	icon_state = "phazonprize"
-
-/* NYET.
-/obj/item/toddler
-	name = "toddler"
-	desc = "This baby looks almost real. Wait, did it just burp?"
-	icon = 'icons/obj/weapons/weapons.dmi'
-	icon_state = "toddler"
-	force = 5
-	w_class = 4.0
-	slot_flags = SLOT_BACK
-*/

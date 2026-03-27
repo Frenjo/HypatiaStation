@@ -6,7 +6,7 @@
 	matter_amounts = /datum/design/mechfab/part/brigand_chassis::materials
 	origin_tech = /datum/design/mechfab/part/brigand_chassis::req_tech
 
-	construct_type = /datum/construction/mecha_chassis/durand/brigand
+	construct_type = /datum/component/construction/mecha_chassis/durand/brigand
 	target_icon = 'icons/obj/mecha/construction/durand.dmi'
 
 /obj/item/mecha_part/part/durand/armour/brigand

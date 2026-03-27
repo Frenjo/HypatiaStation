@@ -34,7 +34,7 @@
 	O.dna.SetSEValueRange(GLOBL.dna_data.monkey_block, 0xDAC, 0xFFF)
 	O.forceMove(loc)
 	O.viruses = viruses
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 
 	for(var/datum/disease/D in O.viruses)
 		D.affected_mob = O
@@ -188,7 +188,7 @@
 	var/alien_caste = pick("Hunter", "Sentinel", "Drone")
 	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste, loc)
 
-	new_xeno.a_intent = "hurt"
+	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
@@ -224,7 +224,7 @@
 			new_slime = new /mob/living/carbon/slime/adult(loc)
 		else
 			new_slime = new /mob/living/carbon/slime(loc)
-	new_slime.a_intent = "hurt"
+	new_slime.a_intent = INTENT_HARM
 	new_slime.key = key
 
 	to_chat(new_slime, "<B>You are now a slime. Skreee!</B>")
@@ -246,7 +246,7 @@
 		qdel(t)
 
 	var/mob/living/simple/corgi/new_corgi = new /mob/living/simple/corgi(loc)
-	new_corgi.a_intent = "hurt"
+	new_corgi.a_intent = INTENT_HARM
 	new_corgi.key = key
 
 	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
@@ -279,7 +279,7 @@
 	var/mob/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	new_mob.a_intent = "hurt"
+	new_mob.a_intent = INTENT_HARM
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
 	spawn()
@@ -297,7 +297,7 @@
 	var/mob/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	new_mob.a_intent = "hurt"
+	new_mob.a_intent = INTENT_HARM
 	to_chat(new_mob, "You feel more... animalistic.")
 
 	qdel(src)

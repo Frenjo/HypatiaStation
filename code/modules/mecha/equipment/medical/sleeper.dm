@@ -39,7 +39,7 @@
 		occupant_message(SPAN_WARNING("[target] will not fit into the sleeper because they are buckled to [target.buckled]."))
 		return FALSE
 	if(isnotnull(patient))
-		occupant_message(SPAN_WARNING("The sleeper is already occupied"))
+		occupant_message(SPAN_WARNING("The sleeper is already occupied!"))
 		return FALSE
 	for(var/mob/living/carbon/slime/M in range(1, target))
 		if(M.Victim == target)

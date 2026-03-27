@@ -1,7 +1,7 @@
 ////////////////////////////////
 ///// Construction datums //////
 ////////////////////////////////
-/datum/construction/reversible/mecha
+/datum/component/construction/reversible/mecha
 	radial_messages = TRUE // Displayed step messages should be visible to those nearby as well as the user.
 
 	var/base_icon_state = null
@@ -9,11 +9,11 @@
 	var/central_circuit = null
 	var/peripherals_circuit = null
 
-/datum/construction/reversible/mecha/New()
+/datum/component/construction/reversible/mecha/initialise()
 	steps = get_frame_steps() + get_circuit_steps() + get_stock_part_steps() + get_other_steps() + steps
 	. = ..()
 
-/datum/construction/reversible/mecha/proc/get_frame_steps()
+/datum/component/construction/reversible/mecha/proc/get_frame_steps()
 	RETURN_TYPE(/list)
 
 	. = list(
@@ -46,7 +46,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/proc/get_circuit_steps()
+/datum/component/construction/reversible/mecha/proc/get_circuit_steps()
 	RETURN_TYPE(/list)
 
 	. = list(
@@ -82,20 +82,21 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/proc/get_stock_part_steps()
+/datum/component/construction/reversible/mecha/proc/get_stock_part_steps()
 	RETURN_TYPE(/list)
 
 	. = list()
 
-/datum/construction/reversible/mecha/proc/get_other_steps()
+/datum/component/construction/reversible/mecha/proc/get_other_steps()
 	RETURN_TYPE(/list)
 
 	. = list()
 
-/datum/construction/reversible/mecha/update_holder(step_index)
+/datum/component/construction/reversible/mecha/update_holder(step_index)
 	. = ..()
 	// By default, each step in mech construction has a single icon_state:
 	// "[base_icon_state][index - 1]"
 	// For example, Ripley's step 1 icon_state is "ripley0".
 	if(!steps[index]["icon_state"] && base_icon_state)
+		var/atom/holder = parent_datum
 		holder.icon_state = "[base_icon_state][index - 1]"

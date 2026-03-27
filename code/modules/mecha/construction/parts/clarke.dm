@@ -2,7 +2,7 @@
 /obj/item/mecha_part/chassis/clarke
 	name = "\improper Clarke chassis"
 
-	construct_type = /datum/construction/mecha_chassis/clarke
+	construct_type = /datum/component/construction/mecha_chassis/clarke
 	target_icon = 'icons/obj/mecha/construction/clarke.dmi'
 
 /obj/item/mecha_part/part/clarke

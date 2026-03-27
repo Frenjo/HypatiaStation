@@ -308,7 +308,7 @@
 	if(isliving(grabbed))
 		var/mob/living/living_grabbed = grabbed
 		if(grab.state < 2)
-			if(user.a_intent == "hurt")
+			if(user.a_intent == INTENT_HARM)
 				if(prob(15))
 					living_grabbed.Weaken(5)
 				living_grabbed.apply_damage(8, def_zone = "head")

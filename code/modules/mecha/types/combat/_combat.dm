@@ -47,16 +47,14 @@
 
 	if(isliving(target))
 		var/mob/living/M = target
-		if(occupant.a_intent == "hurt")
+		if(occupant.a_intent == INTENT_HARM)
 			playsound(src, 'sound/weapons/melee/punch4.ogg', 50, 1)
 			if(damtype == "brute")
 				step_away(M, src, 15)
 			/*
 			if(M.stat>1)
 				M.gib()
-				melee_can_hit = 0
-				if(do_after(melee_cooldown))
-					melee_can_hit = 1
+				do_melee_cooldown()
 				return
 			*/
 			if(ishuman(target))
@@ -67,12 +65,12 @@
 				if(temp)
 					var/update = 0
 					switch(damtype)
-						if("brute")
+						if(BRUTE)
 							H.Paralyse(1)
 							update |= temp.take_damage(rand(force / 2, force), 0)
-						if("fire")
+						if(BURN)
 							update |= temp.take_damage(0, rand(force / 2, force))
-						if("tox")
+						if(TOX)
 							if(H.reagents)
 								if(H.reagents.get_reagent_amount("carpotoxin") + force < force * 2)
 									H.reagents.add_reagent("carpotoxin", force)
@@ -86,12 +84,12 @@
 
 			else
 				switch(damtype)
-					if("brute")
+					if(BRUTE)
 						M.Paralyse(1)
 						M.take_overall_damage(rand(force / 2, force))
-					if("fire")
+					if(BURN)
 						M.take_overall_damage(0, rand(force / 2, force))
-					if("tox")
+					if(TOX)
 						if(M.reagents)
 							if(M.reagents.get_reagent_amount("carpotoxin") + force < force * 2)
 								M.reagents.add_reagent("carpotoxin", force)
@@ -107,13 +105,11 @@
 			occupant_message(SPAN_INFO("You push [target] out of the way."))
 			visible_message(SPAN_INFO("\The [src] pushes [target] out of the way."))
 
-		melee_can_hit = FALSE
-		if(do_after(occupant, melee_cooldown, progress = FALSE))
-			melee_can_hit = TRUE
+		do_melee_cooldown()
 		return
 
 	else
-		if(damtype == "brute")
+		if(damtype == BRUTE)
 			for(var/target_type in destroyable_obj)
 				if(istype(target, target_type) && hascall(target, "attackby"))
 					occupant_message(SPAN_DANGER("You hit [target]."))
@@ -125,11 +121,14 @@
 						occupant_message(SPAN_INFO_B("You smash through the wall."))
 						visible_message(SPAN_INFO_B("[name] smashes through the wall!"))
 						playsound(src, 'sound/weapons/melee/smash.ogg', 50, 1)
-					melee_can_hit = FALSE
-					if(do_after(occupant, melee_cooldown, progress = FALSE))
-						melee_can_hit = TRUE
+					do_melee_cooldown()
 					break
 	return
+
+/obj/mecha/combat/proc/do_melee_cooldown()
+	melee_can_hit = FALSE
+	if(do_after(occupant, melee_cooldown, progress = FALSE))
+		melee_can_hit = TRUE
 
 /*
 /obj/mecha/combat/proc/mega_shake(target)

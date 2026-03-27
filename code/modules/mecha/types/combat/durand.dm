@@ -34,6 +34,40 @@
 	"}
 	. += ..()
 
+// Paladin
+/obj/mecha/combat/durand/paladin
+	name = "\improper Paladin"
+	desc = "A refit variant of the aging Durand-type exosuit, redesigned and upgraded for enhanced performance in anti-xenofauna operations."
+	icon_state = "paladin"
+
+	force = 45
+
+	deflect_chance = 15
+	damage_resistance = list("brute" = 60, "fire" = 0, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15)
+	internal_damage_threshold = 40
+
+	excluded_equipment = list(
+		/obj/item/mecha_equipment/melee_defence_shocker
+	)
+
+	wreckage = /obj/structure/mecha_wreckage/durand/paladin
+
+	var/shock_power_use = 100
+	var/shock_damage = 10
+
+// These two feel terribly hacky but I'm not refactoring the mecha attack chain again right now.
+/obj/mecha/combat/durand/paladin/attack_hand(mob/user)
+	if(defence_mode && use_power(shock_power_use) && isliving(user))
+		var/mob/living/alive = user
+		alive.electrocute_act(shock_damage, src)
+	return ..()
+
+/obj/mecha/combat/durand/paladin/attack_tool(obj/item/tool, mob/user)
+	if(defence_mode && use_power(shock_power_use) && isliving(user))
+		var/mob/living/alive = user
+		alive.electrocute_act(shock_damage, src)
+	return ..()
+
 // Archambeau
 /obj/mecha/combat/durand/archambeau
 	name = "\improper Archambeau"

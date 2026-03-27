@@ -91,3 +91,9 @@
 #define ROBOT_COMPONENT_BROKEN -1
 #define ROBOT_COMPONENT_UNINSTALLED 0
 #define ROBOT_COMPONENT_INSTALLED 1
+
+// Intent defines.
+#define INTENT_HELP "help"
+#define INTENT_DISARM "disarm"
+#define INTENT_GRAB "grab"
+#define INTENT_HARM "harm"

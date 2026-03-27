@@ -1,7 +1,7 @@
 /datum/hud/alien_larva/setup()
 	var/atom/movable/screen/using
 
-	using = setup_screen_object("act_intent", 'icons/hud/screen1_alien.dmi', (owner.a_intent == "hurt" ? "harm" : owner.a_intent), UI_ACTI)
+	using = setup_screen_object("act_intent", 'icons/hud/screen1_alien.dmi', owner.a_intent, UI_ACTI)
 	using.set_dir(SOUTHWEST)
 	adding.Add(using)
 	action_intent = using

@@ -4,12 +4,10 @@
  *		Reinforced glass sheets
  *		Plasma Glass Sheets
  *		Reinforced Plasma Glass Sheets (AKA Holy fuck strong windows)
- *		Glass shards - TODO: Move this into code/game/object/item/weapons
+ *		Glass shards
  */
 
-/*
- * Glass sheets
- */
+// Glass
 /obj/item/stack/sheet/glass
 	name = "glass"
 	desc = "HOLY SHEET! That is a lot of glass."
@@ -129,9 +127,7 @@
 			src.use(2)
 	return 0
 
-/*
- * Reinforced glass sheets
- */
+// Reinforced Glass
 /obj/item/stack/sheet/glass/reinforced
 	name = "reinforced glass"
 	desc = "Glass which seems to have rods or something stuck in it."
@@ -261,19 +257,55 @@
 			return 1
 	return 0
 
-/*
- * Glass shards - TODO: Move this into code/game/object/item/weapons
- */
-/obj/item/shard/Bump()
-	spawn(0)
-		if(prob(20))
-			src.force = 15
-		else
-			src.force = 4
-		..()
-		return
-	return
+// Plasma Glass
+/obj/item/stack/sheet/glass/plasma
+	name = "plasma glass"
+	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
+	singular_name = "plasma glass sheet"
+	icon_state = "plasmaglass"
+	matter_amounts = alist(/decl/material/glass = 1 MATERIAL_SHEET, /decl/material/plasma = 1 MATERIAL_SHEET)
+	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/plasma = 2)
+	material = /decl/material/plasma_glass
 
+	created_window = /obj/structure/window/plasmabasic
+
+/obj/item/stack/sheet/glass/plasma/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/rods = I
+		var/obj/item/stack/sheet/glass/plasma/reinforced/new_glass = new (user.loc)
+		new_glass.add_fingerprint(user)
+		new_glass.add_to_stacks(user)
+		rods.use(1)
+		var/obj/item/stack/sheet/glass/glass = src
+		qdel(src)
+		var/replace = (user.get_inactive_hand() == glass)
+		glass.use(1)
+		if(isnull(glass) && isnull(new_glass) && replace)
+			user.put_in_hands(new_glass)
+		return TRUE
+	return ..()
+
+// Reinforced Plasma Glass
+/obj/item/stack/sheet/glass/plasma/reinforced
+	name = "reinforced plasma glass"
+	desc = "Plasma glass which seems to have rods or something stuck in it."
+	singular_name = "reinforced plasma glass sheet"
+	icon_state = "plasmarglass"
+	matter_amounts = alist(
+		/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 1 MATERIAL_SHEET,
+		/decl/material/plasma = 1 MATERIAL_SHEET
+	)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/plasma = 2)
+	material = /decl/material/reinforced_plasma_glass
+
+	created_window = /obj/structure/window/plasmareinforced
+
+/obj/item/stack/sheet/glass/plasma/reinforced/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		return TRUE
+	return ..()
+
+// Glass Shard
 /obj/item/shard/New()
 	. = ..()
 	icon_state = pick("large", "medium", "small")
@@ -287,6 +319,16 @@
 		if("large")
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
+
+/obj/item/shard/Bump()
+	spawn(0)
+		if(prob(20))
+			src.force = 15
+		else
+			src.force = 4
+		..()
+		return
+	return
 
 /obj/item/shard/attack_tool(obj/item/tool, mob/user)
 	if(iswelder(tool))
@@ -328,56 +370,3 @@
 					H.UpdateDamageIcon()
 				H.updatehealth()
 	..()
-
-
-/*
- * Plasma Glass sheets
- */
-/obj/item/stack/sheet/glass/plasma
-	name = "plasma glass"
-	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
-	singular_name = "plasma glass sheet"
-	icon_state = "plasmaglass"
-	matter_amounts = alist(/decl/material/glass = 1 MATERIAL_SHEET, /decl/material/plasma = 1 MATERIAL_SHEET)
-	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/plasma = 2)
-	material = /decl/material/plasma_glass
-
-	created_window = /obj/structure/window/plasmabasic
-
-/obj/item/stack/sheet/glass/plasma/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/rods = I
-		var/obj/item/stack/sheet/glass/plasma/reinforced/new_glass = new (user.loc)
-		new_glass.add_fingerprint(user)
-		new_glass.add_to_stacks(user)
-		rods.use(1)
-		var/obj/item/stack/sheet/glass/glass = src
-		qdel(src)
-		var/replace = (user.get_inactive_hand() == glass)
-		glass.use(1)
-		if(isnull(glass) && isnull(new_glass) && replace)
-			user.put_in_hands(new_glass)
-		return TRUE
-	return ..()
-
-/*
- * Reinforced plasma glass sheets
- */
-/obj/item/stack/sheet/glass/plasma/reinforced
-	name = "reinforced plasma glass"
-	desc = "Plasma glass which seems to have rods or something stuck in it."
-	singular_name = "reinforced plasma glass sheet"
-	icon_state = "plasmarglass"
-	matter_amounts = alist(
-		/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 1 MATERIAL_SHEET,
-		/decl/material/plasma = 1 MATERIAL_SHEET
-	)
-	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/plasma = 2)
-	material = /decl/material/reinforced_plasma_glass
-
-	created_window = /obj/structure/window/plasmareinforced
-
-/obj/item/stack/sheet/glass/plasma/reinforced/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/stack/rods))
-		return TRUE
-	return ..()

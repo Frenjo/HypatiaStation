@@ -152,7 +152,7 @@
 				to_chat(user, SPAN_NOTICE("You screw \the [src]'s power cell into place."))
 		return TRUE
 
-	if(iswelder(tool) && user.a_intent != "hurt")
+	if(iswelder(tool) && user.a_intent != INTENT_HARM)
 		var/obj/item/welding_torch/welder = tool
 		if(!welder.remove_fuel(0, user))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)

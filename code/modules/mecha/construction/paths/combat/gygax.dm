@@ -1,6 +1,6 @@
 // Gygax Chassis
-/datum/construction/mecha_chassis/gygax
-	result = /datum/construction/reversible/mecha/combat/gygax
+/datum/component/construction/mecha_chassis/gygax
+	result = /datum/component/construction/reversible/mecha/combat/gygax
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/gygax/torso),
 		list("key" = /obj/item/mecha_part/part/gygax/head),
@@ -11,7 +11,7 @@
 	)
 
 // Gygax
-/datum/construction/reversible/mecha/combat/gygax
+/datum/component/construction/reversible/mecha/combat/gygax
 	result = /obj/mecha/combat/gygax
 
 	base_icon_state = "gygax"
@@ -26,7 +26,7 @@
 	internal_armour = /obj/item/stack/sheet/steel
 	external_armour = /obj/item/mecha_part/part/gygax/armour
 
-/datum/construction/reversible/mecha/combat/gygax/get_other_steps()
+/datum/component/construction/reversible/mecha/combat/gygax/get_other_steps()
 	. = ..()
 	. += list(
 		// 20
@@ -39,6 +39,6 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/combat/gygax/spawn_result()
+/datum/component/construction/reversible/mecha/combat/gygax/spawn_result()
 	. = ..()
 	feedback_inc("mecha_gygax_created", 1)

@@ -2498,12 +2498,11 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/bridge)
 "aUD" = (
-/obj/machinery/vending/snack,
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 8
+/obj/effect/decal/floor/coloured/neutral/corner{
+	dir = 4
 	},
-/turf/open/floor/tiled/grey,
-/area/station/medical/break_room)
+/turf/open/floor/tiled/white,
+/area/station/medical/main)
 "aUF" = (
 /obj/machinery/light{
 	dir = 1;
@@ -17917,7 +17916,6 @@
 /area/station/security/warden)
 "gnu" = (
 /obj/structure/table,
-/obj/item/storage/box/cups,
 /obj/machinery/camera{
 	c_tag = "Break Room";
 	dir = 8;
@@ -27152,12 +27150,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/open/floor/tiled/freezer,
 /area/station/crew/dormitories/toilet)
-"jrW" = (
-/obj/effect/decal/floor/coloured/neutral/corner{
-	dir = 4
-	},
-/turf/open/floor/tiled/white,
-/area/station/medical/main)
 "jsa" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -39129,12 +39121,12 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/atmospherics)
 "nDE" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/snack,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 8
 	},
 /turf/open/floor/tiled/grey,
-/area/station/medical/break_room)
+/area/station/maintenance/aft/starboard_central)
 "nEv" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -44636,8 +44628,8 @@
 	name = "north bump";
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
@@ -49942,9 +49934,8 @@
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/primary)
 "rqm" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
+/obj/structure/table,
+/obj/item/storage/box/cups,
 /turf/open/floor/tiled/cafeteria,
 /area/station/medical/break_room)
 "rqN" = (
@@ -60684,6 +60675,13 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/eva)
+"vpI" = (
+/obj/machinery/vending/coffee,
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
+/turf/open/floor/tiled/grey,
+/area/station/maintenance/aft/starboard_central)
 "vpM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -108897,7 +108895,7 @@ uZD
 mRB
 naf
 nWM
-jrW
+aUD
 ltV
 cpO
 gPu
@@ -110964,8 +110962,8 @@ fGe
 fMY
 mIi
 dZT
-aUD
-nDE
+cFG
+cFG
 kdV
 oeP
 foY
@@ -111221,8 +111219,8 @@ iUX
 deG
 gyj
 tVy
-tVy
-tVy
+nDE
+vpI
 kdV
 jpv
 awZ

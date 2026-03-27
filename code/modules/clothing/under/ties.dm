@@ -67,7 +67,7 @@
 
 /obj/item/clothing/tie/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
-		if(user.a_intent == "help")
+		if(user.a_intent == INTENT_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)
 			if(body_part)
 				var/their = "their"
@@ -231,7 +231,7 @@
 	if(isobj(user.get_active_hand()) && isobj(user.get_inactive_hand()))
 		to_chat(user, SPAN_WARNING("You need an empty hand to draw the [holstered]!"))
 	else
-		if(user.a_intent == "hurt")
+		if(user.a_intent == INTENT_HARM)
 			user.visible_message(
 				SPAN_WARNING("[user] draws the [holstered], ready to shoot!"),
 				SPAN_WARNING("You draw the [holstered], ready to shoot!")

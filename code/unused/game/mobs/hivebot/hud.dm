@@ -110,7 +110,7 @@
 	using.name = "act_intent"
 	using.dir = SOUTHWEST
 	using.icon = 'icons/hud/robot/robot.dmi'
-	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
+	using.icon_state = mymob.a_intent
 	using.screen_loc = ui_acti
 	src.adding += using
 	action_intent = using

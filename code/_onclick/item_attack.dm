@@ -38,7 +38,7 @@
 		. = thing.attack_by(src, source) // Secondly, checks the new-style attack_by().
 	if(!.)
 		. = thing.attackby(src, source) // Thirdly, checks the old-style attackby().
-	if(!. && (source.a_intent == "disarm" || source.a_intent == "hurt"))
+	if(!. && (source.a_intent == INTENT_DISARM || source.a_intent == INTENT_HARM))
 		. = thing.attack_weapon(src, source) // Fourthly, checks for actual weapon attacks.
 
 	thing.after_attack(src, source, .) // Runs post-attack behaviour.

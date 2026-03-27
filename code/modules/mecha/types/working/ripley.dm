@@ -253,3 +253,16 @@
 	balloon_alert(occupant, "[flashers ? "en" : "dis"]abled flashers")
 	send_byjax(occupant, "exosuit.browser", "flashers_command", "[flashers ? "Dis" : "En"]able Flashers")
 	update_overlays()
+
+/obj/mecha/working/ripley/rogue
+	name = "\improper APLU \"Rogue\""
+	desc = "A custom variant of the standard APLU chassis, retrofitted with a lightweight pressurised canopy and more powerful servos. \
+			While slightly faster than other models, the overdriven motors tend to strain its power supply."
+	icon_state = "rogue"
+
+	step_energy_drain = parent_type::step_energy_drain + 5
+	move_delay = 0.5 SECONDS // Same speed as a Sindy.
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/rogue
+
+	custom_goliath_overlay = TRUE

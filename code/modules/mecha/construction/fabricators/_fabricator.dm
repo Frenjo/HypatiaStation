@@ -16,7 +16,6 @@
 	var/time_coeff = 1.5 //can be upgraded with research
 	var/resource_coeff = 1.5 //can be upgraded with research
 	var/list/accepted_materials = list() // A list of /decl/material typepaths of materials this machine can accept and store.
-	var/datum/material_container/materials
 
 	var/ui_id = null
 
@@ -36,7 +35,7 @@
 
 /obj/machinery/robotics_fabricator/initialise()
 	. = ..()
-	materials = new /datum/material_container(src, accepted_materials)
+	add_component(/datum/component/material_container, accepted_materials)
 	files = new /datum/research(src) // Sets up the research data holder.
 
 /obj/machinery/robotics_fabricator/Destroy()
@@ -61,7 +60,8 @@
 	var/total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
-	materials.set_max_capacity((50 MATERIAL_SHEETS) + (total_rating * (100 MATERIAL_SHEETS)))
+	GET_COMPONENT(container, /datum/component/material_container)
+	container.set_max_capacity((50 MATERIAL_SHEETS) + (total_rating * (100 MATERIAL_SHEETS)))
 
 	total_rating = 0
 	for(var/obj/item/stock_part/micro_laser/laser in component_parts)
@@ -138,19 +138,22 @@
 
 /obj/machinery/robotics_fabricator/proc/output_part_cost(datum/design/D)
 	var/i = 0
+	GET_COMPONENT(container, /datum/component/material_container)
 	for(var/material_path in D.materials)
-		if(materials.can_contain(material_path))
+		if(container.can_contain(material_path))
 			var/decl/material/mat = material_path
 			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_path)] [lowertext(initial(mat.name))]"
 			i++
 
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
-	for(var/material_path in materials.stored_materials)
+	GET_COMPONENT(container, /datum/component/material_container)
+	var/alist/materials = container.get_all_materials()
+	for(var/material_path in materials)
 		var/decl/material/mat = material_path
-		var/amount = materials.get_type_amount(material_path)
+		var/amount = materials[material_path]
 		. += "<span class=\"res_name\"><font color='[initial(mat.colour_code)]'>[initial(mat.name)]:</font></span> [amount]cm<sup>3</sup>"
 		if(amount > 0)
-			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.get_type_amount(material_path)];material=[material_path]'>All</a>\]</span>"
+			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[amount];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
 
 /obj/machinery/robotics_fabricator/get_examine_text()
@@ -450,7 +453,8 @@
 
 	if(topic.has("remove_mat") && topic.has("material"))
 		var/decl/material/mat = topic.get_path("material")
-		temp = "Ejected [materials.eject_sheets(mat, topic.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
+		GET_COMPONENT(container, /datum/component/material_container)
+		temp = "Ejected [container.eject_sheets(mat, topic.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 
@@ -487,7 +491,8 @@
 			if(part.reliability != 100 && crit_fail)
 				part.crit_fail = TRUE
 			part.forceMove(loc)
-		materials.eject_all_sheets()
+		GET_COMPONENT(container, /datum/component/material_container)
+		container.eject_all_sheets()
 		qdel(src)
 		return TRUE
 
@@ -506,27 +511,30 @@
 	if(being_built)
 		to_chat(user, SPAN_WARNING("\The [src] is currently processing. Please wait until completion."))
 		return
-	if(!materials.can_contain(stack.material.type))
+	GET_COMPONENT(container, /datum/component/material_container)
+	if(!container.can_contain(stack.material.type))
 		to_chat(user, SPAN_WARNING("\The [src] cannot accept [stack.name]!"))
 		return
-	if(!materials.can_add_amount(stack.material.type, stack.material.per_unit))
+	if(!container.can_add_amount(stack.material.type, stack.material.per_unit))
 		to_chat(user, SPAN_WARNING("\The [src] cannot hold more [stack.name]."))
 		return
 
 	add_overlay("fab-load-[stack.material.icon_prefix]")
 	if(do_after(user, 1 SECOND))
-		to_chat(user, SPAN_INFO("You insert [materials.add_sheets(stack)] [stack.name] into \the [src]."))
+		to_chat(user, SPAN_INFO("You insert [container.add_sheets(stack)] [stack.name] into \the [src]."))
 	else
 		to_chat(user, SPAN_WARNING("You fail to insert the [stack.name] into \the [src]."))
 	remove_overlay("fab-load-[stack.material.icon_prefix]")
 
 // Returns TRUE if the internal container has all of the required material amounts.
 /obj/machinery/robotics_fabricator/proc/has_materials(datum/design/D)
-	return materials.has_materials(calculate_materials_with_coeff(D))
+	GET_COMPONENT(container, /datum/component/material_container)
+	return container.has_materials(calculate_materials_with_coeff(D))
 
 // Removes the provided material amounts from the internal container's stored materials.
 /obj/machinery/robotics_fabricator/proc/remove_materials(datum/design/D)
-	return materials.remove_materials(calculate_materials_with_coeff(D))
+	GET_COMPONENT(container, /datum/component/material_container)
+	return container.remove_materials(calculate_materials_with_coeff(D))
 
 // Helper procs related to calculating material and time coefficients.
 /obj/machinery/robotics_fabricator/proc/calculate_materials_with_coeff(datum/design/D)

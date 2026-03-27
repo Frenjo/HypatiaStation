@@ -20,8 +20,6 @@
 
 	var/obj/machinery/computer/rdconsole/linked_console
 
-	var/datum/material_container/materials
-
 /obj/machinery/r_n_d/initialise()
 	. = ..()
 	wires["Red"] = 0
@@ -40,7 +38,6 @@
 
 /obj/machinery/r_n_d/Destroy()
 	linked_console = null
-	QDEL_NULL(materials)
 	return ..()
 
 /obj/machinery/r_n_d/attack_hand(mob/user)

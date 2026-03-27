@@ -70,7 +70,7 @@
 		return
 
 	if(spikes > 0)
-		if(user.a_intent == "hurt")
+		if(user.a_intent == INTENT_HARM)
 			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
 			Fire(M, user)
 			return

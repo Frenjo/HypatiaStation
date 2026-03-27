@@ -12,6 +12,8 @@
 	var/coin_path
 	// The amount of this material that each sheet holds.
 	var/per_unit = SHEET_MATERIAL_AMOUNT
+	// The recipes that can be crafted from sheets of this material.
+	var/list/recipes
 
 	/*
 	 * Wall
@@ -33,4 +35,11 @@
 /decl/material/New()
 	if(isnull(icon_prefix))
 		icon_prefix = lowertext(name)
+	recipes = generate_recipes()
 	. = ..()
+
+/decl/material/proc/generate_recipes()
+	RETURN_TYPE(/list)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return list()
