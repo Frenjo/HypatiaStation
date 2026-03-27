@@ -35,13 +35,13 @@
 	desc = "A machine that fabricates exosuit parts, equipment and power cells."
 	icon = 'icons/obj/machines/fabricators/mecha.dmi'
 
-	// Durasteel, verdantium and morphium are considered "hidden materials" meaning they won't display unless present.
+	// Durasteel, imperium, verdantium and morphium are considered "hidden materials" meaning they won't display unless present.
 	accepted_materials = list(
 		/decl/material/iron, /decl/material/steel, /decl/material/plastic,
 		/decl/material/glass, /decl/material/silver, /decl/material/gold,
 		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma,
 		/decl/material/bananium, /decl/material/tranquilite, /decl/material/durasteel,
-		/decl/material/verdantium, /decl/material/morphium
+		/decl/material/imperium, /decl/material/verdantium, /decl/material/morphium
 	)
 
 	ui_id = "mecha_fabricator"
@@ -53,7 +53,7 @@
 		"Odysseus",
 		"Gygax", "Serenity",
 		"Durand", "Archambeau", "Brigand",
-		"Phazon",
+		"Phazon", "Janus" = FALSE, "Imperion" = FALSE, // These are so high tech they need the safeties disabled (they need it emagged).
 		"H.O.N.K",
 		"Reticence",
 		"Justice" = FALSE, // This one's associative because it's hidden unless emagged.

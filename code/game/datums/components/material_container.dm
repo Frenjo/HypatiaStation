@@ -2,7 +2,8 @@
 	VAR_PRIVATE/alist/_stored_materials = alist() // An associative list of /decl/material typepaths to their corresponding amounts in cm3.
 	// A list of /decl/material typepaths for materials which should only be displayed if actually present.
 	VAR_PRIVATE/list/_hidden_materials = list(
-		/decl/material/durasteel, /decl/material/valhollide, /decl/material/verdantium, /decl/material/morphium
+		/decl/material/durasteel, /decl/material/imperium, /decl/material/valhollide,
+		/decl/material/verdantium, /decl/material/morphium
 	)
 	VAR_PRIVATE/_max_capacity = 0 // The total amount of materials in cm3 that this container can store.
 	VAR_PRIVATE/_has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
