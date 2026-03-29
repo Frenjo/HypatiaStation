@@ -28,6 +28,7 @@
 // Axis energy projector variant
 /obj/projectile/energy/pulse/laser/rapid
 	name = "rapid laser pulse"
+	icon_state = "axis"
 
 	damage = 10
 
