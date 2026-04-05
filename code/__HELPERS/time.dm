@@ -21,7 +21,7 @@ GLOBAL_GLOBL_LIST_INIT(months, list(
 	. = 0
 	var/i = DS2TICKS(initial_delay)
 	do
-		. += CEILING(i * DELTA_CALC, 1)
+		. += ceil(i * DELTA_CALC)
 		sleep(i * world.tick_lag * DELTA_CALC)
 		i *= 2
 	while(world.tick_usage > STOPLAG_TICK_PERCENTAGE)
