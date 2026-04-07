@@ -61,8 +61,8 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 
 	possibleEvents[/datum/round_event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
 	possibleEvents[/datum/round_event/processor_overload] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
-	possibleEvents[/datum/round_event/storm/ion] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
-	possibleEvents[/datum/round_event/storm/ion_large] = active_with_role["AI"] * 12.5 + active_with_role["Cyborg"] * 12.5 + active_with_role["Engineer"] * 5 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/round_event/storm/ion] = active_with_role["AI"] * 25 + active_with_role["Robot"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/round_event/storm/ion_large] = active_with_role["AI"] * 12.5 + active_with_role["Robot"] * 12.5 + active_with_role["Engineer"] * 5 + active_with_role["Scientist"] * 5
 	possibleEvents[/datum/round_event/grid_check] = 25 + 10 * active_with_role["Engineer"]
 	possibleEvents[/datum/round_event/storm/electrical] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
 	possibleEvents[/datum/round_event/storm/electrical/large] = 7.5 * active_with_role["Janitor"] + 2.5 * active_with_role["Engineer"]
@@ -188,7 +188,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	active_with_role["Security"] = 0
 	active_with_role["Scientist"] = 0
 	active_with_role["AI"] = 0
-	active_with_role["Cyborg"] = 0
+	active_with_role["Robot"] = 0
 	active_with_role["Janitor"] = 0
 	active_with_role["Botanist"] = 0
 
@@ -221,8 +221,8 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 		if(M.mind.assigned_role == "AI")
 			active_with_role["AI"]++
 
-		if(M.mind.assigned_role == "Cyborg")
-			active_with_role["Cyborg"]++
+		if(M.mind.assigned_role == "Robot")
+			active_with_role["Robot"]++
 
 		if(M.mind.assigned_role == "Janitor")
 			active_with_role["Janitor"]++

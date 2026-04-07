@@ -73,6 +73,6 @@ GLOBAL_GLOBL_LIST_INIT(security_positions, list(
 
 GLOBAL_GLOBL_LIST_INIT(nonhuman_positions, list(
 	"AI",
-	"Cyborg",
+	"Robot",
 	"pAI"
 ))

@@ -281,7 +281,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		// --- Cyborg ---
 		else if(isrobot(M))
-			jobname = "Cyborg"
+			jobname = "Robot"
 
 		// --- Personal AI (pAI) ---
 		else if(ispAI(M))
@@ -441,7 +441,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		else if(isAI(M))
 			eqjobname = "AI"
 		else if(isrobot(M))
-			eqjobname = "Cyborg"//Androids don't really describe these too well, in my opinion.
+			eqjobname = "Robot" //Androids don't really describe these too well, in my opinion.
 		else if(ispAI(M))
 			eqjobname = "Personal AI"
 		else

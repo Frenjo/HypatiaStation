@@ -264,11 +264,12 @@
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices)
+/proc/show_radial_menu(mob/user, atom/anchor, list/choices, radius = 32)
 	var/datum/radial_menu/menu = new /datum/radial_menu()
 	if(isnull(user))
 		user = usr
 	menu.anchor = anchor
+	menu.radius = radius
 	menu.check_screen_border(user) //Do what's needed to make it look good near borders or on hud
 	menu.set_choices(choices)
 	menu.show_to(user)

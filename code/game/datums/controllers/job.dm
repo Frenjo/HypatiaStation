@@ -388,7 +388,7 @@ CONTROLLER_DEF(jobs)
 	to_chat(H, jointext(job.get_spawn_message_content(H.mind.role_alt_title), "<br>"))
 	to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
-	if(rank == "Cyborg")
+	if(rank == "Robot")
 		H.Robotize()
 		return
 
@@ -456,7 +456,7 @@ CONTROLLER_DEF(jobs)
 				continue
 			J.total_positions = text2num(value)
 			J.spawn_positions = text2num(value)
-			if(name == "AI" || name == "Cyborg")	//I dont like this here but it will do for now
+			if(name == "AI" || name == "Robot")	//I dont like this here but it will do for now
 				J.total_positions = 0
 	return 1
 

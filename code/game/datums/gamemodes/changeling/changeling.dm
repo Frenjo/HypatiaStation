@@ -13,7 +13,7 @@ var/list/possible_changeling_IDs = list(
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	required_players = 2
 	required_players_secret = 10

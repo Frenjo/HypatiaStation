@@ -91,7 +91,7 @@
 		else if(isAI(speaker))
 			jobname = "AI"
 		else if(isrobot(speaker))
-			jobname = "Cyborg"
+			jobname = "Robot"
 		else if(ispAI(speaker))
 			jobname = "Personal AI"
 		else

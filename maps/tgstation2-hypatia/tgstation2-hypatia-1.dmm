@@ -1222,7 +1222,7 @@
 /area/station/research/shuttle_dock)
 "ayO" = (
 /obj/effect/landmark/start{
-	name = "Cyborg"
+	name = "Robot"
 	},
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 1
@@ -20576,7 +20576,7 @@
 /area/station/medical/virology)
 "hiq" = (
 /obj/effect/landmark/start{
-	name = "Cyborg"
+	name = "Robot"
 	},
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden,
 /obj/structure/cable/orange{
@@ -49501,7 +49501,7 @@
 /area/station/medical/break_room)
 "rjW" = (
 /obj/effect/landmark/start{
-	name = "Cyborg"
+	name = "Robot"
 	},
 /obj/machinery/light/small{
 	dir = 4

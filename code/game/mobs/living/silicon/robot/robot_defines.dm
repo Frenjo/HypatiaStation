@@ -1,6 +1,6 @@
 /mob/living/silicon/robot
-	name = "Cyborg"
-	real_name = "Cyborg"
+	name = "Robot"
+	real_name = "Robot"
 	icon = 'icons/mob/silicon/robot/standard.dmi'
 	icon_state = "robot"
 	maxHealth = 100
@@ -71,5 +71,5 @@
 	var/lockcharge //Used when locking down a borg to preserve cell charge
 	var/speed = 0 //Cause sec borgs gotta go fast //No they dont!
 	var/scrambledcodes = FALSE // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
-	var/braintype = "Cyborg"
+	var/braintype = "Robot"
 	var/pose
