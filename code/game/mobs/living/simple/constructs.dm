@@ -98,8 +98,8 @@
 	name = "Juggernaut"
 	desc = "A possessed suit of armour driven by the will of the restless dead."
 
-	icon_state = "armour"
-	icon_living = "armour"
+	icon_state = "juggernaut"
+	icon_living = "juggernaut"
 
 	maxHealth = 250
 	health = 250
@@ -227,6 +227,21 @@
 		to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
 		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
+// Proteon
+/mob/living/simple/hostile/construct/proteon
+	name = "Proteon"
+	desc = "A weaker construct meant to scour ruins for objects of Nar'Sie's affection. Those barbed claws are no joke."
+
+	icon_state = "proteon"
+	icon_living = "proteon"
+
+	maxHealth = 35
+	health = 35
+	melee_damage_lower = 8
+	melee_damage_upper = 10
+	attacktext = "pinches"
+	wall_smash = 1
+	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
 
 ////////////////Powers//////////////////
 /*
