@@ -38,7 +38,7 @@
 	. = ..()
 	mind.assigned_role = "AI"
 
-// Cyborg
+// Robot
 /mob/living/silicon/robot/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Robot"

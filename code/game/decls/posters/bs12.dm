@@ -179,12 +179,12 @@
 
 /decl/poster_design/bay/thirty_six
 	name = "Fancy Borg"
-	desc = "A poster depicting a cyborg using the service module. 'Fancy Borg' is written on it."
+	desc = "A poster depicting a robot using the service module. 'Fancy Borg' is written on it."
 	icon_state = "poster36"
 
 /decl/poster_design/bay/thirty_seven
 	name = "Fancier Borg"
-	desc = "A poster depicting a cyborg using the service module. 'Fancy Borg' is written on it. This is even fancier than the first poster."
+	desc = "A poster depicting a robot using the service module. 'Fancy Borg' is written on it. This is even fancier than the first poster."
 	icon_state = "poster37"
 
 /decl/poster_design/bay/thirty_eight
@@ -239,7 +239,7 @@
 
 /decl/poster_design/bay/fourty_eight
 	name = "Borg pinup?"
-	desc = "This is a.. pin-up poster? It is a diagram on an old model of cyborg with a note scribbled in marker on the bottom, on the top there is a large XO written in red marker."
+	desc = "This is a.. pin-up poster? It is a diagram on an old model of robot with a note scribbled in marker on the bottom, on the top there is a large XO written in red marker."
 	icon_state = "poster48"
 
 /decl/poster_design/bay/fourty_nine

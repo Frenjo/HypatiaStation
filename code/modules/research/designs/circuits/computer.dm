@@ -12,17 +12,17 @@
 	req_tech = alist(/decl/tech/biotech = 3, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/aicore
 
-/datum/design/circuit/aiupload
+/datum/design/circuit/ai_upload
 	name = "AI Upload Console"
 	desc = "Allows for the construction of circuit boards used to build an AI upload console."
 	req_tech = alist(/decl/tech/programming = 4)
-	build_path = /obj/item/circuitboard/aiupload
+	build_path = /obj/item/circuitboard/ai_upload
 
-/datum/design/circuit/borgupload
-	name = "Cyborg Upload Console"
-	desc = "Allows for the construction of circuit boards used to build a cyborg upload console."
+/datum/design/circuit/robot_upload
+	name = "Robot Upload Console"
+	desc = "Allows for the construction of circuit boards used to build a robot upload console."
 	req_tech = alist(/decl/tech/programming = 4)
-	build_path = /obj/item/circuitboard/borgupload
+	build_path = /obj/item/circuitboard/robot_upload
 
 /datum/design/circuit/med_data
 	name = "Medical Records Console"

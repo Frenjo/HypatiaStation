@@ -48,7 +48,7 @@
 
 /obj/item/robot_part/torso
 	name = "robot torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
+	desc = "A heavily reinforced case containing robot logic boards, with space for a standard power cell."
 	icon_state = "torso"
 
 	matter_amounts = /datum/design/robofab/robot/torso::materials
