@@ -313,7 +313,7 @@
 
 	//ticker.mode.latespawn(character)
 
-	if(character.mind.assigned_role != "Cyborg")
+	if(character.mind.assigned_role != "Robot")
 		GLOBL.data_core.manifest_inject(character)
 		global.PCticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		announce_arrival(character, rank, join_message)

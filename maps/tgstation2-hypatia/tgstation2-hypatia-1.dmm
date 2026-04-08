@@ -1222,7 +1222,7 @@
 /area/station/research/shuttle_dock)
 "ayO" = (
 /obj/effect/landmark/start{
-	name = "Cyborg"
+	name = "Robot"
 	},
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 1
@@ -1231,7 +1231,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/tiled/dark,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "ayW" = (
 /obj/structure/cable{
 	d2 = 2;
@@ -6697,7 +6697,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/tiled/dark,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "coO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7338,7 +7338,7 @@
 /turf/open/floor/plating/metal,
 /area/station/crew/law_office)
 "czp" = (
-/obj/machinery/computer/borgupload,
+/obj/machinery/computer/robot_upload,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_y = 26
@@ -20576,14 +20576,14 @@
 /area/station/medical/virology)
 "hiq" = (
 /obj/effect/landmark/start{
-	name = "Cyborg"
+	name = "Robot"
 	},
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden,
 /obj/structure/cable/orange{
 	icon_state = "1-8"
 	},
 /turf/open/floor/tiled/dark,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "his" = (
 /obj/machinery/cryopod,
 /obj/effect/landmark/latejoin/cryo,
@@ -22111,7 +22111,7 @@
 	dir = 1
 	},
 /turf/open/floor/circuit_grid/blue,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "hJT" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -31477,11 +31477,11 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/borgupload{
+/obj/item/circuitboard/robot_upload{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/aiupload{
+/obj/item/circuitboard/ai_upload{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -36251,7 +36251,7 @@
 /obj/item/camera_assembly,
 /obj/item/camera_assembly,
 /turf/open/floor/tiled/dark,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "mGR" = (
 /obj/machinery/washing_machine,
 /obj/machinery/light,
@@ -37865,7 +37865,7 @@
 	pixel_x = 28
 	},
 /turf/open/floor/circuit_grid/blue,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "njn" = (
 /obj/machinery/computer/prisoner,
 /obj/effect/decal/floor/coloured/red,
@@ -38561,7 +38561,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/open/floor/tiled/dark,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "nvh" = (
 /obj/structure/cable{
 	d2 = 4;
@@ -43920,7 +43920,7 @@
 "pnp" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/circuit_grid/blue,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "pnr" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -45124,7 +45124,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/circuit_grid/blue,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "pHg" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only,
@@ -49501,7 +49501,7 @@
 /area/station/medical/break_room)
 "rjW" = (
 /obj/effect/landmark/start{
-	name = "Cyborg"
+	name = "Robot"
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -49511,7 +49511,7 @@
 	},
 /obj/effect/decal/floor/industrial/vault,
 /turf/open/floor/tiled/dark,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "rjZ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -52531,7 +52531,7 @@
 /area/station/security/lobby)
 "siq" = (
 /turf/closed/wall/reinforced,
-/area/turret_protected/cyborg_station)
+/area/turret_protected/robot_station)
 "siM" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
 /turf/open/floor/tiled/grey,
@@ -54668,7 +54668,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/cloning)
 "tbl" = (
-/obj/machinery/computer/aiupload,
+/obj/machinery/computer/ai_upload,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_y = 26

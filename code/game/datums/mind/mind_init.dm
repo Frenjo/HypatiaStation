@@ -38,10 +38,10 @@
 	. = ..()
 	mind.assigned_role = "AI"
 
-// Cyborg
+// Robot
 /mob/living/silicon/robot/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Cyborg"
+	mind.assigned_role = "Robot"
 
 // pAI
 /mob/living/silicon/pai/mind_initialize()

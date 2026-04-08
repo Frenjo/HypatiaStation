@@ -48,7 +48,7 @@
 
 /obj/item/robot_part/torso
 	name = "robot torso"
-	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
+	desc = "A heavily reinforced case containing robot logic boards, with space for a standard power cell."
 	icon_state = "torso"
 
 	matter_amounts = /datum/design/robofab/robot/torso::materials
@@ -208,7 +208,7 @@
 				to_chat(user, SPAN_WARNING("The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [I]."))
 				return TRUE
 
-			if(jobban_isbanned(M.brainmob, "Cyborg"))
+			if(jobban_isbanned(M.brainmob, "Robot"))
 				to_chat(user, SPAN_WARNING("This [I] does not seem to fit."))
 				return TRUE
 
@@ -228,7 +228,7 @@
 			if(O.mind?.special_role)
 				O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 
-			O.job = "Cyborg"
+			O.job = "Robot"
 
 			O.cell = torso.cell
 			O.cell.forceMove(O)
@@ -240,7 +240,7 @@
 				cell_component.wrapped = O.cell
 				cell_component.installed = ROBOT_COMPONENT_INSTALLED
 
-			feedback_inc("cyborg_birth", 1)
+			feedback_inc("robot_birth", 1)
 			O.namepick()
 
 			qdel(src)
