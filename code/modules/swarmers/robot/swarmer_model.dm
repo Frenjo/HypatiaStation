@@ -8,8 +8,8 @@
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/fire_extinguisher,
-		/obj/item/storage/bag/sheetsnatcher/borg,
-		/obj/item/gun/energy/disabler/cyborg,
+		/obj/item/storage/bag/sheetsnatcher/robot,
+		/obj/item/gun/energy/disabler/robot,
 		/obj/item/robot_module/swarmer_disperser,
 		/obj/item/robot_module/swarmer_disintegrator
 	)

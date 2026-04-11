@@ -17,7 +17,7 @@
 	if(!..())
 		return FALSE
 
-	var/obj/item/gun/energy/taser/cyborg/taser = locate() in robby.model
+	var/obj/item/gun/energy/taser/robot/taser = locate() in robby.model
 	if(isnull(taser))
 		taser = locate() in robby.model.contents
 	if(isnull(taser))
@@ -53,7 +53,7 @@
 	if(!..())
 		return FALSE
 
-	var/obj/item/gun/energy/disabler/cyborg/disabler = locate() in robby.model
+	var/obj/item/gun/energy/disabler/robot/disabler = locate() in robby.model
 	if(isnull(disabler))
 		disabler = locate() in robby.model.contents
 	if(isnull(disabler))

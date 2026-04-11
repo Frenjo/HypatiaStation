@@ -235,9 +235,9 @@
 	return ..(S,new_location)
 
 // -----------------------------
-//    Sheet Snatcher (Cyborg)
+//    Sheet Snatcher (Robot)
 // -----------------------------
-/obj/item/storage/bag/sheetsnatcher/borg
+/obj/item/storage/bag/sheetsnatcher/robot
 	name = "sheet snatcher 9000"
 	desc = ""
 	capacity = 500//Borgs get more because >specialization

@@ -13,7 +13,7 @@
 		GUN_SETTING_STUN = /obj/projectile/energy/electrode
 	)
 
-/obj/item/gun/energy/taser/cyborg
+/obj/item/gun/energy/taser/robot
 	cell_type = /obj/item/cell/secborg
 	self_charging = TRUE
 
@@ -51,7 +51,7 @@
 		GUN_SETTING_DISABLE = /obj/projectile/energy/beam/disabler
 	)
 
-/obj/item/gun/energy/disabler/cyborg
+/obj/item/gun/energy/disabler/robot
 	cell_type = /obj/item/cell/secborg
 	self_charging = TRUE
 

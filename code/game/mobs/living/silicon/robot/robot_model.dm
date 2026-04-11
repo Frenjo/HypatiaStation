@@ -10,7 +10,8 @@
 		"Janitor" = /obj/item/robot_model/janitor,
 		"Service" = /obj/item/robot_model/service,
 		"Security" = /obj/item/robot_model/security,
-		"Peacekeeper" = /obj/item/robot_model/peacekeeper
+		"Peacekeeper" = /obj/item/robot_model/peacekeeper,
+		"Cargo" = /obj/item/robot_model/cargo
 	)
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_WARNING("Crisis mode active. Combat model available."))
@@ -108,10 +109,10 @@
 	if(weapon_lock)
 		to_chat(src, SPAN_WARNING("Weapon lock active, unable to use modules! Count: [weaponlock_time]."))
 		return
-
 	if(istype(model, /obj/item/robot_model/default))
 		pick_model()
 		return
+
 	var/dat = "<HEAD><TITLE>Modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
 	<BR>

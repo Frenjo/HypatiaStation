@@ -12,10 +12,10 @@
 		/obj/item/fire_extinguisher/mini,
 		/obj/item/health_analyser,
 		/obj/item/melee/energy/sword,
-		/obj/item/gun/energy/laser/cyborg,
+		/obj/item/gun/energy/laser/robot,
 		/obj/item/card/emag,
 		/obj/item/crowbar,
-		/obj/item/reagent_holder/borghypo/emagged
+		/obj/item/reagent_holder/robot_hypo/emagged
 	)
 
 	channels = list(CHANNEL_SYNDICATE)

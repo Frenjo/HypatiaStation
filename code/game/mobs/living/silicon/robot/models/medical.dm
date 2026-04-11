@@ -10,12 +10,12 @@
 		/obj/item/fire_extinguisher/mini,
 		/obj/item/health_analyser,
 		/obj/item/reagent_scanner/adv,
-		/obj/item/reagent_holder/borghypo,
+		/obj/item/reagent_holder/robot_hypo,
 		/obj/item/reagent_holder/glass/beaker/large,
-		/obj/item/reagent_holder/robodropper,
+		/obj/item/reagent_holder/robot_dropper,
 		/obj/item/reagent_holder/syringe
 	)
-	emag_modules = list(/obj/item/reagent_holder/spray/polyacid, /obj/item/reagent_holder/borghypo/emagged)
+	emag_modules = list(/obj/item/reagent_holder/spray/polyacid, /obj/item/reagent_holder/robot_hypo/emagged)
 
 	channels = list(CHANNEL_MEDICAL)
 	camera_networks = list("Medical")

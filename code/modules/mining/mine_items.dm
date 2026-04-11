@@ -129,8 +129,8 @@
 	origin_tech = /datum/design/mining/drill_diamond::req_tech
 	dig_time = 0.5 SECONDS // Digs through walls, girders, and can dig up sand.
 
-/obj/item/pickaxe/drill/cyborg
-	name = "cyborg mining drill"
+/obj/item/pickaxe/drill/robot
+	name = "robot mining drill"
 	desc = ""
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"

@@ -39,7 +39,7 @@
 	self_charging = TRUE
 	recharge_time = 0.4 SECONDS
 
-/obj/item/gun/energy/laser/cyborg/load_into_chamber()
+/obj/item/gun/energy/laser/robot/load_into_chamber()
 	if(in_chamber)
 		return 1
 	if(isrobot(loc))
@@ -69,7 +69,7 @@
 /obj/item/gun/energy/lasercannon/isHandgun()
 	return FALSE
 
-/obj/item/gun/energy/lasercannon/cyborg/load_into_chamber()
+/obj/item/gun/energy/lasercannon/robot/load_into_chamber()
 	if(in_chamber)
 		return 1
 	if(isrobot(loc))

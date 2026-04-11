@@ -184,17 +184,17 @@ RCD
 /obj/item/rcd/proc/checkResource(amount, mob/user)
 	return matter >= amount
 
-/obj/item/rcd/borg/useResource(amount, mob/user)
+/obj/item/rcd/robot/useResource(amount, mob/user)
 	if(!isrobot(user))
 		return 0
 	return user:cell:use(amount * 30)
 
-/obj/item/rcd/borg/checkResource(amount, mob/user)
+/obj/item/rcd/robot/checkResource(amount, mob/user)
 	if(!isrobot(user))
 		return 0
 	return user:cell:charge >= (amount * 30)
 
-/obj/item/rcd/borg/New()
+/obj/item/rcd/robot/New()
 	..()
 	desc = "A device used to rapidly build walls/floor."
 	canRwall = 1

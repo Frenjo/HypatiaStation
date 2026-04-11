@@ -307,8 +307,8 @@
 		clown = 1
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
-		if(istype(P, /obj/item/pen/cyborg) && P:mode == 2)
-			P:RenamePaper(user,src)
+		if(istype(P, /obj/item/pen/robot) && P:mode == 2)
+			P:rename_paper(user, src)
 		else
 			SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		//openhelp(user)
