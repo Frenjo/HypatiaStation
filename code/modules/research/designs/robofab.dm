@@ -197,6 +197,13 @@
 	reliability_base = /datum/design/bluespace/mining_satchel_holding::reliability_base
 	build_path = /obj/item/robot_upgrade/holding_satchel
 
+/datum/design/robofab/robot_upgrade/floral_somatoray
+	name = "Service Floral Somatoray Module"
+	desc = "Allows for the construction of floral somatoray modules for service robots."
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 3, /decl/tech/power_storage = 3)
+	materials = alist(/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 0.25 MATERIAL_SHEETS, /decl/material/uranium = 0.25 MATERIAL_SHEETS)
+	build_path = /obj/item/robot_upgrade/floral_somatoray
+
 /datum/design/robofab/robot_upgrade/scrambled
 	name = "Scrambled Equipment Module"
 	desc = "Allows for the construction of illegal upgrades for robots."
