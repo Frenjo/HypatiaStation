@@ -145,10 +145,10 @@ var/last_chew = 0
 /obj/item/handcuffs/cable/white
 	color = COLOR_WHITE
 
-/obj/item/handcuffs/cyborg
+/obj/item/handcuffs/robot
 	dispenser = 1
 
-/obj/item/handcuffs/cyborg/attack(mob/living/carbon/target, mob/user)
+/obj/item/handcuffs/robot/attack(mob/living/carbon/target, mob/user)
 	if(!istype(target))
 		to_chat(user, SPAN_WARNING("You aren't sure how you could handcuff \the [target]..."))
 		return

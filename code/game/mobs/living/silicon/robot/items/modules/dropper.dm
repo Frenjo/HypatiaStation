@@ -1,4 +1,4 @@
-/obj/item/reagent_holder/robodropper
+/obj/item/reagent_holder/robot_dropper
 	name = "industrial dropper"
 	desc = "A larger dropper. Transfers 10 units."
 	icon = 'icons/obj/chemical.dmi'
@@ -9,7 +9,7 @@
 
 	var/filled = 0
 
-/obj/item/reagent_holder/robodropper/afterattack(obj/target, mob/user, flag)
+/obj/item/reagent_holder/robot_dropper/afterattack(obj/target, mob/user, flag)
 	if(!target.reagents)
 		return
 

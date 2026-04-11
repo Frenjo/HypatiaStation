@@ -8,13 +8,13 @@
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/fire_extinguisher/mini,
-		/obj/item/handcuffs/cyborg,
+		/obj/item/handcuffs/robot,
 		/obj/item/melee/baton/loaded,
-		/obj/item/gun/energy/taser/cyborg,
+		/obj/item/gun/energy/taser/robot,
 		/obj/item/taperoll/police,
 		/obj/item/crowbar
 	)
-	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
+	emag_modules = list(/obj/item/gun/energy/laser/robot)
 
 	channels = list(CHANNEL_SECURITY)
 
@@ -34,7 +34,7 @@
 
 /obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/robby)
 	. = ..()
-	var/obj/item/gun/energy/taser/cyborg/taser = locate() in modules
+	var/obj/item/gun/energy/taser/robot/taser = locate() in modules
 	if(isnotnull(taser))
 		if(taser.power_supply.charge < taser.power_supply.maxcharge)
 			taser.power_supply.give(taser.charge_cost)

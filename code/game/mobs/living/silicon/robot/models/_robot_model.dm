@@ -28,8 +28,8 @@
 	var/list/camera_networks = list()
 
 	var/sprite_path = null
-	var/model_select_sprite = null
 	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
+	var/model_select_sprite = null
 
 	var/can_be_pushed = TRUE // Whether this model can be pushed around.
 

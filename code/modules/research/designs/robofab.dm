@@ -146,7 +146,17 @@
 		/decl/material/steel = 12 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS,
 		/decl/material/gold = 1 MATERIAL_SHEET, /decl/material/diamond = 1 MATERIAL_SHEET
 	)
-	build_path = /obj/item/robot_upgrade/tasercooler
+	build_path = /obj/item/robot_upgrade/taser_cooler
+
+/datum/design/robofab/robot_upgrade/disabler_cooler
+	name = "Security Rapid Disabler Cooling Module"
+	desc = "Allows for the construction of rapid disabler cooling modules for security robots."
+	req_tech = alist(/decl/tech/combat = 2, /decl/tech/engineering = 3)
+	materials = alist(
+		/decl/material/steel = 12 MATERIAL_SHEETS, /decl/material/glass = 3 MATERIAL_SHEETS,
+		/decl/material/gold = 1 MATERIAL_SHEET, /decl/material/diamond = 1 MATERIAL_SHEET
+	)
+	build_path = /obj/item/robot_upgrade/disabler_cooler
 
 /datum/design/robofab/robot_upgrade/shield_projector
 	name = "Peacekeeper Shield Projector Module"

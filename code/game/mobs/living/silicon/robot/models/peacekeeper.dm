@@ -8,12 +8,12 @@
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/fire_extinguisher/mini,
-		/obj/item/reagent_holder/borghypo/peace,
+		/obj/item/reagent_holder/robot_hypo/peace,
 		/obj/item/rsf/cookie,
 		/obj/item/harm_alarm,
 		/obj/item/crowbar
 	)
-	emag_modules = list(/obj/item/reagent_holder/spray/polyacid, /obj/item/reagent_holder/borghypo/emagged)
+	emag_modules = list(/obj/item/reagent_holder/spray/polyacid, /obj/item/reagent_holder/robot_hypo/emagged)
 
 	channels = list(CHANNEL_SECURITY)
 

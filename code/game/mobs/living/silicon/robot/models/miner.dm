@@ -11,8 +11,8 @@
 		/obj/item/fire_extinguisher/mini,
 		/obj/item/robot_module/sight/meson,
 		/obj/item/storage/bag/ore,
-		/obj/item/pickaxe/drill/cyborg,
-		/obj/item/storage/bag/sheetsnatcher/borg,
+		/obj/item/pickaxe/drill/robot,
+		/obj/item/storage/bag/sheetsnatcher/robot,
 		/obj/item/welding_torch,
 		/obj/item/crowbar
 	)
@@ -44,10 +44,10 @@
 		new_loc.attack_by(robby.module_state_3, robby)
 
 /obj/item/robot_model/miner/on_emag(mob/living/silicon/robot/robby)
-	var/obj/item/pickaxe/drill/cyborg/drill = locate() in modules // Removes the regular drill.
+	var/obj/item/pickaxe/drill/robot/drill = locate() in modules // Removes the regular drill.
 	qdel(drill)
 	. = ..()
 
 /obj/item/robot_model/miner/on_unemag(mob/living/silicon/robot/robby)
-	modules.Add(new /obj/item/pickaxe/drill/cyborg(src)) // Re-adds the regular drill.
+	modules.Add(new /obj/item/pickaxe/drill/robot(src)) // Re-adds the regular drill.
 	. = ..()

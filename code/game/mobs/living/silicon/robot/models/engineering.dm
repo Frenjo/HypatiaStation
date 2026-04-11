@@ -9,7 +9,7 @@
 		/obj/item/flash,
 		/obj/item/fire_extinguisher,
 		/obj/item/robot_module/sight/meson,
-		/obj/item/rcd/borg,
+		/obj/item/rcd/robot,
 		/obj/item/welding_torch/industrial,
 		/obj/item/screwdriver,
 		/obj/item/wrench,

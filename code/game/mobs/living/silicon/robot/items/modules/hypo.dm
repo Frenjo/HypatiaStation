@@ -1,4 +1,4 @@
-/obj/item/reagent_holder/borghypo
+/obj/item/reagent_holder/robot_hypo
 	name = "robot hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
 	icon = 'icons/obj/items/robot_modules.dmi'
@@ -18,17 +18,17 @@
 	//var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
 	var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "dylovene", "inaprovaline", "spaceacillin")
 
-/obj/item/reagent_holder/borghypo/initialise()
+/obj/item/reagent_holder/robot_hypo/initialise()
 	. = ..()
 	for(var/id in reagent_ids)
 		add_reagent(id)
 	START_PROCESSING(PCobj, src)
 
-/obj/item/reagent_holder/borghypo/Destroy()
+/obj/item/reagent_holder/robot_hypo/Destroy()
 	STOP_PROCESSING(PCobj, src)
 	return ..()
 
-/obj/item/reagent_holder/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
+/obj/item/reagent_holder/robot_hypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
 	charge_tick++
 	if(charge_tick < recharge_time)
 		return 0
@@ -44,15 +44,15 @@
 	//update_icon()
 	return 1
 
-// Use this to add more chemicals for the borghypo to produce.
-/obj/item/reagent_holder/borghypo/proc/add_reagent(reagent_id)
+// Use this to add more chemicals for the robot hypospray to produce.
+/obj/item/reagent_holder/robot_hypo/proc/add_reagent(reagent_id)
 	reagent_ids |= reagent_id
 	var/datum/reagents/holder = new /datum/reagents(30)
 	holder.my_atom = src
 	holder.add_reagent(reagent_id, 30)
 	reagent_list.Add(holder)
 
-/obj/item/reagent_holder/borghypo/attack(mob/M, mob/user)
+/obj/item/reagent_holder/robot_hypo/attack(mob/M, mob/user)
 	var/datum/reagents/R = reagent_list[mode]
 	if(!R.total_volume)
 		to_chat(user, SPAN_WARNING("The injector is empty."))
@@ -69,7 +69,7 @@
 			to_chat(user, SPAN_INFO("[trans] units injected. [R.total_volume] units remaining."))
 	return
 
-/obj/item/reagent_holder/borghypo/attack_self(mob/user)
+/obj/item/reagent_holder/robot_hypo/attack_self(mob/user)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)		//Change the mode
 	mode++
 	if(mode > length(reagent_list))
@@ -80,7 +80,7 @@
 	to_chat(user, SPAN_INFO("Synthesizer is now producing '[R.name]'."))
 	return
 
-/obj/item/reagent_holder/borghypo/get_examine_text(mob/user)
+/obj/item/reagent_holder/robot_hypo/get_examine_text(mob/user)
 	. = ..()
 	if(!in_range(src, user))
 		return
@@ -96,13 +96,13 @@
 		. += SPAN_INFO("It is currently empty. Allow some time for the internal syntheszier to produce more.")
 
 // Peace hypospray
-/obj/item/reagent_holder/borghypo/peace
+/obj/item/reagent_holder/robot_hypo/peace
 	name = "peace hypospray"
 
 	reagent_ids = list("cryptobiolin")
 
 // Emagged (poison) hypospray
-/obj/item/reagent_holder/borghypo/emagged
+/obj/item/reagent_holder/robot_hypo/emagged
 	icon_state = "hypo_s"
 
 	reagent_ids = list("chloralhydrate", "cyanide", "lexorin", "soporific", "toxin")

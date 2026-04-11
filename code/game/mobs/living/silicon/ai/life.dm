@@ -135,20 +135,20 @@
 
 			switch(PRP)
 				if(1)
-					to_chat(src, "APC located. Optimising route to APC to avoid needless power waste.")
+					to_chat(src, SPAN_INFO_B("APC located. Optimising route to APC to avoid needless power waste."))
 				if(2)
-					to_chat(src, "Best route identified. Hacking offline APC power port.")
+					to_chat(src, SPAN_INFO_B("Best route identified. Hacking offline APC power port."))
 				if(3)
-					to_chat(src, "Power port upload access confirmed. Loading control program into APC power port software.")
+					to_chat(src, SPAN_INFO_B("Power port upload access confirmed. Loading control program into APC power port software."))
 				if(4)
-					to_chat(src, "Transfer complete. Forcing APC to execute program.")
+					to_chat(src, SPAN_INFO_B("Transfer complete. Forcing APC to execute program."))
 					sleep(5 SECONDS)
-					to_chat(src, "Receiving control information from APC.")
+					to_chat(src, SPAN_INFO_B("Receiving control information from APC."))
 					sleep(0.2 SECONDS)
 					//bring up APC dialog
 					target_apc.attack_ai(src)
 					aiRestorePowerRoutine = AI_POWER_RESTORATION_FOUND
-					to_chat(src, "Here are your current laws:")
+					to_chat(src, SPAN_INFO("Here are your current laws:"))
 					show_laws()
 			sleep(5 SECONDS)
 			target_apc = null

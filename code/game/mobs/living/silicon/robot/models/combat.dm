@@ -11,14 +11,14 @@
 		/obj/item/flash,
 		/obj/item/fire_extinguisher/mini,
 		/obj/item/robot_module/sight/thermal,
-		/obj/item/gun/energy/laser/cyborg,
+		/obj/item/gun/energy/laser/robot,
 		/obj/item/pickaxe/plasmacutter,
 		/obj/item/robot_module/combat_shield,
 		/obj/item/robot_module/combat_mobility,
 		/obj/item/wrench, // Is a combat android really going to be stopped by a chair?
 		/obj/item/crowbar
 	)
-	emag_modules = list(/obj/item/gun/energy/lasercannon/cyborg)
+	emag_modules = list(/obj/item/gun/energy/lasercannon/robot)
 
 	channels = list(CHANNEL_SECURITY)
 
