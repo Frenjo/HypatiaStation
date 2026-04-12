@@ -737,6 +737,7 @@
 #include "code\game\mobs\living\silicon\robot\items\upgrades\miner.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\peacekeeper.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\security.dm"
+#include "code\game\mobs\living\silicon\robot\items\upgrades\service.dm"
 #include "code\game\mobs\living\silicon\robot\items\upgrades\transform.dm"
 #include "code\game\mobs\living\silicon\robot\models\_robot_model.dm"
 #include "code\game\mobs\living\silicon\robot\models\cargo.dm"
