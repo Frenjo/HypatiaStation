@@ -1,7 +1,7 @@
 /obj/effect/random_spawner
 	name = "random object spawner"
-	icon = 'icons/misc/mark.dmi'
-	icon_state = "rup"
+	icon = 'icons/effects/random_spawners.dmi'
+	icon_state = "questionmark"
 
 	var/list/possible_items = null
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
@@ -24,7 +24,6 @@
 /obj/effect/random_spawner/tool
 	name = "random tool spawner"
 	desc = "This spawns a random tool."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 
 	possible_items = list(
@@ -41,7 +40,6 @@
 /obj/effect/random_spawner/technology_scanner
 	name = "random scanner spawner"
 	desc = "This spawns a random technology scanner."
-	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "atmos"
 
 	possible_items = list(
@@ -54,7 +52,6 @@
 /obj/effect/random_spawner/power_cell
 	name = "random power cell spawner"
 	desc = "This spawns a random power cell."
-	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 
 	possible_items = list(
@@ -69,7 +66,6 @@
 /obj/effect/random_spawner/bomb_supply
 	name = "random bomb supply spawner"
 	desc = "This spawns a random bomb supply."
-	icon = 'icons/obj/items/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 
 	possible_items = list(
@@ -82,8 +78,7 @@
 /obj/effect/random_spawner/toolbox
 	name = "random toolbox spawner"
 	desc = "This spawns a random toolbox."
-	icon = 'icons/obj/storage/toolbox.dmi'
-	icon_state = "red"
+	icon_state = "toolbox"
 
 	possible_items = list(
 		/obj/item/storage/toolbox/mechanical = 3,
@@ -95,8 +90,7 @@
 /obj/effect/random_spawner/tech_supply
 	name = "random tech supply spawner"
 	desc = "This spawns a random technology supply."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon_state = "coil"
 
 	possible_items = list(
 		/obj/effect/random_spawner/tool = 5,
@@ -116,7 +110,6 @@
 /obj/effect/random_spawner/internals_mask
 	name = "random internals mask spawner"
 	desc = "This spawns a random internals mask."
-	icon = 'icons/obj/items/clothing/masks.dmi'
 	icon_state = "breath"
 
 	possible_items = list(
@@ -127,3 +120,16 @@
 		/obj/item/clothing/mask/gas/clown_hat = 4,
 		/obj/item/clothing/mask/gas/mime = 4
 	)
+
+// Grille
+/obj/effect/random_spawner/grille
+	name = "grille spawner"
+	desc = "This spawns a random grille, broken grille, or nothing."
+	icon_state = "grille"
+
+	// 80% regular grille, 10% broken grille, 10% nothing.
+	possible_items = list(
+		/obj/structure/grille = 8,
+		/obj/structure/grille/broken = 1
+	)
+	spawn_nothing_percentage = 10

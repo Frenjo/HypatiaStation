@@ -8894,14 +8894,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/starboard)
-"dds" = (
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "ddz" = (
 /obj/machinery/light,
 /obj/machinery/fire_alarm{
@@ -25555,7 +25547,7 @@
 /area/station/research/toxins/test_area)
 "iPo" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/effect/random_spawner/grille,
 /turf/space,
 /area/space)
 "iPr" = (
@@ -34934,12 +34926,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
-"mjy" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "mjz" = (
 /obj/structure/closet/bomb_suit/security,
 /obj/effect/decal/floor/coloured/red{
@@ -65414,8 +65400,8 @@
 /area/station/medical/cloning)
 "wXs" = (
 /obj/structure/lattice,
-/obj/structure/grille,
 /obj/structure/lattice,
+/obj/effect/random_spawner/grille,
 /turf/space,
 /area/space)
 "wXF" = (
@@ -65906,7 +65892,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "xfr" = (
-/obj/structure/grille,
+/obj/effect/random_spawner/grille,
 /turf/space,
 /area/space)
 "xfH" = (
@@ -83396,19 +83382,19 @@ ciU
 ciU
 xfr
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-dds
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 eMU
 ciU
 wHV
@@ -83665,7 +83651,7 @@ eMU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 wHV
@@ -83922,7 +83908,7 @@ rnO
 dZn
 ivx
 eMU
-crA
+iPo
 ciU
 ciU
 wHV
@@ -84165,7 +84151,7 @@ ciU
 pcX
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 gQK
@@ -84422,7 +84408,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 gQK
@@ -84935,7 +84921,7 @@ ciU
 ciU
 xfr
 xfr
-crA
+iPo
 ciU
 ciU
 rnO
@@ -85447,7 +85433,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bxw
 mCG
@@ -85794,7 +85780,7 @@ ciU
 ciU
 xfr
 xfr
-crA
+iPo
 xfr
 xfr
 ciU
@@ -85962,8 +85948,8 @@ rDd
 rDd
 ciU
 xfr
-dds
-crA
+iPo
+iPo
 ciU
 eMU
 rnO
@@ -86306,11 +86292,11 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 sxn
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -86478,7 +86464,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 xWS
@@ -86561,7 +86547,7 @@ xfr
 xfr
 xfr
 xfr
-crA
+iPo
 eMU
 eMU
 ciU
@@ -86569,10 +86555,10 @@ sLh
 ciU
 eMU
 ciU
-crA
-crA
-dds
-crA
+iPo
+iPo
+iPo
+iPo
 xfr
 ciU
 ciU
@@ -86735,7 +86721,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 xWS
@@ -87006,7 +86992,7 @@ rnO
 cAx
 ivx
 eMU
-crA
+iPo
 ciU
 ciU
 qdV
@@ -87087,7 +87073,7 @@ ajh
 ajh
 ajh
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -87263,7 +87249,7 @@ eMU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 qdV
@@ -87328,7 +87314,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bSs
 ooA
@@ -87508,19 +87494,19 @@ ciU
 ciU
 xfr
 xfr
-crA
-crA
-crA
-dds
-crA
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 ciU
 ciU
 xdq
@@ -87585,7 +87571,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 xsC
 xsC
@@ -87858,7 +87844,7 @@ ciU
 ciU
 ciU
 ciU
-dds
+iPo
 ciU
 ciU
 ciU
@@ -88099,7 +88085,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 fpB
 fpB
@@ -88115,7 +88101,7 @@ ajh
 ajh
 ajh
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -88356,7 +88342,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bSs
 ooA
@@ -88372,7 +88358,7 @@ eDC
 eDC
 wyi
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -88613,7 +88599,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 xsC
 xsC
@@ -88629,7 +88615,7 @@ vtD
 vtD
 vtD
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -88870,7 +88856,7 @@ ciU
 ciU
 ciU
 ciU
-dds
+iPo
 ciU
 ciU
 ciU
@@ -88886,7 +88872,7 @@ ciU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -89127,7 +89113,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 fpB
 fpB
@@ -89384,7 +89370,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bSs
 ooA
@@ -89400,7 +89386,7 @@ eDC
 eDC
 wyi
 eMU
-crA
+iPo
 eMU
 eMU
 ciU
@@ -89641,7 +89627,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 xsC
 xsC
@@ -89657,7 +89643,7 @@ vtD
 vtD
 vtD
 eMU
-crA
+iPo
 eMU
 eMU
 eMU
@@ -90157,7 +90143,7 @@ ciU
 ciU
 xfr
 xfr
-mjy
+wXs
 eMU
 ciU
 eMU
@@ -90169,8 +90155,8 @@ eMU
 eMU
 eMU
 eMU
-crA
-crA
+iPo
+iPo
 wXs
 ciU
 ciU
@@ -108324,17 +108310,17 @@ ciU
 ciU
 ciU
 ciU
-crA
-dds
-crA
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
+iPo
 xfr
 xfr
 xfr
@@ -108581,7 +108567,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 eMU
 eMU
@@ -108838,7 +108824,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 pAJ
 duj
@@ -108852,7 +108838,7 @@ pAJ
 duj
 kNe
 eMU
-crA
+iPo
 eMU
 ciU
 eMU
@@ -109095,7 +109081,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 dCV
@@ -109352,7 +109338,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 dCV
@@ -109863,9 +109849,9 @@ ciU
 ciU
 ciU
 ciU
-crA
-crA
-crA
+iPo
+iPo
+iPo
 ciU
 ciU
 pAJ
@@ -110120,7 +110106,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 eMU
 ciU
@@ -110377,7 +110363,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 cTl
 mSH
@@ -110892,8 +110878,8 @@ ciU
 ciU
 ciU
 xfr
-dds
-crA
+iPo
+iPo
 ciU
 eMU
 pAJ
@@ -111408,7 +111394,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 fDV
@@ -111665,7 +111651,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 fDV
@@ -111936,7 +111922,7 @@ pAJ
 hEi
 kNe
 eMU
-crA
+iPo
 eMU
 eMU
 eMU
@@ -112193,7 +112179,7 @@ eMU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -112438,19 +112424,19 @@ ciU
 ciU
 xfr
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-dds
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 ciU
 ciU
 ciU
@@ -118425,7 +118411,7 @@ wYQ
 xxe
 nup
 ciU
-iPo
+eMU
 ciU
 rdf
 oov

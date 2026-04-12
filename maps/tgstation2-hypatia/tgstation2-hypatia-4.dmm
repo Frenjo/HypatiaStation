@@ -3490,6 +3490,10 @@
 /obj/structure/window/basic,
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/derelict/arrival)
+"My" = (
+/obj/effect/random_spawner/grille,
+/turf/open/floor/plating/metal/airless,
+/area/space)
 "Mz" = (
 /obj/machinery/light{
 	dir = 4
@@ -3995,6 +3999,10 @@
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/djstation/solars)
+"Sx" = (
+/obj/effect/random_spawner/grille,
+/turf/space,
+/area/space)
 "Sy" = (
 /obj/machinery/atmospherics/trinary/filter{
 	dir = 1;
@@ -15384,8 +15392,8 @@ vr
 vr
 vr
 vr
-jK
-jK
+Sx
+Sx
 vr
 Bf
 Bf
@@ -15642,8 +15650,8 @@ Bf
 Bf
 vr
 vr
-jK
-jK
+Sx
+Sx
 vr
 Bf
 Bf
@@ -15900,8 +15908,8 @@ Bf
 Bf
 vr
 vr
-jK
-jK
+Sx
+Sx
 Bf
 Bf
 Bf
@@ -16158,7 +16166,7 @@ Bf
 Bf
 vr
 vr
-jK
+Sx
 Bf
 Bf
 Bf
@@ -16415,7 +16423,7 @@ Bf
 Bf
 Bf
 vr
-jK
+Sx
 Bf
 Bf
 Bf
@@ -16672,7 +16680,7 @@ Bf
 Bf
 Bf
 Bf
-jK
+Sx
 Bf
 Bf
 Bf
@@ -16927,9 +16935,9 @@ Bf
 Bf
 Bf
 Bf
-jK
-jK
-jK
+Sx
+Sx
+Sx
 Bf
 Bf
 Bf
@@ -17183,8 +17191,8 @@ Bf
 Bf
 Bf
 Bf
-jK
-jK
+Sx
+Sx
 Bf
 Bf
 Bf
@@ -17440,7 +17448,7 @@ Bf
 Bf
 Bf
 Bf
-jK
+Sx
 Bf
 Bf
 Bf
@@ -46832,17 +46840,17 @@ Bf
 Bf
 Bf
 vI
-lB
-lB
-lB
-lB
-lB
-lB
+My
+My
+My
+My
+My
+My
 Bf
-lB
-lB
-lB
-lB
+My
+My
+My
+My
 Bf
 Bf
 Bf
@@ -47099,7 +47107,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -47356,7 +47364,7 @@ Pp
 II
 Kw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -47613,7 +47621,7 @@ Pp
 De
 Kw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -47870,7 +47878,7 @@ Pp
 De
 Kw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -48127,7 +48135,7 @@ Bf
 zg
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -48384,7 +48392,7 @@ Ah
 rD
 Ah
 zf
-lB
+My
 Bf
 Bf
 Bf
@@ -48898,7 +48906,7 @@ Pp
 BT
 Kw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -49155,7 +49163,7 @@ Pp
 BT
 Kw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -49916,16 +49924,16 @@ vG
 vG
 vG
 vG
-lB
-lB
-lB
-lB
+My
+My
+My
+My
 rW
-lB
-lB
+My
+My
 rW
 rW
-lB
+My
 rW
 Bf
 Bf
@@ -53948,7 +53956,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -53960,7 +53968,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 lB
 lB
@@ -54205,7 +54213,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Io
 Io
@@ -54217,7 +54225,7 @@ Io
 Io
 Io
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -54462,7 +54470,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Yn
 Vb
@@ -54474,7 +54482,7 @@ au
 au
 Vw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -54719,7 +54727,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 HB
 HB
@@ -54731,7 +54739,7 @@ HB
 HB
 HB
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -54976,7 +54984,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -54988,7 +54996,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -55233,7 +55241,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Io
 Io
@@ -55245,7 +55253,7 @@ Io
 Io
 Io
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -55490,7 +55498,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Yn
 Vb
@@ -55502,7 +55510,7 @@ au
 au
 Vw
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -55747,7 +55755,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 HB
 HB
@@ -55759,7 +55767,7 @@ HB
 HB
 HB
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -56004,7 +56012,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -56016,7 +56024,7 @@ Bf
 Bf
 Bf
 Bf
-lB
+My
 Bf
 Bf
 Bf
@@ -56261,19 +56269,19 @@ Bf
 Bf
 Bf
 Bf
-lB
-lB
-lB
-lB
-lB
-lB
-lB
-lB
-lB
-lB
-lB
-lB
-lB
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
 Bf
 Bf
 Bf

@@ -212,3 +212,8 @@
 			health -= 1
 			healthcheck()
 	..()
+
+/obj/structure/grille/broken
+	icon_state = "brokengrille"
+	density = FALSE
+	destroyed = TRUE
