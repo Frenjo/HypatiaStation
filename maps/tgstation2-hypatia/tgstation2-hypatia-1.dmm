@@ -1196,7 +1196,6 @@
 	dir = 1;
 	network = list("SS13","Research")
 	},
-/obj/item/clothing/glasses/welding/superior,
 /obj/item/folder/white,
 /obj/item/clothing/glasses/welding/superior,
 /obj/effect/decal/floor/industrial/warning/corner,
@@ -3923,6 +3922,7 @@
 	pixel_y = 30
 	},
 /obj/effect/decal/floor/coloured/light_yellow/full,
+/obj/item/stack/sheet/plasma,
 /turf/open/floor/tiled/white,
 /area/station/medical/chemistry)
 "bvJ" = (
@@ -6045,9 +6045,6 @@
 "cdl" = (
 /obj/structure/table,
 /obj/item/crowbar,
-/obj/item/radio/headset/sci{
-	pixel_x = -3
-	},
 /obj/item/multitool{
 	pixel_x = 3
 	},
@@ -8894,14 +8891,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/starboard)
-"dds" = (
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "ddz" = (
 /obj/machinery/light,
 /obj/machinery/fire_alarm{
@@ -14989,14 +14978,11 @@
 /turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/engineering/station)
 "fnC" = (
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 4
 	},
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "fnI" = (
@@ -20523,10 +20509,7 @@
 /area/station/hallway/primary/fore)
 "hhy" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
+/obj/item/storage/firstaid/purple,
 /turf/open/floor{
 	icon_state = "whitecorner"
 	},
@@ -25555,7 +25538,7 @@
 /area/station/research/toxins/test_area)
 "iPo" = (
 /obj/structure/lattice,
-/obj/structure/grille,
+/obj/effect/random_spawner/grille,
 /turf/space,
 /area/space)
 "iPr" = (
@@ -28970,6 +28953,8 @@
 /obj/effect/decal/floor/coloured/light_red/corner{
 	dir = 4
 	},
+/obj/item/radio/headset/robo,
+/obj/item/radio/headset/robo,
 /turf/open/floor/tiled/white,
 /area/station/research/robotics/lab)
 "kgd" = (
@@ -34934,12 +34919,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/security/brig)
-"mjy" = (
-/obj/structure/grille,
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "mjz" = (
 /obj/structure/closet/bomb_suit/security,
 /obj/effect/decal/floor/coloured/red{
@@ -37522,8 +37501,7 @@
 /area/station/medical/surgery/two)
 "ncR" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen";
-	opened = 1
+	name = "inflatable barrier crate"
 	},
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
@@ -39143,7 +39121,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "nEz" = (
-/obj/structure/grille,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -39153,6 +39130,7 @@
 	icon_state = "pipe-j2s";
 	sortType = 2
 	},
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "nFb" = (
@@ -42027,9 +42005,7 @@
 "oGH" = (
 /obj/structure/table,
 /obj/item/stack/sheet/steel{
-	amount = 50;
-	pixel_x = 2;
-	pixel_y = 2
+	amount = 50
 	},
 /obj/item/wrench,
 /turf/open/floor/tiled/grey,
@@ -49234,25 +49210,25 @@
 	},
 /area/station/engineering/foyer)
 "rfR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/closet/crate{
-	icon_state = "crateopen";
-	opened = 1
-	},
-/obj/item/storage/briefcase/inflatable,
-/obj/item/storage/briefcase/inflatable,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/closet/crate{
+	name = "inflatable barrier crate"
+	},
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage)
 "rfU" = (
@@ -54197,9 +54173,6 @@
 /area/station/security/brig)
 "sRl" = (
 /obj/structure/table,
-/obj/item/stack/sheet/plasma{
-	layer = 2.9
-	},
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/dylovene{
@@ -56925,7 +56898,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/bridge)
 "tTZ" = (
-/obj/structure/grille,
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "tUa" = (
@@ -60171,9 +60144,9 @@
 /area/station/cargo/office)
 "vek" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen";
-	opened = 1
+	name = "inflatable barrier crate"
 	},
+/obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/tiled/grey,
@@ -60931,10 +60904,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "vtd" = (
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "vtv" = (
@@ -64834,14 +64804,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "wNv" = (
@@ -65414,8 +65381,8 @@
 /area/station/medical/cloning)
 "wXs" = (
 /obj/structure/lattice,
-/obj/structure/grille,
 /obj/structure/lattice,
+/obj/effect/random_spawner/grille,
 /turf/space,
 /area/space)
 "wXF" = (
@@ -65906,7 +65873,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "xfr" = (
-/obj/structure/grille,
+/obj/effect/random_spawner/grille,
 /turf/space,
 /area/space)
 "xfH" = (
@@ -83396,19 +83363,19 @@ ciU
 ciU
 xfr
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-dds
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 eMU
 ciU
 wHV
@@ -83665,7 +83632,7 @@ eMU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 wHV
@@ -83922,7 +83889,7 @@ rnO
 dZn
 ivx
 eMU
-crA
+iPo
 ciU
 ciU
 wHV
@@ -84165,7 +84132,7 @@ ciU
 pcX
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 gQK
@@ -84422,7 +84389,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 gQK
@@ -84935,7 +84902,7 @@ ciU
 ciU
 xfr
 xfr
-crA
+iPo
 ciU
 ciU
 rnO
@@ -85447,7 +85414,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bxw
 mCG
@@ -85794,7 +85761,7 @@ ciU
 ciU
 xfr
 xfr
-crA
+iPo
 xfr
 xfr
 ciU
@@ -85962,8 +85929,8 @@ rDd
 rDd
 ciU
 xfr
-dds
-crA
+iPo
+iPo
 ciU
 eMU
 rnO
@@ -86306,11 +86273,11 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 sxn
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -86478,7 +86445,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 xWS
@@ -86561,7 +86528,7 @@ xfr
 xfr
 xfr
 xfr
-crA
+iPo
 eMU
 eMU
 ciU
@@ -86569,10 +86536,10 @@ sLh
 ciU
 eMU
 ciU
-crA
-crA
-dds
-crA
+iPo
+iPo
+iPo
+iPo
 xfr
 ciU
 ciU
@@ -86735,7 +86702,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 rnO
 xWS
@@ -87006,7 +86973,7 @@ rnO
 cAx
 ivx
 eMU
-crA
+iPo
 ciU
 ciU
 qdV
@@ -87087,7 +87054,7 @@ ajh
 ajh
 ajh
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -87263,7 +87230,7 @@ eMU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 qdV
@@ -87328,7 +87295,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bSs
 ooA
@@ -87508,19 +87475,19 @@ ciU
 ciU
 xfr
 xfr
-crA
-crA
-crA
-dds
-crA
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 ciU
 ciU
 xdq
@@ -87585,7 +87552,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 xsC
 xsC
@@ -87858,7 +87825,7 @@ ciU
 ciU
 ciU
 ciU
-dds
+iPo
 ciU
 ciU
 ciU
@@ -88099,7 +88066,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 fpB
 fpB
@@ -88115,7 +88082,7 @@ ajh
 ajh
 ajh
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -88356,7 +88323,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bSs
 ooA
@@ -88372,7 +88339,7 @@ eDC
 eDC
 wyi
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -88613,7 +88580,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 xsC
 xsC
@@ -88629,7 +88596,7 @@ vtD
 vtD
 vtD
 eMU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -88870,7 +88837,7 @@ ciU
 ciU
 ciU
 ciU
-dds
+iPo
 ciU
 ciU
 ciU
@@ -88886,7 +88853,7 @@ ciU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -89127,7 +89094,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 fpB
 fpB
@@ -89384,7 +89351,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 bSs
 ooA
@@ -89400,7 +89367,7 @@ eDC
 eDC
 wyi
 eMU
-crA
+iPo
 eMU
 eMU
 ciU
@@ -89641,7 +89608,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 xsC
 xsC
@@ -89657,7 +89624,7 @@ vtD
 vtD
 vtD
 eMU
-crA
+iPo
 eMU
 eMU
 eMU
@@ -90157,7 +90124,7 @@ ciU
 ciU
 xfr
 xfr
-mjy
+wXs
 eMU
 ciU
 eMU
@@ -90169,8 +90136,8 @@ eMU
 eMU
 eMU
 eMU
-crA
-crA
+iPo
+iPo
 wXs
 ciU
 ciU
@@ -108324,17 +108291,17 @@ ciU
 ciU
 ciU
 ciU
-crA
-dds
-crA
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
+iPo
 xfr
 xfr
 xfr
@@ -108581,7 +108548,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 eMU
 eMU
@@ -108838,7 +108805,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 pAJ
 duj
@@ -108852,7 +108819,7 @@ pAJ
 duj
 kNe
 eMU
-crA
+iPo
 eMU
 ciU
 eMU
@@ -109095,7 +109062,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 dCV
@@ -109352,7 +109319,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 dCV
@@ -109863,9 +109830,9 @@ ciU
 ciU
 ciU
 ciU
-crA
-crA
-crA
+iPo
+iPo
+iPo
 ciU
 ciU
 pAJ
@@ -110120,7 +110087,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 ciU
 eMU
 ciU
@@ -110377,7 +110344,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 cTl
 mSH
@@ -110892,8 +110859,8 @@ ciU
 ciU
 ciU
 xfr
-dds
-crA
+iPo
+iPo
 ciU
 eMU
 pAJ
@@ -111408,7 +111375,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 fDV
@@ -111665,7 +111632,7 @@ ciU
 ciU
 ciU
 ciU
-crA
+iPo
 eMU
 pAJ
 fDV
@@ -111936,7 +111903,7 @@ pAJ
 hEi
 kNe
 eMU
-crA
+iPo
 eMU
 eMU
 eMU
@@ -112193,7 +112160,7 @@ eMU
 eMU
 ciU
 ciU
-crA
+iPo
 ciU
 ciU
 ciU
@@ -112438,19 +112405,19 @@ ciU
 ciU
 xfr
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-crA
+iPo
+iPo
+iPo
 xfr
-crA
-crA
-dds
-crA
-crA
+iPo
+iPo
+iPo
+iPo
+iPo
 ciU
 ciU
 ciU
@@ -117143,17 +117110,17 @@ hgb
 eMU
 ciU
 ciU
-ciU
-ciU
 eMU
 ciU
 ciU
+ciU
+eMU
 wwU
+ciU
+ciU
 eMU
 ciU
 ciU
-ciU
-eMU
 ciU
 pcX
 ciU
@@ -117400,8 +117367,6 @@ ciU
 eMU
 eMU
 ciU
-ciU
-ciU
 eMU
 ciU
 ciU
@@ -117411,6 +117376,8 @@ ciU
 ciU
 ciU
 eMU
+ciU
+ciU
 ciU
 ciU
 ciU
@@ -118425,7 +118392,7 @@ wYQ
 xxe
 nup
 ciU
-iPo
+eMU
 ciU
 rdf
 oov

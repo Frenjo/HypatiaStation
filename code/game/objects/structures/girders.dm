@@ -146,11 +146,13 @@
 	return
 
 /obj/structure/girder/displaced
+	name = "displaced girder"
 	icon_state = "displaced"
 	anchored = FALSE
 	health = 50
 
 /obj/structure/girder/reinforced
+	name = "reinforced girder"
 	icon_state = "reinforced"
 	state = 2
 	health = 500
