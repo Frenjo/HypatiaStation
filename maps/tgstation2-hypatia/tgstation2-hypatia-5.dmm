@@ -6625,14 +6625,11 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
 /obj/item/shard{
 	icon_state = "small"
 	},
 /obj/item/stack/rods,
+/obj/structure/grille/broken,
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/mining_outpost)
 "Dy" = (
@@ -11091,12 +11088,9 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
 /obj/item/stack/rods,
 /obj/item/shard,
+/obj/structure/grille/broken,
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "YY" = (

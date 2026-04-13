@@ -3923,6 +3923,7 @@
 	pixel_y = 30
 	},
 /obj/effect/decal/floor/coloured/light_yellow/full,
+/obj/item/stack/sheet/plasma,
 /turf/open/floor/tiled/white,
 /area/station/medical/chemistry)
 "bvJ" = (
@@ -14981,14 +14982,11 @@
 /turf/closed/wall/shuttle/corner/exterior/white/nw,
 /area/shuttle/engineering/station)
 "fnC" = (
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 4
 	},
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "fnI" = (
@@ -39129,7 +39127,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "nEz" = (
-/obj/structure/grille,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -39139,6 +39136,7 @@
 	icon_state = "pipe-j2s";
 	sortType = 2
 	},
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "nFb" = (
@@ -42013,9 +42011,7 @@
 "oGH" = (
 /obj/structure/table,
 /obj/item/stack/sheet/steel{
-	amount = 50;
-	pixel_x = 2;
-	pixel_y = 2
+	amount = 50
 	},
 /obj/item/wrench,
 /turf/open/floor/tiled/grey,
@@ -54183,9 +54179,6 @@
 /area/station/security/brig)
 "sRl" = (
 /obj/structure/table,
-/obj/item/stack/sheet/plasma{
-	layer = 2.9
-	},
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/inaprovaline,
 /obj/item/reagent_holder/glass/bottle/dylovene{
@@ -56911,7 +56904,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/command/bridge)
 "tTZ" = (
-/obj/structure/grille,
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "tUa" = (
@@ -60917,10 +60910,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "vtd" = (
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "vtv" = (
@@ -64820,14 +64810,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/grille{
-	density = FALSE;
-	icon_state = "brokengrille"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/effect/random_spawner/grille,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "wNv" = (
