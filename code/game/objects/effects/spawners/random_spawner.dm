@@ -90,7 +90,7 @@
 /obj/effect/random_spawner/tech_supply
 	name = "random tech supply spawner"
 	desc = "This spawns a random technology supply."
-	icon_state = "coil"
+	icon_state = "wrap"
 
 	possible_items = list(
 		/obj/effect/random_spawner/tool = 5,

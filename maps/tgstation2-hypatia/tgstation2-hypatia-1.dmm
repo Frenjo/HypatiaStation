@@ -1196,7 +1196,6 @@
 	dir = 1;
 	network = list("SS13","Research")
 	},
-/obj/item/clothing/glasses/welding/superior,
 /obj/item/folder/white,
 /obj/item/clothing/glasses/welding/superior,
 /obj/effect/decal/floor/industrial/warning/corner,
@@ -6046,9 +6045,6 @@
 "cdl" = (
 /obj/structure/table,
 /obj/item/crowbar,
-/obj/item/radio/headset/sci{
-	pixel_x = -3
-	},
 /obj/item/multitool{
 	pixel_x = 3
 	},
@@ -20513,10 +20509,7 @@
 /area/station/hallway/primary/fore)
 "hhy" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
+/obj/item/storage/firstaid/purple,
 /turf/open/floor{
 	icon_state = "whitecorner"
 	},
@@ -28960,6 +28953,8 @@
 /obj/effect/decal/floor/coloured/light_red/corner{
 	dir = 4
 	},
+/obj/item/radio/headset/robo,
+/obj/item/radio/headset/robo,
 /turf/open/floor/tiled/white,
 /area/station/research/robotics/lab)
 "kgd" = (
@@ -37506,8 +37501,7 @@
 /area/station/medical/surgery/two)
 "ncR" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen";
-	opened = 1
+	name = "inflatable barrier crate"
 	},
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
@@ -49216,25 +49210,25 @@
 	},
 /area/station/engineering/foyer)
 "rfR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/closet/crate{
-	icon_state = "crateopen";
-	opened = 1
-	},
-/obj/item/storage/briefcase/inflatable,
-/obj/item/storage/briefcase/inflatable,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/closet/crate{
+	name = "inflatable barrier crate"
+	},
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage)
 "rfU" = (
@@ -60150,9 +60144,9 @@
 /area/station/cargo/office)
 "vek" = (
 /obj/structure/closet/crate{
-	icon_state = "crateopen";
-	opened = 1
+	name = "inflatable barrier crate"
 	},
+/obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/tiled/grey,
@@ -117116,17 +117110,17 @@ hgb
 eMU
 ciU
 ciU
-ciU
-ciU
 eMU
 ciU
 ciU
+ciU
+eMU
 wwU
+ciU
+ciU
 eMU
 ciU
 ciU
-ciU
-eMU
 ciU
 pcX
 ciU
@@ -117373,8 +117367,6 @@ ciU
 eMU
 eMU
 ciU
-ciU
-ciU
 eMU
 ciU
 ciU
@@ -117384,6 +117376,8 @@ ciU
 ciU
 ciU
 eMU
+ciU
+ciU
 ciU
 ciU
 ciU
