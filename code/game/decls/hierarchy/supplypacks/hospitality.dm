@@ -1,7 +1,6 @@
 /decl/hierarchy/supply_pack/hospitality
 	name = "Hospitality"
 
-
 /decl/hierarchy/supply_pack/hospitality/party
 	name = "Party equipment"
 	contains = list(
@@ -22,7 +21,6 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "party equipment crate"
-
 
 /decl/hierarchy/supply_pack/hospitality/pizza
 	num_contained = 5

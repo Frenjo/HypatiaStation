@@ -1,14 +1,12 @@
 /decl/hierarchy/supply_pack/operations
 	name = "Operations"
 
-
 /decl/hierarchy/supply_pack/operations/mule
 	name = "MULEbot Crate"
 	contains = list(/obj/machinery/bot/mulebot)
 	cost = 20
 	containertype = /obj/structure/largecrate/mule
 	containername = "MULEbot crate"
-
 
 // Ported hoverpod from NSS Eternal. -Frenjo
 /decl/hierarchy/supply_pack/operations/hoverpod
@@ -17,7 +15,6 @@
 	cost = 80
 	containertype = /obj/structure/largecrate/hoverpod
 	containername = "hoverpod crate"
-
 
 /decl/hierarchy/supply_pack/operations/artscrafts
 	name = "Arts and Crafts supplies"
@@ -44,7 +41,6 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "arts and crafts crate"
-
 
 /decl/hierarchy/supply_pack/operations/contraband
 	name = "Contraband crate"
