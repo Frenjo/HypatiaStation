@@ -228,7 +228,7 @@ datum
 							T.remove_overlay(T.wet_overlay)
 							T.wet_overlay = null
 
-				for(var/mob/living/carbon/slime/M in T)
+				for(var/mob/living/simple/slime/M in T)
 					M.adjustToxLoss(rand(15,20))
 
 				var/hotspot = (locate(/obj/fire) in T)
@@ -352,7 +352,7 @@ datum
 						W.reset_plane_and_layer()
 						W.forceMove(M.loc)
 						W.dropped(M)
-					var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
+					var/mob/living/simple/slime/new_mob = new /mob/living/simple/slime(M.loc)
 					new_mob.a_intent = INTENT_HARM
 					new_mob.universal_speak = 1
 					if(M.mind)
@@ -947,7 +947,7 @@ datum
 						src.reaction_obj(C, volume)
 						del(C)
 
-					for(var/mob/living/carbon/slime/M in T)
+					for(var/mob/living/simple/slime/M in T)
 						M.adjustToxLoss(rand(5,10))
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -2143,7 +2143,7 @@ datum
 				return
 
 			reaction_turf(var/turf/open/T, var/volume)
-				for(var/mob/living/carbon/slime/M in T)
+				for(var/mob/living/simple/slime/M in T)
 					M.adjustToxLoss(rand(15,30))
 
 		sodiumchloride

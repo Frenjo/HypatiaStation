@@ -1,30 +1,33 @@
-/mob/living/carbon/slime
+/mob/living/simple/slime
 	name = "baby slime"
 	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey baby slime"
-	pass_flags = PASS_FLAG_TABLE
-	speak_emote = list("hums")
+	icon_living = "grey baby slime"
+	icon_dead = "grey baby slime dead"
 
-	layer = 5
+	pass_flags = PASS_FLAG_TABLE
+	speak_emote = list("hums", "chirps")
 
 	maxHealth = 150
 	health = 150
 	gender = NEUTER
 
-	update_icon = 0
-	nutrition = 700 // 1000 = max
+	response_help = "pets"
+	response_disarm = "shoos"
+	response_harm = "stomps on"
+
+	emote_see = list("jiggles", "bounces in place")
 
 	see_in_dark = 8
 	update_slimes = 0
 
-	// canstun and canweaken don't affect slimes because they ignore stun and weakened variables
-	// for the sake of cleanliness, though, here they are.
-	status_flags = CANPARALYSE | CANPUSH
-
 	mob_swap_flags = MONKEY | SLIME | SIMPLE_ANIMAL
 	mob_push_flags = MONKEY | SLIME | SIMPLE_ANIMAL
 
+	var/nutrition = 700 // 1000 = max
+
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
+	var/core_op_stage = 0
 
 	var/powerlevel = 0 	// 1-10 controls how much electricity they are generating
 	var/amount_grown = 0 // controls how long the slime has been overfed, if 10, grows into an adult
@@ -43,17 +46,16 @@
 	// slimes pass on genetic data, so all their offspring have the same "Friends",
 
 	///////////TIME FOR SUBSPECIES
-
 	var/colour = "grey"
-	var/primarytype = /mob/living/carbon/slime
-	var/mutationone = /mob/living/carbon/slime/orange
-	var/mutationtwo = /mob/living/carbon/slime/metal
-	var/mutationthree = /mob/living/carbon/slime/blue
-	var/mutationfour = /mob/living/carbon/slime/purple
-	var/adulttype = /mob/living/carbon/slime/adult
+	var/primarytype = /mob/living/simple/slime
+	var/mutationone = /mob/living/simple/slime/orange
+	var/mutationtwo = /mob/living/simple/slime/metal
+	var/mutationthree = /mob/living/simple/slime/blue
+	var/mutationfour = /mob/living/simple/slime/purple
+	var/adulttype = /mob/living/simple/slime/adult
 	var/coretype = /obj/item/slime_extract/grey
 
-/mob/living/carbon/slime/New()
+/mob/living/simple/slime/New()
 	create_reagents(100)
 	if(name == "baby slime")
 		name = "[colour] baby slime ([rand(1, 1000)])"
@@ -65,7 +67,7 @@
 		to_chat(src, SPAN_INFO("Your icons have been generated!"))
 	. = ..()
 
-/mob/living/carbon/slime/movement_delay()
+/mob/living/simple/slime/movement_delay()
 	. = ..()
 
 	var/health_deficiency = (100 - health)
@@ -89,10 +91,10 @@
 
 	. += CONFIG_GET(/decl/configuration_entry/slime_delay)
 
-/mob/living/carbon/slime/Process_Spacemove()
+/mob/living/simple/slime/Process_Spacemove()
 	return 2
 
-/mob/living/carbon/slime/Stat()
+/mob/living/simple/slime/Stat()
 	. = ..()
 	statpanel(PANEL_STATUS)
 	stat(null, "Health: [round((health / maxHealth) * 100)]%")
@@ -102,21 +104,21 @@
 			stat(null, "You can [isslimeadult(src) ? "reproduce" : "evolve"]!")
 		stat(null,"Power Level: [powerlevel]")
 
-/mob/living/carbon/slime/adjustFireLoss(amount)
+/mob/living/simple/slime/adjustFireLoss(amount)
 	..(-abs(amount)) // Heals them
 	return
 
-/mob/living/carbon/slime/bullet_act(obj/projectile/Proj)
+/mob/living/simple/slime/bullet_act(obj/projectile/Proj)
 	attacked += 10
 	..(Proj)
 	return 0
 
 
-/mob/living/carbon/slime/emp_act(severity)
+/mob/living/simple/slime/emp_act(severity)
 	powerlevel = 0 // oh no, the power!
 	..()
 
-/mob/living/carbon/slime/ex_act(severity)
+/mob/living/simple/slime/ex_act(severity)
 	if(stat == DEAD && client)
 		return
 
@@ -146,7 +148,7 @@
 	updatehealth()
 
 
-/mob/living/carbon/slime/blob_act()
+/mob/living/simple/slime/blob_act()
 	if(stat == DEAD)
 		return
 	var/shielded = 0
@@ -168,14 +170,14 @@
 	return
 
 
-/mob/living/carbon/slime/u_equip(obj/item/W)
+/mob/living/simple/slime/u_equip(obj/item/W)
 	return
 
 
-/mob/living/carbon/slime/attack_ui(slot)
+/mob/living/simple/slime/attack_ui(slot)
 	return
 
-/mob/living/carbon/slime/meteorhit(obj/O)
+/mob/living/simple/slime/meteorhit(obj/O)
 	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if(health > 0)
 		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
@@ -185,7 +187,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_slime(mob/living/carbon/slime/M)
+/mob/living/simple/slime/attack_slime(mob/living/simple/slime/M)
 	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -209,7 +211,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_animal(mob/living/M)
+/mob/living/simple/slime/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -234,7 +236,7 @@
 				adjustHalLoss(damage)
 		updatehealth()
 
-/mob/living/carbon/slime/attack_paw(mob/living/carbon/monkey/M)
+/mob/living/simple/slime/attack_paw(mob/living/carbon/monkey/M)
 	if(!ismonkey(M))
 		return//Fix for aliens receiving double messages when attacking other aliens.
 
@@ -244,23 +246,17 @@
 
 	..()
 
-	switch(M.a_intent)
-
-		if(INTENT_HELP)
-			help_shake_act(M)
-		else
-			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
-				return
-			if(health > 0)
-				attacked += 10
-				//playsound(loc, 'sound/weapons/melee/bite.ogg', 50, 1, -1)
-				visible_message(SPAN_DANGER("[M] has attacked [src]!"))
-				adjustBruteLoss(rand(1, 3))
-				updatehealth()
-	return
+	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
+		return
+	if(health > 0)
+		attacked += 10
+		//playsound(loc, 'sound/weapons/melee/bite.ogg', 50, 1, -1)
+		visible_message(SPAN_DANGER("[M] has attacked [src]!"))
+		adjustBruteLoss(rand(1, 3))
+		updatehealth()
 
 
-/mob/living/carbon/slime/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple/slime/attack_hand(mob/living/carbon/human/M)
 	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -339,9 +335,6 @@
 					return
 
 	switch(M.a_intent)
-		if(INTENT_HELP)
-			help_shake_act(M)
-
 		if(INTENT_GRAB)
 			if(M == src)
 				return
@@ -386,15 +379,15 @@
 				visible_message(SPAN_DANGER("[M] has attempted to punch [src]!"))
 	return
 
-/mob/living/carbon/slime/restrained()
+/mob/living/simple/slime/restrained()
 	return FALSE
 
 
-/mob/living/carbon/slime/var/co2overloadtime = null
-/mob/living/carbon/slime/var/temperature_resistance = T0C+75
+/mob/living/simple/slime/var/co2overloadtime = null
+/mob/living/simple/slime/var/temperature_resistance = T0C+75
 
 
-/mob/living/carbon/slime/show_inv(mob/user)
+/mob/living/simple/slime/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -405,7 +398,7 @@
 	onclose(user, "mob[name]")
 	return
 
-/mob/living/carbon/slime/updatehealth()
+/mob/living/simple/slime/updatehealth()
 	if(status_flags & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
@@ -413,7 +406,7 @@
 		// slimes can't suffocate unless they suicide. They are also not harmed by fire
 		health = maxHealth - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
-/mob/living/carbon/slime/can_use_vents()
+/mob/living/simple/slime/can_use_vents()
 	if(Victim)
 		return "You cannot ventcrawl while feeding."
 	..()
@@ -487,7 +480,7 @@
 	src.visible_message("\blue The [name] pulsates and quivers!")
 	spawn(rand(50,100))
 		src.visible_message("\blue The [name] bursts open!")
-		new/mob/living/carbon/slime(T)
+		new/mob/living/simple/slime(T)
 		del(src)
 
 
@@ -503,3 +496,46 @@
 	else
 		..()
 */
+
+/mob/living/simple/slime/pet
+	name = "pet slime"
+	desc = "A lovable, domesticated slime."
+	icon_living = "grey baby slime"
+	health = 100
+	maxHealth = 100
+
+/mob/living/simple/slime/adult
+	name = "adult slime"
+	icon_state = "grey adult slime"
+	speak_emote = list("telepathically chirps")
+
+	health = 200
+	maxHealth = 200
+
+	nutrition = 800 // 1200 = max
+
+/mob/living/simple/slime/adult/pet
+	name = "pet slime"
+	desc = "A lovable, domesticated slime."
+	icon_state = "grey adult slime"
+	icon_living = "grey adult slime"
+	health = 200
+	maxHealth = 200
+
+/mob/living/simple/slime/adult/pet/New()
+	. = ..()
+	add_overlay("aslime-:33")
+
+/mob/living/simple/slime/adult/pet/Die()
+	var/mob/living/simple/slime/pet/S1 = new /mob/living/simple/slime/pet(loc)
+	S1.icon_state = "[colour] baby slime"
+	S1.icon_living = "[colour] baby slime"
+	S1.icon_dead = "[colour] baby slime dead"
+	S1.colour = "[colour]"
+
+	var/mob/living/simple/slime/pet/S2 = new /mob/living/simple/slime/pet(loc)
+	S2.icon_state = "[colour] baby slime"
+	S2.icon_living = "[colour] baby slime"
+	S2.icon_dead = "[colour] baby slime dead"
+	S2.colour = "[colour]"
+	qdel(src)

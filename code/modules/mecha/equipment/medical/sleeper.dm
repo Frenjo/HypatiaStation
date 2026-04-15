@@ -41,7 +41,7 @@
 	if(isnotnull(patient))
 		occupant_message(SPAN_WARNING("The sleeper is already occupied!"))
 		return FALSE
-	for(var/mob/living/carbon/slime/M in range(1, target))
+	for(var/mob/living/simple/slime/M in range(1, target))
 		if(M.Victim == target)
 			occupant_message(SPAN_WARNING("[target] will not fit into the sleeper because they have a slime latched onto their head."))
 			return FALSE

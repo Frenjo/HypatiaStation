@@ -22,7 +22,7 @@
 		log_append_to_last("Permission denied.")
 		return
 
-	for(var/mob/living/carbon/slime/M in range(1, user))
+	for(var/mob/living/simple/slime/M in range(1, user))
 		if(M.Victim == user)
 			to_chat(user, SPAN_WARNING("You're too busy getting your life sucked out of you."))
 			return

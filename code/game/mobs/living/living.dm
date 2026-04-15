@@ -81,7 +81,7 @@ default behaviour is:
 				loc = tmob.loc
 				tmob.forceMove(oldloc)
 				now_pushing = 0
-				for(var/mob/living/carbon/slime/slime in view(1, tmob))
+				for(var/mob/living/simple/slime/slime in view(1, tmob))
 					if(slime.Victim == tmob)
 						slime.UpdateFeed()
 				return
@@ -560,7 +560,7 @@ default behaviour is:
 		s_active.close(src)
 
 	if(update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1, src))
+		for(var/mob/living/simple/slime/M in view(1, src))
 			M.UpdateFeed(src)
 
 /mob/living/verb/resist()
@@ -912,7 +912,7 @@ default behaviour is:
 				return
 
 	if(isslime(src))
-		var/mob/living/carbon/slime/S = src
+		var/mob/living/simple/slime/S = src
 		if(S.Victim)
 			to_chat(src, SPAN_WARNING("You'll have to let [S.Victim] go or finish eating \him first."))
 			return

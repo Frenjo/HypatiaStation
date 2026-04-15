@@ -59,7 +59,7 @@
 	return
 
 
-/mob/living/carbon/alien/attack_slime(mob/living/carbon/slime/M)
+/mob/living/carbon/alien/attack_slime(mob/living/simple/slime/M)
 	if(!global.PCticker)
 		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return

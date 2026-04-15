@@ -46203,7 +46203,7 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_port)
 "qeZ" = (
-/mob/living/carbon/slime,
+/mob/living/simple/slime,
 /turf/open/floor/reinforced,
 /area/station/research/xenobiology)
 "qfg" = (

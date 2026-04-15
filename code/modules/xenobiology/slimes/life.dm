@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/Life()
+/mob/living/simple/slime/Life()
 	set background = BACKGROUND_ENABLED
 
 	. = ..()
@@ -22,7 +22,7 @@
 	//Status updates, death etc.
 	handle_regular_status_updates()
 
-/mob/living/carbon/slime/handle_environment(datum/gas_mixture/environment)
+/mob/living/simple/slime/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		adjustToxLoss(rand(10, 20))
 		return
@@ -79,14 +79,14 @@
 
 	return //TODO: DEFERRED
 
-/mob/living/carbon/slime
+/mob/living/simple/slime
 	var/AIproc = 0 // determines if the AI loop is activated
 	var/Atkcool = 0 // attack cooldown
 	var/Tempstun = 0 // temporary temperature stuns
 	var/Discipline = 0 // if a slime has been hit with a freeze gun, or wrestled/attacked off a human, they become disciplined and don't attack anymore for a while
 	var/SStun = 0 // stun variable
 
-/mob/living/carbon/slime/proc/AIprocess()  // the master AI process
+/mob/living/simple/slime/proc/AIprocess()  // the master AI process
 	//to_world("AI proc started.")
 	if(AIproc || stat == DEAD || client)
 		return
@@ -122,7 +122,7 @@
 
 		if(Target)
 			//to_world("[Target] Target Found")
-			for(var/mob/living/carbon/slime/M in view(1, Target))
+			for(var/mob/living/simple/slime/M in view(1, Target))
 				if(M.Victim == Target)
 					Target = null
 					AIproc = 0
@@ -187,7 +187,7 @@
 	AIproc = 0
 	//to_world("AI proc ended.")
 
-/mob/living/carbon/slime/proc/adjust_body_temperature(current, loc_temp, boost)
+/mob/living/simple/slime/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current
 	var/difference = abs(current-loc_temp)	//get difference
 	var/increments// = difference/10			//find how many increments apart they are
@@ -204,7 +204,7 @@
 	temp_change = (temperature - current)
 	return temp_change
 
-/mob/living/carbon/slime/proc/handle_chemicals_in_body()
+/mob/living/simple/slime/proc/handle_chemicals_in_body()
 	if(reagents)
 		reagents.metabolize(src)
 
@@ -213,7 +213,7 @@
 	return //TODO: DEFERRED
 
 
-/mob/living/carbon/slime/proc/handle_regular_status_updates()
+/mob/living/simple/slime/proc/handle_regular_status_updates()
 	if(isslimeadult(src))
 		health = 200 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 	else
@@ -290,7 +290,7 @@
 	return 1
 
 
-/mob/living/carbon/slime/proc/handle_nutrition()
+/mob/living/simple/slime/proc/handle_nutrition()
 	if(prob(20))
 		if(isslimeadult(src))
 			nutrition -= rand(4, 6)
@@ -316,7 +316,7 @@
 			if(!client)
 				for(var/i in 1 to 4)
 					if(prob(70))
-						var/mob/living/carbon/slime/M = new primarytype(loc)
+						var/mob/living/simple/slime/M = new primarytype(loc)
 						M.powerlevel = round(powerlevel / 4)
 						M.Friends = Friends
 						M.tame = tame
@@ -328,7 +328,7 @@
 						var/mutations = pick("one", "two", "three", "four")
 						switch(mutations)
 							if("one")
-								var/mob/living/carbon/slime/M = new mutationone(loc)
+								var/mob/living/simple/slime/M = new mutationone(loc)
 								M.powerlevel = round(powerlevel/4)
 								M.Friends = Friends
 								M.tame = tame
@@ -337,7 +337,7 @@
 								if(i != 1)
 									step_away(M, src)
 							if("two")
-								var/mob/living/carbon/slime/M = new mutationtwo(loc)
+								var/mob/living/simple/slime/M = new mutationtwo(loc)
 								M.powerlevel = round(powerlevel/4)
 								M.Friends = Friends
 								M.tame = tame
@@ -346,7 +346,7 @@
 								if(i != 1)
 									step_away(M, src)
 							if("three")
-								var/mob/living/carbon/slime/M = new mutationthree(loc)
+								var/mob/living/simple/slime/M = new mutationthree(loc)
 								M.powerlevel = round(powerlevel/4)
 								M.Friends = Friends
 								M.tame = tame
@@ -355,7 +355,7 @@
 								if(i != 1)
 									step_away(M, src)
 							if("four")
-								var/mob/living/carbon/slime/M = new mutationfour(loc)
+								var/mob/living/simple/slime/M = new mutationfour(loc)
 								M.powerlevel = round(powerlevel/4)
 								M.Friends = Friends
 								M.tame = tame
@@ -368,7 +368,7 @@
 
 		else
 			if(!client)
-				var/mob/living/carbon/slime/adult/A = new adulttype(src.loc)
+				var/mob/living/simple/slime/adult/A = new adulttype(src.loc)
 				A.nutrition = nutrition
 //				A.nutrition += 100
 				A.powerlevel = max(0, powerlevel-1)
@@ -378,7 +378,7 @@
 				qdel(src)
 
 
-/mob/living/carbon/slime/proc/handle_targets()
+/mob/living/simple/slime/proc/handle_targets()
 	if(Tempstun)
 		if(!Victim) // not while they're eating!
 			canmove = FALSE
@@ -484,7 +484,7 @@
 
 						if(!L.canmove) //Only one slime can latch on at a time.
 							var/notarget = 0
-							for(var/mob/living/carbon/slime/M in view(1, L))
+							for(var/mob/living/simple/slime/M in view(1, L))
 								if(M.Victim == L)
 									notarget = 1
 							if(notarget)

@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/emote(act, m_type = 1, message = null)
+/mob/living/simple/slime/emote(act, m_type = 1, message = null)
 	if (findtext(act, "-", 1, null))
 		var/t1 = findtext(act, "-", 1, null)
 		//param = copytext(act, t1 + 1, length(act) + 1)

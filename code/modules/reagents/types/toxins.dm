@@ -432,7 +432,7 @@
 			W.forceMove(C.loc)
 			W.dropped(C)
 
-		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(C.loc)
+		var/mob/living/simple/slime/new_mob = new /mob/living/simple/slime(C.loc)
 		new_mob.a_intent = INTENT_HARM
 		new_mob.universal_speak = TRUE
 		if(isnotnull(C.mind))

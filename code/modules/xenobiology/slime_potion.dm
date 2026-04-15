@@ -10,7 +10,7 @@
 	var/adults_only = FALSE
 	var/pet_slime_type = /mob/living/simple/slime/pet
 
-/obj/item/slime_potion/pet/attack(mob/living/carbon/slime/M, mob/user)
+/obj/item/slime_potion/pet/attack(mob/living/simple/slime/M, mob/user)
 	if(!isslime(M)) // If target is not a slime.
 		to_chat(user, SPAN_WARNING("This potion only works on [adults_only ? "adult" : "baby"] slimes!"))
 		return ..()
@@ -53,7 +53,7 @@
 	desc = "A potent chemical mix that will cause a slime to generate more extract."
 	icon_state = "bottle16"
 
-/obj/item/slime_potion/steroid/attack(mob/living/carbon/slime/M, mob/user)
+/obj/item/slime_potion/steroid/attack(mob/living/simple/slime/M, mob/user)
 	if(!isslime(M)) // If target is not a slime.
 		to_chat(user, SPAN_WARNING("This steroid only works on baby slimes!"))
 		return ..()

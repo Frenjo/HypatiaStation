@@ -144,7 +144,7 @@
 
 	if(!ishuman(M))
 		if(isslime(M))
-			var/mob/living/carbon/slime/slime = M
+			var/mob/living/simple/slime/slime = M
 			if(prob(25))
 				to_chat(M, SPAN_WARNING("[src] passes right through [M]!"))
 				return

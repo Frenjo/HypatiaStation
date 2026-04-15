@@ -53,9 +53,9 @@
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
 			if("slime")
 				if(prob(50))
-					new_mob = new /mob/living/carbon/slime/adult(M.loc)
+					new_mob = new /mob/living/simple/slime/adult(M.loc)
 				else
-					new_mob = new /mob/living/carbon/slime(M.loc)
+					new_mob = new /mob/living/simple/slime(M.loc)
 				new_mob.universal_speak = TRUE
 			if("xeno")
 				var/alien_caste = pick("Hunter", "Sentinel", "Drone", "Larva")

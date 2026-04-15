@@ -174,7 +174,7 @@
 	return 1 // update UIs attached to this object
 
 /obj/machinery/atmospherics/unary/cryo_cell/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
-	for(var/mob/living/carbon/slime/S in range(1, grabbed))
+	for(var/mob/living/simple/slime/S in range(1, grabbed))
 		if(S.Victim == grabbed)
 			to_chat(usr, SPAN_WARNING("[grabbed] will not fit into \the [src] because they have a slime latched onto their head."))
 			return TRUE
@@ -327,7 +327,7 @@
 	set name = "Move Inside"
 	set src in oview(1)
 
-	for(var/mob/living/carbon/slime/M in range(1, usr))
+	for(var/mob/living/simple/slime/M in range(1, usr))
 		if(M.Victim == usr)
 			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return

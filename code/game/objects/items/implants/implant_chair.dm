@@ -66,7 +66,7 @@
 		return
 
 /obj/machinery/implantchair/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
-	for(var/mob/living/carbon/slime/S in range(1, grabbed))
+	for(var/mob/living/simple/slime/S in range(1, grabbed))
 		if(S.Victim == grabbed)
 			to_chat(user, SPAN_WARNING("[grabbed] will not fit into \the [src] because they have a slime latched onto their head."))
 			return TRUE

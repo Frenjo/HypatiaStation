@@ -193,7 +193,7 @@
 	else
 		to_chat(src, "Aborting suicide attempt.")
 
-/mob/living/carbon/slime/verb/suicide()
+/mob/living/simple/slime/verb/suicide()
 	set hidden = 1
 	if(stat == DEAD)
 		to_chat(src, "You're already dead!")

@@ -46,8 +46,6 @@
 #define ismonkey(X) istype(X, /mob/living/carbon/monkey)
 #define isalien(X) istype(X, /mob/living/carbon/alien)
 #define islarva(X) istype(X, /mob/living/carbon/alien/larva)
-#define isslime(X) istype(X, /mob/living/carbon/slime)
-#define isslimeadult(X) istype(X, /mob/living/carbon/slime/adult)
 
 // Silicon
 #define issilicon(X) istype(X, /mob/living/silicon)
@@ -66,6 +64,8 @@
 #define iscarp(X) istype(X, /mob/living/simple/hostile/carp)
 #define isswarmer(X) istype(X, /mob/living/simple/hostile/swarmer)
 #define isclown(X) istype(X, /mob/living/simple/hostile/retaliate/clown)
+#define isslime(X) istype(X, /mob/living/simple/slime)
+#define isslimeadult(X) istype(X, /mob/living/simple/slime/adult)
 
 /*
  * Object Helpers

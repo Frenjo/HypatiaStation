@@ -143,7 +143,7 @@
 				T.remove_overlay(T.wet_overlay)
 				T.wet_overlay = null
 
-	for(var/mob/living/carbon/slime/M in T)
+	for(var/mob/living/simple/slime/M in T)
 		M.adjustToxLoss(rand(15, 20))
 
 	var/obj/fire/hotspot = locate(/obj/fire) in T
@@ -629,7 +629,7 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-		for(var/mob/living/carbon/slime/M in T)
+		for(var/mob/living/simple/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/reaction_mob(mob/M, method = TOUCH, volume)

@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/verb/Feed()
+/mob/living/simple/slime/verb/Feed()
 	set category = "Slime"
 	set desc = "This will let you feed on any valid creature in the surrounding area. This should also be used to halt the feeding process."
 	if(Victim)
@@ -22,7 +22,7 @@
 			if(!isslime(src))
 				if(stat != DEAD)
 					if(health > -70)
-						for(var/mob/living/carbon/slime/met in view())
+						for(var/mob/living/simple/slime/met in view())
 							if(met.Victim == M && met != src)
 								to_chat(src, "<i>The [met.name] is already feeding on this subject...</i>")
 								return
@@ -39,7 +39,7 @@
 			to_chat(src, "<i>This subject does not have an edible life energy...</i>")
 
 
-/mob/living/carbon/slime/proc/Feedon(mob/living/carbon/M)
+/mob/living/simple/slime/proc/Feedon(mob/living/carbon/M)
 	Victim = M
 	forceMove(M.loc)
 	canmove = FALSE
@@ -81,7 +81,7 @@
 				adjustCloneLoss(-10)
 
 				if(Victim)
-					for(var/mob/living/carbon/slime/slime in view(1, M))
+					for(var/mob/living/simple/slime/slime in view(1, M))
 						if(slime.Victim == M && slime != src)
 							slime.Feedstop()
 
@@ -155,19 +155,19 @@
 
 	Victim = null
 
-/mob/living/carbon/slime/proc/Feedstop()
+/mob/living/simple/slime/proc/Feedstop()
 	if(Victim)
 		if(Victim.client)
 			to_chat(Victim, "\The [src] has let go of your head!")
 		Victim = null
 
-/mob/living/carbon/slime/proc/UpdateFeed(mob/M)
+/mob/living/simple/slime/proc/UpdateFeed(mob/M)
 	if(Victim)
 		if(Victim == M)
 			loc = M.loc // simple "attach to head" effect!
 
 
-/mob/living/carbon/slime/verb/Evolve()
+/mob/living/simple/slime/verb/Evolve()
 	set category = "Slime"
 	set desc = "This will let you evolve from baby to adult slime."
 
@@ -177,7 +177,7 @@
 
 	if(!isslimeadult(src))
 		if(amount_grown >= 10)
-			var/mob/living/carbon/slime/adult/new_slime = new adulttype(loc)
+			var/mob/living/simple/slime/adult/new_slime = new adulttype(loc)
 			new_slime.nutrition = nutrition
 			new_slime.powerlevel = max(0, powerlevel-1)
 			new_slime.a_intent = INTENT_HARM
@@ -190,7 +190,7 @@
 	else
 		to_chat(src, "<i>I have already evolved...</i>")
 
-/mob/living/carbon/slime/verb/Reproduce()
+/mob/living/simple/slime/verb/Reproduce()
 	set category = "Slime"
 	set desc = "This will make you split into four Slimes. NOTE: this will KILL you, but you will be transferred into one of the babies."
 
@@ -210,7 +210,7 @@
 			var/new_powerlevel = round(powerlevel / 4)
 			for(var/i in 1 to 4)
 				if(prob(80))
-					var/mob/living/carbon/slime/M = new primarytype(loc)
+					var/mob/living/simple/slime/M = new primarytype(loc)
 					M.nutrition = new_nutrition
 					M.powerlevel = new_powerlevel
 					if(i != 1)
@@ -220,35 +220,35 @@
 					var/mutations = pick("one", "two", "three", "four")
 					switch(mutations)
 						if("one")
-							var/mob/living/carbon/slime/M = new mutationone(loc)
+							var/mob/living/simple/slime/M = new mutationone(loc)
 							M.nutrition = new_nutrition
 							M.powerlevel = new_powerlevel
 							if(i != 1)
 								step_away(M, src)
 							babies += M
 						if("two")
-							var/mob/living/carbon/slime/M = new mutationtwo(loc)
+							var/mob/living/simple/slime/M = new mutationtwo(loc)
 							M.nutrition = new_nutrition
 							M.powerlevel = new_powerlevel
 							if(i != 1)
 								step_away(M, src)
 							babies += M
 						if("three")
-							var/mob/living/carbon/slime/M = new mutationthree(loc)
+							var/mob/living/simple/slime/M = new mutationthree(loc)
 							M.nutrition = new_nutrition
 							M.powerlevel = new_powerlevel
 							if(i != 1)
 								step_away(M, src)
 							babies += M
 						if("four")
-							var/mob/living/carbon/slime/M = new mutationfour(loc)
+							var/mob/living/simple/slime/M = new mutationfour(loc)
 							M.nutrition = new_nutrition
 							M.powerlevel = new_powerlevel
 							if(i != 1)
 								step_away(M, src)
 							babies += M
 
-			var/mob/living/carbon/slime/new_slime = pick(babies)
+			var/mob/living/simple/slime/new_slime = pick(babies)
 			new_slime.a_intent = INTENT_HARM
 			new_slime.universal_speak = universal_speak
 			new_slime.key = key

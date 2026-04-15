@@ -274,7 +274,7 @@
 				adjustHalLoss(damage)
 		updatehealth()
 
-/mob/living/carbon/monkey/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/carbon/monkey/attack_slime(mob/living/simple/slime/M as mob)
 	if(!global.PCticker)
 		to_chat(M, SPAN_WARNING("You cannot attack people before the game has started."))
 		return

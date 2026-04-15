@@ -665,7 +665,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 	onclose(user, "mob[name]")
 	return
 
-/mob/living/carbon/slime/updatehealth()
+/mob/living/simple/slime/updatehealth()
 	if(status_flags & GODMODE)
 		if(istype(src, /mob/living/carbon/metroid/adult))
 			health = 200
