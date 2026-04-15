@@ -97,7 +97,7 @@
 	name = "Chemsmoke"
 	required_reagents = alist("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = 0.4
-	secondary = 1
+	secondary = TRUE
 
 /datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = GET_TURF(holder.my_atom)

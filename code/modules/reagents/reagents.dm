@@ -309,7 +309,7 @@
 					if(isnotnull(C.result))
 						// Temporary patch until reagent IDs are removed.
 						var/datum/reagent/result_path = C.result
-						var/result_id = initial(result_path.id)
+						var/result_id = result_path::id
 						// End temporary patch.
 						feedback_add_details("chemical_reaction", "[result_id]|[C.result_amount * multiplier]")
 						multiplier = max(multiplier, 1) //this shouldnt happen ...
@@ -317,7 +317,8 @@
 						set_data(result_id, preserved_data)
 
 						//add secondary products
-						for(var/S in C.secondary_results)
+						for(var/datum/reagent/secondary in C.secondary_results)
+							var/S = secondary::id // Temporary patch until reagent IDs are removed.
 							add_reagent(S, C.result_amount * C.secondary_results[S] * multiplier)
 
 					my_atom.visible_message(SPAN_INFO("[icon2html(my_atom, viewers(my_atom))] The solution begins to bubble."))
