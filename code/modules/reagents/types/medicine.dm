@@ -474,59 +474,6 @@
 		C.adjustToxLoss(-3)
 	. = ..()
 
-// Painkillers.
-/datum/reagent/paracetamol
-	name = "Paracetamol"
-	id = "paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
-	reagent_state = REAGENT_LIQUID
-	color = "#C855DC"
-	overdose = 60
-
-/datum/reagent/paracetamol/on_mob_life(mob/living/carbon/C)
-	if(volume > overdose)
-		C.hallucination = max(C.hallucination, 2)
-
-/datum/reagent/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	description = "A simple, yet effective painkiller."
-	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC"
-	overdose = 30
-
-/datum/reagent/tramadol/on_mob_life(mob/living/carbon/C)
-	if(volume > overdose)
-		C.hallucination = max(C.hallucination, 2)
-
-/datum/reagent/oxycodone
-	name = "Oxycodone"
-	id = "oxycodone"
-	description = "An effective and very addictive painkiller."
-	reagent_state = REAGENT_LIQUID
-	color = "#C805DC"
-	overdose = 20
-
-/datum/reagent/oxycodone/on_mob_life(mob/living/carbon/C)
-	if(volume > overdose)
-		C.druggy = max(C.druggy, 10)
-		C.hallucination = max(C.hallucination, 3)
-
-// Stimulants.
-/datum/reagent/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
-	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = 0.03
-	overdose = REAGENTS_OVERDOSE/2
-
-/datum/reagent/hyperzine/on_mob_life(mob/living/carbon/C)
-	if(prob(5))
-		C.emote(pick("twitch", "blink_r", "shiver"))
-	. = ..()
-
 // Misc stuff.
 /datum/reagent/sterilizine
 	name = "Sterilizine"
@@ -551,20 +498,6 @@
 					..()
 					return
 	*/
-
-/datum/reagent/serotrotium
-	name = "Serotrotium"
-	id = "serotrotium"
-	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
-	reagent_state = REAGENT_LIQUID
-	color = "#202040" // rgb: 20, 20, 40
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/serotrotium/on_mob_life(mob/living/carbon/C)
-	if(ishuman(C))
-		if(prob(7))
-			C.emote(pick("twitch","drool","moan","gasp"))
-		holder.remove_reagent(id, 0.25 * REAGENTS_METABOLISM)
 
 /datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"

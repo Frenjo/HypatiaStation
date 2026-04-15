@@ -104,3 +104,57 @@
 	make_chem_smoke(created_volume, FALSE, location, holder, location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	holder.clear_reagents()
+
+/datum/chemical_reaction/foam
+	name = "Foam"
+	required_reagents = alist("fluorosurfactant" = 1, "water" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
+	var/turf/location = GET_TURF(holder.my_atom)
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, SPAN_WARNING("The solution violently bubbles!"))
+
+	location = GET_TURF(holder.my_atom)
+
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, SPAN_WARNING("The solution spews out foam!"))
+
+	//to_world("Holder volume is [holder.total_volume]")
+	//for(var/datum/reagent/R in holder.reagent_list)
+		//to_world("[R.name] = [R.volume]")
+
+	var/datum/effect/system/foam_spread/s = new /datum/effect/system/foam_spread()
+	s.set_up(created_volume, location, holder, 0)
+	s.start()
+	holder.clear_reagents()
+
+/datum/chemical_reaction/metalfoam
+	name = "Metal Foam"
+	required_reagents = alist("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
+	var/turf/location = GET_TURF(holder.my_atom)
+
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
+
+	var/datum/effect/system/foam_spread/s = new /datum/effect/system/foam_spread()
+	s.set_up(created_volume, location, holder, 1)
+	s.start()
+
+/datum/chemical_reaction/ironfoam
+	name = "Iron Foam"
+	required_reagents = alist("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
+	var/turf/location = GET_TURF(holder.my_atom)
+
+	for(var/mob/M in viewers(5, location))
+		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
+
+	var/datum/effect/system/foam_spread/s = new /datum/effect/system/foam_spread()
+	s.set_up(created_volume, location, holder, 2)
+	s.start()

@@ -25,12 +25,6 @@
 	required_reagents = alist("carpotoxin" = 5, "soporific" = 5, "copper" = 5)
 	result_amount = 2
 
-/datum/chemical_reaction/mindbreaker
-	name = "Mindbreaker Toxin"
-	result = /datum/reagent/toxin/mindbreaker
-	required_reagents = alist("silicon" = 1, "hydrogen" = 1, "dylovene" = 1)
-	result_amount = 3
-
 // Synthesizing this chemical is pretty complex in real life, but fuck it, it's just a game!
 /datum/chemical_reaction/plantbgone
 	name = "Plant-B-Gone"

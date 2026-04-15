@@ -176,20 +176,6 @@
 		M.status_flags &= ~FAKEDEATH
 	return ..()
 
-/datum/reagent/toxin/mindbreaker
-	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
-	description = "A powerful hallucinogen, it can cause fatal effects in users."
-	reagent_state = REAGENT_LIQUID
-	color = "#B31008" // rgb: 139, 166, 233
-	toxpwr = 0
-	custom_metabolism = 0.05
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/carbon/C)
-	C.hallucination += 10
-	. = ..()
-
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	id = "plantbgone"
@@ -402,3 +388,56 @@
 	color = "#8E18A9" // rgb: 142, 24, 169
 	toxpwr = 2
 	meltprob = 30
+
+/datum/reagent/slimetoxin
+	name = "Mutation Toxin"
+	id = "mutationtoxin"
+	description = "A corruptive toxin produced by slimes."
+	reagent_state = REAGENT_LIQUID
+	color = "#13BC5E" // rgb: 19, 188, 94
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/slimetoxin/on_mob_life(mob/living/carbon/C)
+	if(ishuman(C))
+		var/mob/living/carbon/human/human = C
+		if(isnull(human.dna.mutantrace))
+			to_chat(C, SPAN_DANGER("Your flesh rapidly mutates!"))
+			human.dna.mutantrace = "slime"
+			human.update_mutantrace()
+	. = ..()
+
+/datum/reagent/aslimetoxin
+	name = "Advanced Mutation Toxin"
+	id = "amutationtoxin"
+	description = "An advanced corruptive toxin produced by slimes."
+	reagent_state = REAGENT_LIQUID
+	color = "#13BC5E" // rgb: 19, 188, 94
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/aslimetoxin/on_mob_life(mob/living/carbon/C)
+	if(iscarbon(C) && C.stat != DEAD)
+		to_chat(C, SPAN_DANGER("Your flesh rapidly mutates!"))
+		if(C.monkeyizing)
+			return
+		C.monkeyizing = TRUE
+		C.canmove = FALSE
+		C.icon = null
+		C.cut_overlays()
+		C.invisibility = INVISIBILITY_MAXIMUM
+		for(var/obj/item/W in C)
+			if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
+				qdel(W)
+				continue
+			W.reset_plane_and_layer()
+			W.forceMove(C.loc)
+			W.dropped(C)
+
+		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(C.loc)
+		new_mob.a_intent = INTENT_HARM
+		new_mob.universal_speak = TRUE
+		if(isnotnull(C.mind))
+			C.mind.transfer_to(new_mob)
+		else
+			new_mob.key = C.key
+		qdel(C)
+	. = ..()

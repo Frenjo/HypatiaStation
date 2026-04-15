@@ -230,77 +230,6 @@
 	C.adjustToxLoss(0.2)
 	. = ..()
 
-/datum/reagent/slimetoxin
-	name = "Mutation Toxin"
-	id = "mutationtoxin"
-	description = "A corruptive toxin produced by slimes."
-	reagent_state = REAGENT_LIQUID
-	color = "#13BC5E" // rgb: 19, 188, 94
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/slimetoxin/on_mob_life(mob/living/carbon/C)
-	if(ishuman(C))
-		var/mob/living/carbon/human/human = C
-		if(isnull(human.dna.mutantrace))
-			to_chat(C, SPAN_DANGER("Your flesh rapidly mutates!"))
-			human.dna.mutantrace = "slime"
-			human.update_mutantrace()
-	. = ..()
-
-/datum/reagent/aslimetoxin
-	name = "Advanced Mutation Toxin"
-	id = "amutationtoxin"
-	description = "An advanced corruptive toxin produced by slimes."
-	reagent_state = REAGENT_LIQUID
-	color = "#13BC5E" // rgb: 19, 188, 94
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/aslimetoxin/on_mob_life(mob/living/carbon/C)
-	if(iscarbon(C) && C.stat != DEAD)
-		to_chat(C, SPAN_DANGER("Your flesh rapidly mutates!"))
-		if(C.monkeyizing)
-			return
-		C.monkeyizing = TRUE
-		C.canmove = FALSE
-		C.icon = null
-		C.cut_overlays()
-		C.invisibility = INVISIBILITY_MAXIMUM
-		for(var/obj/item/W in C)
-			if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
-				qdel(W)
-				continue
-			W.reset_plane_and_layer()
-			W.forceMove(C.loc)
-			W.dropped(C)
-
-		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(C.loc)
-		new_mob.a_intent = INTENT_HARM
-		new_mob.universal_speak = TRUE
-		if(isnotnull(C.mind))
-			C.mind.transfer_to(new_mob)
-		else
-			new_mob.key = C.key
-		qdel(C)
-	. = ..()
-
-/datum/reagent/space_drugs
-	name = "Space drugs"
-	id = "space_drugs"
-	description = "An illegal chemical compound used as drug."
-	reagent_state = REAGENT_LIQUID
-	color = "#60A584" // rgb: 96, 165, 132
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/space_drugs/on_mob_life(mob/living/carbon/C)
-	C.druggy = max(C.druggy, 15)
-	if(isturf(C.loc) && !isspace(C.loc))
-		if(C.canmove && !C.restrained())
-			if(prob(10))
-				step(C, pick(GLOBL.cardinal))
-	if(prob(7))
-		C.emote(pick("twitch", "drool", "moan", "giggle"))
-	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
-
 /*
 /datum/reagent/silicate
 	name = "Silicate"
@@ -725,24 +654,6 @@
 				return
 		M.clean_blood()
 
-/datum/reagent/impedrezene
-	name = "Impedrezene"
-	id = "impedrezene"
-	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
-	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/impedrezene/on_mob_life(mob/living/carbon/C)
-	C.jitteriness = max(C.jitteriness - 5, 0)
-	if(prob(80))
-		C.adjustBrainLoss(1 * REM)
-	if(prob(50))
-		C.drowsyness = max(C.drowsyness, 3)
-	if(prob(10))
-		C.emote("drool")
-	. = ..()
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/reagent/fluorosurfactant //foam precursor
@@ -758,13 +669,6 @@
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	reagent_state = REAGENT_SOLID
 	color = "#664B63" // rgb: 102, 75, 99
-
-/datum/reagent/nicotine
-	name = "Nicotine"
-	id = "nicotine"
-	description = "A highly addictive stimulant extracted from the tobacco plant."
-	reagent_state = REAGENT_LIQUID
-	color = "#181818" // rgb: 24, 24, 24
 
 /datum/reagent/ammonia
 	name = "Ammonia"
