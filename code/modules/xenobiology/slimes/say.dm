@@ -1,10 +1,10 @@
-/mob/living/carbon/slime/say(message)
+/mob/living/simple/slime/say(message)
 	if(silent)
 		return
 	else
 		return ..()
 
-/mob/living/carbon/slime/say_quote(text)
+/mob/living/simple/slime/say_quote(text)
 	var/ending = copytext(text, length(text))
 
 	if(ending == "?")
@@ -14,7 +14,7 @@
 
 	return "telepathically chirps"
 
-/mob/living/carbon/slime/say_understands(other)
+/mob/living/simple/slime/say_understands(other)
 	if(isslime(other))
 		return TRUE
 	return ..()

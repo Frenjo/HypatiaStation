@@ -126,7 +126,7 @@
 			to_chat(C, SPAN_WARNING("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 
-	for(var/mob/living/carbon/slime/M in range(1, usr))
+	for(var/mob/living/simple/slime/M in range(1, usr))
 		if(M.Victim == usr)
 			to_chat(usr, SPAN_WARNING("You're too busy getting your life sucked out of you."))
 			return

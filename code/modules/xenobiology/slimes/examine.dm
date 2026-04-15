@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/get_examine_text()
+/mob/living/simple/slime/get_examine_text()
 	. = ..()
 	switch(powerlevel)
 		if(2 to 3)

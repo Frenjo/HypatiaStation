@@ -228,7 +228,7 @@
 					return TRUE
 	return FALSE
 
-/mob/living/carbon/human/attack_slime(mob/living/carbon/slime/M)
+/mob/living/carbon/human/attack_slime(mob/living/simple/slime/M)
 	if(M.Victim)
 		return // can't attack while eating!
 

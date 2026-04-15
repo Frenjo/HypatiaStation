@@ -24,7 +24,7 @@
 	. = ..()
 
 // Slime
-/mob/living/carbon/slime/mind_initialize()
+/mob/living/simple/slime/mind_initialize()
 	. = ..()
 	mind.assigned_role = "slime"
 

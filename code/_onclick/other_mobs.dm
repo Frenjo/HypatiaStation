@@ -104,13 +104,13 @@
 	Slimes
 	Nothing happening here
 */
-/mob/living/carbon/slime/UnarmedAttack(atom/A)
+/mob/living/simple/slime/UnarmedAttack(atom/A)
 	A.attack_slime(src)
 
 /atom/proc/attack_slime(mob/user)
 	return
 
-/mob/living/carbon/slime/RestrainedClickOn(atom/A)
+/mob/living/simple/slime/RestrainedClickOn(atom/A)
 	return
 
 /*

@@ -402,7 +402,7 @@
 		. += M
 	for(var/mob/living/carbon/monkey/M in sorted_mob_list)
 		. += M
-	for(var/mob/living/carbon/slime/M in sorted_mob_list)
+	for(var/mob/living/simple/slime/M in sorted_mob_list)
 		. += M
 	for(var/mob/living/simple/M in sorted_mob_list)
 		. += M

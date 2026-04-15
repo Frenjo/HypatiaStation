@@ -215,7 +215,7 @@
 		return TRUE
 	return ..()
 
-/mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M)
+/mob/living/silicon/robot/attack_slime(mob/living/simple/slime/M)
 	if(isnull(global.PCticker))
 		to_chat(M, "You cannot attack people before the game has started.")
 		return

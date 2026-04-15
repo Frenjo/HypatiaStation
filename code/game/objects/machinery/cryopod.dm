@@ -337,7 +337,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		to_chat(usr, SPAN_INFO_B("The cryo pod is in use."))
 		return
 
-	for(var/mob/living/carbon/slime/M in range(1, usr))
+	for(var/mob/living/simple/slime/M in range(1, usr))
 		if(M.Victim == usr)
 			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return

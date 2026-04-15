@@ -1,2 +1,2 @@
-/mob/living/carbon/slime/regular_hud_updates()
+/mob/living/simple/slime/regular_hud_updates()
 	return

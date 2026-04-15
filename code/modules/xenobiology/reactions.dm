@@ -11,7 +11,7 @@
 /datum/chemical_reaction/slimespawn/on_reaction(datum/reagents/holder)
 	var/turf/location = GET_TURF(holder.my_atom)
 	location.visible_message(SPAN_WARNING("Infused with plasma, the core begins to quiver and grow, and soon a new baby slime emerges from it!"))
-	new /mob/living/carbon/slime(location)
+	new /mob/living/simple/slime(location)
 
 /datum/chemical_reaction/slimemonkey
 	name = "Slime Monkey"
@@ -249,7 +249,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimebloodlust/on_reaction(datum/reagents/holder)
-	for(var/mob/living/carbon/slime/slime in viewers(GET_TURF(holder.my_atom), null))
+	for(var/mob/living/simple/slime/slime in viewers(GET_TURF(holder.my_atom), null))
 		slime.tame = 0
 		slime.rabid = 1
 		slime.visible_message(SPAN_WARNING("The [slime] is driven into a frenzy!"))

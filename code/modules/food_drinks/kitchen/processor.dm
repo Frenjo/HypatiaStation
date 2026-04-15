@@ -67,8 +67,8 @@
 	..()
 
 /datum/food_processor_process/mob/slime
-		input = /mob/living/carbon/slime
-		output = /obj/item/reagent_holder/glass/beaker/slime
+	input = /mob/living/simple/slime
+	output = /obj/item/reagent_holder/glass/beaker/slime
 
 /datum/food_processor_process/mob/monkey
 	input = /mob/living/carbon/monkey
