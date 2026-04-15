@@ -308,41 +308,15 @@
   /* ###### Begin formatting and sending the message ###### */
 	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
 	  /* --- Some miscellaneous variables to format the string output --- */
-		var/part_a = "<span class='radio'><span class='name'>" // goes in the actual output
+		var/part_a // goes in the actual output
 		var/freq_text // the name of the channel
 
 		// --- Set the name of the channel ---
-		switch(display_freq)
-			if(FREQUENCY_SYNDICATE)
-				freq_text = CHANNEL_SYNDICATE
-
-			if(FREQUENCY_DEATHSQUAD)
-				freq_text = CHANNEL_DEATHSQUAD
-			if(FREQUENCY_RESPONSETEAM)
-				freq_text = CHANNEL_RESPONSETEAM
-
-			if(FREQUENCY_SUPPLY)
-				freq_text = CHANNEL_SUPPLY
-			if(FREQUENCY_SERVICE)
-				freq_text = CHANNEL_SERVICE
-			if(FREQUENCY_SCIENCE)
-				freq_text = CHANNEL_SCIENCE
-			if(FREQUENCY_COMMAND)
-				freq_text = CHANNEL_COMMAND
-			if(FREQUENCY_MEDICAL)
-				freq_text = CHANNEL_MEDICAL
-			if(FREQUENCY_ENGINEERING)
-				freq_text = CHANNEL_ENGINEERING
-			if(FREQUENCY_SECURITY)
-				freq_text = CHANNEL_SECURITY
-			if(FREQUENCY_MINING)
-				freq_text = CHANNEL_MINING
-
-			if(FREQUENCY_AI_PRIVATE)
-				freq_text = CHANNEL_AI_PRIVATE
-			if(FREQUENCY_COMMON)
-				freq_text = CHANNEL_COMMON
-		//There's probably a way to use the list var of channels in code\__DEFINES\radio.dm to make the dept channels non-hardcoded, but I wasn't in an experimentive mood. --NEO
+		// This is a bit ass-backwards due to alist formatting.
+		for(var/channel_name in GLOBL.radio_channels)
+			var/channel_frequency = GLOBL.radio_channels[channel_name]
+			if(channel_frequency == display_freq)
+				freq_text = channel_name
 
 		// --- If the frequency has not been assigned a name, just use the frequency as the name ---
 		if(!freq_text)
@@ -355,43 +329,15 @@
 		var/part_b = "</span><b> [icon2html(radio, receive)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
-		// department radio formatting (poorly optimized, ugh)
-		// syndies!
-		if(display_freq == FREQUENCY_SYNDICATE)
-			part_a = "<span class='syndradio'><span class='name'>"
-		// centcom channels (deathsquid and ert)
-		else if(display_freq in GLOBL.cent_freqs)
-			part_a = "<span class='centradio'><span class='name'>"
-		// cargo channel
-		else if(display_freq == FREQUENCY_SUPPLY)
-			part_a = "<span class='supradio'><span class='name'>"
-		// service channel
-		else if(display_freq == FREQUENCY_SERVICE)
-			part_a = "<span class='srvradio'><span class='name'>"
-		// science channel
-		else if(display_freq == FREQUENCY_SCIENCE)
-			part_a = "<span class='sciradio'><span class='name'>"
-		// command channel
-		else if(display_freq == FREQUENCY_COMMAND)
-			part_a = "<span class='comradio'><span class='name'>"
-		// medical channel
-		else if(display_freq == FREQUENCY_MEDICAL)
-			part_a = "<span class='medradio'><span class='name'>"
-		// engineering channel
-		else if(display_freq == FREQUENCY_ENGINEERING)
-			part_a = "<span class='engradio'><span class='name'>"
-		// security channel
-		else if(display_freq == FREQUENCY_SECURITY)
-			part_a = "<span class='secradio'><span class='name'>"
-		// mining channel
-		else if(display_freq == FREQUENCY_MINING)
-			part_a = "<span class='minradio'><span class='name'>"
-		// AI private channel
-		else if(display_freq == FREQUENCY_AI_PRIVATE)
-			part_a = "<span class='airadio'><span class='name'>"
-		// If all else fails and it's a dept_freq, color me purple!
-		else if(display_freq in GLOBL.dept_freqs)
-			part_a = "<span class='deptradio'><span class='name'>"
+		// --- Department radio formatting ---
+		var/freq_class = GLOBL.dept_classes[display_freq]
+		if(isnull(freq_class))
+			if(display_freq in GLOBL.dept_freqs)
+				freq_class = "deptradio" // If all else fails and it's a dept_freq, color me purple!
+			else
+				freq_class = "radio" // Normal radio.
+		if(isnotnull(freq_class))
+			part_a = "<span class='[freq_class]'><span class='name'>"
 
 		// --- Filter the message; place it in quotes apply a verb ---
 		var/quotedmsg = null

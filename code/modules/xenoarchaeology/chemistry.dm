@@ -54,14 +54,14 @@
 	result = /datum/reagent/density_separated_sample
 	required_reagents = alist("ground_rock" = 1, "lithiumsodiumtungstate" = 2)
 	result_amount = 2
-	secondary_results = alist("chemical_waste" = 1)
+	secondary_results = alist(/datum/reagent/chemical_waste = 1)
 
 /datum/chemical_reaction/analysis_liquid
 	name = "Analysis sample"
 	result = /datum/reagent/analysis_sample
 	required_reagents = alist("density_separated_sample" = 5)
 	result_amount = 4
-	secondary_results = alist("chemical_waste" = 1)
+	secondary_results = alist(/datum/reagent/chemical_waste = 1)
 	requires_heating = 1
 
 

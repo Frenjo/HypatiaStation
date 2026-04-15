@@ -11,12 +11,6 @@
 	required_reagents = alist("water" = 1, "silicon" = 1, "oxygen" = 1)
 	result_amount = 4
 
-/datum/chemical_reaction/space_drugs
-	name = "Space Drugs"
-	result = /datum/reagent/space_drugs
-	required_reagents = alist("mercury" = 1, "sugar" = 1, "lithium" = 1)
-	result_amount = 3
-
 /*
 /datum/chemical_reaction/silicate
 	name = "Silicate"
@@ -100,72 +94,12 @@
 	required_reagents = alist("ammonia" = 1, "water" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/impedrezene
-	name = "Impedrezene"
-	result = /datum/reagent/impedrezene
-	required_reagents = alist("mercury" = 1, "oxygen" = 1, "sugar" = 1)
-	result_amount = 2
-
 // foam and foam precursor
 /datum/chemical_reaction/surfactant
 	name = "Foam surfactant"
 	result = /datum/reagent/fluorosurfactant
 	required_reagents = alist("fluorine" = 2, "carbon" = 2, "sacid" = 1)
 	result_amount = 5
-
-/datum/chemical_reaction/foam
-	name = "Foam"
-	required_reagents = alist("fluorosurfactant" = 1, "water" = 1)
-	result_amount = 2
-
-/datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = GET_TURF(holder.my_atom)
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution violently bubbles!"))
-
-	location = GET_TURF(holder.my_atom)
-
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution spews out foam!"))
-
-	//to_world("Holder volume is [holder.total_volume]")
-	//for(var/datum/reagent/R in holder.reagent_list)
-		//to_world("[R.name] = [R.volume]")
-
-	var/datum/effect/system/foam_spread/s = new /datum/effect/system/foam_spread()
-	s.set_up(created_volume, location, holder, 0)
-	s.start()
-	holder.clear_reagents()
-
-/datum/chemical_reaction/metalfoam
-	name = "Metal Foam"
-	required_reagents = alist("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
-	result_amount = 5
-
-/datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = GET_TURF(holder.my_atom)
-
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
-
-	var/datum/effect/system/foam_spread/s = new /datum/effect/system/foam_spread()
-	s.set_up(created_volume, location, holder, 1)
-	s.start()
-
-/datum/chemical_reaction/ironfoam
-	name = "Iron Foam"
-	required_reagents = alist("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
-	result_amount = 5
-
-/datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = GET_TURF(holder.my_atom)
-
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
-
-	var/datum/effect/system/foam_spread/s = new /datum/effect/system/foam_spread()
-	s.set_up(created_volume, location, holder, 2)
-	s.start()
 
 /datum/chemical_reaction/foaming_agent
 	name = "Foaming Agent"

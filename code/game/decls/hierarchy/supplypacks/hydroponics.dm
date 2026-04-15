@@ -1,14 +1,12 @@
 /decl/hierarchy/supply_pack/hydroponics
 	name = "Hydroponics"
 
-
 /decl/hierarchy/supply_pack/hydroponics/monkey
 	name = "Monkey crate"
 	contains = list(/obj/item/storage/box/monkeycubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "monkey crate"
-
 
 /decl/hierarchy/supply_pack/hydroponics/farwa
 	name = "Farwa crate"
@@ -17,14 +15,12 @@
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "farwa crate"
 
-
 /decl/hierarchy/supply_pack/hydroponics/skrell
 	name = "Neaera crate"
 	contains = list(/obj/item/storage/box/monkeycubes/neaeracubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "neaera crate"
-
 
 /decl/hierarchy/supply_pack/hydroponics/stok
 	name = "Stok crate"
@@ -33,14 +29,12 @@
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "stok crate"
 
-
 /decl/hierarchy/supply_pack/hydroponics/lisa
 	name = "Corgi Crate"
 	contains = list()
 	cost = 50
 	containertype = /obj/structure/largecrate/lisa
 	containername = "corgi crate"
-
 
 /decl/hierarchy/supply_pack/hydroponics/hydroponics // -- Skie
 	name = "Hydroponics Supply Crate"
@@ -60,7 +54,6 @@
 	containername = "hydroponics crate"
 	access = ACCESS_HYDROPONICS
 
-
 //farm animals - useless and annoying, but potentially a good source of food
 /decl/hierarchy/supply_pack/hydroponics/cow
 	name = "Cow crate"
@@ -69,7 +62,6 @@
 	containername = "cow crate"
 	access = ACCESS_HYDROPONICS
 
-
 /decl/hierarchy/supply_pack/hydroponics/goat
 	name = "Goat crate"
 	cost = 25
@@ -77,14 +69,12 @@
 	containername = "goat crate"
 	access = ACCESS_HYDROPONICS
 
-
 /decl/hierarchy/supply_pack/hydroponics/chicken
 	name = "Chicken crate"
 	cost = 20
 	containertype = /obj/structure/largecrate/chick
 	containername = "chicken crate"
 	access = ACCESS_HYDROPONICS
-
 
 /decl/hierarchy/supply_pack/hydroponics/seeds
 	name = "Seeds crate"
@@ -112,7 +102,6 @@
 	containername = "seeds crate"
 	access = ACCESS_HYDROPONICS
 
-
 /decl/hierarchy/supply_pack/hydroponics/weedcontrol
 	name = "Weed control crate"
 	contains = list(
@@ -125,7 +114,6 @@
 	containertype = /obj/structure/closet/crate/secure/hydroponics
 	containername = "weed control crate"
 	access = ACCESS_HYDROPONICS
-
 
 /decl/hierarchy/supply_pack/hydroponics/exoticseeds
 	name = "Exotic seeds crate"
@@ -150,14 +138,12 @@
 	containername = "exotic seeds crate"
 	access = ACCESS_HYDROPONICS
 
-
 /decl/hierarchy/supply_pack/hydroponics/watertank
 	name = "Water tank crate"
 	contains = list(/obj/structure/reagent_dispenser/watertank)
 	cost = 8
 	containertype = /obj/structure/largecrate
 	containername = "water tank crate"
-
 
 /decl/hierarchy/supply_pack/hydroponics/bee_keeper
 	name = "Beekeeping crate"

@@ -10,9 +10,9 @@
 	var/required_other = 0 // an integer required for the reaction to happen
 
 	var/result_amount = 0 //I recommend you set the result amount to the total volume of all components.
-	var/secondary = 0 // set to nonzero if secondary reaction
-	var/alist/secondary_results = alist() //additional reagents produced by the reaction
-	var/requires_heating = 0
+	var/secondary = FALSE // set to TRUE if secondary reaction
+	var/alist/secondary_results = alist() // An associative list of secondary reagent typepaths and amounts created by the reaction.
+	var/requires_heating = FALSE
 
 /datum/chemical_reaction/proc/on_reaction(datum/reagents/holder, created_volume)
 	return

@@ -1,7 +1,6 @@
 /decl/hierarchy/supply_pack/miscellaneous
 	name = "Miscellaneous"
 
-
 /decl/hierarchy/supply_pack/miscellaneous/wizard
 	name = "Wizard costume"
 	contains = list(
@@ -13,7 +12,6 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "wizard costume crate"
-
 
 /decl/hierarchy/supply_pack/miscellaneous/hats
 	num_contained = 4
@@ -44,7 +42,6 @@
 	containertype = /obj/structure/closet/crate
 	containername = "collectable hats crate! brought to you by Bass.inc!"
 	supply_method = /decl/supply_method/randomised
-
 
 /decl/hierarchy/supply_pack/miscellaneous/costume
 	num_contained = 2
@@ -84,7 +81,6 @@
 	access = ACCESS_THEATRE
 	supply_method = /decl/supply_method/randomised
 
-
 /decl/hierarchy/supply_pack/miscellaneous/formal_wear
 	contains = list(
 		/obj/item/clothing/head/bowler,
@@ -106,7 +102,6 @@
 	cost = 30
 	containertype = /obj/structure/closet
 	containername = "formalwear for the best occasions"
-
 
 /decl/hierarchy/supply_pack/miscellaneous/eftpos
 	contains = list(/obj/item/eftpos)

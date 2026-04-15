@@ -3,7 +3,7 @@
 
 /datum/reagent
 	var/name = "Reagent"
-	var/id = "reagent"
+	var/id = "reagent" // DEPRECATED: In newer code, prefer to use /datum/reagent/* typepaths where possible.
 	var/description = ""
 	var/datum/reagents/holder = null
 	var/reagent_state = REAGENT_SOLID

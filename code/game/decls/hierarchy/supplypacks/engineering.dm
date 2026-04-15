@@ -1,7 +1,6 @@
 /decl/hierarchy/supply_pack/engineering
 	name = "Engineering"
 
-
 /decl/hierarchy/supply_pack/engineering/internals
 	name = "Internals crate"
 	contains = list(
@@ -15,7 +14,6 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/internals
 	containername = "internals crate"
-
 
 /decl/hierarchy/supply_pack/engineering/evacuation
 	name = "Emergency equipment"
@@ -39,7 +37,6 @@
 	containertype = /obj/structure/closet/crate/internals
 	containername = "emergency crate"
 
-
 /decl/hierarchy/supply_pack/engineering/inflatables
 	name = "Inflatable barriers"
 	contains = list(
@@ -50,7 +47,6 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "inflatable barrier crate"
-
 
 /decl/hierarchy/supply_pack/engineering/lightbulbs
 	name = "Replacement lights"
@@ -79,7 +75,6 @@
 	containertype = /obj/structure/closet/crate
 	containername = "electrical maintenance crate"
 
-
 /decl/hierarchy/supply_pack/engineering/mechanical
 	name = "Mechanical maintenance crate"
 	contains = list(
@@ -97,14 +92,12 @@
 	containertype = /obj/structure/closet/crate
 	containername = "mechanical maintenance crate"
 
-
 /decl/hierarchy/supply_pack/engineering/fueltank
 	name = "Fuel tank crate"
 	contains = list(/obj/structure/reagent_dispenser/fueltank)
 	cost = 8
 	containertype = /obj/structure/largecrate
 	containername = "fuel tank crate"
-
 
 /decl/hierarchy/supply_pack/engineering/solar
 	name = "Solar Pack crate"
@@ -138,7 +131,6 @@
 	containertype = /obj/structure/closet/crate
 	containername = "solar pack crate"
 
-
 /decl/hierarchy/supply_pack/engineering/engine
 	name = "Emitter crate"
 	contains = list(
@@ -150,7 +142,6 @@
 	containername = "emitter crate"
 	access = ACCESS_CE
 
-
 /decl/hierarchy/supply_pack/engineering/field_gen
 	name = "Field Generator crate"
 	contains = list(
@@ -161,14 +152,12 @@
 	containername = "field generator crate"
 	access = ACCESS_CE
 
-
 /decl/hierarchy/supply_pack/engineering/sing_gen
 	name = "Singularity Generator crate"
 	contains = list(/obj/machinery/the_singularitygen)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "singularity generator crate"
 	access = ACCESS_CE
-
 
 /decl/hierarchy/supply_pack/engineering/collector
 	name = "Collector crate"
@@ -178,7 +167,6 @@
 		/obj/machinery/power/rad_collector
 	)
 	containername = "collector crate"
-
 
 /decl/hierarchy/supply_pack/engineering/particle_accelerator
 	name = "Particle Accelerator crate"
@@ -196,7 +184,6 @@
 	containername = "particle accelerator crate"
 	access = ACCESS_CE
 
-
 /decl/hierarchy/supply_pack/engineering/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
 	contains = list(
@@ -209,7 +196,6 @@
 	containername = "\improper APLU \"Ripley\" circuit crate"
 	access = ACCESS_ROBOTICS
 
-
 /decl/hierarchy/supply_pack/engineering/mecha_odysseus
 	name = "Circuit Crate (\"Odysseus\")"
 	contains = list(
@@ -220,7 +206,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "\"Odysseus\" circuit crate"
 	access = ACCESS_ROBOTICS
-
 
 /decl/hierarchy/supply_pack/engineering/robotics
 	name = "Robotics assembly crate"
@@ -241,7 +226,6 @@
 	containername = "robotics assembly crate"
 	access = ACCESS_ROBOTICS
 
-
 /decl/hierarchy/supply_pack/engineering/rust_injector
 	contains = list(/obj/machinery/power/rust_fuel_injector)
 	name = "RUST fuel injector"
@@ -249,7 +233,6 @@
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "RUST injector crate"
 	access = ACCESS_ENGINE
-
 
 /decl/hierarchy/supply_pack/engineering/rust_compressor
 	contains = list(/obj/item/module/rust_fuel_compressor)
@@ -259,7 +242,6 @@
 	containername = "RUST fuel compressor circuitry crate"
 	access = ACCESS_ENGINE
 
-
 /decl/hierarchy/supply_pack/engineering/rust_assembly_port
 	contains = list(/obj/item/module/rust_fuel_port)
 	name = "RUST fuel assembly port circuitry"
@@ -267,7 +249,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "RUST fuel assembly port circuitry crate"
 	access = ACCESS_ENGINE
-
 
 /decl/hierarchy/supply_pack/engineering/rust_core
 	contains = list(/obj/machinery/power/rust_core)
@@ -277,7 +258,6 @@
 	containername = "RUST tokamak crate"
 	access = ACCESS_ENGINE
 
-
 /decl/hierarchy/supply_pack/engineering/shield_gen
 	contains = list(/obj/item/circuitboard/shield_gen)
 	name = "Experimental bubble shield generator circuitry"
@@ -285,7 +265,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "experimental bubble shield generator circuitry crate"
 	access = ACCESS_CE
-
 
 /decl/hierarchy/supply_pack/engineering/shield_cap
 	contains = list(/obj/item/circuitboard/shield_cap)
@@ -295,7 +274,6 @@
 	containername = "experimental bubble shield capacitor circuitry crate"
 	access = ACCESS_CE
 
-
 /decl/hierarchy/supply_pack/engineering/smbig
 	name = "Supermatter Core"
 	contains = list(/obj/machinery/power/supermatter)
@@ -303,7 +281,6 @@
 	containertype = /obj/structure/closet/crate/secure/plasma
 	containername = "supermatter crate (caution)"
 	access = ACCESS_CE
-
 
 /decl/hierarchy/supply_pack/engineering/smsmall
 	name = "Supermatter Shard"
@@ -313,7 +290,6 @@
 	containername = "supermatter shard crate (caution)"
 	access = ACCESS_CE
 
-
 /decl/hierarchy/supply_pack/engineering/teg
 	contains = list(/obj/machinery/power/generator)
 	name = "Mark I Thermoelectric Generator"
@@ -321,7 +297,6 @@
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "mk1 TEG crate"
 	access = ACCESS_ENGINE
-
 
 /decl/hierarchy/supply_pack/engineering/circulator
 	contains = list(/obj/machinery/atmospherics/binary/circulator)
@@ -331,7 +306,6 @@
 	containername = "atmospheric circulator crate"
 	access = ACCESS_ENGINE
 
-
 /decl/hierarchy/supply_pack/engineering/air_dispenser
 	contains = list(/obj/machinery/pipedispenser/orderable)
 	name = "Pipe Dispenser"
@@ -339,7 +313,6 @@
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "pipe dispenser crate"
 	access = ACCESS_ATMOSPHERICS
-
 
 /decl/hierarchy/supply_pack/engineering/disposals_dispenser
 	contains = list(/obj/machinery/pipedispenser/disposal/orderable)

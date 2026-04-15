@@ -1,7 +1,6 @@
 /decl/hierarchy/supply_pack/security
 	name = "Security"
 
-
 /decl/hierarchy/supply_pack/security/specialops
 	name = "Special Ops supplies"
 	contains = list(
@@ -16,7 +15,6 @@
 	containertype = /obj/structure/closet/crate
 	containername = "special ops crate"
 	hidden = TRUE
-
 
 /decl/hierarchy/supply_pack/security/beanbagammo
 	name = "Beanbag shells"
@@ -36,7 +34,6 @@
 	containertype = /obj/structure/closet/crate
 	containername = "beanbag shells crate"
 
-
 /decl/hierarchy/supply_pack/security/weapons
 	name = "Weapons crate"
 	contains = list(
@@ -54,7 +51,6 @@
 	containername = "weapons crate"
 	access = ACCESS_ARMOURY
 
-
 /decl/hierarchy/supply_pack/security/eweapons
 	name = "Experimental weapons crate"
 	contains = list(
@@ -71,7 +67,6 @@
 	containername = "experimental weapons crate"
 	access = ACCESS_BRIDGE
 
-
 /decl/hierarchy/supply_pack/security/armour
 	name = "Armour crate"
 	contains = list(
@@ -84,7 +79,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "armour crate"
 	access = ACCESS_SECURITY
-
 
 /decl/hierarchy/supply_pack/security/riot
 	name = "Riot gear crate"
@@ -129,7 +123,6 @@
 	containername = "loyalty implant crate"
 	access = ACCESS_ARMOURY
 
-
 /decl/hierarchy/supply_pack/security/ballistic
 	name = "Ballistic gear crate"
 	contains = list(
@@ -143,7 +136,6 @@
 	containername = "ballistic gear crate"
 	access = ACCESS_ARMOURY
 
-
 /decl/hierarchy/supply_pack/security/erifle
 	name = "Energy marksman crate"
 	contains = list(
@@ -156,7 +148,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "energy marksman crate"
 	access = ACCESS_ARMOURY
-
 
 /decl/hierarchy/supply_pack/security/shotgunammo
 	name = "Shotgun shells"
@@ -177,7 +168,6 @@
 	containername = "shotgun shells crate"
 	access = ACCESS_ARMOURY
 
-
 /decl/hierarchy/supply_pack/security/expenergy
 	name = "Experimental energy gear crate"
 	contains = list(
@@ -190,7 +180,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "experimental energy gear crate"
 	access = ACCESS_ARMOURY
-
 
 /decl/hierarchy/supply_pack/security/exparmour
 	name = "Experimental armour crate"
@@ -205,7 +194,6 @@
 	containername = "experimental armour crate"
 	access = ACCESS_ARMOURY
 
-
 /decl/hierarchy/supply_pack/security/securitybarriers
 	name = "Security barrier crate"
 	contains = list(
@@ -217,7 +205,6 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "security barrier crate"
-
 
 /decl/hierarchy/supply_pack/security/securityshields
 	name = "Wall shield generators"
@@ -231,7 +218,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "wall shield generators crate"
 	access = ACCESS_TELEPORTER
-
 
 /decl/hierarchy/supply_pack/security/disablers
 	name = "Disabler supply crate"

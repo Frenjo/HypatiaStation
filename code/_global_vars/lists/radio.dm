@@ -18,6 +18,24 @@ GLOBAL_GLOBL_LIST_INIT(dept_freqs, list(
 	FREQUENCY_MINING
 ))
 
+GLOBAL_GLOBL_ALIST_INIT(dept_classes, alist(
+	FREQUENCY_SYNDICATE = "syndradio",
+
+	FREQUENCY_DEATHSQUAD = "centradio",
+	FREQUENCY_RESPONSETEAM = "centradio",
+
+	FREQUENCY_SUPPLY = "supradio",
+	FREQUENCY_SERVICE = "srvradio",
+	FREQUENCY_SCIENCE = "sciradio",
+	FREQUENCY_COMMAND = "comradio",
+	FREQUENCY_MEDICAL = "medradio",
+	FREQUENCY_ENGINEERING = "engradio",
+	FREQUENCY_SECURITY = "secradio",
+	FREQUENCY_MINING = "minradio",
+
+	FREQUENCY_AI_PRIVATE = "airadio"
+))
+
 GLOBAL_GLOBL_ALIST_INIT(radio_channels, alist(
 	CHANNEL_SYNDICATE = FREQUENCY_SYNDICATE,
 

@@ -1,7 +1,6 @@
 /decl/hierarchy/supply_pack/supply
 	name = "Supply"
 
-
 /decl/hierarchy/supply_pack/supply/food
 	name = "Kitchen supply crate"
 	contains = list(
@@ -23,7 +22,6 @@
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "food crate"
 
-
 /decl/hierarchy/supply_pack/supply/toner
 	name = "Toner cartridges"
 	contains = list(
@@ -37,7 +35,6 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "toner cartridges crate"
-
 
 /decl/hierarchy/supply_pack/supply/janitor
 	name = "Janitorial supplies"
@@ -60,7 +57,6 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "janitorial supplies crate"
-
 
 /decl/hierarchy/supply_pack/supply/boxes
 	name = "Empty boxes"

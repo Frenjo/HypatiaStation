@@ -1,7 +1,6 @@
 /decl/hierarchy/supply_pack/medsci
 	name = "Medical / Science"
 
-
 /decl/hierarchy/supply_pack/medsci/stemcell
 	name = "Stem-Cell Pack (2)"
 	contains = list(
@@ -12,7 +11,6 @@
 	containertype = /obj/structure/closet/crate/secure/bio
 	containername = "stem-cell long term storage unit"
 	access = ACCESS_MEDICAL
-
 
 /decl/hierarchy/supply_pack/medsci/medical
 	name = "Medical crate"
@@ -32,7 +30,6 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/medical
 	containername = "medical crate"
-
 
 /decl/hierarchy/supply_pack/medsci/virus
 	name = "Virus sample crate"
@@ -59,14 +56,12 @@
 	containername = "virus sample crate"
 	access = ACCESS_CMO
 
-
 /decl/hierarchy/supply_pack/medsci/coolanttank
 	name = "Coolant tank crate"
 	contains = list(/obj/structure/reagent_dispenser/coolanttank)
 	cost = 16
 	containertype = /obj/structure/largecrate
 	containername = "coolant tank crate"
-
 
 /decl/hierarchy/supply_pack/medsci/plasma
 	name = "Plasma assembly crate"
@@ -89,7 +84,6 @@
 	containername = "plasma assembly crate"
 	access = ACCESS_TOX_STORAGE
 
-
 /decl/hierarchy/supply_pack/medsci/surgery
 	name = "Surgery crate"
 	contains = list(
@@ -109,7 +103,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "surgery crate"
 	access = ACCESS_MEDICAL
-
 
 /decl/hierarchy/supply_pack/medsci/sterile
 	name = "Sterile equipment crate"
