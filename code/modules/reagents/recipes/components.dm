@@ -48,3 +48,10 @@
 	result = /datum/reagent/acetone
 	required_reagents = alist("fuel" = 1, "oil" = 1, "oxygen" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/nitrous_oxide
+	name = "Nitrous Oxide"
+	result = /datum/reagent/nitrous_oxide
+	required_reagents = alist("nitrogen" = 2, "oxygen" = 1)
+	required_catalysts = alist("ammonia" = 2)
+	result_amount = 3

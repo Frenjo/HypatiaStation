@@ -88,6 +88,12 @@
 	required_reagents = alist("oxygen" = 1, "phosphorus" = 1, "kelotane" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/thializid
+	name = "Thializid"
+	result = /datum/reagent/thializid
+	required_reagents = alist("fluorine" = 1, "nitrous_oxide" = 2, "toxin" = 1, "sulfur" = 1)
+	result_amount = 5
+
 /datum/chemical_reaction/dexalinp
 	name = "Dexalin Plus"
 	result = /datum/reagent/dexalinp

@@ -111,3 +111,22 @@
 	description = "A slick, slightly carcinogenic liquid. Has a multitude of mundane uses in everyday life."
 	reagent_state = REAGENT_LIQUID
 	color = "#AF14B7"
+
+/datum/reagent/nitrous_oxide
+	name = "Nitrous Oxide"
+	id = "nitrous_oxide"
+	description = "A potent oxidizer used as fuel in rockets and as an anaesthetic during surgery."
+	reagent_state = REAGENT_LIQUID
+	custom_metabolism = 1.5 * REAGENTS_METABOLISM
+	color = "#808080"
+
+/datum/reagent/nitrous_oxide/reaction_obj(obj/O, volume)
+	if(isnull(O) || !volume)
+		return
+	var/turf/the_turf = GET_TURF(O)
+	the_turf?.assume_gas(/decl/xgm_gas/nitrous_oxide, volume, T20C)
+	qdel(src)
+
+/datum/reagent/nitrous_oxide/reaction_turf(turf/T, volume)
+	T.assume_gas(/decl/xgm_gas/nitrous_oxide, volume, T20C)
+	qdel(src)

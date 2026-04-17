@@ -262,6 +262,24 @@
 		C.heal_organ_damage(0, 3 * REM)
 	. = ..()
 
+/datum/reagent/thializid
+	name = "Thializid"
+	id = "thializid"
+	description = "A potent antidote for intravenous use with a narrow therapeutic index."
+	reagent_state = REAGENT_LIQUID
+	custom_metabolism = 0.75 * REAGENTS_METABOLISM
+	overdose = REAGENTS_OVERDOSE / 5
+	color = "#8CDF24"
+
+/datum/reagent/thializid/on_mob_life(mob/living/carbon/C, alien)
+	if(!alien || alien != IS_DIONA)
+		C.adjustToxLoss(-3.34 * REM)
+		for(var/datum/reagent/chem in C.reagents.reagent_list)
+			if(chem.type == src.type)
+				continue
+			C.reagents.remove_reagent(chem, 0.27 * REAGENTS_METABOLISM)
+	. = ..()
+
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
 	id = "dexalinp"
