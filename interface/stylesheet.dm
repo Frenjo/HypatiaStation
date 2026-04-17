@@ -75,8 +75,8 @@ h1.alert, h2.alert {color: black;}
 
 .interface {color: #330033;}
 
-.examine {background: lightgrey; padding: 2px; margin: 3px 0px; border: 1px solid #0000CC;}
-.priority_announce {background: lightgrey; padding: 0px 2px 2em 2px; margin: 3px 0px; border: 1px solid black;}
-.minor_announce {background: lightgrey; padding: 2px 4px; margin: 3px 0px; border: 1px solid black;}
+.examine {background: #D3D3D3; padding: 2px; margin: 3px 0px; border: 1px solid #0000CC;}
+.priority_announce {background: #D3D3D3; padding: 0px 2px 2em 2px; margin: 3px 0px; border: 1px solid black;}
+.minor_announce {background: #D3D3D3; padding: 2px 4px; margin: 3px 0px; border: 1px solid black;}
 
 </style>"}
