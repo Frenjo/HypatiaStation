@@ -1,7 +1,7 @@
 /*
  * Input and Output Plates
  */
-/obj/machinery/mineral/input
+/obj/machinery/input_plate
 	name = "input area"
 	icon = 'icons/hud/screen1.dmi'
 	icon_state = "x2"
@@ -9,11 +9,11 @@
 	opacity = FALSE
 	mouse_opacity = FALSE
 
-/obj/machinery/mineral/input/initialise()
+/obj/machinery/input_plate/initialise()
 	. = ..()
 	icon_state = "blank"
 
-/obj/machinery/mineral/output
+/obj/machinery/output_plate
 	name = "output area"
 	icon = 'icons/hud/screen1.dmi'
 	icon_state = "x"
@@ -21,6 +21,6 @@
 	opacity = FALSE
 	mouse_opacity = FALSE
 
-/obj/machinery/mineral/output/initialise()
+/obj/machinery/output_plate/initialise()
 	. = ..()
 	icon_state = "blank"

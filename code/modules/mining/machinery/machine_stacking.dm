@@ -1,31 +1,34 @@
 /*
  * Mineral Stacking Unit Console
  */
-/obj/machinery/mineral/stacking_unit_console
+/obj/machinery/stacking_unit_console
 	name = "stacking machine console"
+	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
+	density = TRUE
+	anchored = TRUE
 
-	var/obj/machinery/mineral/stacking_machine/machine = null
+	var/obj/machinery/stacking_machine/machine = null
 	var/machinedir = SOUTHEAST
 
-/obj/machinery/mineral/stacking_unit_console/initialise()
+/obj/machinery/stacking_unit_console/initialise()
 	. = ..()
-	machine = locate(/obj/machinery/mineral/stacking_machine, get_step(src, machinedir))
+	machine = locate(/obj/machinery/stacking_machine, get_step(src, machinedir))
 	if(isnotnull(machine))
 		machine.console = src
 	else
 		qdel(src)
 
-/obj/machinery/mineral/stacking_unit_console/process()
+/obj/machinery/stacking_unit_console/process()
 	updateDialog()
 
-/obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user)
+/obj/machinery/stacking_unit_console/attack_hand(mob/user)
 	add_fingerprint(user)
 	interact(user)
 
 #define ADD_MATERIAL(NAME, STACK) \
 if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]] (<A href='byond://?src=\ref[src];release=[STACK]'>Release</A>)<br>"
-/obj/machinery/mineral/stacking_unit_console/interact(mob/user)
+/obj/machinery/stacking_unit_console/interact(mob/user)
 	user.set_machine(src)
 
 	var/html = "<b>Stacking Unit Console</b><br><br>"
@@ -59,7 +62,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	onclose(user, "console_stacking_machine")
 #undef ADD_MATERIAL
 
-/obj/machinery/mineral/stacking_unit_console/Topic(href, href_list)
+/obj/machinery/stacking_unit_console/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -70,20 +73,23 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 			return
 		var/amount = machine.stack_amounts[stack_path]
 		if(amount > 0)
-			new stack_path(machine.output.loc, amount)
+			new stack_path(machine.output_turf, amount)
 			machine.stack_amounts[stack_path] = 0
 	updateUsrDialog()
 
 /*
  * Mineral Stacking Unit
  */
-/obj/machinery/mineral/stacking_machine
+/obj/machinery/stacking_machine
 	name = "stacking machine"
+	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "stacker"
+	density = TRUE
+	anchored = TRUE
 
-	var/obj/machinery/mineral/stacking_unit_console/console
-	var/obj/machinery/mineral/input = null
-	var/obj/machinery/mineral/output = null
+	var/obj/machinery/stacking_unit_console/console
+	var/turf/input_turf = null
+	var/turf/output_turf = null
 	var/list/stack_amounts = list(
 		/obj/item/stack/sheet/iron = 0,
 		/obj/item/stack/sheet/steel = 0,
@@ -110,44 +116,46 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	)
 	var/max_stack_amount = 50	//ammount to stack before releassing
 
-/obj/machinery/mineral/stacking_machine/initialise()
+/obj/machinery/stacking_machine/initialise()
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
-		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-		if(isnotnull(input))
+		var/obj/machinery/input_plate/in_plate = locate(/obj/machinery/input_plate, get_step(src, dir))
+		if(isnotnull(in_plate))
+			input_turf = GET_TURF(in_plate)
 			break
 	for(var/dir in GLOBL.cardinal)
-		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(isnotnull(output))
+		var/obj/machinery/output_plate/out_plate = locate(/obj/machinery/output_plate, get_step(src, dir))
+		if(isnotnull(out_plate))
+			output_turf = GET_TURF(out_plate)
 			break
 	START_PROCESSING(PCobj, src)
 
-/obj/machinery/mineral/stacking_machine/Destroy()
+/obj/machinery/stacking_machine/Destroy()
 	STOP_PROCESSING(PCobj, src)
 	return ..()
 
-/obj/machinery/mineral/stacking_machine/process()
-	if(isnotnull(input) && isnotnull(output))
+/obj/machinery/stacking_machine/process()
+	if(isnotnull(input_turf) && isnotnull(output_turf))
 		var/obj/item/stack/O
-		while(locate(/obj/item, input.loc))
-			O = locate(/obj/item/stack, input.loc)
+		while(locate(/obj/item, input_turf))
+			O = locate(/obj/item/stack, input_turf)
 			if(isnull(O))
-				var/obj/item/I = locate(/obj/item, input.loc)
+				var/obj/item/I = locate(/obj/item, input_turf)
 				if(istype(I, /obj/item/ore/slag))
 					I.forceMove(null)
 				else
-					I.forceMove(output.loc)
+					I.forceMove(output_turf)
 				continue
 			if(O.type in stack_amounts)
 				stack_amounts[O.type] += O.amount
 				O.forceMove(null)
 				qdel(O)
 				continue
-			O.forceMove(output.loc)
+			O.forceMove(output_turf)
 
 	for(var/stack_type in stack_amounts)
 		var/amount = stack_amounts[stack_type]
 		if(amount >= max_stack_amount)
-			new stack_type(output.loc, max_stack_amount)
+			new stack_type(output_turf, max_stack_amount)
 			stack_amounts[stack_type] -= max_stack_amount
 			break
