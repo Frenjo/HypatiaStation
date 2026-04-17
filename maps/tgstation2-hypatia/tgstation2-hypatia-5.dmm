@@ -1689,7 +1689,7 @@
 /turf/open/floor/carpet,
 /area/external/research_outpost/hallway)
 "hB" = (
-/mob/living/simple/hostile/asteroid/gutlunch/guthen,
+/mob/living/simple/gutlunch/guthen,
 /turf/open/floor/plating/asteroid,
 /area/external/mining_outpost/gutlunch_farm)
 "hC" = (
@@ -1831,7 +1831,7 @@
 /obj/effect/decal/floor/siding/black/border{
 	dir = 10
 	},
-/mob/living/simple/hostile/asteroid/gutlunch,
+/mob/living/simple/gutlunch,
 /turf/open/floor/plating/asteroid,
 /area/external/mining_outpost/gutlunch_farm)
 "in" = (
@@ -4968,7 +4968,7 @@
 /obj/effect/decal/floor/siding/black/border{
 	dir = 5
 	},
-/mob/living/simple/hostile/asteroid/gutlunch/gubbuck,
+/mob/living/simple/gutlunch/gubbuck,
 /turf/open/floor/plating/asteroid,
 /area/external/mining_outpost/gutlunch_farm)
 "xg" = (
