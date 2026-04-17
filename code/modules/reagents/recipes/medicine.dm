@@ -70,6 +70,18 @@
 	result_amount = 5
 
 // Advanced variants of basic stuff.
+/datum/chemical_reaction/atropine
+	name = "Atropine"
+	result = /datum/reagent/atropine
+	required_reagents = alist("acetone" = 1, "diethylamine" = 1, "ethanol" = 1, "phenol" = 1, "sacid" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/salicylic_acid
+	name = "Salicylic Acid"
+	result = /datum/reagent/salicylic_acid
+	required_reagents = alist("carbon" = 1, "oxygen" = 1, "phenol" = 1, "sodium" = 1, "sacid" = 1)
+	result_amount = 5
+
 /datum/chemical_reaction/dermaline
 	name = "Dermaline"
 	result = /datum/reagent/dermaline

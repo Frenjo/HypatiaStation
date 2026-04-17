@@ -206,6 +206,47 @@
 	. = ..()
 
 // Advanced variants of basic stuff.
+/datum/reagent/atropine
+	name = "Atropine"
+	id = "atropine"
+	description = "If a patient is in critical condition, rapidly heals all damage types as well as regulating oxygen in the body. Excellent for stabilizing wounded patients."
+	reagent_state = REAGENT_LIQUID
+	custom_metabolism = 0.25 * REAGENTS_METABOLISM
+	overdose = REAGENTS_OVERDOSE + 5
+	color = "#1D3535"
+
+/datum/reagent/atropine/on_mob_life(mob/living/carbon/C, alien)
+	if(alien && alien == IS_VOX)
+		C.adjustToxLoss(REAGENTS_METABOLISM)
+	else
+		if(C.health <= CONFIG_GET(/decl/configuration_entry/health_threshold_crit))
+			if(C.getBruteLoss())
+				C.heal_organ_damage(3 * REM, 0)
+			if(C.getFireLoss())
+				C.heal_organ_damage(0, 3 * REM)
+			if(C.getToxLoss())
+				C.adjustToxLoss(-3 * REM)
+			if(C.getOxyLoss())
+				C.adjustOxyLoss(-3 * REM)
+		if(C.losebreath)
+			C.losebreath = 0
+
+/datum/reagent/salicylic_acid
+	name = "Salicylic Acid"
+	id = "salicylic"
+	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will worsen existing bruising."
+	reagent_state = REAGENT_LIQUID
+	custom_metabolism = 0.5 *  REAGENTS_METABOLISM
+	overdose = REAGENTS_OVERDOSE - 5
+	color = "#D2D2D2"
+
+/datum/reagent/salicylic_acid/on_mob_life(mob/living/carbon/C, alien)
+	if(C.stat == DEAD)
+		return
+	if(alien != IS_DIONA)
+		C.heal_organ_damage(3 * REM, 0)
+	. = ..()
+
 /datum/reagent/dermaline
 	name = "Dermaline"
 	id = "dermaline"

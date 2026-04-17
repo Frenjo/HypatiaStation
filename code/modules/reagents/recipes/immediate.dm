@@ -1,4 +1,23 @@
 ///////////////////////////////////////////////////////////////////////////////////
+/datum/chemical_reaction/nitroglycerin
+	name = "Nitroglycerin"
+	result = /datum/reagent/nitroglycerin
+	required_reagents = alist("glycerol" = 1, "pacid" = 1, "sacid" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
+	var/datum/effect/system/reagents_explosion/e = new /datum/effect/system/reagents_explosion()
+	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
+	e.holder_damage(holder.my_atom)
+	if(isliving(holder.my_atom))
+		e.amount *= 0.5
+		var/mob/living/L = holder.my_atom
+		if(L.stat != DEAD)
+			e.amount *= 0.5
+	e.start()
+
+	holder.clear_reagents()
+
 /datum/chemical_reaction/explosion_potassium
 	name = "Explosion"
 	required_reagents = alist("water" = 1, "potassium" = 1)
