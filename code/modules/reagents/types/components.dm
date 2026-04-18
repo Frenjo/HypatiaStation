@@ -130,3 +130,19 @@
 /datum/reagent/nitrous_oxide/reaction_turf(turf/T, volume)
 	T.assume_gas(/decl/xgm_gas/nitrous_oxide, volume, T20C)
 	qdel(src)
+
+/datum/reagent/cryptobiolin
+	name = "Cryptobiolin"
+	id = "cryptobiolin"
+	description = "Cryptobiolin causes confusion and dizzyness."
+	reagent_state = REAGENT_LIQUID
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	overdose = REAGENTS_OVERDOSE
+
+/datum/reagent/cryptobiolin/on_mob_life(mob/living/carbon/C)
+	C.make_dizzy(1)
+	if(!C.confused)
+		C.confused = 1
+	C.confused = max(C.confused, 20)
+	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
+	. = ..()

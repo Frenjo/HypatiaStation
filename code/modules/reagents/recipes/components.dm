@@ -55,3 +55,9 @@
 	required_reagents = alist("nitrogen" = 2, "oxygen" = 1)
 	required_catalysts = alist("ammonia" = 2)
 	result_amount = 3
+
+/datum/chemical_reaction/cryptobiolin
+	name = "Cryptobiolin"
+	result = /datum/reagent/cryptobiolin
+	required_reagents = alist("potassium" = 1, "oxygen" = 1, "sugar" = 1)
+	result_amount = 3

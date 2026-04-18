@@ -10,23 +10,6 @@
 //so that it can continue working when the reagent is deleted while the proc is still active.
 
 // Category comments are mine, rest of them aren't. -Frenjo
-// Precursor chemicals.
-/datum/reagent/cryptobiolin
-	name = "Cryptobiolin"
-	id = "cryptobiolin"
-	description = "Cryptobiolin causes confusion and dizzyness."
-	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE
-
-/datum/reagent/cryptobiolin/on_mob_life(mob/living/carbon/C)
-	C.make_dizzy(1)
-	if(!C.confused)
-		C.confused = 1
-	C.confused = max(C.confused, 20)
-	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
-	. = ..()
-
 // Basic stuff.
 /datum/reagent/inaprovaline
 	name = "Inaprovaline"

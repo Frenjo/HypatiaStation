@@ -1,11 +1,4 @@
 ///////////////////////////////////////////////////////////////////////////////////
-// Precursor chemicals.
-/datum/chemical_reaction/cryptobiolin
-	name = "Cryptobiolin"
-	result = /datum/reagent/cryptobiolin
-	required_reagents = alist("potassium" = 1, "oxygen" = 1, "sugar" = 1)
-	result_amount = 3
-
 // Basic stuff.
 /datum/chemical_reaction/inaprovaline
 	name = "Inaprovaline"
