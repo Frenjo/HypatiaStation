@@ -263,12 +263,14 @@
 				var/matching_other = 0
 				var/list/multipliers = list()
 
-				for(var/B in C.required_reagents)
+				for(var/datum/reagent/required in C.required_reagents)
+					var/B = required::id
 					if(!has_reagent(B, C.required_reagents[B]))
 						break
 					total_matching_reagents++
 					multipliers += round(get_reagent_amount(B) / C.required_reagents[B])
-				for(var/B in C.required_catalysts)
+				for(var/datum/reagent/required in C.required_catalysts)
+					var/B = required::id
 					if(!has_reagent(B, C.required_catalysts[B]))
 						break
 					total_matching_catalysts++

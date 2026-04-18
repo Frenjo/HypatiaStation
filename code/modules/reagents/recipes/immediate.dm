@@ -2,7 +2,7 @@
 /datum/chemical_reaction/nitroglycerin
 	name = "Nitroglycerin"
 	result = /datum/reagent/nitroglycerin
-	required_reagents = alist("glycerol" = 1, "pacid" = 1, "sacid" = 1)
+	required_reagents = alist(/datum/reagent/glycerol = 1, /datum/reagent/toxin/acid/polyacid = 1, /datum/reagent/toxin/acid = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
@@ -20,7 +20,7 @@
 
 /datum/chemical_reaction/explosion_potassium
 	name = "Explosion"
-	required_reagents = alist("water" = 1, "potassium" = 1)
+	required_reagents = alist(/datum/reagent/potassium = 1, /datum/reagent/water = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/explosion_potassium/on_reaction(datum/reagents/holder, created_volume)
@@ -37,7 +37,7 @@
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
-	required_reagents = alist("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
+	required_reagents = alist(/datum/reagent/iron = 1, /datum/reagent/uranium = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
 /datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
@@ -48,7 +48,7 @@
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
-	required_reagents = alist("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
+	required_reagents = alist(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
 	result_amount = null
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
@@ -74,7 +74,7 @@
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"
-	required_reagents = alist("aluminum" = 1, "plasma" = 1, "sacid" = 1 )
+	required_reagents = alist(/datum/reagent/aluminum = 1, /datum/reagent/plasma = 1, /datum/reagent/toxin/acid = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume)
@@ -114,7 +114,7 @@
 
 /datum/chemical_reaction/chemsmoke
 	name = "Chemsmoke"
-	required_reagents = alist("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_reagents = alist(/datum/reagent/potassium = 1, /datum/reagent/phosphorus = 1, /datum/reagent/sugar = 1)
 	result_amount = 0.4
 	secondary = TRUE
 
@@ -126,7 +126,7 @@
 
 /datum/chemical_reaction/foam
 	name = "Foam"
-	required_reagents = alist("fluorosurfactant" = 1, "water" = 1)
+	required_reagents = alist(/datum/reagent/fluorosurfactant = 1, /datum/reagent/water = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
@@ -150,7 +150,7 @@
 
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
-	required_reagents = alist("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
+	required_reagents = alist(/datum/reagent/aluminum = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid/polyacid = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
@@ -165,7 +165,7 @@
 
 /datum/chemical_reaction/ironfoam
 	name = "Iron Foam"
-	required_reagents = alist("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
+	required_reagents = alist(/datum/reagent/foaming_agent = 1, /datum/reagent/iron = 3, /datum/reagent/toxin/acid/polyacid = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
