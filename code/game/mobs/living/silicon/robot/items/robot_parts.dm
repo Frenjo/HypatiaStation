@@ -212,7 +212,7 @@
 				to_chat(user, SPAN_WARNING("This [I] does not seem to fit."))
 				return TRUE
 
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(GET_TURF(src), unfinished = 1)
+			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(GET_TURF(src))
 			if(isnull(O))
 				return TRUE
 

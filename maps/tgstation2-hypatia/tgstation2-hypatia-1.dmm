@@ -35874,7 +35874,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/item/mmi/posibrain,
+/obj/item/mmi/digital/positronic,
 /obj/item/robot_analyser,
 /turf/open/floor{
 	dir = 8;

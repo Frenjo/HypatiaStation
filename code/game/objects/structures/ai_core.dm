@@ -116,7 +116,7 @@
 				laws.add_inherent_law(M.newFreeFormLaw)
 				to_chat(user, "Added a freeform law.")
 
-			if(istype(object, /obj/item/mmi) || istype(object, /obj/item/mmi/posibrain))
+			if(istype(object, /obj/item/mmi))
 				var/obj/item/mmi/mmi = object
 				if(!mmi.brainmob)
 					to_chat(user, SPAN_WARNING("Sticking an empty [mmi] into the frame would sort of defeat the purpose."))

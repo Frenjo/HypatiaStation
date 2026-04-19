@@ -46,7 +46,20 @@
 		/decl/material/gold = 0.25 MATERIAL_SHEETS, /decl/material/diamond = 0.1 MATERIAL_SHEETS, /decl/material/plasma = 0.25 MATERIAL_SHEETS
 	)
 	build_time = 7.5 SECONDS
-	build_path = /obj/item/mmi/posibrain
+	build_path = /obj/item/mmi/digital/positronic
+	categories = list("Robot Internal Components")
+
+/datum/design/robobrain
+	name = "AI Design (Robotic Intelligence Circuit)"
+	desc = "Allows for the construction of robotic intelligence circuits."
+	req_tech = alist(/decl/tech/materials = 5, /decl/tech/engineering = 4, /decl/tech/programming = 4)
+	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
+	materials = alist(
+		/decl/material/steel = 1 MATERIAL_SHEET, /decl/material/glass = 0.5 MATERIAL_SHEETS, /decl/material/silver = 0.5 MATERIAL_SHEETS,
+		/decl/material/gold = 0.25 MATERIAL_SHEETS
+	)
+	build_time = 7.5 SECONDS
+	build_path = /obj/item/mmi/digital/robot
 	categories = list("Robot Internal Components")
 
 /////////////////////////////////////////
