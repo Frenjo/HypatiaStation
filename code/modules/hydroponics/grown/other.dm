@@ -7,7 +7,7 @@
 	desc = "This is a plant containing various healing chemicals."
 	icon_state = "ambrosiavulgaris"
 
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 	potency = 10
 	filling_color = "#125709"
@@ -29,7 +29,7 @@
 	desc = "Eating this makes you feel immortal!"
 	icon_state = "ambrosiadeus"
 
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 	potency = 10
 	filling_color = "#229E11"

@@ -139,10 +139,10 @@
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	starting_reagents = alist("enzyme" = 50)
+	starting_reagents = alist(/datum/reagent/enzyme = 50)
 
 /obj/item/reagent_holder/food/condiment/sugar
-	starting_reagents = alist("sugar" = 50)
+	starting_reagents = alist(/datum/reagent/sugar = 50)
 
 /obj/item/reagent_holder/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
@@ -151,7 +151,7 @@
 	possible_transfer_amounts = list(1, 20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	starting_reagents = alist("sodiumchloride" = 20)
+	starting_reagents = alist(/datum/reagent/sodiumchloride = 20)
 
 /obj/item/reagent_holder/food/condiment/peppermill
 	name = "Pepper Mill"
@@ -160,4 +160,4 @@
 	possible_transfer_amounts = list(1, 20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	starting_reagents = alist("blackpepper" = 20)
+	starting_reagents = alist(/datum/reagent/blackpepper = 20)

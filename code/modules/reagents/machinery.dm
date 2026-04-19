@@ -22,9 +22,14 @@
 	var/recharged = 0
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list(
-		"hydrogen", "lithium", "carbon", "nitrogen", "oxygen", "fluorine",
-		"sodium", "aluminum", "silicon", "phosphorus", "sulfur", "chlorine", "potassium", "iron",
-		"copper", "mercury", "radium", "water", "ethanol", "sugar", "sacid", "tungsten"
+		/datum/reagent/aluminium, /datum/reagent/carbon, /datum/reagent/copper,
+		/datum/reagent/chlorine, /datum/reagent/fluorine, /datum/reagent/ethanol,
+		/datum/reagent/hydrogen, /datum/reagent/iron, /datum/reagent/lithium,
+		/datum/reagent/mercury, /datum/reagent/nitrogen, /datum/reagent/oxygen,
+		/datum/reagent/phosphorus, /datum/reagent/potassium, /datum/reagent/radium,
+		/datum/reagent/silicon, /datum/reagent/sodium, /datum/reagent/sugar,
+		/datum/reagent/sulfur, /datum/reagent/toxin/acid, /datum/reagent/tungsten,
+		/datum/reagent/water
 	)
 	var/list/broken_requirements = list()
 	var/broken_on_spawn = 0
@@ -143,7 +148,8 @@
 		data["beakerMaxVolume"] = null
 
 	var/list/chemicals = list()
-	for(var/re in dispensable_reagents)
+	for(var/datum/reagent/dispensable in dispensable_reagents)
+		var/re = dispensable::id
 		var/datum/reagent/temp = GLOBL.chemical_reagents_list[re]
 		if(temp)
 			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
@@ -173,7 +179,8 @@
 			amount = 100
 
 	if(href_list["dispense"])
-		if(dispensable_reagents.Find(href_list["dispense"]) && beaker != null)
+		var/datum/reagent/dispensed = GLOBL.chemical_reagents_list[href_list["dispense"]]
+		if(isnotnull(dispensed) && dispensable_reagents.Find(dispensed::type) && isnotnull(beaker))
 			var/obj/item/reagent_holder/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
@@ -239,19 +246,26 @@
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
-	dispensable_reagents = list("water", "ice", "coffee", "cream", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "sugar", "orangejuice", "limejuice", "watermelonjuice")
+	dispensable_reagents = list(
+		/datum/reagent/drink/coffee, /datum/reagent/drink/milk/cream, /datum/reagent/drink/cold/dr_gibb,
+		/datum/reagent/drink/cold/ice, /datum/reagent/drink/tea/icetea, /datum/reagent/drink/cold/lemon_lime,
+		/datum/reagent/drink/limejuice, /datum/reagent/drink/orangejuice, /datum/reagent/drink/cold/sodawater,
+		/datum/reagent/drink/cold/space_cola, /datum/reagent/drink/cold/spacemountainwind, /datum/reagent/drink/cold/space_up,
+		/datum/reagent/sugar, /datum/reagent/drink/tea, /datum/reagent/drink/cold/tonic,
+		/datum/reagent/water, /datum/reagent/drink/watermelonjuice
+	)
 
 /obj/machinery/chem_dispenser/soda/attackby(obj/item/B, mob/user)
 	..()
 	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
-			dispensable_reagents += list("thirteenloko", "grapesoda")
+			dispensable_reagents += list(/datum/reagent/drink/grapesoda, /datum/reagent/ethanol/thirteenloko)
 			hackedcheck = 1
 			return
 		else
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
-			dispensable_reagents -= list("thirteenloko")
+			dispensable_reagents -= list(/datum/reagent/ethanol/thirteenloko)
 			hackedcheck = 0
 			return
 
@@ -262,20 +276,32 @@
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
-	dispensable_reagents = list("lemon_lime", "sugar", "orangejuice", "limejuice", "sodawater", "tonic", "beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead")
+	dispensable_reagents = list(
+		/datum/reagent/ethanol/ale, /datum/reagent/ethanol/beer, /datum/reagent/ethanol/cognac,
+		/datum/reagent/ethanol/gin, /datum/reagent/ethanol/kahlua, /datum/reagent/drink/cold/lemon_lime,
+		/datum/reagent/drink/limejuice, /datum/reagent/ethanol/mead, /datum/reagent/drink/orangejuice,
+		/datum/reagent/ethanol/rum, /datum/reagent/drink/cold/sodawater, /datum/reagent/sugar,
+		/datum/reagent/ethanol/tequilla, /datum/reagent/drink/cold/tonic, /datum/reagent/ethanol/vermouth,
+		/datum/reagent/ethanol/vodka, /datum/reagent/ethanol/whiskey, /datum/reagent/ethanol/wine
+	)
 
 /obj/machinery/chem_dispenser/beer/attackby(obj/item/B, mob/user)
 	..()
 	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
-			dispensable_reagents += list("goldschlager", "patron", "watermelonjuice", "berryjuice")
+			dispensable_reagents += list(
+				/datum/reagent/drink/berryjuice, /datum/reagent/ethanol/goldschlager, /datum/reagent/ethanol/patron,
+				/datum/reagent/drink/watermelonjuice
+			)
 			hackedcheck = 1
 			return
 		else
 			to_chat(user, "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.")
-			dispensable_reagents -= list("goldschlager", "patron", "watermelonjuice", "berryjuice")
+			dispensable_reagents -= list(
+				/datum/reagent/drink/berryjuice, /datum/reagent/ethanol/goldschlager, /datum/reagent/ethanol/patron,
+				/datum/reagent/drink/watermelonjuice
+			)
 			hackedcheck = 0
 			return
 

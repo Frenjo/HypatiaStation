@@ -241,7 +241,7 @@
 	name = "Aesir salad"
 	desc = "Probably too incredible for mortal men to fully enjoy."
 	icon_state = "aesirsalad"
-	starting_reagents = alist("nutriment" = 8, "doctorsdelight" = 8, "tricordrazine" = 8)
+	starting_reagents = alist(/datum/reagent/doctor_delight = 8, /datum/reagent/nutriment = 8, /datum/reagent/tricordrazine = 8)
 	filling_color = "#468C00"
 	bitesize = 3
 	trash = /obj/item/trash/snack_bowl
@@ -250,7 +250,7 @@
 	name = "candy"
 	desc = "Nougat, love it or hate it."
 	icon_state = "candy"
-	starting_reagents = alist("nutriment" = 1, "sugar" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 1, /datum/reagent/sugar = 3)
 	filling_color = "#7D5F46"
 	bitesize = 2
 	trash = /obj/item/trash/candy
@@ -258,7 +258,7 @@
 /obj/item/reagent_holder/food/snacks/candy/donor
 	name = "Donor Candy"
 	desc = "A little treat for blood donors."
-	starting_reagents = alist("nutriment" = 10, "sugar" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 10, /datum/reagent/sugar = 3)
 	bitesize = 5
 	trash = /obj/item/trash/candy
 
@@ -266,7 +266,7 @@
 	name = "candy corn"
 	desc = "It's a handful of candy corn. Cannot be stored in a detective's hat, alas."
 	icon_state = "candy_corn"
-	starting_reagents = alist("nutriment" = 4, "sugar" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 4, /datum/reagent/sugar = 2)
 	filling_color = "#FFFCB0"
 	bitesize = 2
 
@@ -274,7 +274,7 @@
 	name = "chips"
 	desc = "Commander Riker's What-The-Crisps"
 	icon_state = "chips"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#E8C31E"
 	trash = /obj/item/trash/chips
 
@@ -282,14 +282,14 @@
 	name = "cookie"
 	desc = "COOKIE!!!"
 	icon_state = "COOKIE!!!"
-	starting_reagents = alist("nutriment" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 5)
 	filling_color = "#DBC94F"
 
 /obj/item/reagent_holder/food/snacks/chocolatebar
 	name = "Chocolate Bar"
 	desc = "Such sweet, fattening food."
 	icon_state = "chocolatebar"
-	starting_reagents = alist("nutriment" = 2, "sugar" = 2, "coco" = 2)
+	starting_reagents = alist(/datum/reagent/coco = 2, /datum/reagent/nutriment = 2, /datum/reagent/sugar = 2)
 	filling_color = "#7D5F46"
 	bitesize = 2
 
@@ -297,7 +297,7 @@
 	name = "Chocolate Egg"
 	desc = "Such sweet, fattening food."
 	icon_state = "chocolateegg"
-	starting_reagents = alist("nutriment" = 3, "sugar" = 2, "coco" = 2)
+	starting_reagents = alist(/datum/reagent/coco = 2, /datum/reagent/nutriment = 3, /datum/reagent/sugar = 2)
 	filling_color = "#7D5F46"
 	bitesize = 2
 
@@ -311,7 +311,7 @@
 	name = "donut"
 	desc = "Goes great with Robust Coffee."
 	icon_state = "donut1"
-	starting_reagents = alist("nutriment" = 3, "sprinkles" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 3, /datum/reagent/sprinkles = 1)
 	bitesize = 3
 
 /obj/item/reagent_holder/food/snacks/donut/normal/New()
@@ -319,13 +319,13 @@
 	if(prob(30))
 		name = "frosted donut"
 		icon_state = "donut2"
-		starting_reagents["sprinkles"] += 2
+		starting_reagents[/datum/reagent/sprinkles] += 2
 
 /obj/item/reagent_holder/food/snacks/donut/chaos
 	name = "chaos donut"
 	desc = "Like life, it never quite tastes the same."
 	icon_state = "donut1"
-	starting_reagents = alist("nutriment" = 2, "sprinkles" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 2, /datum/reagent/sprinkles = 1)
 	filling_color = "#ED11E6"
 	bitesize = 10
 
@@ -334,7 +334,7 @@
 	if(prob(30))
 		name = "frosted chaos donut"
 		icon_state = "donut2"
-		starting_reagents["sprinkles"] += 2
+		starting_reagents[/datum/reagent/sprinkles] += 2
 
 /obj/item/reagent_holder/food/snacks/donut/chaos/initialise()
 	. = ..()
@@ -365,7 +365,7 @@
 	name = "jelly donut"
 	desc = "You jelly?"
 	icon_state = "jdonut1"
-	starting_reagents = alist("nutriment" = 3, "sprinkles" = 1, "berryjuice" = 5)
+	starting_reagents = alist(/datum/reagent/drink/berryjuice = 5, /datum/reagent/nutriment = 3, /datum/reagent/sprinkles = 1)
 	filling_color = "#ED1169"
 	bitesize = 5
 
@@ -374,13 +374,13 @@
 	if(prob(30))
 		name = "frosted jelly donut"
 		icon_state = "jdonut2"
-		starting_reagents["sprinkles"] += 2
+		starting_reagents[/datum/reagent/sprinkles] += 2
 
 /obj/item/reagent_holder/food/snacks/donut/slimejelly
 	name = "jelly donut"
 	desc = "You jelly?"
 	icon_state = "jdonut1"
-	starting_reagents = alist("nutriment" = 3, "sprinkles" = 1, "slimejelly" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 3, /datum/reagent/toxin/slimejelly = 5, /datum/reagent/sprinkles = 1)
 	filling_color = "#ED1169"
 	bitesize = 5
 
@@ -389,13 +389,13 @@
 	if(prob(30))
 		name = "frosted jelly donut"
 		icon_state = "jdonut2"
-		starting_reagents["sprinkles"] += 2
+		starting_reagents[/datum/reagent/sprinkles] += 2
 
 /obj/item/reagent_holder/food/snacks/donut/cherryjelly
 	name = "jelly donut"
 	desc = "You jelly?"
 	icon_state = "jdonut1"
-	starting_reagents = alist("nutriment" = 3, "sprinkles" = 1, "cherryjelly" = 5)
+	starting_reagents = alist(/datum/reagent/cherryjelly = 5, /datum/reagent/nutriment = 3, /datum/reagent/sprinkles = 1)
 	filling_color = "#ED1169"
 	bitesize = 5
 
@@ -404,13 +404,13 @@
 	if(prob(30))
 		name = "frosted jelly donut"
 		icon_state = "jdonut2"
-		starting_reagents["sprinkles"] += 2
+		starting_reagents[/datum/reagent/sprinkles] += 2
 
 /obj/item/reagent_holder/food/snacks/egg
 	name = "egg"
 	desc = "An egg!"
 	icon_state = "egg"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 	filling_color = "#FDFFD1"
 
 /obj/item/reagent_holder/food/snacks/egg/throw_impact(atom/hit_atom)
@@ -471,21 +471,21 @@
 	name = "Fried egg"
 	desc = "A fried egg, with a touch of salt and pepper."
 	icon_state = "friedegg"
-	starting_reagents = alist("nutriment" = 2, "sodiumchloride" = 1, "blackpepper" = 1)
+	starting_reagents = alist(/datum/reagent/blackpepper = 1, /datum/reagent/nutriment = 2, /datum/reagent/sodiumchloride = 1)
 	filling_color = "#FFDF78"
 
 /obj/item/reagent_holder/food/snacks/boiledegg
 	name = "Boiled egg"
 	desc = "A hard boiled egg."
 	icon_state = "egg"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#FFFFFF"
 
 /obj/item/reagent_holder/food/snacks/flour
 	name = "flour"
 	desc = "A small bag filled with some flour."
 	icon_state = "flour"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 /obj/item/reagent_holder/food/snacks/appendix
 //yes, this is the same as meat. I might do something different in future
@@ -493,7 +493,7 @@
 	desc = "An appendix which looks perfectly healthy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "appendix"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#E00D34"
 	bitesize = 3
 
@@ -507,7 +507,7 @@
 	name = "Tofu"
 	icon_state = "tofu"
 	desc = "We all love tofu."
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#FFFEE0"
 	bitesize = 3
 
@@ -515,7 +515,7 @@
 	name = "Tofurkey"
 	desc = "A fake turkey made from tofu."
 	icon_state = "tofurkey"
-	starting_reagents = alist("nutriment" = 12, "soporific" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 12, /datum/reagent/toxin/soporific = 3)
 	filling_color = "#FFFEE0"
 	bitesize = 3
 
@@ -523,14 +523,14 @@
 	name = "Stuffing"
 	desc = "Moist, peppery breadcrumbs for filling the body cavities of dead birds. Dig in!"
 	icon_state = "stuffing"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#C9AC83"
 
 /obj/item/reagent_holder/food/snacks/carpmeat
 	name = "carp fillet"
 	desc = "A fillet of spess carp meat"
 	icon_state = "fishfillet"
-	starting_reagents = alist("nutriment" = 3, "carpotoxin" = 3)
+	starting_reagents = alist(/datum/reagent/toxin/carpotoxin = 3, /datum/reagent/nutriment = 3)
 	filling_color = "#FFDEFE"
 	bitesize = 6
 
@@ -538,7 +538,7 @@
 	name = "Fish Fingers"
 	desc = "A finger of fish."
 	icon_state = "fishfingers"
-	starting_reagents = alist("nutriment" = 4, "carpotoxin" = 3)
+	starting_reagents = alist(/datum/reagent/toxin/carpotoxin = 3, /datum/reagent/nutriment = 4)
 	filling_color = "#FFDEFE"
 	bitesize = 3
 
@@ -546,7 +546,7 @@
 	name = "huge mushroom slice"
 	desc = "A slice from a huge mushroom."
 	icon_state = "hugemushroomslice"
-	starting_reagents = alist("nutriment" = 3, "psilocybin" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3, /datum/reagent/psilocybin = 3)
 	filling_color = "#E0D7C5"
 	bitesize = 6
 
@@ -554,7 +554,7 @@
 	name = "tomato slice"
 	desc = "A slice from a huge tomato"
 	icon_state = "tomatomeat"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#DB0000"
 	bitesize = 6
 
@@ -562,7 +562,7 @@
 	name = "bear meat"
 	desc = "A very manly slab of meat."
 	icon_state = "bearmeat"
-	starting_reagents = alist("nutriment" = 12, "hyperzine" = 5)
+	starting_reagents = alist(/datum/reagent/hyperzine = 5, /datum/reagent/nutriment = 12)
 	filling_color = "#DB0000"
 	bitesize = 3
 
@@ -570,7 +570,7 @@
 	name = "meat"
 	desc = "A slab of meat"
 	icon_state = "xenomeat"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#43DE18"
 	bitesize = 6
 
@@ -578,7 +578,7 @@
 	name = "meatball"
 	desc = "A great meal all round."
 	icon_state = "meatball"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#DB0000"
 	bitesize = 2
 
@@ -586,7 +586,7 @@
 	name = "Sausage"
 	desc = "A piece of mixed, long meat."
 	icon_state = "sausage"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#DB0000"
 	bitesize = 2
 
@@ -594,7 +594,7 @@
 	name = "Donk-pocket"
 	desc = "The food of choice for the seasoned traitor."
 	icon_state = "donkpocket"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#DEDEAB"
 
 	var/warm = 0
@@ -611,7 +611,7 @@
 	name = "brainburger"
 	desc = "A strange looking burger. It looks almost sentient."
 	icon_state = "brainburger"
-	starting_reagents = alist("nutriment" = 6, "alkysine" = 6)
+	starting_reagents = alist(/datum/reagent/alkysine = 6, /datum/reagent/nutriment = 6)
 	filling_color = "#F2B6EA"
 	bitesize = 2
 
@@ -619,7 +619,7 @@
 	name = "Ghost Burger"
 	desc = "Spooky! It doesn't look very filling."
 	icon_state = "ghostburger"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#FFF2FF"
 	bitesize = 2
 
@@ -633,20 +633,20 @@
 	name = "-burger"
 	desc = "A bloody burger."
 	icon_state = "hburger"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/cheeseburger
 	name = "cheeseburger"
 	desc = "The cheese adds a good flavor."
 	icon_state = "cheeseburger"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 
 /obj/item/reagent_holder/food/snacks/monkeyburger
 	name = "burger"
 	desc = "The cornerstone of every nutritious breakfast."
 	icon_state = "hburger"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#D63C3C"
 	bitesize = 2
 
@@ -654,7 +654,7 @@
 	name = "Fillet -o- Carp Sandwich"
 	desc = "Almost like a carp is yelling somewhere... Give me back that fillet -o- carp, give me that carp."
 	icon_state = "fishburger"
-	starting_reagents = alist("nutriment" = 6, "carpotoxin" = 3)
+	starting_reagents = alist(/datum/reagent/toxin/carpotoxin = 3, /datum/reagent/nutriment = 6)
 	filling_color = "#FFDEFE"
 	bitesize = 3
 
@@ -662,7 +662,7 @@
 	name = "Tofu Burger"
 	desc = "What.. is that meat?"
 	icon_state = "tofuburger"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#FFFEE0"
 	bitesize = 2
 
@@ -670,20 +670,20 @@
 	name = "roburger"
 	desc = "The lettuce is the only organic component. Beep."
 	icon_state = "roburger"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#CCCCCC"
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/roburger/New()
 	. = ..()
 	if(prob(5))
-		starting_reagents["nanites"] += 2
+		starting_reagents[/datum/reagent/disease/nanites] += 2
 
 /obj/item/reagent_holder/food/snacks/roburgerbig
 	name = "roburger"
 	desc = "This massive patty looks like poison. Beep."
 	icon_state = "roburger"
-	starting_reagents = alist("nanites" = 100)
+	starting_reagents = alist(/datum/reagent/disease/nanites = 100)
 	filling_color = "#CCCCCC"
 	volume = 100
 	bitesize = 0.1
@@ -692,7 +692,7 @@
 	name = "xenoburger"
 	desc = "Smells caustic. Tastes like heresy."
 	icon_state = "xburger"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#43DE18"
 	bitesize = 2
 
@@ -700,7 +700,7 @@
 	name = "Clown Burger"
 	desc = "This tastes funny..."
 	icon_state = "clownburger"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#FF00FF"
 	bitesize = 2
 
@@ -716,7 +716,7 @@
 	name = "Mime Burger"
 	desc = "Its taste defies language."
 	icon_state = "mimeburger"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#FFFFFF"
 	bitesize = 2
 
@@ -724,7 +724,7 @@
 	name = "Omelette Du Fromage"
 	desc = "That's all you can say!"
 	icon_state = "omelette"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#FFF9A8"
 	trash = /obj/item/trash/plate
 
@@ -760,7 +760,7 @@
 	name = "Muffin"
 	desc = "A delicious and spongy little cake"
 	icon_state = "muffin"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#E0CF9B"
 	bitesize = 2
 
@@ -768,7 +768,7 @@
 	name = "Banana Cream Pie"
 	desc = "Just like back home, on clown planet! HONK!"
 	icon_state = "pie"
-	starting_reagents = alist("nutriment" = 4, "banana" = 5)
+	starting_reagents = alist(/datum/reagent/drink/banana = 5, /datum/reagent/nutriment = 4)
 	filling_color = "#FBFFB8"
 	bitesize = 3
 	trash = /obj/item/trash/plate
@@ -783,7 +783,7 @@
 	name = "Berry Clafoutis"
 	desc = "No black birds, this is a good sign."
 	icon_state = "berryclafoutis"
-	starting_reagents = alist("nutriment" = 4, "berryjuice" = 5)
+	starting_reagents = alist(/datum/reagent/drink/berryjuice = 5, /datum/reagent/nutriment = 4)
 	bitesize = 3
 	trash = /obj/item/trash/plate
 
@@ -792,7 +792,7 @@
 	desc = "Mmm, waffles"
 	icon_state = "waffles"
 	filling_color = "#E6DEB5"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	bitesize = 2
 	trash = /obj/item/trash/waffles
 
@@ -800,7 +800,7 @@
 	name = "Eggplant Parmigiana"
 	desc = "The only good recipe for eggplant."
 	icon_state = "eggplantparm"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#4D2F5E"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -809,7 +809,7 @@
 	name = "Soylent Green"
 	desc = "Not made of people. Honest." //Totally people.
 	icon_state = "soylent_green"
-	starting_reagents = alist("nutriment" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 10)
 	filling_color = "#B8E6B5"
 	bitesize = 2
 	trash = /obj/item/trash/waffles
@@ -818,7 +818,7 @@
 	name = "Soylen Virdians"
 	desc = "Not made of people. Honest." //Actually honest for once.
 	icon_state = "soylent_yellow"
-	starting_reagents = alist("nutriment" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 10)
 	filling_color = "#E6FA61"
 	bitesize = 2
 	trash = /obj/item/trash/waffles
@@ -827,7 +827,7 @@
 	name = "Meat-pie"
 	icon_state = "meatpie"
 	desc = "An old barber recipe, very delicious!"
-	starting_reagents = alist("nutriment" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 10)
 	filling_color = "#948051"
 	trash = /obj/item/trash/plate
 	bitesize = 2
@@ -836,7 +836,7 @@
 	name = "Tofu-pie"
 	icon_state = "meatpie"
 	desc = "A delicious tofu pie."
-	starting_reagents = alist("nutriment" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 10)
 	filling_color = "#FFFEE0"
 	trash = /obj/item/trash/plate
 	bitesize = 2
@@ -845,7 +845,7 @@
 	name = "amanita pie"
 	desc = "Sweet and tasty poison pie."
 	icon_state = "amanita_pie"
-	starting_reagents = alist("nutriment" = 5, "amatoxin" = 3, "psilocybin" = 1)
+	starting_reagents = alist(/datum/reagent/toxin/amatoxin = 3, /datum/reagent/nutriment = 5, /datum/reagent/psilocybin = 1)
 	filling_color = "#FFCCCC"
 	bitesize = 3
 
@@ -853,7 +853,7 @@
 	name = "plump pie"
 	desc = "I bet you love stuff made out of plump helmets!"
 	icon_state = "plump_pie"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#B8279B"
 	bitesize = 2
 
@@ -862,13 +862,13 @@
 	if(prob(10))
 		name = "exceptional plump pie"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
-		starting_reagents["tricordrazine"] = 5
+		starting_reagents[/datum/reagent/tricordrazine] = 5
 
 /obj/item/reagent_holder/food/snacks/xemeatpie
 	name = "Xeno-pie"
 	icon_state = "xenomeatpie"
 	desc = "A delicious meatpie. Probably heretical."
-	starting_reagents = alist("nutriment" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 10)
 	filling_color = "#43DE18"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -877,7 +877,7 @@
 	name = "Wing Fang Chu"
 	desc = "A savory dish of alien wing wang in soy."
 	icon_state = "wingfangchu"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#43DE18"
 	bitesize = 2
 	trash = /obj/item/trash/snack_bowl
@@ -886,7 +886,7 @@
 	name = "-kabob"
 	icon_state = "kabob"
 	desc = "A human meat, on a stick."
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#A85340"
 	bitesize = 2
 	trash = /obj/item/stack/rods
@@ -895,7 +895,7 @@
 	name = "Meat-kabob"
 	icon_state = "kabob"
 	desc = "Delicious meat, on a stick."
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#A85340"
 	bitesize = 2
 	trash = /obj/item/stack/rods
@@ -904,7 +904,7 @@
 	name = "Tofu-kabob"
 	icon_state = "kabob"
 	desc = "Vegan meat, on a stick."
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#FFFEE0"
 	bitesize = 2
 	trash = /obj/item/stack/rods
@@ -913,7 +913,7 @@
 	name = "Cuban Carp"
 	desc = "A grifftastic sandwich that burns your tongue and then leaves it numb!"
 	icon_state = "cubancarp"
-	starting_reagents = alist("nutriment" = 6, "carpotoxin" = 3, "capsaicin" = 3)
+	starting_reagents = alist(/datum/reagent/capsaicin = 3, /datum/reagent/toxin/carpotoxin = 3, /datum/reagent/nutriment = 6)
 	filling_color = "#E9ADFF"
 	bitesize = 3
 	trash = /obj/item/trash/plate
@@ -922,7 +922,7 @@
 	name = "Popcorn"
 	desc = "Now let's find some cinema."
 	icon_state = "popcorn"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#FFFAD4"
 	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
 	trash = /obj/item/trash/popcorn
@@ -943,7 +943,7 @@
 	name = "Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"
 	desc = "Beef jerky made from the finest space cows."
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#631212"
 	bitesize = 2
 	trash = /obj/item/trash/sosjerky
@@ -952,7 +952,7 @@
 	name = "4no Raisins"
 	icon_state = "4no_raisins"
 	desc = "Best raisins in the universe. Not sure why."
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#343834"
 	trash = /obj/item/trash/raisins
 
@@ -960,7 +960,7 @@
 	name = "Space Twinkie"
 	icon_state = "space_twinkie"
 	desc = "Guaranteed to survive longer then you will."
-	starting_reagents = alist("sugar" = 4)
+	starting_reagents = alist(/datum/reagent/sugar = 4)
 	filling_color = "#FFE591"
 	bitesize = 2
 
@@ -968,7 +968,7 @@
 	name = "Cheesie Honkers"
 	icon_state = "cheesie_honkers"
 	desc = "Bite sized cheesie snacks that will honk all over your mouth"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#FFA305"
 	bitesize = 2
 	trash = /obj/item/trash/cheesie
@@ -977,7 +977,7 @@
 	name = "Syndi-Cakes"
 	icon_state = "syndi_cakes"
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
-	starting_reagents = alist("nutriment" = 4, "doctorsdelight" = 5)
+	starting_reagents = alist(/datum/reagent/doctor_delight = 5, /datum/reagent/nutriment = 4)
 	filling_color = "#FF5D05"
 	bitesize = 3
 	trash = /obj/item/trash/syndi_cakes
@@ -986,7 +986,7 @@
 	name = "Loaded Baked Potato"
 	desc = "Totally baked."
 	icon_state = "loadedbakedpotato"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#9C7A68"
 	bitesize = 2
 
@@ -994,7 +994,7 @@
 	name = "Space Fries"
 	desc = "AKA: French Fries, Freedom Fries, etc."
 	icon_state = "fries"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#EDDD00"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1003,7 +1003,7 @@
 	name = "Soy Dope"
 	desc = "Dope from a soy."
 	icon_state = "soydope"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#C4BF76"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1012,14 +1012,14 @@
 	name = "Spaghetti"
 	desc = "A bundle of raw spaghetti."
 	icon_state = "spagetti"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 	filling_color = "#EDDD00"
 
 /obj/item/reagent_holder/food/snacks/cheesyfries
 	name = "Cheesy Fries"
 	desc = "Fries. Covered in cheese. Duh."
 	icon_state = "cheesyfries"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#EDDD00"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1028,7 +1028,7 @@
 	name = "Fortune cookie"
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#E8E79E"
 	bitesize = 2
 
@@ -1036,7 +1036,7 @@
 	name = "burnt mess"
 	desc = "Someone should be demoted from chef for this."
 	icon_state = "badrecipe"
-	starting_reagents = alist("toxin" = 1, "carbon" = 3)
+	starting_reagents = alist(/datum/reagent/carbon = 3, /datum/reagent/toxin = 1)
 	filling_color = "#211F02"
 	bitesize = 2
 
@@ -1044,7 +1044,7 @@
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
 	icon_state = "meatstake"
-	starting_reagents = alist("nutriment" = 4, "sodiumchloride" = 1, "blackpepper" = 1)
+	starting_reagents = alist(/datum/reagent/blackpepper = 1, /datum/reagent/nutriment = 4, /datum/reagent/sodiumchloride = 1)
 	filling_color = "#7A3D11"
 	bitesize = 3
 	trash = /obj/item/trash/plate
@@ -1053,7 +1053,7 @@
 	name = "Spacy Liberty Duff"
 	desc = "Jello gelatin, from Alfred Hubbard's cookbook"
 	icon_state = "spacylibertyduff"
-	starting_reagents = alist("nutriment" = 6, "psilocybin" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6, /datum/reagent/psilocybin = 6)
 	filling_color = "#42B873"
 	bitesize = 3
 	trash = /obj/item/trash/snack_bowl
@@ -1062,7 +1062,7 @@
 	name = "Amanita Jelly"
 	desc = "Looks curiously toxic"
 	icon_state = "amanitajelly"
-	starting_reagents = alist("nutriment" = 6, "amatoxin" = 6, "psilocybin" = 3)
+	starting_reagents = alist(/datum/reagent/toxin/amatoxin = 6, /datum/reagent/nutriment = 6, /datum/reagent/psilocybin = 3)
 	filling_color = "#ED0758"
 	bitesize = 3
 	trash = /obj/item/trash/snack_bowl
@@ -1071,7 +1071,7 @@
 	name = "Poppy pretzel"
 	desc = "A large soft pretzel full of POP. It's all twisted up!"
 	icon_state = "poppypretzel"
-	starting_reagents = alist("nutriment" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 5)
 	filling_color = "#916E36"
 	bitesize = 2
 
@@ -1079,7 +1079,7 @@
 	name = "Meatball soup"
 	desc = "You've got balls kid, BALLS!"
 	icon_state = "meatballsoup"
-	starting_reagents = alist("nutriment" = 8, "water" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 8, /datum/reagent/water = 5)
 	filling_color = "#785210"
 	bitesize = 5
 	trash = /obj/item/trash/snack_bowl
@@ -1088,7 +1088,7 @@
 	name = "slime soup"
 	desc = "If no water is available, you may substitute tears."
 	icon_state = "slimesoup"
-	starting_reagents = alist("slimejely" = 5, "water" = 10)
+	starting_reagents = alist(/datum/reagent/toxin/slimejelly = 5, /datum/reagent/water = 10)
 	filling_color = "#C4DBA0"
 	bitesize = 5
 
@@ -1096,7 +1096,7 @@
 	name = "Tomato soup"
 	desc = "Smells like copper"
 	icon_state = "tomatosoup"
-	starting_reagents = alist("nutriment" = 2, "blood" = 10, "water" = 5)
+	starting_reagents = alist(/datum/reagent/blood = 10, /datum/reagent/nutriment = 2, /datum/reagent/water = 5)
 	filling_color = "#FF0000"
 	bitesize = 5
 
@@ -1104,7 +1104,7 @@
 	name = "Clown's Tears"
 	desc = "Not very funny."
 	icon_state = "clownstears"
-	starting_reagents = alist("nutriment" = 4, "banana" = 5, "water" = 10)
+	starting_reagents = alist(/datum/reagent/drink/banana = 5, /datum/reagent/nutriment = 4, /datum/reagent/water = 10)
 	filling_color = "#C4FBFF"
 	bitesize = 5
 
@@ -1112,7 +1112,7 @@
 	name = "Vegetable soup"
 	desc = "A true vegan meal" //TODO
 	icon_state = "vegetablesoup"
-	starting_reagents = alist("nutriment" = 8, "water" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 8, /datum/reagent/water = 5)
 	filling_color = "#AFC4B5"
 	bitesize = 5
 	trash = /obj/item/trash/snack_bowl
@@ -1121,7 +1121,7 @@
 	name = "Nettle soup"
 	desc = "To think, the botanist would've beat you to death with one of these."
 	icon_state = "nettlesoup"
-	starting_reagents = alist("nutriment" = 8, "water" = 5, "tricordrazine" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 8, /datum/reagent/tricordrazine = 5, /datum/reagent/water = 5)
 	filling_color = "#AFC4B5"
 	bitesize = 5
 	trash = /obj/item/trash/snack_bowl
@@ -1177,7 +1177,7 @@
 	name = "Wish Soup"
 	desc = "I wish this was soup."
 	icon_state = "wishsoup"
-	starting_reagents = alist("water" = 10)
+	starting_reagents = alist(/datum/reagent/water = 10)
 	filling_color = "#D1F4FF"
 	bitesize = 5
 	trash = /obj/item/trash/snack_bowl
@@ -1186,13 +1186,13 @@
 	. = ..()
 	if(prob(25))
 		desc = "A wish come true!"
-		starting_reagents["nutriment"] = 8
+		starting_reagents[/datum/reagent/nutriment] = 8
 
 /obj/item/reagent_holder/food/snacks/hotchili
 	name = "Hot Chili"
 	desc = "A five alarm Texan Chili!"
 	icon_state = "hotchili"
-	starting_reagents = alist("nutriment" = 6, "capsaicin" = 3, "tomatojuice" = 2)
+	starting_reagents = alist(/datum/reagent/capsaicin = 3, /datum/reagent/nutriment = 6, /datum/reagent/drink/tomatojuice = 2)
 	filling_color = "#FF3C00"
 	bitesize = 5
 	trash = /obj/item/trash/snack_bowl
@@ -1201,7 +1201,7 @@
 	name = "Cold Chili"
 	desc = "This slush is barely a liquid!"
 	icon_state = "coldchili"
-	starting_reagents = alist("nutriment" = 6, "frostoil" = 3, "tomatojuice" = 2)
+	starting_reagents = alist(/datum/reagent/frostoil = 3, /datum/reagent/nutriment = 6, /datum/reagent/drink/tomatojuice = 2)
 	filling_color = "#2B00FF"
 	bitesize = 5
 	trash = /obj/item/trash/snack_bowl
@@ -1227,7 +1227,7 @@
 	name = "monkey cube"
 	desc = "Just add water!"
 	icon_state = "monkeycube"
-	starting_reagents = alist("nutriment" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 10)
 	filling_color = "#ADAC7F"
 	bitesize = 12
 
@@ -1301,7 +1301,7 @@
 	name = "Spell Burger"
 	desc = "This is absolutely Ei Nath."
 	icon_state = "spellburger"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#D505FF"
 	bitesize = 2
 
@@ -1309,7 +1309,7 @@
 	name = "Big Bite Burger"
 	desc = "Forget the Big Mac. THIS is the future!"
 	icon_state = "bigbiteburger"
-	starting_reagents = alist("nutriment" = 14)
+	starting_reagents = alist(/datum/reagent/nutriment = 14)
 	filling_color = "#E3D681"
 	bitesize = 3
 
@@ -1317,7 +1317,7 @@
 	name = "Enchiladas"
 	desc = "Viva La Mexico!"
 	icon_state = "enchiladas"
-	starting_reagents = alist("nutriment" = 8, "capsaicin" = 6)
+	starting_reagents = alist(/datum/reagent/capsaicin = 6, /datum/reagent/nutriment = 8)
 	filling_color = "#A36A1F"
 	bitesize = 4
 	trash = /obj/item/trash/tray
@@ -1326,7 +1326,10 @@
 	name = "monkey's Delight"
 	desc = "Eeee Eee!"
 	icon_state = "monkeysdelight"
-	starting_reagents = alist("nutriment" = 10, "banana" = 5, "blackpepper" = 1, "sodiumchloride" = 1)
+	starting_reagents = alist(
+		/datum/reagent/drink/banana = 5, /datum/reagent/blackpepper = 1, /datum/reagent/nutriment = 10,
+		/datum/reagent/sodiumchloride = 1
+	)
 	filling_color = "#5C3C11"
 	bitesize = 6
 	trash = /obj/item/trash/tray
@@ -1335,7 +1338,7 @@
 	name = "Baguette"
 	desc = "Bon appetit!"
 	icon_state = "baguette"
-	starting_reagents = alist("nutriment" = 6, "blackpepper" = 1, "sodiumchloride" = 1)
+	starting_reagents = alist(/datum/reagent/blackpepper = 1, /datum/reagent/nutriment = 6, /datum/reagent/sodiumchloride = 1)
 	filling_color = "#E3D796"
 	bitesize = 3
 
@@ -1343,7 +1346,7 @@
 	name = "Fish and Chips"
 	desc = "I do say so myself chap."
 	icon_state = "fishandchips"
-	starting_reagents = alist("nutriment" = 6, "carpotoxin" = 3)
+	starting_reagents = alist(/datum/reagent/toxin/carpotoxin = 3, /datum/reagent/nutriment = 6)
 	filling_color = "#E3D796"
 	bitesize = 3
 
@@ -1351,7 +1354,7 @@
 	name = "Sandwich"
 	desc = "A grand creation of meat, cheese, bread, and several leaves of lettuce! Arthur Dent would be proud."
 	icon_state = "sandwich"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#D9BE29"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1360,7 +1363,7 @@
 	name = "Toasted Sandwich"
 	desc = "Now if you only had a pepper bar."
 	icon_state = "toastedsandwich"
-	starting_reagents = alist("nutriment" = 6, "carbon" = 2)
+	starting_reagents = alist(/datum/reagent/carbon = 2, /datum/reagent/nutriment = 6)
 	filling_color = "#D9BE29"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1369,7 +1372,7 @@
 	name = "Grilled Cheese Sandwich"
 	desc = "Goes great with Tomato soup!"
 	icon_state = "toastedsandwich"
-	starting_reagents = alist("nutriment" = 7)
+	starting_reagents = alist(/datum/reagent/nutriment = 7)
 	filling_color = "#D9BE29"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1378,7 +1381,7 @@
 	name = "Tomato Soup"
 	desc = "Drinking this feels like being a vampire! A tomato vampire..."
 	icon_state = "tomatosoup"
-	starting_reagents = alist("nutriment" = 5, "tomatojuice" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 5, /datum/reagent/drink/tomatojuice = 10)
 	filling_color = "#D92929"
 	bitesize = 3
 	trash = /obj/item/trash/snack_bowl
@@ -1387,7 +1390,7 @@
 	name = "Roffle Waffles"
 	desc = "Waffles from Roffle. Co."
 	icon_state = "rofflewaffles"
-	starting_reagents = alist("nutriment" = 8, "psilocybin" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8, /datum/reagent/psilocybin = 8)
 	filling_color = "#FF00F7"
 	bitesize = 4
 	trash = /obj/item/trash/waffles
@@ -1396,7 +1399,10 @@
 	name = "Stew"
 	desc = "A nice and warm stew. Healthy and strong."
 	icon_state = "stew"
-	starting_reagents = alist("nutriment" = 10, "tomatojuice" = 5, "imidazoline" = 5, "water" = 5)
+	starting_reagents = alist(
+		/datum/reagent/imidazoline = 5, /datum/reagent/nutriment = 10, /datum/reagent/drink/tomatojuice = 5,
+		/datum/reagent/water = 5
+	)
 	filling_color = "#9E673A"
 	bitesize = 10
 
@@ -1404,36 +1410,36 @@
 	name = "Jellied Toast"
 	desc = "A slice of bread covered with delicious jam."
 	icon_state = "jellytoast"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 	filling_color = "#B572AB"
 	bitesize = 3
 	trash = /obj/item/trash/plate
 
 /obj/item/reagent_holder/food/snacks/jelliedtoast/cherry
-	starting_reagents = alist("nutriment" = 1, "cherryjelly" = 5)
+	starting_reagents = alist(/datum/reagent/cherryjelly = 5, /datum/reagent/nutriment = 1)
 
 /obj/item/reagent_holder/food/snacks/jelliedtoast/slime
-	starting_reagents = alist("nutriment" = 1, "slimejelly" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 1, /datum/reagent/toxin/slimejelly = 5)
 
 /obj/item/reagent_holder/food/snacks/jellyburger
 	name = "Jelly Burger"
 	desc = "Culinary delight..?"
 	icon_state = "jellyburger"
-	starting_reagents = alist("nutriment" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 5)
 	filling_color = "#B572AB"
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/jellyburger/cherry
-	starting_reagents = alist("nutriment" = 5, "cherryjelly" = 5)
+	starting_reagents = alist(/datum/reagent/cherryjelly = 5, /datum/reagent/nutriment = 5)
 
 /obj/item/reagent_holder/food/snacks/jellyburger/slime
-	starting_reagents = alist("nutriment" = 5, "slimejelly" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 5, /datum/reagent/toxin/slimejelly = 5)
 
 /obj/item/reagent_holder/food/snacks/milosoup
 	name = "Milosoup"
 	desc = "The universes best soup! Yum!!!"
 	icon_state = "milosoup"
-	starting_reagents = alist("nutriment" = 8, "water" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 8, /datum/reagent/water = 5)
 	bitesize = 4
 	trash = /obj/item/trash/snack_bowl
 
@@ -1441,7 +1447,7 @@
 	name = "Stewed Soy Meat"
 	desc = "Even non-vegetarians will LOVE this!"
 	icon_state = "stewedsoymeat"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	bitesize = 2
 	trash = /obj/item/trash/plate
 
@@ -1449,7 +1455,7 @@
 	name = "Boiled Spagetti"
 	desc = "A plain dish of noodles, this sucks."
 	icon_state = "spagettiboiled"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#FCEE81"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1458,7 +1464,7 @@
 	name = "Boiled Rice"
 	desc = "A boring dish of boring rice."
 	icon_state = "boiledrice"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#FFFBDB"
 	bitesize = 2
 	trash = /obj/item/trash/snack_bowl
@@ -1467,7 +1473,7 @@
 	name = "Rice Pudding"
 	desc = "Where's the Jam!"
 	icon_state = "rpudding"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#FFFBDB"
 	bitesize = 2
 	trash = /obj/item/trash/snack_bowl
@@ -1476,7 +1482,7 @@
 	name = "Spaghetti"
 	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
 	icon_state = "pastatomato"
-	starting_reagents = alist("nutriment" = 6, "tomatojuice" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 6, /datum/reagent/drink/tomatojuice = 10)
 	filling_color = "#DE4545"
 	bitesize = 4
 	trash = /obj/item/trash/plate
@@ -1485,7 +1491,7 @@
 	name = "Spaghetti & Meatballs"
 	desc = "Now thats a nic'e meatball!"
 	icon_state = "meatballspagetti"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#DE4545"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1494,7 +1500,7 @@
 	name = "Spesslaw"
 	desc = "A lawyers favourite"
 	icon_state = "spesslaw"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#DE4545"
 	bitesize = 2
 
@@ -1502,7 +1508,7 @@
 	name = "Carrot Fries"
 	desc = "Tasty fries from fresh Carrots."
 	icon_state = "carrotfries"
-	starting_reagents = alist("nutriment" = 3, "imidazoline" = 3)
+	starting_reagents = alist(/datum/reagent/imidazoline = 3, /datum/reagent/nutriment = 3)
 	filling_color = "#FAA005"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -1511,7 +1517,7 @@
 	name = "Super Bite Burger"
 	desc = "This is a mountain of a burger. FOOD!"
 	icon_state = "superbiteburger"
-	starting_reagents = alist("nutriment" = 50)
+	starting_reagents = alist(/datum/reagent/nutriment = 50)
 	filling_color = "#CCA26A"
 	bitesize = 10
 
@@ -1519,7 +1525,7 @@
 	name = "Candied Apple"
 	desc = "An apple coated in sugary sweetness."
 	icon_state = "candiedapple"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#F21873"
 	bitesize = 3
 
@@ -1527,7 +1533,7 @@
 	name = "Apple Pie"
 	desc = "A pie containing sweet sweet love... or apple."
 	icon_state = "applepie"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#E0EDC5"
 	bitesize = 3
 
@@ -1535,7 +1541,7 @@
 	name = "Cherry Pie"
 	desc = "Taste so good, make a grown man cry."
 	icon_state = "cherrypie"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	filling_color = "#FF525A"
 	bitesize = 3
 
@@ -1543,7 +1549,7 @@
 	name = "Two Bread"
 	desc = "It is very bitter and winy."
 	icon_state = "twobread"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#DBCC9A"
 	bitesize = 3
 
@@ -1551,22 +1557,22 @@
 	name = "Jelly Sandwich"
 	desc = "You wish you had some peanut butter to go with this..."
 	icon_state = "jellysandwich"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	filling_color = "#9E3A78"
 	bitesize = 3
 	trash = /obj/item/trash/plate
 
 /obj/item/reagent_holder/food/snacks/jellysandwich/cherry
-	starting_reagents = alist("nutriment" = 2, "cherryjelly" = 5)
+	starting_reagents = alist(/datum/reagent/cherryjelly = 5, /datum/reagent/nutriment = 2)
 
 /obj/item/reagent_holder/food/snacks/jellysandwich/slime
-	starting_reagents = alist("nutriment" = 2, "slimejelly" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 2, /datum/reagent/toxin/slimejelly = 5)
 
 /obj/item/reagent_holder/food/snacks/boiledslimecore
 	name = "Boiled slime Core"
 	desc = "A boiled red thing."
 	icon_state = "boiledslimecore"
-	starting_reagents = alist("slimejelly" = 5)
+	starting_reagents = alist(/datum/reagent/toxin/slimejelly = 5)
 	bitesize = 3
 
 /obj/item/reagent_holder/food/snacks/mint
@@ -1574,13 +1580,13 @@
 	desc = "it is only wafer thin."
 	icon_state = "mint"
 	filling_color = "#F2F2F2"
-	starting_reagents = alist("minttoxin" = 1)
+	starting_reagents = alist(/datum/reagent/toxin/minttoxin = 1)
 
 /obj/item/reagent_holder/food/snacks/mushroomsoup
 	name = "chantrelle soup"
 	desc = "A delicious and hearty mushroom soup."
 	icon_state = "mushroomsoup"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#E386BF"
 	bitesize = 3
 	trash = /obj/item/trash/snack_bowl
@@ -1598,16 +1604,16 @@
 	if(prob(10))
 		name = "exceptional plump helmet biscuit"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
-		starting_reagents["nutriment"] = 8
-		starting_reagents["tricordrazine"] = 5
+		starting_reagents[/datum/reagent/nutriment] = 8
+		starting_reagents[/datum/reagent/tricordrazine] = 5
 	else
-		starting_reagents["nutriment"] = 5
+		starting_reagents[/datum/reagent/nutriment] = 5
 
 /obj/item/reagent_holder/food/snacks/chawanmushi
 	name = "chawanmushi"
 	desc = "A legendary egg custard that makes friends out of enemies. Probably too hot for a cat to eat."
 	icon_state = "chawanmushi"
-	starting_reagents = alist("nutriment" = 5)
+	starting_reagents = alist(/datum/reagent/nutriment = 5)
 	filling_color = "#F0F2E4"
 	trash = /obj/item/trash/snack_bowl
 
@@ -1615,7 +1621,7 @@
 	name = "beet soup"
 	desc = "Wait, how do you spell it again..?"
 	icon_state = "beetsoup"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#FAC9FF"
 	bitesize = 2
 	trash = /obj/item/trash/snack_bowl
@@ -1640,7 +1646,7 @@
 	name = "tossed salad"
 	desc = "A proper salad, basic and simple, with little bits of carrot, tomato and apple intermingled. Vegan!"
 	icon_state = "herbsalad"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#76B87F"
 	bitesize = 3
 	trash = /obj/item/trash/snack_bowl
@@ -1649,7 +1655,7 @@
 	name = "valid salad"
 	desc = "It's just a salad of questionable 'herbs' with meatballs and fried potato slices. Nothing suspicious about it."
 	icon_state = "validsalad"
-	starting_reagents = alist("nutriment" = 8)
+	starting_reagents = alist(/datum/reagent/nutriment = 8)
 	filling_color = "#76B87F"
 	trash = /obj/item/trash/snack_bowl
 	bitesize = 3
@@ -1658,7 +1664,7 @@
 	name = "golden apple streusel tart"
 	desc = "A tasty dessert that won't make it through a metal detector."
 	icon_state = "gappletart"
-	starting_reagents = alist("nutriment" = 8, "gold" = 5)
+	starting_reagents = alist(/datum/reagent/gold = 5, /datum/reagent/nutriment = 8)
 	filling_color = "#FFFF00"
 	bitesize = 3
 	trash = /obj/item/trash/plate
@@ -1672,7 +1678,7 @@
 	name = "meatbread loaf"
 	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
 	icon_state = "meatbread"
-	starting_reagents = alist("nutriment" = 30)
+	starting_reagents = alist(/datum/reagent/nutriment = 30)
 	filling_color = "#FF7575"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/meatbreadslice
@@ -1690,7 +1696,7 @@
 	name = "xenomeatbread loaf"
 	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
 	icon_state = "xenomeatbread"
-	starting_reagents = alist("nutriment" = 30)
+	starting_reagents = alist(/datum/reagent/nutriment = 30)
 	filling_color = "#8AFF75"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/xenomeatbreadslice
@@ -1708,7 +1714,7 @@
 	name = "Banana-nut bread"
 	desc = "A heavenly and filling treat."
 	icon_state = "bananabread"
-	starting_reagents = alist("nutriment" = 20, "banana" = 20)
+	starting_reagents = alist(/datum/reagent/drink/banana = 20, /datum/reagent/nutriment = 20)
 	filling_color = "#EDE5AD"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/bananabreadslice
@@ -1726,7 +1732,7 @@
 	name = "Tofubread"
 	icon_state = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
 	icon_state = "tofubread"
-	starting_reagents = alist("nutriment" = 30)
+	starting_reagents = alist(/datum/reagent/nutriment = 30)
 	filling_color = "#F7FFE0"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/tofubreadslice
@@ -1744,7 +1750,7 @@
 	name = "Carrot Cake"
 	desc = "A favorite desert of a certain wascally wabbit. Not a lie."
 	icon_state = "carrotcake"
-	starting_reagents = alist("nutriment" = 25, "imidazoline"= 10)
+	starting_reagents = alist(/datum/reagent/imidazoline = 10, /datum/reagent/nutriment = 25)
 	filling_color = "#FFD675"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/carrotcakeslice
@@ -1762,7 +1768,7 @@
 	name = "Brain Cake"
 	desc = "A squishy cake-thing."
 	icon_state = "braincake"
-	starting_reagents = alist("nutriment" = 25, "alkysine" = 10)
+	starting_reagents = alist(/datum/reagent/alkysine = 10, /datum/reagent/nutriment = 25)
 	filling_color = "#E6AEDB"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/braincakeslice
@@ -1780,7 +1786,7 @@
 	name = "Cheese Cake"
 	desc = "DANGEROUSLY cheesy."
 	icon_state = "cheesecake"
-	starting_reagents = alist("nutriment" = 25)
+	starting_reagents = alist(/datum/reagent/nutriment = 25)
 	filling_color = "#FAF7AF"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/cheesecakeslice
@@ -1798,7 +1804,7 @@
 	name = "Vanilla Cake"
 	desc = "A plain cake, not a lie."
 	icon_state = "plaincake"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#F7EDD5"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/plaincakeslice
@@ -1816,7 +1822,7 @@
 	name = "Orange Cake"
 	desc = "A cake with added orange."
 	icon_state = "orangecake"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#FADA8E"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/orangecakeslice
@@ -1834,7 +1840,7 @@
 	name = "Lime Cake"
 	desc = "A cake with added lime."
 	icon_state = "limecake"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#CBFA8E"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/limecakeslice
@@ -1852,7 +1858,7 @@
 	name = "Lemon Cake"
 	desc = "A cake with added lemon."
 	icon_state = "lemoncake"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#FAFA8E"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/lemoncakeslice
@@ -1870,7 +1876,7 @@
 	name = "Chocolate Cake"
 	desc = "A cake with added chocolate"
 	icon_state = "chocolatecake"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#805930"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/chocolatecakeslice
@@ -1888,7 +1894,7 @@
 	name = "Cheese wheel"
 	desc = "A big wheel of delcious Cheddar."
 	icon_state = "cheesewheel"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#FFF700"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/cheesewedge
@@ -1905,7 +1911,7 @@
 	name = "Birthday Cake"
 	desc = "Happy Birthday..."
 	icon_state = "birthdaycake"
-	starting_reagents = alist("nutriment" = 20, "sprinkles" = 10)
+	starting_reagents = alist(/datum/reagent/nutriment = 20, /datum/reagent/sprinkles = 10)
 	filling_color = "#FFD6D6"
 	bitesize = 3
 	slice_path = /obj/item/reagent_holder/food/snacks/birthdaycakeslice
@@ -1923,7 +1929,7 @@
 	name = "Bread"
 	icon_state = "Some plain old Earthen bread."
 	icon_state = "bread"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	filling_color = "#FFE396"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/breadslice
@@ -1941,7 +1947,7 @@
 	name = "Cream Cheese Bread"
 	desc = "Yum yum yum!"
 	icon_state = "creamcheesebread"
-	starting_reagents = alist("nutriment" = 20)
+	starting_reagents = alist(/datum/reagent/nutriment = 20)
 	filling_color = "#FFF896"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/creamcheesebreadslice
@@ -1966,7 +1972,7 @@
 	name = "Apple Cake"
 	desc = "A cake centred with Apple"
 	icon_state = "applecake"
-	starting_reagents = alist("nutriment" = 15)
+	starting_reagents = alist(/datum/reagent/nutriment = 15)
 	filling_color = "#EBF5B8"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/applecakeslice
@@ -1984,7 +1990,7 @@
 	name = "Pumpkin Pie"
 	desc = "A delicious treat for the autumn months."
 	icon_state = "pumpkinpie"
-	starting_reagents = alist("nutriment" = 15)
+	starting_reagents = alist(/datum/reagent/nutriment = 15)
 	filling_color = "#F5B951"
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/pumpkinpieslice
@@ -2002,7 +2008,7 @@
 	name = "Cracker"
 	desc = "It's a salted cracker."
 	icon_state = "cracker"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 	filling_color = "#F5DEB8"
 
 /////////////////////////////////////////////////PIZZA////////////////////////////////////////
@@ -2015,7 +2021,7 @@
 	name = "Margherita"
 	desc = "The golden standard of pizzas."
 	icon_state = "pizzamargherita"
-	starting_reagents = alist("nutriment" = 40, "tomatojuice" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 40, /datum/reagent/drink/tomatojuice = 6)
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/margheritaslice
 	slices_num = 6
@@ -2031,7 +2037,7 @@
 	name = "Meatpizza"
 	desc = "A pizza with meat topping."
 	icon_state = "meatpizza"
-	starting_reagents = alist("nutriment" = 50, "tomatojuice" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 50, /datum/reagent/drink/tomatojuice = 6)
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/meatpizzaslice
 	slices_num = 6
@@ -2047,7 +2053,7 @@
 	name = "Mushroompizza"
 	desc = "Very special pizza"
 	icon_state = "mushroompizza"
-	starting_reagents = alist("nutriment" = 35)
+	starting_reagents = alist(/datum/reagent/nutriment = 35)
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/mushroompizzaslice
 	slices_num = 6
@@ -2063,7 +2069,7 @@
 	name = "Vegetable pizza"
 	desc = "No one of Tomato Sapiens were harmed during making this pizza"
 	icon_state = "vegetablepizza"
-	starting_reagents = alist("nutriment" = 30, "tomatojuice" = 6, "imidazoline" = 12)
+	starting_reagents = alist(/datum/reagent/imidazoline = 12, /datum/reagent/nutriment = 30, /datum/reagent/drink/tomatojuice = 6)
 	bitesize = 2
 	slice_path = /obj/item/reagent_holder/food/snacks/vegetablepizzaslice
 	slices_num = 6
@@ -2255,7 +2261,7 @@
 	name = "roast diona"
 	desc = "It's like an enormous, leathery carrot. With an eye."
 	icon_state = "dionaroast"
-	starting_reagents = alist("nutriment" = 6, "radium" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 6, /datum/reagent/radium = 2)
 	filling_color = "#75754B"
 	bitesize = 2
 	trash = /obj/item/trash/plate
@@ -2286,7 +2292,7 @@
 	desc = "A piece of dough."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "dough"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	bitesize = 2
 
 // Dough + rolling pin = flat dough
@@ -2303,7 +2309,7 @@
 	desc = "A flattened dough."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "flat dough"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	slice_path = /obj/item/reagent_holder/food/snacks/doughslice
 	slices_num = 3
 
@@ -2312,7 +2318,7 @@
 	desc = "A building block of an impressive dish."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "doughslice"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/bun
@@ -2320,7 +2326,7 @@
 	desc = "A base for any self-respecting burger."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "bun"
-	starting_reagents = alist("nutriment" = 4)
+	starting_reagents = alist(/datum/reagent/nutriment = 4)
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/bun/attackby(obj/item/W, mob/user)
@@ -2371,7 +2377,7 @@
 	name = "taco"
 	desc = "Take a bite!"
 	icon_state = "taco"
-	starting_reagents = alist("nutriment" = 7)
+	starting_reagents = alist(/datum/reagent/nutriment = 7)
 	bitesize = 3
 
 /obj/item/reagent_holder/food/snacks/meat/rawcutlet
@@ -2379,14 +2385,14 @@
 	desc = "A thin piece of raw meat."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "rawcutlet"
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 /obj/item/reagent_holder/food/snacks/meat/cutlet
 	name = "cutlet"
 	desc = "A tasty meat slice."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "cutlet"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/rawmeatball
@@ -2394,14 +2400,14 @@
 	desc = "A raw meatball."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "rawmeatball"
-	starting_reagents = alist("nutriment" = 2)
+	starting_reagents = alist(/datum/reagent/nutriment = 2)
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/hotdog
 	name = "hotdog"
 	desc = "Unrelated to dogs, maybe."
 	icon_state = "hotdog"
-	starting_reagents = alist("nutriment" = 6)
+	starting_reagents = alist(/datum/reagent/nutriment = 6)
 	bitesize = 2
 
 /obj/item/reagent_holder/food/snacks/flatbread
@@ -2409,7 +2415,7 @@
 	desc = "Bland but filling."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "flatbread"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	bitesize = 2
 
 // potato + knife = raw sticks
@@ -2426,5 +2432,5 @@
 	desc = "Raw fries, not very tasty."
 	icon = 'icons/obj/items/food_ingredients.dmi'
 	icon_state = "rawsticks"
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	bitesize = 2

@@ -22,7 +22,7 @@
 /datum/chemical_reaction/thermite
 	name = "Thermite"
 	result = /datum/reagent/thermite
-	required_reagents = alist(/datum/reagent/aluminum = 1, /datum/reagent/iron = 1, /datum/reagent/oxygen = 1)
+	required_reagents = alist(/datum/reagent/aluminium = 1, /datum/reagent/iron = 1, /datum/reagent/oxygen = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/virus_food

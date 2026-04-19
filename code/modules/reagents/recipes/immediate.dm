@@ -48,7 +48,7 @@
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
-	required_reagents = alist(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
+	required_reagents = alist(/datum/reagent/aluminium = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
 	result_amount = null
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
@@ -74,7 +74,7 @@
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"
-	required_reagents = alist(/datum/reagent/aluminum = 1, /datum/reagent/plasma = 1, /datum/reagent/toxin/acid = 1)
+	required_reagents = alist(/datum/reagent/aluminium = 1, /datum/reagent/plasma = 1, /datum/reagent/toxin/acid = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume)
@@ -150,7 +150,7 @@
 
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
-	required_reagents = alist(/datum/reagent/aluminum = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid/polyacid = 1)
+	required_reagents = alist(/datum/reagent/aluminium = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid/polyacid = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)

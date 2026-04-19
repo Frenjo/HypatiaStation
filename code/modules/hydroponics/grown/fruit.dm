@@ -130,7 +130,7 @@
 	icon_state = "poisonberrypile"
 	gender = PLURAL
 
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 	potency = 15
 	filling_color = "#B422C7"
@@ -150,7 +150,7 @@
 	icon_state = "deathberrypile"
 	gender = PLURAL
 
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 	potency = 50
 	filling_color = "#4E0957"

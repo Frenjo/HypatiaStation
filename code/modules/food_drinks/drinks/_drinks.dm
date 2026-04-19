@@ -160,7 +160,7 @@
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
-	starting_reagents = alist("milk" = 50)
+	starting_reagents = alist(/datum/reagent/drink/milk = 50)
 
 /* Flour is no longer a reagent
 /obj/item/reagent_holder/food/drinks/flour
@@ -181,39 +181,39 @@
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
-	starting_reagents = alist("soymilk" = 50)
+	starting_reagents = alist(/datum/reagent/drink/milk/soymilk = 50)
 
 /obj/item/reagent_holder/food/drinks/coffee
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
-	starting_reagents = alist("coffee" = 30)
+	starting_reagents = alist(/datum/reagent/drink/coffee = 30)
 
 /obj/item/reagent_holder/food/drinks/tea
 	name = "Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
 	item_state = "coffee"
-	starting_reagents = alist("tea" = 30)
+	starting_reagents = alist(/datum/reagent/drink/tea = 30)
 
 /obj/item/reagent_holder/food/drinks/ice
 	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
-	starting_reagents = alist("ice" = 30)
+	starting_reagents = alist(/datum/reagent/drink/cold/ice = 30)
 
 /obj/item/reagent_holder/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
-	starting_reagents = alist("hot_coco" = 30)
+	starting_reagents = alist(/datum/reagent/drink/hot_coco = 30)
 
 /obj/item/reagent_holder/food/drinks/dry_ramen
 	name = "cup ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
-	starting_reagents = alist("dry_ramen" = 30)
+	starting_reagents = alist(/datum/reagent/dry_ramen = 30)
 
 /obj/item/reagent_holder/food/drinks/sillycup
 	name = "paper cup"

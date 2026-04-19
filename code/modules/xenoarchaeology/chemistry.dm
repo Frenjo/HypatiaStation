@@ -98,24 +98,24 @@
 
 /obj/item/reagent_holder/glass/beaker/tungsten
 	name = "beaker 'tungsten'"
-	starting_reagents = alist("tungsten" = 50)
+	starting_reagents = alist(/datum/reagent/tungsten = 50)
 
 /obj/item/reagent_holder/glass/beaker/oxygen
 	name = "beaker 'oxygen'"
-	starting_reagents = alist("oxygen" = 50)
+	starting_reagents = alist(/datum/reagent/oxygen = 50)
 
 /obj/item/reagent_holder/glass/beaker/sodium
 	name = "beaker 'sodium'"
-	starting_reagents = alist("sodium" = 50)
+	starting_reagents = alist(/datum/reagent/sodium = 50)
 
 /obj/item/reagent_holder/glass/beaker/lithium
 	name = "beaker 'lithium'"
-	starting_reagents = alist("lithium" = 50)
+	starting_reagents = alist(/datum/reagent/lithium = 50)
 
 /obj/item/reagent_holder/glass/beaker/water
 	name = "beaker 'water'"
-	starting_reagents = alist("water" = 50)
+	starting_reagents = alist(/datum/reagent/water = 50)
 
 /obj/item/reagent_holder/glass/beaker/fuel
 	name = "beaker 'fuel'"
-	starting_reagents = alist("fuel" = 50)
+	starting_reagents = alist(/datum/reagent/fuel = 50)

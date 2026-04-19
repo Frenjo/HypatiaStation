@@ -492,14 +492,14 @@
 
 // for /obj/machinery/vending/sovietsoda
 /obj/item/reagent_holder/food/drinks/drinkingglass/soda
-	starting_reagents = alist("sodawater" = 50)
+	starting_reagents = alist(/datum/reagent/drink/cold/sodawater = 50)
 
 /obj/item/reagent_holder/food/drinks/drinkingglass/soda/initialise()
 	. = ..()
 	on_reagent_change()
 
 /obj/item/reagent_holder/food/drinks/drinkingglass/cola
-	starting_reagents = alist("cola" = 50)
+	starting_reagents = alist(/datum/reagent/drink/cold/space_cola = 50)
 
 /obj/item/reagent_holder/food/drinks/drinkingglass/cola/initialise()
 	. = ..()

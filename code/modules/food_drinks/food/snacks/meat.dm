@@ -7,7 +7,7 @@
 	desc = "A slab of meat"
 	icon_state = "meat"
 	health = 180
-	starting_reagents = alist("nutriment" = 3)
+	starting_reagents = alist(/datum/reagent/nutriment = 3)
 	filling_color = "#FF1C1C"
 	bitesize = 3
 

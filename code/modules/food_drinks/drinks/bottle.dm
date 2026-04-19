@@ -134,109 +134,109 @@
 	name = "Griffeater Gin"
 	desc = "A bottle of high quality gin, produced in the New London Space Station."
 	icon_state = "ginbottle"
-	starting_reagents = alist("gin" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/gin = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
 	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter. TUNNEL WHISKEY RULES."
 	icon_state = "whiskeybottle"
-	starting_reagents = alist("whiskey" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/whiskey = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
 	icon_state = "vodkabottle"
-	starting_reagents = alist("vodka" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/vodka = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequillabottle"
-	starting_reagents = alist("tequilla" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/tequilla = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/nothing
 	name = "Bottle of Nothing"
 	desc = "A bottle filled with nothing"
 	icon_state = "bottleofnothing"
-	starting_reagents = alist("nothing" = 100)
+	starting_reagents = alist(/datum/reagent/drink/nothing = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
 	desc = "Silver laced tequilla, served in space night clubs across the galaxy."
 	icon_state = "patronbottle"
-	starting_reagents = alist("patron" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/patron = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
 	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
 	icon_state = "rumbottle"
-	starting_reagents = alist("rum" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/rum = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/holywater
 	name = "flask of holy water"
 	desc = "A flask of the chaplain's holy water."
 	icon_state = "holyflask"
-	starting_reagents = alist("holywater" = 100)
+	starting_reagents = alist(/datum/reagent/water/holy = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
 	desc = "Sweet, sweet dryness~"
 	icon_state = "vermouthbottle"
-	starting_reagents = alist("vermouth" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/vermouth = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
 	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK"
 	icon_state = "kahluabottle"
-	starting_reagents = alist("kahlua" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/kahlua = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
 	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
 	icon_state = "goldschlagerbottle"
-	starting_reagents = alist("goldschlager" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/goldschlager = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
 	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
 	icon_state = "cognacbottle"
-	starting_reagents = alist("cognac" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/cognac = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/wine
 	name = "Doublebeard Bearded Special Wine"
 	desc = "A faint aura of unease and asspainery surrounds the bottle."
 	icon_state = "winebottle"
-	starting_reagents = alist("wine" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/wine = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
 	desc = "One sip of this and you just know you're gonna have a good time."
 	icon_state = "absinthebottle"
-	starting_reagents = alist("absinthe" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/absinthe = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
 	icon_state = "alco-green" //Placeholder.
-	starting_reagents = alist("melonliquor" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/melonliquor = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
 	icon_state = "alco-blue" //Placeholder.
-	starting_reagents = alist("bluecuracao" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/bluecuracao = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
 	desc = "Sweet and tangy, a bar syrup used to add colour or flavor to drinks."
 	icon_state = "grenadinebottle"
-	starting_reagents = alist("grenadine" = 100)
+	starting_reagents = alist(/datum/reagent/drink/grenadine = 100)
 
 /obj/item/reagent_holder/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
 	desc = "What a delightful packaging for a surely high quality wine! The vintage must be amazing!"
 	icon_state = "pwinebottle"
-	starting_reagents = alist("pwine" = 100)
+	starting_reagents = alist(/datum/reagent/ethanol/pwine = 100)
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 /obj/item/reagent_holder/food/drinks/bottle/orangejuice
@@ -244,7 +244,7 @@
 	desc = "Full of vitamins and deliciousness!"
 	icon_state = "orangejuice"
 	item_state = "carton"
-	starting_reagents = alist("orangejuice" = 100)
+	starting_reagents = alist(/datum/reagent/drink/orangejuice = 100)
 	isGlass = 0
 
 /obj/item/reagent_holder/food/drinks/bottle/cream
@@ -252,7 +252,7 @@
 	desc = "It's cream. Made from milk. What else did you think you'd find in there?"
 	icon_state = "cream"
 	item_state = "carton"
-	starting_reagents = alist("cream" = 100)
+	starting_reagents = alist(/datum/reagent/drink/milk/cream = 100)
 	isGlass = 0
 
 /obj/item/reagent_holder/food/drinks/bottle/tomatojuice
@@ -260,7 +260,7 @@
 	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
 	icon_state = "tomatojuice"
 	item_state = "carton"
-	starting_reagents = alist("tomatojuice" = 100)
+	starting_reagents = alist(/datum/reagent/drink/tomatojuice = 100)
 	isGlass = 0
 
 /obj/item/reagent_holder/food/drinks/bottle/limejuice
@@ -268,5 +268,5 @@
 	desc = "Sweet-sour goodness."
 	icon_state = "limejuice"
 	item_state = "carton"
-	starting_reagents = alist("limejuice" = 100)
+	starting_reagents = alist(/datum/reagent/drink/limejuice = 100)
 	isGlass = 0

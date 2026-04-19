@@ -495,8 +495,8 @@
 		if(isnull(locate(/obj/effect/decal/cleanable/greenglow, T)))
 			new /obj/effect/decal/cleanable/greenglow(T)
 
-/datum/reagent/aluminum
-	name = "Aluminum"
+/datum/reagent/aluminium
+	name = "Aluminium"
 	id = "aluminum"
 	description = "A silvery white and ductile member of the boron group of chemical elements."
 	reagent_state = REAGENT_SOLID

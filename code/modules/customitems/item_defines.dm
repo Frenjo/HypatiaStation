@@ -341,7 +341,7 @@
 	name = "anti-depressant pill"
 	desc = "Used to deal with depression."
 	icon_state = "pill9"
-	starting_reagents = alist("soporific" = 5, "sugar" = 10, "ethanol" = 5)
+	starting_reagents = alist(/datum/reagent/ethanol = 5, /datum/reagent/toxin/soporific = 5, /datum/reagent/sugar = 10)
 
 /obj/item/clothing/mask/fluff/electriccig //CubeJackal: Barry Sharke
 	name = "Electronic cigarette"
@@ -362,7 +362,7 @@
 	icon_state = "asher_spock_1"
 	amount_per_transfer_from_this = 5
 	volume = 15
-	starting_reagents = alist("tricordrazine" = 30, "oxycodone" = 15)
+	starting_reagents = alist(/datum/reagent/oxycodone = 15, /datum/reagent/tricordrazine = 30)
 
 /obj/item/reagent_holder/hypospray/fluff/asher_spock_1/attack_self(mob/user)
 	to_chat(user, SPAN_INFO("You click \the [src] but get no reaction. Must be dead."))
