@@ -59,6 +59,7 @@ h1.alert, h2.alert {color: black;}
 
 .alien {color: #543354;}
 .newscaster {color: maroon;}
+.ghostalert {color: #5c00e6; font-style: italic; font-weight: bold;}
 
 .mod {color: #735638; font-weight: bold;}
 .modooc {color: #184880; font-weight: bold;}

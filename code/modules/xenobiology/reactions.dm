@@ -307,8 +307,9 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimegolem/on_reaction(datum/reagents/holder)
-	var/obj/effect/golemrune/Z = new /obj/effect/golemrune(GET_TURF(holder.my_atom))
-	Z.announce_to_ghosts()
+	new /obj/effect/golemrune(GET_TURF(holder.my_atom))
+	var/area/A = GET_AREA(holder.my_atom)
+	notify_ghosts("Golem rune created in \the [A].")
 
 /////////////////////////////////////OLD SLIME CORE REACTIONS ///////////////////////////////
 /*

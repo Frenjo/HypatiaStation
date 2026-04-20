@@ -318,3 +318,10 @@ var/list/intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 				continue
 			return TRUE
 	return FALSE
+
+/proc/notify_ghosts(message, sound = null) // Easy notification of ghosts.
+	for(var/mob/dead/ghost/casper in GLOBL.player_list)
+		if(isnotnull(casper.client))
+			to_chat(casper, SPAN("ghostalert", message))
+			if(isnotnull(sound))
+				SOUND_TO(casper, sound)
