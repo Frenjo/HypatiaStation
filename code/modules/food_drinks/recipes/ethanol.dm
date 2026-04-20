@@ -75,19 +75,19 @@
 /datum/chemical_reaction/gin_tonic
 	name = "Gin and Tonic"
 	result = /datum/reagent/ethanol/gintonic
-	required_reagents = alist(/datum/reagent/ethanol/gin = 2, /datum/reagent/drink/cold/tonic = 1)
+	required_reagents = alist(/datum/reagent/ethanol/gin = 1, /datum/reagent/drink/cold/tonic = 2)
 	result_amount = 3
 
 /datum/chemical_reaction/cuba_libre
 	name = "Cuba Libre"
 	result = /datum/reagent/ethanol/cuba_libre
-	required_reagents = alist(/datum/reagent/drink/cold/space_cola = 1, /datum/reagent/ethanol/rum = 2)
+	required_reagents = alist(/datum/reagent/ethanol/rum = 1, /datum/reagent/drink/cold/space_cola = 2)
 	result_amount = 3
 
 /datum/chemical_reaction/whiskey_cola
 	name = "Whiskey Cola"
 	result = /datum/reagent/ethanol/whiskey_cola
-	required_reagents = alist(/datum/reagent/drink/cold/space_cola = 1, /datum/reagent/ethanol/whiskey = 2)
+	required_reagents = alist(/datum/reagent/drink/cold/space_cola = 2, /datum/reagent/ethanol/whiskey = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/martini
@@ -111,7 +111,7 @@
 /datum/chemical_reaction/screwdriver
 	name = "Screwdriver"
 	result = /datum/reagent/ethanol/screwdrivercocktail
-	required_reagents = alist(/datum/reagent/drink/orangejuice = 1, /datum/reagent/ethanol/vodka = 2)
+	required_reagents = alist(/datum/reagent/drink/orangejuice = 2, /datum/reagent/ethanol/vodka = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/booger
@@ -138,7 +138,7 @@
 /datum/chemical_reaction/tequilla_sunrise
 	name = "Tequilla Sunrise"
 	result = /datum/reagent/ethanol/tequilla_sunrise
-	required_reagents = alist(/datum/reagent/drink/orangejuice = 1, /datum/reagent/ethanol/tequilla = 2)
+	required_reagents = alist(/datum/reagent/drink/grenadine = 1, /datum/reagent/drink/orangejuice = 2, /datum/reagent/ethanol/tequilla = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/toxins_special
@@ -156,7 +156,7 @@
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"
 	result = /datum/reagent/ethanol/irish_cream
-	required_reagents = alist(/datum/reagent/drink/milk/cream = 1, /datum/reagent/ethanol/whiskey = 2)
+	required_reagents = alist(/datum/reagent/drink/milk/cream = 2, /datum/reagent/ethanol/whiskey = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/manly_dorf
@@ -273,13 +273,13 @@
 /datum/chemical_reaction/vodka_tonic
 	name = "Vodka and Tonic"
 	result = /datum/reagent/ethanol/vodkatonic
-	required_reagents = alist(/datum/reagent/drink/cold/tonic = 1, /datum/reagent/ethanol/vodka = 2)
+	required_reagents = alist(/datum/reagent/drink/cold/tonic = 2, /datum/reagent/ethanol/vodka = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/gin_fizz
 	name = "Gin Fizz"
 	result = /datum/reagent/ethanol/ginfizz
-	required_reagents = alist(/datum/reagent/ethanol/gin = 2, /datum/reagent/drink/limejuice = 1, /datum/reagent/drink/cold/sodawater = 1)
+	required_reagents = alist(/datum/reagent/ethanol/gin = 1, /datum/reagent/drink/limejuice = 1, /datum/reagent/drink/cold/sodawater = 2)
 	result_amount = 4
 
 /datum/chemical_reaction/bahama_mama
