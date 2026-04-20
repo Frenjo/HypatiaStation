@@ -15,7 +15,7 @@
 	move_delay = MOVE_DELAY_SAFETY
 	step_energy_drain = 2
 	max_temperature = 40000
-	damage_resistance = list("brute" = 30, "fire" = 30, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 30)
+	damage_resistance = alist("brute" = 30, "fire" = 30, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 30)
 
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE

@@ -13,7 +13,7 @@
 	move_delay = 0.6 SECONDS
 	max_temperature = 45000
 	deflect_chance = 22.5
-	damage_resistance = list(brute = 50, fire = 15, bullet = 45, laser = 27.5, energy = 20, bomb = 25)
+	damage_resistance = alist(brute = 50, fire = 15, bullet = 45, laser = 27.5, energy = 20, bomb = 25)
 	internal_damage_threshold = 37.5
 
 	max_equip = 4

@@ -23,7 +23,7 @@
 	var/max_temperature = 25000
 	var/deflect_chance = 10 // Chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.
 	// The values in this list are percentage damage reduction.
-	var/list/damage_resistance = list("brute" = 20, "fire" = 0, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0)
+	var/alist/damage_resistance = alist("brute" = 20, "fire" = 0, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0)
 	var/internal_damage_threshold = 50 // Health percentage below which internal damage is possible.
 	var/internal_damage = 0 // Contains bitflags.
 

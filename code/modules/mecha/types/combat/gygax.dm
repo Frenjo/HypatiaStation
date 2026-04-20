@@ -8,7 +8,7 @@
 
 	move_delay = 0.3 SECONDS
 	deflect_chance = 15
-	damage_resistance = list("brute" = 25, "fire" = 10, "bullet" = 20, "laser" = 30, "energy" = 15, "bomb" = 0)
+	damage_resistance = alist("brute" = 25, "fire" = 10, "bullet" = 20, "laser" = 30, "energy" = 15, "bomb" = 0)
 	internal_damage_threshold = 35
 
 	mecha_type = MECHA_TYPE_GYGAX
@@ -86,7 +86,7 @@
 	step_energy_drain = 5
 	max_temperature = 45000
 	deflect_chance = 25
-	damage_resistance = list("brute" = 40, "fire" = 20, "bullet" = 40, "laser" = 50, "energy" = 35, "bomb" = 20)
+	damage_resistance = alist("brute" = 40, "fire" = 20, "bullet" = 40, "laser" = 50, "energy" = 35, "bomb" = 20)
 
 	max_equip = 5
 
@@ -121,7 +121,7 @@
 	move_delay = 0.25 SECONDS
 	step_energy_drain = 8
 	max_temperature = 20000
-	damage_resistance = list("brute" = 22.5, "fire" = 0, "bullet" = 15, "laser" = 15, "energy" = 7.5, "bomb" = 0)
+	damage_resistance = alist("brute" = 22.5, "fire" = 0, "bullet" = 15, "laser" = 15, "energy" = 7.5, "bomb" = 0)
 
 	step_sound_volume = 25
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'

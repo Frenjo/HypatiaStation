@@ -3,7 +3,7 @@
 
 	custom_cursor = TRUE
 
-	damage_resistance = list("brute" = 30, "fire" = 0, "bullet" = 30, "laser" = 15, "energy" = 0, "bomb" = 20)
+	damage_resistance = alist("brute" = 30, "fire" = 0, "bullet" = 30, "laser" = 15, "energy" = 0, "bomb" = 20)
 
 	maint_access = FALSE
 
