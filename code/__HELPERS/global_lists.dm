@@ -49,8 +49,8 @@
 		var/list/reaction_ids = list()
 
 		if(length(D.required_reagents))
-			for(var/reaction in D.required_reagents)
-				reaction_ids.Add(reaction)
+			for(var/datum/reagent/required in D.required_reagents)
+				reaction_ids.Add(required::id)
 
 		// Create filters based on each reagent id in the required reagents list.
 		for(var/id in reaction_ids)
