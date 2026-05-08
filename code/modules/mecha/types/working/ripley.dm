@@ -1,6 +1,6 @@
 /obj/mecha/working/ripley
 	name = "\improper APLU \"Ripley\""
-	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
+	desc = "An Autonomous Power Loader Unit. The workhorse of the exosuit world."
 	icon_state = "ripley"
 
 	health = 200
@@ -84,12 +84,16 @@
 
 /obj/mecha/working/ripley/firefighter
 	name = "\improper APLU \"Firefighter\""
-	desc = "Standard APLU chassis refitted with additional thermal protection and cistern."
+	desc = "A standard Autonomous Power Loader Unit chassis refitted with a cistern and additional thermal protection."
 	icon_state = "firefighter"
 
 	health = 250
 	max_temperature = 65000
 	damage_resistance = alist("fire" = 50, "bullet" = 20, "bomb" = 50)
+
+	starts_with = list(
+		/obj/item/mecha_equipment/tool/extinguisher/radial
+	)
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 
