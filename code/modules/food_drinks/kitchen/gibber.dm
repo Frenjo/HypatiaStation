@@ -24,7 +24,7 @@
 	..()
 	spawn(5)
 		for(var/i in GLOBL.cardinal)
-			var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
+			var/obj/machinery/input_plate/input_obj = locate(/obj/machinery/input_plate, get_step(src.loc, i))
 			if(input_obj)
 				if(isturf(input_obj.loc))
 					input_plate = input_obj.loc

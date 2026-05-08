@@ -3,7 +3,7 @@
 	var/name = null
 	var/result = null
 	var/alist/required_reagents = alist()
-	var/list/required_catalysts = list()
+	var/alist/required_catalysts = alist()
 
 	// Both of these variables are mostly going to be used with slime cores - but if you want to, you can use them for other things
 	var/atom/required_container = null // the container required for the reaction to happen

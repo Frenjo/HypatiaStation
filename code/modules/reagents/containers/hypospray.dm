@@ -17,7 +17,7 @@
 
 // Preloaded variant for the CMO's closet.
 /obj/item/reagent_holder/hypospray/preloaded
-	starting_reagents = alist("tricordrazine" = 30)
+	starting_reagents = alist(/datum/reagent/tricordrazine = 30)
 
 /obj/item/reagent_holder/hypospray/attack_paw(mob/user)
 	return src.attack_hand(user)
@@ -55,7 +55,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 
-	starting_reagents = alist("inaprovaline" = 5)
+	starting_reagents = alist(/datum/reagent/inaprovaline = 5)
 
 /obj/item/reagent_holder/hypospray/autoinjector/initialise()
 	. = ..()

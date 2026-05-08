@@ -80,7 +80,7 @@
 	return ..()
 
 /mob/living/simple/spiderbot/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/mmi) || istype(O, /obj/item/mmi/posibrain))
+	if(istype(O, /obj/item/mmi) || istype(O, /obj/item/mmi/digital/positronic))
 		var/obj/item/mmi/B = O
 		if(src.mmi) //There's already a brain in it.
 			to_chat(user, SPAN_WARNING("There's already a brain in [src]!"))
@@ -171,7 +171,7 @@
 		if(istype(mmi,/obj/item/mmi))
 			icon_state = "spiderbot-chassis-mmi"
 			icon_living = "spiderbot-chassis-mmi"
-		if(istype(mmi, /obj/item/mmi/posibrain))
+		if(istype(mmi, /obj/item/mmi/digital/positronic))
 			icon_state = "spiderbot-chassis-posi"
 			icon_living = "spiderbot-chassis-posi"
 

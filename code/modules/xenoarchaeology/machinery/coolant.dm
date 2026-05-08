@@ -8,7 +8,7 @@
 /datum/chemical_reaction/coolant
 	name = "Coolant"
 	result = /datum/reagent/coolant
-	required_reagents = alist("tungsten" = 1, "oxygen" = 1, "water" = 1)
+	required_reagents = alist(/datum/reagent/oxygen = 1, /datum/reagent/tungsten = 1, /datum/reagent/water = 1)
 	result_amount = 3
 
 

@@ -85,98 +85,98 @@
 	name = "Dylovene pill"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
-	starting_reagents = alist("dylovene" = 25)
+	starting_reagents = alist(/datum/reagent/dylovene = 25)
 
 /obj/item/reagent_holder/pill/tox
 	name = "Toxins pill"
 	desc = "Highly toxic."
 	icon_state = "pill5"
-	starting_reagents = alist("toxin" = 50)
+	starting_reagents = alist(/datum/reagent/toxin = 50)
 
 /obj/item/reagent_holder/pill/cyanide
 	name = "Cyanide pill"
 	desc = "Don't swallow this."
 	icon_state = "pill5"
-	starting_reagents = alist("cyanide" = 50)
+	starting_reagents = alist(/datum/reagent/toxin/cyanide = 50)
 
 /obj/item/reagent_holder/pill/adminordrazine
 	name = "Adminordrazine pill"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pill16"
-	starting_reagents = alist("adminordrazine" = 50)
+	starting_reagents = alist(/datum/reagent/adminordrazine = 50)
 
 /obj/item/reagent_holder/pill/soporific
 	name = "Sleeping pill"
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill8"
-	starting_reagents = alist("soporific" = 15)
+	starting_reagents = alist(/datum/reagent/toxin/soporific = 15)
 
 /obj/item/reagent_holder/pill/kelotane
 	name = "Kelotane pill"
 	desc = "Used to treat burns."
 	icon_state = "pill11"
-	starting_reagents = alist("kelotane" = 15)
+	starting_reagents = alist(/datum/reagent/kelotane = 15)
 
 /obj/item/reagent_holder/pill/paracetamol
 	name = "Paracetamol pill"
 	desc = "Tylenol! A painkiller for the ages. Chewables!"
 	icon_state = "pill8"
-	starting_reagents = alist("paracetamol" = 15)
+	starting_reagents = alist(/datum/reagent/paracetamol = 15)
 
 /obj/item/reagent_holder/pill/tramadol
 	name = "Tramadol pill"
 	desc = "A simple painkiller."
 	icon_state = "pill8"
-	starting_reagents = alist("tramadol" = 15)
+	starting_reagents = alist(/datum/reagent/tramadol = 15)
 
 /obj/item/reagent_holder/pill/methylphenidate
 	name = "Methylphenidate pill"
 	desc = "Improves the ability to concentrate."
 	icon_state = "pill8"
-	starting_reagents = alist("methylphenidate" = 15)
+	starting_reagents = alist(/datum/reagent/antidepressant/methylphenidate = 15)
 
 /obj/item/reagent_holder/pill/citalopram
 	name = "Citalopram pill"
 	desc = "Mild anti-depressant."
 	icon_state = "pill8"
-	starting_reagents = alist("citalopram" = 15)
+	starting_reagents = alist(/datum/reagent/antidepressant/citalopram = 15)
 
 /obj/item/reagent_holder/pill/inaprovaline
 	name = "Inaprovaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
-	starting_reagents = alist("inaprovaline" = 30)
+	starting_reagents = alist(/datum/reagent/inaprovaline = 30)
 
 /obj/item/reagent_holder/pill/dexalin
 	name = "Dexalin pill"
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill16"
-	starting_reagents = alist("dexalin" = 15)
+	starting_reagents = alist(/datum/reagent/dexalin = 15)
 
 /obj/item/reagent_holder/pill/bicaridine
 	name = "Bicaridine pill"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill18"
-	starting_reagents = alist("bicaridine" = 20)
+	starting_reagents = alist(/datum/reagent/bicaridine = 20)
 
 /obj/item/reagent_holder/pill/happy
 	name = "Happy pill"
 	desc = "Happy happy joy joy!"
 	icon_state = "pill18"
-	starting_reagents = alist("space_drugs" = 15, "sugar" = 15)
+	starting_reagents = alist(/datum/reagent/space_drugs = 15, /datum/reagent/sugar = 15)
 
 /obj/item/reagent_holder/pill/zoom
 	name = "Zoom pill"
 	desc = "Zoooom!"
 	icon_state = "pill18"
-	starting_reagents = alist("impedrezene" = 10, "synaptizine" = 5, "hyperzine" = 5)
+	starting_reagents = alist(/datum/reagent/hyperzine = 5, /datum/reagent/impedrezene = 10, /datum/reagent/synaptizine = 5)
 
 // Added this to go with the radiation first aid kit. -Frenjo
 /obj/item/reagent_holder/pill/hyronalin
 	name = "Hyronalin pill"
 	desc = "Used to treat radiation sickness."
 	icon_state = "pill1"
-	starting_reagents = alist("hyronalin" = 5)
+	starting_reagents = alist(/datum/reagent/hyronalin = 5)
 
 // This too, obviously. -Frenjo
 /obj/item/reagent_holder/pill/arithracaridine
@@ -184,11 +184,11 @@
 	// Should this be "Arithra-Caridine"? -Frenjo
 	desc = "Used to treat severe radiation sickness."
 	icon_state = "pill15"
-	starting_reagents = alist("arithrazine" = 2, "bicaridine" = 3)
+	starting_reagents = alist(/datum/reagent/bicaridine = 3, /datum/reagent/arithrazine = 2)
 
 // Added this along with stokaline for survival boxes. -Frenjo
 /obj/item/reagent_holder/pill/stokaline
 	name = "Stokaline pill"
 	desc = "Used to provide essential nutrients in emergencies, or as a vitamin supplement."
 	icon_state = "pill18"
-	starting_reagents = alist("stokaline" = 2)
+	starting_reagents = alist(/datum/reagent/stokaline = 2)

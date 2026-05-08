@@ -89,7 +89,7 @@
 
 	health = 250
 	max_temperature = 65000
-	damage_resistance = list("fire" = 50, "bullet" = 20, "bomb" = 50)
+	damage_resistance = alist("fire" = 50, "bullet" = 20, "bomb" = 50)
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 
@@ -153,7 +153,7 @@
 	health = 225
 	move_delay = 0.5 SECONDS
 	max_temperature = 42500
-	damage_resistance = list("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 25)
+	damage_resistance = alist("brute" = 20, "fire" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 25)
 
 	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
 	activation_sound_volume = 90
@@ -192,7 +192,7 @@
 
 	health = 225
 	move_delay = 0.4 SECONDS // Faster than a Ripley because it's less armoured, but slower than the more specialised Gygax.
-	damage_resistance = list("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
+	damage_resistance = alist("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
 
 	mecha_type = MECHA_TYPE_PADDY
 

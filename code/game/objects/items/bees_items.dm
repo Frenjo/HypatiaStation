@@ -74,7 +74,7 @@
 	name = "honeycomb"
 	icon_state = "honeycomb"
 	desc = "Dripping with sugary sweetness."
-	starting_reagents = alist("honey" = 10, "nutriment" = 0.5, "sugar" = 2)
+	starting_reagents = alist(/datum/reagent/honey = 10, /datum/reagent/nutriment = 0.5, /datum/reagent/sugar = 2)
 	bitesize = 2
 
 /datum/reagent/honey

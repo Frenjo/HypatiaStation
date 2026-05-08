@@ -13,7 +13,7 @@
 	move_delay = 0.3 SECONDS
 	max_temperature = 30000
 	deflect_chance = 30
-	damage_resistance = list("brute" = 15, "fire" = 90, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 20)
+	damage_resistance = alist("brute" = 15, "fire" = 90, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 20)
 
 	step_sound = 'sound/mecha/movement/eidolon/sbdwalk0.ogg'
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
@@ -117,7 +117,7 @@
 
 	move_delay = 0.5 SECONDS
 	deflect_chance = 20
-	damage_resistance = list("brute" = 15, "fire" = 90, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 80)
+	damage_resistance = alist("brute" = 15, "fire" = 90, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 80)
 
 	starts_with = null
 

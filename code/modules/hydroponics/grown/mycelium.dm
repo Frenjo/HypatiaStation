@@ -7,7 +7,7 @@
 	desc = "<I>Ganoderma lucidum</I>: A special fungus believed to help relieve stress."
 	icon_state = "reishi"
 
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 	potency = 10
 	filling_color = "#FF4800"
@@ -33,7 +33,7 @@
 	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
 	icon_state = "amanita"
 
-	starting_reagents = alist("nutriment" = 1)
+	starting_reagents = alist(/datum/reagent/nutriment = 1)
 
 	potency = 10
 	filling_color = "#FF0000"

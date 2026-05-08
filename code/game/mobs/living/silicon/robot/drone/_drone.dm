@@ -9,7 +9,7 @@
 	universal_understand = 1
 	gender = NEUTER
 	pass_flags = PASS_FLAG_TABLE
-	braintype = "Robot"
+	braintype = "Drone"
 	lawupdate = FALSE
 	density = FALSE
 	local_transmit = 1

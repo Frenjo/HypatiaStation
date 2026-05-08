@@ -51,13 +51,13 @@
 		add_overlay(mutable_appearance(icon, "lid_[initial(icon_state)]"))
 
 /obj/item/reagent_holder/glass/beaker/cryoxadone
-	starting_reagents = alist("cryoxadone" = 30)
+	starting_reagents = alist(/datum/reagent/cryoxadone = 30)
 
 /obj/item/reagent_holder/glass/beaker/sulphuric
-	starting_reagents = alist("sacid" = 50)
+	starting_reagents = alist(/datum/reagent/toxin/acid = 50)
 
 /obj/item/reagent_holder/glass/beaker/slime
-	starting_reagents = alist("slimejelly" = 50)
+	starting_reagents = alist(/datum/reagent/toxin/slimejelly = 50)
 
 /obj/item/reagent_holder/glass/beaker/large
 	name = "large beaker"

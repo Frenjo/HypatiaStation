@@ -12,7 +12,7 @@
 	move_delay = 0.4 SECONDS
 	max_temperature = 30000
 	deflect_chance = 20
-	damage_resistance = list("brute" = 50, "fire" = 0, "bullet" = 35, "laser" = 15, "energy" = 10, "bomb" = 20)
+	damage_resistance = alist("brute" = 50, "fire" = 0, "bullet" = 35, "laser" = 15, "energy" = 10, "bomb" = 20)
 
 	mecha_type = MECHA_TYPE_DURAND
 
@@ -43,7 +43,7 @@
 	force = 45
 
 	deflect_chance = 15
-	damage_resistance = list("brute" = 60, "fire" = 0, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15)
+	damage_resistance = alist("brute" = 60, "fire" = 0, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15)
 	internal_damage_threshold = 40
 
 	excluded_equipment = list(
@@ -81,7 +81,7 @@
 	step_energy_drain = 15
 	max_temperature = 25000
 	deflect_chance = 20
-	damage_resistance = list("brute" = 40, "fire" = 20, "bullet" = 32.5, "laser" = 22.5, "energy" = 20, "bomb" = 25)
+	damage_resistance = alist("brute" = 40, "fire" = 20, "bullet" = 32.5, "laser" = 22.5, "energy" = 20, "bomb" = 25)
 	internal_damage_threshold = 35
 
 	wreckage = /obj/structure/mecha_wreckage/durand/archambeau

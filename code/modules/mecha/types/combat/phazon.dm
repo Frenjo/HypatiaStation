@@ -14,7 +14,7 @@
 	move_delay = 0.2 SECONDS
 	step_energy_drain = 3
 	deflect_chance = 30
-	damage_resistance = list("brute" = 30, "fire" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30)
+	damage_resistance = alist("brute" = 30, "fire" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30)
 	internal_damage_threshold = 25
 
 	mecha_type = MECHA_TYPE_PHAZON
@@ -145,7 +145,7 @@
 	step_energy_drain = 1.5
 	max_temperature = 45000
 	deflect_chance = 40
-	damage_resistance = list("brute" = 35, "fire" = 25, "bullet" = 35, "laser" = 40, "energy" = 32.5, "bomb" = 25)
+	damage_resistance = alist("brute" = 35, "fire" = 25, "bullet" = 35, "laser" = 40, "energy" = 32.5, "bomb" = 25)
 
 	max_equip = 5
 
@@ -180,7 +180,7 @@
 
 	health = 250
 	max_temperature = 10000
-	damage_resistance = list("brute" = 50, "fire" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50)
+	damage_resistance = alist("brute" = 50, "fire" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50)
 
 	max_equip = 4
 
@@ -201,7 +201,7 @@
 	health = 500
 	max_temperature = 10000
 	deflect_chance = 50
-	damage_resistance = list("brute" = 60, "fire" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60)
+	damage_resistance = alist("brute" = 60, "fire" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60)
 
 	max_equip = 5
 

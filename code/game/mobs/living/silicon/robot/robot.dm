@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/New(loc, unfinished = 0)
+/mob/living/silicon/robot/New(loc)
 	. = ..()
 
 	spark_system = new /datum/effect/system/spark_spread()
@@ -27,7 +27,6 @@
 	updateicon()
 
 	initialize_components()
-	//if(!unfinished)
 	// Create all the robot parts.
 	for(var/V in components)
 		if(V != "power cell")
@@ -37,7 +36,6 @@
 
 	if(isnull(cell))
 		cell = new /obj/item/cell/apc(src)
-
 	if(isnotnull(cell))
 		var/datum/robot_component/cell_component = components["power cell"]
 		cell_component.wrapped = cell
@@ -138,8 +136,10 @@
 	rbPDA.set_name_and_job(custom_name, "[model.display_name] [braintype]")
 
 /mob/living/silicon/robot/proc/updatename()
-	if(istype(mmi, /obj/item/mmi/posibrain))
+	if(istype(mmi, /obj/item/mmi/digital/positronic))
 		braintype = "Android"
+	else if(istype(mmi, /obj/item/mmi/digital/robot))
+		braintype = "Robot"
 	else
 		braintype = "Cyborg"
 

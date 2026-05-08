@@ -10,7 +10,7 @@
 	health = 140
 	move_delay = 0.3 SECONDS
 	deflect_chance = 60
-	damage_resistance = list("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
+	damage_resistance = alist("brute" = 0, "fire" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0)
 	internal_damage_threshold = 60
 
 	operation_req_access = list(ACCESS_MIME)

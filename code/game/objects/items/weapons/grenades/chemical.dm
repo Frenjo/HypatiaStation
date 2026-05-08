@@ -185,7 +185,7 @@
 /obj/item/grenade/chemical/metalfoam/initialise()
 	. = ..()
 	var/obj/item/reagent_holder/glass/beaker/B1 = new /obj/item/reagent_holder/glass/beaker(src)
-	B1.starting_reagents = alist("aluminum" = 30)
+	B1.starting_reagents = alist("aluminium" = 30)
 	var/obj/item/reagent_holder/glass/beaker/B2 = new /obj/item/reagent_holder/glass/beaker(src)
 	B2.starting_reagents = alist("foaming_agent" = 10, "pacid" = 10)
 

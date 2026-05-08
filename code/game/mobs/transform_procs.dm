@@ -141,6 +141,7 @@
 		qdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
+	var/mmi_type = O.mmi_types_by_title[mind?.role_alt_title ? mind.role_alt_title : mind?.assigned_role]
 
 	O.gender = gender
 	O.invisibility = 0
@@ -156,18 +157,13 @@
 
 	O.forceMove(loc)
 	O.job = "Robot"
-	if(O.mind.assigned_role != "Cyborg")
-		if(O.mind.role_alt_title == "Android")
-			O.mmi = new /obj/item/mmi/posibrain(O)
-		if(O.mind.role_alt_title == "Robot")
-			O.mmi = new /obj/item/mmi/posibrain(O)	//Ravensdale wants a circuit based brain for another robot class, this is a placeholder.
-	else
-		O.mmi = new /obj/item/mmi(O)
-		O.mmi.transfer_identity(src)	//Does not transfer key/client.
+
+	O.mmi = new mmi_type(O)
+	O.mmi.transfer_identity(src) // Does not transfer key/client.
 
 	O.namepick()
 
-	spawn(0)//To prevent the proc from returning null.
+	spawn(0) // To prevent the proc from returning null.
 		qdel(src)
 	return O
 

@@ -113,17 +113,17 @@
 /obj/item/reagent_holder/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
-	starting_reagents = alist("cleaner" = 250)
+	starting_reagents = alist(/datum/reagent/space_cleaner = 250)
 
 // Lube
 /obj/item/reagent_holder/spray/lube
 	name = "lube spray"
-	starting_reagents = alist("lube" = 250)
+	starting_reagents = alist(/datum/reagent/lube = 250)
 
 // Polyacid
 /obj/item/reagent_holder/spray/polyacid
 	name = "polyacid spray"
-	starting_reagents = alist("pacid" = 250)
+	starting_reagents = alist(/datum/reagent/toxin/acid/polyacid = 250)
 
 //pepperspray
 /obj/item/reagent_holder/spray/pepper
@@ -135,7 +135,7 @@
 	possible_transfer_amounts = null
 	volume = 40
 
-	starting_reagents = alist("condensedcapsaicin" = 40)
+	starting_reagents = alist(/datum/reagent/condensedcapsaicin = 40)
 
 	var/safety = 1
 
@@ -166,7 +166,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-	starting_reagents = alist("water" = 10)
+	starting_reagents = alist(/datum/reagent/water = 10)
 
 //chemsprayer
 /obj/item/reagent_holder/spray/chemsprayer
@@ -232,7 +232,7 @@
 	item_state = "plantbgone"
 	volume = 100
 
-	starting_reagents = alist("plantbgone" = 100)
+	starting_reagents = alist(/datum/reagent/toxin/plantbgone = 100)
 
 /obj/item/reagent_holder/spray/plantbgone/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)

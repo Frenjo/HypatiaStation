@@ -228,7 +228,7 @@
 		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 // Proteon
-/mob/living/simple/hostile/construct/proteon
+/mob/living/simple/construct/proteon
 	name = "Proteon"
 	desc = "A weaker construct meant to scour ruins for objects of Nar'Sie's affection. Those barbed claws are no joke."
 

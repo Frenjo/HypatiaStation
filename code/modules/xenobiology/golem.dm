@@ -116,14 +116,7 @@
 	G.forceMove(loc)
 	G.key = ghost.key
 	to_chat(G, "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost.")
-	qdel (src)
-
-/obj/effect/golemrune/proc/announce_to_ghosts()
-	for(var/mob/dead/ghost/G in GLOBL.player_list)
-		if(G.client)
-			var/area/A = GET_AREA(src)
-			if(isnotnull(A))
-				to_chat(G, SPAN_DEADSAY("<em>Golem rune created in [A.name].</em>"))
+	qdel(src)
 
 // Adamanatine Golem outfit
 /decl/hierarchy/outfit/adamantine_golem

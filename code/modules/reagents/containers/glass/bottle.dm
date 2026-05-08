@@ -24,63 +24,63 @@
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
-	starting_reagents = alist("inaprovaline" = 30)
+	starting_reagents = alist(/datum/reagent/inaprovaline = 30)
 
 /obj/item/reagent_holder/glass/bottle/toxin
 	name = "toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle12"
-	starting_reagents = alist("toxin" = 30)
+	starting_reagents = alist(/datum/reagent/toxin = 30)
 
 /obj/item/reagent_holder/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle12"
-	starting_reagents = alist("cyanide" = 30)
+	starting_reagents = alist(/datum/reagent/toxin/cyanide = 30)
 
 /obj/item/reagent_holder/glass/bottle/stoxin
 	name = "soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
-	starting_reagents = alist("soporific" = 30)
+	starting_reagents = alist(/datum/reagent/toxin/soporific = 30)
 
 /obj/item/reagent_holder/glass/bottle/chloralhydrate
 	name = "Chloral Hydrate Bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
-	starting_reagents = alist("chloralhydrate" = 15) // Intentionally low since it is so strong. Still enough to knock someone out.
+	starting_reagents = alist(/datum/reagent/toxin/chloralhydrate = 15) // Intentionally low since it is so strong. Still enough to knock someone out.
 
 /obj/item/reagent_holder/glass/bottle/dylovene
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Counters poisons, and repairs damage, a wonder drug."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
-	starting_reagents = alist("dylovene" = 30)
+	starting_reagents = alist(/datum/reagent/dylovene = 30)
 
 /obj/item/reagent_holder/glass/bottle/mutagen
 	name = "unstable mutagen bottle"
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
-	starting_reagents = alist("mutagen" = 30)
+	starting_reagents = alist(/datum/reagent/toxin/mutagen = 30)
 
 /obj/item/reagent_holder/glass/bottle/ammonia
 	name = "ammonia bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle20"
-	starting_reagents = alist("ammonia" = 30)
+	starting_reagents = alist(/datum/reagent/ammonia = 30)
 
 /obj/item/reagent_holder/glass/bottle/diethylamine
 	name = "diethylamine bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
-	starting_reagents = alist("diethylamine" = 30)
+	starting_reagents = alist(/datum/reagent/diethylamine = 30)
 
 /obj/item/reagent_holder/glass/bottle/flu_virion
 	name = "Flu virion culture bottle"
@@ -244,25 +244,25 @@
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
-	starting_reagents = alist("pacid" = 30)
+	starting_reagents = alist(/datum/reagent/toxin/acid/polyacid = 30)
 
 /obj/item/reagent_holder/glass/bottle/adminordrazine
 	name = "Adminordrazine Bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "holyflask"
-	starting_reagents = alist("adminordrazine" = 30)
+	starting_reagents = alist(/datum/reagent/adminordrazine = 30)
 
 /obj/item/reagent_holder/glass/bottle/capsaicin
 	name = "Capsaicin Bottle"
 	desc = "A small bottle. Contains hot sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	starting_reagents = alist("capsaicin" = 30)
+	starting_reagents = alist(/datum/reagent/capsaicin = 30)
 
 /obj/item/reagent_holder/glass/bottle/frostoil
 	name = "Frost Oil Bottle"
 	desc = "A small bottle. Contains cold sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle17"
-	starting_reagents = alist("frostoil" = 30)
+	starting_reagents = alist(/datum/reagent/frostoil = 30)

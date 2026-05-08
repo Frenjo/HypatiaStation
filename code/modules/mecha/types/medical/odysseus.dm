@@ -47,7 +47,7 @@
 	step_energy_drain = 3
 	max_temperature = 35000
 	deflect_chance = 25
-	damage_resistance = list("brute" = 35, "fire" = 20, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 20)
+	damage_resistance = alist("brute" = 35, "fire" = 20, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 20)
 
 	max_equip = 5
 
@@ -79,7 +79,7 @@
 	step_energy_drain = 4.5
 	max_temperature = 25000
 	deflect_chance = 20
-	damage_resistance = list("brute" = 27.5, "fire" = 10, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10)
+	damage_resistance = alist("brute" = 27.5, "fire" = 10, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10)
 
 	activation_sound = 'sound/mecha/voice/nominalsyndi.ogg'
 	activation_sound_volume = 90

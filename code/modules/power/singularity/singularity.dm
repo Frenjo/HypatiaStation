@@ -502,6 +502,8 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	if(global.PCemergency)
 		global.PCemergency.call_evac()
 		global.PCemergency.launch_time = 0 // Cannot recall
+	var/area/A = GET_AREA(src)
+	notify_ghosts("Nar-Sie has risen in \the [A].")
 
 /obj/singularity/narsie/process()
 	eat()

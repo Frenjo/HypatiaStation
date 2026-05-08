@@ -4,7 +4,6 @@
 	desc = "A jar. You're not sure what it's supposed to hold."
 	icon_state = "jar"
 	item_state = "beaker"
-	starting_reagents = alist("slime" = 50)
 
 /obj/item/reagent_holder/food/drinks/jar/on_reagent_change()
 	if(length(reagents.reagent_list))

@@ -73,3 +73,10 @@
 	var/scrambledcodes = FALSE // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/braintype = "Robot"
 	var/pose
+
+	var/static/alist/mmi_types_by_title = alist(
+		"Android" = /obj/item/mmi/digital/positronic,
+		"Cyborg" = /obj/item/mmi,
+		"Drone" = /obj/item/mmi/digital/robot,
+		"Robot" = /obj/item/mmi/digital/robot
+	)

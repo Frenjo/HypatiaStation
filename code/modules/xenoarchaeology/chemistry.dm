@@ -46,20 +46,20 @@
 /datum/chemical_reaction/lithiumsodiumtungstate	//LiNa2WO4, not the easiest chem to mix
 	name = "Lithium Sodium Tungstate"
 	result = /datum/reagent/lithiumsodiumtungstate
-	required_reagents = alist("lithium" = 1, "sodium" = 2, "tungsten" = 1, "oxygen" = 4)
+	required_reagents = alist(/datum/reagent/lithium = 1, /datum/reagent/oxygen = 4, /datum/reagent/sodium = 2, /datum/reagent/tungsten = 1)
 	result_amount = 8
 
 /datum/chemical_reaction/density_separated_liquid
 	name = "Density separated sample"
 	result = /datum/reagent/density_separated_sample
-	required_reagents = alist("ground_rock" = 1, "lithiumsodiumtungstate" = 2)
+	required_reagents = alist(/datum/reagent/ground_rock = 1, /datum/reagent/lithiumsodiumtungstate = 2)
 	result_amount = 2
 	secondary_results = alist(/datum/reagent/chemical_waste = 1)
 
 /datum/chemical_reaction/analysis_liquid
 	name = "Analysis sample"
 	result = /datum/reagent/analysis_sample
-	required_reagents = alist("density_separated_sample" = 5)
+	required_reagents = alist(/datum/reagent/density_separated_sample = 5)
 	result_amount = 4
 	secondary_results = alist(/datum/reagent/chemical_waste = 1)
 	requires_heating = 1
@@ -98,24 +98,24 @@
 
 /obj/item/reagent_holder/glass/beaker/tungsten
 	name = "beaker 'tungsten'"
-	starting_reagents = alist("tungsten" = 50)
+	starting_reagents = alist(/datum/reagent/tungsten = 50)
 
 /obj/item/reagent_holder/glass/beaker/oxygen
 	name = "beaker 'oxygen'"
-	starting_reagents = alist("oxygen" = 50)
+	starting_reagents = alist(/datum/reagent/oxygen = 50)
 
 /obj/item/reagent_holder/glass/beaker/sodium
 	name = "beaker 'sodium'"
-	starting_reagents = alist("sodium" = 50)
+	starting_reagents = alist(/datum/reagent/sodium = 50)
 
 /obj/item/reagent_holder/glass/beaker/lithium
 	name = "beaker 'lithium'"
-	starting_reagents = alist("lithium" = 50)
+	starting_reagents = alist(/datum/reagent/lithium = 50)
 
 /obj/item/reagent_holder/glass/beaker/water
 	name = "beaker 'water'"
-	starting_reagents = alist("water" = 50)
+	starting_reagents = alist(/datum/reagent/water = 50)
 
 /obj/item/reagent_holder/glass/beaker/fuel
 	name = "beaker 'fuel'"
-	starting_reagents = alist("fuel" = 50)
+	starting_reagents = alist(/datum/reagent/fuel = 50)
