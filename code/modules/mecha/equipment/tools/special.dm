@@ -50,7 +50,7 @@
 	allow_duplicates = FALSE
 	allow_detach = FALSE
 
-	attaches_to_string = "the <em><i>Clarke</i></em>"
+	attaches_to_string = "the <em><i>Clarke</i></em> exosuit"
 
 	var/obj/structure/ore_box/ore_box = null
 

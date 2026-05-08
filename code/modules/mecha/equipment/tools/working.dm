@@ -145,9 +145,9 @@
 
 // Extinguisher
 /obj/item/mecha_equipment/tool/extinguisher
-	name = "mounted extinguisher"
+	name = "mounted fire extinguisher"
 	desc = "An exosuit-mounted fire extinguisher."
-	icon_state = "exting"
+	icon_state = "extinguisher"
 
 	matter_amounts = /datum/design/mechfab/equipment/working/extinguisher::materials
 
@@ -160,47 +160,24 @@
 	create_reagents(200)
 	reagents.add_reagent("water", 200)
 
-/obj/item/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
+/obj/item/mecha_equipment/tool/extinguisher/action(atom/target)
 	if(!..() || get_dist(chassis, target) > 3)
 		return FALSE
 	if(get_dist(chassis, target) > 2)
 		return FALSE
-	if(do_after_cooldown(target))
-		if(istype(target, /obj/structure/reagent_dispenser/watertank) && get_dist(chassis, target) <= 1)
-			var/obj/o = target
-			o.reagents.trans_to(src, 200)
-			occupant_message(SPAN_INFO("Extinguisher refilled."))
-			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
+	if(!do_after_cooldown(target))
+		return FALSE
 
-		else if(reagents.total_volume > 0)
-			playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
-			var/direction = get_dir(chassis,target)
-			var/turf/T = GET_TURF(target)
-			var/turf/T1 = get_step(T, turn(direction, 90))
-			var/turf/T2 = get_step(T, turn(direction, -90))
+	if(istype(target, /obj/structure/reagent_dispenser/watertank) && get_dist(chassis, target) <= 1)
+		var/obj/o = target
+		o.reagents.trans_to(src, 200)
+		occupant_message(SPAN_INFO("Extinguisher refilled."))
+		playsound(chassis, 'sound/effects/refill.ogg', 50, TRUE, -6)
+		return TRUE
 
-			var/list/the_targets = list(T, T1, T2)
-			spawn(0)
-				for(var/a = 0, a < 5, a++)
-					var/obj/effect/water/W = new /obj/effect/water(GET_TURF(chassis))
-					if(isnull(W))
-						return FALSE
-					var/turf/my_target = pick(the_targets)
-					W.create_reagents(5)
-					reagents.trans_to(W, 1)
-					for(var/b = 0, b < 4, b++)
-						if(isnull(W))
-							return FALSE
-						step_towards(W, my_target)
-						if(isnull(W))
-							return FALSE
-						var/turf/W_turf = GET_TURF(W)
-						W.reagents.reaction(W_turf)
-						for_no_type_check(var/atom/movable/mover, W_turf)
-							W.reagents.reaction(mover)
-						if(W.loc == my_target)
-							break
-						sleep(2)
+	if(reagents.total_volume <= 0)
+		return FALSE
+	spray_extinguisher(target)
 	return TRUE
 
 /obj/item/mecha_equipment/tool/extinguisher/get_equip_info()
@@ -208,3 +185,52 @@
 
 /obj/item/mecha_equipment/tool/extinguisher/on_reagent_change()
 	return
+
+/obj/item/mecha_equipment/tool/extinguisher/proc/spray_extinguisher(atom/target)
+	playsound(chassis, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
+	var/direction = get_dir(chassis, target)
+	var/turf/target_turf = GET_TURF(target)
+
+	var/list/targets = list(target_turf, get_step(target_turf, turn(direction, 90)), get_step(target_turf, turn(direction, -90)))
+	spawn(-1)
+		do_extinguish(targets)
+
+/obj/item/mecha_equipment/tool/extinguisher/proc/do_extinguish(list/turf/targets)
+	for(var/turf/my_target in targets)
+		var/obj/effect/water/W = new /obj/effect/water(GET_TURF(chassis))
+		if(isnull(W))
+			return
+		W.create_reagents(5)
+		reagents.trans_to(W, 1)
+		for(var/b in 0 to 4)
+			if(isnull(W))
+				return
+			step_towards(W, my_target)
+			if(isnull(W))
+				return
+			var/turf/w_turf = GET_TURF(W)
+			W.reagents.reaction(w_turf)
+			for_no_type_check(var/atom/movable/mover, w_turf)
+				W.reagents.reaction(mover)
+			if(W.loc == my_target)
+				break
+			sleep(2)
+
+// Firefighter variant
+/obj/item/mecha_equipment/tool/extinguisher/radial
+	name = "mounted radial fire extinguisher"
+	desc = "A heavier, more specialised variant of the standard mounted extinguisher. This version comes pre-installed on APLU \"Firefighter\"-type exosuits."
+
+	salvageable = FALSE
+
+	allow_duplicates = FALSE
+	allow_detach = FALSE
+
+	attaches_to_string = "the <em><i>Firefighter</i></em> exosuit"
+
+/obj/item/mecha_equipment/tool/extinguisher/radial/spray_extinguisher(atom/target)
+	playsound(chassis, 'sound/effects/extinguish.ogg', 75, TRUE, -3)
+
+	var/list/turf/targets = RANGE_TURFS(chassis, 1)
+	spawn(-1)
+		do_extinguish(targets)

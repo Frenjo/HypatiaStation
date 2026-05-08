@@ -119,9 +119,6 @@
 						if(isnull(W))
 							return
 						W.reagents.reaction(mover)
-						if(isliving(mover)) //For extinguishing mobs on fire
-							var/mob/living/M = mover
-							M.ExtinguishMob()
 					if(W.loc == my_target)
 						break
 					sleep(2)
