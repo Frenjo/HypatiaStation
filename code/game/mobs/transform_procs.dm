@@ -161,6 +161,7 @@
 	O.mmi = new mmi_type(O)
 	O.mmi.transfer_identity(src) // Does not transfer key/client.
 
+	O.notify_ai(1)
 	O.namepick()
 
 	spawn(0) // To prevent the proc from returning null.

@@ -44,6 +44,7 @@
 	robby.name = heldname
 	robby.custom_name = heldname
 	robby.real_name = heldname
+	robby.notify_ai(3, robby.name, heldname)
 	return TRUE
 
 /*
@@ -66,4 +67,5 @@
 			if(ghost.mind?.current == robby)
 				robby.key = ghost.key
 	robby.stat = CONSCIOUS
+	robby.notify_ai(1)
 	return TRUE

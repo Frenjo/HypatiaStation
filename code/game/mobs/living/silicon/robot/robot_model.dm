@@ -79,6 +79,8 @@
 	if(emagged)
 		model.on_emag(src)
 
+	notify_ai(2)
+
 /mob/living/silicon/robot/proc/choose_icon(list/model_sprites)
 	set waitfor = FALSE
 	if(!length(model_sprites))

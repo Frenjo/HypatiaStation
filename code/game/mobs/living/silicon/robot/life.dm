@@ -48,7 +48,7 @@
 
 /mob/living/silicon/robot/proc/handle_regular_status_updates()
 	if(isnotnull(camera) && !scrambledcodes)
-		camera.status = (stat == DEAD || isWireCut(5))
+		camera.status = (stat == DEAD || wires.IsIndexCut(BORG_WIRE_CAMERA))
 
 	updatehealth()
 

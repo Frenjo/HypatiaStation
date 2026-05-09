@@ -241,6 +241,7 @@
 				cell_component.installed = ROBOT_COMPONENT_INSTALLED
 
 			feedback_inc("robot_birth", 1)
+			O.notify_ai(1)
 			O.namepick()
 
 			qdel(src)
