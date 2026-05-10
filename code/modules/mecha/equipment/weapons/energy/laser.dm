@@ -83,17 +83,17 @@
 		energy_drain = burst_energy_drain
 		if(burst_fire_count == 0 || burst_fire_count >= 4)
 			fire_sound = 'sound/weapons/gun/laser.ogg'
-			projectile = /obj/projectile/energy/beam/laser/rapid
+			projectile = /obj/projectile/energy/beam/laser/axis_rapid
 			burst_fire_count = 0
 		else
 			fire_sound = 'sound/weapons/gun/laser_pulse.ogg'
-			projectile = /obj/projectile/energy/pulse/laser/rapid
+			projectile = /obj/projectile/energy/pulse/laser/axis_rapid
 		burst_fire_count++
 	else
 		equip_cooldown = 3 SECONDS
 		energy_drain = heavy_energy_drain
 		fire_sound = 'sound/weapons/gun/lasercannonfire.ogg'
-		projectile = /obj/projectile/energy/beam/laser/heavy/slow
+		projectile = /obj/projectile/energy/beam/laser/heavy/axis_slow
 		burst_fire_count = 0
 	return TRUE
 

@@ -26,7 +26,7 @@
 	eyeblur = 2
 
 // Axis energy projector variant
-/obj/projectile/energy/pulse/laser/rapid
+/obj/projectile/energy/pulse/laser/axis_rapid
 	name = "rapid laser pulse"
 	icon_state = "axis"
 
