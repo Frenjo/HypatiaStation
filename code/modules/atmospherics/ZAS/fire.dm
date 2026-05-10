@@ -199,11 +199,11 @@ Attach to transfer valve and open. BOOM.
 		var/total_oxidizers = 0
 
 		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-		for(var/g in gas)
-			if(gas_data.flags[g] & XGM_GAS_FUEL)
-				total_fuel += gas[g]
-			if(gas_data.flags[g] & XGM_GAS_OXIDIZER)
-				total_oxidizers += gas[g]
+		for(var/gas_type, gas_moles in gas)
+			if(gas_data.flags[gas_type] & XGM_GAS_FUEL)
+				total_fuel += gas_moles
+			if(gas_data.flags[gas_type] & XGM_GAS_OXIDIZER)
+				total_oxidizers += gas_moles
 
 		if(liquid)
 		//Liquid Fuel
@@ -252,8 +252,8 @@ Attach to transfer valve and open. BOOM.
 /datum/gas_mixture/proc/check_recombustability(obj/effect/decal/cleanable/liquid_fuel/liquid)
 	. = 0
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_OXIDIZER && gas[g] >= 0.1)
+	for(var/gas_type, gas_moles in gas)
+		if(gas_data.flags[gas_type] & XGM_GAS_OXIDIZER && gas_moles >= 0.1)
 			. = 1
 			break
 
@@ -264,16 +264,16 @@ Attach to transfer valve and open. BOOM.
 		return 1
 
 	. = 0
-	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_FUEL && gas[g] >= 0.1)
+	for(var/gas_type, gas_moles in gas)
+		if(gas_data.flags[gas_type] & XGM_GAS_FUEL && gas_moles >= 0.1)
 			. = 1
 			break
 
 /datum/gas_mixture/proc/check_combustability(obj/effect/decal/cleanable/liquid_fuel/liquid)
 	. = 0
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_OXIDIZER && QUANTIZE(gas[g] * global.vsc.fire_consuption_rate) >= 0.1)
+	for(var/gas_type, gas_moles in gas)
+		if(gas_data.flags[gas_type] & XGM_GAS_OXIDIZER && QUANTIZE(gas_moles * global.vsc.fire_consuption_rate) >= 0.1)
 			. = 1
 			break
 
@@ -284,8 +284,8 @@ Attach to transfer valve and open. BOOM.
 		return 1
 
 	. = 0
-	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_FUEL && QUANTIZE(gas[g] * global.vsc.fire_consuption_rate) >= 0.1)
+	for(var/gas_type, gas_moles in gas)
+		if(gas_data.flags[gas_moles] & XGM_GAS_FUEL && QUANTIZE(gas_moles * global.vsc.fire_consuption_rate) >= 0.1)
 			. = 1
 			break
 
@@ -296,11 +296,11 @@ Attach to transfer valve and open. BOOM.
 	if(force || check_recombustability(liquid))
 		if(isnull(total_fuel))
 			var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-			for(var/g in gas)
-				if(gas_data.flags[g] & XGM_GAS_FUEL)
-					total_fuel += gas[g]
-				if(gas_data.flags[g] & XGM_GAS_OXIDIZER)
-					total_oxidizers += gas[g]
+			for(var/gas_type, gas_moles in gas)
+				if(gas_data.flags[gas_type] & XGM_GAS_FUEL)
+					total_fuel += gas_moles
+				if(gas_data.flags[gas_type] & XGM_GAS_OXIDIZER)
+					total_oxidizers += gas_moles
 			if(liquid)
 				total_fuel += liquid.amount
 

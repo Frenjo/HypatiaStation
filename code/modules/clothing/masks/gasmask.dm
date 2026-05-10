@@ -15,10 +15,10 @@
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new /datum/gas_mixture()
 
-	for(var/g in filtered_gases)
-		if(air.gas[g])
-			filtered.gas[g] = air.gas[g] * gas_filter_strength
-			air.gas[g] -= filtered.gas[g]
+	for(var/gas_type in filtered_gases)
+		if(air.gas[gas_type])
+			filtered.gas[gas_type] = air.gas[gas_type] * gas_filter_strength
+			air.gas[gas_type] -= filtered.gas[gas_type]
 
 	air.update_values()
 	filtered.update_values()

@@ -19,12 +19,12 @@
 			to_chat(mob, "No zone here.")
 			var/datum/gas_mixture/mix = T.return_air()
 			to_chat(mob, "[mix.return_pressure()] kPa [mix.temperature]C")
-			for(var/g in mix.gas)
-				to_chat(mob, "[g]: [mix.gas[g]]<br>")
+			for(var/gas_type, gas_moles in mix.gas)
+				to_chat(mob, "[gas_type]: [gas_moles]<br>")
 	else
 		if(zone_debug_images)
-			for(var/zone in  zone_debug_images)
-				images.Remove(zone_debug_images[zone])
+			for(var/zone, zone_image in zone_debug_images)
+				images.Remove(zone_image)
 			zone_debug_images = null
 
 /client/var/list/zone_debug_images

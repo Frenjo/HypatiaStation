@@ -25,9 +25,8 @@
 		verbs.Remove(/obj/item/reagent_holder/verb/set_APTFT)
 	create_reagents(volume)
 	if(isnotnull(starting_reagents))
-		for(var/datum/reagent/reagent in starting_reagents)
-			var/id = reagent::id
-			reagents.add_reagent(id, starting_reagents[id])
+		for(var/datum/reagent/reagent, starting_amount in starting_reagents)
+			reagents.add_reagent(reagent::id, starting_amount)
 		update_icon()
 
 /obj/item/reagent_holder/attack_self(mob/user)

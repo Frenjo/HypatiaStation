@@ -17,9 +17,9 @@
 		num_coins_by_material[C.material.type]++
 
 	var/dat = "<b>The contents of the moneybag reveal...</b><br>"
-	for(var/material_path in num_coins_by_material)
-		var/decl/material/material = GET_DECL_INSTANCE(material_path)
-		dat += "[material.name] coins: [num_coins_by_material[material_path]] <A href='byond://?src=\ref[src];remove=[material_path]'>Remove one</A><br>"
+	for(var/material_type in num_coins_by_material)
+		var/decl/material/material = GET_DECL_INSTANCE(material_type)
+		dat += "[material.name] coins: [num_coins_by_material[material_type]] <A href='byond://?src=\ref[src];remove=[material_type]'>Remove one</A><br>"
 	SHOW_BROWSER(user, dat, "window=moneybag")
 
 /obj/item/moneybag/attackby(obj/item/W, mob/user)
