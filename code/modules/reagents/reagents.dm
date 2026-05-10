@@ -263,15 +263,15 @@
 				var/matching_other = 0
 				var/list/multipliers = list()
 
-				for(var/datum/reagent/required in C.required_reagents)
+				for(var/datum/reagent/required, required_amount in C.required_reagents)
 					var/B = required::id
-					if(!has_reagent(B, C.required_reagents[B]))
+					if(!has_reagent(B, required_amount))
 						break
 					total_matching_reagents++
-					multipliers += round(get_reagent_amount(B) / C.required_reagents[B])
-				for(var/datum/reagent/required in C.required_catalysts)
+					multipliers += round(get_reagent_amount(B) / required_amount)
+				for(var/datum/reagent/required, required_amount in C.required_catalysts)
 					var/B = required::id
-					if(!has_reagent(B, C.required_catalysts[B]))
+					if(!has_reagent(B, required_amount))
 						break
 					total_matching_catalysts++
 
@@ -302,10 +302,11 @@
 				if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other)
 					var/multiplier = min(multipliers)
 					var/preserved_data = null
-					for(var/B in C.required_reagents)
+					for(var/datum/reagent/required, required_amount in C.required_reagents)
+						var/B = required::id
 						if(!preserved_data)
 							preserved_data = get_data(B)
-						remove_reagent(B, (multiplier * C.required_reagents[B]), safety = 1)
+						remove_reagent(B, (multiplier * required_amount), safety = 1)
 
 					var/created_volume = C.result_amount * multiplier
 					if(isnotnull(C.result))
@@ -319,9 +320,9 @@
 						set_data(result_id, preserved_data)
 
 						//add secondary products
-						for(var/datum/reagent/secondary in C.secondary_results)
+						for(var/datum/reagent/secondary, secondary_amount in C.secondary_results)
 							var/S = secondary::id // Temporary patch until reagent IDs are removed.
-							add_reagent(S, C.result_amount * C.secondary_results[S] * multiplier)
+							add_reagent(S, C.result_amount * secondary_amount * multiplier)
 
 					my_atom.visible_message(SPAN_INFO("[icon2html(my_atom, viewers(my_atom))] The solution begins to bubble."))
 

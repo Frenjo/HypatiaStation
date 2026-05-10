@@ -86,10 +86,9 @@
 	dat += "<tt>"
 	GET_COMPONENT(container, /datum/component/material_container)
 	var/alist/materials = container.get_all_materials()
-	for(var/material_path in materials)
-		var/decl/material/mat = material_path
-		dat += "<font color='[initial(mat.colour_code)]'><b>[initial(mat.name)]:</b></font> [materials[material_path]]cm<sup>3</sup>"
-		dat += " (MAX: [container.get_total_type_capacity(mat)]cm<sup>3</sup>)"
+	for(var/decl/material/material_type, material_amount in materials)
+		dat += "<font color='[material_type::colour_code]'><b>[material_type::name]:</b></font> [material_amount]cm<sup>3</sup>"
+		dat += " (MAX: [container.get_total_type_capacity(material_type)]cm<sup>3</sup>)"
 		dat += "<br>"
 	dat += "<b>Total Amount:</b> [container.get_total_amount()]cm<sup>3</sup> (MAX: [container.get_total_capacity()]cm<sup>3</sup>)"
 	dat += "<hr>"
@@ -108,8 +107,8 @@
 			var/obj/item/stack/S = thing
 			var/max_multiplier = initial(S.max_amount)
 			var/list/matter_amounts = initial(S.matter_amounts)
-			for(var/material_path in matter_amounts)
-				max_multiplier = min(max_multiplier, round(container.get_type_amount(material_path) / matter_amounts[material_path]))
+			for(var/material_type, material_amount in matter_amounts)
+				max_multiplier = min(max_multiplier, round(container.get_type_amount(material_type) / material_amount))
 			if(max_multiplier > 1)
 				dat += " |"
 			if(max_multiplier > 10)
@@ -178,15 +177,14 @@
 		return TRUE
 
 	GET_COMPONENT(container, /datum/component/material_container)
-	for(var/material_path in I.matter_amounts)
+	for(var/decl/material/material_type, material_amount in I.matter_amounts)
 		// If it has any matter that we can't accept, then we also can't recycle it.
-		if(!container.can_contain(material_path))
+		if(!container.can_contain(material_type))
 			to_chat(user, SPAN_WARNING("\The [src] cannot accept \the [I]!"))
 			return TRUE
 		// Finally, if any of the required material storages are full, then we again can't recycle it.
-		if(!container.can_add_amount(material_path, I.matter_amounts[material_path]))
-			var/decl/material/mat = material_path
-			to_chat(user, SPAN_WARNING("\The [src] is full. Please remove [lowertext(initial(mat.name))] from \the [src] in order to insert more."))
+		if(!container.can_add_amount(material_type, material_amount))
+			to_chat(user, SPAN_WARNING("\The [src] is full. Please remove [lowertext(material_type::name)] from \the [src] in order to insert more."))
 			return TRUE
 
 	add_item(I, user)
@@ -223,10 +221,9 @@
 /obj/machinery/autolathe/proc/output_item_cost(datum/design/D)
 	var/i = 0
 	GET_COMPONENT(container, /datum/component/material_container)
-	for(var/material_path in D.materials)
-		if(container.can_contain(material_path))
-			var/decl/material/mat = material_path
-			. += "[i ? " / " : null][D.materials[material_path]]cm<sup>3</sup> [lowertext(initial(mat.name))]"
+	for(var/decl/material/material_type, material_amount in D.materials)
+		if(container.can_contain(material_type))
+			. += "[i ? " / " : null][material_amount]cm<sup>3</sup> [lowertext(material_type::name)]"
 			i++
 
 /obj/machinery/autolathe/proc/set_hacked(new_hacked)
@@ -252,8 +249,8 @@
 		var/obj/item/stack/output_stack = output
 		output_stack.amount = multiplier
 	output.forceMove(get_step(src, SOUTH))
-	for(var/material_path in D.materials)
-		output.matter_amounts[material_path] = D.materials[material_path]
+	for(var/material_type, material_amount in D.materials)
+		output.matter_amounts[material_type] = material_amount
 	busy = FALSE
 	updateUsrDialog()
 
@@ -266,8 +263,8 @@
 			to_chat(user, SPAN_WARNING("You fail to insert \the [input_stack] into \the [src]."))
 			return TRUE
 		amount = input_stack.amount
-		for(var/material_path in I.matter_amounts)
-			amount = min(amount, round(container.get_remaining_type_capacity(material_path) / I.matter_amounts[material_path]))
+		for(var/material_type, material_amount in I.matter_amounts)
+			amount = min(amount, round(container.get_remaining_type_capacity(material_type) / material_amount))
 		input_stack.use(amount)
 		to_chat(user, SPAN_INFO("You insert [amount] [input_stack.singular_name]\s into \the [src]."))
 	else

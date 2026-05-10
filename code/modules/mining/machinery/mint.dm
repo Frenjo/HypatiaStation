@@ -56,13 +56,12 @@
 
 	GET_COMPONENT(container, /datum/component/material_container)
 	var/alist/materials = container.get_all_materials()
-	for(var/material_path in materials)
-		var/decl/material/mat = material_path
-		dat += "<br><font color='[initial(mat.colour_code)]'><b>[initial(mat.name)] inserted: </b>[materials[material_path]]cm<sup>3</sup></font> "
-		if(chosen == mat)
+	for(var/decl/material/material_type, material_amount in materials)
+		dat += "<br><font color='[material_type::colour_code]'><b>[material_type::name] inserted: </b>[material_amount]cm<sup>3</sup></font> "
+		if(chosen == material_type)
 			dat += "chosen"
 		else
-			dat += "<A href='byond://?src=\ref[src];choose=[mat]'>Choose</A>"
+			dat += "<A href='byond://?src=\ref[src];choose=[material_type]'>Choose</A>"
 
 	dat += "<br><br>Will produce [coinsToProduce] [chosen] coins if enough materials are available.<br>"
 	//dat += "The dial which controls the number of coins to produce seems to be stuck. A technician has already been dispatched to fix this."

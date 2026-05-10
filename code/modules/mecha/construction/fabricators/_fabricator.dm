@@ -139,21 +139,18 @@
 /obj/machinery/robotics_fabricator/proc/output_part_cost(datum/design/D)
 	var/i = 0
 	GET_COMPONENT(container, /datum/component/material_container)
-	for(var/material_path in D.materials)
-		if(container.can_contain(material_path))
-			var/decl/material/mat = material_path
-			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_path)] [lowertext(initial(mat.name))]"
+	for(var/decl/material/material_type in D.materials)
+		if(container.can_contain(material_type))
+			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_type)] [lowertext(material_type::name)]"
 			i++
 
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
 	GET_COMPONENT(container, /datum/component/material_container)
 	var/alist/materials = container.get_all_materials()
-	for(var/material_path in materials)
-		var/decl/material/mat = material_path
-		var/amount = materials[material_path]
-		. += "<span class=\"res_name\"><font color='[initial(mat.colour_code)]'>[initial(mat.name)]:</font></span> [amount]cm<sup>3</sup>"
-		if(amount > 0)
-			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[amount];material=[material_path]'>All</a>\]</span>"
+	for(var/decl/material/material_type, material_amount in materials)
+		. += "<span class=\"res_name\"><font color='[material_type::colour_code]'>[material_type::name]:</font></span> [material_amount]cm<sup>3</sup>"
+		if(material_amount > 0)
+			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_type]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_type]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[material_amount];material=[material_type]'>All</a>\]</span>"
 		. += "<br/>"
 
 /obj/machinery/robotics_fabricator/get_examine_text()
@@ -452,9 +449,9 @@
 					break
 
 	if(topic.has("remove_mat") && topic.has("material"))
-		var/decl/material/mat = topic.get_path("material")
+		var/decl/material/material_type = topic.get_path("material")
 		GET_COMPONENT(container, /datum/component/material_container)
-		temp = "Ejected [container.eject_sheets(mat, topic.get_num("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
+		temp = "Ejected [container.eject_sheets(material_type, topic.get_num("remove_mat"))] sheets of [lowertext(material_type::name)]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 
@@ -539,11 +536,11 @@
 // Helper procs related to calculating material and time coefficients.
 /obj/machinery/robotics_fabricator/proc/calculate_materials_with_coeff(datum/design/D)
 	. = list()
-	for(var/material_path in D.materials)
-		.[material_path] = get_resource_cost_w_coeff(D, material_path)
+	for(var/material_type in D.materials)
+		.[material_type] = get_resource_cost_w_coeff(D, material_type)
 
-/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, material_path, roundto = 1)
-	return round(D.materials[material_path] * resource_coeff, roundto)
+/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, material_type, roundto = 1)
+	return round(D.materials[material_type] * resource_coeff, roundto)
 
 /obj/machinery/robotics_fabricator/proc/get_construction_time_w_coeff(datum/design/D, roundto = 1)
 	return round(D.build_time * time_coeff, roundto)

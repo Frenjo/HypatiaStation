@@ -19,8 +19,8 @@
 		output += SPAN_WARNING("Pressure: [round(pressure, 0.1)]kPa")
 	if(total_moles)
 		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-		for(var/g in mixture.gas)
-			output += SPAN_INFO("[gas_data.name[g]]: [round((mixture.gas[g] / total_moles) * 100)]%")
+		for(var/gas_path, gas_moles in mixture.gas)
+			output += SPAN_INFO("[gas_data.name[gas_path]]: [round((gas_moles / total_moles) * 100)]%")
 		output += SPAN_INFO("Temperature: [round(mixture.temperature - T0C)]&deg;C")
 		output += SPAN_INFO("Heat Capacity: [round(mixture.heat_capacity(), 0.1)] / K")
 	else

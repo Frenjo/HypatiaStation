@@ -1,6 +1,8 @@
 /mob/living/silicon/robot/New(loc)
 	. = ..()
 
+	wires = new /datum/wires/robot(src)
+
 	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -19,7 +21,7 @@
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
 		camera.network = list("SS13","Robots")
-		if(isWireCut(5)) // 5 = BORG CAMERA
+		if(wires.IsIndexCut(BORG_WIRE_CAMERA))
 			camera.status = 0
 
 	transform_to_model(/obj/item/robot_model/default)
@@ -148,6 +150,7 @@
 		changed_name = custom_name
 	else
 		changed_name = "[model.display_name] [braintype]-[num2text(ident)]"
+	notify_ai(3, real_name, changed_name)
 	real_name = changed_name
 	name = real_name
 
@@ -301,3 +304,15 @@
 
 /mob/living/silicon/robot/proc/self_destruct()
 	gib()
+
+/mob/living/silicon/robot/proc/notify_ai(notify_type, old_name = "", new_name = "")
+	if(isnotnull(connected_ai))
+		return
+
+	switch(notify_type)
+		if(1) // New Cyborg
+			to_chat(connected_ai, "<br><br>[SPAN_NOTICE("NOTICE - New cyborg connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a>")]<br>")
+		if(2) // New Module
+			to_chat(connected_ai, "<br><br>[SPAN_NOTICE("NOTICE - Cyborg module change detected: [name] has loaded the [model.display_name] model.")]<br>")
+		if(3) // New Name
+			to_chat(connected_ai, "<br><br>[SPAN_NOTICE("NOTICE - Cyborg reclassification detected: [old_name] is now designated as [new_name].")]<br>")

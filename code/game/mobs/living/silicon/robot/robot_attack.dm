@@ -62,7 +62,7 @@
 
 	if(iswirecutter(tool) || ismultitool(tool))
 		if(wiresexposed)
-			interact(user)
+			wires.Interact(user)
 		else
 			to_chat(user, SPAN_WARNING("You can't reach [src]'s wiring."))
 		return TRUE
@@ -75,7 +75,7 @@
 				updateicon()
 				return TRUE
 
-			if(mmi && wiresexposed && isWireCut(1) && isWireCut(2) && isWireCut(3) && isWireCut(4) && isWireCut(5))
+			if(mmi && wiresexposed && wires.IsAllCut())
 				// Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				to_chat(user, SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi]."))
 				if(do_after(user, 30, src))

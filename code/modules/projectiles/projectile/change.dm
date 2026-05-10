@@ -24,9 +24,10 @@
 		M.invisibility = INVISIBILITY_MAXIMUM
 
 		if(isrobot(M))
-			var/mob/living/silicon/robot/Robot = M
-			if(Robot.mmi)
-				qdel(Robot.mmi)
+			var/mob/living/silicon/robot/robby = M
+			if(robby.mmi)
+				qdel(robby.mmi)
+			robby.notify_ai(1)
 		else
 			for(var/obj/item/W in M)
 				if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something

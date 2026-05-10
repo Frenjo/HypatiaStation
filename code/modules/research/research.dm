@@ -65,9 +65,9 @@ research holder datum.
 	if(!length(T.req_tech))
 		return TRUE
 	var/matches = 0
-	for(var/req in T.req_tech)
+	for(var/tech_type, tech_level in T.req_tech)
 		for_no_type_check(var/decl/tech/known, known_tech)
-			if(req == known.type && known.level >= T.req_tech[req])
+			if(tech_type == known.type && known.level >= tech_level)
 				matches++
 				break
 	if(matches == length(T.req_tech))
@@ -86,8 +86,8 @@ research holder datum.
 	var/list/k_tech = list()
 	for_no_type_check(var/decl/tech/known, known_tech)
 		k_tech[known.type] = known.level
-	for(var/req in D.req_tech)
-		if(isnotnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
+	for(var/tech_type, tech_level in D.req_tech)
+		if(isnotnull(k_tech[tech_type]) && k_tech[tech_type] >= tech_level)
 			matches++
 	if(matches == length(D.req_tech))
 		return TRUE
@@ -245,5 +245,5 @@ research holder datum.
 /obj/item/disk/research_debug/initialise()
 	. = ..()
 	origin_tech = alist()
-	for(var/path in subtypesof(/decl/tech))
-		origin_tech[path] = 21
+	for(var/tech_type in subtypesof(/decl/tech))
+		origin_tech[tech_type] = 21

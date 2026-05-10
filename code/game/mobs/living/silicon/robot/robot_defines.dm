@@ -17,6 +17,8 @@
 	// The overlay for the robot's "eye" lights.
 	var/mutable_appearance/eye_lights = null
 
+	var/datum/wires/robot/wires
+
 	var/sight_mode = 0
 	var/custom_name = ""
 	var/custom_sprite = FALSE // Due to all the sprites involved, a var for our custom borgs may be best.
@@ -62,7 +64,6 @@
 	var/datum/effect/system/ion_trail_follow/ion_trail = null
 	var/datum/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
-	var/borgwires = 31 // 0b11111
 	var/killswitch = 0
 	var/killswitch_time = 60
 	var/weapon_lock = FALSE

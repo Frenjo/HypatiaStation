@@ -320,8 +320,8 @@ ________________________________________________________________________________
 
 				if(total_moles)
 					var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-					for(var/g in environment.gas)
-						dat += "<li>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</li>"
+					for(var/gas_type, gas_moles in environment.gas)
+						dat += "<li>[gas_data.name[gas_type]]: [round((gas_moles / total_moles) * 100)]%</li>"
 					dat += "</ul>"
 					dat += "Temperature: [round(environment.temperature-T0C)]&deg;C"
 		if(2)

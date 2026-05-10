@@ -20,8 +20,8 @@
 		to_chat(src, SPAN_WARNING("We cannot hold more resources."))
 		return FALSE
 	var/has_materials = FALSE
-	for(var/type in accepted_materials)
-		if(target.matter_amounts[type])
+	for(var/material_type in accepted_materials)
+		if(target.matter_amounts[material_type])
 			has_materials = TRUE
 			break
 	if(!has_materials)

@@ -40,10 +40,6 @@ var/list/APCWireColorToFlag = RandomAPCWires()
 var/list/APCIndexToFlag
 var/list/APCIndexToWireColor
 var/list/APCWireColorToIndex
-var/list/BorgWireColorToFlag = RandomBorgWires()
-var/list/BorgIndexToFlag
-var/list/BorgIndexToWireColor
-var/list/BorgWireColorToIndex
 var/list/AAlarmWireColorToFlag = RandomAAlarmWires()
 var/list/AAlarmIndexToFlag
 var/list/AAlarmIndexToWireColor

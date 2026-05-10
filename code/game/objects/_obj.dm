@@ -40,9 +40,8 @@
 	. = ..()
 	if(isnotnull(matter_amounts))
 		var/list/material_names = list()
-		for(var/material_path in matter_amounts)
-			var/decl/material/mat = material_path
-			material_names += "<em>[lowertext(initial(mat.name))]</em>"
+		for(var/decl/material/material_type in matter_amounts)
+			material_names += "<em>[lowertext(material_type::name)]</em>"
 		. += SPAN_INFO("It is made from [english_list(material_names)].")
 
 /obj/proc/process()

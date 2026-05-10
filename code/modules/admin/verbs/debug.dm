@@ -145,8 +145,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/t = SPAN_INFO("Coordinates: [T.x], [T.y], [T.z]<br>")
 	t += SPAN_WARNING("Temperature: [env.temperature]<br>")
 	t += SPAN_WARNING("Pressure: [env.return_pressure()]kPa<br>")
-	for(var/g in env.gas)
-		t += SPAN_INFO("[g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa<br>")
+	for(var/gas_type, gas_moles in env.gas)
+		t += SPAN_INFO("[gas_type]: [gas_moles] / [gas_moles * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa<br>")
 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb", "ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

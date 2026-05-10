@@ -79,8 +79,8 @@ PROCESS_DEF(nanoui)
 	if(isnull(src_object.open_uis))
 		return
 
-	for(var/ui_key in src_object.open_uis)
-		for_no_type_check(var/datum/nanoui/ui, src_object.open_uis[ui_key])
+	for(var/ui_key, ui_list in src_object.open_uis)
+		for_no_type_check(var/datum/nanoui/ui, ui_list)
 			if(isnull(ui))
 				continue
 			if(isnotnull(ui.src_object) && isnotnull(ui.user))
@@ -99,8 +99,8 @@ PROCESS_DEF(nanoui)
 	if(!length(src_object.open_uis))
 		return
 
-	for(var/ui_key in src_object.open_uis)
-		for_no_type_check(var/datum/nanoui/ui, src_object.open_uis[ui_key])
+	for(var/ui_key, ui_list in src_object.open_uis)
+		for_no_type_check(var/datum/nanoui/ui, ui_list)
 			ui.close() // If it's missing src_object or user, we want to close it even more.
 			.++
 
