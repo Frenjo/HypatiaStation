@@ -181,7 +181,7 @@
 		else if(!global.PCticker.mode:is_convertible(M))
 			to_chat(src, SPAN_DANGER("[M] is implanted with a loyalty implant - Remove it first!"))
 		else
-			if(world.time < M.mind.rev_cooldown)
+			if(!COOLDOWN_FINISHED(M.mind, rev_cooldown))
 				to_chat(src, SPAN_WARNING("Wait five seconds before reconversion attempt."))
 				return
 			to_chat(src, SPAN_WARNING("Attempting to convert [M]..."))
@@ -195,7 +195,7 @@
 			else if(choice == "No!")
 				to_chat(src, SPAN_DANGER("[M] does not support the revolution!"))
 				to_chat(M, SPAN_WARNING("You reject the traitorous cause!"))
-			M.mind.rev_cooldown = world.time + 50
+			COOLDOWN_START(M.mind, rev_cooldown, 5 SECONDS)
 
 /datum/game_mode/revolution/rp_revolution/process()
 	// only perform rev checks once in a while

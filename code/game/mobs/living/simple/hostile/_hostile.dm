@@ -16,13 +16,8 @@
 	var/break_stuff_probability = 10
 	var/destroy_surroundings = 1
 
-	var/ranged_cooldown = 0 // The current cooldown of our ranged attacks.
-	var/max_ranged_cooldown = 3 // The maximum cooldown of our ranged attacks, in Life() ticks.
-
-/mob/living/simple/hostile/Life()
-	. = ..()
-	if(ranged)
-		ranged_cooldown--
+	COOLDOWN_DECLARE(ranged_cooldown) // The current cooldown of our ranged attacks.
+	var/max_ranged_cooldown = 6 SECONDS // The maximum cooldown of our ranged attacks, in deciseconds. 6 seconds is equivalent to 3 Life() ticks.
 
 /mob/living/simple/hostile/can_attack(atom/target_atom)
 	if(!..())
@@ -86,7 +81,7 @@
 		stance = HOSTILE_STANCE_IDLE
 	if(target in list_targets())
 		if(ranged)
-			if(get_dist(src, target) <= 6 && ranged_cooldown <= 0)
+			if(get_dist(src, target) <= 6 && COOLDOWN_FINISHED(src, ranged_cooldown))
 				OpenFire(target)
 			else
 				walk_to(src, target, 1, move_to_delay)
@@ -192,7 +187,7 @@
 		if(casingtype)
 			new casingtype
 
-	ranged_cooldown = max_ranged_cooldown
+	COOLDOWN_START(src, ranged_cooldown, max_ranged_cooldown)
 	stance = HOSTILE_STANCE_IDLE
 	return
 
@@ -224,6 +219,6 @@
 				obstacle.attack_animal(src)
 
 /mob/living/simple/hostile/RangedAttack(atom/new_target, params) // Player firing.
-	if(ranged && ranged_cooldown <= 0)
+	if(ranged && COOLDOWN_FINISHED(src, ranged_cooldown))
 		target = new_target
 		OpenFire(new_target)

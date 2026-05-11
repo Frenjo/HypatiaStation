@@ -762,18 +762,17 @@
 	return species.name
 
 /mob/living/carbon/human/proc/play_xylophone()
-	if(!src.xylophone)
-		visible_message(
-			SPAN_WARNING("[src] begins playing his ribcage like a xylophone. It's quite spooky."),
-			SPAN_INFO("You begin to play a spooky refrain on your ribcage."),
-			SPAN_WARNING("You hear a spooky xylophone melody.")
-		)
-		var/song = pick('sound/effects/xylophone/xylophone1.ogg','sound/effects/xylophone/xylophone2.ogg','sound/effects/xylophone/xylophone3.ogg')
-		playsound(loc, song, 50, 1, -1)
-		xylophone = 1
-		spawn(1200)
-			xylophone = 0
-	return
+	if(!COOLDOWN_FINISHED(src, xylophone_cooldown))
+		return
+
+	visible_message(
+		SPAN_WARNING("[src] begins playing his ribcage like a xylophone. It's quite spooky."),
+		SPAN_INFO("You begin to play a spooky refrain on your ribcage."),
+		SPAN_WARNING("You hear a spooky xylophone melody.")
+	)
+	var/song = pick('sound/effects/xylophone/xylophone1.ogg', 'sound/effects/xylophone/xylophone2.ogg', 'sound/effects/xylophone/xylophone3.ogg')
+	playsound(loc, song, 50, 1, -1)
+	COOLDOWN_START(src, xylophone_cooldown, 2 MINUTES)
 
 /mob/living/carbon/human/proc/vomit()
 	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))

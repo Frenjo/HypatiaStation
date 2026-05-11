@@ -26,12 +26,7 @@
 	throw_message = "is avoided by the"
 
 	var/wumbo = FALSE
-	var/inflate_cooldown = 0
-
-/mob/living/simple/hostile/asteroid/fugu/Life()
-	if(!wumbo)
-		inflate_cooldown = max((inflate_cooldown - 1), 0)
-	. = ..()
+	COOLDOWN_DECLARE(inflate_cooldown)
 
 /mob/living/simple/hostile/asteroid/fugu/adjustBruteLoss(damage)
 	if(wumbo)
@@ -55,7 +50,7 @@
 	if(wumbo)
 		to_chat(src, SPAN_NOTICE("We are already inflated."))
 		return
-	if(inflate_cooldown)
+	if(!COOLDOWN_FINISHED(src, inflate_cooldown))
 		to_chat(src, SPAN_NOTICE("We need time to gather our strength."))
 		return
 	if(buffed)
@@ -96,7 +91,7 @@
 	throw_message = initial(throw_message)
 
 	wumbo = FALSE
-	inflate_cooldown = 4 // This is in increments of 2 seconds (so 4 = 8 seconds total) due to the way mob/Life() ticks work.
+	COOLDOWN_START(src, inflate_cooldown, 8 SECONDS)
 
 // Fugu Gland
 /obj/item/fugu_gland

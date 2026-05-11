@@ -18,7 +18,7 @@ var/list/alldepartments = list("Central Command")
 	var/authenticated = 0
 
 	var/obj/item/paper/tofax = null // what we're sending
-	var/sendcooldown = 0 // to avoid spamming fax messages
+	COOLDOWN_DECLARE(send_cooldown) // To avoid spamming fax messages.
 
 	var/department = "Unknown" // our department
 
@@ -66,16 +66,15 @@ var/list/alldepartments = list("Central Command")
 		if(tofax)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Paper</a><br><br>"
 
-			if(sendcooldown)
+			if(!COOLDOWN_FINISHED(src, send_cooldown))
 				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-
 			else
 				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
 				dat += "<b>Currently sending:</b> [tofax.name]<br>"
 				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[dpt]</a><br>"
 
 		else
-			if(sendcooldown)
+			if(!COOLDOWN_FINISHED(src, send_cooldown))
 				dat += "Please insert paper to send via secure connection.<br><br>"
 				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
 			else
@@ -96,19 +95,13 @@ var/list/alldepartments = list("Central Command")
 	. = ..()
 	if(href_list["send"])
 		if(tofax)
-
 			if(dpt == "Central Command")
 				centcom_fax(tofax.info, tofax.name, usr)
-				sendcooldown = 1800
-
+				COOLDOWN_START(src, send_cooldown, 3 MINUTES)
 			else
 				SendFax(tofax.info, tofax.name, usr, dpt)
-				sendcooldown = 600
-
+				COOLDOWN_START(src, send_cooldown, 1 MINUTE)
 			to_chat(usr, SPAN_INFO("Message transmitted successfully."))
-
-			spawn(sendcooldown) // cooldown time
-				sendcooldown = 0
 
 	if(href_list["remove"])
 		if(tofax)

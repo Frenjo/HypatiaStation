@@ -26,8 +26,7 @@
 
 	var/thrusters = 0
 	var/smoke = 5
-	var/smoke_ready = TRUE
-	var/smoke_cooldown = 100
+	COOLDOWN_DECLARE(smoke_cooldown)
 	var/datum/effect/system/smoke_spread/smoke_system
 
 /obj/mecha/combat/marauder/initialise()
@@ -65,13 +64,14 @@
 
 	if(usr != occupant)
 		return
+	if(!COOLDOWN_FINISHED(src, smoke_cooldown))
+		return
+	if(smoke <= 0)
+		return
 
-	if(smoke_ready && smoke > 0)
-		smoke_system.start()
-		smoke--
-		smoke_ready = FALSE
-		spawn(smoke_cooldown)
-			smoke_ready = TRUE
+	smoke_system.start()
+	smoke--
+	COOLDOWN_START(src, smoke_cooldown, 10 SECONDS)
 
 /obj/mecha/combat/marauder/get_stats_part()
 	. = ..()

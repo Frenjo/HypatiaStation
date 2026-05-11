@@ -264,7 +264,7 @@ mob/living/carbon/human/proc
 			else if(src.mind in ticker.mode:get_unconvertables())
 				to_chat(src, SPAN_DANGER("[M] cannot be a revolutionary!"))
 			else
-				if(world.time < M.mind.rev_cooldown)
+				if(!COOLDOWN_FINISHED(M.mind, rev_cooldown))
 					to_chat(src, SPAN_WARNING("Wait five seconds before reconversion attempt."))
 					return
 				to_chat(src, SPAN_WARNING("Attempting to convert [M]..."))
@@ -278,4 +278,4 @@ mob/living/carbon/human/proc
 				else if(choice == "No!")
 					to_chat(src, SPAN_DANGER("[M] does not support the revolution!"))
 					to_chat(M, SPAN_WARNING("You reject the traitorous cause!"))
-				M.mind.rev_cooldown = world.time+50
+				COOLDOWN_START(M.mind, rev_cooldown, 5 SECONDS)
