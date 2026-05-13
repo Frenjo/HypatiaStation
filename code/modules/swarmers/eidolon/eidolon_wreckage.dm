@@ -2,6 +2,7 @@
 	name = "Eidolon wreckage"
 	desc = "The remains of some unfortunate mecha. There's surprising amount of salvage on it."
 	icon_state = "eidolon-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/eidolon/torso,
 		/obj/item/mecha_part/part/eidolon/head,

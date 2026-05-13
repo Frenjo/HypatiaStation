@@ -2,6 +2,7 @@
 /obj/item/mecha_equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
 	icon_state = "uac2"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/lmg::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/lmg::req_tech
 
@@ -20,6 +21,7 @@
 	name = "\improper S.H.H. \"Quietus\" Carbine"
 	desc = "..." // Needs a proper description.
 	icon_state = "quietus"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/quietus::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/quietus::req_tech
 
@@ -38,6 +40,7 @@
 /obj/item/mecha_equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
 	icon_state = "scatter"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/scattershot::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/scattershot::req_tech
 

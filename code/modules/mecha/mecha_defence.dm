@@ -46,8 +46,8 @@
 	return round(damage * (100 - resistance_percentage) / 100, 0.1)
 
 /obj/mecha/proc/update_health()
-	if(src.health > 0)
-		src.spark_system.start()
+	if(health > 0)
+		spark_system.start()
 	else
 		wreck()
 
@@ -119,10 +119,10 @@
 	bullet.on_hit(src)
 
 /obj/mecha/ex_act(severity)
-	src.log_message("Affected by explosion of severity: [severity].", 1)
-	if(prob(src.deflect_chance))
+	log_message("Affected by explosion of severity: [severity].", 1)
+	if(prob(deflect_chance))
 		severity++
-		src.log_append_to_last("Armor saved, changing severity to [severity].")
+		log_append_to_last("Armor saved, changing severity to [severity].")
 	switch(severity)
 		if(1.0)
 			wreck()
@@ -130,15 +130,14 @@
 			if(prob(30))
 				wreck()
 			else
-				src.take_damage(initial(src.health)/2)
-				src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
+				take_damage(initial(health) / 2)
+				check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
 		if(3.0)
 			if(prob(5))
 				wreck()
 			else
-				src.take_damage(initial(src.health)/5)
-				src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
-	return
+				take_damage(initial(health) / 5)
+				check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
 
 /*Will fix later -Sieve
 /obj/mecha/attack_blob(mob/user)
@@ -175,14 +174,12 @@
 	take_damage(50 * severity, "energy")
 	log_message("EMP detected", 1)
 	check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
-	return
 
 /obj/mecha/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > src.max_temperature)
-		src.log_message("Exposed to dangerous temperature.", 1)
-		src.take_damage(5, "fire")
-		src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
-	return
+		log_message("Exposed to dangerous temperature.", 1)
+		take_damage(5, "fire")
+		check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
 
 ///////////////////////////////////
 ////////  Internal damage  ////////
@@ -191,7 +188,7 @@
 	if(!islist(possible_int_damage) || isemptylist(possible_int_damage))
 		return
 	if(prob(20))
-		if(ignore_threshold || src.health * 100 / initial(src.health) < src.internal_damage_threshold)
+		if(ignore_threshold || health * 100 / initial(health) < internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
@@ -199,7 +196,7 @@
 			if(int_dam_flag)
 				set_internal_damage(int_dam_flag)
 	if(prob(5))
-		if(ignore_threshold || src.health * 100 / initial(src.health) < src.internal_damage_threshold)
+		if(ignore_threshold || health * 100 / initial(health) < internal_damage_threshold)
 			var/obj/item/mecha_equipment/destr = safepick(equipment)
 			if(isnotnull(destr))
 				qdel(destr)

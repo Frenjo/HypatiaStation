@@ -6,6 +6,7 @@
 /obj/item/mecha_equipment/weapon/energy/taser
 	name = "PBT \"Pacifier\" mounted taser"
 	icon_state = "taser"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/taser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/taser::req_tech
 
@@ -19,6 +20,7 @@
 /obj/item/mecha_equipment/weapon/energy/pulse
 	name = "eZ-13 mk2 heavy pulse rifle"
 	icon_state = "pulse"
+
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 	projectile = /obj/projectile/energy/beam/pulse/heavy
 

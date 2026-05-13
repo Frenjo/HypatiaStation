@@ -2,6 +2,7 @@
 /obj/item/mecha_equipment/honker
 	name = "\improper HoNkER BlAsT 5000"
 	icon_state = "honker"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/honker::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/honker::req_tech
 

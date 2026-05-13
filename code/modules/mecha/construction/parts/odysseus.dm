@@ -14,6 +14,7 @@
 	name = "\improper Odysseus torso"
 	desc = "The torso of an Odysseus-type exosuit. It contains the power unit, processing core and life support systems."
 	icon_state = "torso"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_torso::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_torso::req_tech
 
@@ -21,6 +22,7 @@
 	name = "\improper Odysseus head"
 	desc = "The head of an Odysseus-type exosuit."
 	icon_state = "head"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_head::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_head::req_tech
 
@@ -28,6 +30,7 @@
 	name = "\improper Odysseus left arm"
 	desc = "The left arm of an Odysseus-type exosuit. The data and power sockets are compatible with most exosuit tools."
 	icon_state = "l_arm"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_left_arm::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_left_arm::req_tech
 
@@ -35,6 +38,7 @@
 	name = "\improper Odysseus right arm"
 	desc = "The right arm of an Odysseus-type exosuit. The data and power sockets are compatible with most exosuit tools."
 	icon_state = "r_arm"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_right_arm::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_right_arm::req_tech
 
@@ -42,6 +46,7 @@
 	name = "\improper Odysseus left leg"
 	desc = "The left leg of an Odysseus-type exosuit. It contains somewhat complex servodrives and balance systems."
 	icon_state = "l_leg"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_left_leg::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_left_leg::req_tech
 
@@ -49,6 +54,7 @@
 	name = "\improper Odysseus right leg"
 	desc = "The right leg of an Odysseus-type exosuit. It contains somewhat complex servodrives and balance systems."
 	icon_state = "r_leg"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_right_leg::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_right_leg::req_tech
 
@@ -56,6 +62,7 @@
 	name = "\improper Odysseus carapace"
 	desc = "The outer carapace of an Odysseus-type exosuit."
 	icon_state = "carapace"
+
 	matter_amounts = /datum/design/mechfab/part/odysseus_carapace::materials
 	origin_tech = /datum/design/mechfab/part/odysseus_carapace::req_tech
 

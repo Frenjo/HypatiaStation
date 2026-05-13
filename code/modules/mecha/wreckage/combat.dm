@@ -2,6 +2,7 @@
 /obj/structure/mecha_wreckage/gygax
 	name = "Gygax wreckage"
 	icon_state = "gygax-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/gygax/torso,
 		/obj/item/mecha_part/part/gygax/head,
@@ -23,6 +24,7 @@
 /obj/structure/mecha_wreckage/durand
 	name = "Durand wreckage"
 	icon_state = "durand-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/durand/torso,
 		/obj/item/mecha_part/part/durand/head,
@@ -68,6 +70,15 @@
 	name = "Phazon wreckage"
 	icon_state = "phazon-broken"
 
+	part_salvage = list(
+		/obj/item/mecha_part/part/phazon/torso,
+		/obj/item/mecha_part/part/phazon/head,
+		/obj/item/mecha_part/part/phazon/left_arm,
+		/obj/item/mecha_part/part/phazon/right_arm,
+		/obj/item/mecha_part/part/phazon/left_leg,
+		/obj/item/mecha_part/part/phazon/right_leg
+	)
+
 /obj/structure/mecha_wreckage/phazon/dark
 	name = "Dark Phazon wreckage"
 	icon_state = "dark_phazon-broken"
@@ -76,14 +87,33 @@
 	name = "Janus wreckage"
 	icon_state = "janus-broken"
 
+	part_salvage = list(
+		/obj/item/mecha_part/part/janus/torso,
+		/obj/item/mecha_part/part/janus/head,
+		/obj/item/mecha_part/part/janus/left_arm,
+		/obj/item/mecha_part/part/janus/right_arm,
+		/obj/item/mecha_part/part/janus/left_leg,
+		/obj/item/mecha_part/part/janus/right_leg
+	)
+
 /obj/structure/mecha_wreckage/phazon/imperion
 	name = "Imperion wreckage"
 	icon_state = "imperion-broken"
+
+	part_salvage = list(
+		/obj/item/mecha_part/part/imperion/torso,
+		/obj/item/mecha_part/part/imperion/head,
+		/obj/item/mecha_part/part/imperion/left_arm,
+		/obj/item/mecha_part/part/imperion/right_arm,
+		/obj/item/mecha_part/part/imperion/left_leg,
+		/obj/item/mecha_part/part/imperion/right_leg
+	)
 
 // H.O.N.K
 /obj/structure/mecha_wreckage/honk
 	name = "H.O.N.K wreckage"
 	icon_state = "honk-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/honk/torso,
 		/obj/item/mecha_part/part/honk/head,
@@ -101,6 +131,7 @@
 /obj/structure/mecha_wreckage/reticence
 	name = "Reticence wreckage"
 	icon_state = "reticence-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/reticence/torso,
 		/obj/item/mecha_part/part/reticence/head,

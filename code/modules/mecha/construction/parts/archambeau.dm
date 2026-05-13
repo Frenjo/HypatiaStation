@@ -12,23 +12,27 @@
 /obj/item/mecha_part/part/durand/armour/archambeau
 	name = "\improper Archambeau armour plates"
 	icon_state = "archambeau_armour"
+
 	matter_amounts = /datum/design/mechfab/part/archambeau_armour::materials
 	origin_tech = /datum/design/mechfab/part/archambeau_armour::req_tech
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/archambeau/main
 	name = "circuit board (\"Archambeau\" central control module)"
+
 	matter_amounts = /datum/design/circuit/mecha/archambeau_main::materials
 	origin_tech = /datum/design/circuit/mecha/archambeau_main::req_tech
 
 /obj/item/circuitboard/mecha/archambeau/peripherals
 	name = "circuit board (\"Archambeau\" peripherals control module)"
 	icon_state = "mcontroller"
+
 	matter_amounts = /datum/design/circuit/mecha/archambeau_peri::materials
 	origin_tech = /datum/design/circuit/mecha/archambeau_peri::req_tech
 
 /obj/item/circuitboard/mecha/archambeau/targeting
 	name = "circuit board (\"Archambeau\" weapon control & targeting module)"
 	icon_state = "mcontroller"
+
 	matter_amounts = /datum/design/circuit/mecha/archambeau_targ::materials
 	origin_tech = /datum/design/circuit/mecha/archambeau_targ::req_tech

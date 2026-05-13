@@ -80,6 +80,7 @@
 /obj/item/mecha_equipment/shield_droid/linear
 	name = "exosuit linear shield droid"
 	desc = "An automated shield droid that forms a rectangular, unidirectionally projectile-blocking wall in front of an exosuit."
+
 	matter_amounts = /datum/design/mechfab/equipment/general/linear_shield_droid::materials
 	origin_tech = /datum/design/mechfab/equipment/general/linear_shield_droid::req_tech
 
@@ -89,6 +90,7 @@
 /obj/item/mecha_equipment/shield_droid/omnidirectional
 	name = "exosuit omnidirectional shield droid"
 	desc = "An automated shield droid that forms a rectangular, unidirectionally projectile-blocking wall around an exosuit."
+
 	matter_amounts = /datum/design/mechfab/equipment/general/omnidirectional_shield_droid::materials
 	origin_tech = /datum/design/mechfab/equipment/general/omnidirectional_shield_droid::req_tech
 

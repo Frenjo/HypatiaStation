@@ -4,6 +4,7 @@
 	desc = "An exosuit-mounted medical sleeper."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
+
 	matter_amounts = /datum/design/mechfab/equipment/sleeper::materials
 	origin_tech = /datum/design/mechfab/equipment/sleeper::req_tech
 

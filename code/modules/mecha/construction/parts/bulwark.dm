@@ -11,5 +11,6 @@
 /obj/item/circuitboard/mecha/bulwark/targeting
 	name = "circuit board (\"Bulwark\" weapon control & targeting module)"
 	icon_state = "mcontroller"
+
 	matter_amounts = /datum/design/circuit/mecha/bulwark_targ::materials
 	origin_tech = /datum/design/circuit/mecha/bulwark_targ::req_tech

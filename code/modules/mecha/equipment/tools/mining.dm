@@ -59,9 +59,12 @@
 	name = "mounted diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens!"
 	icon_state = "diamond_drill"
+
 	matter_amounts = /datum/design/mechfab/equipment/working/diamond_drill::materials
 	origin_tech = /datum/design/mechfab/equipment/working/diamond_drill::req_tech
-	equip_cooldown = 2 SECONDS
+
 	force = 15
+
+	equip_cooldown = 2 SECONDS
 
 	can_drill_reinforced = TRUE

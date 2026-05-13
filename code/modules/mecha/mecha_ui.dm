@@ -47,17 +47,16 @@
 
 /obj/mecha/proc/report_internal_damage()
 	. = null
-	var/list/dam_reports = list(
-		"[MECHA_INT_FIRE]" = SPAN_DANGER("INTERNAL FIRE"),
-		"[MECHA_INT_TEMP_CONTROL]" = SPAN_DANGER("LIFE SUPPORT SYSTEM MALFUNCTION"),
-		"[MECHA_INT_TANK_BREACH]" = SPAN_DANGER("GAS TANK BREACH"),
-		"[MECHA_INT_CONTROL_LOST]" = "[SPAN_DANGER("COORDINATION SYSTEM CALIBRATION FAILURE")] - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
-		"[MECHA_INT_SHORT_CIRCUIT]" = SPAN_DANGER("SHORT CIRCUIT")
+	var/alist/dam_reports = alist(
+		MECHA_INT_FIRE = SPAN_DANGER("INTERNAL FIRE"),
+		MECHA_INT_TEMP_CONTROL = SPAN_DANGER("LIFE SUPPORT SYSTEM MALFUNCTION"),
+		MECHA_INT_TANK_BREACH = SPAN_DANGER("GAS TANK BREACH"),
+		MECHA_INT_CONTROL_LOST = "[SPAN_DANGER("COORDINATION SYSTEM CALIBRATION FAILURE")] - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
+		MECHA_INT_SHORT_CIRCUIT = SPAN_DANGER("SHORT CIRCUIT")
 	)
-	for(var/tflag in dam_reports)
-		var/intdamflag = text2num(tflag)
-		if(internal_damage & intdamflag)
-			. += dam_reports[tflag]
+	for(var/int_flag, int_report in dam_reports)
+		if(internal_damage & int_flag)
+			. += int_report
 			. += "<br>"
 	if(return_pressure() > WARNING_HIGH_PRESSURE)
 		. += SPAN_DANGER("DANGEROUSLY HIGH CABIN PRESSURE")

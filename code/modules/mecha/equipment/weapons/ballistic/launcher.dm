@@ -41,6 +41,7 @@
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar
 	name = "banana mortar"
 	icon_state = "bananamrtr"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/banana_mortar::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/banana_mortar::req_tech
 
@@ -58,6 +59,7 @@
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"
 	icon_state = "mousetrapmrtr"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/mousetrap_mortar::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/mousetrap_mortar::req_tech
 
@@ -93,6 +95,7 @@
 /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/flashbang
 	name = "\improper SGL-6 grenade launcher"
 	icon_state = "grenadelnchr"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/grenade_launcher::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/grenade_launcher::req_tech
 
@@ -118,6 +121,7 @@
 /obj/item/mecha_equipment/weapon/ballistic/launcher/grenade/cleaner
 	name = "\improper CCL-6 grenade launcher" // CCL-6 = Custodial Cleaner Launcher with a 6 shot magazine.
 	icon_state = "cleaner_grenade_launcher"
+
 	matter_amounts = /datum/design/mechfab/equipment/working/cleaner_grenade_launcher::materials
 	origin_tech = /datum/design/mechfab/equipment/working/cleaner_grenade_launcher::req_tech
 

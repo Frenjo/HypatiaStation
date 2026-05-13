@@ -17,13 +17,13 @@
 
 	// Stats
 	var/health = 300
-	COOLDOWN_DECLARE(cooldown_mecha_move) // The mecha's movement cooldown.
+	COOLDOWN_DECLARE(move_cooldown) // The mecha's movement cooldown.
 	var/move_delay = 1 SECOND
 	var/step_energy_drain = 10
 	var/max_temperature = 25000
 	var/deflect_chance = 10 // Chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.
 	// The values in this list are percentage damage reduction.
-	var/alist/damage_resistance = alist("brute" = 20, "fire" = 0, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0)
+	var/alist/damage_resistance = alist(brute = 20, fire = 0, bullet = 10, laser = 0, energy = 0, bomb = 0)
 	var/internal_damage_threshold = 50 // Health percentage below which internal damage is possible.
 	var/internal_damage = 0 // Contains bitflags.
 
@@ -43,7 +43,7 @@
 
 	var/state = 0
 	var/list/log = list()
-	COOLDOWN_DECLARE(cooldown_mecha_message) // The mecha's occupant message cooldown.
+	COOLDOWN_DECLARE(message_cooldown) // The mecha's occupant message cooldown.
 	var/dna	//dna-locking the mech
 	var/datum/effect/system/spark_spread/spark_system = null
 
@@ -146,7 +146,7 @@
 */
 
 /obj/mecha/proc/click_action(atom/target, mob/user)
-	if(!src.occupant || src.occupant != user)
+	if(isnull(occupant) || occupant != user)
 		return
 	if(user.stat)
 		return
@@ -159,7 +159,7 @@
 		return
 
 	var/dir_to_target = get_dir(src, target)
-	if(dir_to_target && !(dir_to_target & src.dir))//wrong direction
+	if(dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = safepick(view(3, target))
@@ -171,7 +171,7 @@
 	else if(selected && selected.is_melee())
 		selected.action(target)
 	else
-		src.melee_action(target)
+		melee_action(target)
 	return
 
 /obj/mecha/proc/melee_action(atom/target)
@@ -272,40 +272,41 @@
 
 /obj/mecha/check_access(obj/item/card/id/I, list/access_list)
 	if(!istype(access_list))
-		return 1
+		return TRUE
 	if(!length(access_list)) //no requirements
-		return 1
+		return TRUE
 	if(istype(I, /obj/item/pda))
 		var/obj/item/pda/pda = I
 		I = pda.id
 	if(!istype(I) || !I.access) //not ID or no access
-		return 0
-	if(access_list == src.operation_req_access)
+		return FALSE
+	if(access_list == operation_req_access)
 		for(var/req in access_list)
 			if(!(req in I.access)) //doesn't have this access
-				return 0
-	else if(access_list == src.internals_req_access)
+				return FALSE
+	else if(access_list == internals_req_access)
 		for(var/req in access_list)
 			if(req in I.access)
-				return 1
-	return 1
+				return TRUE
+	return TRUE
 
 ////////////////////////////////
 /////// Messages and Log ///////
 ////////////////////////////////
 
-/obj/mecha/proc/occupant_message(message as text)
-	if(message)
-		if(occupant?.client)
-			to_chat(occupant, "[icon2html(src, occupant)] [message]")
+/obj/mecha/proc/occupant_message(message)
+	if(isnull(message))
+		return
+	if(occupant?.client)
+		to_chat(occupant, "[icon2html(src, occupant)] [message]")
 
-/obj/mecha/proc/log_message(message as text, red = null)
+/obj/mecha/proc/log_message(message, red = null)
 	log.len++
 	log[length(log)] = list("time" = world.timeofday, "message" = "[red ? "<font color='red'>" : null][message][red ? "</font>" : null]")
 	return length(log)
 
-/obj/mecha/proc/log_append_to_last(message as text, red = null)
-	var/list/last_entry = src.log[length(log)]
+/obj/mecha/proc/log_append_to_last(message, red = null)
+	var/list/last_entry = log[length(log)]
 	last_entry["message"] += "<br>[red ? "<font color='red'>" : null][message][red ? "</font>" : null]"
 	return
 

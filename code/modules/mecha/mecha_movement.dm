@@ -8,18 +8,18 @@
 	return do_move(direction)
 
 /obj/mecha/proc/do_move(direction)
-	if(!COOLDOWN_FINISHED(src, cooldown_mecha_move))
+	if(!COOLDOWN_FINISHED(src, move_cooldown))
 		return FALSE
-	COOLDOWN_START(src, cooldown_mecha_move, move_delay)
+	COOLDOWN_START(src, move_cooldown, move_delay)
 
 	if(pr_inertial_movement.active())
 		return FALSE
 	if(!has_charge(step_energy_drain))
 		return FALSE
 	if(isnotnull(connected_port))
-		if(COOLDOWN_FINISHED(src, cooldown_mecha_message))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			occupant_message(SPAN_WARNING("Unable to move while connected to the air system port."))
-			COOLDOWN_START(src, cooldown_mecha_message, MECHA_MESSAGE_COOLDOWN)
+			COOLDOWN_START(src, message_cooldown, MECHA_MESSAGE_COOLDOWN)
 		return FALSE
 	if(state)
 		occupant_message(SPAN_WARNING("Maintenance protocols in effect."))
@@ -27,11 +27,11 @@
 
 	var/move_result = FALSE
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		move_result = mechsteprand()
+		move_result = mech_step_rand()
 	else if(dir != direction)
-		move_result = mechturn(direction)
+		move_result = mech_turn(direction)
 	else
-		move_result	= mechstep(direction)
+		move_result	= mech_step(direction)
 	if(!move_result)
 		return FALSE
 
@@ -46,7 +46,7 @@
 		if(equip.chassis == src) // Sanity.
 			equip.handle_movement_action()
 
-/obj/mecha/proc/mechturn(direction)
+/obj/mecha/proc/mech_turn(direction)
 	. = set_dir(direction)
 	if(.)
 		play_turn_sound()
@@ -56,13 +56,13 @@
 		return
 	playsound(src, turn_sound, turn_sound_volume, 1)
 
-/obj/mecha/proc/mechstep(direction)
+/obj/mecha/proc/mech_step(direction)
 	. = step(src, direction)
 	if(.)
 		play_step_sound()
 		handle_equipment_movement()
 
-/obj/mecha/proc/mechsteprand()
+/obj/mecha/proc/mech_step_rand()
 	. = step_rand(src)
 	if(.)
 		play_step_sound()
