@@ -70,7 +70,7 @@
 				else
 					dat += " Independent from AI |"
 				if (issilicon(user))
-					if((user.mind.special_role && user.mind.original == user) && !R.emagged)
+					if((!isemptylist(user.mind.special_roles) && user.mind.original == user) && !R.emagged)
 						dat += "<A href='byond://?src=\ref[src];magbot=\ref[R]'>(<font color=blue><i>Hack</i></font>)</A> "
 				dat += "<A href='byond://?src=\ref[src];stopbot=\ref[R]'>(<font color=green><i>[R.canmove ? "Lockdown" : "Release"]</i></font>)</A> "
 				dat += "<A href='byond://?src=\ref[src];killbot=\ref[R]'>(<font color=red><i>Destroy</i></font>)</A>"
@@ -158,7 +158,7 @@
 					var/choice = input("Are you certain you wish to detonate [R.name]?") in list("Confirm", "Abort")
 					if(choice == "Confirm")
 						if(R && istype(R))
-							if(R.mind && R.mind.special_role && R.emagged)
+							if(!isemptylist(R.mind?.special_roles) && R.emagged)
 								to_chat(R, SPAN_DANGER("Extreme danger. Termination codes detected. Automatic security code scrambling and AI unlink triggered."))
 								R.reset_identity_codes()
 
@@ -201,7 +201,7 @@
 //							message_admins("\blue [key_name_admin(usr)] emagged [R.name] using robotic console!")
 							log_game("[key_name(usr)] emagged [R.name] using robotic console!")
 							R.emagged = TRUE
-							if(R.mind.special_role)
+							if(!isemptylist(R.mind.special_roles))
 								R.verbs.Add(/mob/living/silicon/robot/proc/reset_identity_codes)
 
 		src.add_fingerprint(usr)

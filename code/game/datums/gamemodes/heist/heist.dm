@@ -47,7 +47,7 @@ VOX HEIST ROUNDTYPE
 
 	for_no_type_check(var/datum/mind/raider, raiders)
 		raider.assigned_role = "MODE"
-		raider.special_role = "Vox Raider"
+		raider.special_roles.Add(SPECIAL_ROLE_VOX_RAIDER)
 	return 1
 
 /datum/game_mode/heist/post_setup()

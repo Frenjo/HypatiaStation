@@ -36,12 +36,11 @@
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = FALSE
 
-	var/assigned_role
-	var/special_role = null
-
+	var/datum/job/assigned_job
 	var/role_alt_title = null
 
-	var/datum/job/assigned_job
+	var/assigned_role
+	var/list/special_roles = list()
 
 	var/list/datum/objective/objectives = list()
 	var/list/datum/objective/special_verbs = list()

@@ -187,7 +187,7 @@ GLOBAL_GLOBL(can_call_ert)
 	M.mind.current = M
 	M.mind.original = M
 	M.mind.assigned_role = "MODE"
-	M.mind.special_role = "Response Team"
+	M.mind.special_roles.Add(SPECIAL_ROLE_RESPONSE_TEAM)
 	if(!(M.mind in global.PCticker.minds))
 		global.PCticker.minds.Add(M.mind)	//Adds them to regular mind list.
 	M.forceMove(spawn_location)

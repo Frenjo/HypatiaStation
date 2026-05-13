@@ -35,7 +35,7 @@
 			continue
 		if(!applicant.stat || isnull(applicant.mind))
 			continue
-		if(isnotnull(applicant.mind.special_role))
+		if(applicant.mind.special_roles.Find(antagonist_type))
 			continue
 		if(jobban_isbanned(applicant, antagonist_type) || jobban_isbanned(applicant, "Syndicate"))
 			continue
@@ -65,7 +65,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_TRAITOR, "traitor", temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_TRAITOR, SPECIAL_ROLE_TRAITOR, temp.restricted_jobs)
 	if(length(candidates))
 		var/num_traitors = min(length(candidates), 3)
 		for(var/i = 0, i < num_traitors, i++)
@@ -80,7 +80,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CHANGELING, "changeling", temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CHANGELING, SPECIAL_ROLE_CHANGELING, temp.restricted_jobs)
 	if(length(candidates))
 		var/num_changelings = min(length(candidates), 3)
 		for(var/i = 0, i < num_changelings, i++)
@@ -95,7 +95,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_REV, "revolutionary", temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_REV, SPECIAL_ROLE_REVOLUTIONARY, temp.restricted_jobs)
 	if(length(candidates))
 		var/num_revs = min(length(candidates), 3)
 		for(var/i = 0, i < num_revs, i++)
@@ -146,7 +146,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CULTIST, "cultist", temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CULTIST, SPECIAL_ROLE_CULTIST, temp.restricted_jobs)
 	if(length(candidates))
 		var/num_cultists = min(length(candidates), 4)
 
@@ -353,7 +353,7 @@
 	//Creates mind stuff.
 	new_syndicate_commando.mind_initialize()
 	new_syndicate_commando.mind.assigned_role = "MODE"
-	new_syndicate_commando.mind.special_role = "Syndicate Commando"
+	new_syndicate_commando.mind.special_roles.Add(SPECIAL_ROLE_SYNDICATE_COMMANDO)
 
 	//Adds them to current traitor list. Which is really the extra antagonist list.
 	global.PCticker.mode.traitors.Add(new_syndicate_commando.mind)
@@ -442,7 +442,7 @@
 	new_vox.dna.mutantrace = "vox"
 	new_vox.mind_initialize()
 	new_vox.mind.assigned_role = "MODE"
-	new_vox.mind.special_role = "Vox Raider"
+	new_vox.mind.special_roles.Add(SPECIAL_ROLE_VOX_RAIDER)
 	new_vox.mutations |= MUTATION_NO_CLONE //Stops the station crew from messing around with their DNA.
 
 	global.PCticker.mode.traitors.Add(new_vox.mind)

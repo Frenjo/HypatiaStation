@@ -10,7 +10,7 @@
 			continue
 		if(prob(25))
 			global.PCticker.mode.traitors += H.mind
-			H.mind.special_role = "traitor"
+			H.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
 			var/datum/objective/survive/survive = new
 			survive.owner = H.mind
 			H.mind.objectives += survive

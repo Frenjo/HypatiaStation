@@ -120,7 +120,7 @@ CONTROLLER_DEF(jobs)
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(isnotnull(player?.mind))
 			player.mind.assigned_role = null
-			player.mind.special_role = null
+			player.mind.special_roles.Cut()
 	setup_occupations()
 	unassigned = list()
 

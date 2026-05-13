@@ -30,7 +30,7 @@
 	wizards += wizard
 	modePlayer += wizard
 	wizard.assigned_role = "MODE" //So they aren't chosen for other jobs.
-	wizard.special_role = "Wizard"
+	wizard.special_roles.Add(SPECIAL_ROLE_WIZARD)
 	wizard.original = wizard.current
 	if(!length(GLOBL.wizardstart))
 		to_chat(wizard.current, SPAN_DANGER("A starting location for you could not be found, please report this bug!"))

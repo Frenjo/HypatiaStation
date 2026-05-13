@@ -31,10 +31,16 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/proc/find_target_by_role(role, role_type = 0)//Option sets either to check assigned role or special role. Default to assigned.
 	for_no_type_check(var/datum/mind/possible_target, global.PCticker.minds)
-		if(possible_target != owner && ishuman(possible_target.current) && (role_type ? possible_target.special_role : possible_target.assigned_role) == role)
+		if(possible_target == owner || !ishuman(possible_target.current))
+			continue
+
+		if(!role_type && possible_target.assigned_role == role)
 			target = possible_target
 			break
 
+		if(role_type && possible_target.special_roles.Find(role))
+			target = possible_target
+			break
 
 /datum/objective/assassinate
 
@@ -48,8 +54,8 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/assassinate/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(target && target.current)
-		explanation_text = "Assassinate [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]."
+	if(target?.current)
+		explanation_text = "Assassinate [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -75,7 +81,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/mutiny/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(target && target.current)
-		explanation_text = "Assassinate [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]."
+		explanation_text = "Assassinate [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -104,7 +110,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/mutiny/rp/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]."
+		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -141,7 +147,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/anti_revolution/execute/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute \him[target.current]."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]] has extracted confidential information above their clearance. Execute \him[target.current]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -168,7 +174,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/anti_revolution/brig/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "Brig [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] for 20 minutes to set an example."
+		explanation_text = "Brig [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]] for 20 minutes to set an example."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -200,7 +206,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to NanoTrasen's goals. Demote \him[target.current] to assistant."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]] has been classified as harmful to NanoTrasen's goals. Demote \him[target.current] to assistant."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -235,7 +241,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/debrain/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "Steal the brain of [target.current.real_name] the [!role_type ? target.assigned_role : target.special_role]."
+		explanation_text = "Steal the brain of [target.current.real_name] the [!role_type ? target.assigned_role : target.special_roles[1]]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -268,7 +274,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/protect/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "Protect [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]."
+		explanation_text = "Protect [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -403,7 +409,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/brig/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "Have [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] brigged for 10 minutes."
+		explanation_text = "Have [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]] brigged for 10 minutes."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -438,7 +444,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/harm/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
 	if(isnotnull(target?.current))
-		explanation_text = "Make an example of [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]. Break one of their bones, detach one of their limbs or disfigure their face. Make sure they're alive when you do it."
+		explanation_text = "Make an example of [target.current.real_name], the [!role_type ? target.assigned_role : target.special_roles[1]]. Break one of their bones, detach one of their limbs or disfigure their face. Make sure they're alive when you do it."
 	else
 		explanation_text = "Free Objective"
 	return target

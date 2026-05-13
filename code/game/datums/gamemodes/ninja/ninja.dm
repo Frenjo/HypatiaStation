@@ -24,7 +24,7 @@
 	ninjas += ninja
 	modePlayer += ninja
 	ninja.assigned_role = "MODE" //So they aren't chosen for other jobs.
-	ninja.special_role = "Ninja"
+	ninja.special_roles.Add(SPECIAL_ROLE_NINJA)
 	ninja.original = ninja.current
 
 	/*
@@ -177,8 +177,8 @@
 				count++
 
 		var/special_role_text
-		if(ninja.special_role)
-			special_role_text = lowertext(ninja.special_role)
+		if(!isemptylist(ninja.special_roles))
+			special_role_text = lowertext(jointext(ninja.special_roles, ", "))
 		else
 			special_role_text = "antagonist"
 

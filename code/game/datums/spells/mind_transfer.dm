@@ -50,9 +50,10 @@ Also, you never added distance checking after target is selected. I've went ahea
 		to_chat(user, "They appear to be catatonic. Not even magic can affect their vacant mind.")
 		return
 
-	if(target.mind.special_role in protected_roles)
-		to_chat(user, "Their mind is resisting your spell.")
-		return
+	for(var/protected in protected_roles)
+		if(target.mind.special_roles.Find(protected))
+			to_chat(user, "Their mind is resisting your spell.")
+			return
 
 	var/mob/living/victim = target//The target of the spell whos body will be transferred to.
 	var/mob/caster = user//The wizard/whomever doing the body transferring.

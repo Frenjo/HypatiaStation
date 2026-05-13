@@ -81,6 +81,7 @@
 #include "code\__DEFINES\security_levels.dm"
 #include "code\__DEFINES\setup.dm"
 #include "code\__DEFINES\shuttles.dm"
+#include "code\__DEFINES\special_roles.dm"
 #include "code\__DEFINES\species.dm"
 #include "code\__DEFINES\text.dm"
 #include "code\__DEFINES\tick.dm"

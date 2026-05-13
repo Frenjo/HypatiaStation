@@ -1180,7 +1180,7 @@ ________________________________________________________________________________
 /obj/item/clothing/glasses/hud/ninja/process_hud(mob/M)
 	var/list/target_list = list()
 	for(var/mob/living/target in oview(M))
-		if(target.mind && (target.mind.special_role || issilicon(target))) //They need to have a mind.
+		if((!isemptylist(target.mind?.special_roles) || issilicon(target))) //They need to have a mind.
 			target_list += target
 	if(length(target_list))
 		assess_targets(target_list, M)
@@ -1193,24 +1193,25 @@ ________________________________________________________________________________
 	var/icon/tempHud = 'icons/hud/hud.dmi'
 	for(var/mob/living/target in target_list)
 		if(iscarbon(target))
-			switch(target.mind.special_role)
-				if("traitor")
+			var/special_role = pick(target.mind.special_roles)
+			switch(special_role)
+				if(SPECIAL_ROLE_TRAITOR)
 					U.client.images += image(tempHud,target,"hudtraitor")
-				if("Revolutionary","Head Revolutionary")
+				if(SPECIAL_ROLE_REVOLUTIONARY, SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 					U.client.images += image(tempHud,target,"hudrevolutionary")
-				if("Cultist")
+				if(SPECIAL_ROLE_CULTIST)
 					U.client.images += image(tempHud,target,"hudcultist")
-				if("Changeling")
+				if(SPECIAL_ROLE_CHANGELING)
 					U.client.images += image(tempHud,target,"hudchangeling")
-				if("Wizard","Fake Wizard")
+				if(SPECIAL_ROLE_WIZARD, "Fake Wizard")
 					U.client.images += image(tempHud,target,"hudwizard")
 				if("Hunter","Sentinel","Drone","Queen")
 					U.client.images += image(tempHud,target,"hudalien")
-				if("Syndicate")
+				if(SPECIAL_ROLE_SYNDICATE)
 					U.client.images += image(tempHud,target,"hudoperative")
-				if("Death Commando")
+				if(SPECIAL_ROLE_DEATH_COMMANDO)
 					U.client.images += image(tempHud,target,"huddeathsquad")
-				if("Ninja")
+				if(SPECIAL_ROLE_NINJA)
 					U.client.images += image(tempHud,target,"hudninja")
 				else//If we don't know what role they have but they have one.
 					U.client.images += image(tempHud,target,"hudunknown1")
@@ -1218,9 +1219,9 @@ ________________________________________________________________________________
 			var/mob/living/silicon/silicon_target = target
 			if(!silicon_target.laws || (silicon_target.laws && (silicon_target.laws.zeroth || !length(silicon_target.laws.inherent))))
 				if(isrobot(silicon_target))//Different icons for robutts and AI.
-					U.client.images += image(tempHud,silicon_target,"hudmalborg")
+					U.client.images += image(tempHud,silicon_target, "hudmalborg")
 				else
-					U.client.images += image(tempHud,silicon_target,"hudmalai")
+					U.client.images += image(tempHud,silicon_target, "hudmalai")
 	return 1
 
 /*

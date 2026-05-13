@@ -1826,22 +1826,23 @@
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
 		if(isnotnull(mind))
-			switch(mind.special_role)
-				if("traitor", "Syndicate")
+			var/special_role = pick(mind.special_roles)
+			switch(special_role)
+				if(SPECIAL_ROLE_TRAITOR, SPECIAL_ROLE_SYNDICATE)
 					holder.icon_state = "hudsyndicate"
-				if("Revolutionary")
+				if(SPECIAL_ROLE_REVOLUTIONARY)
 					holder.icon_state = "hudrevolutionary"
-				if("Head Revolutionary")
+				if(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 					holder.icon_state = "hudheadrevolutionary"
-				if("Cultist")
+				if(SPECIAL_ROLE_CULTIST)
 					holder.icon_state = "hudcultist"
-				if("Changeling")
+				if(SPECIAL_ROLE_CHANGELING)
 					holder.icon_state = "hudchangeling"
-				if("Wizard", "Fake Wizard")
+				if(SPECIAL_ROLE_WIZARD, "Fake Wizard")
 					holder.icon_state = "hudwizard"
-				if("Death Commando")
+				if(SPECIAL_ROLE_DEATH_COMMANDO)
 					holder.icon_state = "huddeathsquad"
-				if("Ninja")
+				if(SPECIAL_ROLE_NINJA)
 					holder.icon_state = "hudninja"
 
 			hud_list[SPECIALROLE_HUD] = holder

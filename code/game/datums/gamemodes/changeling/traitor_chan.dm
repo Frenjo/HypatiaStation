@@ -36,7 +36,7 @@
 /datum/game_mode/traitor/changeling/post_setup()
 	for_no_type_check(var/datum/mind/changeling, changelings)
 		grant_changeling_powers(changeling.current)
-		changeling.special_role = "Changeling"
+		changeling.special_roles.Add(SPECIAL_ROLE_CHANGELING)
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_changeling_objectives(changeling)
 		greet_changeling(changeling)

@@ -31,7 +31,7 @@
 // Xeno Larva
 /mob/living/carbon/alien/larva/mind_initialize()
 	. = ..()
-	mind.special_role = "Larva"
+	mind.special_roles.Add(SPECIAL_ROLE_LARVA)
 
 // AI
 /mob/living/silicon/ai/mind_initialize()
@@ -47,7 +47,6 @@
 /mob/living/silicon/pai/mind_initialize()
 	. = ..()
 	mind.assigned_role = "pAI"
-	mind.special_role = ""
 
 // Animals
 /mob/living/simple/mind_initialize()
@@ -65,19 +64,19 @@
 /mob/living/simple/construct/builder/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Artificer"
-	mind.special_role = "Cultist"
+	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/construct/wraith/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Wraith"
-	mind.special_role = "Cultist"
+	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/construct/armoured/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Juggernaut"
-	mind.special_role = "Cultist"
+	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/vox/armalis/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Armalis"
-	mind.special_role = "Vox Raider"
+	mind.special_roles.Add(SPECIAL_ROLE_VOX_RAIDER)

@@ -10,7 +10,7 @@
 			continue
 
 		global.PCticker.mode.traitors += H.mind
-		H.mind.special_role = "traitor"
+		H.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
 
 		var/datum/objective/steal/steal_objective = new /datum/objective/steal()
 		steal_objective.owner = H.mind

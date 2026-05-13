@@ -49,7 +49,7 @@
 			break
 		var/datum/mind/traitor = pick(possible_traitors)
 		traitors += traitor
-		traitor.special_role = "traitor"
+		traitor.special_roles.Add(SPECIAL_ROLE_TRAITOR)
 		possible_traitors.Remove(traitor)
 
 	if(!length(traitors))
@@ -202,8 +202,8 @@
 				count++
 
 		var/special_role_text
-		if(traitor.special_role)
-			special_role_text = lowertext(traitor.special_role)
+		if(!isemptylist(traitor.special_roles))
+			special_role_text = lowertext(jointext(traitor.special_roles, ", "))
 		else
 			special_role_text = "antagonist"
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
