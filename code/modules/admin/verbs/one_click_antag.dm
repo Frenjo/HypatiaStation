@@ -35,7 +35,7 @@
 			continue
 		if(!applicant.stat || isnull(applicant.mind))
 			continue
-		if(applicant.mind.special_roles.Find(antagonist_type))
+		if(applicant.mind.has_special_role(antagonist_type))
 			continue
 		if(jobban_isbanned(applicant, antagonist_type) || jobban_isbanned(applicant, "Syndicate"))
 			continue

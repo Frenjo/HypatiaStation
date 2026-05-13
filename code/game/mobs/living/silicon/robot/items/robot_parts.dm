@@ -225,7 +225,7 @@
 
 			M.brainmob.mind.transfer_to(O)
 
-			if(!isemptylist(O.mind?.special_roles))
+			if(O.mind?.has_special_role())
 				O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 
 			O.job = "Robot"

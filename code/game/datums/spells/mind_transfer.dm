@@ -51,7 +51,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 		return
 
 	for(var/protected in protected_roles)
-		if(target.mind.special_roles.Find(protected))
+		if(target.mind.has_special_role(protected))
 			to_chat(user, "Their mind is resisting your spell.")
 			return
 

@@ -1180,7 +1180,7 @@ ________________________________________________________________________________
 /obj/item/clothing/glasses/hud/ninja/process_hud(mob/M)
 	var/list/target_list = list()
 	for(var/mob/living/target in oview(M))
-		if((!isemptylist(target.mind?.special_roles) || issilicon(target))) //They need to have a mind.
+		if(target.mind?.has_special_role() || issilicon(target)) //They need to have a mind.
 			target_list += target
 	if(length(target_list))
 		assess_targets(target_list, M)

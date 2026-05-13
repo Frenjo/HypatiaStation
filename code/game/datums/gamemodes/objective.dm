@@ -38,7 +38,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			target = possible_target
 			break
 
-		if(role_type && possible_target.special_roles.Find(role))
+		if(role_type && possible_target.has_special_role(role))
 			target = possible_target
 			break
 

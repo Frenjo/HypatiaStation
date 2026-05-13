@@ -236,15 +236,15 @@ Implants;
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		if(isnotnull(H.client) && isnotnull(H.mind))
 			// NT relation option
-			var/list/special_roles = H.mind.special_roles
-			if(special_roles.Find(SPECIAL_ROLE_WIZARD) || special_roles.Find(SPECIAL_ROLE_NINJA) \
-			|| special_roles.Find(SPECIAL_ROLE_SYNDICATE) || special_roles.Find(SPECIAL_ROLE_VOX_RAIDER))
+			var/datum/mind/human_mind = H.mind
+			if(human_mind.has_special_role(SPECIAL_ROLE_WIZARD) || human_mind.has_special_role(SPECIAL_ROLE_NINJA) \
+			|| human_mind.has_special_role(SPECIAL_ROLE_SYNDICATE) || human_mind.has_special_role(SPECIAL_ROLE_VOX_RAIDER))
 				continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
 			if(H.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || H.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
 				suspects.Add(H)
 			// Antags
-			else if(special_roles.Find(SPECIAL_ROLE_TRAITOR) && prob(40) || special_roles.Find(SPECIAL_ROLE_CHANGELING) && prob(50) \
-			|| special_roles.Find(SPECIAL_ROLE_CULTIST) && prob(30) || special_roles.Find(SPECIAL_ROLE_HEAD_REVOLUTIONARY) && prob(30))
+			else if(human_mind.has_special_role(SPECIAL_ROLE_TRAITOR) && prob(40) || human_mind.has_special_role(SPECIAL_ROLE_CHANGELING) && prob(50) \
+			|| human_mind.has_special_role(SPECIAL_ROLE_CULTIST) && prob(30) || human_mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) && prob(30))
 				suspects.Add(H)
 
 				// If they're a traitor or likewise, give them extra TC in exchange.

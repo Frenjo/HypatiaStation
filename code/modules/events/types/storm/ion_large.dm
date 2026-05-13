@@ -65,7 +65,7 @@
 	var/law = pick(laws)
 
 	for_no_type_check(var/mob/living/silicon/ai/target, GLOBL.ai_list)
-		if(target.mind.special_roles.Find(SPECIAL_ROLE_TRAITOR) || target.mind.special_roles.Find(SPECIAL_ROLE_MALF_AI))
+		if(target.mind.has_special_role(SPECIAL_ROLE_TRAITOR) || target.mind.has_special_role(SPECIAL_ROLE_MALF_AI))
 			continue
 		to_chat(target, SPAN_DANGER("You have detected a change in your laws information:"))
 		to_chat(target, law)

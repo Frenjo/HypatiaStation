@@ -226,7 +226,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 				qdel(occupant.mind.objectives)
 				occupant.mind.special_roles.Cut()
 			else
-				if(global.PCticker.mode.name == "AutoTraitor")
+				if(IS_GAME_MODE(/datum/game_mode/traitor/autotraitor))
 					var/datum/game_mode/traitor/autotraitor/current_mode = global.PCticker.mode
 					current_mode.possible_traitors.Remove(occupant)
 

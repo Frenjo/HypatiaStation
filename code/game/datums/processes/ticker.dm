@@ -405,14 +405,13 @@ PROCESS_DEF(ticker)
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
 	//Look into all mobs in world, dead or alive
-	for_no_type_check(var/datum/mind/Mind, minds)
-		for(var/temprole in Mind.special_roles)
-			if(isnotnull(temprole))					//if they are an antagonist of some sort.
-				if(temprole in total_antagonists)	//If the role exists already, add the name to it
-					total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
-				else
-					total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
-					total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
+	for_no_type_check(var/datum/mind/mind, minds)
+		for(var/temprole in mind.special_roles) //if they are an antagonist of some sort.
+			if(temprole in total_antagonists)	//If the role exists already, add the name to it
+				total_antagonists[temprole] += ", [mind.name]([mind.key])"
+			else
+				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
+				total_antagonists[temprole] += ": [mind.name]([mind.key])"
 
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")

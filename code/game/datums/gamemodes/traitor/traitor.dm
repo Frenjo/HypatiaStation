@@ -202,7 +202,7 @@
 				count++
 
 		var/special_role_text
-		if(!isemptylist(traitor.special_roles))
+		if(traitor.has_special_role())
 			special_role_text = lowertext(jointext(traitor.special_roles, ", "))
 		else
 			special_role_text = "antagonist"

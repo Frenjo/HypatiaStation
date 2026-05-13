@@ -80,9 +80,8 @@
 				playercount += 1
 			if(isnull(player.mind) || player.stat == DEAD)
 				continue
-			if(!isemptylist(player.mind.special_roles))
+			if(player.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 				traitorcount += 1
-			if(player.mind.special_roles.Find(SPECIAL_ROLE_TRAITOR))
 				continue
 			if((player.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(player, "Syndicate"))
 				possible_traitors += player
@@ -161,7 +160,7 @@
 				continue
 			if(player.stat != DEAD)
 				playercount += 1
-			if(!isemptylist(player.mind?.special_roles) && player.stat != DEAD)
+			if(player.mind?.has_special_role(SPECIAL_ROLE_TRAITOR) && player.stat != DEAD)
 				traitorcount += 1
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")

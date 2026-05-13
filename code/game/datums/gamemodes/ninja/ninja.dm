@@ -177,7 +177,7 @@
 				count++
 
 		var/special_role_text
-		if(!isemptylist(ninja.special_roles))
+		if(ninja.has_special_role())
 			special_role_text = lowertext(jointext(ninja.special_roles, ", "))
 		else
 			special_role_text = "antagonist"

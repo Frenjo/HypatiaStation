@@ -468,11 +468,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			switch(new_character.mind.assigned_role)
 				if("Robot")//More rigging to make em' work and check if they're traitor.
 					new_character = new_character.Robotize()
-					if(new_character.mind.special_roles.Find(SPECIAL_ROLE_TRAITOR))
+					if(new_character.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 						call(/datum/game_mode/proc/add_law_zero)(new_character)
 				if("AI")
 					new_character = new_character.AIize()
-					if(new_character.mind.special_roles.Find(SPECIAL_ROLE_TRAITOR))
+					if(new_character.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 						call(/datum/game_mode/proc/add_law_zero)(new_character)
 				//Add aliens.
 				else

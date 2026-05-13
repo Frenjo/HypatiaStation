@@ -121,7 +121,7 @@ Works together with spawning an observer, noted above.
 	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
-			if(!isemptylist(target.mind?.special_roles) || issilicon(target))
+			if(target.mind?.has_special_role() || issilicon(target))
 				target_list.Add(target)
 		if(length(target_list))
 			assess_targets(target_list, src)

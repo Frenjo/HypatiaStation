@@ -70,7 +70,7 @@
 				else
 					dat += " Independent from AI |"
 				if (issilicon(user))
-					if((!isemptylist(user.mind.special_roles) && user.mind.original == user) && !R.emagged)
+					if((user.mind.has_special_role() && user.mind.original == user) && !R.emagged)
 						dat += "<A href='byond://?src=\ref[src];magbot=\ref[R]'>(<font color=blue><i>Hack</i></font>)</A> "
 				dat += "<A href='byond://?src=\ref[src];stopbot=\ref[R]'>(<font color=green><i>[R.canmove ? "Lockdown" : "Release"]</i></font>)</A> "
 				dat += "<A href='byond://?src=\ref[src];killbot=\ref[R]'>(<font color=red><i>Destroy</i></font>)</A>"
@@ -151,58 +151,58 @@
 					screen = 1
 				if("2")
 					screen = 2
-		else if (href_list["killbot"])
-			if(src.allowed(usr))
-				var/mob/living/silicon/robot/R = locate(href_list["killbot"])
-				if(R)
-					var/choice = input("Are you certain you wish to detonate [R.name]?") in list("Confirm", "Abort")
+		else if(href_list["killbot"])
+			if(allowed(usr))
+				var/mob/living/silicon/robot/robby = locate(href_list["killbot"])
+				if(isnotnull(robby))
+					var/choice = input("Are you certain you wish to detonate [robby.name]?") in list("Confirm", "Abort")
 					if(choice == "Confirm")
-						if(R && istype(R))
-							if(!isemptylist(R.mind?.special_roles) && R.emagged)
-								to_chat(R, SPAN_DANGER("Extreme danger. Termination codes detected. Automatic security code scrambling and AI unlink triggered."))
-								R.reset_identity_codes()
+						if(istype(robby))
+							if(robby.mind.has_special_role() && robby.emagged)
+								to_chat(robby, SPAN_DANGER("Extreme danger. Termination codes detected. Automatic security code scrambling and AI unlink triggered."))
+								robby.reset_identity_codes()
 
 							else
-								message_admins("\blue [key_name_admin(usr)] detonated [R.name]!")
-								log_game("\blue [key_name_admin(usr)] detonated [R.name]!")
-								R.self_destruct()
+								message_admins("\blue [key_name_admin(usr)] detonated [robby.name]!")
+								log_game("\blue [key_name_admin(usr)] detonated [robby.name]!")
+								robby.self_destruct()
 			else
 				FEEDBACK_ACCESS_DENIED(usr)
 
-		else if (href_list["stopbot"])
-			if(src.allowed(usr))
-				var/mob/living/silicon/robot/R = locate(href_list["stopbot"])
-				if(R && istype(R)) // Extra sancheck because of input var references
-					var/choice = input("Are you certain you wish to [R.canmove ? "lock down" : "release"] [R.name]?") in list("Confirm", "Abort")
+		else if(href_list["stopbot"])
+			if(allowed(usr))
+				var/mob/living/silicon/robot/robby = locate(href_list["stopbot"])
+				if(isnotnull(robby)) // Extra sancheck because of input var references
+					var/choice = input("Are you certain you wish to [robby.canmove ? "lock down" : "release"] [robby.name]?") in list("Confirm", "Abort")
 					if(choice == "Confirm")
-						if(R && istype(R))
-							message_admins("\blue [key_name_admin(usr)] [R.canmove ? "locked down" : "released"] [R.name]!")
-							log_game("[key_name(usr)] [R.canmove ? "locked down" : "released"] [R.name]!")
-							R.canmove = !R.canmove
-							if (R.lockcharge)
-							//	R.cell.charge = R.lockcharge
-								R.lockcharge = !R.lockcharge
-								to_chat(R, SPAN_WARNING("Your lockdown has been lifted!"))
+						if(istype(robby))
+							message_admins("\blue [key_name_admin(usr)] [robby.canmove ? "locked down" : "released"] [robby.name]!")
+							log_game("[key_name(usr)] [robby.canmove ? "locked down" : "released"] [robby.name]!")
+							robby.canmove = !robby.canmove
+							if (robby.lockcharge)
+								//robby.cell.charge = robby.lockcharge
+								robby.lockcharge = !robby.lockcharge
+								to_chat(robby, SPAN_WARNING("Your lockdown has been lifted!"))
 							else
-								R.lockcharge = !R.lockcharge
-						//		R.cell.charge = 0
-								to_chat(R, SPAN_INFO("You have been locked down!"))
+								robby.lockcharge = !robby.lockcharge
+								//robby.cell.charge = 0
+								to_chat(robby, SPAN_INFO("You have been locked down!"))
 
 			else
 				FEEDBACK_ACCESS_DENIED(usr)
 
-		else if (href_list["magbot"])
-			if(src.allowed(usr))
-				var/mob/living/silicon/robot/R = locate(href_list["magbot"])
-				if(R)
-					var/choice = input("Are you certain you wish to hack [R.name]?") in list("Confirm", "Abort")
+		else if(href_list["magbot"])
+			if(allowed(usr))
+				var/mob/living/silicon/robot/robby = locate(href_list["magbot"])
+				if(isnotnull(robby))
+					var/choice = input("Are you certain you wish to hack [robby.name]?") in list("Confirm", "Abort")
 					if(choice == "Confirm")
-						if(R && istype(R))
-//							message_admins("\blue [key_name_admin(usr)] emagged [R.name] using robotic console!")
-							log_game("[key_name(usr)] emagged [R.name] using robotic console!")
-							R.emagged = TRUE
-							if(!isemptylist(R.mind.special_roles))
-								R.verbs.Add(/mob/living/silicon/robot/proc/reset_identity_codes)
+						if(istype(robby))
+//							message_admins("\blue [key_name_admin(usr)] emagged [robby.name] using robotic console!")
+							log_game("[key_name(usr)] emagged [robby.name] using robotic console!")
+							robby.emagged = TRUE
+							if(robby.mind.has_special_role())
+								robby.verbs.Add(/mob/living/silicon/robot/proc/reset_identity_codes)
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()

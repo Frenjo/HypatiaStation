@@ -17,7 +17,7 @@
 		SPECIAL_ROLE_HEAD_REVOLUTIONARY, SPECIAL_ROLE_CULTIST, SPECIAL_ROLE_CHANGELING
 	)
 	for(var/T in allowed)
-		if(mind.special_roles.Find(T))
+		if(mind.has_special_role(T))
 			permitted = 1
 			break
 
