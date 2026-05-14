@@ -6,13 +6,7 @@
 	if(!check_rights(R_ADMIN))
 		return FALSE
 
-	if(topic.has("role_edit"))
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null | anything in GLOBL.all_jobs
-		if(isnull(new_role))
-			return FALSE
-		assigned_role = new_role
-
-	else if(topic.has("memory_edit"))
+	if(topic.has("memory_edit"))
 		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null | message), 1, MAX_MESSAGE_LEN)
 		if(isnull(new_memo))
 			return FALSE
@@ -74,7 +68,7 @@
 					new_objective.owner = src
 					new_objective:target = new_target:mind
 					// Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
-					var/displayed_role = new_target:mind:assigned_role == "MODE" ? new_target:mind:special_roles[1] : new_target:mind:assigned_role
+					var/displayed_role = isnull(new_target:mind:assigned_job) ? new_target:mind:special_roles[1] : new_target:mind:assigned_job:title
 					new_objective.explanation_text = "[objective_type] [new_target:real_name], the [displayed_role]."
 
 			if("prevent")
@@ -269,7 +263,7 @@
 							var/datum/objective/mutiny/rev_obj = new /datum/objective/mutiny()
 							rev_obj.owner = src
 							rev_obj.target = O.target
-							rev_obj.explanation_text = "Assassinate [O.target.name], the [O.target.assigned_role]."
+							rev_obj.explanation_text = "Assassinate [O.target.name], the [O.target.assigned_job.title]."
 							objectives.Add(rev_obj)
 						global.PCticker.mode.greet_revolutionary(src, 0)
 				current.verbs.Add(/mob/living/carbon/human/proc/RevConvert)

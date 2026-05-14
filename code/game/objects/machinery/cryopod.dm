@@ -218,9 +218,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 								qdel(O)
 
 			//Handle job slot/tater cleanup.
-			var/job = occupant.mind.assigned_role
-
-			global.CTjobs.free_role(job)
+			global.CTjobs.free_role(occupant.mind.assigned_job.title)
 
 			if(length(occupant.mind.objectives))
 				qdel(occupant.mind.objectives)

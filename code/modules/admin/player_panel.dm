@@ -352,8 +352,8 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.mind && H.mind.assigned_role)
-				dat += "<td>[H.mind.assigned_role]</td>"
+			if(isnotnull(H.mind?.assigned_job) || H.mind?.has_special_role())
+				dat += "<td>[H.mind.assigned_job ? H.mind.assigned_job.title : jointext(H.mind.special_roles, ", ")]</td>"
 		else
 			dat += "<td>NA</td>"
 

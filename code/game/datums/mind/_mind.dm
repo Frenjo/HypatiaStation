@@ -36,10 +36,9 @@
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
 	var/active = FALSE
 
-	var/datum/job/assigned_job
+	var/datum/job/assigned_job = null // If a mind doesn't have an assigned job, then it's an off-station antagonist.
 	var/job_alt_title = null
 
-	var/assigned_role
 	var/list/special_roles = list()
 
 	var/list/datum/objective/objectives = list()

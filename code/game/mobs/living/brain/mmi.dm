@@ -274,14 +274,11 @@
 
 /obj/item/mmi/digital/positronic/transfer_identity(mob/living/carbon/H)
 	. = ..()
-	if(isnotnull(brainmob.mind))
-		brainmob.mind.assigned_role = "Positronic Brain"
 	to_chat(brainmob, SPAN_INFO("You feel slightly disoriented. That's normal when you're just a metal cube."))
 	icon_state = "posibrain-occupied"
 
 /obj/item/mmi/digital/positronic/transfer_personality(mob/candidate)
 	. = ..()
-	brainmob.mind.assigned_role = "Positronic Brain"
 	icon_state = "posibrain-occupied"
 
 /obj/item/mmi/digital/robot
@@ -300,10 +297,4 @@
 
 /obj/item/mmi/digital/robot/transfer_identity(mob/living/carbon/H)
 	. = ..()
-	if(isnotnull(brainmob.mind))
-		brainmob.mind.assigned_role = "Robotic Intelligence Circuit"
 	to_chat(brainmob, SPAN_INFO("You feel slightly disoriented. That's normal when you're just a circuit board."))
-
-/obj/item/mmi/digital/robot/transfer_personality(mob/candidate)
-	. = ..()
-	brainmob.mind.assigned_role = "Robotic Intelligence Circuit"

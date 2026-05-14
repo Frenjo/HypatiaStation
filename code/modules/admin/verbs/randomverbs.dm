@@ -373,7 +373,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
 		/*Try and locate a record for the person being respawned through data_core.
 		This isn't an exact science but it does the trick more often than not.*/
-		var/id = md5("[G_found.real_name][G_found.mind.assigned_role]")
+		var/id = md5("[G_found.real_name][G_found.mind.assigned_job.title]")
 		for_no_type_check(var/datum/record/t, GLOBL.data_core.locked)
 			if(t.fields["id"] == id)
 				record_found = t//We shall now reference the record.
@@ -402,7 +402,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.mind.special_verbs = list()
 	else
 		new_character.mind_initialize()
-	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = "Assistant"//If they somehow got a null assigned role.
+	if(isnull(new_character.mind.assigned_job))
+		new_character.mind.assigned_job = GLOBL.all_jobs["Assistant"]//If they somehow got a null assigned role.
 
 	//DNA
 	if(record_found)//Pull up their name from database records if they did have a mind.
@@ -433,7 +434,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//Now for special roles and equipment.
 	switch(new_character.mind.special_roles[1])
 		if("traitor")
-			global.CTjobs.equip_rank(new_character, new_character.mind.assigned_role, TRUE)
+			global.CTjobs.equip_rank(new_character, new_character.mind.assigned_job.title, TRUE)
 			global.PCticker.mode.equip_traitor(new_character)
 		if("Wizard")
 			new_character.forceMove(pick(GLOBL.wizardstart))
@@ -465,28 +466,28 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new_character.internal = new_character.suit_store
 			new_character.internals.icon_state = "internal1"
 		else//They may also be a cyborg or AI.
-			switch(new_character.mind.assigned_role)
-				if("Robot")//More rigging to make em' work and check if they're traitor.
+			switch(new_character.mind.assigned_job.type)
+				if(/datum/job/robot)//More rigging to make em' work and check if they're traitor.
 					new_character = new_character.Robotize()
 					if(new_character.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 						call(/datum/game_mode/proc/add_law_zero)(new_character)
-				if("AI")
+				if(/datum/job/ai)
 					new_character = new_character.AIize()
 					if(new_character.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 						call(/datum/game_mode/proc/add_law_zero)(new_character)
 				//Add aliens.
 				else
-					global.CTjobs.equip_rank(new_character, new_character.mind.assigned_role, TRUE)//Or we simply equip them.
+					global.CTjobs.equip_rank(new_character, new_character.mind.assigned_job.title, TRUE)//Or we simply equip them.
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
-		if(!record_found&&new_character.mind.assigned_role != "MODE")//If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
+		if(!record_found && isnotnull(new_character.mind.assigned_job))//If there are no records for them. If they have a record, this info is already in there. MODE people are not announced anyway.
 			//Power to the user!
 			if(alert(new_character, "Warning: No data core entry detected. Would you like to announce the arrival of this character by adding them to various databases, such as medical records?", , "No", "Yes") == "Yes")
 				GLOBL.data_core.manifest_inject(new_character)
 
 			if(alert(new_character, "Would you like an active AI to announce this character?", , "No", "Yes") == "Yes")
-				call(/mob/dead/new_player/proc/announce_arrival)(new_character, new_character.mind.assigned_role)
+				call(/mob/dead/new_player/proc/announce_arrival)(new_character, new_character.mind.assigned_job.title)
 
 	message_admins("\blue [admin] has respawned [player_key] as [new_character.real_name].", 1)
 

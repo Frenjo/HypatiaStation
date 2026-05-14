@@ -263,10 +263,10 @@ Implants;
 	for_no_type_check(var/mob/M, suspects)
 		switch(rand(1, 100))
 			if(1 to 50)
-				text += "Someone with the job of <b>[M.mind.assigned_role]</b>."
+				text += "Someone with the job of <b>[M.mind.assigned_job.title]</b>."
 				text += "<br>"
 			else
-				text += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b>."
+				text += "<b>[M.name]</b>, the <b>[M.mind.assigned_job.title]</b>."
 				text += "<br>"
 
 	print_command_report(text)
@@ -336,10 +336,7 @@ Implants;
 
 	// Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
-		for_no_type_check(var/datum/mind/player, .)
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					. -= player
+		. = sort_possible_antagonists(.)
 
 	/*if(length(.) < recommended_enemies)
 		for(var/mob/dead/new_player/player in players)
@@ -393,6 +390,13 @@ Implants;
 			break
 	*/
 
+/datum/game_mode/proc/sort_possible_antagonists(list/datum/mind/possible_antagonists)
+	RETURN_TYPE(/list/datum/mind)
+
+	for_no_type_check(var/datum/mind/possible, possible_antagonists)
+		for(var/datum/job/job_type in restricted_jobs)
+			if(!istype(possible.assigned_job, job_type))
+				. += possible
 
 /datum/game_mode/proc/latespawn(mob)
 	return

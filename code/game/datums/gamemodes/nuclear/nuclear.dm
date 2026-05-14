@@ -60,7 +60,6 @@
 		agent_number--
 
 	for_no_type_check(var/datum/mind/synd_mind, syndicates)
-		synd_mind.assigned_role = "MODE" //So they aren't chosen for other jobs.
 		synd_mind.special_roles.Add(SPECIAL_ROLE_SYNDICATE) //So they actually have a special role/N
 	return 1
 

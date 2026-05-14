@@ -91,7 +91,7 @@
 		user << "\blue You hit the floor with the bible."
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
 			call(/obj/effect/rune/proc/revealrunes)(src)*/
-	if(user.mind?.assigned_role == "Chaplain")
+	if(istype(user.mind?.assigned_job, /datum/job/chaplain))
 		if(A.reagents?.has_reagent("water")) //blesses all the water in the holder
 			to_chat(user, SPAN_INFO("You bless [A]."))
 			var/water2holy = A.reagents.get_reagent_amount("water")

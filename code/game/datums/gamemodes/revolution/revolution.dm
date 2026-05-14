@@ -14,7 +14,12 @@
 /datum/game_mode/revolution
 	name = "revolution"
 	config_tag = "revolution"
-	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Robot","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
+	restricted_jobs = list(
+		/datum/job/officer, /datum/job/warden, /datum/job/detective,
+		/datum/job/ai, /datum/job/robot, /datum/job/captain,
+		/datum/job/hop, /datum/job/hos, /datum/job/chief_engineer,
+		/datum/job/rd, /datum/job/cmo
+	)
 	required_players = 4
 	required_players_secret = 15
 	required_enemies = 3
@@ -45,18 +50,13 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	var/list/datum/mind/possible_headrevs = get_players_for_role(BE_REV)
-
 	var/head_check = 0
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.mind.assigned_job.head_position)
 			head_check = 1
 			break
 
-	for_no_type_check(var/datum/mind/player, possible_headrevs)
-		for(var/job in restricted_jobs)//Removing heads and such from the list
-			if(player.assigned_role == job)
-				possible_headrevs -= player
+	var/list/datum/mind/possible_headrevs = sort_possible_antagonists(get_players_for_role(BE_REV))
 
 	for(var/i in 1 to max_headrevs)
 		if(!length(possible_headrevs))
@@ -79,7 +79,7 @@
 				var/datum/objective/mutiny/rev_obj = new
 				rev_obj.owner = rev_mind
 				rev_obj.target = head_mind
-				rev_obj.explanation_text = "Assassinate [head_mind.name], the [head_mind.assigned_role]."
+				rev_obj.explanation_text = "Assassinate [head_mind.name], the [head_mind.assigned_job.title]."
 				rev_mind.objectives += rev_obj
 
 	//	equip_traitor(rev_mind.current, 1) //changing how revs get assigned their uplink so they can get PDA uplinks. --NEO
@@ -110,7 +110,7 @@
 			var/datum/objective/mutiny/rev_obj = new
 			rev_obj.owner = rev_mind
 			rev_obj.target = head_mind
-			rev_obj.explanation_text = "Assassinate [head_mind.name], the [head_mind.assigned_role]."
+			rev_obj.explanation_text = "Assassinate [head_mind.name], the [head_mind.assigned_job.title]."
 			rev_mind.objectives += rev_obj
 
 /datum/game_mode/proc/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
@@ -133,7 +133,7 @@
 		return
 
 	if(mob.mind)
-		if(mob.mind.assigned_role == "Clown")
+		if(istype(mob.mind.assigned_job, /datum/job/clown))
 			to_chat(mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			mob.mutations.Remove(MUTATION_CLUMSY)
 
@@ -424,4 +424,4 @@
 
 /proc/is_convertable_to_rev(datum/mind/mind)
 	return istype(mind) && ishuman(mind.current) && !(mind.assigned_job.head_position) \
-	&& !(mind.assigned_role in list("Security Officer", "Detective", "Warden"))
+	&& !(mind.assigned_job.type in list(/datum/job/officer, /datum/job/detective, /datum/job/warden))

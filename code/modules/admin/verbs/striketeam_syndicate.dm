@@ -122,7 +122,6 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 
 	//Creates mind stuff.
 	new_syndicate_commando.mind_initialize()
-	new_syndicate_commando.mind.assigned_role = "MODE"
 	new_syndicate_commando.mind.special_roles.Add(SPECIAL_ROLE_SYNDICATE_COMMANDO)
 	global.PCticker.mode.traitors |= new_syndicate_commando.mind	//Adds them to current traitor list. Which is really the extra antagonist list.
 	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate/commando/leader : /decl/hierarchy/outfit/syndicate/commando/standard)

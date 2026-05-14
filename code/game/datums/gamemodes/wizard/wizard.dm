@@ -29,7 +29,6 @@
 	var/datum/mind/wizard = pick(possible_wizards)
 	wizards += wizard
 	modePlayer += wizard
-	wizard.assigned_role = "MODE" //So they aren't chosen for other jobs.
 	wizard.special_roles.Add(SPECIAL_ROLE_WIZARD)
 	wizard.original = wizard.current
 	if(!length(GLOBL.wizardstart))

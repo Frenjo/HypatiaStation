@@ -295,7 +295,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 								var/datum/objective/assassinate/ninja_objective = new
 								ninja_objective.owner = ninja_mind
 								var/has_special_role = current_mind.has_special_role()
-								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_role
+								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_job.title
 								ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 							else
@@ -316,7 +316,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 								var/datum/objective/protect/ninja_objective = new
 								ninja_objective.owner = ninja_mind
 								var/has_special_role = current_mind.has_special_role()
-								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_role
+								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_job.title
 								ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 							else
@@ -329,7 +329,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 								var/datum/objective/debrain/ninja_objective = new
 								ninja_objective.owner = ninja_mind
 								var/has_special_role = current_mind.has_special_role()
-								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_role
+								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_job.title
 								ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 							else
@@ -518,7 +518,6 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 /mob/living/carbon/human/proc/create_mind_space_ninja()
 	mind_initialize()
-	mind.assigned_role = "MODE"
 	mind.special_roles.Add(SPECIAL_ROLE_NINJA)
 
 	//ticker.mode.ninjas |= mind

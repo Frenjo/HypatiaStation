@@ -52,7 +52,6 @@
 	else
 		current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
 	special_roles.Add(SPECIAL_ROLE_SYNDICATE)
-	assigned_role = "MODE"
 	to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 	global.PCticker.mode.forge_syndicate_objectives(src)
 	global.PCticker.mode.greet_syndicate(src)
@@ -88,7 +87,6 @@
 		return
 	global.PCticker.mode.wizards.Add(src)
 	special_roles.Add(SPECIAL_ROLE_WIZARD)
-	assigned_role = "MODE"
 	//ticker.mode.learn_basic_spells(current)
 	if(!length(GLOBL.wizardstart))
 		current.forceMove(pick(GLOBL.latejoin))
@@ -148,7 +146,7 @@
 				var/datum/objective/mutiny/rev_obj = new /datum/objective/mutiny()
 				rev_obj.owner = src
 				rev_obj.target = O.target
-				rev_obj.explanation_text = "Assassinate [O.target.current.real_name], the [O.target.assigned_role]."
+				rev_obj.explanation_text = "Assassinate [O.target.current.real_name], the [O.target.assigned_job.title]."
 				objectives.Add(rev_obj)
 			global.PCticker.mode.greet_revolutionary(src, 0)
 	global.PCticker.mode.head_revolutionaries.Add(src)

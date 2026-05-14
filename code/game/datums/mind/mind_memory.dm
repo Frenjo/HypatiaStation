@@ -25,7 +25,7 @@
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name)) ? " (as [current.real_name])" : ""]<br>"
 	out += "Mind currently owned by key: [key] [active ? "(synced)" : "(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='byond://?src=\ref[src];role_edit=1'>Edit</a><br>"
+	out += "Assigned role: [assigned_job.title]. <a href='byond://?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "Factions and special roles:<br>"
 
 	var/list/sections = list(

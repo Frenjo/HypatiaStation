@@ -26,7 +26,7 @@
 
 /datum/game_mode/malfunction/pre_setup()
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-		if(player.mind && player.mind.assigned_role == "AI")
+		if(player.mind?.assigned_job.type == /datum/job/ai)
 			malf_ai.Add(player.mind)
 	if(length(malf_ai))
 		return 1

@@ -28,18 +28,13 @@
 	max_headrevs = max(num_players / 4, 3)
 	recommended_enemies = max_headrevs
 
-	var/list/datum/mind/possible_headrevs = get_players_for_role(BE_REV)
-
 	var/head_check = 0
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.mind.assigned_job.head_position)
 			head_check = 1
 			break
 
-	for_no_type_check(var/datum/mind/player, possible_headrevs)
-		for(var/job in restricted_jobs)//Removing heads and such from the list
-			if(player.assigned_role == job)
-				possible_headrevs -= player
+	var/list/datum/mind/possible_headrevs = sort_possible_antagonists(get_players_for_role(BE_REV))
 
 	for(var/i in 1 to max_headrevs)
 		if(!length(possible_headrevs))
@@ -62,7 +57,7 @@
 				var/datum/objective/mutiny/rp/rev_obj = new
 				rev_obj.owner = rev_mind
 				rev_obj.target = head_mind
-				rev_obj.explanation_text = "Assassinate, convert or capture [head_mind.name], the [head_mind.assigned_role]."
+				rev_obj.explanation_text = "Assassinate, convert or capture [head_mind.name], the [head_mind.assigned_job.title]."
 				rev_mind.objectives += rev_obj
 
 		update_rev_icons_added(rev_mind)
@@ -216,7 +211,7 @@
 						var/datum/objective/mutiny/rp/rev_obj = new
 						rev_obj.owner = H.mind
 						rev_obj.target = head_mind
-						rev_obj.explanation_text = "Assassinate or capture [head_mind.name], the [head_mind.assigned_role]."
+						rev_obj.explanation_text = "Assassinate or capture [head_mind.name], the [head_mind.assigned_job.title]."
 						H.mind.objectives += rev_obj
 
 				update_rev_icons_added(H.mind)
@@ -256,6 +251,6 @@
 			var/datum/objective/mutiny/rp/rev_obj = new
 			rev_obj.owner = rev_mind
 			rev_obj.target = M.mind
-			rev_obj.explanation_text = "Assassinate, convert or capture [M.real_name], the [M.mind.assigned_role]."
+			rev_obj.explanation_text = "Assassinate, convert or capture [M.real_name], the [M.mind.assigned_job.title]."
 			rev_mind.objectives += rev_obj
-			to_chat(rev_mind.current, SPAN_WARNING("A new Head of Staff, [M.real_name], the [M.mind.assigned_role] has appeared. Your objectives have been updated."))
+			to_chat(rev_mind.current, SPAN_WARNING("A new Head of Staff, [M.real_name], the [M.mind.assigned_job.title] has appeared. Your objectives have been updated."))

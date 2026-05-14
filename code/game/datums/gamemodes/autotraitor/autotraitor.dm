@@ -16,12 +16,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	possible_traitors = get_players_for_role(BE_TRAITOR)
-
-	for_no_type_check(var/datum/mind/player, possible_traitors)
-		for(var/job in restricted_jobs)
-			if(player.assigned_role == job)
-				possible_traitors -= player
+	possible_traitors = sort_possible_antagonists(get_players_for_role(BE_TRAITOR))
 
 	for(var/mob/dead/new_player/P in GLOBL.dead_mob_list)
 		if(isnotnull(P.client) && P.ready)
@@ -85,10 +80,7 @@
 				continue
 			if((player.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(player, "Syndicate"))
 				possible_traitors += player
-		for(var/datum/mind/player in possible_traitors)
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					possible_traitors -= player
+		possible_traitors = sort_possible_antagonists(possible_traitors)
 
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")

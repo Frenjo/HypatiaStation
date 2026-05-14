@@ -13,8 +13,11 @@ var/list/possible_changeling_IDs = list(
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
-	restricted_jobs = list("AI", "Robot")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_jobs = list(/datum/job/ai, /datum/job/robot)
+	protected_jobs = list(
+		/datum/job/officer, /datum/job/warden, /datum/job/detective,
+		/datum/job/hos, /datum/job/captain
+	)
 	required_players = 2
 	required_players_secret = 10
 	required_enemies = 1
@@ -51,12 +54,7 @@ var/list/possible_changeling_IDs = list(
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	var/list/datum/mind/possible_changelings = get_players_for_role(BE_CHANGELING)
-
-	for_no_type_check(var/datum/mind/player, possible_changelings)
-		for(var/job in restricted_jobs)	//Removing robots from the list
-			if(player.assigned_role == job)
-				possible_changelings -= player
+	var/list/datum/mind/possible_changelings = sort_possible_antagonists(get_players_for_role(BE_CHANGELING))
 
 	changeling_amount = 1 + round(num_players() / 10)
 
@@ -128,7 +126,7 @@ var/list/possible_changeling_IDs = list(
 		to_chat(changeling.current, "<B>You must complete the following tasks:</B>")
 
 	if(changeling.current.mind)
-		if(changeling.current.mind.assigned_role == "Clown")
+		if(istype(changeling.current.mind.assigned_job.type, /datum/job/clown))
 			to_chat(changeling.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 			changeling.current.mutations.Remove(MUTATION_CLUMSY)
 

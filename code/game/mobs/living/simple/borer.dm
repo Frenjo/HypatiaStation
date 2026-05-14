@@ -445,5 +445,4 @@
 
 	src.mind = candidate.mob.mind
 	src.ckey = candidate.ckey
-	if(src.mind)
-		src.mind.assigned_role = "Cortical Borer"
+	mind?.special_roles.Add(SPECIAL_ROLE_CORTICAL_BORER)

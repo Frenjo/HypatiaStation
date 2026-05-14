@@ -152,7 +152,7 @@ ________________________________________________________________________________
 //=======//INITIALIZE//=======//
 
 /obj/item/clothing/suit/space/space_ninja/proc/ninitialize(delay = s_delay, mob/living/carbon/human/U = loc)
-	if(U.mind && U.mind.assigned_role=="MODE" && !s_initialized && !s_busy)//Shouldn't be busy... but anything is possible I guess.
+	if(U.mind?.has_special_role(SPECIAL_ROLE_NINJA) && !s_initialized && !s_busy)//Shouldn't be busy... but anything is possible I guess.
 		s_busy = 1
 		for(var/i,i<7,i++)
 			switch(i)
@@ -184,7 +184,7 @@ ________________________________________________________________________________
 			sleep(delay)
 		s_busy = 0
 	else
-		if(!U.mind||U.mind.assigned_role!="MODE")//Your run of the mill persons shouldn't know what it is. Or how to turn it on.
+		if(!U.mind?.has_special_role()) // Your run of the mill persons shouldn't know what it is. Or how to turn it on.
 			to_chat(U, "You do not understand how this suit functions. Where the heck did it even come from?")
 		else if(s_initialized)
 			to_chat(U, "\red The suit is already functioning. \black <b>Please report this bug.</b>")

@@ -23,7 +23,6 @@
 	var/datum/mind/ninja = pick(possible_ninjas)
 	ninjas += ninja
 	modePlayer += ninja
-	ninja.assigned_role = "MODE" //So they aren't chosen for other jobs.
 	ninja.special_roles.Add(SPECIAL_ROLE_NINJA)
 	ninja.original = ninja.current
 

@@ -13,70 +13,23 @@
 		mind.name = real_name
 	mind.current = src
 
-// Human
-/mob/living/carbon/human/mind_initialize()
-	. = ..()
-	if(isnull(mind.assigned_role))
-		mind.assigned_role = "Assistant"	// Default.
-
-// Monkey
-/mob/living/carbon/monkey/mind_initialize()
-	. = ..()
-
-// Slime
-/mob/living/simple/slime/mind_initialize()
-	. = ..()
-	mind.assigned_role = "slime"
-
 // Xeno Larva
 /mob/living/carbon/alien/larva/mind_initialize()
 	. = ..()
 	mind.special_roles.Add(SPECIAL_ROLE_LARVA)
 
-// AI
-/mob/living/silicon/ai/mind_initialize()
-	. = ..()
-	mind.assigned_role = "AI"
-
-// Robot
-/mob/living/silicon/robot/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Robot"
-
-// pAI
-/mob/living/silicon/pai/mind_initialize()
-	. = ..()
-	mind.assigned_role = "pAI"
-
-// Animals
-/mob/living/simple/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Animal"
-
-/mob/living/simple/corgi/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Corgi"
-
-/mob/living/simple/shade/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Shade"
-
 /mob/living/simple/construct/builder/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Artificer"
 	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/construct/wraith/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Wraith"
 	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/construct/armoured/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Juggernaut"
 	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/vox/armalis/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Armalis"
 	mind.special_roles.Add(SPECIAL_ROLE_VOX_RAIDER)

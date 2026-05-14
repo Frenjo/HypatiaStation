@@ -1,5 +1,6 @@
 #define SPECIAL_ROLE_ALIEN "alien"
 #define SPECIAL_ROLE_CHANGELING "changeling"
+#define SPECIAL_ROLE_CORTICAL_BORER "cortical borer"
 #define SPECIAL_ROLE_CULTIST "cultist"
 #define SPECIAL_ROLE_DEATH_COMMANDO "death commando"
 #define SPECIAL_ROLE_HEAD_REVOLUTIONARY "head revolutionary"

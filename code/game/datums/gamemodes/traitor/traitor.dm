@@ -5,8 +5,11 @@
 /datum/game_mode/traitor
 	name = "traitor"
 	config_tag = "traitor"
-	restricted_jobs = list("Robot")//They are part of the AI if he is traitor so are they, they use to get double chances
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")//AI", Currently out of the list as malf does not work for shit
+	restricted_jobs = list(/datum/job/robot) // They are part of the AI if he is traitor so are they, they use to get double chances
+	protected_jobs = list(
+		/datum/job/officer, /datum/job/warden, /datum/job/detective,
+		/datum/job/hos, /datum/job/captain
+	) // AI is currently out of the list as malf does not work for shit.
 	required_players = 0
 	required_enemies = 1
 	recommended_enemies = 4
@@ -26,7 +29,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	var/list/possible_traitors = get_players_for_role(BE_TRAITOR)
+	var/list/possible_traitors = sort_possible_antagonists(get_players_for_role(BE_TRAITOR))
 
 	// stop setup if no possible traitors
 	if(!length(possible_traitors))
@@ -38,11 +41,6 @@
 		num_traitors = max(1, round((num_players()) / (traitor_scaling_coeff)))
 	else
 		num_traitors = max(1, min(num_players(), traitors_possible))
-
-	for(var/datum/mind/player in possible_traitors)
-		for(var/job in restricted_jobs)
-			if(player.assigned_role == job)
-				possible_traitors -= player
 
 	for(var/j = 0, j < num_traitors, j++)
 		if(!length(possible_traitors))
@@ -220,7 +218,7 @@
 		return
 	. = 1
 	if(traitor_mob.mind)
-		if(traitor_mob.mind.assigned_role == "Clown")
+		if(istype(traitor_mob.mind.assigned_job, /datum/job/clown))
 			to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			traitor_mob.mutations.Remove(MUTATION_CLUMSY)
 

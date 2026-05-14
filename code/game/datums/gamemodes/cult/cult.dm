@@ -13,7 +13,7 @@
 /proc/is_convertable_to_cult(datum/mind/mind)
 	if(!istype(mind))
 		return 0
-	if(ishuman(mind.current) && (mind.assigned_role in list("Captain", "Chaplain")))
+	if(ishuman(mind.current) && (mind.assigned_job.type in list(/datum/job/captain, /datum/job/captain)))
 		return 0
 	for(var/obj/item/implant/loyalty/L in mind.current)
 		if(L && (L.imp_in == mind.current))	//Checks to see if the person contains an implant, then checks that the implant is actually inside of them
@@ -23,7 +23,11 @@
 /datum/game_mode/cult
 	name = "cult"
 	config_tag = "cult"
-	restricted_jobs = list("Chaplain", "AI", "Robot", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_jobs = list(
+		/datum/job/chaplain, /datum/job/ai, /datum/job/robot,
+		/datum/job/officer, /datum/job/warden, /datum/job/detective,
+		/datum/job/hos, /datum/job/captain
+	)
 	protected_jobs = list()
 	required_players = 5
 	required_players_secret = 15
@@ -66,11 +70,7 @@
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	var/list/datum/mind/cultists_possible = get_players_for_role(BE_CULTIST)
-	for_no_type_check(var/datum/mind/player, cultists_possible)
-		for(var/job in restricted_jobs)//Removing heads and such from the list
-			if(player.assigned_role == job)
-				cultists_possible -= player
+	var/list/datum/mind/cultists_possible = sort_possible_antagonists(get_players_for_role(BE_CULTIST))
 
 	for(var/cultists_number in 1 to max_cultists_to_start)
 		if(!length(cultists_possible))
@@ -115,7 +115,7 @@
 				explanation = "Our knowledge must live on. Make sure at least [acolytes_needed] acolytes escape on the shuttle to spread their work on an another station."
 			if("sacrifice")
 				if(sacrifice_target)
-					explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_role]. You will need the sacrifice rune (Hell blood join) and three acolytes to do so."
+					explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_job.title]. You will need the sacrifice rune (Hell blood join) and three acolytes to do so."
 				else
 					explanation = "Free objective."
 			if("eldergod")
@@ -130,7 +130,7 @@
 		return
 
 	if(mob.mind)
-		if(mob.mind.assigned_role == "Clown")
+		if(istype(mob.mind.assigned_job.type, /datum/job/clown))
 			to_chat(mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			mob.mutations.Remove(MUTATION_CLUMSY)
 
@@ -292,13 +292,13 @@
 					if("sacrifice")
 						if(sacrifice_target)
 							if(sacrifice_target in sacrificed)
-								explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_role]. <font color='green'><B>Success!</B></font>"
+								explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_job.title]. <font color='green'><B>Success!</B></font>"
 								feedback_add_details("cult_objective", "cult_sacrifice|SUCCESS")
 							else if(sacrifice_target && sacrifice_target.current)
-								explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_role]. <font color='red'>Fail.</font>"
+								explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_job.title]. <font color='red'>Fail.</font>"
 								feedback_add_details("cult_objective", "cult_sacrifice|FAIL")
 						else
-							explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_role]. <font color='red'>Fail (Gibbed).</font>"
+							explanation = "Sacrifice [sacrifice_target.name], the [sacrifice_target.assigned_job.title]. <font color='red'>Fail (Gibbed).</font>"
 							feedback_add_details("cult_objective", "cult_sacrifice|FAIL|GIBBED")
 					if("eldergod")
 						if(!eldergod)

@@ -1825,7 +1825,7 @@
 	if(BITTEST(hud_updateflag, SPECIALROLE_HUD))
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
-		if(isnotnull(mind))
+		if(mind?.has_special_role())
 			var/special_role = pick(mind.special_roles)
 			switch(special_role)
 				if(SPECIAL_ROLE_TRAITOR, SPECIAL_ROLE_SYNDICATE)

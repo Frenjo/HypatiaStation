@@ -303,7 +303,7 @@
 /obj/item/paper/attackby(obj/item/P, mob/user)
 	..()
 	var/clown = 0
-	if(user.mind && (user.mind.assigned_role == "Clown"))
+	if(istype(user.mind?.assigned_job, /datum/job/clown))
 		clown = 1
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
