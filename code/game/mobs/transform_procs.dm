@@ -141,7 +141,7 @@
 		qdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
-	var/mmi_type = O.mmi_types_by_title[mind?.role_alt_title ? mind.role_alt_title : mind?.assigned_role]
+	var/mmi_type = O.mmi_types_by_title[mind?.job_alt_title ? mind.job_alt_title : mind?.assigned_role]
 
 	O.gender = gender
 	O.invisibility = 0

@@ -325,8 +325,8 @@
 /mob/dead/new_player/proc/announce_arrival(mob/living/carbon/human/character, rank, join_message)
 	if(global.PCticker?.current_state == GAME_STATE_PLAYING)
 		var/obj/item/radio/intercom/a = new /obj/item/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
-		if(isnotnull(character.mind.role_alt_title))
-			rank = character.mind.role_alt_title
+		if(isnotnull(character.mind.job_alt_title))
+			rank = character.mind.job_alt_title
 		a.autosay("[character.real_name], [rank ? "[rank]," : "visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 		qdel(a)
 

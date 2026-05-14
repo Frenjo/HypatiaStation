@@ -37,7 +37,7 @@
 	var/active = FALSE
 
 	var/datum/job/assigned_job
-	var/role_alt_title = null
+	var/job_alt_title = null
 
 	var/assigned_role
 	var/list/special_roles = list()

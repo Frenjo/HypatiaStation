@@ -59,7 +59,7 @@ CONTROLLER_DEF(jobs)
 		if((job.current_positions < position_limit) || position_limit == -1)
 			debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 			player.mind.assigned_role = rank
-			player.mind.role_alt_title = get_player_alt_title(player, rank)
+			player.mind.job_alt_title = get_player_alt_title(player, rank)
 			unassigned.Remove(player)
 			job.current_positions++
 			return 1
@@ -333,12 +333,12 @@ CONTROLLER_DEF(jobs)
 	var/datum/job/job = get_job(rank)
 	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/robot)) // AI/Robot checking is a temporary fix.
 		if(isnotnull(job))
-			job.equip(H, H.mind.role_alt_title)
+			job.equip(H, H.mind.job_alt_title)
 		else
 			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	if(istype(job, /datum/job/captain))
-		minor_announce("[H.real_name] is the [H.mind.role_alt_title]!", "Staffing Announcement:")
+		minor_announce("[H.real_name] is the [H.mind.job_alt_title]!", "Staffing Announcement:")
 
 	H.job = rank
 
@@ -385,7 +385,7 @@ CONTROLLER_DEF(jobs)
 		H.mind.store_memory(remembered_info)
 
 	// Displays job-based and standard spawn information.
-	to_chat(H, jointext(job.get_spawn_message_content(H.mind.role_alt_title), "<br>"))
+	to_chat(H, jointext(job.get_spawn_message_content(H.mind.job_alt_title), "<br>"))
 	to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	if(rank == "Robot")
