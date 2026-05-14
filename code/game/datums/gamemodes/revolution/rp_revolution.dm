@@ -21,9 +21,6 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/rp_revolution/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
 	var/num_players = num_players()
 	max_headrevs = max(num_players / 4, 3)
 	recommended_enemies = max_headrevs
@@ -34,7 +31,7 @@
 			head_check = 1
 			break
 
-	var/list/datum/mind/possible_headrevs = sort_possible_antagonists(get_players_for_role(BE_REV))
+	var/list/datum/mind/possible_headrevs = get_players_for_role(/decl/special_role/revolutionary)
 
 	for(var/i in 1 to max_headrevs)
 		if(!length(possible_headrevs))

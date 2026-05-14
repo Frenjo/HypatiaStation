@@ -13,20 +13,24 @@
 /datum/game_mode
 	var/name = "invalid"
 	var/config_tag = null
+
 	var/intercept_hacked = 0
 	var/list/intercept_time = list(1 MINUTE, 3 MINUTES) // The time range between which the intercept will be sent.
+
 	var/votable = TRUE
 	var/probability = 0
+
 	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
 	var/explosion_in_progress = 0 //sit back and relax
 	var/list/datum/mind/modePlayer = new
-	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
-	var/list/protected_jobs = list()	// Jobs that can't be traitors because
+
 	var/required_players = 0
 	var/required_players_secret = 0 //Minimum number of players for that game mode to be chose in Secret
 	var/required_enemies = 0
 	var/recommended_enemies = 0
+
 	var/newscaster_announcements = null
+
 	var/uplink_welcome = "Syndicate Uplink Console:"
 	var/uplink_uses = 10
 	var/uplink_items = {"Highly Visible and Dangerous Weapons;
@@ -283,35 +287,20 @@ Implants;
 // Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than recommended_enemies
 //			recommended_enemies if the number of people with that role set to yes is less than recomended_enemies,
 //			Less if there are not enough valid players in the game entirely to make recommended_enemies.
-/datum/game_mode/proc/get_players_for_role(role, override_jobbans = 0)
+/datum/game_mode/proc/get_players_for_role(role_type, override_jobbans = 0)
 	. = list()
 	var/list/players = list()
 	//var/list/drafted = list()
 	//var/datum/mind/applicant = null
 
-	var/roletext
-	switch(role)
-		if(BE_CHANGELING)
-			roletext = "changeling"
-		if(BE_TRAITOR)
-			roletext = "traitor"
-		if(BE_OPERATIVE)
-			roletext = "operative"
-		if(BE_WIZARD)
-			roletext = "wizard"
-		if(BE_REV)
-			roletext = "revolutionary"
-		if(BE_CULTIST)
-			roletext = "cultist"
-		if(BE_NINJA)
-			roletext = "ninja"
-		if(BE_RAIDER)
-			roletext = "raider"
+	var/decl/special_role/role = GET_DECL_INSTANCE(role_type)
+	if(isnull(role))
+		return .
 
 	// Assemble a list of active players without jobbans.
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.client && player.ready)
-			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
+			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, role.role_type))
 				players.Add(player)
 
 	// Shuffle the players list so that it becomes ping-independent.
@@ -319,8 +308,8 @@ Implants;
 
 	// Get a list of all the people who want to be the antagonist for this round
 	for(var/mob/dead/new_player/player in players)
-		if(player.client.prefs.be_special & role)
-			log_debug("[player.key] had [roletext] enabled, so we are drafting them.")
+		if(player.client.prefs.be_special & role.role_flag)
+			log_debug("[player.key] had [role.role_type] enabled, so we are drafting them.")
 			. += player.mind
 			players.Remove(player)
 
@@ -335,14 +324,13 @@ Implants;
 					break
 
 	// Remove candidates who want to be antagonist but have a job that precludes it
-	if(restricted_jobs)
-		. = sort_possible_antagonists(.)
+	. = role.get_candidates(.)
 
 	/*if(length(.) < recommended_enemies)
 		for(var/mob/dead/new_player/player in players)
 			if(player.client && player.ready)
 				if(!(player.client.prefs.be_special & role)) // We don't have enough people who want to be antagonist, make a seperate list of people who don't want to be one
-					if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext)) //Nodrak/Carn: Antag Job-bans
+					if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, role_name)) //Nodrak/Carn: Antag Job-bans
 						drafted += player.mind
 
 	if(restricted_jobs)
@@ -389,14 +377,6 @@ Implants;
 		else												// Not enough scrubs, ABORT ABORT ABORT
 			break
 	*/
-
-/datum/game_mode/proc/sort_possible_antagonists(list/datum/mind/possible_antagonists)
-	RETURN_TYPE(/list/datum/mind)
-
-	for_no_type_check(var/datum/mind/possible, possible_antagonists)
-		for(var/datum/job/job_type in restricted_jobs)
-			if(!istype(possible.assigned_job, job_type))
-				. += possible
 
 /datum/game_mode/proc/latespawn(mob)
 	return

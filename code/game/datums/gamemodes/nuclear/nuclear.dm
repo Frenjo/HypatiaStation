@@ -30,7 +30,7 @@
 	if(!..())
 		return 0
 
-	var/list/possible_syndicates = get_players_for_role(BE_OPERATIVE)
+	var/list/possible_syndicates = get_players_for_role(/decl/special_role/operative)
 	var/agent_number = 0
 
     /*

@@ -2,7 +2,6 @@
 	name = "traitor+changeling"
 	config_tag = "traitorchan"
 	traitors_possible = 3 //hard limit on traitors if scaling is turned off
-	restricted_jobs = list(/datum/job/ai, /datum/job/robot)
 	required_players = 3
 	required_players_secret = 10
 	required_enemies = 2
@@ -14,10 +13,7 @@
 	. += "<B>There is an alien creature on the station along with some Syndicate operatives out for their own gain! Do not let the changeling and the traitors succeed!</B>"
 
 /datum/game_mode/traitor/changeling/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
-	var/list/datum/mind/possible_changelings = sort_possible_antagonists(get_players_for_role(BE_CHANGELING))
+	var/list/datum/mind/possible_changelings = get_players_for_role(/decl/special_role/changeling)
 
 	if(length(possible_changelings))
 		var/datum/mind/changeling = pick(possible_changelings)

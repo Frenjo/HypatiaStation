@@ -28,21 +28,25 @@
 */
 	SHOW_BROWSER(usr, dat, "window=oneclickantag;size=400x400")
 
-/datum/admins/proc/return_antagonist_candidates(role_flag, antagonist_type, restricted_jobs)
-	var/list/candidates = list()
+/datum/admins/proc/return_antagonist_candidates(role_type)
+	. = list()
+
+	var/decl/special_role/role = GET_DECL_INSTANCE(role_type)
+	if(isnull(role))
+		return .
+
 	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
-		if(!(applicant.client.prefs.be_special & role_flag))
+		if(!(applicant.client.prefs.be_special & role.role_flag))
 			continue
 		if(!applicant.stat || isnull(applicant.mind))
 			continue
-		if(applicant.mind.has_special_role(antagonist_type))
+		if(applicant.mind.has_special_role(role.role_type))
 			continue
-		if(jobban_isbanned(applicant, antagonist_type) || jobban_isbanned(applicant, "Syndicate"))
+		if(jobban_isbanned(applicant, role.role_type) || jobban_isbanned(applicant, "Syndicate"))
 			continue
-		if(applicant.job in restricted_jobs)
+		if(applicant.job in role.restricted_jobs)
 			continue
-		candidates.Add(applicant)
-	return candidates
+		. += (applicant)
 
 /datum/admins/proc/make_ai_malfunction()
 	var/list/mob/living/silicon/AIs = list()
@@ -61,11 +65,7 @@
 	return 0
 
 /datum/admins/proc/make_traitors()
-	var/datum/game_mode/traitor/temp = global.CTconfiguration.mode_cache[/datum/game_mode/traitor]
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		temp.restricted_jobs.Add(temp.protected_jobs)
-
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_TRAITOR, SPECIAL_ROLE_TRAITOR, temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/traitor)
 	if(length(candidates))
 		var/num_traitors = min(length(candidates), 3)
 		for(var/i = 0, i < num_traitors, i++)
@@ -76,11 +76,7 @@
 	return 0
 
 /datum/admins/proc/make_changelings()
-	var/datum/game_mode/changeling/temp = global.CTconfiguration.mode_cache[/datum/game_mode/changeling]
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		temp.restricted_jobs.Add(temp.protected_jobs)
-
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CHANGELING, SPECIAL_ROLE_CHANGELING, temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/changeling)
 	if(length(candidates))
 		var/num_changelings = min(length(candidates), 3)
 		for(var/i = 0, i < num_changelings, i++)
@@ -91,11 +87,7 @@
 	return 0
 
 /datum/admins/proc/make_revolutionaries()
-	var/datum/game_mode/revolution/temp = global.CTconfiguration.mode_cache[/datum/game_mode/revolution]
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		temp.restricted_jobs.Add(temp.protected_jobs)
-
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_REV, SPECIAL_ROLE_REVOLUTIONARY, temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/revolutionary)
 	if(length(candidates))
 		var/num_revs = min(length(candidates), 3)
 		for(var/i = 0, i < num_revs, i++)
@@ -142,11 +134,7 @@
 	return 0
 
 /datum/admins/proc/make_cult()
-	var/datum/game_mode/cult/temp = global.CTconfiguration.mode_cache[/datum/game_mode/cult]
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		temp.restricted_jobs.Add(temp.protected_jobs)
-
-	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CULTIST, SPECIAL_ROLE_CULTIST, temp.restricted_jobs)
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/cultist)
 	if(length(candidates))
 		var/num_cultists = min(length(candidates), 4)
 
@@ -154,7 +142,6 @@
 			var/mob/living/carbon/human/H = pick(candidates)
 			H.mind.make_cultist()
 			candidates.Remove(H)
-			temp.grant_runeword(H)
 		return 1
 	return 0
 

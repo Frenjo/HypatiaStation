@@ -17,7 +17,7 @@
 /datum/game_mode/ninja/can_start()
 	if(!..())
 		return 0
-	var/list/datum/mind/possible_ninjas = get_players_for_role(BE_NINJA)
+	var/list/datum/mind/possible_ninjas = get_players_for_role(/decl/special_role/ninja)
 	if(!length(possible_ninjas))
 		return 0
 	var/datum/mind/ninja = pick(possible_ninjas)

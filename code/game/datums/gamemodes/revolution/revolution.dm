@@ -14,12 +14,7 @@
 /datum/game_mode/revolution
 	name = "revolution"
 	config_tag = "revolution"
-	restricted_jobs = list(
-		/datum/job/officer, /datum/job/warden, /datum/job/detective,
-		/datum/job/ai, /datum/job/robot, /datum/job/captain,
-		/datum/job/hop, /datum/job/hos, /datum/job/chief_engineer,
-		/datum/job/rd, /datum/job/cmo
-	)
+
 	required_players = 4
 	required_players_secret = 15
 	required_enemies = 3
@@ -47,16 +42,13 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
 	var/head_check = 0
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.mind.assigned_job.head_position)
 			head_check = 1
 			break
 
-	var/list/datum/mind/possible_headrevs = sort_possible_antagonists(get_players_for_role(BE_REV))
+	var/list/datum/mind/possible_headrevs = get_players_for_role(/decl/special_role/revolutionary)
 
 	for(var/i in 1 to max_headrevs)
 		if(!length(possible_headrevs))

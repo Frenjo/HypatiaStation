@@ -23,7 +23,7 @@
 /datum/game_mode/wizard/can_start()//This could be better, will likely have to recode it later
 	if(!..())
 		return 0
-	var/list/datum/mind/possible_wizards = get_players_for_role(BE_WIZARD)
+	var/list/datum/mind/possible_wizards = get_players_for_role(/decl/special_role/wizard)
 	if(!length(possible_wizards))
 		return 0
 	var/datum/mind/wizard = pick(possible_wizards)

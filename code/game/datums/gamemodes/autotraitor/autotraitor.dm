@@ -13,10 +13,7 @@
 	. += "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>"
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
-	possible_traitors = sort_possible_antagonists(get_players_for_role(BE_TRAITOR))
+	possible_traitors = get_players_for_role(/decl/special_role/traitor)
 
 	for(var/mob/dead/new_player/P in GLOBL.dead_mob_list)
 		if(isnotnull(P.client) && P.ready)
@@ -67,7 +64,6 @@
 		//message_admins("Performing AutoTraitor Check")
 		var/playercount = 0
 		var/traitorcount = 0
-		var/possible_traitors[0]
 		for(var/mob/living/player in GLOBL.mob_list)
 			if(isnull(player.client))
 				continue
@@ -78,9 +74,7 @@
 			if(player.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 				traitorcount += 1
 				continue
-			if((player.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(player, "Syndicate"))
-				possible_traitors += player
-		possible_traitors = sort_possible_antagonists(possible_traitors)
+		var/list/possible_traitors = get_players_for_role(/decl/special_role/traitor)
 
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")

@@ -137,6 +137,8 @@
 	if(!global.PCticker.mode.equip_cultist(current))
 		to_chat(H, "Spawning an amulet from your Master failed.")
 
+	cult.grant_runeword(H)
+
 /datum/mind/proc/make_revolutionary()
 	if(length(global.PCticker.mode.head_revolutionaries))
 		// copy targets

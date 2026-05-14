@@ -13,11 +13,6 @@ var/list/possible_changeling_IDs = list(
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
-	restricted_jobs = list(/datum/job/ai, /datum/job/robot)
-	protected_jobs = list(
-		/datum/job/officer, /datum/job/warden, /datum/job/detective,
-		/datum/job/hos, /datum/job/captain
-	)
 	required_players = 2
 	required_players_secret = 10
 	required_enemies = 1
@@ -51,10 +46,7 @@ var/list/possible_changeling_IDs = list(
 	. += "<B>There are alien changelings on the station. Do not let the changelings succeed!</B>"
 
 /datum/game_mode/changeling/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
-	var/list/datum/mind/possible_changelings = sort_possible_antagonists(get_players_for_role(BE_CHANGELING))
+	var/list/datum/mind/possible_changelings = get_players_for_role(/decl/special_role/changeling)
 
 	changeling_amount = 1 + round(num_players() / 10)
 
