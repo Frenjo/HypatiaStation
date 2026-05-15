@@ -21,14 +21,13 @@
 	. += "<B>There is a Syndicate traitor on the station. Do not let the traitor succeed!</B>"
 
 /datum/game_mode/traitor/pre_setup()
+	. = ..()
 	var/list/possible_traitors = get_players_for_role(/decl/special_role/traitor)
-
 	// stop setup if no possible traitors
 	if(!length(possible_traitors))
 		return 0
 
 	var/num_traitors = 1
-
 	if(CONFIG_GET(/decl/configuration_entry/traitor_scaling))
 		num_traitors = max(1, round((num_players()) / (traitor_scaling_coeff)))
 	else
@@ -38,23 +37,13 @@
 		if(!length(possible_traitors))
 			break
 		var/datum/mind/traitor = pick(possible_traitors)
-		traitors += traitor
-		traitor.special_roles.Add(SPECIAL_ROLE_TRAITOR)
+		traitors.Add(traitor)
 		possible_traitors.Remove(traitor)
-
-	if(!length(traitors))
-		return 0
-	return 1
 
 /datum/game_mode/traitor/post_setup()
 	. = ..()
-	for(var/datum/mind/traitor in traitors)
-		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			forge_traitor_objectives(traitor)
-		spawn(rand(10, 100))
-			finalize_traitor(traitor)
-			greet_traitor(traitor)
-	modePlayer += traitors
+	for_no_type_check(var/datum/mind/traitor, traitors)
+		traitor.make_traitor()
 
 /datum/game_mode/proc/forge_traitor_objectives(datum/mind/traitor)
 	if(issilicon(traitor.current))

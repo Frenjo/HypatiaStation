@@ -81,7 +81,6 @@
 
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		greet_revolutionary(rev_mind)
-	modePlayer += head_revolutionaries
 	if(global.PCemergency)
 		global.PCemergency.auto_recall = TRUE
 

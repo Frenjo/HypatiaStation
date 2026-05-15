@@ -54,6 +54,7 @@
 	. += "<B>Personnel:</B> Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had."
 
 /datum/game_mode/cult/pre_setup()
+	. = ..()
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		if(prob(50))
 			objectives += "survive"
@@ -62,21 +63,20 @@
 			objectives += "eldergod"
 			objectives += "sacrifice"
 
-	var/list/datum/mind/cultists_possible = get_players_for_role(/decl/special_role/cultist)
+	var/list/datum/mind/possible_cultists = get_players_for_role(/decl/special_role/cultist)
+	if(!length(possible_cultists))
+		return 0
 
-	for(var/cultists_number in 1 to max_cultists_to_start)
-		if(!length(cultists_possible))
+	for(var/num_cultists in 1 to max_cultists_to_start)
+		if(!length(possible_cultists))
 			break
-		var/datum/mind/cultist = pick(cultists_possible)
-		cultists_possible -= cultist
-		cult += cultist
-
-	return length(cult)
+		var/datum/mind/cultist = pick(possible_cultists)
+		cult.Add(cultist)
+		possible_cultists.Remove(cultist)
 
 /datum/game_mode/cult/post_setup()
 	. = ..()
 
-	modePlayer += cult
 	if("sacrifice" in objectives)
 		var/list/possible_targets = get_unconvertables()
 

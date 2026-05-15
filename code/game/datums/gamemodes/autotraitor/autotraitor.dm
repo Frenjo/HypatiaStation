@@ -13,7 +13,11 @@
 	. += "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>"
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
+	. = ..()
 	possible_traitors = get_players_for_role(/decl/special_role/traitor)
+	// Stop setup if no possible traitors
+	if(!length(possible_traitors))
+		return 0
 
 	for(var/mob/dead/new_player/P in GLOBL.dead_mob_list)
 		if(isnotnull(P.client) && P.ready)
@@ -25,10 +29,6 @@
 	var/traitor_prob = 0
 	max_traitors = round(num_players / 10) + 1
 	traitor_prob = (num_players - (max_traitors - 1) * 10) * 10
-
-	// Stop setup if no possible traitors
-	if(!length(possible_traitors))
-		return 0
 
 	if(CONFIG_GET(/decl/configuration_entry/traitor_scaling))
 		num_traitors = max_traitors - 1 + prob(traitor_prob)
@@ -42,19 +42,12 @@
 		traitors += traitor
 		possible_traitors.Remove(traitor)
 
-	for_no_type_check(var/datum/mind/traitor, traitors)
-		if(!traitor || !istype(traitor))
-			traitors.Remove(traitor)
-			continue
-		traitor.special_roles.Add(SPECIAL_ROLE_TRAITOR)
-
-//	if(!length(traitors))
-//		return 0
-	return 1
-
 /datum/game_mode/traitor/autotraitor/post_setup()
 	. = ..()
 	CONFIG_SET(/decl/configuration_entry/respawn, TRUE)
+	for_no_type_check(var/datum/mind/traitor, traitors)
+		traitor.make_traitor()
+		possible_traitors.Remove(traitor)
 	traitorcheckloop()
 
 /datum/game_mode/traitor/autotraitor/proc/traitorcheckloop()
@@ -74,7 +67,7 @@
 			if(player.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 				traitorcount += 1
 				continue
-		var/list/possible_traitors = get_players_for_role(/decl/special_role/traitor)
+		possible_traitors = get_players_for_role(/decl/special_role/traitor)
 
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")

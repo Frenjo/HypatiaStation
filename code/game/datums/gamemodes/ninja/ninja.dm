@@ -14,25 +14,17 @@
 	. = list()
 	. += "<B>The current game mode is Ninja!</B>"
 
-/datum/game_mode/ninja/can_start()
-	if(!..())
-		return 0
+/datum/game_mode/ninja/pre_setup()
+	. = ..()
 	var/list/datum/mind/possible_ninjas = get_players_for_role(/decl/special_role/ninja)
 	if(!length(possible_ninjas))
 		return 0
+
 	var/datum/mind/ninja = pick(possible_ninjas)
-	ninjas += ninja
-	modePlayer += ninja
-	ninja.special_roles.Add(SPECIAL_ROLE_NINJA)
+	ninjas.Add(ninja)
 	ninja.original = ninja.current
 
-	/*
-	if(!length(global.ninjastart))
-		to_chat(ninja.current, SPAN_DANGER("A proper starting location for you could not be found, please report this bug!"))
-		to_chat(ninja.current, SPAN_DANGER("Attempting to place at a carpspawn."))
-	*/
-
-	//Until such a time as people want to place ninja spawn points, carpspawn will do fine.
+	// Until such a time as people want to place ninja spawn points, carpspawn will do fine.
 	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 		if(L.name == "carpspawn")
 			GLOBL.ninjastart.Add(L)
@@ -43,14 +35,8 @@
 		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Aborting."))
 		return 0
 
-	return 1
-
-/datum/game_mode/ninja/pre_setup()
-	for_no_type_check(var/datum/mind/ninja, ninjas)
-		CLOSE_BROWSER(ninja.current, "window=playersetup")
-		ninja.current = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
-		ninja.current.ckey = ninja.key
-	return 1
+	ninja.current = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
+	ninja.current.ckey = ninja.key
 
 /datum/game_mode/ninja/post_setup()
 	. = ..()

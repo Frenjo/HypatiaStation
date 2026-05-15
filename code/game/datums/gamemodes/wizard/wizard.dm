@@ -20,36 +20,26 @@
 	. += "<B>The current game mode is - Wizard!</B>"
 	. += "<B>There is a [SPAN_WARNING("SPACE WIZARD")] on the station. You can't let them achieve their objective!</B>"
 
-/datum/game_mode/wizard/can_start()//This could be better, will likely have to recode it later
-	if(!..())
-		return 0
+/datum/game_mode/wizard/pre_setup()
+	. = ..()
 	var/list/datum/mind/possible_wizards = get_players_for_role(/decl/special_role/wizard)
 	if(!length(possible_wizards))
 		return 0
+
 	var/datum/mind/wizard = pick(possible_wizards)
-	wizards += wizard
-	modePlayer += wizard
-	wizard.special_roles.Add(SPECIAL_ROLE_WIZARD)
+	wizards.Add(wizard)
 	wizard.original = wizard.current
+
 	if(!length(GLOBL.wizardstart))
 		to_chat(wizard.current, SPAN_DANGER("A starting location for you could not be found, please report this bug!"))
 		return 0
-	return 1
 
-/datum/game_mode/wizard/pre_setup()
-	for_no_type_check(var/datum/mind/wizard, wizards)
-		wizard.current.forceMove(pick(GLOBL.wizardstart))
-	return 1
+	wizard.current.forceMove(pick(GLOBL.wizardstart))
 
 /datum/game_mode/wizard/post_setup()
 	. = ..()
 	for_no_type_check(var/datum/mind/wizard, wizards)
-		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			forge_wizard_objectives(wizard)
-		//learn_basic_spells(wizard.current)
-		equip_wizard(wizard.current)
-		name_wizard(wizard.current)
-		greet_wizard(wizard)
+		wizard.make_wizard()
 
 /datum/game_mode/proc/forge_wizard_objectives(datum/mind/wizard)
 	switch(rand(1, 100))

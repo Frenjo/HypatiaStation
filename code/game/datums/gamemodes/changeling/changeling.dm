@@ -46,21 +46,19 @@ var/list/possible_changeling_IDs = list(
 	. += "<B>There are alien changelings on the station. Do not let the changelings succeed!</B>"
 
 /datum/game_mode/changeling/pre_setup()
+	. = ..()
 	var/list/datum/mind/possible_changelings = get_players_for_role(/decl/special_role/changeling)
+	if(!length(possible_changelings))
+		return 0
 
 	changeling_amount = 1 + round(num_players() / 10)
 
-	if(length(possible_changelings))
-		for(var/i = 0, i < changeling_amount, i++)
-			if(!length(possible_changelings))
-				break
-			var/datum/mind/changeling = pick(possible_changelings)
-			possible_changelings -= changeling
-			changelings += changeling
-			modePlayer += changelings
-		return 1
-	else
-		return 0
+	for(var/i = 0, i < changeling_amount, i++)
+		if(!length(possible_changelings))
+			break
+		var/datum/mind/changeling = pick(possible_changelings)
+		changelings.Add(changeling)
+		possible_changelings.Remove(changeling)
 
 /datum/game_mode/changeling/post_setup()
 	. = ..()
