@@ -204,7 +204,7 @@
 				to_chat(user, SPAN_WARNING("Sticking a dead [I] into the frame would sort of defeat the purpose."))
 				return TRUE
 
-			if(M.brainmob.mind in global.PCticker.mode.head_revolutionaries)
+			if(M.brainmob.mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 				to_chat(user, SPAN_WARNING("The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [I]."))
 				return TRUE
 

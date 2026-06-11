@@ -170,6 +170,7 @@
 				rev_obj.explanation_text = "Assassinate [O.target.current.real_name], the [O.target.assigned_job.title]."
 				objectives.Add(rev_obj)
 			global.PCticker.mode.greet_revolutionary(src, 0)
+	current.verbs.Add(/mob/living/carbon/human/proc/RevConvert)
 	global.PCticker.mode.head_revolutionaries.Add(src)
 	global.PCticker.mode.update_rev_icons_added(src)
 	assign_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY)

@@ -674,7 +674,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 					n_p ++
 		else if(global.PCticker.current_state == GAME_STATE_PLAYING)
 			for(var/mob/living/carbon/human/P in GLOBL.player_list)
-				if(isnotnull(P.client) && !(P.mind in global.PCticker.mode.changelings) && P.mind != owner)
+				if(isnotnull(P.client) && !P.mind.has_special_role(SPECIAL_ROLE_CHANGELING) && P.mind != owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
 
