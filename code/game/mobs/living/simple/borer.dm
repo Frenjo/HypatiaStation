@@ -445,4 +445,4 @@
 
 	src.mind = candidate.mob.mind
 	src.ckey = candidate.ckey
-	mind?.special_roles.Add(SPECIAL_ROLE_CORTICAL_BORER)
+	mind?.assign_special_role(SPECIAL_ROLE_CORTICAL_BORER)

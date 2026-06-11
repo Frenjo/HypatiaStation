@@ -107,7 +107,7 @@
 				traitors += newtraitor.mind
 				to_chat(newtraitor, "\red <B>ATTENTION:</B> \black It is time to pay your debt to the Syndicate...")
 				to_chat(newtraitor, "<B>You are now a traitor.</B>")
-				newtraitor.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
+				newtraitor.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 				BITSET(newtraitor.hud_updateflag, SPECIALROLE_HUD)
 				var/obj_count = 1
 				to_chat(newtraitor, SPAN_INFO("Your current objectives:"))
@@ -164,7 +164,7 @@
 				equip_traitor(character)
 				traitors += character.mind
 				to_chat(character, SPAN_DANGER("You are the traitor."))
-				character.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
+				character.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 				if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(character)
 				else

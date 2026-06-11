@@ -518,7 +518,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 /mob/living/carbon/human/proc/create_mind_space_ninja()
 	mind_initialize()
-	mind.special_roles.Add(SPECIAL_ROLE_NINJA)
+	mind.assign_special_role(SPECIAL_ROLE_NINJA)
 
 	//ticker.mode.ninjas |= mind
 	return 1

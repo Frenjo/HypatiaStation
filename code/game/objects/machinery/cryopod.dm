@@ -222,7 +222,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 			if(length(occupant.mind.objectives))
 				qdel(occupant.mind.objectives)
-				occupant.mind.special_roles.Cut()
+				occupant.mind.clear_special_roles()
 			else
 				if(IS_GAME_MODE(/datum/game_mode/traitor/autotraitor))
 					var/datum/game_mode/traitor/autotraitor/current_mode = global.PCticker.mode

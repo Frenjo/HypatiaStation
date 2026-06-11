@@ -71,7 +71,7 @@
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			rev_mind.special_roles.Add(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
+			rev_mind.assign_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 			obj_count++
 	else
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
@@ -99,7 +99,7 @@
 		return 0
 	revolutionaries += rev_mind
 	to_chat(rev_mind.current, SPAN_WARNING("<FONT size = 3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"))
-	rev_mind.special_roles.Add(SPECIAL_ROLE_REVOLUTIONARY)
+	rev_mind.assign_special_role(SPECIAL_ROLE_REVOLUTIONARY)
 	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 	update_rev_icons_added(rev_mind)

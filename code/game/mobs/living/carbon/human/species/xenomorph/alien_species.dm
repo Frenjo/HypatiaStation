@@ -63,7 +63,7 @@
 
 /datum/species/xenos/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	H.mind?.special_roles.Add(SPECIAL_ROLE_ALIEN)
+	H.mind?.assign_special_role(SPECIAL_ROLE_ALIEN)
 
 	alien_number++ //Keep track of how many aliens we've had so far.
 	H.real_name = "alien [caste_name] ([alien_number])"

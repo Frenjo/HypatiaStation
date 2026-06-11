@@ -16,20 +16,20 @@
 // Xeno Larva
 /mob/living/carbon/alien/larva/mind_initialize()
 	. = ..()
-	mind.special_roles.Add(SPECIAL_ROLE_LARVA)
+	mind.assign_special_role(SPECIAL_ROLE_LARVA)
 
 /mob/living/simple/construct/builder/mind_initialize()
 	. = ..()
-	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
+	mind.assign_special_role(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/construct/wraith/mind_initialize()
 	. = ..()
-	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
+	mind.assign_special_role(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/construct/armoured/mind_initialize()
 	. = ..()
-	mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
+	mind.assign_special_role(SPECIAL_ROLE_CULTIST)
 
 /mob/living/simple/vox/armalis/mind_initialize()
 	. = ..()
-	mind.special_roles.Add(SPECIAL_ROLE_VOX_RAIDER)
+	mind.assign_special_role(SPECIAL_ROLE_VOX_RAIDER)

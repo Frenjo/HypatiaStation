@@ -339,7 +339,7 @@
 
 	//Creates mind stuff.
 	new_syndicate_commando.mind_initialize()
-	new_syndicate_commando.mind.special_roles.Add(SPECIAL_ROLE_SYNDICATE_COMMANDO)
+	new_syndicate_commando.mind.assign_special_role(SPECIAL_ROLE_SYNDICATE_COMMANDO)
 
 	//Adds them to current traitor list. Which is really the extra antagonist list.
 	global.PCticker.mode.traitors.Add(new_syndicate_commando.mind)
@@ -427,7 +427,7 @@
 	new_vox.dna.ready_dna(new_vox) // Creates DNA.
 	new_vox.dna.mutantrace = "vox"
 	new_vox.mind_initialize()
-	new_vox.mind.special_roles.Add(SPECIAL_ROLE_VOX_RAIDER)
+	new_vox.mind.assign_special_role(SPECIAL_ROLE_VOX_RAIDER)
 	new_vox.mutations |= MUTATION_NO_CLONE //Stops the station crew from messing around with their DNA.
 
 	global.PCticker.mode.traitors.Add(new_vox.mind)

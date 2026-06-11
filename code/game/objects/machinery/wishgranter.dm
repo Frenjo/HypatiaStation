@@ -60,7 +60,7 @@
 		user.update_mutations()
 
 		global.PCticker.mode.traitors += user.mind
-		user.mind.special_roles.Add(SPECIAL_ROLE_WISH_GRANTER_AVATAR)
+		user.mind.assign_special_role(SPECIAL_ROLE_WISH_GRANTER_AVATAR)
 
 		var/datum/objective/silence/silence = new /datum/objective/silence()
 		silence.owner = user.mind

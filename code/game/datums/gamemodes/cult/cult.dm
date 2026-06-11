@@ -97,7 +97,7 @@
 			memoize_cult_objectives(cult_mind)
 		else
 			FEEDBACK_ANTAGONIST_GREETING_GUIDE(cult_mind.current)
-		cult_mind.special_roles.Add(SPECIAL_ROLE_CULTIST)
+		cult_mind.assign_special_role(SPECIAL_ROLE_CULTIST)
 
 /datum/game_mode/cult/proc/memoize_cult_objectives(datum/mind/cult_mind)
 	for(var/obj_count in 1 to length(objectives))

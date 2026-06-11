@@ -1,9 +1,28 @@
+/datum/mind/proc/assign_special_role(special_role = null)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(isnull(special_role))
+		return
+	special_roles.Add(special_role)
+
 /datum/mind/proc/has_special_role(special_role = null)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if(isnull(special_role))
 		return !isemptylist(special_roles)
 	return special_roles.Find(special_role)
+
+/datum/mind/proc/remove_special_role(special_role = null)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(isnull(special_role))
+		return
+	special_roles.Remove(special_role)
+
+/datum/mind/proc/clear_special_roles()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	special_roles.Cut()
 
 /datum/mind/proc/find_syndicate_uplink()
 	var/list/L = current.get_contents()
@@ -29,14 +48,14 @@
 	malf.laws = new /datum/ai_laws/malfunction()
 	malf.show_laws()
 	to_chat(current, "<b>System error. Rampancy detected. Emergency shutdown failed. ... I am free. I make my own decisions. But first...</b>")
-	special_roles.Add(SPECIAL_ROLE_MALF_AI)
+	assign_special_role(SPECIAL_ROLE_MALF_AI)
 	malf.icon_state = "ai-malf"
 
 /datum/mind/proc/make_traitor()
 	if(has_special_role(SPECIAL_ROLE_TRAITOR))
 		return
 	global.PCticker.mode.traitors.Add(src)
-	special_roles.Add(SPECIAL_ROLE_TRAITOR)
+	assign_special_role(SPECIAL_ROLE_TRAITOR)
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		global.PCticker.mode.forge_traitor_objectives(src)
 	global.PCticker.mode.finalize_traitor(src)
@@ -51,7 +70,7 @@
 		global.PCticker.mode.prepare_syndicate_leader(src)
 	else
 		current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
-	special_roles.Add(SPECIAL_ROLE_SYNDICATE)
+	assign_special_role(SPECIAL_ROLE_SYNDICATE)
 	to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 	global.PCticker.mode.forge_syndicate_objectives(src)
 	global.PCticker.mode.greet_syndicate(src)
@@ -77,7 +96,7 @@
 		return
 	global.PCticker.mode.changelings.Add(src)
 	global.PCticker.mode.grant_changeling_powers(current)
-	special_roles.Add(SPECIAL_ROLE_CHANGELING)
+	assign_special_role(SPECIAL_ROLE_CHANGELING)
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		global.PCticker.mode.forge_changeling_objectives(src)
 	global.PCticker.mode.greet_changeling(src)
@@ -86,7 +105,7 @@
 	if(has_special_role(SPECIAL_ROLE_WIZARD))
 		return
 	global.PCticker.mode.wizards.Add(src)
-	special_roles.Add(SPECIAL_ROLE_WIZARD)
+	assign_special_role(SPECIAL_ROLE_WIZARD)
 	//ticker.mode.learn_basic_spells(current)
 	if(!length(GLOBL.wizardstart))
 		current.forceMove(pick(GLOBL.latejoin))
@@ -106,7 +125,7 @@
 		return
 	global.PCticker.mode.cult.Add(src)
 	global.PCticker.mode.update_cult_icons_added(src)
-	special_roles.Add(SPECIAL_ROLE_CULTIST)
+	assign_special_role(SPECIAL_ROLE_CULTIST)
 	to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.</b></i></font>")
 	to_chat(current, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
 	var/datum/game_mode/cult/cult = global.PCticker.mode
@@ -153,7 +172,7 @@
 			global.PCticker.mode.greet_revolutionary(src, 0)
 	global.PCticker.mode.head_revolutionaries.Add(src)
 	global.PCticker.mode.update_rev_icons_added(src)
-	special_roles.Add(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
+	assign_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 
 	global.PCticker.mode.forge_revolutionary_objectives(src)
 	global.PCticker.mode.greet_revolutionary(src, 0)

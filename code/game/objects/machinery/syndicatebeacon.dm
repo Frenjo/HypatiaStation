@@ -60,7 +60,7 @@
 			var/mob/living/carbon/human/N = M
 			global.PCticker.mode.equip_traitor(N)
 			global.PCticker.mode.traitors += N.mind
-			N.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
+			N.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 			var/objective = "Free Objective"
 			switch(rand(1,100))
 				if(1 to 50)

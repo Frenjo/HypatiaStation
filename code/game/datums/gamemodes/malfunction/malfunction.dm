@@ -54,7 +54,7 @@
 
 		greet_malf(ai_mind)
 
-		ai_mind.special_roles.Add(SPECIAL_ROLE_MALF_AI)
+		ai_mind.assign_special_role(SPECIAL_ROLE_MALF_AI)
 
 		ai.verbs.Add(/datum/game_mode/malfunction/proc/takeover)
 

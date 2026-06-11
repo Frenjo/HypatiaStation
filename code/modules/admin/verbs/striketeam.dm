@@ -116,7 +116,7 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 
 	//Creates mind stuff.
 	new_commando.mind_initialize()
-	new_commando.mind.special_roles.Add(SPECIAL_ROLE_DEATH_COMMANDO)
+	new_commando.mind.assign_special_role(SPECIAL_ROLE_DEATH_COMMANDO)
 	global.PCticker.mode.traitors |= new_commando.mind//Adds them to current traitor list. Which is really the extra antagonist list.
 	new_commando.equip_outfit(leader_selected ? /decl/hierarchy/outfit/death_commando/leader : /decl/hierarchy/outfit/death_commando/standard)
 	return new_commando

@@ -1947,7 +1947,7 @@
 					if(is_special_character(H)) continue
 					//traitorize(H, objective, 0)
 					global.PCticker.mode.traitors += H.mind
-					H.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
+					H.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 					var/datum/objective/new_objective = new
 					new_objective.owner = H
 					new_objective.explanation_text = objective
@@ -1957,7 +1957,7 @@
 					global.PCticker.mode.finalize_traitor(H.mind)
 				for(var/mob/living/silicon/A in GLOBL.player_list)
 					global.PCticker.mode.traitors += A.mind
-					A.mind.special_roles.Add(SPECIAL_ROLE_TRAITOR)
+					A.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 					var/datum/objective/new_objective = new
 					new_objective.owner = A
 					new_objective.explanation_text = objective
