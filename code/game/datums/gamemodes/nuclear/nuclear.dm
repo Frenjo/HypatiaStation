@@ -26,11 +26,12 @@
 	. += "<B>Syndicate</B>: Reclaim the disk and detonate the nuclear bomb anywhere on SS13."
 	. += "<B>Personnel</B>: Hold the disk and <B>escape with the disk</B> on the shuttle!"
 
-/datum/game_mode/nuclear/can_start()//This could be better, will likely have to recode it later
-	if(!..())
+/datum/game_mode/nuclear/pre_setup()
+	. = ..()
+	var/list/possible_syndicates = get_players_for_role(/decl/special_role/operative)
+	if(!possible_syndicates)
 		return 0
 
-	var/list/possible_syndicates = get_players_for_role(BE_OPERATIVE)
 	var/agent_number = 0
 
     /*
@@ -43,10 +44,7 @@
 	 *	agent_number = n_players/2
 	 */
 
-	if(length(possible_syndicates) < 1)
-		return 0
-
-	//Antag number should scale to active crew.
+	// Antag number should scale to active crew.
 	var/n_players = num_players()
 	agent_number = clamp((n_players / 5), 2, 6)
 
@@ -55,14 +53,14 @@
 
 	while(agent_number > 0)
 		var/datum/mind/new_syndicate = pick(possible_syndicates)
-		syndicates += new_syndicate
-		possible_syndicates -= new_syndicate //So it doesn't pick the same guy each time.
+		syndicates.Add(new_syndicate)
+		possible_syndicates.Remove(new_syndicate) // So it doesn't pick the same guy each time.
 		agent_number--
 
-	for_no_type_check(var/datum/mind/synd_mind, syndicates)
-		synd_mind.assigned_role = "MODE" //So they aren't chosen for other jobs.
-		synd_mind.special_role = "Syndicate"//So they actually have a special role/N
-	return 1
+/datum/game_mode/nuclear/post_setup()
+	. = ..()
+	for_no_type_check(var/datum/mind/syndicate, syndicates)
+		syndicate.make_nuclear_operative() // So they actually have a special role.
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

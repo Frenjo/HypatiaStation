@@ -21,14 +21,9 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/rp_revolution/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
 	var/num_players = num_players()
 	max_headrevs = max(num_players / 4, 3)
 	recommended_enemies = max_headrevs
-
-	var/list/datum/mind/possible_headrevs = get_players_for_role(BE_REV)
 
 	var/head_check = 0
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
@@ -36,10 +31,7 @@
 			head_check = 1
 			break
 
-	for_no_type_check(var/datum/mind/player, possible_headrevs)
-		for(var/job in restricted_jobs)//Removing heads and such from the list
-			if(player.assigned_role == job)
-				possible_headrevs -= player
+	var/list/datum/mind/possible_headrevs = get_players_for_role(/decl/special_role/revolutionary)
 
 	for(var/i in 1 to max_headrevs)
 		if(!length(possible_headrevs))
@@ -62,7 +54,7 @@
 				var/datum/objective/mutiny/rp/rev_obj = new
 				rev_obj.owner = rev_mind
 				rev_obj.target = head_mind
-				rev_obj.explanation_text = "Assassinate, convert or capture [head_mind.name], the [head_mind.assigned_role]."
+				rev_obj.explanation_text = "Assassinate, convert or capture [head_mind.name], the [head_mind.assigned_job.title]."
 				rev_mind.objectives += rev_obj
 
 		update_rev_icons_added(rev_mind)
@@ -72,8 +64,6 @@
 		rev_mind.current.verbs += /mob/living/carbon/human/proc/RevConvert
 		equip_traitor(rev_mind.current, 1) //changing how revs get assigned their uplink so they can get PDA uplinks. --NEO
 
-	modePlayer += head_revolutionaries
-
 /datum/game_mode/revolution/rp_revolution/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
 	var/obj_count = 1
 	if(you_are)
@@ -81,7 +71,7 @@
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			rev_mind.special_role = "Head Revolutionary"
+			rev_mind.assign_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 			obj_count++
 	else
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
@@ -109,7 +99,7 @@
 		return 0
 	revolutionaries += rev_mind
 	to_chat(rev_mind.current, SPAN_WARNING("<FONT size = 3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"))
-	rev_mind.special_role = "Revolutionary"
+	rev_mind.assign_special_role(SPECIAL_ROLE_REVOLUTIONARY)
 	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 	update_rev_icons_added(rev_mind)
@@ -168,8 +158,8 @@
 	set name = "Rev-Convert"
 
 	var/list/Possible = list()
-	for (var/mob/living/carbon/human/P in oview(src))
-		if(!stat && P.client && P.mind && !P.mind.special_role)
+	for(var/mob/living/carbon/human/P in oview(src))
+		if(!stat && P.client && P.mind)
 			Possible += P
 	if(!length(Possible))
 		to_chat(src, SPAN_WARNING("There doesn't appear to be anyone available for you to convert here."))
@@ -216,7 +206,7 @@
 						var/datum/objective/mutiny/rp/rev_obj = new
 						rev_obj.owner = H.mind
 						rev_obj.target = head_mind
-						rev_obj.explanation_text = "Assassinate or capture [head_mind.name], the [head_mind.assigned_role]."
+						rev_obj.explanation_text = "Assassinate or capture [head_mind.name], the [head_mind.assigned_job.title]."
 						H.mind.objectives += rev_obj
 
 				update_rev_icons_added(H.mind)
@@ -256,6 +246,6 @@
 			var/datum/objective/mutiny/rp/rev_obj = new
 			rev_obj.owner = rev_mind
 			rev_obj.target = M.mind
-			rev_obj.explanation_text = "Assassinate, convert or capture [M.real_name], the [M.mind.assigned_role]."
+			rev_obj.explanation_text = "Assassinate, convert or capture [M.real_name], the [M.mind.assigned_job.title]."
 			rev_mind.objectives += rev_obj
-			to_chat(rev_mind.current, SPAN_WARNING("A new Head of Staff, [M.real_name], the [M.mind.assigned_role] has appeared. Your objectives have been updated."))
+			to_chat(rev_mind.current, SPAN_WARNING("A new Head of Staff, [M.real_name], the [M.mind.assigned_job.title] has appeared. Your objectives have been updated."))

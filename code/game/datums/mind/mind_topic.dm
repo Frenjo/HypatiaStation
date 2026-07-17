@@ -6,13 +6,7 @@
 	if(!check_rights(R_ADMIN))
 		return FALSE
 
-	if(topic.has("role_edit"))
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null | anything in GLOBL.all_jobs
-		if(isnull(new_role))
-			return FALSE
-		assigned_role = new_role
-
-	else if(topic.has("memory_edit"))
+	if(topic.has("memory_edit"))
 		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null | message), 1, MAX_MESSAGE_LEN)
 		if(isnull(new_memo))
 			return FALSE
@@ -74,7 +68,8 @@
 					new_objective.owner = src
 					new_objective:target = new_target:mind
 					// Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
-					new_objective.explanation_text = "[objective_type] [new_target:real_name], the [new_target:mind:assigned_role == "MODE" ? (new_target:mind:special_role) : (new_target:mind:assigned_role)]."
+					var/displayed_role = isnull(new_target:mind:assigned_job) ? new_target:mind:special_roles[1] : new_target:mind:assigned_job:title
+					new_objective.explanation_text = "[objective_type] [new_target:real_name], the [displayed_role]."
 
 			if("prevent")
 				new_objective = new /datum/objective/block()
@@ -195,26 +190,26 @@
 				L.part = affected
 
 				to_chat(H, SPAN_DANGER("<font size=3>You have somehow become the recipient of a loyalty implant, and it just activated!</font>"))
-				if(src in global.PCticker.mode.revolutionaries)
-					special_role = null
+				if(has_special_role(SPECIAL_ROLE_REVOLUTIONARY))
+					remove_special_role(SPECIAL_ROLE_REVOLUTIONARY)
 					global.PCticker.mode.revolutionaries.Remove(src)
 					to_chat(src, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a revolutionary. Get back to work!</font>"))
-				if(src in global.PCticker.mode.head_revolutionaries)
-					special_role = null
+				if(has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
+					remove_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 					global.PCticker.mode.head_revolutionaries.Remove(src)
 					to_chat(src, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a revolutionary. Get back to work!</font>"))
-				if(src in global.PCticker.mode.cult)
+				if(has_special_role(SPECIAL_ROLE_CULTIST))
 					global.PCticker.mode.cult.Remove(src)
 					global.PCticker.mode.update_cult_icons_removed(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_CULTIST)
 					var/datum/game_mode/cult/cult = global.PCticker.mode
 					if(istype(cult))
 						cult.memoize_cult_objectives(src)
 					to_chat(current, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being in a cult. Have a productive day!</font>"))
 					memory = ""
-				if(src in global.PCticker.mode.traitors)
+				if(has_special_role(SPECIAL_ROLE_TRAITOR))
 					global.PCticker.mode.traitors.Remove(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_TRAITOR)
 					to_chat(current, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a traitor to NanoTrasen. Have a nice day!</font>"))
 					log_admin("[key_name_admin(user)] has de-traitor'ed [current].")
 
@@ -222,59 +217,46 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("revolution"))
 			if("clear")
-				if(src in global.PCticker.mode.revolutionaries)
+				if(has_special_role(SPECIAL_ROLE_REVOLUTIONARY))
 					global.PCticker.mode.revolutionaries.Remove(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a revolutionary!</font>"))
 					global.PCticker.mode.update_rev_icons_removed(src)
-					special_role = null
-				if(src in global.PCticker.mode.head_revolutionaries)
+					remove_special_role(SPECIAL_ROLE_REVOLUTIONARY)
+				if(has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 					global.PCticker.mode.head_revolutionaries.Remove(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a head revolutionary!</font>"))
 					global.PCticker.mode.update_rev_icons_removed(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY)
 					current.verbs.Remove(/mob/living/carbon/human/proc/RevConvert)
 				log_admin("[key_name_admin(user)] has de-rev'ed [current].")
 
 			if("rev")
-				if(src in global.PCticker.mode.head_revolutionaries)
+				if(has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 					global.PCticker.mode.head_revolutionaries.Remove(src)
 					global.PCticker.mode.update_rev_icons_removed(src)
 					to_chat(current, SPAN_DANGER("<font size=3>Revolution has been disappointed of your leader traits! You are a regular revolutionary now!</font>"))
-				else if(!(src in global.PCticker.mode.revolutionaries))
+				else if(!has_special_role(SPECIAL_ROLE_REVOLUTIONARY))
 					to_chat(current, SPAN_WARNING("<font size=3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</font>"))
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 				else
 					return FALSE
 				global.PCticker.mode.revolutionaries.Add(src)
 				global.PCticker.mode.update_rev_icons_added(src)
-				special_role = "Revolutionary"
+				assign_special_role(SPECIAL_ROLE_REVOLUTIONARY)
 				log_admin("[key_name(user)] has rev'ed [current].")
 
 			if("headrev")
-				if(src in global.PCticker.mode.revolutionaries)
+				if(has_special_role(SPECIAL_ROLE_REVOLUTIONARY))
 					global.PCticker.mode.revolutionaries.Remove(src)
 					global.PCticker.mode.update_rev_icons_removed(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have proved your devotion to revoltion! You are a head revolutionary now!</font>"))
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
-				else if(!(src in global.PCticker.mode.head_revolutionaries))
+				else if(!has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 					to_chat(current, SPAN_INFO("You are a member of the revolutionaries' leadership now!"))
 				else
 					return FALSE
-				if(length(global.PCticker.mode.head_revolutionaries))
-					// copy targets
-					var/datum/mind/valid_head = locate() in global.PCticker.mode.head_revolutionaries
-					if(isnotnull(valid_head))
-						for(var/datum/objective/mutiny/O in valid_head.objectives)
-							var/datum/objective/mutiny/rev_obj = new /datum/objective/mutiny()
-							rev_obj.owner = src
-							rev_obj.target = O.target
-							rev_obj.explanation_text = "Assassinate [O.target.name], the [O.target.assigned_role]."
-							objectives.Add(rev_obj)
-						global.PCticker.mode.greet_revolutionary(src, 0)
-				current.verbs.Add(/mob/living/carbon/human/proc/RevConvert)
-				global.PCticker.mode.head_revolutionaries.Add(src)
-				global.PCticker.mode.update_rev_icons_added(src)
-				special_role = "Head Revolutionary"
+
+				make_revolutionary()
 				log_admin("[key_name_admin(user)] has head-rev'ed [current].")
 
 			if("autoobjectives")
@@ -316,10 +298,10 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("cult"))
 			if("clear")
-				if(src in global.PCticker.mode.cult)
+				if(has_special_role(SPECIAL_ROLE_CULTIST))
 					global.PCticker.mode.cult.Remove(src)
 					global.PCticker.mode.update_cult_icons_removed(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_CULTIST)
 					var/datum/game_mode/cult/cult = global.PCticker.mode
 					if(istype(cult))
 						if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
@@ -328,17 +310,8 @@
 					memory = ""
 					log_admin("[key_name_admin(user)] has de-cult'ed [current].")
 			if("cultist")
-				if(!(src in global.PCticker.mode.cult))
-					global.PCticker.mode.cult.Add(src)
-					global.PCticker.mode.update_cult_icons_added(src)
-					special_role = "Cultist"
-					to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.</b></i></font>")
-					to_chat(current, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
-					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
-					var/datum/game_mode/cult/cult = global.PCticker.mode
-					if(istype(cult))
-						if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-							cult.memoize_cult_objectives(src)
+				if(!has_special_role(SPECIAL_ROLE_CULTIST))
+					make_cultist()
 					log_admin("[key_name_admin(user)] has cult'ed [current].")
 			if("tome")
 				var/mob/living/carbon/human/H = current
@@ -366,19 +339,15 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("wizard"))
 			if("clear")
-				if(src in global.PCticker.mode.wizards)
+				if(has_special_role(SPECIAL_ROLE_WIZARD))
 					global.PCticker.mode.wizards.Remove(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_WIZARD)
 					current.spellremove(current, CONFIG_GET(/decl/configuration_entry/feature_object_spell_system) ? "object": "verb")
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a wizard!</font>"))
 					log_admin("[key_name_admin(user)] has de-wizard'ed [current].")
 			if("wizard")
-				if(!(src in global.PCticker.mode.wizards))
-					global.PCticker.mode.wizards.Add(src)
-					special_role = "Wizard"
-					//ticker.mode.learn_basic_spells(current)
-					to_chat(current, SPAN_DANGER("You are the Space Wizard!"))
-					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
+				if(!has_special_role(SPECIAL_ROLE_WIZARD))
+					make_wizard()
 					log_admin("[key_name_admin(user)] has wizard'ed [current].")
 			if("lair")
 				current.forceMove(pick(GLOBL.wizardstart))
@@ -395,9 +364,9 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("changeling"))
 			if("clear")
-				if(src in global.PCticker.mode.changelings)
+				if(has_special_role(SPECIAL_ROLE_CHANGELING))
 					global.PCticker.mode.changelings.Remove(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_CHANGELING)
 					current.remove_changeling_powers()
 					current.verbs.Remove(/datum/changeling/proc/EvolutionMenu)
 					if(isnotnull(changeling))
@@ -405,13 +374,9 @@
 					to_chat(current, SPAN_DANGER("<font size=3>You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!</font>"))
 					log_admin("[key_name_admin(user)] has de-changeling'ed [current].")
 			if("changeling")
-				if(!(src in global.PCticker.mode.changelings))
-					global.PCticker.mode.changelings.Add(src)
-					global.PCticker.mode.grant_changeling_powers(current)
-					special_role = "Changeling"
+				if(!has_special_role(SPECIAL_ROLE_CHANGELING))
 					to_chat(current, SPAN_DANGER("Your powers are awoken. A flash of memory returns to us... we are a changeling!"))
-					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
+					make_changeling()
 					log_admin("[key_name_admin(user)] has changeling'ed [current].")
 			if("autoobjectives")
 				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
@@ -432,29 +397,17 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("nuclear"))
 			if("clear")
-				if(src in global.PCticker.mode.syndicates)
+				if(has_special_role(SPECIAL_ROLE_SYNDICATE))
 					global.PCticker.mode.syndicates.Remove(src)
 					global.PCticker.mode.update_synd_icons_removed(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_SYNDICATE)
 					for(var/datum/objective/nuclear/O in objectives)
 						objectives.Remove(O)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a Syndicate operative!</font>"))
 					log_admin("[key_name_admin(user)] has de-nuke op'ed [current].")
 			if("nuclear")
-				if(!(src in global.PCticker.mode.syndicates))
-					global.PCticker.mode.syndicates.Add(src)
-					global.PCticker.mode.update_synd_icons_added(src)
-					if(length(global.PCticker.mode.syndicates) == 1)
-						global.PCticker.mode.prepare_syndicate_leader(src)
-					else
-						current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
-					special_role = "Syndicate"
-					to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
-					else
-						global.PCticker.mode.forge_syndicate_objectives(src)
-					global.PCticker.mode.greet_syndicate(src)
+				if(!has_special_role(SPECIAL_ROLE_SYNDICATE))
+					make_nuclear_operative()
 					log_admin("[key_name_admin(user)] has nuke op'ed [current].")
 			if("lair")
 				current.forceMove(GET_TURF(locate("landmark*Syndicate-Spawn")))
@@ -488,9 +441,9 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("traitor"))
 			if("clear")
-				if(src in global.PCticker.mode.traitors)
+				if(has_special_role(SPECIAL_ROLE_TRAITOR))
 					global.PCticker.mode.traitors.Remove(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_TRAITOR)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a traitor!</font>"))
 					log_admin("[key_name_admin(user)] has de-traitor'ed [current].")
 					if(isAI(current))
@@ -499,17 +452,9 @@
 						A.show_laws()
 
 			if("traitor")
-				if(!(src in global.PCticker.mode.traitors))
-					global.PCticker.mode.traitors.Add(src)
-					special_role = "traitor"
-					to_chat(current, SPAN_DANGER("You are a traitor!"))
+				if(!has_special_role(SPECIAL_ROLE_TRAITOR))
+					make_traitor()
 					log_admin("[key_name_admin(user)] has traitor'ed [current].")
-					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
-					if(issilicon(current))
-						var/mob/living/silicon/A = current
-						call(/datum/game_mode/proc/add_law_zero)(A)
-						A.show_laws()
 
 			if("autoobjectives")
 				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
@@ -570,9 +515,9 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(topic.get_str("silicon"))
 			if("unmalf")
-				if(src in global.PCticker.mode.malf_ai)
+				if(has_special_role(SPECIAL_ROLE_MALF_AI))
 					global.PCticker.mode.malf_ai.Remove(src)
-					special_role = null
+					remove_special_role(SPECIAL_ROLE_MALF_AI)
 
 					var/mob/living/silicon/ai/malf = src.current
 					malf.verbs.Remove(
@@ -629,7 +574,7 @@
 					if(isnotnull(crystals))
 						suplink?.uses = crystals
 			if("uplink")
-				if(!global.PCticker.mode.equip_traitor(current, !(src in global.PCticker.mode.traitors)))
+				if(!global.PCticker.mode.equip_traitor(current, !has_special_role(SPECIAL_ROLE_TRAITOR)))
 					to_chat(user, SPAN_WARNING("Equipping a Syndicate failed!"))
 
 	else if(topic.has("obj_announce"))

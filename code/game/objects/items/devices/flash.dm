@@ -74,7 +74,7 @@
 
 			if(ishuman(M) && ishuman(user) && M.stat != DEAD)
 				var/mob/living/carbon/human/H = M
-				if(user.mind && (user.mind in global.PCticker.mode.head_revolutionaries) && IS_GAME_MODE(/datum/game_mode/revolution))
+				if(user.mind?.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) && IS_GAME_MODE(/datum/game_mode/revolution))
 					var/revsafe = 0
 					if(H.is_mindshield_implanted() || H.is_loyalty_implanted())
 						revsafe = 1

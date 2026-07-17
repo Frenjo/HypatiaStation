@@ -293,11 +293,9 @@ PROCESS_DEF(ticker)
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(!player.ready || isnull(player.mind))
 			continue
-		if(player.mind.assigned_role == "AI")
+		if(istype(player.mind.assigned_job, /datum/job/ai))
 			player.close_spawn_windows()
 			player.AIize()
-		else if(isnull(player.mind.assigned_role))
-			continue
 		else
 			player.create_character()
 			qdel(player)
@@ -312,12 +310,11 @@ PROCESS_DEF(ticker)
 	for(var/mob/living/carbon/human/player in GLOBL.player_list)
 		if(isnull(player) || isnull(player.mind))
 			continue
-		if(isnotnull(player.mind.assigned_role))
-			if(player.mind.assigned_role == "Captain")
+		if(isnotnull(player.mind.assigned_job))
+			if(istype(player.mind.assigned_job, /datum/job/captain))
 				captainless = FALSE
-			if(player.mind.assigned_role != "MODE")
-				global.CTjobs.equip_rank(player, player.mind.assigned_role, FALSE)
-				EquipCustomItems(player)
+			global.CTjobs.equip_rank(player, player.mind.assigned_job.title, FALSE)
+			EquipCustomItems(player)
 	if(captainless)
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(!isnewplayer(M))
@@ -405,14 +402,13 @@ PROCESS_DEF(ticker)
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
 	//Look into all mobs in world, dead or alive
-	for_no_type_check(var/datum/mind/Mind, minds)
-		var/temprole = Mind.special_role
-		if(isnotnull(temprole))					//if they are an antagonist of some sort.
+	for_no_type_check(var/datum/mind/mind, minds)
+		for(var/temprole in mind.special_roles) //if they are an antagonist of some sort.
 			if(temprole in total_antagonists)	//If the role exists already, add the name to it
-				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
+				total_antagonists[temprole] += ", [mind.name]([mind.key])"
 			else
 				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
-				total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
+				total_antagonists[temprole] += ": [mind.name]([mind.key])"
 
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")

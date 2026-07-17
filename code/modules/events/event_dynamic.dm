@@ -196,13 +196,13 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 		if(!M.mind || !M.client || M.client.inactivity > 10 * 10 * 60) // longer than 10 minutes AFK counts them as inactive
 			continue
 
-		if(M.mind.assigned_role in list("Chief Engineer", "Station Engineer"))
+		if(M.mind.assigned_job.type in list(/datum/job/chief_engineer, /datum/job/engineer))
 			active_with_role["Engineer"]++
 
-		if(M.mind.assigned_role in list("Chief Medical Officer", "Medical Doctor"))
+		if(M.mind.assigned_job.type in list(/datum/job/cmo, /datum/job/doctor))
 			active_with_role["Medical"]++
 
-		if(M.mind.assigned_role in GLOBL.security_positions)
+		if(M.mind.assigned_job.title in GLOBL.security_positions)
 			active_with_role["Security"]++
 
 		// Engineering, Medical and Security cyborgs.
@@ -215,19 +215,19 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 			else if(istype(robot.model, /obj/item/robot_model/security))
 				active_with_role["Security"]++
 
-		if(M.mind.assigned_role in list("Research Director", "Scientist"))
+		if(M.mind.assigned_job.type in list(/datum/job/rd, /datum/job/scientist))
 			active_with_role["Scientist"]++
 
-		if(M.mind.assigned_role == "AI")
+		if(istype(M.mind.assigned_job, /datum/job/ai))
 			active_with_role["AI"]++
 
-		if(M.mind.assigned_role == "Robot")
+		if(istype(M.mind.assigned_job, /datum/job/robot))
 			active_with_role["Robot"]++
 
-		if(M.mind.assigned_role == "Janitor")
+		if(istype(M.mind.assigned_job, /datum/job/janitor))
 			active_with_role["Janitor"]++
 
-		if(M.mind.assigned_role == "Botanist")
+		if(istype(M.mind.assigned_job, /datum/job/hydro))
 			active_with_role["Botanist"]++
 
 	return active_with_role

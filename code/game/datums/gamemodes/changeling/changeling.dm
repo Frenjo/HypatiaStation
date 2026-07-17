@@ -13,8 +13,6 @@ var/list/possible_changeling_IDs = list(
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
-	restricted_jobs = list("AI", "Robot")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	required_players = 2
 	required_players_secret = 10
 	required_enemies = 1
@@ -48,35 +46,25 @@ var/list/possible_changeling_IDs = list(
 	. += "<B>There are alien changelings on the station. Do not let the changelings succeed!</B>"
 
 /datum/game_mode/changeling/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
-	var/list/datum/mind/possible_changelings = get_players_for_role(BE_CHANGELING)
-
-	for_no_type_check(var/datum/mind/player, possible_changelings)
-		for(var/job in restricted_jobs)	//Removing robots from the list
-			if(player.assigned_role == job)
-				possible_changelings -= player
+	. = ..()
+	var/list/datum/mind/possible_changelings = get_players_for_role(/decl/special_role/changeling)
+	if(!length(possible_changelings))
+		return 0
 
 	changeling_amount = 1 + round(num_players() / 10)
 
-	if(length(possible_changelings))
-		for(var/i = 0, i < changeling_amount, i++)
-			if(!length(possible_changelings))
-				break
-			var/datum/mind/changeling = pick(possible_changelings)
-			possible_changelings -= changeling
-			changelings += changeling
-			modePlayer += changelings
-		return 1
-	else
-		return 0
+	for(var/i = 0, i < changeling_amount, i++)
+		if(!length(possible_changelings))
+			break
+		var/datum/mind/changeling = pick(possible_changelings)
+		changelings.Add(changeling)
+		possible_changelings.Remove(changeling)
 
 /datum/game_mode/changeling/post_setup()
 	. = ..()
 	for_no_type_check(var/datum/mind/changeling, changelings)
 		grant_changeling_powers(changeling.current)
-		changeling.special_role = "Changeling"
+		changeling.assign_special_role(SPECIAL_ROLE_CHANGELING)
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_changeling_objectives(changeling)
 		greet_changeling(changeling)
@@ -128,7 +116,7 @@ var/list/possible_changeling_IDs = list(
 		to_chat(changeling.current, "<B>You must complete the following tasks:</B>")
 
 	if(changeling.current.mind)
-		if(changeling.current.mind.assigned_role == "Clown")
+		if(istype(changeling.current.mind.assigned_job.type, /datum/job/clown))
 			to_chat(changeling.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 			changeling.current.mutations.Remove(MUTATION_CLUMSY)
 

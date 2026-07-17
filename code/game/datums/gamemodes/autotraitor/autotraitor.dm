@@ -13,15 +13,11 @@
 	. += "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>"
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
-	possible_traitors = get_players_for_role(BE_TRAITOR)
-
-	for_no_type_check(var/datum/mind/player, possible_traitors)
-		for(var/job in restricted_jobs)
-			if(player.assigned_role == job)
-				possible_traitors -= player
+	. = ..()
+	possible_traitors = get_players_for_role(/decl/special_role/traitor)
+	// Stop setup if no possible traitors
+	if(!length(possible_traitors))
+		return 0
 
 	for(var/mob/dead/new_player/P in GLOBL.dead_mob_list)
 		if(isnotnull(P.client) && P.ready)
@@ -33,10 +29,6 @@
 	var/traitor_prob = 0
 	max_traitors = round(num_players / 10) + 1
 	traitor_prob = (num_players - (max_traitors - 1) * 10) * 10
-
-	// Stop setup if no possible traitors
-	if(!length(possible_traitors))
-		return 0
 
 	if(CONFIG_GET(/decl/configuration_entry/traitor_scaling))
 		num_traitors = max_traitors - 1 + prob(traitor_prob)
@@ -50,20 +42,12 @@
 		traitors += traitor
 		possible_traitors.Remove(traitor)
 
-	for_no_type_check(var/datum/mind/traitor, traitors)
-		if(!traitor || !istype(traitor))
-			traitors.Remove(traitor)
-			continue
-		if(istype(traitor))
-			traitor.special_role = "traitor"
-
-//	if(!length(traitors))
-//		return 0
-	return 1
-
 /datum/game_mode/traitor/autotraitor/post_setup()
 	. = ..()
 	CONFIG_SET(/decl/configuration_entry/respawn, TRUE)
+	for_no_type_check(var/datum/mind/traitor, traitors)
+		traitor.make_traitor()
+		possible_traitors.Remove(traitor)
 	traitorcheckloop()
 
 /datum/game_mode/traitor/autotraitor/proc/traitorcheckloop()
@@ -73,18 +57,17 @@
 		//message_admins("Performing AutoTraitor Check")
 		var/playercount = 0
 		var/traitorcount = 0
-		var/possible_traitors[0]
 		for(var/mob/living/player in GLOBL.mob_list)
-			if(player.client && player.stat != DEAD)
+			if(isnull(player.client))
+				continue
+			if(player.stat != DEAD)
 				playercount += 1
-			if(player.client && player.mind && player.mind.special_role && player.stat != DEAD)
+			if(isnull(player.mind) || player.stat == DEAD)
+				continue
+			if(player.mind.has_special_role(SPECIAL_ROLE_TRAITOR))
 				traitorcount += 1
-			if(player.client && player.mind && !player.mind.special_role && player.stat != DEAD && (player.client && player.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(player, "Syndicate"))
-				possible_traitors += player
-		for(var/datum/mind/player in possible_traitors)
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					possible_traitors -= player
+				continue
+		possible_traitors = get_players_for_role(/decl/special_role/traitor)
 
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")
@@ -124,7 +107,7 @@
 				traitors += newtraitor.mind
 				to_chat(newtraitor, "\red <B>ATTENTION:</B> \black It is time to pay your debt to the Syndicate...")
 				to_chat(newtraitor, "<B>You are now a traitor.</B>")
-				newtraitor.mind.special_role = "traitor"
+				newtraitor.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 				BITSET(newtraitor.hud_updateflag, SPECIALROLE_HUD)
 				var/obj_count = 1
 				to_chat(newtraitor, SPAN_INFO("Your current objectives:"))
@@ -152,9 +135,11 @@
 		var/playercount = 0
 		var/traitorcount = 0
 		for(var/mob/living/player in GLOBL.mob_list)
-			if(player.client && player.stat != DEAD)
+			if(isnull(player.client))
+				continue
+			if(player.stat != DEAD)
 				playercount += 1
-			if(player.client && player.mind && player.mind.special_role && player.stat != DEAD)
+			if(player.mind?.has_special_role(SPECIAL_ROLE_TRAITOR) && player.stat != DEAD)
 				traitorcount += 1
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")
@@ -179,7 +164,7 @@
 				equip_traitor(character)
 				traitors += character.mind
 				to_chat(character, SPAN_DANGER("You are the traitor."))
-				character.mind.special_role = "traitor"
+				character.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 				if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(character)
 				else

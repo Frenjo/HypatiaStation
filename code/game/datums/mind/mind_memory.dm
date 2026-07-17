@@ -25,7 +25,7 @@
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name)) ? " (as [current.real_name])" : ""]<br>"
 	out += "Mind currently owned by key: [key] [active ? "(synced)" : "(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='byond://?src=\ref[src];role_edit=1'>Edit</a><br>"
+	out += "Assigned role: [assigned_job.title]. <a href='byond://?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "Factions and special roles:<br>"
 
 	var/list/sections = list(
@@ -62,7 +62,7 @@
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted())
 			text += "<b>LOYAL EMPLOYEE</b>|headrev|rev"
-		else if(src in global.PCticker.mode.head_revolutionaries)
+		else if(has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 			text = "<a href='byond://?src=\ref[src];revolution=clear'>employee</a>|<b>HEADREV</b>|<a href='byond://?src=\ref[src];revolution=rev'>rev</a>"
 			text += "<br>Flash: <a href='byond://?src=\ref[src];revolution=flash'>give</a>"
 
@@ -79,7 +79,7 @@
 			text += " <a href='byond://?src=\ref[src];revolution=reequip'>Reequip</a> (gives traitor uplink)."
 			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='byond://?src=\ref[src];revolution=autoobjectives'>Set to kill all heads</a>."
-		else if(src in global.PCticker.mode.revolutionaries)
+		else if(has_special_role(SPECIAL_ROLE_REVOLUTIONARY))
 			text += "<a href='byond://?src=\ref[src];revolution=clear'>employee</a>|<a href='byond://?src=\ref[src];revolution=headrev'>headrev</a>|<b>REV</b>"
 		else
 			text += "<b>EMPLOYEE</b>|<a href='byond://?src=\ref[src];revolution=headrev'>headrev</a>|<a href='byond://?src=\ref[src];revolution=rev'>rev</a>"
@@ -92,7 +92,7 @@
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted())
 			text += "<B>LOYAL EMPLOYEE</B>|cultist"
-		else if(src in global.PCticker.mode.cult)
+		else if(has_special_role(SPECIAL_ROLE_CULTIST))
 			text += "<a href='byond://?src=\ref[src];cult=clear'>employee</a>|<b>CULTIST</b>"
 			text += "<br>Give <a href='byond://?src=\ref[src];cult=tome'>tome</a>|<a href='byond://?src=\ref[src];cult=amulet'>amulet</a>."
 /*
@@ -108,7 +108,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/wizard))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in global.PCticker.mode.wizards)
+		if(has_special_role(SPECIAL_ROLE_WIZARD))
 			text += "<b>YES</b>|<a href='byond://?src=\ref[src];wizard=clear'>no</a>"
 			text += "<br><a href='byond://?src=\ref[src];wizard=lair'>To lair</a>, <a href='byond://?src=\ref[src];common=undress'>undress</a>, <a href='byond://?src=\ref[src];wizard=dressup'>dress up</a>, <a href='byond://?src=\ref[src];wizard=name'>let choose name</a>."
 			if(!length(objectives))
@@ -122,7 +122,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/changeling) || IS_GAME_MODE(/datum/game_mode/traitor/changeling))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in global.PCticker.mode.changelings)
+		if(has_special_role(SPECIAL_ROLE_WIZARD))
 			text += "<b>YES</b>|<a href='byond://?src=\ref[src];changeling=clear'>no</a>"
 			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='byond://?src=\ref[src];changeling=autoobjectives'>Randomize!</a>"
@@ -140,7 +140,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in global.PCticker.mode.syndicates)
+		if(has_special_role(SPECIAL_ROLE_SYNDICATE))
 			text += "<b>OPERATIVE</b>|<a href='byond://?src=\ref[src];nuclear=clear'>nanotrasen</a>"
 			text += "<br><a href='byond://?src=\ref[src];nuclear=lair'>To shuttle</a>, <a href='byond://?src=\ref[src];common=undress'>undress</a>, <a href='byond://?src=\ref[src];nuclear=dressup'>dress up</a>."
 			var/code
@@ -163,7 +163,7 @@
 		if(H.is_loyalty_implanted())
 			text += "traitor|<b>LOYAL EMPLOYEE</b>"
 		else
-			if(src in global.PCticker.mode.traitors)
+			if(has_special_role(SPECIAL_ROLE_TRAITOR))
 				text += "<b>TRAITOR</b>|<a href='byond://?src=\ref[src];traitor=clear'>Employee</a>"
 				if(!length(objectives))
 					text += "<br>Objectives are empty! <a href='byond://?src=\ref[src];traitor=autoobjectives'>Randomize</a>!"
@@ -201,7 +201,7 @@
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(isAI(current))
-			if(src in global.PCticker.mode.malf_ai)
+			if(has_special_role(SPECIAL_ROLE_MALF_AI))
 				text += "<b>MALF</b>|<a href='byond://?src=\ref[src];silicon=unmalf'>not malf</a>"
 			else
 				text += "<a href='byond://?src=\ref[src];silicon=malf'>malf</a>|<b>NOT MALF</b>"
@@ -233,7 +233,8 @@
 			out += sections[i]+"<br>"
 
 
-	if(((src in global.PCticker.mode.head_revolutionaries) || (src in global.PCticker.mode.traitors) || (src in global.PCticker.mode.syndicates)) && ishuman(current))
+	if((has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) || has_special_role(SPECIAL_ROLE_TRAITOR) || has_special_role(SPECIAL_ROLE_SYNDICATE)) \
+		&& ishuman(current))
 		text = "Uplink: <a href='byond://?src=\ref[src];common=uplink'>give</a>"
 		var/obj/item/uplink/hidden/suplink = find_syndicate_uplink()
 		var/crystals

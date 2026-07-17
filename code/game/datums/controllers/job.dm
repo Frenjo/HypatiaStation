@@ -58,8 +58,8 @@ CONTROLLER_DEF(jobs)
 			position_limit = job.spawn_positions
 		if((job.current_positions < position_limit) || position_limit == -1)
 			debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
-			player.mind.assigned_role = rank
-			player.mind.role_alt_title = get_player_alt_title(player, rank)
+			player.mind.assigned_job = job
+			player.mind.job_alt_title = get_player_alt_title(player, rank)
 			unassigned.Remove(player)
 			job.current_positions++
 			return 1
@@ -119,8 +119,8 @@ CONTROLLER_DEF(jobs)
 /datum/controller/jobs/proc/reset_occupations()
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(isnotnull(player?.mind))
-			player.mind.assigned_role = null
-			player.mind.special_role = null
+			player.mind.assigned_job = null
+			player.mind.clear_special_roles()
 	setup_occupations()
 	unassigned = list()
 
@@ -234,7 +234,7 @@ CONTROLLER_DEF(jobs)
 
 	//Get the players who are ready
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-		if(player.ready && isnotnull(player.mind) && !player.mind.assigned_role)
+		if(player.ready && isnotnull(player.mind) && isnull(player.mind.assigned_job))
 			unassigned.Add(player)
 
 	debug("DO, Len: [length(unassigned)]")
@@ -333,12 +333,12 @@ CONTROLLER_DEF(jobs)
 	var/datum/job/job = get_job(rank)
 	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/robot)) // AI/Robot checking is a temporary fix.
 		if(isnotnull(job))
-			job.equip(H, H.mind.role_alt_title)
+			job.equip(H, H.mind.job_alt_title)
 		else
 			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	if(istype(job, /datum/job/captain))
-		minor_announce("[H.real_name] is the [H.mind.role_alt_title]!", "Staffing Announcement:")
+		minor_announce("[H.real_name] is the [H.mind.job_alt_title]!", "Staffing Announcement:")
 
 	H.job = rank
 
@@ -385,7 +385,7 @@ CONTROLLER_DEF(jobs)
 		H.mind.store_memory(remembered_info)
 
 	// Displays job-based and standard spawn information.
-	to_chat(H, jointext(job.get_spawn_message_content(H.mind.role_alt_title), "<br>"))
+	to_chat(H, jointext(job.get_spawn_message_content(H.mind.job_alt_title), "<br>"))
 	to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	if(rank == "Robot")
@@ -393,7 +393,7 @@ CONTROLLER_DEF(jobs)
 		return
 
 	if(isnotnull(H.mind))
-		H.mind.assigned_role = rank
+		H.mind.assigned_job = job
 		var/obj/item/card/id/identification = locate(/obj/item/card/id) in H
 		if(isnotnull(identification))
 			identification.access = job.get_access()
@@ -471,7 +471,7 @@ CONTROLLER_DEF(jobs)
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
 		for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-			if(!player.ready || isnull(player.mind) || player.mind.assigned_role)
+			if(!player.ready || isnull(player.mind) || isnotnull(player.mind.assigned_job))
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))
 				level5++

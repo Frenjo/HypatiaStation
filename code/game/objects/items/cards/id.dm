@@ -129,8 +129,7 @@
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
 		access |= I.access
-		if(isliving(user) && isnotnull(user.mind?.special_role))
-			to_chat(usr, SPAN_INFO("The card's microscanners activate as you pass it over the ID, copying its access."))
+		to_chat(usr, SPAN_INFO("The card's microscanners activate as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
 	if(!registered_name)

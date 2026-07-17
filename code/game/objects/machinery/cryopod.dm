@@ -218,15 +218,13 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 								qdel(O)
 
 			//Handle job slot/tater cleanup.
-			var/job = occupant.mind.assigned_role
-
-			global.CTjobs.free_role(job)
+			global.CTjobs.free_role(occupant.mind.assigned_job.title)
 
 			if(length(occupant.mind.objectives))
 				qdel(occupant.mind.objectives)
-				occupant.mind.special_role = null
+				occupant.mind.clear_special_roles()
 			else
-				if(global.PCticker.mode.name == "AutoTraitor")
+				if(IS_GAME_MODE(/datum/game_mode/traitor/autotraitor))
 					var/datum/game_mode/traitor/autotraitor/current_mode = global.PCticker.mode
 					current_mode.possible_traitors.Remove(occupant)
 

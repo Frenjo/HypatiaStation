@@ -12,9 +12,12 @@
 		return
 
 	var/permitted = 0
-	var/list/allowed = list("Syndicate", "traitor", "Wizard", "Head Revolutionary", "Cultist", "Changeling")
+	var/list/allowed = list(
+		SPECIAL_ROLE_SYNDICATE, SPECIAL_ROLE_TRAITOR, SPECIAL_ROLE_WIZARD,
+		SPECIAL_ROLE_HEAD_REVOLUTIONARY, SPECIAL_ROLE_CULTIST, SPECIAL_ROLE_CHANGELING
+	)
 	for(var/T in allowed)
-		if(mind.special_role == T)
+		if(mind.has_special_role(T))
 			permitted = 1
 			break
 
