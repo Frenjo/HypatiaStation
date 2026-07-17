@@ -266,10 +266,10 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(H.mind)
-				if(H.mind.assigned_role == "Station Engineer" || H.mind.assigned_role == "Chief Engineer")
+				if(H.mind.assigned_job.type in list(/datum/job/engineer, /datum/job/chief_engineer))
 					gain = 100
 
-				if(H.mind.assigned_role == "Clown")
+				if(istype(H.mind.assigned_job, /datum/job/clown))
 					gain = rand(-300, 300) // HONK
 		spawn()
 			A:gib()

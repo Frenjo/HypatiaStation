@@ -151,7 +151,7 @@
 	var/mob/living/carbon/human/H = get_suspect()
 	if(!H)
 		return
-	var/traitor_job = H.mind.assigned_role
+	var/traitor_job = H.mind.assigned_job.title
 
 	src.text += "<BR><BR>It has been brought to our attention that the [name_1] [name_2] have stumbled upon some dark secrets. They apparently want to spread the dangerous knowledge onto as many stations as they can."
 	src.text += "Watch out for the following: praying to an unfamilar god, preaching the word of \[REDACTED\], sacrifices, magical dark power, living constructs of evil and a portal to the dimension of the underworld."
@@ -170,7 +170,7 @@
 	var/mob/living/carbon/human/H = get_suspect()
 	if(!H)
 		return
-	var/traitor_job = H.mind.assigned_role
+	var/traitor_job = H.mind.assigned_job.title
 
 	src.text += "<BR><BR>It has been brought to our attention that the [name_1] [name_2] are attempting to stir unrest on one of our stations in your sector."
 	src.text += "Watch out for suspicious activity among the crew and make sure that all heads of staff report in periodically."

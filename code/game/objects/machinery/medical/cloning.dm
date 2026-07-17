@@ -134,13 +134,13 @@
 
 	switch(global.PCticker.mode.name)
 		if("revolution")
-			if((H.mind in global.PCticker.mode:revolutionaries) || (H.mind in global.PCticker.mode:head_revolutionaries))
+			if(H.mind.has_special_role(SPECIAL_ROLE_REVOLUTIONARY) || H.mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 				global.PCticker.mode.update_all_rev_icons() //So the icon actually appears
 		if("nuclear emergency")
-			if(H.mind in global.PCticker.mode.syndicates)
+			if(H.mind.has_special_role(SPECIAL_ROLE_SYNDICATE))
 				global.PCticker.mode.update_all_synd_icons()
 		if("cult")
-			if(H.mind in global.PCticker.mode.cult)
+			if(H.mind.has_special_role(SPECIAL_ROLE_CULTIST))
 				global.PCticker.mode.add_cultist(src.occupant.mind)
 				global.PCticker.mode.update_all_cult_icons() //So the icon actually appears
 

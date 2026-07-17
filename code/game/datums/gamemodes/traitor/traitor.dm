@@ -5,8 +5,6 @@
 /datum/game_mode/traitor
 	name = "traitor"
 	config_tag = "traitor"
-	restricted_jobs = list("Robot")//They are part of the AI if he is traitor so are they, they use to get double chances
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")//AI", Currently out of the list as malf does not work for shit
 	required_players = 0
 	required_enemies = 1
 	recommended_enemies = 4
@@ -23,48 +21,29 @@
 	. += "<B>There is a Syndicate traitor on the station. Do not let the traitor succeed!</B>"
 
 /datum/game_mode/traitor/pre_setup()
-	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
-		restricted_jobs += protected_jobs
-
-	var/list/possible_traitors = get_players_for_role(BE_TRAITOR)
-
+	. = ..()
+	var/list/possible_traitors = get_players_for_role(/decl/special_role/traitor)
 	// stop setup if no possible traitors
 	if(!length(possible_traitors))
 		return 0
 
 	var/num_traitors = 1
-
 	if(CONFIG_GET(/decl/configuration_entry/traitor_scaling))
 		num_traitors = max(1, round((num_players()) / (traitor_scaling_coeff)))
 	else
 		num_traitors = max(1, min(num_players(), traitors_possible))
 
-	for(var/datum/mind/player in possible_traitors)
-		for(var/job in restricted_jobs)
-			if(player.assigned_role == job)
-				possible_traitors -= player
-
 	for(var/j = 0, j < num_traitors, j++)
 		if(!length(possible_traitors))
 			break
 		var/datum/mind/traitor = pick(possible_traitors)
-		traitors += traitor
-		traitor.special_role = "traitor"
+		traitors.Add(traitor)
 		possible_traitors.Remove(traitor)
-
-	if(!length(traitors))
-		return 0
-	return 1
 
 /datum/game_mode/traitor/post_setup()
 	. = ..()
-	for(var/datum/mind/traitor in traitors)
-		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			forge_traitor_objectives(traitor)
-		spawn(rand(10, 100))
-			finalize_traitor(traitor)
-			greet_traitor(traitor)
-	modePlayer += traitors
+	for_no_type_check(var/datum/mind/traitor, traitors)
+		traitor.make_traitor()
 
 /datum/game_mode/proc/forge_traitor_objectives(datum/mind/traitor)
 	if(issilicon(traitor.current))
@@ -202,8 +181,8 @@
 				count++
 
 		var/special_role_text
-		if(traitor.special_role)
-			special_role_text = lowertext(traitor.special_role)
+		if(traitor.has_special_role())
+			special_role_text = lowertext(jointext(traitor.special_roles, ", "))
 		else
 			special_role_text = "antagonist"
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
@@ -220,7 +199,7 @@
 		return
 	. = 1
 	if(traitor_mob.mind)
-		if(traitor_mob.mind.assigned_role == "Clown")
+		if(istype(traitor_mob.mind.assigned_job, /datum/job/clown))
 			to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			traitor_mob.mutations.Remove(MUTATION_CLUMSY)
 

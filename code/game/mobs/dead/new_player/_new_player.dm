@@ -313,7 +313,7 @@
 
 	//ticker.mode.latespawn(character)
 
-	if(character.mind.assigned_role != "Robot")
+	if(!istype(character.mind.assigned_job, /datum/job/robot))
 		GLOBL.data_core.manifest_inject(character)
 		global.PCticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		announce_arrival(character, rank, join_message)
@@ -325,8 +325,8 @@
 /mob/dead/new_player/proc/announce_arrival(mob/living/carbon/human/character, rank, join_message)
 	if(global.PCticker?.current_state == GAME_STATE_PLAYING)
 		var/obj/item/radio/intercom/a = new /obj/item/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
-		if(isnotnull(character.mind.role_alt_title))
-			rank = character.mind.role_alt_title
+		if(isnotnull(character.mind.job_alt_title))
+			rank = character.mind.job_alt_title
 		a.autosay("[character.real_name], [rank ? "[rank]," : "visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 		qdel(a)
 
@@ -358,7 +358,7 @@
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for_no_type_check(var/mob/M, GLOBL.player_list)
-				if(M.mind?.assigned_role == job.title && M.client?.inactivity <= 10 MINUTES)
+				if(istype(M.mind?.assigned_job, job.type) && M.client?.inactivity <= 10 MINUTES)
 					active++
 			var/job_title = "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>"
 			if(job.head_position)
@@ -412,7 +412,7 @@
 
 	if(isnotnull(mind))
 		mind.active = FALSE				//we wish to transfer the key manually
-		if(mind.assigned_role == "Clown")				//give them a clownname if they are a clown
+		if(istype(mind.assigned_job, /datum/job/clown))	//give them a clownname if they are a clown
 			new_character.real_name = pick(GLOBL.clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
 			new_character.rename_self("clown")
 		mind.original = new_character
