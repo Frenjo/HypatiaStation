@@ -112,6 +112,7 @@
 		if(isnotnull(new_pressure))
 			internal_tank_valve = new_pressure
 			to_chat(user, SPAN_INFO("The internal pressure valve has been set to [internal_tank_valve]kPa."))
+		return
 
 	if(topic.has("add_req_access") && add_req_access && topic.get_obj("id_card"))
 		if(!in_range(src, user))
@@ -130,7 +131,7 @@
 	if(topic.has("finish_req_access"))
 		if(!in_range(src, user))
 			return
-		add_req_access = 0
+		add_req_access = FALSE
 		CLOSE_BROWSER(user,"window=exosuit_add_access")
 		return
 

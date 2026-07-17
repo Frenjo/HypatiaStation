@@ -3,6 +3,7 @@
 	name = "mounted syringe gun"
 	desc = "An exosuit-mounted syringe gun with integrated chemical synthesiser. Any contained reagents are held in stasis, so no reactions will occur."
 	icon_state = "syringe_gun"
+
 	matter_amounts = /datum/design/mechfab/equipment/syringe_gun::materials
 	origin_tech = /datum/design/mechfab/equipment/syringe_gun::req_tech
 

@@ -3,7 +3,7 @@
 
 	custom_cursor = TRUE
 
-	damage_resistance = alist("brute" = 30, "fire" = 0, "bullet" = 30, "laser" = 15, "energy" = 0, "bomb" = 20)
+	damage_resistance = alist(brute = 30, fire = 0, bullet = 30, laser = 15, energy = 0, bomb = 20)
 
 	maint_access = FALSE
 
@@ -289,14 +289,14 @@
 
 /obj/mecha/combat/relaymove(mob/user, direction)
 	if(zoom_mode)
-		if(COOLDOWN_FINISHED(src, cooldown_mecha_message))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			occupant_message(SPAN_WARNING("Unable to move while in zoom mode."))
-			COOLDOWN_START(src, cooldown_mecha_message, MECHA_MESSAGE_COOLDOWN)
+			COOLDOWN_START(src, message_cooldown, MECHA_MESSAGE_COOLDOWN)
 		return FALSE
 	if(defence_mode)
-		if(COOLDOWN_FINISHED(src, cooldown_mecha_message))
+		if(COOLDOWN_FINISHED(src, message_cooldown))
 			occupant_message(SPAN_WARNING("Unable to move while in defence mode."))
-			COOLDOWN_START(src, cooldown_mecha_message, MECHA_MESSAGE_COOLDOWN)
+			COOLDOWN_START(src, message_cooldown, MECHA_MESSAGE_COOLDOWN)
 		return FALSE
 	return ..()
 

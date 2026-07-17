@@ -17,7 +17,7 @@
 	var/coeff = 100
 	var/obj/item/stack/sheet/fuel
 	var/fuel_type = /obj/item/stack/sheet/plasma
-	var/max_fuel = 150000
+	var/max_fuel = 75 MATERIAL_SHEETS
 	var/fuel_per_cycle_idle = 100
 	var/fuel_per_cycle_active = 500
 	var/power_per_cycle = 20
@@ -152,7 +152,7 @@
 	origin_tech = /datum/design/mechfab/equipment/general/nuclear_generator::req_tech
 
 	fuel_type = /obj/item/stack/sheet/uranium
-	max_fuel = 50000
+	max_fuel = 25 MATERIAL_SHEETS
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50

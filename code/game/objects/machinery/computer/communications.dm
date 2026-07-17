@@ -35,8 +35,8 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	var/aicurrmsg = 0
 	var/state = STATE_DEFAULT
 	var/aistate = STATE_DEFAULT
-	var/message_cooldown = FALSE
-	var/centcom_message_cooldown = FALSE
+	COOLDOWN_DECLARE(message_cooldown)
+	COOLDOWN_DECLARE(centcom_message_cooldown)
 
 	var/tmp/decl/security_level/temp_alert_level = null // The typepath of the security level we're trying to set the station to, if applicable.
 
@@ -116,7 +116,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 
 		if("announce")
 			if(authenticated == AUTH_FULL)
-				if(message_cooldown)
+				if(!COOLDOWN_FINISHED(src, message_cooldown))
 					return
 				var/input = stripped_input(usr, "Please choose a message to announce to the station crew.", "What?")
 				if(!input || !(usr in view(1, src)))
@@ -124,9 +124,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 				priority_announce(input, null, 'sound/misc/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, auth_id)
 				log_say("[key_name(usr)] has made a captain announcement: [input]")
 				message_admins("[key_name_admin(usr)] has made a captain announcement.", 1)
-				message_cooldown = TRUE
-				spawn(1 MINUTE)//One minute cooldown
-					message_cooldown = FALSE
+				COOLDOWN_START(src, message_cooldown, 1 MINUTE) // One minute cooldown.
 
 		if("callshuttle")
 			src.state = STATE_DEFAULT
@@ -199,7 +197,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 		// OMG CENTCOM LETTERHEAD
 		if("MessageCentCom")
 			if(src.authenticated == AUTH_FULL)
-				if(centcom_message_cooldown)
+				if(!COOLDOWN_FINISHED(src, centcom_message_cooldown))
 					to_chat(usr, SPAN_WARNING("Arrays recycling. Please stand by."))
 					return
 				var/input = stripped_input(usr, "Please choose a message to transmit to CentCom via quantum entanglement. Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "")
@@ -208,14 +206,12 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 				centcom_announce(input, usr)
 				to_chat(usr, SPAN_INFO("Message transmitted."))
 				log_say("[key_name(usr)] has made an IA CentCom announcement: [input]")
-				centcom_message_cooldown = TRUE
-				spawn(10 MINUTES) //10 minute cooldown
-					centcom_message_cooldown = FALSE
+				COOLDOWN_START(src, centcom_message_cooldown, 10 MINUTES) // 10 minute cooldown
 
 		// OMG SYNDICATE ...LETTERHEAD
 		if("MessageSyndicate")
 			if(src.authenticated == AUTH_FULL && src.emagged)
-				if(centcom_message_cooldown)
+				if(!COOLDOWN_FINISHED(src, centcom_message_cooldown))
 					to_chat(usr, SPAN_WARNING("Arrays recycling. Please stand by."))
 					return
 				var/input = stripped_input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement. Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "")
@@ -224,9 +220,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 				Syndicate_announce(input, usr)
 				to_chat(usr, SPAN_INFO("Message transmitted."))
 				log_say("[key_name(usr)] has made a Syndicate announcement: [input]")
-				centcom_message_cooldown = TRUE
-				spawn(10 MINUTES)//10 minute cooldown
-					centcom_message_cooldown = FALSE
+				COOLDOWN_START(src, centcom_message_cooldown, 10 MINUTES) // 10 minute cooldown
 
 		if("RestoreBackup")
 			to_chat(usr, "Backup routing data restored!")

@@ -2,6 +2,7 @@
 /obj/item/mecha_equipment/weapon/energy/laser
 	name = "\improper CH-PS \"Immolator\" laser"
 	icon_state = "laser"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/laser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/laser::req_tech
 
@@ -14,6 +15,7 @@
 /obj/item/mecha_equipment/weapon/energy/laser/heavy
 	name = "\improper CH-LC \"Solaris\" laser cannon"
 	icon_state = "laser_cannon"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/heavy_laser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/heavy_laser::req_tech
 
@@ -27,6 +29,7 @@
 	name = "jury-rigged welder-laser"
 	desc = "While not regulation, this inefficient weapon can be attached to working exosuits in desperate, or malicious, times."
 	icon_state = "laser_rigged"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_laser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_laser::req_tech
 
@@ -102,6 +105,7 @@
 	name = "\improper CH-XS \"Penetrator\" X-ray laser"
 	desc = "A large exosuit-mounted variant of the anti-armour xray rifle."
 	icon_state = "xray"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/xray::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/xray::req_tech
 
@@ -115,6 +119,7 @@
 	name = "jury-rigged X-ray laser"
 	desc = "A modified wormhole modulation array and meson-scanning control system allow this abomination to produce concentrated blasts of xrays."
 	icon_state = "xray_rigged"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_xray::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_xray::req_tech
 

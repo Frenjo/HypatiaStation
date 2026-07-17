@@ -51,7 +51,7 @@
 	var/datum/faction/faction 			//associated faction
 	var/datum/changeling/changeling		//changeling holder
 
-	var/rev_cooldown = 0
+	COOLDOWN_DECLARE(rev_cooldown)
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1

@@ -38,7 +38,7 @@
 	projectiletype = /obj/projectile/energy/pulse/disabler
 	projectilesound = 'sound/weapons/gun/taser2.ogg'
 
-	max_ranged_cooldown = 2
+	max_ranged_cooldown = 4 SECONDS
 
 	// The current amount of resources we have, and the maximum amount we can hold.
 	var/resources = 0
@@ -103,7 +103,7 @@
 	projectiletype = /obj/projectile/energy/pulse/laser
 	projectilesound = 'sound/weapons/gun/laser.ogg'
 
-	max_ranged_cooldown = 3
+	max_ranged_cooldown = 6 SECONDS
 
 // Melee (stunner) variant
 /mob/living/simple/hostile/swarmer/melee

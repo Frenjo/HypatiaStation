@@ -27,20 +27,12 @@
 	item_state = "c_tube"
 	matter_amounts = /datum/design/autolathe/light_tube::materials
 
-	brightness_range = 6
-	brightness_power = 2
-	brightness_color = "#FFFFFF"
+	brightness_range = 8
+	brightness_power = 0.8
+	brightness_color = "#FFFFF0"
 	lighting_modes = list(
 		LIGHT_MODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#d13e43"),
 	)
-
-/obj/item/light/tube/large
-	w_class = WEIGHT_CLASS_SMALL
-	name = "large light tube"
-	broken_chance = 5
-
-	brightness_range = 8
-	brightness_power = 2
 
 /obj/item/light/bulb
 	name = "light bulb"
@@ -50,23 +42,12 @@
 	item_state = "contvapour"
 	matter_amounts = /datum/design/autolathe/light_bulb::materials
 
-	brightness_range = 4
-	brightness_power = 2
+	brightness_range = 5
+	brightness_power = 0.75
 	brightness_color = "#a0a080"
 	lighting_modes = list(
 		LIGHT_MODE_EMERGENCY = list(l_range = 4, l_power = 1, l_color = "#d13e43"),
 	)
-
-/obj/item/light/bulb/fire
-	name = "fire bulb"
-	desc = "A replacement fire bulb."
-	icon_state = "fbulb"
-	base_state = "fbulb"
-	item_state = "egg4"
-	matter_amounts = alist(/decl/material/iron = 60, /decl/material/glass = 100)
-
-	brightness_range = 4
-	brightness_power = 2
 
 /obj/item/light/bulb/red
 	color = "#d13e43"

@@ -12,7 +12,7 @@
 	move_delay = 0.35 SECONDS
 	step_energy_drain = /obj/mecha/combat::step_energy_drain * 4
 	deflect_chance = 30
-	damage_resistance = list("brute" = 40, "fire" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 40)
+	damage_resistance = alist(brute = 40, fire = 40, bullet = 40, laser = 40, energy = 40, bomb = 40)
 	internal_damage_threshold = 30
 
 	step_sound = 'sound/mecha/movement/eidolon/sbdwalk0.ogg'

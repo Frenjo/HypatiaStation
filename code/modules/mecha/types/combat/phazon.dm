@@ -14,7 +14,7 @@
 	move_delay = 0.2 SECONDS
 	step_energy_drain = 3
 	deflect_chance = 30
-	damage_resistance = alist("brute" = 30, "fire" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30)
+	damage_resistance = alist(brute = 30, fire = 30, bullet = 30, laser = 30, energy = 30, bomb = 30)
 	internal_damage_threshold = 25
 
 	mecha_type = MECHA_TYPE_PHAZON
@@ -30,12 +30,12 @@
 	if(!custom_phasing_animation)
 		add_filter("phasing", list(type = "blur", size = 0))
 
-/obj/mecha/combat/phazon/mechstep(direction)
+/obj/mecha/combat/phazon/mech_step(direction)
 	. = ..()
 	if(phasing)
 		. = handle_phasing_step(.) || .
 
-/obj/mecha/combat/phazon/mechsteprand()
+/obj/mecha/combat/phazon/mech_step_rand()
 	. = ..()
 	if(phasing)
 		. = handle_phasing_step(.) || .
@@ -48,7 +48,7 @@
 	do_phasing_effects() // Only do the phasing effects if we actually phase.
 	forceMove(get_step(src, dir))
 	use_power(phasing_energy_drain)
-	COOLDOWN_INCREMENT(src, cooldown_mecha_move, move_delay * 3)
+	COOLDOWN_INCREMENT(src, move_cooldown, move_delay * 3)
 	play_step_sound()
 	handle_equipment_movement()
 	return TRUE
@@ -145,7 +145,7 @@
 	step_energy_drain = 1.5
 	max_temperature = 45000
 	deflect_chance = 40
-	damage_resistance = alist("brute" = 35, "fire" = 25, "bullet" = 35, "laser" = 40, "energy" = 32.5, "bomb" = 25)
+	damage_resistance = alist(brute = 35, fire = 25, bullet = 35, laser = 40, energy = 32.5, bomb = 25)
 
 	max_equip = 5
 
@@ -180,7 +180,7 @@
 
 	health = 250
 	max_temperature = 10000
-	damage_resistance = alist("brute" = 50, "fire" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50)
+	damage_resistance = alist(brute = 50, fire = 50, bullet = 50, laser = 50, energy = 50, bomb = 50)
 
 	max_equip = 4
 
@@ -201,7 +201,7 @@
 	health = 500
 	max_temperature = 10000
 	deflect_chance = 50
-	damage_resistance = alist("brute" = 60, "fire" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60)
+	damage_resistance = alist(brute = 60, fire = 60, bullet = 60, laser = 60, energy = 60, bomb = 60)
 
 	max_equip = 5
 

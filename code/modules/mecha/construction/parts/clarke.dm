@@ -12,6 +12,7 @@
 	name = "\improper Clarke torso"
 	desc = "The torso of a Clarke-type exosuit. Contains a power unit, processing core and life support systems."
 	icon_state = "harness"
+
 	matter_amounts = /datum/design/mechfab/part/clarke_torso::materials
 	origin_tech = alist(
 		/decl/tech/materials = 2, /decl/tech/biotech = 2, /decl/tech/engineering = 2,
@@ -22,6 +23,7 @@
 	name = "\improper Clarke head"
 	desc = "The head of a Clarke-type exosuit."
 	icon_state = "head"
+
 	matter_amounts = /datum/design/mechfab/part/clarke_head::materials
 	origin_tech = /datum/design/mechfab/part/clarke_head::req_tech
 
@@ -29,6 +31,7 @@
 	name = "\improper Clarke left arm"
 	desc = "The left arm of a Clarke-type exosuit. Its data and power sockets are compatible with most exosuit tools."
 	icon_state = "l_arm"
+
 	matter_amounts = /datum/design/mechfab/part/clarke_left_arm::materials
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
 
@@ -36,6 +39,7 @@
 	name = "\improper Clarke right arm"
 	desc = "The right arm of a Clarke-type exosuit. Its data and power sockets are compatible with most exosuit tools."
 	icon_state = "r_arm"
+
 	matter_amounts = /datum/design/mechfab/part/clarke_right_arm::materials
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
 
@@ -43,6 +47,7 @@
 	name = "\improper Clarke treads"
 	desc = "A set of treads for a Clarke-type exosuit. Finally, one that has caterpillar tracks instead of legs!"
 	icon_state = "treads"
+
 	matter_amounts = /datum/design/mechfab/part/clarke_treads::materials
 	origin_tech = /datum/design/mechfab/part/clarke_treads::req_tech
 

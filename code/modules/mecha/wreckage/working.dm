@@ -2,6 +2,7 @@
 /obj/structure/mecha_wreckage/ripley
 	name = "Ripley wreckage"
 	icon_state = "ripley-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/ripley/torso,
 		/obj/item/mecha_part/part/ripley/left_arm,
@@ -13,6 +14,7 @@
 /obj/structure/mecha_wreckage/ripley/firefighter
 	name = "Firefighter wreckage"
 	icon_state = "firefighter-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/ripley/torso,
 		/obj/item/mecha_part/part/ripley/left_arm,
@@ -60,6 +62,14 @@
 /obj/structure/mecha_wreckage/clarke
 	name = "Clarke wreckage"
 	icon_state = "clarke-broken"
+	
+	part_salvage = list(
+		/obj/item/mecha_part/part/clarke/torso,
+		/obj/item/mecha_part/part/clarke/head,
+		/obj/item/mecha_part/part/clarke/left_arm,
+		/obj/item/mecha_part/part/clarke/right_arm,
+		/obj/item/mecha_part/part/clarke/treads
+	)
 
 // Thales
 /obj/structure/mecha_wreckage/thales

@@ -2,6 +2,7 @@
 /obj/item/mecha_equipment/weapon/energy/ion
 	name = "mkIV ion heavy cannon"
 	icon_state = "ion"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/ion::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/ion::req_tech
 
@@ -15,6 +16,7 @@
 	name = "jury-rigged ion cannon"
 	desc = "A large coil modified to amplify an ionic wave and use it as a projectile."
 	icon_state = "ion_rigged"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_ion::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_ion::req_tech
 

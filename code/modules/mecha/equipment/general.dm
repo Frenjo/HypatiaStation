@@ -3,6 +3,7 @@
 	name = "exosuit repair droid"
 	desc = "An automated repair droid which scans an exosuit for damage and repairs it. Can fix almost all types of external or internal damage."
 	icon_state = "repair_droid"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/repair_droid::materials
 	origin_tech = /datum/design/mechfab/equipment/general/repair_droid::req_tech
 
@@ -85,6 +86,7 @@
 	name = "teleporter"
 	desc = "An exosuit module that allows limited teleportation to any position in view."
 	icon_state = "teleporter"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/teleporter::materials
 	origin_tech = /datum/design/mechfab/equipment/general/teleporter::req_tech
 
@@ -109,6 +111,7 @@
 	name = "wormhole generator"
 	desc = "An exosuit module that allows the generation of small quasi-stable wormholes."
 	icon_state = "wholegen"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/wormhole_gen::materials
 	origin_tech = /datum/design/mechfab/equipment/general/wormhole_gen::req_tech
 
@@ -161,6 +164,7 @@
 	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult."
 	icon_state = "catapult"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/gravcatapult::materials
 	origin_tech = /datum/design/mechfab/equipment/general/gravcatapult::req_tech
 

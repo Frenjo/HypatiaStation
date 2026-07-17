@@ -4,31 +4,32 @@
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/mecha_control
 
+	light_color = "#a97faa"
+
 	var/list/located = list()
 	var/screen = 0
 	var/stored_data
 
-	light_color = "#a97faa"
-
 /obj/machinery/computer/mecha/attack_ai(mob/user)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/computer/mecha/attack_paw(mob/user)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/computer/mecha/attack_hand(mob/user)
 	if(..())
 		return
+
 	user.set_machine(src)
-	var/dat = "<html><head><title>[src.name]</title><style>h3 {margin: 0px; padding: 0px;}</style></head><body>"
+	var/dat = "<html><head><title>[name]</title><style>h3 {margin: 0px; padding: 0px;}</style></head><body>"
 	if(screen == 0)
 		dat += "<h3>Tracking beacons data</h3>"
-		for(var/obj/item/mecha_part/tracking/TR in GLOBL.movable_atom_list)
-			var/answer = TR.get_mecha_info()
+		for(var/obj/item/mecha_part/tracking/beacon in GLOBL.movable_atom_list)
+			var/answer = beacon.get_mecha_info()
 			if(answer)
 				dat += {"<hr>[answer]<br/>
-							<a href='byond://?src=\ref[src];send_message=\ref[TR]'>Send message</a><br/>
-							<a href='byond://?src=\ref[src];get_log=\ref[TR]'>Show exosuit log</a> | <a style='color: #f00;' href='byond://?src=\ref[src];shock=\ref[TR]'>(EMP pulse)</a><br>"}
+							<a href='byond://?src=\ref[src];send_message=\ref[beacon]'>Send message</a><br/>
+							<a href='byond://?src=\ref[src];get_log=\ref[beacon]'>Show exosuit log</a> | <a style='color: #f00;' href='byond://?src=\ref[src];shock=\ref[beacon]'>(EMP pulse)</a><br>"}
 
 	if(screen == 1)
 		dat += "<h3>Log contents</h3>"
@@ -40,31 +41,31 @@
 
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
-	return
 
 /obj/machinery/computer/mecha/Topic(href, href_list)
 	if(..())
 		return
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(href_list["send_message"])
-		var/obj/item/mecha_part/tracking/MT = topic_filter.get_obj("send_message")
-		var/message = strip_html_simple(input(usr, "Input message", "Transmit message") as text)
-		var/obj/mecha/M = MT.in_mecha()
-		if(trim(message))
-			M?.occupant_message(message)
-		return
-	if(href_list["shock"])
-		var/obj/item/mecha_part/tracking/MT = topic_filter.get_obj("shock")
-		MT.shock()
-	if(href_list["get_log"])
-		var/obj/item/mecha_part/tracking/MT = topic_filter.get_obj("get_log")
-		stored_data = MT.get_mecha_log()
-		screen = 1
-	if(href_list["return"])
-		screen = 0
-	src.updateUsrDialog()
-	return
 
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
+	if(topic_filter.has("send_message"))
+		var/obj/item/mecha_part/tracking/beacon = topic_filter.get_obj("send_message")
+		var/message = strip_html_simple(input(usr, "Input message", "Transmit message") as text)
+		var/obj/mecha/mech = beacon.in_mecha()
+		if(trim(message))
+			mech?.occupant_message(message)
+		return
+
+	if(topic_filter.has("shock"))
+		var/obj/item/mecha_part/tracking/beacon = topic_filter.get_obj("shock")
+		beacon.shock()
+	if(topic_filter.has("get_log"))
+		var/obj/item/mecha_part/tracking/beacon = topic_filter.get_obj("get_log")
+		stored_data = beacon.get_mecha_log()
+		screen = 1
+	if(topic_filter.has("return"))
+		screen = 0
+
+	updateUsrDialog()
 
 /obj/item/mecha_part/tracking
 	name = "exosuit tracking beacon"

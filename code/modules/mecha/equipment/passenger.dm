@@ -4,6 +4,7 @@
 	name = "exosuit passenger compartment"
 	desc = "A mounted passenger compartment for exosuits. Rather cramped."
 	icon_state = "passenger_compartment"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/passenger_compartment::materials
 	origin_tech = /datum/design/mechfab/equipment/general/passenger_compartment::req_tech
 

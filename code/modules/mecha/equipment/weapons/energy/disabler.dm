@@ -3,6 +3,7 @@
 	name = "\improper CH-DS \"Peacemaker\" disabler"
 	desc = "A weapon for combat exosuits. Shoots basic disablers."
 	icon_state = "disabler"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/disabler::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/disabler::req_tech
 
@@ -16,6 +17,7 @@
 	name = "jury-rigged \"Peacebringer\" disabler"
 	desc = "A crude exosuit-mounted disabler." // Write a better description later.
 	icon_state = "disabler_rigged"
+
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_disabler::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_disabler::req_tech
 

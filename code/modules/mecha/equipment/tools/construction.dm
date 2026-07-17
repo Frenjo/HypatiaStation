@@ -3,6 +3,7 @@
 	name = "mounted RCD"
 	desc = "An exosuit-mounted rapid-construction-device."
 	icon_state = "rcd"
+
 	matter_amounts = /datum/design/mechfab/equipment/working/rcd::materials
 	origin_tech = /datum/design/mechfab/equipment/working/rcd::req_tech
 

@@ -11,6 +11,7 @@
 	name = "\improper Serenity carapace"
 	desc = "The outer carapace of a Serenity-type exosuit."
 	icon_state = "serenity_carapace"
+
 	matter_amounts = /datum/design/mechfab/part/serenity_carapace::materials
 	origin_tech = /datum/design/mechfab/part/serenity_carapace::req_tech
 
@@ -18,5 +19,6 @@
 /obj/item/circuitboard/mecha/serenity/medical
 	name = "circuit board (\"Serenity\" medical control module)"
 	icon_state = "mcontroller"
+
 	matter_amounts = /datum/design/circuit/mecha/serenity_medical::materials
 	origin_tech = /datum/design/circuit/mecha/serenity_medical::req_tech

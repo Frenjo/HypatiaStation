@@ -59,37 +59,12 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/obj/machinery/mech_bay_recharge_floor/recharge_floor
-	var/obj/machinery/computer/mech_bay_power_console/recharge_console
+	var/obj/machinery/mech_bay_recharge_floor/recharge_floor = null
+	var/obj/machinery/computer/mech_bay_power_console/recharge_console = null
 
-	var/datum/global_iterator/mech_bay_recharger/pr_recharger
-
-/obj/machinery/mech_bay_recharge_port/initialise()
-	. = ..()
-	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, FALSE)
-
-/obj/machinery/mech_bay_recharge_port/Destroy()
-	QDEL_NULL(pr_recharger)
-	return ..()
-
-/obj/machinery/mech_bay_recharge_port/proc/start_charge(obj/mecha/recharging_mecha)
-	if(stat & (NOPOWER | BROKEN))
-		recharging_mecha.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
-		return FALSE
-
-	if(isnotnull(recharging_mecha.cell))
-		recharging_mecha.occupant_message(SPAN_INFO("Now charging..."))
-		pr_recharger.start(list(src, recharging_mecha))
-		return TRUE
-	return FALSE
-
-/obj/machinery/mech_bay_recharge_port/proc/stop_charge()
-	if(isnotnull(recharge_console) && !recharge_console.stat)
-		recharge_console.icon_state = initial(recharge_console.icon_state)
-	pr_recharger.stop()
-
-/obj/machinery/mech_bay_recharge_port/proc/active()
-	return pr_recharger.active()
+	var/charging = FALSE
+	var/max_charge = 45
+	var/obj/mecha/target = null
 
 /obj/machinery/mech_bay_recharge_port/power_change()
 	if(powered())
@@ -97,36 +72,52 @@
 	else
 		spawn(rand(0, 15))
 			stat |= NOPOWER
-			pr_recharger.stop()
+			stop_charge()
 
-/obj/machinery/mech_bay_recharge_port/proc/set_voltage(new_voltage)
-	if(new_voltage && isnum(new_voltage))
-		pr_recharger.max_charge = new_voltage
+/obj/machinery/mech_bay_recharge_port/process()
+	. = ..()
+	if(. == PROCESS_KILL)
+		return .
+
+	if(isnotnull(target) && (target in GET_TURF(recharge_floor)))
+		if(isnull(target.cell))
+			return
+		var/delta = min(max_charge, target.cell.maxcharge - target.cell.charge)
+		if(delta > 0)
+			target.give_power(delta)
+			use_power(delta * 150)
+		else
+			target.occupant_message(SPAN_INFO_B("Fully charged."))
+			stop_charge()
+	else
+		stop_charge()
+
+
+/obj/machinery/mech_bay_recharge_port/proc/start_charge(obj/mecha/mech)
+	if(stat & (NOPOWER | BROKEN))
+		mech.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
+		return FALSE
+
+	if(isnotnull(mech.cell))
+		mech.occupant_message(SPAN_INFO("Now charging..."))
+		charging = TRUE
+		target = mech
+		START_PROCESSING(PCobj, src)
 		return TRUE
 	return FALSE
 
-// Recharge port iterator
-/datum/global_iterator/mech_bay_recharger
-	delay = 2 SECONDS
-	check_for_null = FALSE //since port.stop_charge() must be called. The checks are made in process()
+/obj/machinery/mech_bay_recharge_port/proc/stop_charge()
+	if(isnotnull(recharge_console) && !recharge_console.stat)
+		recharge_console.icon_state = initial(recharge_console.icon_state)
+	STOP_PROCESSING(PCobj, src)
+	target = null
+	charging = FALSE
 
-	var/max_charge = 45
-
-/datum/global_iterator/mech_bay_recharger/process(obj/machinery/mech_bay_recharge_port/port, obj/mecha/mecha)
-	if(isnull(port))
-		return
-	if(isnotnull(mecha) && (mecha in GET_TURF(port.recharge_floor)))
-		if(isnull(mecha.cell))
-			return
-		var/delta = min(max_charge, mecha.cell.maxcharge - mecha.cell.charge)
-		if(delta > 0)
-			mecha.give_power(delta)
-			port.use_power(delta * 150)
-		else
-			mecha.occupant_message(SPAN_INFO_B("Fully charged."))
-			port.stop_charge()
-	else
-		port.stop_charge()
+/obj/machinery/mech_bay_recharge_port/proc/set_voltage(new_voltage)
+	if(new_voltage && isnum(new_voltage))
+		max_charge = new_voltage
+		return TRUE
+	return FALSE
 
 // Power Console
 /obj/machinery/computer/mech_bay_power_console
@@ -189,7 +180,7 @@
 	if(isnull(recharge_port))
 		output += "<font color='red'>Mech Bay Power Port not initialized.</font><br>"
 	else
-		output += "<b>Mech Bay Power Port Status: </b>[recharge_port.active() ? "Now charging" : "On hold"]<br>"
+		output += "<b>Mech Bay Power Port Status: </b>[recharge_port.charging ? "Now charging" : "On hold"]<br>"
 
 	/*
 	output += {"<hr>

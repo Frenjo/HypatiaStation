@@ -2,6 +2,7 @@
 /obj/structure/mecha_wreckage/odysseus
 	name = "Odysseus wreckage"
 	icon_state = "odysseus-broken"
+
 	part_salvage = list(
 		/obj/item/mecha_part/part/odysseus/torso,
 		/obj/item/mecha_part/part/odysseus/head,
