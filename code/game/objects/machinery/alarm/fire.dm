@@ -267,7 +267,7 @@
 	A = A.loc
 	if(!isarea(A))
 		return
-	A.fire_reset()
+	A.reset_alert(ALERT_FIRE)
 	update_icon()
 
 /obj/machinery/fire_alarm/proc/alarm()
@@ -277,6 +277,6 @@
 	A = A.loc
 	if(!isarea(A))
 		return
-	A.fire_alert()
+	A.trigger_alert(ALERT_FIRE)
 	update_icon()
 	//playsound(src, 'sound/ambience/signal.ogg', 75, 0)

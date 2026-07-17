@@ -69,7 +69,7 @@
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master
-	A.party_reset()
+	A.reset_alert(ALERT_PARTY)
 
 /obj/machinery/party_alarm/proc/alarm()
 	if(!working)
@@ -78,7 +78,7 @@
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master
-	A.party_alert()
+	A.trigger_alert(ALERT_PARTY)
 
 /obj/machinery/party_alarm/Topic(href, href_list)
 	..()

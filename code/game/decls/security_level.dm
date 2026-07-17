@@ -171,7 +171,7 @@
 		grid.icon_state = "rcircuit_flash"
 	// Updates all hallway areas so they flash.
 	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
-		hall.destruct_alert()
+		hall.trigger_alert(ALERT_DESTRUCT)
 
 /decl/security_level/delta/on_change_from()
 	. = ..()
@@ -180,7 +180,7 @@
 		grid.icon_state = "bcircuit"
 	// Resets all hallway areas so they stop flashing.
 	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
-		hall.destruct_reset()
+		hall.reset_alert(ALERT_DESTRUCT)
 
 /decl/security_level/delta/on_elevate_to()
 	. = ..()

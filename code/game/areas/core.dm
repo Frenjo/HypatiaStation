@@ -21,23 +21,11 @@
 /area/space/updateicon()
 	return
 
-/area/space/power_alert()
-	return
+/area/space/trigger_alert()
+	return FALSE
 
-/area/space/atmos_alert()
-	return
-
-/area/space/fire_alert()
-	return
-
-/area/space/evac_alert()
-	return
-
-/area/space/party_alert()
-	return
-
-/area/space/destruct_alert()
-	return
+/area/space/reset_alert()
+	return FALSE
 
 // Away Missions
 /area/away_mission

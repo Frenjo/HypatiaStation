@@ -90,7 +90,7 @@ PROCESS_DEF(emergency)
 		null, 'sound/AI/shuttlecalled.ogg', ANNOUNCEMENT_TYPE_PRIORITY
 	)
 	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
-		hall.evac_alert()
+		hall.trigger_alert(ALERT_EVAC)
 
 	set_status_displays()
 
@@ -125,7 +125,7 @@ PROCESS_DEF(emergency)
 	if(evac)
 		priority_announce("The emergency shuttle has been recalled.", null, 'sound/AI/shuttlerecalled.ogg', ANNOUNCEMENT_TYPE_PRIORITY)
 		for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
-			hall.evac_reset()
+			hall.reset_alert(ALERT_EVAC)
 		evac = FALSE
 	else
 		priority_announce("The scheduled crew transfer has been cancelled.", null, 'sound/AI/shuttlerecall2.ogg', ANNOUNCEMENT_TYPE_PRIORITY)
