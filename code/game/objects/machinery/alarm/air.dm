@@ -358,7 +358,7 @@
 	mode.apply(src, alarm_area, target_pressure)
 
 /obj/machinery/air_alarm/proc/apply_danger_level(new_danger_level)
-	if(alarm_area.atmos_alert(new_danger_level))
+	if(alarm_area.trigger_alert(ALERT_ATMOS, new_danger_level, src))
 		post_alert(new_danger_level)
 
 	for(var/obj/machinery/air_alarm/alarm in alarm_area.machines_list)
@@ -493,7 +493,7 @@
 			apply_mode(/decl/air_alarm_mode/panic)
 
 		if(AIR_ALARM_WIRE_AALARM)
-			if(alarm_area.atmos_alert(2))
+			if(alarm_area.trigger_alert(ALERT_ATMOS, 2, src))
 				apply_danger_level(2)
 			spawn(1)
 				updateUsrDialog()
@@ -552,7 +552,7 @@
 			apply_mode(/decl/air_alarm_mode/replacement)
 
 		if(AIR_ALARM_WIRE_AALARM)
-			if(alarm_area.atmos_alert(0))
+			if(alarm_area.trigger_alert(ALERT_ATMOS, 0, src))
 				apply_danger_level(0)
 			spawn(1)
 				updateUsrDialog()
@@ -982,12 +982,12 @@ table tr:first-child th:first-child { border: none;}
 				air_doors_open(1)
 
 	if(href_list["atmos_alarm"])
-		if(alarm_area.atmos_alert(2))
+		if(alarm_area.trigger_alert(ALERT_ATMOS, 2, src))
 			apply_danger_level(2)
 		update_icon()
 
 	if(href_list["atmos_reset"])
-		if(alarm_area.atmos_alert(0))
+		if(alarm_area.trigger_alert(ALERT_ATMOS, 0, src))
 			apply_danger_level(0)
 		update_icon()
 
