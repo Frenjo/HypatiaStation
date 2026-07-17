@@ -21,7 +21,7 @@
 	if(!ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/H = M
-	if(H.mind in global.PCticker.mode.head_revolutionaries)
+	if(H.mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of NanoTrasen try to invade your mind!")
 		return FALSE
 	return TRUE
@@ -64,7 +64,7 @@
 	if(!ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/H = M
-	if(H.mind in global.PCticker.mode.head_revolutionaries)
+	if(H.mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of NanoTrasen try to invade your mind!")
 		return FALSE
 	else if(H.mind in global.PCticker.mode:revolutionaries)

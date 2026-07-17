@@ -26,7 +26,7 @@
 
 /datum/game_mode/malfunction/pre_setup()
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
-		if(player.mind && player.mind.assigned_role == "AI")
+		if(player.mind?.assigned_job.type == /datum/job/ai)
 			malf_ai.Add(player.mind)
 	if(length(malf_ai))
 		return 1
@@ -54,7 +54,7 @@
 
 		greet_malf(ai_mind)
 
-		ai_mind.special_role = "malfunction"
+		ai_mind.assign_special_role(SPECIAL_ROLE_MALF_AI)
 
 		ai.verbs.Add(/datum/game_mode/malfunction/proc/takeover)
 

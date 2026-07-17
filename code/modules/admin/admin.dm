@@ -968,27 +968,27 @@ var/global/floorIsLava = 0
 		return 0
 	if(!istype(M))
 		return 0
-	if((M.mind in global.PCticker.mode.head_revolutionaries) || (M.mind in global.PCticker.mode.revolutionaries))
+	if(M.mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) || M.mind.has_special_role(SPECIAL_ROLE_REVOLUTIONARY))
 		if(IS_GAME_MODE(/datum/game_mode/revolution))
 			return 2
 		return 1
-	if(M.mind in global.PCticker.mode.cult)
+	if(M.mind.has_special_role(SPECIAL_ROLE_CULTIST))
 		if(IS_GAME_MODE(/datum/game_mode/cult))
 			return 2
 		return 1
-	if(M.mind in global.PCticker.mode.malf_ai)
+	if(M.mind.has_special_role(SPECIAL_ROLE_MALF_AI))
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			return 2
 		return 1
-	if(M.mind in global.PCticker.mode.syndicates)
+	if(M.mind.has_special_role(SPECIAL_ROLE_SYNDICATE))
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			return 2
 		return 1
-	if(M.mind in global.PCticker.mode.wizards)
+	if(M.mind.has_special_role(SPECIAL_ROLE_WIZARD))
 		if(IS_GAME_MODE(/datum/game_mode/wizard))
 			return 2
 		return 1
-	if(M.mind in global.PCticker.mode.changelings)
+	if(M.mind.has_special_role(SPECIAL_ROLE_CHANGELING))
 		if(IS_GAME_MODE(/datum/game_mode/changeling))
 			return 2
 		return 1
@@ -1002,7 +1002,7 @@ var/global/floorIsLava = 0
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
 			return 1
-	if(M.mind && M.mind.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
+	if(M.mind?.has_special_role()) //If they have a mind and special role, they are some type of traitor or antagonist.
 		return 1
 
 	return 0

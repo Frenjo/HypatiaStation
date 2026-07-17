@@ -218,9 +218,8 @@
 			connected_ai.connected_robots.Remove(src)
 			connected_ai = null
 		if(isnotnull(mind))
-			if(isnull(mind.special_role))
-				mind.special_role = "traitor"
-				global.PCticker.mode.traitors += mind
+			mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
+			global.PCticker.mode.traitors += mind
 
 	if(isnotnull(cells))
 		if(isnotnull(cell))

@@ -23,14 +23,12 @@ VOX HEIST ROUNDTYPE
 	. += "<B>Raiders:</B> Loot [station_name()] for anything and everything you need."
 	. += "<B>Personnel:</B> Repel the raiders and their low, low prices and/or crossbows."
 
-/datum/game_mode/heist/can_start()
-	if(!..())
-		return 0
-
-	var/list/candidates = get_players_for_role(BE_RAIDER)
+/datum/game_mode/heist/pre_setup()
+	. = ..()
+	var/list/candidates = get_players_for_role(/decl/special_role/raider)
 	var/raider_num = 0
 
-	//Check that we have enough vox.
+	// Check that we have enough vox.
 	if(length(candidates) < required_enemies)
 		return 0
 	else if(length(candidates) < recommended_enemies)
@@ -38,21 +36,18 @@ VOX HEIST ROUNDTYPE
 	else
 		raider_num = recommended_enemies
 
-	//Grab candidates randomly until we have enough.
+	// Grab candidates randomly until we have enough.
 	while(raider_num > 0)
 		var/datum/mind/new_raider = pick(candidates)
-		raiders += new_raider
-		candidates -= new_raider
+		raiders.Add(new_raider)
+		candidates.Remove(new_raider)
 		raider_num--
 
 	for_no_type_check(var/datum/mind/raider, raiders)
-		raider.assigned_role = "MODE"
-		raider.special_role = "Vox Raider"
-	return 1
+		raider.assign_special_role(SPECIAL_ROLE_VOX_RAIDER)
 
 /datum/game_mode/heist/post_setup()
 	. = ..()
-
 	//Build a list of spawn points.
 	var/list/turf/raider_spawn = list()
 

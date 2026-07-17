@@ -79,7 +79,6 @@
 		add_head_objectives(head_mind)
 	for(var/datum/mind/head_mind in heads)
 		greet_head(head_mind)
-	modePlayer += heads
 
 
 /datum/game_mode/anti_revolution/process()
@@ -195,7 +194,6 @@
 
 	if(character.mind.assigned_job.head_position)
 		heads += character.mind
-		modePlayer += character.mind
 		add_head_objectives(character.mind)
 		greet_head(character.mind)
 
@@ -208,7 +206,6 @@
 
 	ticker.mode:heads -= src.mind
 	src.mind.objectives = list()
-	ticker.mode.modePlayer -= src.mind
 	src.mind.special_role = null
 
 	src.verbs -= /mob/proc/ResignFromHeadPosition

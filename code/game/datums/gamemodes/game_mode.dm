@@ -13,20 +13,23 @@
 /datum/game_mode
 	var/name = "invalid"
 	var/config_tag = null
+
 	var/intercept_hacked = 0
 	var/list/intercept_time = list(1 MINUTE, 3 MINUTES) // The time range between which the intercept will be sent.
+
 	var/votable = TRUE
 	var/probability = 0
+
 	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
 	var/explosion_in_progress = 0 //sit back and relax
-	var/list/datum/mind/modePlayer = new
-	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
-	var/list/protected_jobs = list()	// Jobs that can't be traitors because
+
 	var/required_players = 0
 	var/required_players_secret = 0 //Minimum number of players for that game mode to be chose in Secret
 	var/required_enemies = 0
 	var/recommended_enemies = 0
+
 	var/newscaster_announcements = null
+
 	var/uplink_welcome = "Syndicate Uplink Console:"
 	var/uplink_uses = 10
 	var/uplink_items = {"Highly Visible and Dangerous Weapons;
@@ -236,14 +239,15 @@ Implants;
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		if(isnotnull(H.client) && isnotnull(H.mind))
 			// NT relation option
-			var/special_role = H.mind.special_role
-			if(special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
+			var/datum/mind/human_mind = H.mind
+			if(human_mind.has_special_role(SPECIAL_ROLE_WIZARD) || human_mind.has_special_role(SPECIAL_ROLE_NINJA) \
+			|| human_mind.has_special_role(SPECIAL_ROLE_SYNDICATE) || human_mind.has_special_role(SPECIAL_ROLE_VOX_RAIDER))
 				continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
 			if(H.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || H.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
 				suspects.Add(H)
 			// Antags
-			else if(special_role == "traitor" && prob(40) || special_role == "Changeling" && prob(50) \
-			|| special_role == "Cultist" && prob(30) || special_role == "Head Revolutionary" && prob(30))
+			else if(human_mind.has_special_role(SPECIAL_ROLE_TRAITOR) && prob(40) || human_mind.has_special_role(SPECIAL_ROLE_CHANGELING) && prob(50) \
+			|| human_mind.has_special_role(SPECIAL_ROLE_CULTIST) && prob(30) || human_mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) && prob(30))
 				suspects.Add(H)
 
 				// If they're a traitor or likewise, give them extra TC in exchange.
@@ -262,10 +266,10 @@ Implants;
 	for_no_type_check(var/mob/M, suspects)
 		switch(rand(1, 100))
 			if(1 to 50)
-				text += "Someone with the job of <b>[M.mind.assigned_role]</b>."
+				text += "Someone with the job of <b>[M.mind.assigned_job.title]</b>."
 				text += "<br>"
 			else
-				text += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b>."
+				text += "<b>[M.name]</b>, the <b>[M.mind.assigned_job.title]</b>."
 				text += "<br>"
 
 	print_command_report(text)
@@ -282,35 +286,20 @@ Implants;
 // Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than recommended_enemies
 //			recommended_enemies if the number of people with that role set to yes is less than recomended_enemies,
 //			Less if there are not enough valid players in the game entirely to make recommended_enemies.
-/datum/game_mode/proc/get_players_for_role(role, override_jobbans = 0)
+/datum/game_mode/proc/get_players_for_role(role_type, override_jobbans = 0)
 	. = list()
 	var/list/players = list()
 	//var/list/drafted = list()
 	//var/datum/mind/applicant = null
 
-	var/roletext
-	switch(role)
-		if(BE_CHANGELING)
-			roletext = "changeling"
-		if(BE_TRAITOR)
-			roletext = "traitor"
-		if(BE_OPERATIVE)
-			roletext = "operative"
-		if(BE_WIZARD)
-			roletext = "wizard"
-		if(BE_REV)
-			roletext = "revolutionary"
-		if(BE_CULTIST)
-			roletext = "cultist"
-		if(BE_NINJA)
-			roletext = "ninja"
-		if(BE_RAIDER)
-			roletext = "raider"
+	var/decl/special_role/role = GET_DECL_INSTANCE(role_type)
+	if(isnull(role))
+		return .
 
 	// Assemble a list of active players without jobbans.
 	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.client && player.ready)
-			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
+			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, role.role_type))
 				players.Add(player)
 
 	// Shuffle the players list so that it becomes ping-independent.
@@ -318,8 +307,8 @@ Implants;
 
 	// Get a list of all the people who want to be the antagonist for this round
 	for(var/mob/dead/new_player/player in players)
-		if(player.client.prefs.be_special & role)
-			log_debug("[player.key] had [roletext] enabled, so we are drafting them.")
+		if(player.client.prefs.be_special & role.role_flag)
+			log_debug("[player.key] had [role.role_type] enabled, so we are drafting them.")
 			. += player.mind
 			players.Remove(player)
 
@@ -334,17 +323,13 @@ Implants;
 					break
 
 	// Remove candidates who want to be antagonist but have a job that precludes it
-	if(restricted_jobs)
-		for_no_type_check(var/datum/mind/player, .)
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					. -= player
+	. = role.get_candidates(.)
 
 	/*if(length(.) < recommended_enemies)
 		for(var/mob/dead/new_player/player in players)
 			if(player.client && player.ready)
 				if(!(player.client.prefs.be_special & role)) // We don't have enough people who want to be antagonist, make a seperate list of people who don't want to be one
-					if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext)) //Nodrak/Carn: Antag Job-bans
+					if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, role_name)) //Nodrak/Carn: Antag Job-bans
 						drafted += player.mind
 
 	if(restricted_jobs)
@@ -391,7 +376,6 @@ Implants;
 		else												// Not enough scrubs, ABORT ABORT ABORT
 			break
 	*/
-
 
 /datum/game_mode/proc/latespawn(mob)
 	return

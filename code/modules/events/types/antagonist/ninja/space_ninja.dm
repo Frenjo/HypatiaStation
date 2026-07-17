@@ -247,13 +247,13 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 			if(GLOBL.sent_strike_team && side == "heel" && length(antagonist_list))//If a strike team was sent, murder them all like a champ.
 				for(current_mind in antagonist_list)//Search and destroy. Since we already have an antagonist list, they should appear there.
-					if(current_mind && current_mind.special_role == "Death Commando")
+					if(current_mind?.has_special_role(SPECIAL_ROLE_DEATH_COMMANDO))
 						commando_list += current_mind
 				if(length(commando_list))//If there are living commandos still in play.
 					for(var/mob/living/carbon/human/commando in commando_list)
 						var/datum/objective/assassinate/ninja_objective = new
 						ninja_objective.owner = ninja_mind
-						ninja_objective.find_target_by_role(commando.mind.special_role,1)
+						ninja_objective.find_target_by_role(SPECIAL_ROLE_DEATH_COMMANDO, 1)
 						ninja_mind.objectives += ninja_objective
 					mission_set = TRUE
 		/*
@@ -294,7 +294,9 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 							if(current_mind)
 								var/datum/objective/assassinate/ninja_objective = new
 								ninja_objective.owner = ninja_mind
-								ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role), (current_mind.special_role ? 1 : 0))//If they have a special role, use that instead to find em.
+								var/has_special_role = current_mind.has_special_role()
+								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_job.title
+								ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 							else
 								i++
@@ -313,7 +315,9 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 							if(current_mind)
 								var/datum/objective/protect/ninja_objective = new
 								ninja_objective.owner = ninja_mind
-								ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role),(current_mind.special_role?1:0))
+								var/has_special_role = current_mind.has_special_role()
+								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_job.title
+								ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 							else
 								i++
@@ -324,7 +328,9 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 							if(current_mind)
 								var/datum/objective/debrain/ninja_objective = new
 								ninja_objective.owner = ninja_mind
-								ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role),(current_mind.special_role?1:0))
+								var/has_special_role = current_mind.has_special_role()
+								var/target_role = has_special_role ? current_mind.special_roles[1] : current_mind.assigned_job.title
+								ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 							else
 								i++
@@ -512,8 +518,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 /mob/living/carbon/human/proc/create_mind_space_ninja()
 	mind_initialize()
-	mind.assigned_role = "MODE"
-	mind.special_role = "Ninja"
+	mind.assign_special_role(SPECIAL_ROLE_NINJA)
 
 	//ticker.mode.ninjas |= mind
 	return 1
@@ -547,7 +552,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		H.gloves.icon_state = "s-ninjan"
 		H.gloves.item_state = "s-ninjan"
 	else
-		if(H.mind.special_role != "Ninja")
+		if(!H.mind.has_special_role(SPECIAL_ROLE_NINJA))
 			to_chat(H, SPAN_WARNING("<B>f�TaL ��RRoR</B>: 382200-*#00C�DE <B>RED</B><br>UNAU�HORIZED US� DET�C���eD<br>CoMM�NCING SUB-R0U�IN3 13...<br>T�RMInATING U-U-US�R..."))
 			H.gib()
 			return 0

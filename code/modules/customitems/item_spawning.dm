@@ -27,7 +27,7 @@
 				var/obj/item/Item = new path()
 				if(istype(Item,/obj/item/card/id))
 					//id card needs to replace the original ID
-					if(M.ckey == "nerezza" && M.real_name == "Asher Spock" && M.mind.role_alt_title && M.mind.role_alt_title != "Emergency Physician")
+					if(M.ckey == "nerezza" && M.real_name == "Asher Spock" && M.mind.job_alt_title && M.mind.job_alt_title != "Emergency Physician")
 						//only spawn ID if asher is joining as an emergency physician
 						ok = 1
 						qdel(Item)
@@ -35,7 +35,7 @@
 					var/obj/item/card/id/I = Item
 					for(var/obj/item/card/id/C in M)
 						//default settings
-						I.name = "[M.real_name]'s ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
+						I.name = "[M.real_name]'s ID Card ([M.mind.job_alt_title ? M.mind.job_alt_title : M.mind.assigned_job.title])"
 						I.registered_name = M.real_name
 						I.access = C.access
 						I.assignment = C.assignment
@@ -46,19 +46,19 @@
 
 						//custom stuff
 						if(M.ckey == "fastler" && M.real_name == "Fastler Greay") //This is a Lifetime ID
-							I.name = "[M.real_name]'s Lifetime ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
+							I.name = "[M.real_name]'s Lifetime ID Card ([M.mind.job_alt_title ? M.mind.job_alt_title : M.mind.assigned_job.title])"
 						else if(M.ckey == "nerezza" && M.real_name == "Asher Spock") //This is an Odysseus Specialist ID
-							I.name = "[M.real_name]'s Odysseus Specialist ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
+							I.name = "[M.real_name]'s Odysseus Specialist ID Card ([M.mind.job_alt_title ? M.mind.job_alt_title : M.mind.assigned_job.title])"
 							I.access += list(ACCESS_ROBOTICS) //Station-based mecha pilots need this to access the recharge bay.
 						else if(M.ckey == "roaper" && M.real_name == "Ian Colm") //This is a Technician ID
-							I.name = "[M.real_name]'s Technician ID ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
+							I.name = "[M.real_name]'s Technician ID ([M.mind.job_alt_title ? M.mind.job_alt_title : M.mind.assigned_job.title])"
 
 						//replace old ID
 						qdel(C)
 						ok = M.equip_if_possible(I, SLOT_ID_ID_STORE, FALSE) // if TRUE, last argument deletes on fail
 						break
 				else if(istype(Item,/obj/item/storage/belt))
-					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.role_alt_title && M.mind.role_alt_title != "Nurse" && M.mind.role_alt_title != "Chemist")
+					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.job_alt_title && M.mind.job_alt_title != "Nurse" && M.mind.job_alt_title != "Chemist")
 						ok = 1
 						qdel(Item)
 						goto skip

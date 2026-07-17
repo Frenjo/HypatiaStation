@@ -1381,7 +1381,7 @@
 
 		//Job + antagonist
 		if(M.mind)
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
+			special_role_description = "Role: <b>[M.mind.assigned_job.title]</b>; Antagonist: <font color='red'><b>[jointext(M.mind.special_roles, ", ")]</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
 		else
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
 
@@ -1947,7 +1947,7 @@
 					if(is_special_character(H)) continue
 					//traitorize(H, objective, 0)
 					global.PCticker.mode.traitors += H.mind
-					H.mind.special_role = "traitor"
+					H.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 					var/datum/objective/new_objective = new
 					new_objective.owner = H
 					new_objective.explanation_text = objective
@@ -1957,7 +1957,7 @@
 					global.PCticker.mode.finalize_traitor(H.mind)
 				for(var/mob/living/silicon/A in GLOBL.player_list)
 					global.PCticker.mode.traitors += A.mind
-					A.mind.special_role = "traitor"
+					A.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
 					var/datum/objective/new_objective = new
 					new_objective.owner = A
 					new_objective.explanation_text = objective

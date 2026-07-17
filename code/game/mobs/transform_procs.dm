@@ -141,16 +141,16 @@
 		qdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
-	var/mmi_type = O.mmi_types_by_title[mind?.role_alt_title ? mind.role_alt_title : mind?.assigned_role]
+	var/mmi_type = O.mmi_types_by_title[mind?.job_alt_title ? mind.job_alt_title : mind?.assigned_job.title]
 
 	O.gender = gender
 	O.invisibility = 0
 
 	if(mind)	//TODO
 		mind.transfer_to(O)
-		if(O.mind.assigned_role == "Robot")
+		if(istype(O.mind.assigned_job, /datum/job/robot))
 			O.mind.original = O
-		else if(mind && mind.special_role)
+		else if(mind?.has_special_role())
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 	else
 		O.key = key

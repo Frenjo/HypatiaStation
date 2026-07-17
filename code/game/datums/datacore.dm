@@ -251,16 +251,12 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	if(length(pda_manifest))
 		pda_manifest.Cut()
 
-	if(isnotnull(H.mind) && (H.mind.assigned_role != "MODE"))
+	if(isnotnull(H.mind) && isnotnull(H.mind.assigned_job))
 		var/assignment
-		if(isnotnull(H.mind.role_alt_title))
-			assignment = H.mind.role_alt_title
-		else if(H.mind.assigned_role)
-			assignment = H.mind.assigned_role
-		else if(H.job)
-			assignment = H.job
+		if(isnotnull(H.mind.job_alt_title))
+			assignment = H.mind.job_alt_title
 		else
-			assignment = "Unassigned"
+			assignment = H.mind.assigned_job.title
 
 		var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
@@ -268,7 +264,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		var/datum/record/G = new /datum/record()
 		G.fields["id"]			= id
 		G.fields["name"]		= H.real_name
-		G.fields["real_rank"]	= H.mind.assigned_role
+		G.fields["real_rank"]	= H.mind.assigned_job.title
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
@@ -321,9 +317,9 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 
 		//Locked Record
 		var/datum/record/L = new /datum/record()
-		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")
+		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_job.title]")
 		L.fields["name"]		= H.real_name
-		L.fields["rank"] 		= H.mind.assigned_role
+		L.fields["rank"] 		= H.mind.assigned_job.title
 		L.fields["age"]			= H.age
 		L.fields["sex"]			= H.gender
 		L.fields["b_type"]		= H.b_type
@@ -391,7 +387,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 	var/icon/clothes_s = null
-	switch(H.mind.assigned_role)
+	switch(H.mind.assigned_job.title)
 		if("Head of Personnel")
 			clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "hop_s")
 			clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "brown"), ICON_UNDERLAY)

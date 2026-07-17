@@ -52,8 +52,8 @@
 	var/sqlname = sanitizeSQL(H.real_name)
 	var/sqlkey = sanitizeSQL(H.key)
 	var/sqlpod = sanitizeSQL(podname)
-	var/sqlspecial = sanitizeSQL(H.mind.special_role)
-	var/sqljob = sanitizeSQL(H.mind.assigned_role)
+	var/sqlspecial = sanitizeSQL(H.mind.special_roles[1])
+	var/sqljob = sanitizeSQL(H.mind.assigned_job.title)
 	var/laname
 	var/lakey
 	if(H.lastattacker)
@@ -85,8 +85,8 @@
 	var/sqlname = sanitizeSQL(H.real_name)
 	var/sqlkey = sanitizeSQL(H.key)
 	var/sqlpod = sanitizeSQL(podname)
-	var/sqlspecial = sanitizeSQL(H.mind.special_role)
-	var/sqljob = sanitizeSQL(H.mind.assigned_role)
+	var/sqlspecial = sanitizeSQL(H.mind.special_roles[1])
+	var/sqljob = sanitizeSQL(H.mind.assigned_job.title)
 	var/laname
 	var/lakey
 	if(H.lastattacker)

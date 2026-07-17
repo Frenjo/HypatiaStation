@@ -62,8 +62,6 @@
 		var/datum/mind/first_host = pick(possible_memes)
 		possible_memes.Remove(first_host)
 
-		modePlayer += meme
-		modePlayer += first_host
 		memes += meme
 		first_hosts += first_host
 

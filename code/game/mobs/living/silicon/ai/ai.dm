@@ -110,7 +110,7 @@
 			to_chat(src, "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>")
 			to_chat(src, "To use something, simply click on it.")
 			to_chat(src, "Use say :b to speak to your cyborgs through binary.")
-			if(isnull(global.PCticker?.mode) || !(mind in global.PCticker.mode.malf_ai))
+			if(isnull(global.PCticker?.mode) || !mind.has_special_role(SPECIAL_ROLE_MALF_AI))
 				show_laws()
 				to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
