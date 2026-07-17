@@ -53,10 +53,6 @@
 	name = "small emergency light fixture"
 	light_type = /obj/item/light/bulb/red
 
-/obj/machinery/light/spot
-	name = "spotlight"
-	light_type = /obj/item/light/tube/large
-
 // create a new lighting fixture
 /obj/machinery/light/New(atom/newloc, obj/machinery/light_frame/construct = null)
 	. = ..(newloc)

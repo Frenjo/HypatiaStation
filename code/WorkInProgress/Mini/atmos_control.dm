@@ -170,14 +170,14 @@
 					current.air_doors_open(1)
 
 		if(href_list["atmos_alarm"])
-			if(current.alarm_area.atmos_alert(2))
+			if(current.alarm_area.trigger_alert(ALERT_ATMOS, 2, src))
 				current.apply_danger_level(2)
 			spawn(1)
 				src.updateUsrDialog()
 			current.update_icon()
 			return
 		if(href_list["atmos_reset"])
-			if(current.alarm_area.atmos_alert(0))
+			if(current.alarm_area.trigger_alert(ALERT_ATMOS, 0, src))
 				current.apply_danger_level(0)
 			spawn(1)
 				src.updateUsrDialog()
