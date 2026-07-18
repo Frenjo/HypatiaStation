@@ -40,30 +40,52 @@
 	var/obj/item/clothing/gloves/space_ninja/n_gloves
 
 		//Main function variables.
-	var/s_initialized = 0	//Suit starts off.
-	var/s_coold = 0			//If the suit is on cooldown. Can be used to attach different cooldowns to abilities. Ticks down every second based on suit ntick().
-	var/s_cost = 5.0		//Base energy cost each ntick.
-	var/s_acost = 25.0		//Additional cost for additional powers active.
-	var/k_cost = 200.0		//Kamikaze energy cost each ntick.
-	var/k_damage = 1.0		//Brute damage potentially done by Kamikaze each ntick.
-	var/s_delay = 40.0		//How fast the suit does certain things, lower is faster. Can be overridden in specific procs. Also determines adverse probability.
-	var/a_transfer = 20.0	//How much reagent is transferred when injecting.
-	var/r_maxamount = 80.0	//How much reagent in total there is.
+	/// Is the suit on or off, simple
+	var/is_suit_initialized = FALSE
+	/// If the suit is on cooldown (tracked in number of ticks).
+	/// Can be used to attach different cooldowns to abilities.
+	/// Ticks down every second based on suit ntick().
+	var/suit_cooldown = 0
+	/// Base energy cost each ntick.
+	var/passive_energy_drain = 5.0
+	/// Additional cost for additional powers active.
+	var/active_energy_drain = 25.0
+	/// Kamikaze energy cost each ntick.
+	var/kamikaze_energy_drain = 200.0
+	/// Brute damage potentially done by Kamikaze each ntick.
+	var/kamikaze_passive_damage = 1.0
+	/// How fast the suit does certain things, lower is faster.
+	/// Can be overridden in specific procs. Also determines adverse probability.
+	var/suit_action_delay = 40.0
+	/// How much reagent is transferred when injecting.
+	var/adrenaline_inject_volume = 20.0
+	/// How much reagent in total there is.
+	var/adrenaline_max_volume = 80.00
 
 		//Support function variables.
-	var/spideros = 0	//Mode of SpiderOS. This can change so I won't bother listing the modes here (0 is hub). Check ninja_equipment.dm for how it all works.
-	var/s_active = 0	//Stealth off.
-	var/s_busy = 0		//Is the suit busy with a process? Like AI hacking. Used for safety functions.
-	var/kamikaze = 0	//Kamikaze on or off.
-	var/k_unlock = 0	//To unlock Kamikaze.
+	/// Mode of SpiderOS.
+	/// This can change so I won't bother listing the modes here (0 is hub).
+	/// Check ninja_equipment.dm for how it all works.
+	var/spideros = 0
+	/// If stealth mode is on or off
+	var/stealth_mode = FALSE
+	/// Is the suit busy with a process? Like AI hacking. Used for safety functions.
+	var/suit_busy = FALSE
+	/// Kamikaze on or off.
+	var/kamikaze = FALSE
+	/// Some value that increments until it hits [NINJA_KAMIKAZE_UNLOCK] and then allows the user to use Kamikaze.
+	var/kamikaze_unlock_tracker = 0
 
 		//Ability function variables.
-	var/s_bombs = 10.0	//Number of starting ninja smoke bombs.
-	var/a_boost = 3.0	//Number of adrenaline boosters.
+	/// Number of starting ninja smoke bombs.
+	var/smoke_bombs = 10.0
+	/// Number of adrenaline boosters.
+	var/adrenaline_boosts = 3.0
 
 		//Onboard AI related variables.
 	var/mob/living/silicon/ai/AI	//If there is an AI inside the suit.
 	var/obj/item/paicard/pai	//A slot for a pAI device
 	var/obj/effect/overlay/hologram	//Is the AI hologram on or off? Visible only to the wearer of the suit. This works by attaching an image to a blank overlay.
 	var/flush = 0					//If an AI purge is in progress.
-	var/s_control = 1				//If user in control of the suit.
+	/// Tracks who is in control of the suit
+	var/controller = NINJA_WEARER_CONTROL

@@ -350,7 +350,7 @@ That prevents a few funky behaviors.
 				switch(interaction)
 					if("AICARD")
 						var/obj/item/aicard/card = src
-						if(target_ninja.s_initialized && user == target_ninja.affecting) //If the suit is initialized and the actor is the user.
+						if(target_ninja.is_suit_initialized && user == target_ninja.affecting) //If the suit is initialized and the actor is the user.
 							var/mob/living/silicon/ai/ai_target = locate() in card //Determine if there is an AI on target card. Saves time when checking later.
 							var/mob/living/silicon/ai/ninja_ai = target_ninja.AI //Deterine if there is an AI in suit.
 

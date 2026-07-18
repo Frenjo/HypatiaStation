@@ -12,28 +12,28 @@ X is optional, tells the proc to check for specific stuff. C is also optional.
 All the procs here assume that the character is wearing the ninja suit if they are using the procs.
 They should, as I have made every effort for that to be the case.
 In the case that they are not, I imagine the game will run-time error like crazy.
-s_cooldown ticks off each second based on the suit recharge proc, in seconds. Default of 1 seconds. Some abilities have no cool down.
+suit_cooldownown ticks off each second based on the suit recharge proc, in seconds. Default of 1 seconds. Some abilities have no cool down.
 */
-/obj/item/clothing/suit/space/space_ninja/proc/ninjacost(C = 0, X = 0)
+/obj/item/clothing/suit/space/space_ninja/proc/ninjacost(energy_cost = 0, additional_cost = 0)
 	var/mob/living/carbon/human/U = affecting
-	if((U.stat || U.incorporeal_move) && X != 3)	//Will not return if user is using an adrenaline booster since you can use them when stat==1.
+	if((U.stat || U.incorporeal_move) && additional_cost != NINJA_COST_CHECK_ADRENALINE)	//Will not return if user is using an adrenaline booster since you can use them when stat==1.
 		to_chat(U, SPAN_WARNING("You must be conscious and solid to do this."))	//It's not a problem of stat==2 since the ninja will explode anyway if they die.
 		return 1
-	else if(C && cell.charge < C * 10)
+	else if(energy_cost && cell.charge < energy_cost * 10)
 		to_chat(U, SPAN_WARNING("Not enough energy."))
 		return 1
-	switch(X)
-		if(1)
+	switch(additional_cost)
+		if(NINJA_COST_CANCEL_STEALTH)
 			cancel_stealth()	//Get rid of it.
-		if(2)
-			if(s_bombs <= 0)
+		if(NINJA_COST_CHECK_SMOKES)
+			if(smoke_bombs <= 0)
 				to_chat(U, SPAN_WARNING("There are no more smoke bombs remaining."))
 				return 1
-		if(3)
-			if(a_boost <= 0)
+		if(NINJA_COST_CHECK_ADRENALINE)
+			if(adrenaline_boosts <= 0)
 				to_chat(U, SPAN_WARNING("You do not have any more adrenaline boosters."))
 				return 1
-	return (s_coold)	//Returns the value of the variable which counts down to zero.
+	return (suit_cooldown)	//Returns the value of the variable which counts down to zero.
 
 //=======//TELEPORT GRAB CHECK//=======//
 /obj/item/clothing/suit/space/space_ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
@@ -55,13 +55,13 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 	set category = "Ninja Ability"
 	set popup_menu = 0	//Will not see it when right clicking.
 
-	if(!ninjacost(, 2))
+	if(!ninjacost(0, NINJA_COST_CHECK_SMOKES))
 		var/mob/living/carbon/human/U = affecting
-		to_chat(U, SPAN_INFO("There are <B>[s_bombs]</B> smoke bombs remaining."))
+		to_chat(U, SPAN_INFO("There are <B>[smoke_bombs]</B> smoke bombs remaining."))
 		make_bad_smoke(10, FALSE, U.loc)
 		playsound(U.loc, 'sound/effects/bamf.ogg', 50, 2)
-		s_bombs--
-		s_coold = 1
+		smoke_bombs--
+		suit_cooldown = 1
 	return
 
 
@@ -74,7 +74,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 	set src = usr.contents	//Fixes verbs not attaching properly for objects. Praise the DM reference guide!
 
 	var/C = 40
-	if(!ninjacost(C, 1))
+	if(!ninjacost(C, NINJA_COST_CANCEL_STEALTH))
 		var/mob/living/carbon/human/U = affecting
 		var/turf/mobloc = GET_TURF(U)	//To make sure that certain things work properly below.
 		if(!T.density && isturf(mobloc))
@@ -104,11 +104,11 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 	set popup_menu = 0
 
 	var/C = 200
-	if(!ninjacost(C, 0)) // EMP's now cost 1,000Energy about 30%
+	if(!ninjacost(C)) // EMP's now cost 1,000Energy about 30%
 		var/mob/living/carbon/human/U = affecting
 		playsound(U.loc, 'sound/effects/EMPulse.ogg', 60, 2)
 		empulse(U, 2, 3) //Procs sure are nice. Slightly weaker than wizard's disable tch.
-		s_coold = 2
+		suit_cooldown = 2
 		cell.use(C * 10)
 	return
 
@@ -121,7 +121,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 	set popup_menu = 0
 
 	var/C = 50
-	if(!ninjacost(C, 0)) //Same spawn cost but higher upkeep cost
+	if(!ninjacost(C)) //Same spawn cost but higher upkeep cost
 		var/mob/living/carbon/human/U = affecting
 		if(!kamikaze)
 			if(!U.get_active_hand() && !istype(U.get_inactive_hand(), /obj/item/melee/energy/blade))
@@ -141,7 +141,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 				U.put_in_inactive_hand(W)
 			spark_system.start()
 			playsound(U.loc, "sparks", 50, 1)
-			s_coold = 1
+			suit_cooldown = 1
 	return
 
 //=======//NINJA STARS//=======//
@@ -154,7 +154,7 @@ This could be a lot better but I'm too tired atm.*/
 	set popup_menu = 0
 
 	var/C = 80
-	if(!ninjacost(C, 1))
+	if(!ninjacost(C, NINJA_COST_CANCEL_STEALTH))
 		var/mob/living/carbon/human/U = affecting
 		var/list/targets = list()	//So yo can shoot while yo throw dawg
 		for(var/mob/living/M in oview(loc))
@@ -189,7 +189,7 @@ Must right click on a mob to activate.*/
 	set src = usr.contents
 
 	var/C = 700
-	if(!ninjacost(C, 0) && iscarbon(M))
+	if(!ninjacost(C) && iscarbon(M))
 		var/mob/living/carbon/human/U = affecting
 		if(M.client)	//Monkeys without a client can still step_to() and bypass the net. Also, netting inactive people is lame.
 		//if(M)//DEBUG
@@ -225,7 +225,7 @@ Movement impairing would indicate drugs and the like.*/
 	set category = "Ninja Ability"
 	set popup_menu = 0
 
-	if(!ninjacost(, 3))//Have to make sure stat is not counted for this ability.
+	if(!ninjacost(0, NINJA_COST_CHECK_ADRENALINE))//Have to make sure stat is not counted for this ability.
 		var/mob/living/carbon/human/U = affecting
 		//Wouldn't need to track adrenaline boosters if there was a miracle injection to get rid of paralysis and the like instantly.
 		//For now, adrenaline boosters ARE the miracle injection. Well, radium, really.
@@ -242,10 +242,10 @@ Movement impairing would indicate drugs and the like.*/
 			U.say(pick("A CORNERED FOX IS MORE DANGEROUS THAN A JACKAL!", "HURT ME MOOORRREEE!", "IMPRESSIVE!"))
 		spawn(70)
 			reagents.reaction(U, 2)
-			reagents.trans_id_to(U, "radium", a_transfer)
+			reagents.trans_id_to(U, "radium", adrenaline_inject_volume)
 			to_chat(U, SPAN_WARNING("You are beginning to feel the after-effect of the injection."))
-		a_boost--
-		s_coold = 3
+		adrenaline_boosts--
+		suit_cooldown = 3
 	return
 
 /*
@@ -307,7 +307,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 				playsound(U.loc, 'sound/effects/phasein.ogg', 25, 1)
 				playsound(U.loc, "sparks", 50, 1)
 				anim(U.loc, U, 'icons/mob/mob.dmi', , "phasein", , U.dir)
-			s_coold = 1
+			suit_cooldown = 1
 		else
 			to_chat(U, SPAN_WARNING("The VOID-shift device is malfunctioning, <B>teleportation failed</B>."))
 	return
@@ -383,7 +383,7 @@ This is so anime it hurts. But that's the point.*/
 					playsound(U.loc, 'sound/effects/phasein.ogg', 25, 1)
 					playsound(U.loc, "sparks", 50, 1)
 					anim(U.loc,U,'icons/mob/mob.dmi',,"phasein",,U.dir)
-				s_coold = 1
+				suit_cooldown = 1
 			else
 				to_chat(U, SPAN_WARNING("The VOID-shift device is malfunctioning, <B>teleportation failed</B>."))
 		else

@@ -18,117 +18,44 @@
 	. = ..()
 	var/list/datum/mind/possible_ninjas = get_players_for_role(/decl/special_role/ninja)
 	if(!length(possible_ninjas))
-		return 0
+		return FALSE
+
+	// create_space_ninja gives the suit and whatnot, objectives are handled in post setup
+	var/mob/living/new_ninja = create_space_ninja()
+	if(isnull(new_ninja))
+		return FALSE
 
 	var/datum/mind/ninja = pick(possible_ninjas)
-	ninjas.Add(ninja)
+	ninjas += ninja
 	ninja.original = ninja.current
-
-	// Until such a time as people want to place ninja spawn points, carpspawn will do fine.
-	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
-		if(L.name == "carpspawn")
-			GLOBL.ninjastart.Add(L)
-	if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
-		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Defaulting to latejoin."))
-		return 1
-	else if(!length(GLOBL.ninjastart))
-		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Aborting."))
-		return 0
-
-	ninja.current = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
-	ninja.current.ckey = ninja.key
+	ninja.current = new_ninja
+	ninja.current.key = ninja.key
 
 /datum/game_mode/ninja/post_setup()
 	. = ..()
 	for_no_type_check(var/datum/mind/ninja, ninjas)
-		if(ninja.current && !(ishuman(ninja.current)))
-			return 0
-		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			forge_ninja_objectives(ninja)
-		else
-			FEEDBACK_ANTAGONIST_GREETING_GUIDE(ninja.current)
-		var/mob/living/carbon/human/N = ninja.current
-		N.internal = N.suit_store
-		N.internals.icon_state = "internal1"
-		if(isnotnull(N.wear_suit) && istype(N.wear_suit, /obj/item/clothing/suit/space/space_ninja))
-			var/obj/item/clothing/suit/space/space_ninja/S = N.wear_suit
-			S:randomize_param()
+		if(ninja.current && !ishuman(ninja.current))
+			continue
+
+		var/decl/special_role/ninja/ninja_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+		ninja_role.give_mission(ninja.current, NINJA_HEEL) // always assigns to heel
 
 /datum/game_mode/ninja/check_finished()
 	if(CONFIG_GET(/decl/configuration_entry/continous_rounds))
 		return ..()
+
 	var/ninjas_alive = 0
 	for_no_type_check(var/datum/mind/ninja, ninjas)
 		if(!ishuman(ninja.current))
 			continue
-		if(ninja.current.stat==2)
+		if(ninja.current.stat == DEAD)
 			continue
 		ninjas_alive++
 	if(ninjas_alive)
 		return ..()
-	else
-		finished = 1
-		return 1
 
-/datum/game_mode/ninja/proc/forge_ninja_objectives(datum/mind/ninja)
-	var/objective_list = list(1, 2, 3, 4, 5)
-	for(var/i = rand(2, 4), i > 0, i--)
-		switch(pick(objective_list))
-			if(1)	//Kill
-				var/datum/objective/assassinate/ninja_objective = new
-				ninja_objective.owner = ninja
-				ninja_objective.target = ninja_objective.find_target()
-				if(ninja_objective.target != "Free Objective")
-					ninja.objectives += ninja_objective
-				else
-					i++
-				objective_list -= 1 // No more than one kill objective
-			if(2)	//Steal
-				var/datum/objective/steal/ninja_objective = new
-				ninja_objective.owner = ninja
-				ninja_objective.target = ninja_objective.find_target()
-				ninja.objectives += ninja_objective
-			if(3)	//Protect
-				var/datum/objective/protect/ninja_objective = new
-				ninja_objective.owner = ninja
-				ninja_objective.target = ninja_objective.find_target()
-				if(ninja_objective.target != "Free Objective")
-					ninja.objectives += ninja_objective
-				else
-					i++
-					objective_list -= 3
-			if(4)	//Download
-				var/datum/objective/download/ninja_objective = new
-				ninja_objective.owner = ninja
-				ninja_objective.gen_amount_goal()
-				ninja.objectives += ninja_objective
-				objective_list -= 4
-			if(5)	//Harm
-				var/datum/objective/harm/ninja_objective = new
-				ninja_objective.owner = ninja
-				ninja_objective.target = ninja_objective.find_target()
-				if(ninja_objective.target != "Free Objective")
-					ninja.objectives += ninja_objective
-				else
-					i++
-					objective_list -= 5
-
-	var/datum/objective/survive/ninja_objective = new
-	ninja_objective.owner = ninja
-	ninja.objectives += ninja_objective
-	ninja.current.mind = ninja
-
-	var/directive = generate_ninja_directive("heel")//Only hired by antags, not NT
-	to_chat(ninja.current, "You are an elite mercenary assassin of the Spider Clan, [ninja.current.real_name]. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.")
-	to_chat(ninja.current, "Your current directive is: [SPAN_DANGER(directive)]")
-	to_chat(ninja.current, SPAN_INFO("Try your best to adhere to this."))
-	ninja.store_memory("<B>Directive:</B> \red [directive]<br>")
-
-	var/obj_count = 1
-	to_chat(ninja.current, SPAN_INFO("Your current objectives:"))
-	for_no_type_check(var/datum/objective/objective, ninja.objectives)
-		to_chat(ninja.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-		obj_count++
+	finished = TRUE
+	return TRUE
 
 /datum/game_mode/proc/auto_declare_completion_ninja()
 	if(!length(ninjas))

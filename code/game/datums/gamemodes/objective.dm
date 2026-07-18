@@ -610,7 +610,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		return 0
 	if(isnull(owner.current) || owner.current.stat == DEAD)
 		return 0
-	if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/space_ninja) && owner.current:wear_suit:s_initialized))
+	if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/space_ninja) && owner.current:wear_suit:is_suit_initialized))
 		return 0
 	var/current_amount
 	var/obj/item/clothing/suit/space/space_ninja/S = owner.current:wear_suit

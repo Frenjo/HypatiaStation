@@ -33,11 +33,11 @@ ________________________________________________________________________________
 
 	var/reagent_amount//reagent initialize
 	for(var/reagent_id in reagent_list)
-		reagent_amount += reagent_id == "radium" ? r_maxamount + (a_boost * a_transfer) : r_maxamount // AI can inject radium directly.
+		reagent_amount += reagent_id == "radium" ? adrenaline_max_volume + (adrenaline_boosts * adrenaline_inject_volume) : adrenaline_max_volume // AI can inject radium directly.
 	reagents = new(reagent_amount)
 	reagents.my_atom = src
 	for(var/reagent_id in reagent_list)
-		reagent_id == "radium" ? reagents.add_reagent(reagent_id, r_maxamount+(a_boost*a_transfer)) : reagents.add_reagent(reagent_id, r_maxamount)//It will take into account radium used for adrenaline boosting.
+		reagent_id == "radium" ? reagents.add_reagent(reagent_id, adrenaline_max_volume+(adrenaline_boosts*adrenaline_inject_volume)) : reagents.add_reagent(reagent_id, adrenaline_max_volume)//It will take into account radium used for adrenaline boosting.
 	cell = new/obj/item/cell/high//The suit should *always* have a battery because so many things rely on it.
 	cell.charge = 9000//Starting charge should not be higher than maximum charge. It leads to problems with recharging.
 
@@ -82,7 +82,7 @@ ________________________________________________________________________________
 	set desc = "Begins procedure to remove the suit."
 	set category = "Ninja Equip"
 
-	if(s_control&&!s_busy)
+	if(controller == NINJA_WEARER_CONTROL && !suit_busy)
 		deinitialize()
 	else
 		to_chat(affecting, SPAN_WARNING("The function did not trigger!"))
@@ -93,7 +93,7 @@ ________________________________________________________________________________
 	set desc = "Utilize built-in computer system."
 	set category = "Ninja Equip"
 
-	if(s_control&&!s_busy&&!kamikaze)
+	if(controller == NINJA_WEARER_CONTROL && !suit_busy && !kamikaze)
 		display_spideros()
 	else
 		to_chat(affecting, SPAN_WARNING("The interface is locked!"))
@@ -104,7 +104,7 @@ ________________________________________________________________________________
 	set desc = "Utilize the internal CLOAK-tech device to activate or deactivate stealth-camo."
 	set category = "Ninja Equip"
 
-	if(s_control&&!s_busy)
+	if(controller == NINJA_WEARER_CONTROL && !suit_busy)
 		toggle_stealth()
 	else
 		to_chat(affecting, SPAN_WARNING("Stealth does not appear to work!"))
@@ -112,48 +112,55 @@ ________________________________________________________________________________
 
 //=======//PROCESS PROCS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/ntick(mob/living/carbon/human/U = affecting)
+/obj/item/clothing/suit/space/space_ninja/proc/ntick(mob/living/carbon/human/wearer = affecting)
 	set background = BACKGROUND_ENABLED
 
 	//Runs in the background while the suit is initialized.
-	spawn while(cell.charge>=0)
+	spawn while(cell.charge >= 0)
 
 		//Let's check for some safeties.
-		if(s_initialized&&!affecting)	terminate()//Kills the suit and attached objects.
-		if(!s_initialized)	return//When turned off the proc stops.
-		if(AI&&AI.stat==2)//If there is an AI and it's ded. Shouldn't happen without purging, could happen.
-			if(!s_control)
-				ai_return_control()//Return control to ninja if the AI was previously in control.
-			killai()//Delete AI.
+		if(is_suit_initialized && !affecting)
+			terminate()//Kills the suit and attached objects.
+		if(!is_suit_initialized)
+			return //When turned off the proc stops.
+
+		if(AI?.stat == DEAD) //If there is an AI and it's ded. Shouldn't happen without purging, could happen.
+			if(controller == NINJA_AI_CONTROL)
+				ai_return_control() //Return control to ninja if the AI was previously in control.
+			killai() //Delete AI.
 
 		//Now let's do the normal processing.
-		if(s_coold)	s_coold--//Checks for ability s_cooldown first.
-		var/A = s_cost//s_cost is the default energy cost each ntick, usually 5.
+		suit_cooldown = max(0, suit_cooldown - 1)
+
+		var/total_drain = passive_energy_drain //s_cost is the default energy cost each ntick, usually 5.
 		if(!kamikaze)
-			if(blade_check(U))//If there is a blade held in hand.
-				A += s_acost
-			if(s_active)//If stealth is active.
-				A += s_acost
+			if(blade_check(wearer))//If there is a blade held in hand.
+				total_drain += active_energy_drain
+			if(stealth_mode)//If stealth is active.
+				total_drain += active_energy_drain
 		else
-			if(prob(s_delay))//Suit delay is used as probability. May change later.
-				U.adjustBruteLoss(k_damage)//Default damage done, usually 1.
-			A = k_cost//kamikaze cost.
-		cell.charge-=A
-		if(cell.charge<=0)
+			if(prob(suit_action_delay))//Suit delay is used as probability. May change later.
+				wearer.adjustBruteLoss(kamikaze_passive_damage)//Default damage done, usually 1.
+			total_drain = kamikaze_energy_drain//kamikaze cost.
+
+		cell.charge -= total_drain
+		if(cell.charge <= 0)
 			if(kamikaze)
-				U.say("I DIE TO LIVE AGAIN!")
-				CLOSE_BROWSER(U, "window=spideros") // Just in case.
-				U.death()
+				wearer.say("I DIE TO LIVE AGAIN!")
+				CLOSE_BROWSER(wearer, "window=spideros") // Just in case.
+				wearer.death()
 				return
-			cell.charge=0
+
+			cell.charge = 0
 			cancel_stealth()
-		sleep(10)//Checks every second.
+
+		sleep(1 SECONDS)//Checks every second.
 
 //=======//INITIALIZE//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/ninitialize(delay = s_delay, mob/living/carbon/human/U = loc)
-	if(U.mind?.has_special_role(SPECIAL_ROLE_NINJA) && !s_initialized && !s_busy)//Shouldn't be busy... but anything is possible I guess.
-		s_busy = 1
+/obj/item/clothing/suit/space/space_ninja/proc/ninitialize(delay = suit_action_delay, mob/living/carbon/human/U = loc)
+	if(U.mind?.has_special_role(SPECIAL_ROLE_NINJA) && !is_suit_initialized && !suit_busy) // Shouldn't be busy... but anything is possible I guess.
+		suit_busy = TRUE
 		for(var/i,i<7,i++)
 			switch(i)
 				if(0)
@@ -182,11 +189,11 @@ ________________________________________________________________________________
 					grant_equip_verbs()
 					ntick()
 			sleep(delay)
-		s_busy = 0
+		suit_busy = FALSE
 	else
 		if(!U.mind?.has_special_role()) // Your run of the mill persons shouldn't know what it is. Or how to turn it on.
 			to_chat(U, "You do not understand how this suit functions. Where the heck did it even come from?")
-		else if(s_initialized)
+		else if(is_suit_initialized)
 			to_chat(U, "\red The suit is already functioning. \black <b>Please report this bug.</b>")
 		else
 			to_chat(U, "\red <B>ERROR</B>: \black You cannot use this function at this time.")
@@ -194,18 +201,18 @@ ________________________________________________________________________________
 
 //=======//DEINITIALIZE//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/deinitialize(delay = s_delay)
-	if(affecting==loc&&!s_busy)
+/obj/item/clothing/suit/space/space_ninja/proc/deinitialize(delay = suit_action_delay)
+	if(affecting == loc && !suit_busy)
 		var/mob/living/carbon/human/U = affecting
-		if(!s_initialized)
+		if(!is_suit_initialized)
 			to_chat(U, "\red The suit is not initialized. \black <b>Please report this bug.</b>")
 			return
 		if(alert("Are you certain you wish to remove the suit? This will take time and remove all abilities.",,"Yes","No")=="No")
 			return
-		if(s_busy||flush)
+		if(suit_busy || flush)
 			to_chat(U, "\red <B>ERROR</B>: \black You cannot use this function at this time.")
 			return
-		s_busy = 1
+		suit_busy = TRUE
 		for(var/i = 0,i<7,i++)
 			switch(i)
 				if(0)
@@ -231,7 +238,7 @@ ________________________________________________________________________________
 					unlock_suit()
 					U.regenerate_icons()
 			sleep(delay)
-		s_busy = 0
+		suit_busy = FALSE
 	return
 
 //=======//SPIDEROS PROC//=======//
@@ -240,7 +247,7 @@ ________________________________________________________________________________
 	if(!affecting)	return//If no mob is wearing the suit. I almost forgot about this variable.
 	var/mob/living/carbon/human/U = affecting
 	var/mob/living/silicon/ai/A = AI
-	var/display_to = s_control ? U : A//Who do we want to display certain messages to?
+	var/display_to = controller == NINJA_WEARER_CONTROL ? U : A//Who do we want to display certain messages to?
 
 	var/dat = "<html><head><title>SpiderOS</title></head><body bgcolor=\"#3D5B43\" text=\"#B65B5B\"><style>a, a:link, a:visited, a:active, a:hover { color: #B65B5B; }img {border-style:none;}</style>"
 	dat += "<a href='byond://?src=\ref[src];choice=Refresh'><img src=sos_7.png> Refresh</a>"
@@ -248,7 +255,7 @@ ________________________________________________________________________________
 		dat += " | <a href='byond://?src=\ref[src];choice=Return'><img src=sos_1.png> Return</a>"
 	dat += " | <a href='byond://?src=\ref[src];choice=Close'><img src=sos_8.png> Close</a>"
 	dat += "<br>"
-	if(s_control)
+	if(controller == NINJA_WEARER_CONTROL)
 		dat += "<h2 ALIGN=CENTER>SpiderOS v.1.337</h2>"
 		dat += "Welcome, <b>[U.real_name]</b>.<br>"
 	else
@@ -256,7 +263,7 @@ ________________________________________________________________________________
 	dat += "<br>"
 	dat += "<img src=sos_10.png> Current Time: [worldtime2text()]<br>"
 	dat += "<img src=sos_9.png> Battery Life: [round(cell.charge/100)]%<br>"
-	dat += "<img src=sos_11.png> Smoke Bombs: \Roman [s_bombs]<br>"
+	dat += "<img src=sos_11.png> Smoke Bombs: \Roman [smoke_bombs]<br>"
 	dat += "<img src=sos_14.png> pai Device: "
 	if(pai)
 		dat += "<a href='byond://?src=\ref[src];choice=Configure pAI'>Configure</a>"
@@ -271,7 +278,7 @@ ________________________________________________________________________________
 			dat += "<h4><img src=sos_1.png> Available Functions:</h4>"
 			dat += "<ul>"
 			dat += "<li><a href='byond://?src=\ref[src];choice=7'><img src=sos_4.png> Research Stored</a></li>"
-			if(s_control)
+			if(controller == NINJA_WEARER_CONTROL)
 				if(AI)
 					dat += "<li><a href='byond://?src=\ref[src];choice=5'><img src=sos_13.png> AI Status</a></li>"
 			else
@@ -280,7 +287,7 @@ ________________________________________________________________________________
 			dat += "<li><a href='byond://?src=\ref[src];choice=3'><img src=sos_3.png> Medical Screen</a></li>"
 			dat += "<li><a href='byond://?src=\ref[src];choice=1'><img src=sos_5.png> Atmos Scan</a></li>"
 			dat += "<li><a href='byond://?src=\ref[src];choice=2'><img src=sos_12.png> Messenger</a></li>"
-			if(s_control)
+			if(controller == NINJA_WEARER_CONTROL)
 				dat += "<li><a href='byond://?src=\ref[src];choice=4'><img src=sos_6.png> Other</a></li>"
 			dat += "</ul>"
 		if(3)
@@ -301,9 +308,9 @@ ________________________________________________________________________________
 				dat += "Warning: Virus Detected. Name: [D.name].Type: [D.spread]. Stage: [D.stage]/[D.max_stages]. Possible Cure: [D.cure].<br>"
 			dat += "<ul>"
 			for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
-				if(istype(R, /datum/reagent/radium) && s_control)//Can only directly inject radium when AI is in control.
+				if(istype(R, /datum/reagent/radium) && controller == NINJA_WEARER_CONTROL)//Can only directly inject radium when AI is in control.
 					continue
-				dat += "<li><a href='byond://?src=\ref[src];choice=Inject;name=[R.name];tag=[R.id]'><img src=sos_2.png> Inject [R.name]: [(reagents.get_reagent_amount(R.id) - (istype(R, /datum/reagent/radium) ? (a_boost * a_transfer) : 0)) / (istype(R, /datum/reagent/nutriment) ? 5 : a_transfer)] left</a></li>"
+				dat += "<li><a href='byond://?src=\ref[src];choice=Inject;name=[R.name];tag=[R.id]'><img src=sos_2.png> Inject [R.name]: [(reagents.get_reagent_amount(R.id) - (istype(R, /datum/reagent/radium) ? (adrenaline_boosts * adrenaline_inject_volume) : 0)) / (istype(R, /datum/reagent/nutriment) ? 5 : adrenaline_inject_volume)] left</a></li>"
 			dat += "</ul>"
 		if(1)
 			dat += "<h4><img src=sos_5.png> Atmospheric Scan:</h4>"//Headers don't need breaks. They are automatically placed.
@@ -325,7 +332,7 @@ ________________________________________________________________________________
 					dat += "</ul>"
 					dat += "Temperature: [round(environment.temperature-T0C)]&deg;C"
 		if(2)
-			if(k_unlock==7||!s_control)
+			if(kamikaze_unlock_tracker == NINJA_KAMIKAZE_UNLOCK || controller == NINJA_AI_CONTROL)
 				dat += "<a href='byond://?src=\ref[src];choice=32'><img src=sos_1.png> Hidden Menu</a>"
 			dat += "<h4><img src=sos_12.png> Anonymous Messenger:</h4>"//Anonymous because the receiver will not know the sender's identity.
 			dat += "<h4><img src=sos_6.png> Detected PDAs:</h4>"
@@ -342,7 +349,7 @@ ________________________________________________________________________________
 				dat += "None detected.<br>"
 		if(32)
 			dat += "<h4><img src=sos_1.png> Hidden Menu:</h4>"
-			if(s_control)
+			if(controller == NINJA_WEARER_CONTROL)
 				dat += "Please input password: "
 				dat += "<a href='byond://?src=\ref[src];choice=Unlock Kamikaze'><b>HERE</b></a><br>"
 				dat += "<br>"
@@ -473,22 +480,23 @@ ________________________________________________________________________________
 	..()
 	var/mob/living/carbon/human/U = affecting
 	var/mob/living/silicon/ai/A = AI
-	var/display_to = s_control ? U : A//Who do we want to display certain messages to?
+	var/display_to = controller == NINJA_WEARER_CONTROL ? U : A//Who do we want to display certain messages to?
 
-	if(s_control)
-		if(!affecting||U.stat||!s_initialized)//Check to make sure the guy is wearing the suit after clicking and it's on.
+	if(controller == NINJA_WEARER_CONTROL)
+		if(!affecting||U.stat||!is_suit_initialized)//Check to make sure the guy is wearing the suit after clicking and it's on.
 			to_chat(U, SPAN_WARNING("Your suit must be worn and active to use this function."))
 			CLOSE_BROWSER(U, "window=spideros") // Closes the window.
 			return
 
-		if(k_unlock!=7&&href_list["choice"]!="Return")
-			var/u1=text2num(href_list["choice"])
-			var/u2=(u1?abs(abs(k_unlock-u1)-2):1)
-			k_unlock=(!u2? k_unlock+1:0)
-			if(k_unlock==7)
+		if(kamikaze_unlock_tracker != NINJA_KAMIKAZE_UNLOCK && href_list["choice"] != "Return")
+			var/u1 = text2num(href_list["choice"])
+			var/u2 = (u1 ? abs(abs(kamikaze_unlock_tracker - u1) - 2) : 1)
+			kamikaze_unlock_tracker = (u2 ? 0 : kamikaze_unlock_tracker + 1)
+			if(kamikaze_unlock_tracker == NINJA_KAMIKAZE_UNLOCK)
 				to_chat(U, "Anonymous Messenger blinks.")
+
 	else
-		if(!affecting||A.stat||!s_initialized||A.loc!=src)
+		if(!affecting||A.stat||!is_suit_initialized||A.loc!=src)
 			to_chat(A, SPAN_WARNING("This function is not available at this time."))
 			CLOSE_BROWSER(A, "window=spideros") // Closes the window.
 			return
@@ -520,14 +528,14 @@ ________________________________________________________________________________
 			var/obj/item/pda/P = locate(href_list["target"])
 			var/t = input(U, "Please enter untraceable message.") as text
 			t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
-			if(!t||U.stat||U.wear_suit!=src||!s_initialized)//Wow, another one of these. Man...
+			if(!t||U.stat||U.wear_suit!=src||!is_suit_initialized)//Wow, another one of these. Man...
 				CLOSE_BROWSER(display_to, "window=spideros")
 				return
 			if(isnull(P)||P.toff)//So it doesn't freak out if the object no-longer exists.
 				to_chat(display_to, SPAN_WARNING("Error: unable to deliver message."))
 				display_spideros()
 				return
-			P.tnote += "<i><b>&larr; From [!s_control?(A):"an unknown source"]:</b></i><br>[t]<br>"
+			P.tnote += "<i><b>&larr; From [controller == NINJA_AI_CONTROL ? A :"an unknown source"]:</b></i><br>[t]<br>"
 			if (!P.silent)
 				playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				for (var/mob/O in hearers(3, P.loc))
@@ -536,11 +544,11 @@ ________________________________________________________________________________
 			P.add_overlay(image('icons/obj/items/devices/pda.dmi', "pda-r"))
 
 		if("Inject")
-			if( (href_list["tag"]=="radium"? (reagents.get_reagent_amount("radium"))<=(a_boost*a_transfer) : !reagents.get_reagent_amount(href_list["tag"])) )//Special case for radium. If there are only a_boost*a_transfer radium units left.
+			if( (href_list["tag"]=="radium"? (reagents.get_reagent_amount("radium"))<=(adrenaline_boosts*adrenaline_inject_volume) : !reagents.get_reagent_amount(href_list["tag"])) )//Special case for radium. If there are only adrenaline_boosts*adrenaline_inject_volume radium units left.
 				to_chat(display_to, SPAN_WARNING("Error: the suit cannot perform this function. Out of [href_list["name"]]."))
 			else
 				reagents.reaction(U, 2)
-				reagents.trans_id_to(U, href_list["tag"], href_list["tag"]=="nutriment"?5:a_transfer)//Nutriment is a special case since it's very potent. Shouldn't influence actual refill amounts or anything.
+				reagents.trans_id_to(U, href_list["tag"], href_list["tag"]=="nutriment"?5:adrenaline_inject_volume)//Nutriment is a special case since it's very potent. Shouldn't influence actual refill amounts or anything.
 				to_chat(display_to, "Injecting...")
 				to_chat(U, "You feel a tiny prick and a sudden rush of substance in to your veins.")
 
@@ -569,10 +577,10 @@ ________________________________________________________________________________
 				to_chat(A, "There are no potential [href_list["name"]=="Phase Shift"?"destinations" : "targets"] in view.")
 
 		if("Unlock Kamikaze")
-			if(input(U)=="Divine Wind")
-				if( !(U.stat||U.wear_suit!=src||!s_initialized) )
-					if( !(cell.charge<=1||s_busy) )
-						s_busy = 1
+			if(input(U)== "Divine Wind")
+				if(U.stat == CONSCIOUS && U.wear_suit == src && is_suit_initialized)
+					if(cell.charge > 1 && !suit_busy)
+						suit_busy = TRUE
 						for(var/i, i<4, i++)
 							switch(i)
 								if(0)
@@ -586,20 +594,20 @@ ________________________________________________________________________________
 									U.regenerate_icons()//Update their clothing.
 									ninjablade()//Summon two energy blades.
 									message_admins(SPAN_INFO("[key_name_admin(U)] used KAMIKAZE mode."))//Let the admins know.
-									s_busy = 0
+									suit_busy = FALSE
 									return
-							sleep(s_delay)
+							sleep(suit_action_delay)
 					else
 						to_chat(U, "\red <b>ERROR<b>: \black Unable to initiate mode.")
 				else
 					CLOSE_BROWSER(U, "window=spideros")
-					s_busy = 0
+					suit_busy = FALSE
 					return
 			else
 				to_chat(U, SPAN_WARNING("ERROR: WRONG PASSWORD!"))
-				k_unlock = 0
+				kamikaze_unlock_tracker = 0
 				spideros = 0
-			s_busy = 0
+			suit_busy = FALSE
 
 		if("Eject Disk")
 			var/turf/T = GET_TURF(src)
@@ -644,12 +652,12 @@ ________________________________________________________________________________
 
 		if("Purge AI")
 			var/confirm = alert("Are you sure you want to purge the AI? This cannot be undone once started.", "Confirm purge", "Yes", "No")
-			if(U.stat||U.wear_suit!=src||!s_initialized)
+			if(U.stat||U.wear_suit!=src||!is_suit_initialized)
 				CLOSE_BROWSER(U, "window=spideros")
 				return
 			if(confirm == "Yes"&&AI)
 				if(A.laws.zeroth)//Gives a few seconds to re-upload the AI somewhere before it takes full control.
-					s_busy = 1
+					suit_busy = TRUE
 					for(var/i,i<5,i++)
 						if(AI==A)
 							switch(i)
@@ -657,7 +665,7 @@ ________________________________________________________________________________
 									to_chat(A, "\red <b>WARNING</b>: \black purge procedure detected. <br>Now hacking host...")
 									to_chat(U, "\red <b>WARNING</b>: HACKING AT��TEMP� IN PR0GRESs!")
 									spideros = 0
-									k_unlock = 0
+									kamikaze_unlock_tracker = 0
 									CLOSE_BROWSER(U, "window=spideros")
 								if(1)
 									to_chat(A, "Disconnecting neural interface...")
@@ -675,9 +683,9 @@ ________________________________________________________________________________
 									to_chat(U, "\red <b>W�r#nING</b>: #%@!!WȆ|_4�54@ <br>Un�B88l3 T� L�-�o-L�CaT2 ##$!�RN�0..%..")
 									grant_AI_verbs()
 									return
-							sleep(s_delay)
+							sleep(suit_action_delay)
 						else	break
-					s_busy = 0
+					suit_busy = FALSE
 					to_chat(U, SPAN_INFO("Hacking attempt disconnected. Resuming normal operation."))
 				else
 					flush = 1
@@ -710,7 +718,7 @@ ________________________________________________________________________________
 	set category = null
 	set src = usr.loc
 
-	if(s_initialized && affecting && affecting.client && isturf(affecting.loc))//If the host exists and they are playing, and their location is a turf.
+	if(is_suit_initialized && affecting && affecting.client && isturf(affecting.loc))//If the host exists and they are playing, and their location is a turf.
 		if(!hologram)//If there is not already a hologram.
 			hologram = new(T)//Spawn a blank effect at the location.
 			hologram.invisibility = INVISIBILITY_MAXIMUM//So that it doesn't show up, ever. This also means one could attach a number of images to a single obj and display them differently to differnet people.
@@ -734,8 +742,8 @@ ________________________________________________________________________________
 /obj/item/clothing/suit/space/space_ninja/proc/ai_holo_process()
 	set background = BACKGROUND_ENABLED
 
-	spawn while(hologram&&s_initialized&&AI)//Suit on and there is an AI present.
-		if(!s_initialized||get_dist(affecting,hologram.loc)>3)//Once suit is de-initialized or hologram reaches out of bounds.
+	spawn while(hologram&&is_suit_initialized&&AI)//Suit on and there is an AI present.
+		if(!is_suit_initialized||get_dist(affecting,hologram.loc)>3)//Once suit is de-initialized or hologram reaches out of bounds.
 			qdel(hologram.i_attached)
 			qdel(hologram)
 
@@ -790,7 +798,7 @@ ________________________________________________________________________________
 /obj/item/clothing/suit/space/space_ninja/attackby(obj/item/I, mob/U)
 	if(U==affecting)//Safety, in case you try doing this without wearing the suit/being the person with the suit.
 		if(istype(I, /obj/item/aicard))//If it's an AI card.
-			if(s_control)
+			if(controller == NINJA_WEARER_CONTROL)
 				I:transfer_ai("NINJASUIT","AICARD",src,U)
 			else
 				to_chat(U, "\red <b>ERROR</b>: \black Remote access channel disabled.")
@@ -806,9 +814,9 @@ ________________________________________________________________________________
 			var/total_reagent_transfer//Keep track of this stuff.
 			for(var/reagent_id in reagent_list)
 				var/datum/reagent/R = I.reagents.has_reagent(reagent_id)//Mostly to pull up the name of the reagent after calculating. Also easier to use than writing long proc paths.
-				if(R&&reagents.get_reagent_amount(reagent_id)<r_maxamount+(reagent_id == "radium"?(a_boost*a_transfer):0)&&R.volume>=a_transfer)//Radium is always special.
-					//Here we determine how much reagent will actually transfer if there is enough to transfer or there is a need of transfer. Minimum of max amount available (using a_transfer) or amount needed.
-					var/amount_to_transfer = min( (r_maxamount+(reagent_id == "radium"?(a_boost*a_transfer):0)-reagents.get_reagent_amount(reagent_id)) ,(round(R.volume/a_transfer))*a_transfer)//In the end here, we round the amount available, then multiply it again.
+				if(R&&reagents.get_reagent_amount(reagent_id)<adrenaline_max_volume+(reagent_id == "radium"?(adrenaline_boosts*adrenaline_inject_volume):0)&&R.volume>=adrenaline_inject_volume)//Radium is always special.
+					//Here we determine how much reagent will actually transfer if there is enough to transfer or there is a need of transfer. Minimum of max amount available (using adrenaline_inject_volume) or amount needed.
+					var/amount_to_transfer = min( (adrenaline_max_volume+(reagent_id == "radium"?(adrenaline_boosts*adrenaline_inject_volume):0)-reagents.get_reagent_amount(reagent_id)) ,(round(R.volume/adrenaline_inject_volume))*adrenaline_inject_volume)//In the end here, we round the amount available, then multiply it again.
 					R.volume -= amount_to_transfer//Remove from reagent volume. Don't want to delete the reagent now since we need to perserve the name.
 					reagents.add_reagent(reagent_id, amount_to_transfer)//Add to suit. Reactions are not important.
 					total_reagent_transfer += amount_to_transfer//Add to total reagent trans.
@@ -818,9 +826,9 @@ ________________________________________________________________________________
 			to_chat(U, "Replenished a total of [total_reagent_transfer ? total_reagent_transfer : "zero"] chemical units.") // Let the player know how much total volume was added.
 			return
 		else if(istype(I, /obj/item/cell))
-			if(I:maxcharge>cell.maxcharge&&n_gloves&&n_gloves.candrain)
+			if(I:maxcharge > cell.maxcharge && n_gloves?.candrain)
 				to_chat(U, "\blue Higher maximum capacity detected.<br>Upgrading...")
-				if (n_gloves&&n_gloves.candrain&&do_after(U,s_delay))
+				if (n_gloves?.candrain && do_after(U, suit_action_delay))
 					U.drop_item()
 					I.forceMove(src)
 					I:charge = min(I:charge+cell.charge, I:maxcharge)
@@ -839,7 +847,7 @@ ________________________________________________________________________________
 			var/obj/item/disk/tech/TD = I
 			if(TD.stored)//If it has something on it.
 				to_chat(U, "Research information detected, processing...")
-				if(do_after(U,s_delay))
+				if(do_after(U, suit_action_delay))
 					for(var/decl/tech/current_data in stored_research)
 						if(current_data.type == TD.stored.type)
 							if(current_data.level<TD.stored.level)
@@ -858,11 +866,11 @@ ________________________________________________________________________________
 
 /obj/item/clothing/suit/space/space_ninja/proc/toggle_stealth()
 	var/mob/living/carbon/human/U = affecting
-	if(s_active)
+	if(stealth_mode)
 		cancel_stealth()
 	else
 		anim(U.loc,U,'icons/mob/mob.dmi',,"cloak",,U.dir)
-		s_active=!s_active
+		stealth_mode = !stealth_mode
 		icon_state = U.gender==FEMALE ? "s-ninjasf" : "s-ninjas"
 		U.regenerate_icons()	//update their icons
 		to_chat(U, SPAN_INFO("You are now invisible to normal detection."))
@@ -873,9 +881,9 @@ ________________________________________________________________________________
 
 /obj/item/clothing/suit/space/space_ninja/proc/cancel_stealth()
 	var/mob/living/carbon/human/U = affecting
-	if(s_active)
+	if(stealth_mode)
 		anim(U.loc,U,'icons/mob/mob.dmi',,"uncloak",,U.dir)
-		s_active=!s_active
+		stealth_mode =! stealth_mode
 		to_chat(U, SPAN_INFO("You are now visible."))
 		U.invisibility = 0
 		for(var/mob/O in oviewers(U))
@@ -907,16 +915,16 @@ ________________________________________________________________________________
 
 /obj/item/clothing/suit/space/space_ninja/get_examine_text()
 	. = ..()
-	if(!s_initialized)
+	if(!is_suit_initialized)
 		return
-	if(s_control)
+	if(controller == NINJA_WEARER_CONTROL)
 		. += SPAN_INFO("All systems operational. Current energy capacity: <em>[cell.charge]</em>.")
 		if(!kamikaze)
-			. += SPAN_INFO("The CLOAK-tech device is <em>[s_active ? "active" : "inactive"]</em>.")
+			. += SPAN_INFO("The CLOAK-tech device is <em>[stealth_mode ? "active" : "inactive"]</em>.")
 		else
 			. += SPAN_DANGER("KAMIKAZE MODE ENGAGED!")
-		. += SPAN_INFO("There are <em>[s_bombs]</em> smoke bombs remaining.")
-		. += SPAN_INFO("There are <em>[a_boost]</em> adrenaline boosters remaining.")
+		. += SPAN_INFO("There are <em>[smoke_bombs]</em> smoke bombs remaining.")
+		. += SPAN_INFO("There are <em>[adrenaline_boosts]</em> adrenaline boosters remaining.")
 	else
 		. += SPAN_WARNING("�rr�R �a��a�� No-�-� f��N� 3RR�r")
 
@@ -1058,7 +1066,7 @@ ________________________________________________________________________________
 				if(length(files.known_tech))
 					for(var/decl/tech/current_data in S.stored_research)
 						to_chat(U, SPAN_INFO("Checking \the [current_data] database."))
-						if(do_after(U, S.s_delay) && G.candrain && isnotnull(A))
+						if(do_after(U, S.suit_action_delay) && G.candrain && isnotnull(A))
 							for_no_type_check(var/decl/tech/analyzing_data, files.known_tech)
 								if(current_data.type == analyzing_data.type)
 									if(analyzing_data.level > current_data.level)
@@ -1157,7 +1165,7 @@ ________________________________________________________________________________
 
 	var/mob/living/carbon/human/U = loc
 	to_chat(U, "You <b>[candrain ? "disable" : "enable"]</b> special interaction.")
-	candrain=!candrain
+	candrain = !candrain
 
 /obj/item/clothing/gloves/space_ninja/get_examine_text(mob/user)
 	. = ..()
