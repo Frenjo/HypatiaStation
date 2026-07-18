@@ -26,7 +26,7 @@
 	. = ..()
 
 	user.internal = user.suit_store
-	user.internals.icon_state = "internal1"
+	user.internals?.icon_state = "internal1"
 
 	var/obj/item/clothing/suit/space/space_ninja/ninja_suit = user.wear_suit
 	if(istype(ninja_suit))

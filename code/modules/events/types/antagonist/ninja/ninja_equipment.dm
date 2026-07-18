@@ -28,10 +28,10 @@ ________________________________________________________________________________
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	for(var/decl/tech/T, GET_DECL_SUBTYPE_INSTANCES(/decl/tech)) // Store up on research.
+	for_no_type_check(var/decl/tech/T, GET_DECL_SUBTYPE_INSTANCES(/decl/tech)) // Store up on research.
 		stored_research.Add(T)
 
-	var/reagent_amount//reagent initialize
+	var/reagent_amount //reagent initialize
 	for(var/reagent_id in reagent_list)
 		reagent_amount += reagent_id == "radium" ? adrenaline_max_volume + (adrenaline_boosts * adrenaline_inject_volume) : adrenaline_max_volume // AI can inject radium directly.
 	reagents = new(reagent_amount)
