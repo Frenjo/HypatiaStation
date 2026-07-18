@@ -72,6 +72,7 @@
 #include "code\__DEFINES\materials.dm"
 #include "code\__DEFINES\mobs.dm"
 #include "code\__DEFINES\movement.dm"
+#include "code\__DEFINES\ninja.dm"
 #include "code\__DEFINES\preferences.dm"
 #include "code\__DEFINES\process_scheduler.dm"
 #include "code\__DEFINES\qdel.dm"

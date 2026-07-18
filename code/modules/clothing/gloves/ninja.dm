@@ -48,7 +48,7 @@
 
 	// Move an AI into and out of things
 	if(isAI(A))
-		if(suit.s_control)
+		if(suit.controller == NINJA_WEARER_CONTROL)
 			A.add_fingerprint(H)
 			suit.transfer_ai("AICORE", "NINJASUIT", A, H)
 			return 1
@@ -57,7 +57,7 @@
 			return 0
 
 	if(istype(A, /obj/structure/ai_core/deactivated))
-		if(suit.s_control)
+		if(suit.controller == NINJA_WEARER_CONTROL)
 			A.add_fingerprint(H)
 			suit.transfer_ai("INACTIVE", "NINJASUIT", A, H)
 			return 1
@@ -66,7 +66,7 @@
 			return 0
 
 	if(istype(A, /obj/machinery/computer/aifixer))
-		if(suit.s_control)
+		if(suit.controller == NINJA_WEARER_CONTROL)
 			A.add_fingerprint(H)
 			suit.transfer_ai("AIFIXER", "NINJASUIT", A, H)
 			return 1
