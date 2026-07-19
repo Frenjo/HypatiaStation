@@ -4,6 +4,58 @@
 	role_type = SPECIAL_ROLE_VOX_RAIDER
 	role_flag = BE_RAIDER
 
+	var/list/turf/raider_spawns = list()
+	var/list/raider_objectives = null
+
+/decl/special_role/raider/New()
+	. = ..()
+	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
+		if(L.name == "voxstart")
+			raider_spawns += GET_TURF(L)
+			qdel(L)
+			continue
+
+	// Generate objectives for the group.
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
+		raider_objectives = forge_vox_objectives()
+
+/decl/special_role/raider/setup(mob/living/carbon/human/vox)
+	. = ..()
+
+	var/static/index = 1
+	if(index > length(raider_spawns))
+		index = 1
+
+	vox.forceMove(raider_spawns[index])
+	index++
+
+	var/sounds = rand(2, 8)
+	var/i = 0
+	var/newname = ""
+
+	while(i <= sounds)
+		i++
+		newname += pick(list("ti", "hi", "ki", "ya", "ta", "ha", "ka", "ya", "chi", "cha", "kah"))
+
+	vox.real_name = capitalize(newname)
+	vox.name = vox.real_name
+	vox.mind.name = vox.name
+	vox.age = rand(12, 20)
+	vox.dna.mutantrace = "vox"
+	vox.set_species(SPECIES_VOX)
+	vox.languages = list() // Removing language from chargen.
+	vox.flavor_text = ""
+	vox.add_language("Vox-Pidgin")
+	vox.h_style = "Short Vox Quills"
+	vox.f_style = "Shaved"
+	for(var/datum/organ/external/limb in vox.organs)
+		limb.status &= ~(ORGAN_DESTROYED | ORGAN_ROBOT)
+	equip_vox_raider(vox)
+	vox.regenerate_icons()
+
+	vox.mind.objectives = raider_objectives
+	greet_vox_raider(vox)
+
 /decl/special_role/raider/proc/forge_vox_objectives()
 	RETURN_TYPE(/list/datum/objective)
 

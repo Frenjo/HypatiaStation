@@ -45,65 +45,11 @@ VOX HEIST ROUNDTYPE
 		candidates.Remove(new_raider)
 		raider_num--
 
-	var/decl/special_role/raider/raider_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
-	for_no_type_check(var/datum/mind/raider, possible_raiders)
-		raider_role.setup(raider.current)
-
 /datum/game_mode/heist/post_setup()
 	. = ..()
 	var/decl/special_role/raider/raider_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
-
-	//Build a list of spawn points.
-	var/list/turf/raider_spawn = list()
-
-	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
-		if(L.name == "voxstart")
-			raider_spawn += GET_TURF(L)
-			qdel(L)
-			continue
-
-	//Generate objectives for the group.
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		raid_objectives = raider_role.forge_vox_objectives()
-
-	var/index = 1
-
-	//Spawn the vox!
-	for_no_type_check(var/datum/mind/raider, raiders)
-		if(index > length(raider_spawn))
-			index = 1
-
-		raider.current.forceMove(raider_spawn[index])
-		index++
-
-		var/sounds = rand(2, 8)
-		var/i = 0
-		var/newname = ""
-
-		while(i <= sounds)
-			i++
-			newname += pick(list("ti", "hi", "ki", "ya", "ta", "ha", "ka", "ya", "chi", "cha", "kah"))
-
-		var/mob/living/carbon/human/vox = raider.current
-
-		vox.real_name = capitalize(newname)
-		vox.name = vox.real_name
-		raider.name = vox.name
-		vox.age = rand(12, 20)
-		vox.dna.mutantrace = "vox"
-		vox.set_species(SPECIES_VOX)
-		vox.languages = list() // Removing language from chargen.
-		vox.flavor_text = ""
-		vox.add_language("Vox-Pidgin")
-		vox.h_style = "Short Vox Quills"
-		vox.f_style = "Shaved"
-		for(var/datum/organ/external/limb in vox.organs)
-			limb.status &= ~(ORGAN_DESTROYED | ORGAN_ROBOT)
-		raider_role.equip_vox_raider(vox)
-		vox.regenerate_icons()
-
-		raider.objectives = raid_objectives
-		raider_role.greet_vox_raider(vox)
+	for_no_type_check(var/datum/mind/raider, possible_raiders)
+		raider_role.setup(raider.current)
 
 /datum/game_mode/heist/proc/is_raider_crew_safe()
 	if(!length(cortical_stacks))
