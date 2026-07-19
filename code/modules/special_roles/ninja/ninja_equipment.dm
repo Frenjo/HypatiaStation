@@ -18,12 +18,127 @@ ________________________________________________________________________________
 
 //=======//NEW AND DEL//=======//
 
-/obj/item/clothing/suit/space/space_ninja/New()
+/obj/item/clothing/head/helmet/space/ninja
+	name = "ninja hood"
+	desc = "What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear."
+	icon_state = "s-ninja"
+	item_state = "s-ninja_mask"
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 25)
+	siemens_coefficient = 0.2
+	species_restricted = null
+
+/obj/item/clothing/mask/gas/voice/ninja
+	name = "ninja mask"
+	desc = "A close-fitting mask that acts both as an air filter and a post-modern fashion statement."
+	icon_state = "s-ninja"
+	item_state = "s-ninja_mask"
+	vchange = 1
+	siemens_coefficient = 0.2
+
+/obj/item/clothing/shoes/ninja
+	name = "ninja shoes"
+	desc = "A pair of running shoes. Excellent for running and even better for smashing skulls."
+	icon_state = "s-ninja"
+	permeability_coefficient = 0.01
+	item_flags = ITEM_FLAG_NO_SLIP
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
+	siemens_coefficient = 0.2
+
+	cold_protection = FEET
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = FEET
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	species_restricted = null
+
+/obj/item/clothing/suit/space/ninja
+	name = "ninja suit"
+	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
+	icon_state = "s-ninja"
+	item_state = "s-ninja_suit"
+	can_store = list(
+		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
+		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank,
+		/obj/item/cell, /obj/item/suit_cooling_unit
+	)
+	slowdown = 0
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
+	siemens_coefficient = 0.2
+	species_restricted = null //Workaround for spawning alien ninja without internals.
+
+		//Important parts of the suit.
+	var/mob/living/carbon/affecting = null 				//The wearer.
+	var/obj/item/cell/cell						//Starts out with a high-capacity cell using New().
+	var/datum/effect/system/spark_spread/spark_system	//To create sparks.
+	var/list/reagent_list = list(							//The reagents ids which are added to the suit at New().
+		"tricordrazine", "dexalinp", "spaceacillin",
+		"dylovene", "nutriment", "radium", "hyronalin"
+	)
+
+	var/list/stored_research = list()			// For stealing station research.
+	var/obj/item/disk/tech/t_disk 	//To copy design onto disk.
+
+		//Other articles of ninja gear worn together, used to easily reference them after initializing.
+	var/obj/item/clothing/head/helmet/space/ninja/n_hood
+	var/obj/item/clothing/shoes/ninja/n_shoes
+	var/obj/item/clothing/gloves/ninja/n_gloves
+
+		//Main function variables.
+	/// Is the suit on or off, simple
+	var/is_suit_initialized = FALSE
+	/// If the suit is on cooldown (tracked in number of ticks).
+	/// Can be used to attach different cooldowns to abilities.
+	/// Ticks down every second based on suit ntick().
+	var/suit_cooldown = 0
+	/// Base energy cost each ntick.
+	var/passive_energy_drain = 5.0
+	/// Additional cost for additional powers active.
+	var/active_energy_drain = 25.0
+	/// Kamikaze energy cost each ntick.
+	var/kamikaze_energy_drain = 200.0
+	/// Brute damage potentially done by Kamikaze each ntick.
+	var/kamikaze_passive_damage = 1.0
+	/// How fast the suit does certain things, lower is faster.
+	/// Can be overridden in specific procs. Also determines adverse probability.
+	var/suit_action_delay = 40.0
+	/// How much reagent is transferred when injecting.
+	var/adrenaline_inject_volume = 20.0
+	/// How much reagent in total there is.
+	var/adrenaline_max_volume = 80.00
+
+		//Support function variables.
+	/// Mode of SpiderOS.
+	/// This can change so I won't bother listing the modes here (0 is hub).
+	/// Check ninja_equipment.dm for how it all works.
+	var/spideros = 0
+	/// If stealth mode is on or off
+	var/stealth_mode = FALSE
+	/// Is the suit busy with a process? Like AI hacking. Used for safety functions.
+	var/suit_busy = FALSE
+	/// Kamikaze on or off.
+	var/kamikaze = FALSE
+	/// Some value that increments until it hits [NINJA_KAMIKAZE_UNLOCK] and then allows the user to use Kamikaze.
+	var/kamikaze_unlock_tracker = 0
+
+		//Ability function variables.
+	/// Number of starting ninja smoke bombs.
+	var/smoke_bombs = 10.0
+	/// Number of adrenaline boosters.
+	var/adrenaline_boosts = 3.0
+
+		//Onboard AI related variables.
+	var/mob/living/silicon/ai/AI	//If there is an AI inside the suit.
+	var/obj/item/paicard/pai	//A slot for a pAI device
+	var/obj/effect/overlay/hologram	//Is the AI hologram on or off? Visible only to the wearer of the suit. This works by attaching an image to a blank overlay.
+	var/flush = 0					//If an AI purge is in progress.
+	/// Tracks who is in control of the suit
+	var/controller = NINJA_WEARER_CONTROL
+
+/obj/item/clothing/suit/space/ninja/New()
 	..()
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/init//suit initialize verb
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ai_instruction//for AIs
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ai_holo
-	//verbs += /obj/item/clothing/suit/space/space_ninja/proc/display_verb_procs//DEBUG. Doesn't work.
+	verbs += /obj/item/clothing/suit/space/ninja/proc/init//suit initialize verb
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ai_instruction//for AIs
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ai_holo
+	//verbs += /obj/item/clothing/suit/space/ninja/proc/display_verb_procs//DEBUG. Doesn't work.
 	spark_system = new()//spark initialize
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -41,7 +156,7 @@ ________________________________________________________________________________
 	cell = new/obj/item/cell/high//The suit should *always* have a battery because so many things rely on it.
 	cell.charge = 9000//Starting charge should not be higher than maximum charge. It leads to problems with recharging.
 
-/obj/item/clothing/suit/space/space_ninja/Destroy()
+/obj/item/clothing/suit/space/ninja/Destroy()
 	if(affecting)//To make sure the window is closed.
 		CLOSE_BROWSER(affecting, "window=hack spideros")
 	if(isnotnull(AI))//If there are AIs present when the ninja kicks the bucket.
@@ -51,13 +166,13 @@ ________________________________________________________________________________
 	return ..()
 
 //Simply deletes all the attachments and self, killing all related procs.
-/obj/item/clothing/suit/space/space_ninja/proc/terminate()
+/obj/item/clothing/suit/space/ninja/proc/terminate()
 	qdel(n_hood)
 	qdel(n_gloves)
 	qdel(n_shoes)
 	qdel(src)
 
-/obj/item/clothing/suit/space/space_ninja/proc/killai(mob/living/silicon/ai/A = AI)
+/obj/item/clothing/suit/space/ninja/proc/killai(mob/living/silicon/ai/A = AI)
 	if(A.client)
 		to_chat(A, SPAN_WARNING("Self-erase protocol dete-- *bzzzzz*"))
 		CLOSE_BROWSER(A, "window=hack spideros")
@@ -69,7 +184,7 @@ ________________________________________________________________________________
 //=======//SUIT VERBS//=======//
 //Verbs link to procs because verb-like procs have a bug which prevents their use if the arguments are not readily referenced.
 
-/obj/item/clothing/suit/space/space_ninja/proc/init()
+/obj/item/clothing/suit/space/ninja/proc/init()
 	set name = "Initialize Suit"
 	set desc = "Initializes the suit for field operation."
 	set category = "Ninja Equip"
@@ -77,7 +192,7 @@ ________________________________________________________________________________
 	ninitialize()
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/deinit()
+/obj/item/clothing/suit/space/ninja/proc/deinit()
 	set name = "De-Initialize Suit"
 	set desc = "Begins procedure to remove the suit."
 	set category = "Ninja Equip"
@@ -88,7 +203,7 @@ ________________________________________________________________________________
 		to_chat(affecting, SPAN_WARNING("The function did not trigger!"))
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/spideros()
+/obj/item/clothing/suit/space/ninja/proc/spideros()
 	set name = "Display SpiderOS"
 	set desc = "Utilize built-in computer system."
 	set category = "Ninja Equip"
@@ -99,7 +214,7 @@ ________________________________________________________________________________
 		to_chat(affecting, SPAN_WARNING("The interface is locked!"))
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/stealth()
+/obj/item/clothing/suit/space/ninja/proc/stealth()
 	set name = "Toggle Stealth"
 	set desc = "Utilize the internal CLOAK-tech device to activate or deactivate stealth-camo."
 	set category = "Ninja Equip"
@@ -112,7 +227,7 @@ ________________________________________________________________________________
 
 //=======//PROCESS PROCS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/ntick(mob/living/carbon/human/wearer = affecting)
+/obj/item/clothing/suit/space/ninja/proc/ntick(mob/living/carbon/human/wearer = affecting)
 	set background = BACKGROUND_ENABLED
 
 	//Runs in the background while the suit is initialized.
@@ -158,7 +273,7 @@ ________________________________________________________________________________
 
 //=======//INITIALIZE//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/ninitialize(delay = suit_action_delay, mob/living/carbon/human/U = loc)
+/obj/item/clothing/suit/space/ninja/proc/ninitialize(delay = suit_action_delay, mob/living/carbon/human/U = loc)
 	if(U.mind?.has_special_role(SPECIAL_ROLE_NINJA) && !is_suit_initialized && !suit_busy) // Shouldn't be busy... but anything is possible I guess.
 		suit_busy = TRUE
 		for(var/i,i<7,i++)
@@ -201,7 +316,7 @@ ________________________________________________________________________________
 
 //=======//DEINITIALIZE//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/deinitialize(delay = suit_action_delay)
+/obj/item/clothing/suit/space/ninja/proc/deinitialize(delay = suit_action_delay)
 	if(affecting == loc && !suit_busy)
 		var/mob/living/carbon/human/U = affecting
 		if(!is_suit_initialized)
@@ -243,7 +358,7 @@ ________________________________________________________________________________
 
 //=======//SPIDEROS PROC//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/display_spideros()
+/obj/item/clothing/suit/space/ninja/proc/display_spideros()
 	if(!affecting)	return//If no mob is wearing the suit. I almost forgot about this variable.
 	var/mob/living/carbon/human/U = affecting
 	var/mob/living/silicon/ai/A = AI
@@ -476,7 +591,7 @@ ________________________________________________________________________________
 
 //=======//SPIDEROS TOPIC PROC//=======//
 
-/obj/item/clothing/suit/space/space_ninja/Topic(href, href_list)
+/obj/item/clothing/suit/space/ninja/Topic(href, href_list)
 	..()
 	var/mob/living/carbon/human/U = affecting
 	var/mob/living/silicon/ai/A = AI
@@ -712,7 +827,7 @@ ________________________________________________________________________________
 
 //=======//SPECIAL AI FUNCTIONS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/ai_holo(turf/T in oview(3, affecting))//To have an internal AI display a hologram to the AI and ninja only.
+/obj/item/clothing/suit/space/ninja/proc/ai_holo(turf/T in oview(3, affecting))//To have an internal AI display a hologram to the AI and ninja only.
 	set name = "Display Hologram"
 	set desc = "Channel a holographic image directly to the user's field of vision. Others will not see it."
 	set category = null
@@ -730,7 +845,7 @@ ________________________________________________________________________________
 			affecting << I
 			to_chat(affecting, "<i>An image flicks to life nearby. It appears visible to you only.</i>")
 
-			verbs += /obj/item/clothing/suit/space/space_ninja/proc/ai_holo_clear
+			verbs += /obj/item/clothing/suit/space/ninja/proc/ai_holo_clear
 
 			ai_holo_process()//Move to initialize
 		else
@@ -739,7 +854,7 @@ ________________________________________________________________________________
 		to_chat(AI, "\red ERROR: \black Unable to project image.")
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/ai_holo_process()
+/obj/item/clothing/suit/space/ninja/proc/ai_holo_process()
 	set background = BACKGROUND_ENABLED
 
 	spawn while(hologram&&is_suit_initialized&&AI)//Suit on and there is an AI present.
@@ -747,11 +862,11 @@ ________________________________________________________________________________
 			qdel(hologram.i_attached)
 			qdel(hologram)
 
-			verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ai_holo_clear
+			verbs -= /obj/item/clothing/suit/space/ninja/proc/ai_holo_clear
 			return
 		sleep(10)//Checks every second.
 
-/obj/item/clothing/suit/space/space_ninja/proc/ai_instruction()//Let's the AI know what they can do.
+/obj/item/clothing/suit/space/ninja/proc/ai_instruction()//Let's the AI know what they can do.
 	set name = "Instructions"
 	set desc = "Displays a list of helpful information."
 	set category = "AI Ninja Equip"
@@ -759,7 +874,7 @@ ________________________________________________________________________________
 
 	to_chat(AI, "The menu you are seeing will contain other commands if they become available.<br>Right click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away.")
 
-/obj/item/clothing/suit/space/space_ninja/proc/ai_holo_clear()
+/obj/item/clothing/suit/space/ninja/proc/ai_holo_clear()
 	set name = "Clear Hologram"
 	set desc = "Stops projecting the current holographic image."
 	set category = "AI Ninja Equip"
@@ -768,10 +883,10 @@ ________________________________________________________________________________
 	qdel(hologram.i_attached)
 	qdel(hologram)
 
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ai_holo_clear
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ai_holo_clear
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/ai_hack_ninja()
+/obj/item/clothing/suit/space/ninja/proc/ai_hack_ninja()
 	set name = "Hack SpiderOS"
 	set desc = "Hack directly into the Black Widow(tm) neuro-interface."
 	set category = "AI Ninja Equip"
@@ -780,7 +895,7 @@ ________________________________________________________________________________
 	display_spideros()
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/ai_return_control()
+/obj/item/clothing/suit/space/ninja/proc/ai_return_control()
 	set name = "Relinquish Control"
 	set desc = "Return control to the user."
 	set category = "AI Ninja Equip"
@@ -795,7 +910,7 @@ ________________________________________________________________________________
 
 //=======//GENERAL SUIT PROCS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/attackby(obj/item/I, mob/U)
+/obj/item/clothing/suit/space/ninja/attackby(obj/item/I, mob/U)
 	if(U==affecting)//Safety, in case you try doing this without wearing the suit/being the person with the suit.
 		if(istype(I, /obj/item/aicard))//If it's an AI card.
 			if(controller == NINJA_WEARER_CONTROL)
@@ -864,7 +979,7 @@ ________________________________________________________________________________
 			return
 	..()
 
-/obj/item/clothing/suit/space/space_ninja/proc/toggle_stealth()
+/obj/item/clothing/suit/space/ninja/proc/toggle_stealth()
 	var/mob/living/carbon/human/U = affecting
 	if(stealth_mode)
 		cancel_stealth()
@@ -879,7 +994,7 @@ ________________________________________________________________________________
 		U.invisibility = INVISIBILITY_OBSERVER
 	return
 
-/obj/item/clothing/suit/space/space_ninja/proc/cancel_stealth()
+/obj/item/clothing/suit/space/ninja/proc/cancel_stealth()
 	var/mob/living/carbon/human/U = affecting
 	if(stealth_mode)
 		anim(U.loc,U,'icons/mob/mob.dmi',,"uncloak",,U.dir)
@@ -893,7 +1008,7 @@ ________________________________________________________________________________
 		return 1
 	return 0
 
-/obj/item/clothing/suit/space/space_ninja/proc/blade_check(mob/living/carbon/U, X = 1)//Default to checking for blade energy.
+/obj/item/clothing/suit/space/ninja/proc/blade_check(mob/living/carbon/U, X = 1)//Default to checking for blade energy.
 	switch(X)
 		if(1)
 			if(istype(U.get_active_hand(), /obj/item/melee/energy/blade))
@@ -913,7 +1028,7 @@ ________________________________________________________________________________
 				U.drop_item()
 	return 0
 
-/obj/item/clothing/suit/space/space_ninja/get_examine_text()
+/obj/item/clothing/suit/space/ninja/get_examine_text()
 	. = ..()
 	if(!is_suit_initialized)
 		return
@@ -936,11 +1051,11 @@ ________________________________________________________________________________
 
 //=======//ENERGY DRAIN PROCS//=======//
 
-/obj/item/clothing/gloves/space_ninja/proc/drain(target_type as text, target, obj/suit)
+/obj/item/clothing/gloves/ninja/proc/drain(target_type as text, target, obj/suit)
 //Var Initialize
-	var/obj/item/clothing/suit/space/space_ninja/S = suit
+	var/obj/item/clothing/suit/space/ninja/S = suit
 	var/mob/living/carbon/human/U = S.affecting
-	var/obj/item/clothing/gloves/space_ninja/G = S.n_gloves
+	var/obj/item/clothing/gloves/ninja/G = S.n_gloves
 
 	var/drain = 0//To drain from battery.
 	var/maxcapacity = 0//Safety check for full battery.
@@ -1158,7 +1273,7 @@ ________________________________________________________________________________
 
 //=======//GENERAL PROCS//=======//
 
-/obj/item/clothing/gloves/space_ninja/proc/toggled()
+/obj/item/clothing/gloves/ninja/proc/toggled()
 	set name = "Toggle Interaction"
 	set desc = "Toggles special interaction on or off."
 	set category = "Ninja Equip"
@@ -1167,7 +1282,7 @@ ________________________________________________________________________________
 	to_chat(U, "You <b>[candrain ? "disable" : "enable"]</b> special interaction.")
 	candrain = !candrain
 
-/obj/item/clothing/gloves/space_ninja/get_examine_text(mob/user)
+/obj/item/clothing/gloves/ninja/get_examine_text(mob/user)
 	. = ..()
 	if(user != loc)
 		return
@@ -1258,18 +1373,18 @@ ________________________________________________________________________________
 	mode = "Meson Scanner"
 	glasses = new /obj/item/clothing/glasses/meson()
 
-/obj/item/clothing/mask/gas/voice/space_ninja
+/obj/item/clothing/mask/gas/voice/ninja
 	var/datum/ninja_vision/ninja_vision
 	var/list/datum/ninja_vision/ninja_visions
 
-/obj/item/clothing/mask/gas/voice/space_ninja/New()
+/obj/item/clothing/mask/gas/voice/ninja/New()
 	. = ..()
 	ninja_visions = list(new /datum/ninja_vision/scouter(), new /datum/ninja_vision/nvg(), new /datum/ninja_vision/thermal(), new /datum/ninja_vision/meson())
 	ninja_vision = ninja_visions[1]
-	verbs.Add(/obj/item/clothing/mask/gas/voice/space_ninja/proc/togglev)
-	verbs.Add(/obj/item/clothing/mask/gas/voice/space_ninja/proc/switchm)
+	verbs.Add(/obj/item/clothing/mask/gas/voice/ninja/proc/togglev)
+	verbs.Add(/obj/item/clothing/mask/gas/voice/ninja/proc/switchm)
 
-/obj/item/clothing/mask/gas/voice/space_ninja/proc/togglev()
+/obj/item/clothing/mask/gas/voice/ninja/proc/togglev()
 	set name = "Toggle Voice"
 	set desc = "Toggles the voice synthesizer on or off."
 	set category = "Ninja Equip"
@@ -1297,7 +1412,7 @@ ________________________________________________________________________________
 		voice = "Unknown"
 	return
 
-/obj/item/clothing/mask/gas/voice/space_ninja/proc/switchm()
+/obj/item/clothing/mask/gas/voice/ninja/proc/switchm()
 	set name = "Switch Mode"
 	set desc = "Switches between Night Vision, Meson, or Thermal vision modes."
 	set category = "Ninja Equip"
@@ -1309,7 +1424,7 @@ ________________________________________________________________________________
 	var/mob/U = loc
 	to_chat(U, "Switching mode to <B>[ninja_vision.mode]</B>.")
 
-/obj/item/clothing/mask/gas/voice/space_ninja/get_examine_text()
+/obj/item/clothing/mask/gas/voice/ninja/get_examine_text()
 	. = ..()
 	. += SPAN_INFO("<em>[ninja_vision.mode]</em> is active.")
 	. += SPAN_INFO("Voice mimicking algorithm is <em>[!vchange ? "inactive" : "active"]</em>.")

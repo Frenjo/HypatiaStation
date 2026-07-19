@@ -77,7 +77,7 @@
 			//Cameras can't track people wearing an agent card or a ninja hood.
 			if(istype(H.id_store?.get_id(), /obj/item/card/id/syndicate))
 				continue
-			if(istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
+			if(istype(H.head, /obj/item/clothing/head/helmet/space/ninja))
 				continue
 
 		 // Now, are they viewable by a camera? (This is last because it's the most intensive check)
@@ -136,7 +136,7 @@
 					to_chat(U, SPAN_WARNING("Follow camera mode terminated."))
 					U.cameraFollow = null
 					return
-				if(istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
+				if(istype(H.head, /obj/item/clothing/head/helmet/space/ninja))
 					to_chat(U, SPAN_WARNING("Follow camera mode terminated."))
 					U.cameraFollow = null
 					return

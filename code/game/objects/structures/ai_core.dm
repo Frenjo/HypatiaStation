@@ -216,7 +216,7 @@ That prevents a few funky behaviors.
 							to_chat(target_ai, "You have been downloaded to a mobile storage device. Remote device connection severed.")
 							to_chat(user, "\blue <b>Transfer successful</b>: \black [target_ai.name] ([rand(1000, 9999)].exe) removed from host terminal and stored within local memory.")
 					if("NINJASUIT")
-						var/obj/item/clothing/suit/space/space_ninja/ninja_suit = src
+						var/obj/item/clothing/suit/space/ninja/ninja_suit = src
 						if(ninja_suit.AI) //If there is an AI on card.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
@@ -255,7 +255,7 @@ That prevents a few funky behaviors.
 							to_chat(user, "\blue <b>Transfer successful</b>: \black [card_ai.name] ([rand(1000, 9999)].exe) installed and executed succesfully. Local copy has been removed.")
 							qdel(target_core)
 					if("NINJASUIT")
-						var/obj/item/clothing/suit/space/space_ninja/ninja_suit = src
+						var/obj/item/clothing/suit/space/ninja/ninja_suit = src
 						var/mob/living/silicon/ai/suit_ai = ninja_suit.AI
 						if(suit_ai)
 							suit_ai.control_disabled = FALSE
@@ -311,7 +311,7 @@ That prevents a few funky behaviors.
 							else if(!target_fixer.occupant)
 								to_chat(user, "\red <b>ERROR</b>: \black Unable to locate artificial intelligence.")
 					if("NINJASUIT")
-						var/obj/item/clothing/suit/space/space_ninja/ninja_suit = src
+						var/obj/item/clothing/suit/space/ninja/ninja_suit = src
 						if(!length(target_fixer.contents))
 							if(!ninja_suit.AI)
 								to_chat(user, "No AI to copy over!")
@@ -346,7 +346,7 @@ That prevents a few funky behaviors.
 								to_chat(user, "\red <b>ERROR</b>: \black Unable to locate artificial intelligence.")
 
 			if("NINJASUIT") //Ninjasuit
-				var/obj/item/clothing/suit/space/space_ninja/target_ninja = target
+				var/obj/item/clothing/suit/space/ninja/target_ninja = target
 				switch(interaction)
 					if("AICARD")
 						var/obj/item/aicard/card = src

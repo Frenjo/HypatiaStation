@@ -93,7 +93,7 @@
 	src.add_fingerprint(user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
+		var/obj/item/clothing/gloves/ninja/SNG = H.gloves
 		if(!istype(SNG) || !SNG.candrain || !SNG.draining)
 			return
 

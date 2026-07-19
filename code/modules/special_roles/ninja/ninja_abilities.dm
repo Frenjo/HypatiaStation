@@ -14,7 +14,7 @@ They should, as I have made every effort for that to be the case.
 In the case that they are not, I imagine the game will run-time error like crazy.
 suit_cooldownown ticks off each second based on the suit recharge proc, in seconds. Default of 1 seconds. Some abilities have no cool down.
 */
-/obj/item/clothing/suit/space/space_ninja/proc/ninjacost(energy_cost = 0, additional_cost = 0)
+/obj/item/clothing/suit/space/ninja/proc/ninjacost(energy_cost = 0, additional_cost = 0)
 	var/mob/living/carbon/human/U = affecting
 	if((U.stat || U.incorporeal_move) && additional_cost != NINJA_COST_CHECK_ADRENALINE)	//Will not return if user is using an adrenaline booster since you can use them when stat==1.
 		to_chat(U, SPAN_WARNING("You must be conscious and solid to do this."))	//It's not a problem of stat==2 since the ninja will explode anyway if they die.
@@ -36,7 +36,7 @@ suit_cooldownown ticks off each second based on the suit recharge proc, in secon
 	return (suit_cooldown)	//Returns the value of the variable which counts down to zero.
 
 //=======//TELEPORT GRAB CHECK//=======//
-/obj/item/clothing/suit/space/space_ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
+/obj/item/clothing/suit/space/ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
 	var/turf/destination = locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)
 	if(istype(U.get_active_hand(), /obj/item/grab))//Handles grabbed persons.
 		var/obj/item/grab/G = U.get_active_hand()
@@ -49,7 +49,7 @@ suit_cooldownown ticks off each second based on the suit recharge proc, in secon
 //=======//SMOKE//=======//
 /*Summons smoke in radius of user.
 Not sure why this would be useful (it's not) but whatever. Ninjas need their smoke bombs.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjasmoke()
+/obj/item/clothing/suit/space/ninja/proc/ninjasmoke()
 	set name = "Smoke Bomb"
 	set desc = "Blind your enemies momentarily with a well-placed smoke bomb."
 	set category = "Ninja Ability"
@@ -67,7 +67,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 
 //=======//RIGHT CLICK TELEPORT//=======//
 //Right click to teleport somewhere, almost exactly like admin jump to turf.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjashift(turf/T in oview())
+/obj/item/clothing/suit/space/ninja/proc/ninjashift(turf/T in oview())
 	set name = "Phase Shift (400E)"
 	set desc = "Utilizes the internal VOID-shift device to rapidly transit to a destination in view."
 	set category = null	//So it does not show up on the panel but can still be right-clicked.
@@ -97,7 +97,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 
 //=======//EM PULSE//=======//
 //Disables nearby tech equipment.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjapulse()
+/obj/item/clothing/suit/space/ninja/proc/ninjapulse()
 	set name = "EM Burst (2,000E)"
 	set desc = "Disable any nearby technology with a electro-magnetic pulse."
 	set category = "Ninja Ability"
@@ -114,7 +114,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 
 //=======//ENERGY BLADE//=======//
 //Summons a blade of energy in active hand.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjablade()
+/obj/item/clothing/suit/space/ninja/proc/ninjablade()
 	set name = "Energy Blade (500E)"
 	set desc = "Create a focused beam of energy in your active hand."
 	set category = "Ninja Ability"
@@ -147,7 +147,7 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 //=======//NINJA STARS//=======//
 /*Shoots ninja stars at random people.
 This could be a lot better but I'm too tired atm.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjastar()
+/obj/item/clothing/suit/space/ninja/proc/ninjastar()
 	set name = "Energy Star (800E)"
 	set desc = "Launches an energy star at a random living target."
 	set category = "Ninja Ability"
@@ -182,7 +182,7 @@ This could be a lot better but I'm too tired atm.*/
 //=======//ENERGY NET//=======//
 /*Allows the ninja to capture people, I guess.
 Must right click on a mob to activate.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjanet(mob/living/carbon/M in oview())//Only living carbon mobs.
+/obj/item/clothing/suit/space/ninja/proc/ninjanet(mob/living/carbon/M in oview())//Only living carbon mobs.
 	set name = "Energy Net (7,000E)"
 	set desc = "Captures a fallen opponent in a net of energy. Will teleport them to a holding facility after 30 seconds."
 	set category = null
@@ -219,7 +219,7 @@ Must right click on a mob to activate.*/
 //=======//ADRENALINE BOOST//=======//
 /*Wakes the user so they are able to do their thing. Also injects a decent dose of radium.
 Movement impairing would indicate drugs and the like.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjaboost()
+/obj/item/clothing/suit/space/ninja/proc/ninjaboost()
 	set name = "Adrenaline Boost"
 	set desc = "Inject a secret chemical that will counteract all movement-impairing effect."
 	set category = "Ninja Ability"
@@ -257,7 +257,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 
 //=======//NINJA MOVEMENT//=======//
 //Also makes you move like you're on crack.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjawalk()
+/obj/item/clothing/suit/space/ninja/proc/ninjawalk()
 	set name = "Shadow Walk"
 	set desc = "Combines the VOID-shift and CLOAK-tech devices to freely move between solid matter. Toggle on or off."
 	set category = "Ninja Ability"
@@ -274,7 +274,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 
 //=======//5 TILE TELEPORT/GIB//=======//
 //Allows to gib up to five squares in a straight line. Seriously.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjaslayer()
+/obj/item/clothing/suit/space/ninja/proc/ninjaslayer()
 	set name = "Phase Slayer"
 	set desc = "Utilizes the internal VOID-shift device to mutilate creatures in a straight line."
 	set category = "Ninja Ability"
@@ -315,7 +315,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 //=======//TELEPORT BEHIND MOB//=======//
 /*Appear behind a randomly chosen mob while a few decoy teleports appear.
 This is so anime it hurts. But that's the point.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjamirage()
+/obj/item/clothing/suit/space/ninja/proc/ninjamirage()
 	set name = "Spider Mirage"
 	set desc = "Utilizes the internal VOID-shift device to create decoys and teleport behind a random target."
 	set category = "Ninja Ability"

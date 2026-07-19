@@ -581,7 +581,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 					if(isAI(M) && M.stat != DEAD) //See if any AI's are alive inside that card.
 						return 1
 
-			for(var/obj/item/clothing/suit/space/space_ninja/S in all_items) //Let an AI downloaded into a space ninja suit count
+			for(var/obj/item/clothing/suit/space/ninja/S in all_items) //Let an AI downloaded into a space ninja suit count
 				if(isnotnull(S.AI) && S.AI.stat != DEAD)
 					return 1
 
@@ -610,10 +610,10 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		return 0
 	if(isnull(owner.current) || owner.current.stat == DEAD)
 		return 0
-	if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/space_ninja) && owner.current:wear_suit:is_suit_initialized))
+	if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/ninja) && owner.current:wear_suit:is_suit_initialized))
 		return 0
 	var/current_amount
-	var/obj/item/clothing/suit/space/space_ninja/S = owner.current:wear_suit
+	var/obj/item/clothing/suit/space/ninja/S = owner.current:wear_suit
 	if(!length(S.stored_research))
 		return 0
 	else

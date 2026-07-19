@@ -41,10 +41,10 @@
 	if(!length(objective_pool))
 		objective_pool += fallback_ninja_objective()
 
-	var/datum/objective/survive/survive = new()
+	var/datum/objective/survive/survive = new /datum/objective/survive()
 	objective_pool += survive
 
-	for(var/datum/objective/generated as anything in objective_pool)
+	for_no_type_check(var/datum/objective/generated, objective_pool)
 		generated.owner = ninja
 		ninja.objectives += generated
 
@@ -71,7 +71,7 @@
 	)
 
 	. = list()
-	for(var/list/sublist as anything in possible_bad_dudes)
+	for_no_type_check(var/list/sublist, possible_bad_dudes)
 		for(var/datum/mind/current_mind in sublist)
 			if(current_mind.current?.stat != DEAD)
 				. += current_mind
@@ -94,8 +94,8 @@
 
 	// If there are more than three humanoid xenos on the station, time to get dangerous.
 	// Here we want the ninja to murder all the queens. The other aliens don't really matter.
-	for(var/mob/living/carbon/human/xeno_queen as anything in xeno_queen_list)
-		var/datum/objective/assassinate/ninja_objective = new()
+	for_no_type_check(var/mob/living/carbon/human/xeno_queen, xeno_queen_list)
+		var/datum/objective/assassinate/ninja_objective = new /datum/objective/assassinate()
 		ninja_objective.target = xeno_queen.mind
 		ninja_objective.explanation_text = "Kill \the [xeno_queen]."
 		. += ninja_objective
@@ -104,7 +104,7 @@
 	. = list()
 	for(var/datum/mind/current_mind in antagonist_list)//Search and destroy. Since we already have an antagonist list, they should appear there.
 		if(current_mind?.has_special_role(SPECIAL_ROLE_DEATH_COMMANDO))
-			var/datum/objective/assassinate/ninja_objective = new
+			var/datum/objective/assassinate/ninja_objective = new /datum/objective/assassinate()
 			ninja_objective.find_target_by_role(SPECIAL_ROLE_DEATH_COMMANDO, role_type = TRUE)
 			. += ninja_objective
 
@@ -143,7 +143,7 @@
 		switch(pick(objective_list))
 			if(OBJECTIVE_KILL)
 				var/datum/mind/to_kill = pick_n_take(hostile_targets)
-				var/datum/objective/assassinate/ninja_objective = new
+				var/datum/objective/assassinate/ninja_objective = new /datum/objective/assassinate()
 				var/has_special_role = to_kill.has_special_role()
 				var/target_role = has_special_role ? to_kill.special_roles[1] : to_kill.assigned_job.title
 				ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
@@ -151,7 +151,7 @@
 
 			if(OBJECTIVE_PROTECT) // Protect. Keeping people alive can be pretty difficult.
 				var/datum/mind/to_protect = pick_n_take(friendly_targets)
-				var/datum/objective/protect/ninja_objective = new
+				var/datum/objective/protect/ninja_objective = new /datum/objective/assassinate()
 				var/has_special_role = to_protect.has_special_role()
 				var/target_role = has_special_role ? to_protect.special_roles[1] : to_protect.assigned_job.title
 				ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
@@ -159,28 +159,28 @@
 
 			if(OBJECTIVE_DEBRAIN) // Debrain
 				var/datum/mind/to_debrain = pick_n_take(hostile_targets)
-				var/datum/objective/debrain/ninja_objective = new
+				var/datum/objective/debrain/ninja_objective = new /datum/objective/debrain()
 				var/has_special_role = to_debrain.has_special_role()
 				var/target_role = has_special_role ? to_debrain.special_roles[1] : to_debrain.assigned_job.title
 				ninja_objective.find_target_by_role(target_role, has_special_role) //If they have a special role, use that instead to find em.
 				. += ninja_objective
 
 			if(OBJECTIVE_STEAL) // Steal
-				var/datum/objective/steal/ninja_objective = new
+				var/datum/objective/steal/ninja_objective = new /datum/objective/steal()
 				ninja_objective.set_target(pick(ninja_objective.possible_items_special))
 				. += ninja_objective
 
 				objective_list -= OBJECTIVE_STEAL // one steal objective is enough
 
 			if(OBJECTIVE_DOWNLOAD) // Download research
-				var/datum/objective/download/ninja_objective = new
+				var/datum/objective/download/ninja_objective = new /datum/objective/download()
 				ninja_objective.gen_amount_goal()
 				. += ninja_objective
 
 				objective_list -= OBJECTIVE_DOWNLOAD // one download objective is enough
 
 			if(OBJECTIVE_CAPTURE) // Capture
-				var/datum/objective/capture/ninja_objective = new
+				var/datum/objective/capture/ninja_objective = new /datum/objective/capture()
 				ninja_objective.gen_amount_goal()
 				. += ninja_objective
 
@@ -203,7 +203,7 @@
 
 	. = list()
 	if(nuke_code)//If there is a nuke device in world and we got the code.
-		var/datum/objective/nuclear/ninja_objective = new()
+		var/datum/objective/nuclear/ninja_objective = new /datum/objective/nuclear()
 		ninja_objective.explanation_text = "Destroy the station with a nuclear device. The code is [nuke_code]."
 		. += ninja_objective
 

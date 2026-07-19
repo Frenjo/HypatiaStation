@@ -9,7 +9,7 @@
 	 -Sayu
 */
 
-/obj/item/clothing/gloves/space_ninja
+/obj/item/clothing/gloves/ninja
 	desc = "These nano-enhanced gloves insulate from electricity and provide fire resistance."
 	name = "ninja gloves"
 	icon_state = "s-ninja"
@@ -30,14 +30,14 @@
 
 	For the drain proc, see events/ninja.dm
 */
-/obj/item/clothing/gloves/space_ninja/Touch(atom/A, proximity)
+/obj/item/clothing/gloves/ninja/Touch(atom/A, proximity)
 	if(!candrain || draining)
 		return 0
 
 	var/mob/living/carbon/human/H = loc
 	if(!istype(H))
 		return 0 // what
-	var/obj/item/clothing/suit/space/space_ninja/suit = H.wear_suit
+	var/obj/item/clothing/suit/space/ninja/suit = H.wear_suit
 	if(!istype(suit))
 		return 0
 	if(isturf(A))

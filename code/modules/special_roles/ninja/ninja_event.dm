@@ -88,6 +88,9 @@ ________________________________________________________________________________
 GLOBAL_GLOBL_INIT(toggle_space_ninja, FALSE)	//If ninjas can spawn or not.
 GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the station.
 
+/datum/round_event/space_ninja/setup()
+	space_ninja_arrival()
+
 /proc/space_ninja_arrival(assign_key = null, assign_mission = null)
 	// ID index of which ninja selection is being ran
 	var/static/ninja_selection_id = 1
@@ -262,12 +265,12 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 		message_admins("No spawnable locations could be found for the space ninja.")
 		return null
 
-	var/mob/living/carbon/human/new_ninja = new(spawn_point.loc)
+	var/mob/living/carbon/human/new_ninja = new /mob/living/carbon/human(spawn_point.loc)
 	var/ninja_title = pick(GLOBL.ninja_titles)
 	var/ninja_name = pick(GLOBL.ninja_names)
 	new_ninja.gender = pick(MALE, FEMALE)
 
-	var/datum/preferences/A = new()//Randomize appearance for the ninja.
+	var/datum/preferences/A = new /datum/preferences()//Randomize appearance for the ninja.
 	A.randomize_appearance_for(new_ninja)
 	new_ninja.real_name = "[ninja_title] [ninja_name]"
 	new_ninja.dna.ready_dna(new_ninja)
@@ -281,7 +284,7 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 //=======//HELPER PROCS//=======//
 
 //Randomizes suit parameters.
-/obj/item/clothing/suit/space/space_ninja/proc/randomize_param()
+/obj/item/clothing/suit/space/ninja/proc/randomize_param()
 	passive_energy_drain = rand(1, 20)
 	active_energy_drain = rand(20, 100)
 	kamikaze_energy_drain = rand(100, 500)
@@ -291,7 +294,7 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 	adrenaline_boosts = rand(1, 7)
 
 //This proc prevents the suit from being taken off.
-/obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/human/H, X = 0)
+/obj/item/clothing/suit/space/ninja/proc/lock_suit(mob/living/carbon/human/H, X = 0)
 	if(X)//If you want to check for icons.
 		icon_state = H.gender == FEMALE ? "s-ninjanf" : "s-ninjan"
 		H.gloves.icon_state = "s-ninjan"
@@ -301,13 +304,13 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 			to_chat(H, SPAN_WARNING("<B>f�TaL ��RRoR</B>: 382200-*#00C�DE <B>RED</B><br>UNAU�HORIZED US� DET�C���eD<br>CoMM�NCING SUB-R0U�IN3 13...<br>T�RMInATING U-U-US�R..."))
 			H.gib()
 			return 0
-		if(!istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
+		if(!istype(H.head, /obj/item/clothing/head/helmet/space/ninja))
 			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR<br>ABORTING..."))
 			return 0
-		if(!istype(H.shoes, /obj/item/clothing/shoes/space_ninja))
+		if(!istype(H.shoes, /obj/item/clothing/shoes/ninja))
 			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR<br>ABORTING..."))
 			return 0
-		if(!istype(H.gloves, /obj/item/clothing/gloves/space_ninja))
+		if(!istype(H.gloves, /obj/item/clothing/gloves/ninja))
 			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR<br>ABORTING..."))
 			return 0
 
@@ -325,7 +328,7 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 	return 1
 
 //This proc allows the suit to be taken off.
-/obj/item/clothing/suit/space/space_ninja/proc/unlock_suit()
+/obj/item/clothing/suit/space/ninja/proc/unlock_suit()
 	affecting = null
 	can_remove = TRUE
 	slowdown = 1
@@ -373,55 +376,55 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 
 //=======//GENERIC VERB MODIFIERS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/grant_equip_verbs()
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/init
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/deinit
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/spideros
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/stealth
-	n_gloves.verbs += /obj/item/clothing/gloves/space_ninja/proc/toggled
+/obj/item/clothing/suit/space/ninja/proc/grant_equip_verbs()
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/init
+	verbs += /obj/item/clothing/suit/space/ninja/proc/deinit
+	verbs += /obj/item/clothing/suit/space/ninja/proc/spideros
+	verbs += /obj/item/clothing/suit/space/ninja/proc/stealth
+	n_gloves.verbs += /obj/item/clothing/gloves/ninja/proc/toggled
 
 	is_suit_initialized = TRUE
 
-/obj/item/clothing/suit/space/space_ninja/proc/remove_equip_verbs()
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/init
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/deinit
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/spideros
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/stealth
+/obj/item/clothing/suit/space/ninja/proc/remove_equip_verbs()
+	verbs += /obj/item/clothing/suit/space/ninja/proc/init
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/deinit
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/spideros
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/stealth
 	if(n_gloves)
-		n_gloves.verbs -= /obj/item/clothing/gloves/space_ninja/proc/toggled
+		n_gloves.verbs -= /obj/item/clothing/gloves/ninja/proc/toggled
 
 	is_suit_initialized = FALSE
 
-/obj/item/clothing/suit/space/space_ninja/proc/grant_ninja_verbs()
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjashift
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjasmoke
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjaboost
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjapulse
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjablade
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjastar
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjanet
+/obj/item/clothing/suit/space/ninja/proc/grant_ninja_verbs()
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjashift
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjasmoke
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjaboost
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjapulse
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjablade
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjastar
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjanet
 
 	is_suit_initialized = TRUE
 	slowdown = 0
 
-/obj/item/clothing/suit/space/space_ninja/proc/remove_ninja_verbs()
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjashift
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjaboost
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjapulse
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjablade
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjastar
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjanet
+/obj/item/clothing/suit/space/ninja/proc/remove_ninja_verbs()
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjashift
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjaboost
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjapulse
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjablade
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjastar
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjanet
 
 //=======//KAMIKAZE VERBS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/grant_kamikaze(mob/living/carbon/U)
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjashift
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjanet
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjaslayer
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjawalk
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjamirage
+/obj/item/clothing/suit/space/ninja/proc/grant_kamikaze(mob/living/carbon/U)
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjashift
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjanet
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjaslayer
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjawalk
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ninjamirage
 
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/stealth
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/stealth
 
 	kamikaze = TRUE
 
@@ -431,25 +434,25 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 		n_gloves.item_state = "s-ninjak"
 		n_gloves.candrain = 0
 		n_gloves.draining = 0
-		n_gloves.verbs -= /obj/item/clothing/gloves/space_ninja/proc/toggled
+		n_gloves.verbs -= /obj/item/clothing/gloves/ninja/proc/toggled
 
 	cancel_stealth()
 
 	CLOSE_BROWSER(U, "window=spideros")
 	to_chat(U, SPAN_WARNING("Do or Die, <b>LET'S ROCK!!</b>"))
 
-/obj/item/clothing/suit/space/space_ninja/proc/remove_kamikaze(mob/living/carbon/U)
+/obj/item/clothing/suit/space/ninja/proc/remove_kamikaze(mob/living/carbon/U)
 	if(kamikaze)
-		verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjashift
-		verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjapulse
-		verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjastar
-		verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjaslayer
-		verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjawalk
-		verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjamirage
+		verbs += /obj/item/clothing/suit/space/ninja/proc/ninjashift
+		verbs += /obj/item/clothing/suit/space/ninja/proc/ninjapulse
+		verbs += /obj/item/clothing/suit/space/ninja/proc/ninjastar
+		verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjaslayer
+		verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjawalk
+		verbs -= /obj/item/clothing/suit/space/ninja/proc/ninjamirage
 
-		verbs += /obj/item/clothing/suit/space/space_ninja/proc/stealth
+		verbs += /obj/item/clothing/suit/space/ninja/proc/stealth
 		if(n_gloves)
-			n_gloves.verbs -= /obj/item/clothing/gloves/space_ninja/proc/toggled
+			n_gloves.verbs -= /obj/item/clothing/gloves/ninja/proc/toggled
 
 		U.incorporeal_move = 0
 		kamikaze = FALSE
@@ -458,16 +461,16 @@ GLOBAL_GLOBL_INIT(sent_ninja_to_station, FALSE)	//If a ninja is already on the s
 
 //=======//AI VERBS//=======//
 
-/obj/item/clothing/suit/space/space_ninja/proc/grant_AI_verbs()
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ai_hack_ninja
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ai_return_control
+/obj/item/clothing/suit/space/ninja/proc/grant_AI_verbs()
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ai_hack_ninja
+	verbs += /obj/item/clothing/suit/space/ninja/proc/ai_return_control
 
 	suit_busy = FALSE
 	controller = NINJA_AI_CONTROL
 
-/obj/item/clothing/suit/space/space_ninja/proc/remove_AI_verbs()
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ai_hack_ninja
-	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ai_return_control
+/obj/item/clothing/suit/space/ninja/proc/remove_AI_verbs()
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ai_hack_ninja
+	verbs -= /obj/item/clothing/suit/space/ninja/proc/ai_return_control
 
 	controller = NINJA_WEARER_CONTROL
 
@@ -499,7 +502,7 @@ var/return_to = copytext(temp, 1, (length(temp)))//length has to be to the lengt
 spideros = text2num(return_to)//Maximum length here is 6. Use (return_to, X) to specify larger strings if needed.
 
 //Old way of draining from wire.
-/obj/item/clothing/gloves/space_ninja/proc/drain_wire()
+/obj/item/clothing/gloves/ninja/proc/drain_wire()
 	set name = "Drain From Wire"
 	set desc = "Drain energy directly from an exposed wire."
 	set category = "Ninja Equip"
@@ -526,7 +529,7 @@ Can be added on to pretty easily.
 
 BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 
-/obj/item/clothing/suit/space/space_ninja/proc/grant_AI_verbs()
+/obj/item/clothing/suit/space/ninja/proc/grant_AI_verbs()
 	var/obj/effect/proc_holder/ai_return_control/A_C = new(AI)
 	var/obj/effect/proc_holder/ai_hack_ninja/B_C = new(AI)
 	var/obj/effect/proc_holder/ai_instruction/C_C = new(AI)
@@ -537,7 +540,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 
 	controller = NINJA_AI_CONTROL
 
-/obj/item/clothing/suit/space/space_ninja/proc/remove_AI_verbs()
+/obj/item/clothing/suit/space/ninja/proc/remove_AI_verbs()
 	var/obj/effect/proc_holder/ai_return_control/A_C = locate() in AI
 	var/obj/effect/proc_holder/ai_hack_ninja/B_C = locate() in AI
 	var/obj/effect/proc_holder/ai_instruction/C_C = locate() in AI
@@ -547,9 +550,9 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	del(C_C)
 	del(D_C)
 	AI.proc_holder_list = list()
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/deinit
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/spideros
-	verbs += /obj/item/clothing/suit/space/space_ninja/proc/stealth
+	verbs += /obj/item/clothing/suit/space/ninja/proc/deinit
+	verbs += /obj/item/clothing/suit/space/ninja/proc/spideros
+	verbs += /obj/item/clothing/suit/space/ninja/proc/stealth
 
 	controller = NINJA_WEARER_CONTROL
 
@@ -563,7 +566,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 
 
 /obj/effect/proc_holder/ai_holo_clear/Click()
-	var/obj/item/clothing/suit/space/space_ninja/S = loc.loc//This is so stupid but makes sure certain things work. AI.SUIT
+	var/obj/item/clothing/suit/space/ninja/S = loc.loc//This is so stupid but makes sure certain things work. AI.SUIT
 	del(S.hologram.i_attached)
 	del(S.hologram)
 	var/obj/effect/proc_holder/ai_holo_clear/D_C = locate() in S.AI
@@ -588,7 +591,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	opacity = FALSE
 
 /obj/effect/proc_holder/ai_hack_ninja/Click()//When you click on it.
-	var/obj/item/clothing/suit/space/space_ninja/S = loc.loc
+	var/obj/item/clothing/suit/space/ninja/S = loc.loc
 	S.hack_spideros()
 	return
 
@@ -601,7 +604,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 
 /obj/effect/proc_holder/ai_return_control/Click()
 	var/mob/living/silicon/ai/A = loc
-	var/obj/item/clothing/suit/space/space_ninja/S = A.loc
+	var/obj/item/clothing/suit/space/ninja/S = A.loc
 	CLOSE_BROWSER(A, "window=hack spideros") // Close window
 	to_chat(A, "You have seized your hacking attempt. [S.affecting] has regained control.")
 	to_chat(S.affecting, "<b>UPDATE</b>: [A.real_name] has ceased hacking attempt. All systems clear.")
@@ -611,7 +614,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 
 //=======//DEBUG//=======//
 /*
-/obj/item/clothing/suit/space/space_ninja/proc/display_verb_procs()
+/obj/item/clothing/suit/space/ninja/proc/display_verb_procs()
 //DEBUG
 //Does nothing at the moment. I am trying to see if it's possible to mess around with verbs as variables.
 	//for(var/P in verbs)
@@ -653,16 +656,16 @@ mob/verb/remove_object_panel()
 	set name = "Grant Back Ninja Verbs"
 	set category = "Ninja Debug"
 
-	M.wear_suit.verbs += /obj/item/clothing/suit/space/space_ninja/proc/deinit
-	M.wear_suit.verbs += /obj/item/clothing/suit/space/space_ninja/proc/spideros
+	M.wear_suit.verbs += /obj/item/clothing/suit/space/ninja/proc/deinit
+	M.wear_suit.verbs += /obj/item/clothing/suit/space/ninja/proc/spideros
 	return
 
 /obj/proc/grant_verb_ninja_debug3(var/mob/living/silicon/ai/A as mob)
 	set name = "Grant AI Ninja Verbs"
 	set category = "null"
 	set hidden = 1
-	A.verbs -= /obj/item/clothing/suit/space/space_ninja/proc/deinit
-	A.verbs -= /obj/item/clothing/suit/space/space_ninja/proc/spideros
+	A.verbs -= /obj/item/clothing/suit/space/ninja/proc/deinit
+	A.verbs -= /obj/item/clothing/suit/space/ninja/proc/spideros
 	return
 
 /mob/verb/get_dir_to_target(var/mob/M in oview())

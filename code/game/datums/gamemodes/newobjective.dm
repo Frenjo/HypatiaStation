@@ -1326,10 +1326,10 @@ datum
 					return 0
 				if(!owner.current || owner.current.stat == 2)
 					return 0
-				if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/space_ninja)&&owner.current:wear_suit:is_suit_initialized))
+				if(!(istype(owner.current:wear_suit, /obj/item/clothing/suit/space/ninja)&&owner.current:wear_suit:is_suit_initialized))
 					return 0
 				var/current_amount
-				var/obj/item/clothing/suit/space/space_ninja/S = owner.current:wear_suit
+				var/obj/item/clothing/suit/space/ninja/S = owner.current:wear_suit
 				if(!length(S.stored_research))
 					return 0
 				else
