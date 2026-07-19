@@ -4,10 +4,9 @@
 	role_type = SPECIAL_ROLE_NINJA
 	role_flag = BE_NINJA
 
-/decl/special_role/ninja/proc/setup(mob/living/carbon/human/user)
-	user.mind_initialize()
-	user.equip_outfit(/decl/hierarchy/outfit/space_ninja)
-	user.mind.assign_special_role(role_type) // ideally you want to make this part generic - Melbert
+/decl/special_role/ninja/setup(mob/living/carbon/human/ninja)
+	. = ..()
+	ninja.equip_outfit(/decl/hierarchy/outfit/space_ninja)
 
 /decl/special_role/ninja/proc/give_mission(mob/living/carbon/human/user, ninja_type = NINJA_HEEL, custom_mission)
 	to_chat(user, SPAN_NOTICE("You are an elite mercenary assassin of the Spider Clan, [user.real_name]. The dreaded \red <B>SPACE NINJA</B>!"))

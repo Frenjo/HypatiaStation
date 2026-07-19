@@ -65,12 +65,13 @@
 	return 0
 
 /datum/admins/proc/make_traitors()
+	var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/traitor)
 	if(length(candidates))
 		var/num_traitors = min(length(candidates), 3)
 		for(var/i = 0, i < num_traitors, i++)
 			var/mob/living/carbon/human/H = pick(candidates)
-			H.mind.make_traitor()
+			traitor_role.setup(H)
 			candidates.Remove(H)
 		return 1
 	return 0

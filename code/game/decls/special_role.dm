@@ -25,3 +25,11 @@
 		for(var/datum/job/job_type in restricted_jobs)
 			if(!istype(candidate.assigned_job, job_type))
 				. += candidate
+
+/decl/special_role/proc/setup(mob/living/specialist)
+	SHOULD_CALL_PARENT(TRUE)
+
+	specialist.mind_initialize()
+	specialist.mind.assign_special_role(role_type)
+	BITSET(specialist.hud_updateflag, SPECIALROLE_HUD)
+	return TRUE

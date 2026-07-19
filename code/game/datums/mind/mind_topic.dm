@@ -452,13 +452,14 @@
 						A.show_laws()
 
 			if("traitor")
-				if(!has_special_role(SPECIAL_ROLE_TRAITOR))
-					make_traitor()
+				var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+				if(!has_special_role(SPECIAL_ROLE_TRAITOR) && traitor_role.setup(current))
 					log_admin("[key_name_admin(user)] has traitor'ed [current].")
 
 			if("autoobjectives")
 				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-					global.PCticker.mode.forge_traitor_objectives(src)
+					var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+					traitor_role.forge_traitor_objectives(current)
 					to_chat(user, SPAN_INFO("The objectives for traitor [key] have been generated. You can edit them and anounce manually."))
 
 	else if(topic.has("monkey"))

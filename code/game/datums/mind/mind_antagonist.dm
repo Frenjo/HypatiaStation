@@ -51,16 +51,6 @@
 	assign_special_role(SPECIAL_ROLE_MALF_AI)
 	malf.icon_state = "ai-malf"
 
-/datum/mind/proc/make_traitor()
-	if(has_special_role(SPECIAL_ROLE_TRAITOR))
-		return
-	global.PCticker.mode.traitors.Add(src)
-	assign_special_role(SPECIAL_ROLE_TRAITOR)
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		global.PCticker.mode.forge_traitor_objectives(src)
-	global.PCticker.mode.finalize_traitor(src)
-	global.PCticker.mode.greet_traitor(src)
-
 /datum/mind/proc/make_nuclear_operative()
 	if(has_special_role(SPECIAL_ROLE_SYNDICATE))
 		return

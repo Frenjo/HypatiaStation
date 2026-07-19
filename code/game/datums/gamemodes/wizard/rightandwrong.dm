@@ -3,22 +3,14 @@
 /mob/proc/rightandwrong()
 	to_chat(usr, "<B>You summoned guns!</B>")
 	message_admins("[key_name_admin(usr, 1)] summoned guns!")
+	var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		if(H.stat == DEAD || !H.client)
 			continue
 		if(is_special_character(H))
 			continue
 		if(prob(25))
-			global.PCticker.mode.traitors += H.mind
-			H.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
-			var/datum/objective/survive/survive = new
-			survive.owner = H.mind
-			H.mind.objectives += survive
-			to_chat(H, "<B>You are the survivor! Your own safety matters above all else, trust no one and kill anyone who gets in your way. However, armed as you are, now would be the perfect time to settle that score or grab that pair of yellow gloves you've been eyeing...</B>")
-			var/obj_count = 1
-			for_no_type_check(var/datum/objective/OBJ, H.mind.objectives)
-				to_chat(H, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
-				obj_count++
+			traitor_role.setup(H, TRAITOR_SURVIVOR)
 		var/randomize = pick("taser", "egun", "laser", "revolver", "detective", "smg", "nuclear", "deagle", "gyrojet", "pulse", "silenced", "cannon", "doublebarrel", "shotgun", "combatshotgun", "mateba", "smg", "uzi", "crossbow", "saw")
 		switch(randomize)
 			if("taser")
