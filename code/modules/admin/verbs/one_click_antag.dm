@@ -407,7 +407,8 @@
 	return 1
 
 /datum/admins/proc/create_vox_raider(obj/spawn_location, leader_chosen = 0)
-	var/mob/living/carbon/human/new_vox = new(spawn_location.loc, SPECIES_VOX)
+	var/decl/special_role/raider/raider_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	var/mob/living/carbon/human/new_vox = new /mob/living/carbon/human(spawn_location.loc, SPECIES_VOX)
 
 	new_vox.gender = pick(MALE, FEMALE)
 	new_vox.h_style = "Short Vox Quills"
@@ -432,6 +433,6 @@
 	new_vox.mutations |= MUTATION_NO_CLONE //Stops the station crew from messing around with their DNA.
 
 	global.PCticker.mode.traitors.Add(new_vox.mind)
-	new_vox.equip_vox_raider()
+	raider_role.equip_vox_raider(new_vox)
 
 	return new_vox

@@ -2,7 +2,7 @@
 VOX HEIST ROUNDTYPE
 */
 /datum/game_mode/
-	var/list/datum/mind/raiders = list()  //Antags.
+	var/list/datum/mind/raiders = list() // Antags.
 
 /datum/game_mode/heist
 	name = "heist"
@@ -11,6 +11,8 @@ VOX HEIST ROUNDTYPE
 	required_players_secret = 25
 	required_enemies = 4
 	recommended_enemies = 6
+
+	var/list/datum/mind/possible_raiders = list()
 
 	var/list/raid_objectives = list()	//Raid objectives.
 	var/list/obj/item/implant/cortical/cortical_stacks = list()	//Stacks for 'leave nobody behind' objective.
@@ -39,15 +41,18 @@ VOX HEIST ROUNDTYPE
 	// Grab candidates randomly until we have enough.
 	while(raider_num > 0)
 		var/datum/mind/new_raider = pick(candidates)
-		raiders.Add(new_raider)
+		possible_raiders.Add(new_raider)
 		candidates.Remove(new_raider)
 		raider_num--
 
-	for_no_type_check(var/datum/mind/raider, raiders)
-		raider.assign_special_role(SPECIAL_ROLE_VOX_RAIDER)
+	var/decl/special_role/raider/raider_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/raider, possible_raiders)
+		raider_role.setup(raider.current)
 
 /datum/game_mode/heist/post_setup()
 	. = ..()
+	var/decl/special_role/raider/raider_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+
 	//Build a list of spawn points.
 	var/list/turf/raider_spawn = list()
 
@@ -59,7 +64,7 @@ VOX HEIST ROUNDTYPE
 
 	//Generate objectives for the group.
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		raid_objectives = forge_vox_objectives()
+		raid_objectives = raider_role.forge_vox_objectives()
 
 	var/index = 1
 
@@ -94,11 +99,11 @@ VOX HEIST ROUNDTYPE
 		vox.f_style = "Shaved"
 		for(var/datum/organ/external/limb in vox.organs)
 			limb.status &= ~(ORGAN_DESTROYED | ORGAN_ROBOT)
-		vox.equip_vox_raider()
+		raider_role.equip_vox_raider(vox)
 		vox.regenerate_icons()
 
 		raider.objectives = raid_objectives
-		greet_vox(raider)
+		raider_role.greet_vox_raider(vox)
 
 /datum/game_mode/heist/proc/is_raider_crew_safe()
 	if(!length(cortical_stacks))
@@ -115,47 +120,6 @@ VOX HEIST ROUNDTYPE
 			if(ishuman(raider.current) && raider.current.stat != DEAD)
 				return 1
 	return 0
-
-/datum/game_mode/heist/proc/forge_vox_objectives()
-	var/i = 1
-	var/max_objectives = pick(2, 2, 2, 2, 3, 3, 3, 4)
-	var/list/objs = list()
-	while(i <= max_objectives)
-		var/list/goals = list("kidnap", "loot", "salvage")
-		var/goal = pick(goals)
-		var/datum/objective/heist/O
-
-		if(goal == "kidnap")
-			goals -= "kidnap"
-			O = new /datum/objective/heist/kidnap()
-		else if(goal == "loot")
-			O = new /datum/objective/heist/loot()
-		else
-			O = new /datum/objective/heist/salvage()
-		O.choose_target()
-		objs += O
-
-		i++
-
-	//-All- vox raids have these two objectives. Failing them loses the game.
-	objs += new /datum/objective/heist/inviolate_crew
-	objs += new /datum/objective/heist/inviolate_death
-
-	return objs
-
-/datum/game_mode/heist/proc/greet_vox(datum/mind/raider)
-	to_chat(raider.current, SPAN_INFO_B("You are a Vox Raider, fresh from the Shoal!"))
-	to_chat(raider.current, SPAN_INFO("The Vox are a race of cunning, sharp-eyed nomadic raiders and traders endemic to Tau Ceti and much of the unexplored galaxy. You and the crew have come to the [GLOBL.current_map.short_name] for plunder, trade or both."))
-	to_chat(raider.current, SPAN_INFO("Vox are cowardly and will flee from larger groups, but corner one or find them en masse and they are vicious."))
-	to_chat(raider.current, SPAN_INFO("Use :V to voxtalk, :H to talk on your encrypted channel, and don't forget to turn on your nitrogen internals!"))
-	to_chat(raider.current, SPAN_WARNING("IF YOU HAVE NOT PLAYED A VOX BEFORE, REVIEW THIS THREAD: http://baystation12.net/forums/viewtopic.php?f=6&t=8657.")) // TODO: Do some research into this, maybe use the wayback machine or just talk to Loaf?
-	var/obj_count = 1
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		for(var/datum/objective/objective in raider.objectives)
-			to_chat(raider.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-	else
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(raider.current)
 
 /datum/game_mode/heist/declare_completion()
 	//No objectives, go straight to the feedback.
