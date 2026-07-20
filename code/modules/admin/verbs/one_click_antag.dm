@@ -78,14 +78,16 @@
 
 /datum/admins/proc/make_changelings()
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/changeling)
-	if(length(candidates))
-		var/num_changelings = min(length(candidates), 3)
-		for(var/i = 0, i < num_changelings, i++)
-			var/mob/living/carbon/human/H = pick(candidates)
-			H.mind.make_changeling()
-			candidates.Remove(H)
-		return 1
-	return 0
+	if(!length(candidates))
+		return FALSE
+
+	var/decl/special_role/changeling/changeling_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	var/num_changelings = min(length(candidates), 3)
+	for(var/i = 0, i < num_changelings, i++)
+		var/mob/living/carbon/human/H = pick(candidates)
+		changeling_role.setup(H)
+		candidates.Remove(H)
+	return TRUE
 
 /datum/admins/proc/make_revolutionaries()
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/revolutionary)

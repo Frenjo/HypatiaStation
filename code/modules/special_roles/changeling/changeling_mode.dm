@@ -40,6 +40,8 @@ var/list/possible_changeling_IDs = list(
 
 	var/changeling_amount = 4
 
+	var/list/selected_changelings = list()
+
 /datum/game_mode/changeling/get_announce_content()
 	. = list()
 	. += "<B>The current game mode is - Changeling!</B>"
@@ -57,75 +59,14 @@ var/list/possible_changeling_IDs = list(
 		if(!length(possible_changelings))
 			break
 		var/datum/mind/changeling = pick(possible_changelings)
-		changelings.Add(changeling)
+		selected_changelings.Add(changeling)
 		possible_changelings.Remove(changeling)
 
 /datum/game_mode/changeling/post_setup()
 	. = ..()
-	for_no_type_check(var/datum/mind/changeling, changelings)
-		grant_changeling_powers(changeling.current)
-		changeling.assign_special_role(SPECIAL_ROLE_CHANGELING)
-		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			forge_changeling_objectives(changeling)
-		greet_changeling(changeling)
-
-/datum/game_mode/proc/forge_changeling_objectives(datum/mind/changeling)
-	//OBJECTIVES - Always absorb 5 genomes, plus random traitor objectives.
-	//If they have two objectives as well as absorb, they must survive rather than escape
-	//No escape alone because changelings aren't suited for it and it'd probably just lead to rampant robusting
-	//If it seems like they'd be able to do it in play, add a 10% chance to have to escape alone
-
-	var/datum/objective/absorb/absorb_objective = new
-	absorb_objective.owner = changeling
-	absorb_objective.gen_amount_goal(2, 3)
-	changeling.objectives += absorb_objective
-
-	var/datum/objective/assassinate/kill_objective = new
-	kill_objective.owner = changeling
-	kill_objective.find_target()
-	changeling.objectives += kill_objective
-
-	var/datum/objective/steal/steal_objective = new
-	steal_objective.owner = changeling
-	steal_objective.find_target()
-	changeling.objectives += steal_objective
-
-
-	switch(rand(1, 100))
-		if(1 to 80)
-			if(!(locate(/datum/objective/escape) in changeling.objectives))
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = changeling
-				changeling.objectives += escape_objective
-		else
-			if(!(locate(/datum/objective/survive) in changeling.objectives))
-				var/datum/objective/survive/survive_objective = new
-				survive_objective.owner = changeling
-				changeling.objectives += survive_objective
-	return
-
-/datum/game_mode/proc/greet_changeling(datum/mind/changeling, you_are = 1)
-	if(you_are)
-		to_chat(changeling.current, SPAN_DANGER("You are a changeling!"))
-	to_chat(changeling.current, SPAN_DANGER("Use say \":g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."))
-
-	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(changeling.current)
-
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		to_chat(changeling.current, "<B>You must complete the following tasks:</B>")
-
-	if(changeling.current.mind)
-		if(istype(changeling.current.mind.assigned_job.type, /datum/job/clown))
-			to_chat(changeling.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
-			changeling.current.mutations.Remove(MUTATION_CLUMSY)
-
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		var/obj_count = 1
-		for_no_type_check(var/datum/objective/objective, changeling.objectives)
-			to_chat(changeling.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-		return
+	var/decl/special_role/changeling/changeling_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/changeling, selected_changelings)
+		changeling_role.setup(changeling.current)
 
 /*/datum/game_mode/changeling/check_finished()
 	var/changelings_alive = 0
@@ -148,11 +89,6 @@ var/list/possible_changeling_IDs = list(
 		else
 			return ..()
 	return 0*/
-
-/datum/game_mode/proc/grant_changeling_powers(mob/living/carbon/changeling_mob)
-	if(!istype(changeling_mob))
-		return
-	changeling_mob.make_changeling()
 
 /datum/game_mode/proc/auto_declare_completion_changeling()
 	if(!length(changelings))

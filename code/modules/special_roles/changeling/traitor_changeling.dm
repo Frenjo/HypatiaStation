@@ -7,6 +7,8 @@
 	required_enemies = 2
 	recommended_enemies = 3
 
+	var/list/selected_changelings = list()
+
 /datum/game_mode/traitor/changeling/get_announce_content()
 	. = list()
 	. += "<B>The current game mode is - Traitor+Changeling!</B>"
@@ -19,9 +21,10 @@
 		return 0
 
 	var/datum/mind/changeling = pick(possible_changelings)
-	changelings.Add(changeling)
+	selected_changelings.Add(changeling)
 
 /datum/game_mode/traitor/changeling/post_setup()
 	. = ..()
-	for_no_type_check(var/datum/mind/changeling, changelings)
-		changeling.make_changeling()
+	var/decl/special_role/changeling/changeling_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/changeling, selected_changelings)
+		changeling_role.setup(changeling.current)

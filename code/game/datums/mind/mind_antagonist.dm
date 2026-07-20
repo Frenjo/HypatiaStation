@@ -51,16 +51,6 @@
 	assign_special_role(SPECIAL_ROLE_MALF_AI)
 	malf.icon_state = "ai-malf"
 
-/datum/mind/proc/make_changeling()
-	if(has_special_role(SPECIAL_ROLE_CHANGELING))
-		return
-	global.PCticker.mode.changelings.Add(src)
-	global.PCticker.mode.grant_changeling_powers(current)
-	assign_special_role(SPECIAL_ROLE_CHANGELING)
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		global.PCticker.mode.forge_changeling_objectives(src)
-	global.PCticker.mode.greet_changeling(src)
-
 /datum/mind/proc/make_cultist()
 	if(has_special_role(SPECIAL_ROLE_CULTIST))
 		return
