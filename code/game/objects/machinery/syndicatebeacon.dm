@@ -44,7 +44,7 @@
 			src.updateUsrDialog()
 			return
 		var/mob/M = locate(href_list["traitormob"])
-		if(M.mind.has_special_role(SPECIAL_ROLE_TRAITOR) || M.mind.has_special_role(SPECIAL_ROLE_SYNDICATE) \
+		if(M.mind.has_special_role(SPECIAL_ROLE_TRAITOR) || M.mind.has_special_role(SPECIAL_ROLE_NUCLEAR_OPERATIVE) \
 		|| M.mind.has_special_role(SPECIAL_ROLE_SYNDICATE_COMMANDO))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
 			src.updateUsrDialog()

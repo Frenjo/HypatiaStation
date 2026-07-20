@@ -140,7 +140,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(has_special_role(SPECIAL_ROLE_SYNDICATE))
+		if(has_special_role(SPECIAL_ROLE_NUCLEAR_OPERATIVE))
 			text += "<b>OPERATIVE</b>|<a href='byond://?src=\ref[src];nuclear=clear'>nanotrasen</a>"
 			text += "<br><a href='byond://?src=\ref[src];nuclear=lair'>To shuttle</a>, <a href='byond://?src=\ref[src];common=undress'>undress</a>, <a href='byond://?src=\ref[src];nuclear=dressup'>dress up</a>."
 			var/code
@@ -233,7 +233,7 @@
 			out += sections[i]+"<br>"
 
 
-	if((has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) || has_special_role(SPECIAL_ROLE_TRAITOR) || has_special_role(SPECIAL_ROLE_SYNDICATE)) \
+	if((has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY) || has_special_role(SPECIAL_ROLE_TRAITOR) || has_special_role(SPECIAL_ROLE_NUCLEAR_OPERATIVE)) \
 		&& ishuman(current))
 		text = "Uplink: <a href='byond://?src=\ref[src];common=uplink'>give</a>"
 		var/obj/item/uplink/hidden/suplink = find_syndicate_uplink()

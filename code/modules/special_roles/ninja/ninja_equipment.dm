@@ -1340,7 +1340,7 @@ ________________________________________________________________________________
 					U.client.images += image(tempHud,target,"hudwizard")
 				if("Hunter","Sentinel","Drone","Queen")
 					U.client.images += image(tempHud,target,"hudalien")
-				if(SPECIAL_ROLE_SYNDICATE)
+				if(SPECIAL_ROLE_NUCLEAR_OPERATIVE)
 					U.client.images += image(tempHud,target,"hudoperative")
 				if(SPECIAL_ROLE_DEATH_COMMANDO)
 					U.client.images += image(tempHud,target,"huddeathsquad")

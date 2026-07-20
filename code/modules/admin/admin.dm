@@ -980,7 +980,7 @@ var/global/floorIsLava = 0
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			return 2
 		return 1
-	if(M.mind.has_special_role(SPECIAL_ROLE_SYNDICATE))
+	if(M.mind.has_special_role(SPECIAL_ROLE_NUCLEAR_OPERATIVE))
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			return 2
 		return 1

@@ -137,7 +137,7 @@
 			if(H.mind.has_special_role(SPECIAL_ROLE_REVOLUTIONARY) || H.mind.has_special_role(SPECIAL_ROLE_HEAD_REVOLUTIONARY))
 				global.PCticker.mode.update_all_rev_icons() //So the icon actually appears
 		if("nuclear emergency")
-			if(H.mind.has_special_role(SPECIAL_ROLE_SYNDICATE))
+			if(H.mind.has_special_role(SPECIAL_ROLE_NUCLEAR_OPERATIVE))
 				global.PCticker.mode.update_all_synd_icons()
 		if("cult")
 			if(H.mind.has_special_role(SPECIAL_ROLE_CULTIST))

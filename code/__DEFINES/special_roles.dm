@@ -7,9 +7,9 @@
 #define SPECIAL_ROLE_LARVA "larva" // Not sure if this one's actually used but I'll figure that out later.
 #define SPECIAL_ROLE_MALF_AI "malf ai"
 #define SPECIAL_ROLE_NINJA "ninja"
+#define SPECIAL_ROLE_NUCLEAR_OPERATIVE "nuclear operative"
 #define SPECIAL_ROLE_RESPONSE_TEAM "response team"
 #define SPECIAL_ROLE_REVOLUTIONARY "revolutionary"
-#define SPECIAL_ROLE_SYNDICATE "syndicate"
 #define SPECIAL_ROLE_SYNDICATE_COMMANDO "syndicate commando"
 #define SPECIAL_ROLE_TRAITOR "traitor"
 #define SPECIAL_ROLE_VOX_RAIDER "vox raider"

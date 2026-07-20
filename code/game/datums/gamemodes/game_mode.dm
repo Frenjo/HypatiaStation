@@ -241,7 +241,7 @@ Implants;
 			// NT relation option
 			var/datum/mind/human_mind = H.mind
 			if(human_mind.has_special_role(SPECIAL_ROLE_WIZARD) || human_mind.has_special_role(SPECIAL_ROLE_NINJA) \
-			|| human_mind.has_special_role(SPECIAL_ROLE_SYNDICATE) || human_mind.has_special_role(SPECIAL_ROLE_VOX_RAIDER))
+			|| human_mind.has_special_role(SPECIAL_ROLE_NUCLEAR_OPERATIVE) || human_mind.has_special_role(SPECIAL_ROLE_VOX_RAIDER))
 				continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
 			if(H.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || H.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
 				suspects.Add(H)

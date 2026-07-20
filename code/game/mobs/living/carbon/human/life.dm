@@ -1828,7 +1828,7 @@
 		if(mind?.has_special_role())
 			var/special_role = pick(mind.special_roles)
 			switch(special_role)
-				if(SPECIAL_ROLE_TRAITOR, SPECIAL_ROLE_SYNDICATE)
+				if(SPECIAL_ROLE_TRAITOR, SPECIAL_ROLE_NUCLEAR_OPERATIVE)
 					holder.icon_state = "hudsyndicate"
 				if(SPECIAL_ROLE_REVOLUTIONARY)
 					holder.icon_state = "hudrevolutionary"
