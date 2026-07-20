@@ -224,8 +224,8 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 				qdel(occupant.mind.objectives)
 				occupant.mind.clear_special_roles()
 			else
-				if(IS_GAME_MODE(/datum/game_mode/traitor/autotraitor))
-					var/datum/game_mode/traitor/autotraitor/current_mode = global.PCticker.mode
+				if(IS_GAME_MODE(/datum/game_mode/traitor/auto))
+					var/datum/game_mode/traitor/auto/current_mode = global.PCticker.mode
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.

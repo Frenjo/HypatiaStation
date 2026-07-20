@@ -154,7 +154,7 @@
 
 /decl/hierarchy/supply_pack/engineering/sing_gen
 	name = "Singularity Generator crate"
-	contains = list(/obj/machinery/the_singularitygen)
+	contains = list(/obj/machinery/singularity_generator)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "singularity generator crate"
 	access = ACCESS_CE

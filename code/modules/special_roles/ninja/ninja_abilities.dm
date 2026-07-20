@@ -12,31 +12,31 @@ X is optional, tells the proc to check for specific stuff. C is also optional.
 All the procs here assume that the character is wearing the ninja suit if they are using the procs.
 They should, as I have made every effort for that to be the case.
 In the case that they are not, I imagine the game will run-time error like crazy.
-s_cooldown ticks off each second based on the suit recharge proc, in seconds. Default of 1 seconds. Some abilities have no cool down.
+suit_cooldownown ticks off each second based on the suit recharge proc, in seconds. Default of 1 seconds. Some abilities have no cool down.
 */
-/obj/item/clothing/suit/space/space_ninja/proc/ninjacost(C = 0, X = 0)
+/obj/item/clothing/suit/space/ninja/proc/ninjacost(energy_cost = 0, additional_cost = 0)
 	var/mob/living/carbon/human/U = affecting
-	if((U.stat || U.incorporeal_move) && X != 3)	//Will not return if user is using an adrenaline booster since you can use them when stat==1.
+	if((U.stat || U.incorporeal_move) && additional_cost != NINJA_COST_CHECK_ADRENALINE)	//Will not return if user is using an adrenaline booster since you can use them when stat==1.
 		to_chat(U, SPAN_WARNING("You must be conscious and solid to do this."))	//It's not a problem of stat==2 since the ninja will explode anyway if they die.
 		return 1
-	else if(C && cell.charge < C * 10)
+	else if(energy_cost && cell.charge < energy_cost * 10)
 		to_chat(U, SPAN_WARNING("Not enough energy."))
 		return 1
-	switch(X)
-		if(1)
+	switch(additional_cost)
+		if(NINJA_COST_CANCEL_STEALTH)
 			cancel_stealth()	//Get rid of it.
-		if(2)
-			if(s_bombs <= 0)
+		if(NINJA_COST_CHECK_SMOKES)
+			if(smoke_bombs <= 0)
 				to_chat(U, SPAN_WARNING("There are no more smoke bombs remaining."))
 				return 1
-		if(3)
-			if(a_boost <= 0)
+		if(NINJA_COST_CHECK_ADRENALINE)
+			if(adrenaline_boosts <= 0)
 				to_chat(U, SPAN_WARNING("You do not have any more adrenaline boosters."))
 				return 1
-	return (s_coold)	//Returns the value of the variable which counts down to zero.
+	return (suit_cooldown)	//Returns the value of the variable which counts down to zero.
 
 //=======//TELEPORT GRAB CHECK//=======//
-/obj/item/clothing/suit/space/space_ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
+/obj/item/clothing/suit/space/ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
 	var/turf/destination = locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)
 	if(istype(U.get_active_hand(), /obj/item/grab))//Handles grabbed persons.
 		var/obj/item/grab/G = U.get_active_hand()
@@ -49,32 +49,32 @@ s_cooldown ticks off each second based on the suit recharge proc, in seconds. De
 //=======//SMOKE//=======//
 /*Summons smoke in radius of user.
 Not sure why this would be useful (it's not) but whatever. Ninjas need their smoke bombs.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjasmoke()
+/obj/item/clothing/suit/space/ninja/proc/ninjasmoke()
 	set name = "Smoke Bomb"
 	set desc = "Blind your enemies momentarily with a well-placed smoke bomb."
 	set category = "Ninja Ability"
 	set popup_menu = 0	//Will not see it when right clicking.
 
-	if(!ninjacost(, 2))
+	if(!ninjacost(0, NINJA_COST_CHECK_SMOKES))
 		var/mob/living/carbon/human/U = affecting
-		to_chat(U, SPAN_INFO("There are <B>[s_bombs]</B> smoke bombs remaining."))
+		to_chat(U, SPAN_INFO("There are <B>[smoke_bombs]</B> smoke bombs remaining."))
 		make_bad_smoke(10, FALSE, U.loc)
 		playsound(U.loc, 'sound/effects/bamf.ogg', 50, 2)
-		s_bombs--
-		s_coold = 1
+		smoke_bombs--
+		suit_cooldown = 1
 	return
 
 
 //=======//RIGHT CLICK TELEPORT//=======//
 //Right click to teleport somewhere, almost exactly like admin jump to turf.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjashift(turf/T in oview())
+/obj/item/clothing/suit/space/ninja/proc/ninjashift(turf/T in oview())
 	set name = "Phase Shift (400E)"
 	set desc = "Utilizes the internal VOID-shift device to rapidly transit to a destination in view."
 	set category = null	//So it does not show up on the panel but can still be right-clicked.
 	set src = usr.contents	//Fixes verbs not attaching properly for objects. Praise the DM reference guide!
 
 	var/C = 40
-	if(!ninjacost(C, 1))
+	if(!ninjacost(C, NINJA_COST_CANCEL_STEALTH))
 		var/mob/living/carbon/human/U = affecting
 		var/turf/mobloc = GET_TURF(U)	//To make sure that certain things work properly below.
 		if(!T.density && isturf(mobloc))
@@ -97,31 +97,31 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 
 //=======//EM PULSE//=======//
 //Disables nearby tech equipment.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjapulse()
+/obj/item/clothing/suit/space/ninja/proc/ninjapulse()
 	set name = "EM Burst (2,000E)"
 	set desc = "Disable any nearby technology with a electro-magnetic pulse."
 	set category = "Ninja Ability"
 	set popup_menu = 0
 
 	var/C = 200
-	if(!ninjacost(C, 0)) // EMP's now cost 1,000Energy about 30%
+	if(!ninjacost(C)) // EMP's now cost 1,000Energy about 30%
 		var/mob/living/carbon/human/U = affecting
 		playsound(U.loc, 'sound/effects/EMPulse.ogg', 60, 2)
 		empulse(U, 2, 3) //Procs sure are nice. Slightly weaker than wizard's disable tch.
-		s_coold = 2
+		suit_cooldown = 2
 		cell.use(C * 10)
 	return
 
 //=======//ENERGY BLADE//=======//
 //Summons a blade of energy in active hand.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjablade()
+/obj/item/clothing/suit/space/ninja/proc/ninjablade()
 	set name = "Energy Blade (500E)"
 	set desc = "Create a focused beam of energy in your active hand."
 	set category = "Ninja Ability"
 	set popup_menu = 0
 
 	var/C = 50
-	if(!ninjacost(C, 0)) //Same spawn cost but higher upkeep cost
+	if(!ninjacost(C)) //Same spawn cost but higher upkeep cost
 		var/mob/living/carbon/human/U = affecting
 		if(!kamikaze)
 			if(!U.get_active_hand() && !istype(U.get_inactive_hand(), /obj/item/melee/energy/blade))
@@ -141,20 +141,20 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 				U.put_in_inactive_hand(W)
 			spark_system.start()
 			playsound(U.loc, "sparks", 50, 1)
-			s_coold = 1
+			suit_cooldown = 1
 	return
 
 //=======//NINJA STARS//=======//
 /*Shoots ninja stars at random people.
 This could be a lot better but I'm too tired atm.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjastar()
+/obj/item/clothing/suit/space/ninja/proc/ninjastar()
 	set name = "Energy Star (800E)"
 	set desc = "Launches an energy star at a random living target."
 	set category = "Ninja Ability"
 	set popup_menu = 0
 
 	var/C = 80
-	if(!ninjacost(C, 1))
+	if(!ninjacost(C, NINJA_COST_CANCEL_STEALTH))
 		var/mob/living/carbon/human/U = affecting
 		var/list/targets = list()	//So yo can shoot while yo throw dawg
 		for(var/mob/living/M in oview(loc))
@@ -182,14 +182,14 @@ This could be a lot better but I'm too tired atm.*/
 //=======//ENERGY NET//=======//
 /*Allows the ninja to capture people, I guess.
 Must right click on a mob to activate.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjanet(mob/living/carbon/M in oview())//Only living carbon mobs.
+/obj/item/clothing/suit/space/ninja/proc/ninjanet(mob/living/carbon/M in oview())//Only living carbon mobs.
 	set name = "Energy Net (7,000E)"
 	set desc = "Captures a fallen opponent in a net of energy. Will teleport them to a holding facility after 30 seconds."
 	set category = null
 	set src = usr.contents
 
 	var/C = 700
-	if(!ninjacost(C, 0) && iscarbon(M))
+	if(!ninjacost(C) && iscarbon(M))
 		var/mob/living/carbon/human/U = affecting
 		if(M.client)	//Monkeys without a client can still step_to() and bypass the net. Also, netting inactive people is lame.
 		//if(M)//DEBUG
@@ -219,13 +219,13 @@ Must right click on a mob to activate.*/
 //=======//ADRENALINE BOOST//=======//
 /*Wakes the user so they are able to do their thing. Also injects a decent dose of radium.
 Movement impairing would indicate drugs and the like.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjaboost()
+/obj/item/clothing/suit/space/ninja/proc/ninjaboost()
 	set name = "Adrenaline Boost"
 	set desc = "Inject a secret chemical that will counteract all movement-impairing effect."
 	set category = "Ninja Ability"
 	set popup_menu = 0
 
-	if(!ninjacost(, 3))//Have to make sure stat is not counted for this ability.
+	if(!ninjacost(0, NINJA_COST_CHECK_ADRENALINE))//Have to make sure stat is not counted for this ability.
 		var/mob/living/carbon/human/U = affecting
 		//Wouldn't need to track adrenaline boosters if there was a miracle injection to get rid of paralysis and the like instantly.
 		//For now, adrenaline boosters ARE the miracle injection. Well, radium, really.
@@ -242,10 +242,10 @@ Movement impairing would indicate drugs and the like.*/
 			U.say(pick("A CORNERED FOX IS MORE DANGEROUS THAN A JACKAL!", "HURT ME MOOORRREEE!", "IMPRESSIVE!"))
 		spawn(70)
 			reagents.reaction(U, 2)
-			reagents.trans_id_to(U, "radium", a_transfer)
+			reagents.trans_id_to(U, "radium", adrenaline_inject_volume)
 			to_chat(U, SPAN_WARNING("You are beginning to feel the after-effect of the injection."))
-		a_boost--
-		s_coold = 3
+		adrenaline_boosts--
+		suit_cooldown = 3
 	return
 
 /*
@@ -257,7 +257,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 
 //=======//NINJA MOVEMENT//=======//
 //Also makes you move like you're on crack.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjawalk()
+/obj/item/clothing/suit/space/ninja/proc/ninjawalk()
 	set name = "Shadow Walk"
 	set desc = "Combines the VOID-shift and CLOAK-tech devices to freely move between solid matter. Toggle on or off."
 	set category = "Ninja Ability"
@@ -274,7 +274,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 
 //=======//5 TILE TELEPORT/GIB//=======//
 //Allows to gib up to five squares in a straight line. Seriously.
-/obj/item/clothing/suit/space/space_ninja/proc/ninjaslayer()
+/obj/item/clothing/suit/space/ninja/proc/ninjaslayer()
 	set name = "Phase Slayer"
 	set desc = "Utilizes the internal VOID-shift device to mutilate creatures in a straight line."
 	set category = "Ninja Ability"
@@ -307,7 +307,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 				playsound(U.loc, 'sound/effects/phasein.ogg', 25, 1)
 				playsound(U.loc, "sparks", 50, 1)
 				anim(U.loc, U, 'icons/mob/mob.dmi', , "phasein", , U.dir)
-			s_coold = 1
+			suit_cooldown = 1
 		else
 			to_chat(U, SPAN_WARNING("The VOID-shift device is malfunctioning, <B>teleportation failed</B>."))
 	return
@@ -315,7 +315,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 //=======//TELEPORT BEHIND MOB//=======//
 /*Appear behind a randomly chosen mob while a few decoy teleports appear.
 This is so anime it hurts. But that's the point.*/
-/obj/item/clothing/suit/space/space_ninja/proc/ninjamirage()
+/obj/item/clothing/suit/space/ninja/proc/ninjamirage()
 	set name = "Spider Mirage"
 	set desc = "Utilizes the internal VOID-shift device to create decoys and teleport behind a random target."
 	set category = "Ninja Ability"
@@ -383,7 +383,7 @@ This is so anime it hurts. But that's the point.*/
 					playsound(U.loc, 'sound/effects/phasein.ogg', 25, 1)
 					playsound(U.loc, "sparks", 50, 1)
 					anim(U.loc,U,'icons/mob/mob.dmi',,"phasein",,U.dir)
-				s_coold = 1
+				suit_cooldown = 1
 			else
 				to_chat(U, SPAN_WARNING("The VOID-shift device is malfunctioning, <B>teleportation failed</B>."))
 		else

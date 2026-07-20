@@ -76,7 +76,7 @@ PROCESS_DEF(air)
 	var/list/turf/tiles_to_update = list()
 	var/list/zone/zones_to_update = list()
 	var/list/zone/active_fire_zones = list()
-	var/list/obj/fire/active_hotspots = list()
+	var/list/obj/effect/fire/active_hotspots = list()
 	var/list/connection_edge/active_edges = list()
 
 	var/active_zones = 0
@@ -189,7 +189,7 @@ PROCESS_DEF(air)
 	if(.)
 		tick_progress = "processing hotspots"
 
-	for_no_type_check(var/obj/fire/fire, active_hotspots)
+	for_no_type_check(var/obj/effect/fire/fire, active_hotspots)
 		fire.process()
 		CHECK_TICK
 

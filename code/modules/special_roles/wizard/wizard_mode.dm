@@ -13,6 +13,8 @@
 	uplink_welcome = "Wizardly Uplink Console:"
 	uplink_uses = 10
 
+	var/list/selected_wizards = list()
+
 	var/finished = 0
 
 /datum/game_mode/wizard/get_announce_content()
@@ -27,99 +29,18 @@
 		return 0
 
 	var/datum/mind/wizard = pick(possible_wizards)
-	wizards.Add(wizard)
+	selected_wizards.Add(wizard)
 	wizard.original = wizard.current
 
 	if(!length(GLOBL.wizardstart))
 		to_chat(wizard.current, SPAN_DANGER("A starting location for you could not be found, please report this bug!"))
 		return 0
 
-	wizard.current.forceMove(pick(GLOBL.wizardstart))
-
 /datum/game_mode/wizard/post_setup()
 	. = ..()
-	for_no_type_check(var/datum/mind/wizard, wizards)
-		wizard.make_wizard()
-
-/datum/game_mode/proc/forge_wizard_objectives(datum/mind/wizard)
-	switch(rand(1, 100))
-		if(1 to 30)
-			var/datum/objective/assassinate/kill_objective = new
-			kill_objective.owner = wizard
-			kill_objective.find_target()
-			wizard.objectives += kill_objective
-
-			if(!(locate(/datum/objective/escape) in wizard.objectives))
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = wizard
-				wizard.objectives += escape_objective
-		if(31 to 60)
-			var/datum/objective/steal/steal_objective = new
-			steal_objective.owner = wizard
-			steal_objective.find_target()
-			wizard.objectives += steal_objective
-
-			if(!(locate(/datum/objective/escape) in wizard.objectives))
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = wizard
-				wizard.objectives += escape_objective
-
-		if(61 to 100)
-			var/datum/objective/assassinate/kill_objective = new
-			kill_objective.owner = wizard
-			kill_objective.find_target()
-			wizard.objectives += kill_objective
-
-			var/datum/objective/steal/steal_objective = new
-			steal_objective.owner = wizard
-			steal_objective.find_target()
-			wizard.objectives += steal_objective
-
-			if(!(locate(/datum/objective/survive) in wizard.objectives))
-				var/datum/objective/survive/survive_objective = new
-				survive_objective.owner = wizard
-				wizard.objectives += survive_objective
-
-		else
-			if(!(locate(/datum/objective/hijack) in wizard.objectives))
-				var/datum/objective/hijack/hijack_objective = new
-				hijack_objective.owner = wizard
-				wizard.objectives += hijack_objective
-	return
-
-
-/datum/game_mode/proc/name_wizard(mob/living/carbon/human/wizard_mob)
-	//Allows the wizard to choose a custom name or go with a random one. Spawn 0 so it does not lag the round starting.
-	var/wizard_name_first = pick(GLOBL.wizard_first)
-	var/wizard_name_second = pick(GLOBL.wizard_second)
-	var/randomname = "[wizard_name_first] [wizard_name_second]"
-	spawn(0)
-		var/newname = copytext(sanitize(input(wizard_mob, "You are the Space Wizard. Would you like to change your name to something else?", \
-											"Name change", randomname) as null | text), 1, MAX_NAME_LEN)
-
-		if(!newname)
-			newname = randomname
-
-		wizard_mob.real_name = newname
-		wizard_mob.name = newname
-		if(wizard_mob.mind)
-			wizard_mob.mind.name = newname
-	return
-
-
-/datum/game_mode/proc/greet_wizard(datum/mind/wizard, you_are = 1)
-	if(you_are)
-		to_chat(wizard.current, SPAN_DANGER("You are the Space Wizard!"))
-	to_chat(wizard.current, "<B>The Space Wizards Federation has given you the following tasks:</B>")
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		var/obj_count = 1
-		for_no_type_check(var/datum/objective/objective, wizard.objectives)
-			to_chat(wizard.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-	else
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(wizard.current)
-	return
-
+	var/decl/special_role/wizard/wizard_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/wizard, selected_wizards)
+		wizard_role.setup(wizard.current)
 
 /*/datum/game_mode/proc/learn_basic_spells(mob/living/carbon/human/wizard_mob)
 	if (!istype(wizard_mob))
@@ -130,26 +51,6 @@
 	else
 		wizard_mob.spell_list += new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt(usr)
 */
-
-/datum/game_mode/proc/equip_wizard(mob/living/carbon/human/wizard_mob)
-	if(!istype(wizard_mob))
-		return
-
-	//So zards properly get their items when they are admin-made.
-	qdel(wizard_mob.wear_suit)
-	qdel(wizard_mob.head)
-	qdel(wizard_mob.shoes)
-	qdel(wizard_mob.r_hand)
-	qdel(wizard_mob.r_pocket)
-	qdel(wizard_mob.l_pocket)
-
-	wizard_mob.equip_outfit(/decl/hierarchy/outfit/wizard)
-
-	to_chat(wizard_mob, "You will find a list of available spells in your spell book. Choose your magic arsenal carefully.")
-	to_chat(wizard_mob, "In your pockets you will find a teleport scroll. Use it as needed.")
-	wizard_mob.mind.store_memory("<B>Remember:</B> do not forget to prepare your spells.")
-	wizard_mob.update_icons()
-	return 1
 
 /datum/game_mode/wizard/check_finished()
 	if(CONFIG_GET(/decl/configuration_entry/continous_rounds))

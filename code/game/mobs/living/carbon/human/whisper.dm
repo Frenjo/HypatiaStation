@@ -60,7 +60,7 @@
 		return
 
 	//looks like this only appears in whisper. Should it be elsewhere as well? Maybe handle_speech_problems?
-	if(istype(src.wear_mask, /obj/item/clothing/mask/gas/voice/space_ninja)&&src.wear_mask:voice == "Unknown")
+	if(istype(src.wear_mask, /obj/item/clothing/mask/gas/voice/ninja)&&src.wear_mask:voice == "Unknown")
 		if(copytext(message, 1, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()

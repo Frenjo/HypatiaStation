@@ -1936,36 +1936,17 @@
 				if(!global.PCticker)
 					alert("The game hasn't started yet!")
 					return
-				var/objective = copytext(sanitize(input("Enter an objective")), 1, MAX_MESSAGE_LEN)
-				if(!objective)
-					return
 				feedback_inc("admin_secrets_fun_used",1)
-				feedback_add_details("admin_secrets_fun_used","TA([objective])")
-				for(var/mob/living/carbon/human/H in GLOBL.player_list)
-					if(H.stat == DEAD || !H.client || !H.mind)
+				feedback_add_details("admin_secrets_fun_used", "TA") // TODO: This needs to have the "write an objective" text box put back in later.
+				var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+				for(var/mob/living/alive in GLOBL.player_list)
+					if(alive.stat == DEAD || isnull(alive.client) || isnull(alive.mind))
 						continue
-					if(is_special_character(H)) continue
-					//traitorize(H, objective, 0)
-					global.PCticker.mode.traitors += H.mind
-					H.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
-					var/datum/objective/new_objective = new
-					new_objective.owner = H
-					new_objective.explanation_text = objective
-					H.mind.objectives += new_objective
-					global.PCticker.mode.greet_traitor(H.mind)
-					//ticker.mode.forge_traitor_objectives(H.mind)
-					global.PCticker.mode.finalize_traitor(H.mind)
-				for(var/mob/living/silicon/A in GLOBL.player_list)
-					global.PCticker.mode.traitors += A.mind
-					A.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
-					var/datum/objective/new_objective = new
-					new_objective.owner = A
-					new_objective.explanation_text = objective
-					A.mind.objectives += new_objective
-					global.PCticker.mode.greet_traitor(A.mind)
-					global.PCticker.mode.finalize_traitor(A.mind)
-				message_admins("\blue [key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]", 1)
-				log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
+					if(is_special_character(alive))
+						continue
+					traitor_role.setup(alive)
+				message_admins("\blue [key_name_admin(usr)] used everyone is a traitor secret. Objectives are random!", 1)
+				log_admin("[key_name(usr)] used everyone is a traitor secret. Objectives are random!")
 			if("moveminingshuttle")
 				var/datum/shuttle/ferry/mining_shuttle = global.PCshuttle.shuttles["Mining"]
 				if(!mining_shuttle.can_launch())

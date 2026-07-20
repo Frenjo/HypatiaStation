@@ -910,7 +910,7 @@
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/two)
 "do" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleporter/station,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "dq" = (
@@ -1443,7 +1443,7 @@
 /turf/closed/wall/reinforced/riveted,
 /area/centcom/living)
 "fH" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleporter/hub,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "fK" = (
@@ -2261,7 +2261,7 @@
 /turf/open/floor/shuttle/white,
 /area/centcom/rescue_shuttle/two)
 "kp" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleporter/station,
 /turf/open/floor/reinforced,
 /area/centcom/control)
 "kv" = (
@@ -2859,7 +2859,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "nC" = (
-/obj/structure/device/piano{
+/obj/structure/piano{
 	icon_state = "piano";
 	tag = "icon-piano"
 	},
@@ -4142,7 +4142,7 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
 "tW" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleporter/hub,
 /turf/open/floor/reinforced,
 /area/centcom/control)
 "tZ" = (
@@ -7049,7 +7049,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "If" = (
-/obj/structure/device/piano{
+/obj/structure/piano{
 	dir = 4
 	},
 /turf/open/floor{

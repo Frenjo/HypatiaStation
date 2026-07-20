@@ -18,7 +18,8 @@
 	var/item_type = pickweight(possible_items)
 	if(isnull(item_type))
 		return
-	new item_type(loc)
+	var/obj/item/new_item = new item_type(loc)
+	new_item.initialise() // Have to make sure anything spawned during initialise() also gets initialise()'d.
 
 // Tool
 /obj/effect/random_spawner/tool

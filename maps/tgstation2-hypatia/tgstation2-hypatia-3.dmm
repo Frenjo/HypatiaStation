@@ -620,7 +620,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/lounge)
 "iy" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleporter/station,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "iK" = (
@@ -2066,7 +2066,7 @@
 /turf/space,
 /area/turret_protected/tcomsat)
 "BG" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleporter/hub,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "BP" = (
@@ -2495,7 +2495,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "HR" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleporter/station,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"

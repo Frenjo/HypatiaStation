@@ -57,41 +57,11 @@
 				selfdestruct()
 			return
 		if(ishuman(M))
+			var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 			var/mob/living/carbon/human/N = M
-			global.PCticker.mode.equip_traitor(N)
-			global.PCticker.mode.traitors += N.mind
-			N.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
-			var/objective = "Free Objective"
-			switch(rand(1,100))
-				if(1 to 50)
-					objective = "Steal [pick("a hand teleporter", "the Captain's antique laser gun", "a jetpack", "the Captain's ID", "the Captain's jumpsuit")]."
-				if(51 to 60)
-					objective = "Destroy 70% or more of the station's plasma tanks."
-				if(61 to 70)
-					objective = "Cut power to 80% or more of the station's tiles."
-				if(71 to 80)
-					objective = "Destroy the AI."
-				if(81 to 90)
-					objective = "Kill all monkeys aboard the station."
-				else
-					objective = "Make certain at least 80% of the station evacuates on the shuttle."
-			var/datum/objective/custom_objective = new(objective)
-			custom_objective.owner = N.mind
-			N.mind.objectives += custom_objective
-
-			var/datum/objective/escape/escape_objective = new
-			escape_objective.owner = N.mind
-			N.mind.objectives += escape_objective
-
-
+			traitor_role.setup(N, TRAITOR_BEACON)
 			to_chat(M, "<B>You have joined the ranks of the Syndicate and become a traitor to the station!</B>")
-
 			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a Syndicate beacon.")
-
-			var/obj_count = 1
-			for(var/datum/objective/OBJ in M.mind.objectives)
-				to_chat(M, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
-				obj_count++
 
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()

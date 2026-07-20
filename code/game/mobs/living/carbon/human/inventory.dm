@@ -112,9 +112,9 @@
 	else if(W == head)
 		head = null
 		if(HAS_INV_FLAGS(W, INV_FLAG_BLOCK_HAIR) || HAS_INV_FLAGS(W, INV_FLAG_BLOCK_HEAD_HAIR) || HAS_INV_FLAGS(W, INV_FLAG_HIDE_MASK))
-			update_hair(0)	//rebuild hair
-			update_inv_ears(0)
-			update_inv_wear_mask(0)
+			update_hair()	//rebuild hair
+			update_inv_ears()
+			update_inv_wear_mask()
 		success = 1
 		update_inv_head()
 	else if (W == l_ear)
@@ -137,8 +137,8 @@
 		wear_mask = null
 		success = 1
 		if(HAS_ATOM_FLAGS(W, INV_FLAG_BLOCK_HAIR) || HAS_ATOM_FLAGS(W, INV_FLAG_BLOCK_HEAD_HAIR))
-			update_hair(0)	//rebuild hair
-			update_inv_ears(0)
+			update_hair()	//rebuild hair
+			update_inv_ears()
 		if(internal)
 			if(internals)
 				internals.icon_state = "internal0"

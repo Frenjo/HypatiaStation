@@ -1334,8 +1334,8 @@
 				seer = FALSE
 
 		var/glasses_processed = FALSE
-		if(istype(wear_mask, /obj/item/clothing/mask/gas/voice/space_ninja))
-			var/obj/item/clothing/mask/gas/voice/space_ninja/O = wear_mask
+		if(istype(wear_mask, /obj/item/clothing/mask/gas/voice/ninja))
+			var/obj/item/clothing/mask/gas/voice/ninja/O = wear_mask
 			glasses_processed = TRUE
 			process_glasses(O.ninja_vision.glasses)
 

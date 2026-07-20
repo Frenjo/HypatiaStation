@@ -176,7 +176,7 @@
 		updateDialog()
 	last_process = world.timeofday
 
-	if(locate(/obj/fire) in loc)
+	if(locate(/obj/effect/fire) in loc)
 		alarm()
 
 /obj/machinery/fire_alarm/power_change()

@@ -19,7 +19,7 @@
 					return W
 ///// Z-Level Stuff
 
-	var/obj/fire/old_fire = fire
+	var/obj/effect/fire/old_fire = fire
 
 	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting

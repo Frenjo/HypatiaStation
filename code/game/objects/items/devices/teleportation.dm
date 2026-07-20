@@ -142,7 +142,7 @@ Frequency:
 		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))
 		return
 	var/list/L = list()
-	FOR_MACHINES_TYPED(tp_hub, /obj/machinery/teleport/hub)
+	FOR_MACHINES_TYPED(tp_hub, /obj/machinery/teleporter/hub)
 		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(tp_hub.x - 2, tp_hub.y, tp_hub.z))
 		if(istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
 			if(tp_hub.icon_state == "tele1")

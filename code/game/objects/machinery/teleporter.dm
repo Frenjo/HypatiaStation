@@ -43,7 +43,7 @@
 				for(var/mob/O in hearers(src, null))
 					O.show_message(SPAN_WARNING("Incoming bluespace portal detected, unable to lock in."), 2)
 
-				for(var/obj/machinery/teleport/hub/H in range(1))
+				for(var/obj/machinery/teleporter/hub/H in range(1))
 					var/amount = rand(2, 5)
 					for(var/i = 0; i < amount; i++)
 						new /mob/living/simple/hostile/carp(GET_TURF(H))
@@ -63,7 +63,7 @@
 /obj/machinery/computer/teleporter/attack_paw()
 	src.attack_hand()
 
-/obj/machinery/teleport/station/attack_ai()
+/obj/machinery/teleporter/station/attack_ai()
 	src.attack_hand()
 
 /obj/machinery/computer/teleporter/attack_hand()
@@ -132,14 +132,14 @@
 			return null
 	return T
 
-/obj/machinery/teleport
+/obj/machinery/teleporter
 	name = "teleport"
 	icon = 'icons/obj/stationobjs.dmi'
 	density = TRUE
 	anchored = TRUE
 	var/lockeddown = 0
 
-/obj/machinery/teleport/hub
+/obj/machinery/teleporter/hub
 	name = "teleporter hub"
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
@@ -151,14 +151,14 @@
 
 	var/accurate = 0
 
-/obj/machinery/teleport/hub/Bumped(atom/movable/M)
+/obj/machinery/teleporter/hub/Bumped(atom/movable/M)
 	spawn()
 		if(src.icon_state == "tele1")
 			teleport(M)
 			use_power(5000)
 	return
 
-/obj/machinery/teleport/hub/proc/teleport(atom/movable/M)
+/obj/machinery/teleporter/hub/proc/teleport(atom/movable/M)
 	var/atom/l = src.loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(!com)
@@ -266,7 +266,7 @@
 	return
 */
 
-/obj/machinery/teleport/station
+/obj/machinery/teleporter/station
 	name = "station"
 	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
 	icon_state = "controller"
@@ -279,27 +279,27 @@
 	var/active = 0
 	var/engaged = 0
 
-/obj/machinery/teleport/station/attackby(obj/item/W)
+/obj/machinery/teleporter/station/attackby(obj/item/W)
 	src.attack_hand()
 
-/obj/machinery/teleport/station/attack_paw()
+/obj/machinery/teleporter/station/attack_paw()
 	src.attack_hand()
 
-/obj/machinery/teleport/station/attack_ai()
+/obj/machinery/teleporter/station/attack_ai()
 	src.attack_hand()
 
-/obj/machinery/teleport/station/attack_hand()
+/obj/machinery/teleporter/station/attack_hand()
 	if(engaged)
 		src.disengage()
 	else
 		src.engage()
 
-/obj/machinery/teleport/station/proc/engage()
+/obj/machinery/teleporter/station/proc/engage()
 	if(stat & (BROKEN|NOPOWER))
 		return
 
 	var/atom/l = src.loc
-	var/atom/com = locate(/obj/machinery/teleport/hub, locate(l.x + 1, l.y, l.z))
+	var/atom/com = locate(/obj/machinery/teleporter/hub, locate(l.x + 1, l.y, l.z))
 	if(com)
 		com.icon_state = "tele1"
 		use_power(5000)
@@ -309,12 +309,12 @@
 	src.engaged = 1
 	return
 
-/obj/machinery/teleport/station/proc/disengage()
+/obj/machinery/teleporter/station/proc/disengage()
 	if(stat & (BROKEN|NOPOWER))
 		return
 
 	var/atom/l = src.loc
-	var/atom/com = locate(/obj/machinery/teleport/hub, locate(l.x + 1, l.y, l.z))
+	var/atom/com = locate(/obj/machinery/teleporter/hub, locate(l.x + 1, l.y, l.z))
 	if(com)
 		com.icon_state = "tele0"
 		for(var/mob/O in hearers(src, null))
@@ -323,7 +323,7 @@
 	src.engaged = 0
 	return
 
-/obj/machinery/teleport/station/verb/testfire()
+/obj/machinery/teleporter/station/verb/testfire()
 	set category = null
 	set name = "Test Fire Teleporter"
 	set src in oview(1)
@@ -332,7 +332,7 @@
 		return
 
 	var/atom/l = src.loc
-	var/obj/machinery/teleport/hub/com = locate(/obj/machinery/teleport/hub, locate(l.x + 1, l.y, l.z))
+	var/obj/machinery/teleporter/hub/com = locate(/obj/machinery/teleporter/hub, locate(l.x + 1, l.y, l.z))
 	if(com && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
@@ -346,11 +346,11 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/teleport/station/power_change()
+/obj/machinery/teleporter/station/power_change()
 	..()
 	if(stat & NOPOWER)
 		icon_state = "controller-p"
-		var/obj/machinery/teleport/hub/com = locate(/obj/machinery/teleport/hub, locate(x + 1, y, z))
+		var/obj/machinery/teleporter/hub/com = locate(/obj/machinery/teleporter/hub, locate(x + 1, y, z))
 		if(com)
 			com.icon_state = "tele0"
 	else

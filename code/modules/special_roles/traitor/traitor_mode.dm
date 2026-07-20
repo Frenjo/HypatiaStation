@@ -12,6 +12,8 @@
 	uplink_welcome = "AntagCorp Portable Teleportation Relay:"
 	uplink_uses = 10
 
+	var/list/selected_traitors = list()
+
 	var/traitors_possible = 4 //hard limit on traitors if scaling is turned off
 	var/const/traitor_scaling_coeff = 5.0 //how much does the amount of players get divided by to determine traitors
 
@@ -37,83 +39,14 @@
 		if(!length(possible_traitors))
 			break
 		var/datum/mind/traitor = pick(possible_traitors)
-		traitors.Add(traitor)
+		selected_traitors.Add(traitor)
 		possible_traitors.Remove(traitor)
 
 /datum/game_mode/traitor/post_setup()
 	. = ..()
-	for_no_type_check(var/datum/mind/traitor, traitors)
-		traitor.make_traitor()
-
-/datum/game_mode/proc/forge_traitor_objectives(datum/mind/traitor)
-	if(issilicon(traitor.current))
-		var/datum/objective/assassinate/kill_objective = new
-		kill_objective.owner = traitor
-		kill_objective.find_target()
-		traitor.objectives += kill_objective
-
-		var/datum/objective/survive/survive_objective = new
-		survive_objective.owner = traitor
-		traitor.objectives += survive_objective
-
-		if(prob(10))
-			var/datum/objective/block/block_objective = new
-			block_objective.owner = traitor
-			traitor.objectives += block_objective
-
-	else
-		switch(rand(1, 100))
-			if(1 to 33)
-				var/datum/objective/assassinate/kill_objective = new
-				kill_objective.owner = traitor
-				kill_objective.find_target()
-				traitor.objectives += kill_objective
-			if(34 to 50)
-				var/datum/objective/brig/brig_objective = new
-				brig_objective.owner = traitor
-				brig_objective.find_target()
-				traitor.objectives += brig_objective
-			if(51 to 66)
-				var/datum/objective/harm/harm_objective = new
-				harm_objective.owner = traitor
-				harm_objective.find_target()
-				traitor.objectives += harm_objective
-			else
-				var/datum/objective/steal/steal_objective = new
-				steal_objective.owner = traitor
-				steal_objective.find_target()
-				traitor.objectives += steal_objective
-		switch(rand(1, 100))
-			if(1 to 100)
-				if(!(locate(/datum/objective/escape) in traitor.objectives))
-					var/datum/objective/escape/escape_objective = new
-					escape_objective.owner = traitor
-					traitor.objectives += escape_objective
-
-			else
-				if(!(locate(/datum/objective/hijack) in traitor.objectives))
-					var/datum/objective/hijack/hijack_objective = new
-					hijack_objective.owner = traitor
-					traitor.objectives += hijack_objective
-	return
-
-/datum/game_mode/proc/greet_traitor(datum/mind/traitor)
-	to_chat(traitor.current, "<B><font size=3 color=red>You are the traitor.</font></B>")
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		var/obj_count = 1
-		for_no_type_check(var/datum/objective/objective, traitor.objectives)
-			to_chat(traitor.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-	else
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(traitor.current)
-	return
-
-/datum/game_mode/proc/finalize_traitor(datum/mind/traitor)
-	if(issilicon(traitor.current))
-		add_law_zero(traitor.current)
-	else
-		equip_traitor(traitor.current)
-	return
+	var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/traitor, selected_traitors)
+		traitor_role.setup(traitor.current)
 
 /datum/game_mode/traitor/declare_completion()
 	..()
@@ -122,7 +55,7 @@
 /datum/game_mode/traitor/process()
 	// Make sure all objectives are processed regularly, so that objectives
 	// which can be checked mid-round are checked mid-round.
-	for(var/datum/mind/traitor_mind in traitors)
+	for_no_type_check(var/datum/mind/traitor_mind, traitors)
 		for_no_type_check(var/datum/objective/objective, traitor_mind.objectives)
 			objective.check_completion()
 	return 0

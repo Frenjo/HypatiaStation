@@ -65,12 +65,13 @@
 	return 0
 
 /datum/admins/proc/make_traitors()
+	var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(/decl/special_role/traitor)
 	if(length(candidates))
 		var/num_traitors = min(length(candidates), 3)
 		for(var/i = 0, i < num_traitors, i++)
 			var/mob/living/carbon/human/H = pick(candidates)
-			H.mind.make_traitor()
+			traitor_role.setup(H)
 			candidates.Remove(H)
 		return 1
 	return 0
@@ -129,7 +130,8 @@
 
 	if(isnotnull(theghost))
 		var/mob/living/carbon/human/new_character = make_body(theghost)
-		new_character.mind.make_wizard()
+		var/decl/special_role/wizard/wizard_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+		wizard_role.setup(new_character)
 		return 1
 	return 0
 
@@ -170,6 +172,7 @@
 		var/num_agents = 5
 		var/agentcount = 0
 
+		var/decl/special_role/operative/operative_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 		for(var/i = 0, i < num_agents, i++)
 			shuffle(candidates) // More shuffles means more randoms.
 			for(var/mob/j in candidates)
@@ -181,7 +184,7 @@
 				candidates.Remove(theghost)
 
 				var/mob/living/carbon/human/new_character = make_body(theghost)
-				new_character.mind.make_nuclear_operative()
+				operative_role.setup(new_character)
 
 				agentcount++
 
@@ -406,7 +409,8 @@
 	return 1
 
 /datum/admins/proc/create_vox_raider(obj/spawn_location, leader_chosen = 0)
-	var/mob/living/carbon/human/new_vox = new(spawn_location.loc, SPECIES_VOX)
+	var/decl/special_role/raider/raider_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	var/mob/living/carbon/human/new_vox = new /mob/living/carbon/human(spawn_location.loc, SPECIES_VOX)
 
 	new_vox.gender = pick(MALE, FEMALE)
 	new_vox.h_style = "Short Vox Quills"
@@ -431,6 +435,6 @@
 	new_vox.mutations |= MUTATION_NO_CLONE //Stops the station crew from messing around with their DNA.
 
 	global.PCticker.mode.traitors.Add(new_vox.mind)
-	new_vox.equip_vox_raider()
+	raider_role.equip_vox_raider(new_vox)
 
 	return new_vox

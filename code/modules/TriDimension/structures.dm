@@ -2,34 +2,34 @@
 //Contents: Ladders, Hatches, Stairs.//
 ///////////////////////////////////////
 // Base
-/obj/multiz
+/obj/structure/multiz
 	icon = 'icons/obj/structures/structures.dmi'
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/multiz/CanPass(obj/mover, turf/source, height, airflow)
+/obj/structure/multiz/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density
 
 // Ladder
-/obj/multiz/ladder
+/obj/structure/multiz/ladder
 	icon_state = "ladderdown"
 	name = "ladder"
 	desc = "A ladder. You climb up and down it."
 
 	var/d_state = 1
-	var/obj/multiz/target
+	var/obj/structure/multiz/target
 
-/obj/multiz/ladder/Destroy()
+/obj/structure/multiz/ladder/Destroy()
 	spawn(1)
 		if(isnotnull(target) && icon_state == "ladderdown")
 			QDEL_NULL(target)
 	return ..()
 
-/obj/multiz/ladder/attack_paw(mob/M)
+/obj/structure/multiz/ladder/attack_paw(mob/M)
 	return attack_hand(M)
 
-/obj/multiz/ladder/attackby(obj/item/C, mob/user)
+/obj/structure/multiz/ladder/attackby(obj/item/C, mob/user)
 	..(C, user)
 // construction commented out for balance concerns
 /*	if (!target && istype(C, /obj/item/stack/rods))
@@ -49,7 +49,7 @@
 						blocked = 1
 						break
 				if(!blocked && !istype(below, /turf/closed/wall))
-					var/obj/multiz/ladder/X = new /obj/multiz/ladder(below)
+					var/obj/structure/multiz/ladder/X = new /obj/structure/multiz/ladder(below)
 					S.amount = S.amount - 2
 					if(S.amount == 0) S.Del()
 					X.icon_state = "ladderup"
@@ -98,7 +98,7 @@
 	src.attack_hand(user)
 	return
 
-/obj/multiz/ladder/attack_hand(mob/M)
+/obj/structure/multiz/ladder/attack_hand(mob/M)
 	if(!target || !isturf(target.loc))
 		to_chat(M, "The ladder is incomplete and can't be climbed.")
 	else
@@ -132,14 +132,14 @@
 		return
 */
 
-/obj/multiz/ladder/proc/connect()
+/obj/structure/multiz/ladder/proc/connect()
 	if(icon_state == "ladderdown") // the upper will connect to the lower
 		d_state = 1
 		var/turf/controllerlocation = locate(1, 1, z)
 		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 			if(controller.down)
 				var/turf/below = locate(src.x, src.y, controller.down_target)
-				for(var/obj/multiz/ladder/L in below)
+				for(var/obj/structure/multiz/ladder/L in below)
 					if(L.icon_state == "ladderup")
 						target = L
 						L.target = src
@@ -149,7 +149,7 @@
 
 /*
 // Hatch
-/obj/multiz/ladder/hatch
+/obj/structure/multiz/ladder/hatch
 	icon_state = "hatchdown"
 	name = "hatch"
 	desc = "A hatch. You climb down it, and it will automatically seal against pressure loss behind you."
@@ -164,12 +164,12 @@
 
 	var/active = 0
 
-/obj/multiz/ladder/hatch/New()
+/obj/structure/multiz/ladder/hatch/New()
 	. = ..()
 	red_overlay = "red-ladderlight"
 	green_overlay = "green-ladderlight"
 
-/obj/multiz/ladder/hatch/attack_hand(var/mob/M)
+/obj/structure/multiz/ladder/hatch/attack_hand(var/mob/M)
 	if(!target || !isturf(target.loc))
 		del src
 
@@ -178,8 +178,8 @@
 		return // It is a tiny airlock, only one at a time.
 
 	active = 1
-	var/obj/multiz/ladder/hatch/top_hatch = target
-	var/obj/multiz/ladder/hatch/bottom_hatch = src
+	var/obj/structure/multiz/ladder/hatch/top_hatch = target
+	var/obj/structure/multiz/ladder/hatch/bottom_hatch = src
 	if(icon_state == top_icon_state)
 		top_hatch = src
 		bottom_hatch = target
@@ -205,15 +205,15 @@
 */
 
 // Stairs
-/obj/multiz/stairs
+/obj/structure/multiz/stairs
 	name = "Stairs"
 	desc = "Stairs. You walk up and down them."
 	icon_state = "rampbottom"
 
-	var/obj/multiz/stairs/connected
+	var/obj/structure/multiz/stairs/connected
 	var/turf/target
 
-/obj/multiz/stairs/initialise()
+/obj/structure/multiz/stairs/initialise()
 	. = ..()
 	var/turf/cl = locate(1, 1, src.z)
 	for(var/obj/effect/landmark/zcontroller/c in cl)
@@ -224,7 +224,7 @@
 
 	for(var/dir in GLOBL.cardinal)
 		var/turf/T = get_step(loc, dir)
-		for(var/obj/multiz/stairs/S in T)
+		for(var/obj/structure/multiz/stairs/S in T)
 			if(isnotnull(S) && S.icon_state == "rampbottom" && !S.connected)
 				S.set_dir(dir)
 				set_dir(dir)
@@ -242,9 +242,9 @@
 		if(target)
 			break
 
-/obj/multiz/stairs/Bumped(atom/movable/M)
-	if(connected && target && istype(src, /obj/multiz/stairs) && locate(/obj/multiz/stairs) in M.loc)
-		var/obj/multiz/stairs/con = locate(/obj/multiz/stairs) in M.loc
+/obj/structure/multiz/stairs/Bumped(atom/movable/M)
+	if(connected && target && istype(src, /obj/structure/multiz/stairs) && locate(/obj/structure/multiz/stairs) in M.loc)
+		var/obj/structure/multiz/stairs/con = locate(/obj/structure/multiz/stairs) in M.loc
 		if(con == src.connected) //make sure the atom enters from the approriate lower stairs tile
 			M.Move(target)
 	return

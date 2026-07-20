@@ -5,7 +5,7 @@
 	var/list/lines = list()
 	var/tempo = 5
 
-/obj/structure/device/piano
+/obj/structure/piano
 	name = "space minimoog"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
@@ -17,7 +17,7 @@
 	var/edit = 1
 	var/repeat = 0
 
-/obj/structure/device/piano/initialise()
+/obj/structure/piano/initialise()
 	. = ..()
 	if(prob(50))
 		name = "space minimoog"
@@ -28,7 +28,7 @@
 		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
 		icon_state = "piano"
 
-/obj/structure/device/piano/proc/playnote(note as text)
+/obj/structure/piano/proc/playnote(note as text)
 	//to_world("Note: [note]")
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
@@ -209,7 +209,7 @@
 	for(var/mob/M in hearers(15, source))
 		M.playsound_local(source, file(soundfile), 100, falloff = 5)
 
-/obj/structure/device/piano/proc/playsong()
+/obj/structure/piano/proc/playsong()
 	do
 		var/cur_oct[7]
 		var/cur_acc[7]
@@ -253,7 +253,7 @@
 	playing = 0
 	updateUsrDialog()
 
-/obj/structure/device/piano/attack_hand(mob/user)
+/obj/structure/piano/attack_hand(mob/user)
 	if(!anchored)
 		return
 
@@ -306,7 +306,7 @@
 	SHOW_BROWSER(user, dat, "window=piano;size=700x300")
 	onclose(user, "piano")
 
-/obj/structure/device/piano/Topic(href, href_list)
+/obj/structure/piano/Topic(href, href_list)
 	. = ..()
 	if(!in_range(src, usr) || issilicon(usr) || !anchored || !usr.canmove || usr.restrained())
 		CLOSE_BROWSER(usr, "window=piano;size=700x300")
@@ -410,7 +410,7 @@
 	updateUsrDialog()
 	return
 
-/obj/structure/device/piano/attackby(obj/item/O, mob/user)
+/obj/structure/piano/attackby(obj/item/O, mob/user)
 	if(iswrench(O))
 		if(anchored)
 			playsound(src, 'sound/items/Ratchet.ogg', 50, 1)

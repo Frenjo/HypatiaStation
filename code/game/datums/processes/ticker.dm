@@ -169,7 +169,7 @@ PROCESS_DEF(ticker)
 	// Starts the master controller's process scheduling.
 	global.CTmaster.start()
 
-	for(var/obj/multiz/ladder/L in GLOBL.movable_atom_list)
+	for(var/obj/structure/multiz/ladder/L in GLOBL.movable_atom_list)
 		L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
 	if(CONFIG_GET(/decl/configuration_entry/sql_enabled))

@@ -439,33 +439,25 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Wizard")
 			new_character.forceMove(pick(GLOBL.wizardstart))
 			//ticker.mode.learn_basic_spells(new_character)
-			global.PCticker.mode.equip_wizard(new_character)
+			var/decl/special_role/wizard/wizard_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+			wizard_role.equip_wizard(new_character)
 		if("Syndicate")
 			var/obj/effect/landmark/synd_spawn = locate("landmark*Syndicate-Spawn")
 			if(synd_spawn)
 				new_character.forceMove(GET_TURF(synd_spawn))
 			new_character.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
 		if("Ninja")
-			new_character.equip_space_ninja()
-			new_character.internal = new_character.suit_store
-			new_character.internals.icon_state = "internal1"
-			if(!length(GLOBL.ninjastart))
-				to_chat(new_character, SPAN_DANGER("A proper starting location for you could not be found, please report this bug!"))
-				to_chat(new_character, SPAN_DANGER("Attempting to place at a carpspawn..."))
-				for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
-					if(L.name == "carpspawn")
-						GLOBL.ninjastart.Add(L)
-				if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
-					to_chat(new_character, SPAN_DANGER("Still no spawnable locations could be found. Defaulting to latejoin."))
-					new_character.forceMove(pick(GLOBL.latejoin))
-				else if(!length(GLOBL.ninjastart))
-					to_chat(new_character, SPAN_DANGER("Still no spawnable locations could be found. Aborting."))
+			new_character.equip_outfit(/decl/hierarchy/outfit/space_ninja)
+			var/atom/move_to = find_ninja_start()
+			if(!isnull(move_to))
+				new_character.forceMove(move_to)
 
 		if("Death Commando")//Leaves them at late-join spawn.
 			new_character.equip_outfit(/decl/hierarchy/outfit/death_commando/standard)
 			new_character.internal = new_character.suit_store
 			new_character.internals.icon_state = "internal1"
-		else//They may also be a cyborg or AI.
+
+		else // They may also be a cyborg or AI.
 			switch(new_character.mind.assigned_job.type)
 				if(/datum/job/robot)//More rigging to make em' work and check if they're traitor.
 					new_character = new_character.Robotize()

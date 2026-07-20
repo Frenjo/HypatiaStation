@@ -51,46 +51,6 @@
 	assign_special_role(SPECIAL_ROLE_MALF_AI)
 	malf.icon_state = "ai-malf"
 
-/datum/mind/proc/make_traitor()
-	if(has_special_role(SPECIAL_ROLE_TRAITOR))
-		return
-	global.PCticker.mode.traitors.Add(src)
-	assign_special_role(SPECIAL_ROLE_TRAITOR)
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		global.PCticker.mode.forge_traitor_objectives(src)
-	global.PCticker.mode.finalize_traitor(src)
-	global.PCticker.mode.greet_traitor(src)
-
-/datum/mind/proc/make_nuclear_operative()
-	if(has_special_role(SPECIAL_ROLE_SYNDICATE))
-		return
-	global.PCticker.mode.syndicates.Add(src)
-	global.PCticker.mode.update_synd_icons_added(src)
-	if(length(global.PCticker.mode.syndicates) == 1)
-		global.PCticker.mode.prepare_syndicate_leader(src)
-	else
-		current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
-	assign_special_role(SPECIAL_ROLE_SYNDICATE)
-	to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-	global.PCticker.mode.forge_syndicate_objectives(src)
-	global.PCticker.mode.greet_syndicate(src)
-
-	current.forceMove(GET_TURF(locate("landmark*Syndicate-Spawn")))
-
-	var/mob/living/carbon/human/H = current
-	qdel(H.belt)
-	qdel(H.back)
-	qdel(H.l_ear)
-	qdel(H.r_ear)
-	qdel(H.gloves)
-	qdel(H.head)
-	qdel(H.shoes)
-	qdel(H.id_store)
-	qdel(H.wear_suit)
-	qdel(H.wear_uniform)
-
-	H.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
-
 /datum/mind/proc/make_changeling()
 	if(has_special_role(SPECIAL_ROLE_CHANGELING))
 		return
@@ -100,25 +60,6 @@
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		global.PCticker.mode.forge_changeling_objectives(src)
 	global.PCticker.mode.greet_changeling(src)
-
-/datum/mind/proc/make_wizard()
-	if(has_special_role(SPECIAL_ROLE_WIZARD))
-		return
-	global.PCticker.mode.wizards.Add(src)
-	assign_special_role(SPECIAL_ROLE_WIZARD)
-	//ticker.mode.learn_basic_spells(current)
-	if(!length(GLOBL.wizardstart))
-		current.forceMove(pick(GLOBL.latejoin))
-		to_chat(current, "HOT INSERTION, GO GO GO!")
-	else
-		current.forceMove(pick(GLOBL.wizardstart))
-
-	global.PCticker.mode.equip_wizard(current)
-	for(var/obj/item/spellbook/S in current.contents)
-		S.op = 0
-	global.PCticker.mode.name_wizard(current)
-	global.PCticker.mode.forge_wizard_objectives(src)
-	global.PCticker.mode.greet_wizard(src)
 
 /datum/mind/proc/make_cultist()
 	if(has_special_role(SPECIAL_ROLE_CULTIST))

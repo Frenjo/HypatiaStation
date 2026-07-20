@@ -1,18 +1,18 @@
 //This is a beta game mode to test ways to implement an "infinite" traitor round in which more traitors are automatically added in as needed.
 //Automatic traitor adding is complete pending the inevitable bug fixes.  Need to add a respawn system to let dead people respawn after 30 minutes or so.
 
-/datum/game_mode/traitor/autotraitor
+/datum/game_mode/traitor/auto
 	name = "AutoTraitor"
 	config_tag = "extend-a-traitormongous"
 
 	var/list/datum/mind/possible_traitors = list()
 	var/num_players = 0
 
-/datum/game_mode/traitor/autotraitor/get_announce_content()
+/datum/game_mode/traitor/auto/get_announce_content()
 	. = ..()
 	. += "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>"
 
-/datum/game_mode/traitor/autotraitor/pre_setup()
+/datum/game_mode/traitor/auto/pre_setup()
 	. = ..()
 	possible_traitors = get_players_for_role(/decl/special_role/traitor)
 	// Stop setup if no possible traitors
@@ -39,18 +39,18 @@
 
 	for(var/i = 0, i < num_traitors, i++)
 		var/datum/mind/traitor = pick(possible_traitors)
-		traitors += traitor
+		selected_traitors += traitor
 		possible_traitors.Remove(traitor)
 
-/datum/game_mode/traitor/autotraitor/post_setup()
+/datum/game_mode/traitor/auto/post_setup()
 	. = ..()
 	CONFIG_SET(/decl/configuration_entry/respawn, TRUE)
-	for_no_type_check(var/datum/mind/traitor, traitors)
-		traitor.make_traitor()
-		possible_traitors.Remove(traitor)
+	var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/traitor, selected_traitors)
+		traitor_role.setup(traitor.current)
 	traitorcheckloop()
 
-/datum/game_mode/traitor/autotraitor/proc/traitorcheckloop()
+/datum/game_mode/traitor/auto/proc/traitorcheckloop()
 	spawn(9000)
 		if(global.PCemergency.departed)
 			return
@@ -94,29 +94,10 @@
 					traitorcheckloop()
 					return
 				var/mob/living/newtraitor = pick(possible_traitors)
+				var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 				//message_admins("[newtraitor.real_name] is the new Traitor.")
-
-				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-					forge_traitor_objectives(newtraitor.mind)
-
-				if(issilicon(newtraitor))
-					add_law_zero(newtraitor)
-				else
-					equip_traitor(newtraitor)
-
-				traitors += newtraitor.mind
 				to_chat(newtraitor, "\red <B>ATTENTION:</B> \black It is time to pay your debt to the Syndicate...")
-				to_chat(newtraitor, "<B>You are now a traitor.</B>")
-				newtraitor.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
-				BITSET(newtraitor.hud_updateflag, SPECIALROLE_HUD)
-				var/obj_count = 1
-				to_chat(newtraitor, SPAN_INFO("Your current objectives:"))
-				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-					for(var/datum/objective/objective in newtraitor.mind.objectives)
-						to_chat(newtraitor, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-						obj_count++
-				else
-					FEEDBACK_ANTAGONIST_GREETING_GUIDE(newtraitor)
+				traitor_role.setup(newtraitor)
 			//else
 				//message_admins("No new traitor being added.")
 		//else
@@ -124,7 +105,7 @@
 
 		traitorcheckloop()
 
-/datum/game_mode/traitor/autotraitor/latespawn(mob/living/carbon/human/character)
+/datum/game_mode/traitor/auto/latespawn(mob/living/carbon/human/character)
 	. = ..()
 	if(global.PCemergency.departed)
 		return
@@ -160,19 +141,8 @@
 			//message_admins("The probability of a new traitor is [traitor_prob]%")
 			if(prob(traitor_prob))
 				message_admins("New traitor roll passed.  Making a new Traitor.")
-				forge_traitor_objectives(character.mind)
-				equip_traitor(character)
-				traitors += character.mind
-				to_chat(character, SPAN_DANGER("You are the traitor."))
-				character.mind.assign_special_role(SPECIAL_ROLE_TRAITOR)
-				if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-					FEEDBACK_ANTAGONIST_GREETING_GUIDE(character)
-				else
-					var/obj_count = 1
-					to_chat(character, SPAN_INFO("Your current objectives:"))
-					for(var/datum/objective/objective in character.mind.objectives)
-						to_chat(character, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-						obj_count++
+				var/decl/special_role/traitor/traitor_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+				traitor_role.setup(character)
 			//else
 				//message_admins("New traitor roll failed.  No new traitor.")
 	//else
