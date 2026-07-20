@@ -1,5 +1,5 @@
 /////SINGULARITY SPAWNER
-/obj/machinery/the_singularitygen
+/obj/machinery/singularity_generator
 	name = "gravitational singularity generator"
 	desc = "An Odd Device which produces a Gravitational Singularity when set up."
 	icon = 'icons/obj/singularity.dmi'
@@ -11,14 +11,14 @@
 
 	var/energy = 0
 
-/obj/machinery/the_singularitygen/process()
+/obj/machinery/singularity_generator/process()
 	var/turf/T = GET_TURF(src)
 	if(src.energy >= 200)
 		new /obj/singularity/(T, 50)
 		if(src)
 			qdel(src)
 
-/obj/machinery/the_singularitygen/attack_tool(obj/item/tool, mob/user)
+/obj/machinery/singularity_generator/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
 		anchored = !anchored
 		if(anchored)

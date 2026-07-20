@@ -36,7 +36,7 @@
 					if(istype(mover, /obj/structure/disposalpipe/up) && istype(enterer, /obj/item/pipe))
 						blocked = TRUE
 						break
-					if(istype(mover, /obj/multiz/stairs))
+					if(istype(mover, /obj/structure/multiz/stairs))
 						soft = TRUE
 						//dont break here, since we still need to be sure that it isnt blocked
 

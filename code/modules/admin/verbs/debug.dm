@@ -560,7 +560,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			shield.Varedit_start = 1
 
 	spawn(30)
-		FOR_MACHINES_TYPED(generator, /obj/machinery/the_singularitygen)
+		FOR_MACHINES_TYPED(generator, /obj/machinery/singularity_generator)
 			if(generator.anchored)
 				var/obj/singularity/S = new /obj/singularity(GET_TURF(generator), 50)
 				spawn(0)

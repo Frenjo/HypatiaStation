@@ -10,7 +10,7 @@ Attach to transfer valve and open. BOOM.
 
 */
 /turf
-	var/obj/fire/fire = null
+	var/obj/effect/fire/fire = null
 
 //Some legacy definitions so fires can be started.
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -21,7 +21,7 @@ Attach to transfer valve and open. BOOM.
 /turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	if(fire_protection > world.time - 300)
 		return 0
-	if(locate(/obj/fire) in src)
+	if(locate(/obj/effect/fire) in src)
 		return 1
 	var/datum/gas_mixture/air_contents = return_air()
 	if(!air_contents || exposed_temperature < PLASMA_MINIMUM_BURN_TEMPERATURE)
@@ -81,7 +81,7 @@ Attach to transfer valve and open. BOOM.
 	global.PCair.active_fire_zones |= zone
 	return 0
 
-/obj/fire
+/obj/effect/fire
 	//Icon for fire on turfs.
 
 	anchored = TRUE
@@ -98,7 +98,7 @@ Attach to transfer valve and open. BOOM.
 
 	var/firelevel = 10000 //Calculated by gas_mixture.calculate_firelevel()
 
-/obj/fire/process()
+/obj/effect/fire/process()
 	. = 1
 
 	var/turf/open/my_tile = loc
@@ -158,7 +158,7 @@ Attach to transfer valve and open. BOOM.
 	animate(src, color = heat2color(air_contents.temperature), 5)
 	set_light(l_color = color)
 
-/obj/fire/New(newLoc, fl)
+/obj/effect/fire/New(newLoc, fl)
 	. = ..()
 
 	if(!isturf(loc))
@@ -172,13 +172,13 @@ Attach to transfer valve and open. BOOM.
 	firelevel = fl
 	global.PCair.active_hotspots.Add(src)
 
-/obj/fire/Destroy()
+/obj/effect/fire/Destroy()
 	if(isopenturf(loc))
 		set_light(0)
 	global.PCair.active_hotspots.Remove(src)
 	return ..()
 
-/obj/fire/proc/RemoveFire()
+/obj/effect/fire/proc/RemoveFire()
 	if(isturf(loc))
 		set_light(0)
 		loc = null

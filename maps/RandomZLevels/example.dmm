@@ -94,7 +94,7 @@
 "bP" = (/obj/structure/stool/bed/chair/wood/normal{dir = 1; tag = "icon-wooden_chair (NORTH)"},/turf/open/floor{icon_state = "bar"},/area/away_mission/example)
 "bQ" = (/obj/machinery/vending/snack,/turf/open/floor,/area/away_mission/example)
 "bR" = (/obj/structure/table,/obj/machinery/light/small,/obj/item/paper{info = "X X O<br>X O X<br>O X"},/turf/open/floor{icon_state = "bar"},/area/away_mission/example)
-"bS" = (/obj/structure/device/piano,/turf/open/floor{icon_state = "bar"},/area/away_mission/example)
+"bS" = (/obj/structure/piano,/turf/open/floor{icon_state = "bar"},/area/away_mission/example)
 "bT" = (/obj/machinery/light/small,/turf/open/floor{icon_state = "bar"},/area/away_mission/example)
 "bU" = (/obj/structure/table/woodentable,/obj/item/reagent_holder/food/snacks/validsalad,/turf/open/floor{icon_state = "bar"},/area/away_mission/example)
 "bV" = (/obj/machinery/vending/cigarette,/turf/open/floor,/area/away_mission/example)

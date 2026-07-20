@@ -38,7 +38,7 @@
 
 /obj/item/fossil/skull/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/fossil/bone))
-		var/obj/o = new /obj/skeleton(GET_TURF(src))
+		var/obj/o = new /obj/structure/skeleton(GET_TURF(src))
 		var/a = new /obj/item/fossil/bone()
 		var/b = new type()
 		o.contents.Add(a)
@@ -48,7 +48,7 @@
 		return TRUE
 	return ..()
 
-/obj/skeleton
+/obj/structure/skeleton
 	name = "incomplete skeleton"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "uskel"
@@ -58,12 +58,12 @@
 	var/bstate = 0
 	var/plaque_contents = "Unnamed alien creature"
 
-/obj/skeleton/initialise()
+/obj/structure/skeleton/initialise()
 	. = ..()
 	breq = rand(6) + 3
 	desc = "An incomplete skeleton, looks like it could use [breq - bnum] more bones."
 
-/obj/skeleton/attackby(obj/item/W, mob/user)
+/obj/structure/skeleton/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/fossil/bone))
 		if(!bstate)
 			bnum++

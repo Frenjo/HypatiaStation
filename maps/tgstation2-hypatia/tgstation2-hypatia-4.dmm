@@ -926,7 +926,7 @@
 /turf/open/floor/tiled/freezer,
 /area/external/djstation)
 "jk" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleporter/hub,
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/teleporter)
 "jm" = (
@@ -1687,7 +1687,7 @@
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/derelict/medical)
 "rO" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleporter/station,
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/teleporter)
 "rQ" = (

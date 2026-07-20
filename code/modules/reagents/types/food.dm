@@ -368,7 +368,7 @@
 			if(isnotnull(T.wet_overlay))
 				T.remove_overlay(T.wet_overlay)
 				T.wet_overlay = null
-	var/obj/fire/hotspot = locate(/obj/fire) in T
+	var/obj/effect/fire/hotspot = locate(/obj/effect/fire) in T
 	if(isnotnull(hotspot))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles)
 		lowertemp.temperature = max(min(lowertemp.temperature - 2000, lowertemp.temperature / 2), 0)

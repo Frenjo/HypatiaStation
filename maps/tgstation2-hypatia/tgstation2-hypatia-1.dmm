@@ -13404,7 +13404,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/central)
 "eIM" = (
-/obj/machinery/the_singularitygen{
+/obj/machinery/singularity_generator{
 	anchored = TRUE
 	},
 /turf/open/floor/plating/metal/airless,
@@ -24133,7 +24133,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/prison/cell_block/B)
 "isC" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleporter/station,
 /turf/open/floor/plating/metal,
 /area/station/command/teleporter)
 "isH" = (
@@ -65148,7 +65148,7 @@
 	},
 /area/station/engineering/foyer)
 "wSx" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleporter/hub,
 /obj/machinery/status_display{
 	layer = 4;
 	pixel_y = -32
