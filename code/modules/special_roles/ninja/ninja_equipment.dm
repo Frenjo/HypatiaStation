@@ -22,7 +22,10 @@ ________________________________________________________________________________
 	name = "ninja hood"
 	desc = "What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear."
 	icon_state = "s-ninja"
+
+	inv_flags = INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	item_state = "s-ninja_mask"
+
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 25)
 	siemens_coefficient = 0.2
 	species_restricted = null
@@ -31,7 +34,9 @@ ________________________________________________________________________________
 	name = "ninja mask"
 	desc = "A close-fitting mask that acts both as an air filter and a post-modern fashion statement."
 	icon_state = "s-ninja"
+
 	item_state = "s-ninja_mask"
+
 	vchange = 1
 	siemens_coefficient = 0.2
 
@@ -39,6 +44,7 @@ ________________________________________________________________________________
 	name = "ninja shoes"
 	desc = "A pair of running shoes. Excellent for running and even better for smashing skulls."
 	icon_state = "s-ninja"
+
 	permeability_coefficient = 0.01
 	item_flags = ITEM_FLAG_NO_SLIP
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
@@ -54,16 +60,20 @@ ________________________________________________________________________________
 	name = "ninja suit"
 	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
 	icon_state = "s-ninja"
+
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_TAIL
 	item_state = "s-ninja_suit"
+
+	slowdown = 0
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
+	siemens_coefficient = 0.2
+	species_restricted = null //Workaround for spawning alien ninja without internals.
+
 	can_store = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank,
 		/obj/item/cell, /obj/item/suit_cooling_unit
 	)
-	slowdown = 0
-	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
-	siemens_coefficient = 0.2
-	species_restricted = null //Workaround for spawning alien ninja without internals.
 
 		//Important parts of the suit.
 	var/mob/living/carbon/affecting = null 				//The wearer.
