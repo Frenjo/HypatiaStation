@@ -130,7 +130,8 @@
 
 	if(isnotnull(theghost))
 		var/mob/living/carbon/human/new_character = make_body(theghost)
-		new_character.mind.make_wizard()
+		var/decl/special_role/wizard/wizard_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+		wizard_role.setup(new_character)
 		return 1
 	return 0
 

@@ -61,25 +61,6 @@
 		global.PCticker.mode.forge_changeling_objectives(src)
 	global.PCticker.mode.greet_changeling(src)
 
-/datum/mind/proc/make_wizard()
-	if(has_special_role(SPECIAL_ROLE_WIZARD))
-		return
-	global.PCticker.mode.wizards.Add(src)
-	assign_special_role(SPECIAL_ROLE_WIZARD)
-	//ticker.mode.learn_basic_spells(current)
-	if(!length(GLOBL.wizardstart))
-		current.forceMove(pick(GLOBL.latejoin))
-		to_chat(current, "HOT INSERTION, GO GO GO!")
-	else
-		current.forceMove(pick(GLOBL.wizardstart))
-
-	global.PCticker.mode.equip_wizard(current)
-	for(var/obj/item/spellbook/S in current.contents)
-		S.op = 0
-	global.PCticker.mode.name_wizard(current)
-	global.PCticker.mode.forge_wizard_objectives(src)
-	global.PCticker.mode.greet_wizard(src)
-
 /datum/mind/proc/make_cultist()
 	if(has_special_role(SPECIAL_ROLE_CULTIST))
 		return
