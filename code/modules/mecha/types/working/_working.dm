@@ -5,11 +5,7 @@
 	var/cargo_capacity = 5
 
 /obj/mecha/working/Destroy()
-	if(!isemptylist(cargo))
-		for_no_type_check(var/atom/movable/mover, cargo) // Dumps contents of stored cargo.
-			mover.forceMove(loc)
-			cargo.Remove(mover)
-			step_rand(mover)
+	unload_all_cargo()
 	return ..()
 
 /obj/mecha/working/Exit(atom/movable/O)
@@ -40,3 +36,11 @@
 			cargo.Remove(mover)
 			log_message("Unloaded [mover]. Cargo compartment capacity: [cargo_capacity - length(cargo)]")
 		return
+
+/obj/mecha/working/proc/unload_all_cargo()
+	if(isemptylist(cargo))
+		return
+	for_no_type_check(var/atom/movable/mover, cargo) // Dumps contents of stored cargo.
+		mover.forceMove(loc)
+		cargo.Remove(mover)
+		step_rand(mover)

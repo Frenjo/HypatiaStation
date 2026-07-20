@@ -111,3 +111,24 @@
 //----------------------------
 /obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
+
+//----------------------------
+// Axis energy projector beams
+//----------------------------
+/obj/effect/projectile/axis_rapid/muzzle
+	icon_state = "muzzle_axis"
+
+/obj/effect/projectile/axis_rapid/tracer
+	icon_state = "axis"
+
+/obj/effect/projectile/axis_rapid/impact
+	icon_state = "impact_axis"
+
+/obj/effect/projectile/axis_heavy/muzzle
+	icon_state = "muzzle_axis_heavy"
+
+/obj/effect/projectile/axis_heavy/tracer
+	icon_state = "axis_heavy"
+
+/obj/effect/projectile/axis_heavy/impact
+	icon_state = "impact_axis_heavy"

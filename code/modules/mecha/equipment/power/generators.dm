@@ -12,6 +12,8 @@
 
 	equip_cooldown = 1 SECOND
 
+	attaches_to_string = "<em><i>any</i></em> exosuit except the <em><i>Thales</i></em>"
+
 	var/coeff = 100
 	var/obj/item/stack/sheet/fuel
 	var/fuel_type = /obj/item/stack/sheet/plasma

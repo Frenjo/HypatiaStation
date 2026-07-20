@@ -27,6 +27,25 @@
 
 	eyeblur = 2
 
+// Axis energy projector variants
+/obj/projectile/energy/beam/laser/axis_rapid
+	name = "rapid laser beam"
+
+	muzzle_type = /obj/effect/projectile/axis_rapid/muzzle
+	tracer_type = /obj/effect/projectile/axis_rapid/tracer
+	impact_type = /obj/effect/projectile/axis_rapid/impact
+
+	damage = 10
+
+/obj/projectile/energy/beam/laser/heavy/axis_slow
+	name = "sustained laser beam"
+
+	muzzle_type = /obj/effect/projectile/axis_heavy/muzzle
+	tracer_type = /obj/effect/projectile/axis_heavy/tracer
+	impact_type = /obj/effect/projectile/axis_heavy/impact
+
+	damage = 45 // Does 5 more damage than a regular heavy laser.
+
 // X-ray
 /obj/projectile/energy/beam/laser/xray
 	name = "xray laser beam"

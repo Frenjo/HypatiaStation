@@ -62,7 +62,7 @@
 /obj/structure/mecha_wreckage/clarke
 	name = "Clarke wreckage"
 	icon_state = "clarke-broken"
-
+	
 	part_salvage = list(
 		/obj/item/mecha_part/part/clarke/torso,
 		/obj/item/mecha_part/part/clarke/head,
@@ -70,3 +70,8 @@
 		/obj/item/mecha_part/part/clarke/right_arm,
 		/obj/item/mecha_part/part/clarke/treads
 	)
+
+// Thales
+/obj/structure/mecha_wreckage/thales
+	name = "Thales wreckage"
+	icon_state = "thales-broken"
