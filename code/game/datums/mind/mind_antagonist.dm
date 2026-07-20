@@ -51,36 +51,6 @@
 	assign_special_role(SPECIAL_ROLE_MALF_AI)
 	malf.icon_state = "ai-malf"
 
-/datum/mind/proc/make_nuclear_operative()
-	if(has_special_role(SPECIAL_ROLE_SYNDICATE))
-		return
-	global.PCticker.mode.syndicates.Add(src)
-	global.PCticker.mode.update_synd_icons_added(src)
-	if(length(global.PCticker.mode.syndicates) == 1)
-		global.PCticker.mode.prepare_syndicate_leader(src)
-	else
-		current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
-	assign_special_role(SPECIAL_ROLE_SYNDICATE)
-	to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-	global.PCticker.mode.forge_syndicate_objectives(src)
-	global.PCticker.mode.greet_syndicate(src)
-
-	current.forceMove(GET_TURF(locate("landmark*Syndicate-Spawn")))
-
-	var/mob/living/carbon/human/H = current
-	qdel(H.belt)
-	qdel(H.back)
-	qdel(H.l_ear)
-	qdel(H.r_ear)
-	qdel(H.gloves)
-	qdel(H.head)
-	qdel(H.shoes)
-	qdel(H.id_store)
-	qdel(H.wear_suit)
-	qdel(H.wear_uniform)
-
-	H.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
-
 /datum/mind/proc/make_changeling()
 	if(has_special_role(SPECIAL_ROLE_CHANGELING))
 		return

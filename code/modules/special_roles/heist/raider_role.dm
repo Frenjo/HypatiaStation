@@ -114,15 +114,9 @@
 		vox_tick = 1
 
 /decl/special_role/raider/proc/greet_vox_raider(mob/living/carbon/human/raider)
-	to_chat(raider, SPAN_INFO_B("You are a Vox Raider, fresh from the Shoal!"))
+	to_chat(raider, SPAN_DANGER("<font size=3>You are a Vox Raider, fresh from the Shoal!</font>"))
 	to_chat(raider, SPAN_INFO("The Vox are a race of cunning, sharp-eyed nomadic raiders and traders endemic to Tau Ceti and much of the unexplored galaxy. You and the crew have come to the [GLOBL.current_map.short_name] for plunder, trade or both."))
 	to_chat(raider, SPAN_INFO("Vox are cowardly and will flee from larger groups, but corner one or find them en masse and they are vicious."))
 	to_chat(raider, SPAN_INFO("Use :V to voxtalk, :H to talk on your encrypted channel, and don't forget to turn on your nitrogen internals!"))
 	to_chat(raider, SPAN_WARNING("IF YOU HAVE NOT PLAYED A VOX BEFORE, REVIEW THIS THREAD: http://baystation12.net/forums/viewtopic.php?f=6&t=8657.")) // TODO: Do some research into this, maybe use the wayback machine or just talk to Loaf?
-	var/obj_count = 1
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		for(var/datum/objective/objective in raider.mind.objectives)
-			to_chat(raider, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-	else
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(raider)
+	show_objectives(raider)

@@ -151,15 +151,9 @@
 /decl/special_role/traitor/proc/greet_traitor(mob/living/traitor, traitor_type)
 	switch(traitor_type)
 		if(TRAITOR_NORMAL, TRAITOR_HIGHLANDER)
-			to_chat(traitor, "<B><font size=3 color=red>You are the traitor.</font></B>")
+			to_chat(traitor, SPAN_DANGER("<font size=3>You are a traitor.</font>"))
 		if(TRAITOR_SURVIVOR)
-			to_chat(traitor, "<B><font size=3 color=red>You are the survivor.</font></B>")
+			to_chat(traitor, SPAN_DANGER("<font size=3>You are a survivor.</font>"))
 			to_chat(traitor, SPAN_DANGER("Your own safety matters above all else, trust no one and kill anyone who gets in your way. However, armed as you are, now would be the perfect time to settle that score or grab that pair of yellow gloves you've been eyeing..."))
 
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		var/obj_count = 1
-		for_no_type_check(var/datum/objective/objective, traitor.mind.objectives)
-			to_chat(traitor, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-	else
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(traitor)
+	show_objectives(traitor)

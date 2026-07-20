@@ -171,6 +171,7 @@
 		var/num_agents = 5
 		var/agentcount = 0
 
+		var/decl/special_role/operative/operative_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
 		for(var/i = 0, i < num_agents, i++)
 			shuffle(candidates) // More shuffles means more randoms.
 			for(var/mob/j in candidates)
@@ -182,7 +183,7 @@
 				candidates.Remove(theghost)
 
 				var/mob/living/carbon/human/new_character = make_body(theghost)
-				new_character.mind.make_nuclear_operative()
+				operative_role.setup(new_character)
 
 				agentcount++
 

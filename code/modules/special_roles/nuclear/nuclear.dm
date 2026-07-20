@@ -18,6 +18,8 @@
 	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station
 	var/syndies_didnt_escape = 0 //Used for tracking if the syndies got the shuttle off of the z-level
 
+	var/list/possible_operatives = list()
+
 /datum/game_mode/nuclear/get_announce_content()
 	. = list()
 	. += "<B>The current game mode is - Nuclear Emergency!</B>"
@@ -53,143 +55,71 @@
 
 	while(agent_number > 0)
 		var/datum/mind/new_syndicate = pick(possible_syndicates)
-		syndicates.Add(new_syndicate)
+		possible_operatives.Add(new_syndicate)
 		possible_syndicates.Remove(new_syndicate) // So it doesn't pick the same guy each time.
 		agent_number--
 
 /datum/game_mode/nuclear/post_setup()
 	. = ..()
-	for_no_type_check(var/datum/mind/syndicate, syndicates)
-		syndicate.make_nuclear_operative() // So they actually have a special role.
+	var/decl/special_role/operative/operative_role = GET_DECL_INSTANCE(__IMPLIED_TYPE__)
+	for_no_type_check(var/datum/mind/operative, possible_operatives)
+		operative_role.setup(operative.current)
+	update_all_synd_icons()
+
+	var/obj/effect/landmark/uplink_locker = locate("landmark*Syndicate-Uplink")
+	var/obj/effect/landmark/nuke_spawn = locate("landmark*Nuclear-Bomb")
+	if(isnotnull(uplink_locker))
+		new /obj/structure/closet/syndicate/nuclear(GET_TURF(uplink_locker))
+	if(isnotnull(nuke_spawn) && length(operative_role.operative_spawns))
+		var/obj/machinery/nuclearbomb/the_bomb = new /obj/machinery/nuclearbomb(GET_TURF(nuke_spawn))
+		the_bomb.r_code = operative_role.nuke_code
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/proc/update_all_synd_icons()
-	spawn(0)
-		for_no_type_check(var/datum/mind/synd_mind, syndicates)
-			if(synd_mind.current)
-				if(synd_mind.current.client)
-					for_no_type_check(var/image/I, synd_mind.current.client.images)
-						if(I.icon_state == "synd")
-							qdel(I)
+	set waitfor = FALSE
 
-		for_no_type_check(var/datum/mind/synd_mind, syndicates)
-			if(synd_mind.current)
-				if(synd_mind.current.client)
-					for_no_type_check(var/datum/mind/synd_mind_1, syndicates)
-						if(synd_mind_1.current)
-							var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
-							synd_mind.current.client.images += I
-
-/datum/game_mode/proc/update_synd_icons_added(datum/mind/synd_mind)
-	spawn(0)
-		if(synd_mind.current)
-			if(synd_mind.current.client)
-				var/I = image('icons/mob/mob.dmi', loc = synd_mind.current, icon_state = "synd")
-				synd_mind.current.client.images += I
-
-/datum/game_mode/proc/update_synd_icons_removed(datum/mind/synd_mind)
-	spawn(0)
-		for_no_type_check(var/datum/mind/synd, syndicates)
-			if(synd.current)
-				if(synd.current.client)
-					for_no_type_check(var/image/I, synd.current.client.images)
-						if(I.icon_state == "synd" && I.loc == synd_mind.current)
-							qdel(I)
-
+	for_no_type_check(var/datum/mind/synd_mind, syndicates)
 		if(synd_mind.current)
 			if(synd_mind.current.client)
 				for_no_type_check(var/image/I, synd_mind.current.client.images)
 					if(I.icon_state == "synd")
 						qdel(I)
 
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
-/datum/game_mode/nuclear/post_setup()
-	. = ..()
-	var/list/turf/synd_spawn = list()
-
-	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
-		if(A.name == "Syndicate-Spawn")
-			synd_spawn += GET_TURF(A)
-			qdel(A)
-			continue
-
-	var/obj/effect/landmark/uplinklocker = locate("landmark*Syndicate-Uplink")	//i will be rewriting this shortly
-	var/obj/effect/landmark/nuke_spawn = locate("landmark*Nuclear-Bomb")
-
-	var/nuke_code = "[rand(10000, 99999)]"
-	var/leader_selected = 0
-	var/spawnpos = 1
-
 	for_no_type_check(var/datum/mind/synd_mind, syndicates)
-		var/mob/living/carbon/human/synd_mob = synd_mind.current
-		if(spawnpos > length(synd_spawn))
-			spawnpos = 1
-		synd_mob.forceMove(synd_spawn[spawnpos])
+		if(synd_mind.current)
+			if(synd_mind.current.client)
+				for_no_type_check(var/datum/mind/synd_mind_1, syndicates)
+					if(synd_mind_1.current)
+						var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
+						synd_mind.current.client.images += I
 
-		synd_mob.real_name = "[syndicate_name()] Operative" // placeholder while we get their actual name
-		spawn(0)
-			NukeNameAssign(synd_mind)
-		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			forge_syndicate_objectives(synd_mind)
-		greet_syndicate(synd_mind)
-		synd_mob.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
+/datum/game_mode/proc/update_synd_icons_added(datum/mind/synd_mind)
+	set waitfor = FALSE
 
-		if(!leader_selected)
-			prepare_syndicate_leader(synd_mind, nuke_code)
-			leader_selected = 1
+	if(synd_mind.current)
+		if(synd_mind.current.client)
+			var/I = image('icons/mob/mob.dmi', loc = synd_mind.current, icon_state = "synd")
+			synd_mind.current.client.images += I
 
-		spawnpos++
-		update_synd_icons_added(synd_mind)
+/datum/game_mode/proc/update_synd_icons_removed(datum/mind/synd_mind)
+	set waitfor = FALSE
 
-	update_all_synd_icons()
+	for_no_type_check(var/datum/mind/synd, syndicates)
+		if(synd.current)
+			if(synd.current.client)
+				for_no_type_check(var/image/I, synd.current.client.images)
+					if(I.icon_state == "synd" && I.loc == synd_mind.current)
+						qdel(I)
 
-	if(uplinklocker)
-		new /obj/structure/closet/syndicate/nuclear(uplinklocker.loc)
-	if(nuke_spawn && length(synd_spawn))
-		var/obj/machinery/nuclearbomb/the_bomb = new /obj/machinery/nuclearbomb(nuke_spawn.loc)
-		the_bomb.r_code = nuke_code
+	if(synd_mind.current)
+		if(synd_mind.current.client)
+			for_no_type_check(var/image/I, synd_mind.current.client.images)
+				if(I.icon_state == "synd")
+					qdel(I)
 
-/datum/game_mode/proc/prepare_syndicate_leader(datum/mind/synd_mind, nuke_code)
-	if(nuke_code)
-		synd_mind.store_memory("<B>Syndicate Nuclear Bomb Code</B>: [nuke_code]", 0, 0)
-		to_chat(synd_mind.current, "The nuclear authorisation code is: <B>[nuke_code]</B>")
-		var/obj/item/paper/P = new
-		P.info = "The nuclear authorisation code is: <b>[nuke_code]</b>"
-		P.name = "nuclear bomb code"
-		if(IS_GAME_MODE(/datum/game_mode/nuclear))
-			P.forceMove(synd_mind.current.loc)
-		else
-			var/mob/living/carbon/human/H = synd_mind.current
-			P.forceMove(H.loc)
-			H.equip_to_slot_or_del(P, SLOT_ID_R_POCKET, 0)
-			H.update_icons()
-
-	else
-		nuke_code = "code will be provided later"
-	return
-
-
-/datum/game_mode/proc/forge_syndicate_objectives(datum/mind/syndicate)
-	var/datum/objective/nuclear/syndobj = new
-	syndobj.owner = syndicate
-	syndicate.objectives += syndobj
-
-
-/datum/game_mode/proc/greet_syndicate(datum/mind/syndicate, you_are = 1)
-	if(you_are)
-		to_chat(syndicate.current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-	var/obj_count = 1
-	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		for_no_type_check(var/datum/objective/objective, syndicate.objectives)
-			to_chat(syndicate.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-			obj_count++
-	else
-		FEEDBACK_ANTAGONIST_GREETING_GUIDE(syndicate.current)
-	return
-
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/game_mode/proc/random_radio_frequency()
 	return 1337 // WHY??? -- Doohl
@@ -311,14 +241,3 @@
 
 	return newname
 */
-
-/proc/NukeNameAssign(datum/mind/synd_mind)
-	var/choose_name = input(synd_mind.current, "You are a [syndicate_name()] agent! What is your name?", "Choose a name") as text
-
-	if(!choose_name)
-		return
-
-	else
-		synd_mind.current.name = choose_name
-		synd_mind.current.real_name = choose_name
-		return
