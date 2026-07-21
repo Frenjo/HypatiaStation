@@ -34,18 +34,17 @@
 
 /obj/item/robot_model/drone/New()
 	. = ..()
-	var/list/stack_types = list(
+	var/alist/stack_types = alist(
 		/obj/item/stack/rods = 10,
 		/obj/item/stack/tile/metal/grey = 10,
 		/obj/item/stack/sheet/steel/cyborg = 10,
-		/obj/item/stack/sheet/wood/cyborg = 1,
+		/obj/item/stack/sheet/wood/cyborg = 5,
 		/obj/item/stack/cable_coil = 30,
 		/obj/item/stack/sheet/glass/cyborg = 10,
-		/obj/item/stack/sheet/plastic/cyborg = 1
+		/obj/item/stack/sheet/plastic/cyborg = 5
 	)
-
-	for(var/path in stack_types)
-		modules.Add(new path(src, stack_types[path]))
+	for(var/path, amount in stack_types)
+		modules.Add(new path(src, amount))
 
 /obj/item/robot_model/drone/respawn_consumable(mob/living/silicon/robot/R)
 	. = ..()
@@ -59,7 +58,6 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/tile/metal/grey
 	)
-
 	for(var/path in stack_types)
 		var/obj/item/stack/S = locate(path) in modules
 		if(isnull(S))

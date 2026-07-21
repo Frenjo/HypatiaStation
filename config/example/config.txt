@@ -333,7 +333,7 @@ ALLOW_DRONE_SPAWN 1
 ## The maximum number of maintenance drones that can spawn, assuming they're allowed to.
 MAX_MAINT_DRONES 5
 
-## The time in ticks between new maintenance drones becoming available.
+## The time in deciseconds between new maintenance drones becoming available.
 ## Default is 2 minutes.
 DRONE_BUILD_TIME 1200
 
@@ -379,5 +379,3 @@ GATEWAY_DELAY 18000
 
 ## Configures the brightness of ambient starlight on space tiles.
 STARLIGHT 2
-
-

@@ -52,26 +52,26 @@
 	//update_icon()
 
 /obj/item/gripper/afterattack(atom/target, mob/user)
-	if(!target) //Target is invalid.
+	if(!target) // Target is invalid.
 		return
 
-	//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
-	if(!wrapped)
-		for(var/obj/item/thing in src.contents)
+	// There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
+	if(isnull(wrapped))
+		for(var/obj/item/thing in src)
 			wrapped = thing
 			break
 
-	if(wrapped) //Already have an item.
+	if(isnotnull(wrapped)) // Already have an item.
 		wrapped.forceMove(user)
 		//Pass the attack on to the target.
 		target.attackby(wrapped, user)
 
-		if(wrapped && src && wrapped.loc == user)
+		if(wrapped?.loc == user)
 			wrapped.forceMove(src)
 
 		//Sanity/item use checks.
 
-		if(!wrapped || !user)
+		if(isnull(wrapped) || isnull(user))
 			return
 
 		if(wrapped.loc != src.loc)
@@ -85,21 +85,21 @@
 
 		var/obj/item/I = target
 
-		//Check if the item is blacklisted.
-		var/grab = 0
+		// Check if the item is blacklisted.
+		var/can_grab = FALSE
 		for(var/typepath in can_hold)
 			if(istype(I, typepath))
-				grab = 1
+				can_grab = TRUE
 				break
 
-		//We can grab the item, finally.
-		if(grab)
+		// We can grab the item, finally.
+		if(can_grab)
 			to_chat(user, SPAN_INFO("You collect \the [I]."))
 			I.forceMove(src)
 			wrapped = I
 			return
-		else
-			to_chat(user, SPAN_WARNING("Your gripper cannot hold \the [target]."))
+
+		to_chat(user, SPAN_WARNING("Your gripper cannot hold \the [target]."))
 
 //TODO: Matter decompiler.
 /obj/item/matter_decompiler

@@ -11,43 +11,40 @@
 		USE_POWER_ACTIVE = 5000
 	)
 
-	var/drone_progress = 0
-	var/produce_drones = 0
-	var/time_last_drone = 500
+	var/produce_drones = FALSE
+	COOLDOWN_DECLARE(build_time)
+	var/drone_ready = FALSE
 
 /obj/machinery/drone_fabricator/New()
-	..()
+	. = ..()
 	produce_drones = CONFIG_GET(/decl/configuration_entry/allow_drone_spawn)
 
 /obj/machinery/drone_fabricator/power_change()
-	if (powered())
+	if(powered())
 		stat &= ~NOPOWER
+		START_PROCESSING(PCobj, src)
 	else
 		icon_state = "drone_fab_nopower"
 		stat |= NOPOWER
+		STOP_PROCESSING(PCobj, src)
 
 /obj/machinery/drone_fabricator/process()
-	if(stat & NOPOWER || !produce_drones)
-		if(icon_state != "drone_fab_nopower")
-			icon_state = "drone_fab_nopower"
-		return
-
-	if(drone_progress >= 100)
+	if(COOLDOWN_FINISHED(src, build_time))
 		icon_state = "drone_fab_idle"
-		return
-
-	icon_state = "drone_fab_active"
-	var/elapsed = world.time - time_last_drone
-	drone_progress = round((elapsed / CONFIG_GET(/decl/configuration_entry/drone_build_time)) * 100)
-
-	if(drone_progress >= 100)
+		drone_ready = TRUE
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
+		return PROCESS_KILL
+
+	if(drone_ready)
+		icon_state = "drone_fab_active"
+		drone_ready = FALSE
+		return
 
 /obj/machinery/drone_fabricator/get_examine_text(mob/user)
 	. = ..()
 	if(!produce_drones)
 		return
-	if(drone_progress < 100)
+	if(!drone_ready)
 		return
 	if(!isghost(user))
 		return
@@ -60,28 +57,27 @@
 /obj/machinery/drone_fabricator/proc/count_drones()
 	var/drones = 0
 	for(var/mob/living/silicon/robot/drone/D in GLOBL.mob_list)
-		if(D.key && D.client)
+		if(isnotnull(D.key) && isnotnull(D.client))
 			drones++
 	return drones
 
-/obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
+/obj/machinery/drone_fabricator/proc/create_drone(client/player)
 	if(stat & NOPOWER)
 		return
 
 	if(!produce_drones || !CONFIG_GET(/decl/configuration_entry/allow_drone_spawn) || count_drones() >= CONFIG_GET(/decl/configuration_entry/max_maint_drones))
 		return
 
-	if(!player || !istype(player.mob,/mob/dead))
+	if(isnull(player) || !isghost(player.mob))
 		return
 
 	visible_message("\The [src] churns and grinds as it lurches into motion, disgorging a shiny new drone after a few moments.")
-	flick("h_lathe_leave",src)
+	flick("h_lathe_leave", src)
 
-	time_last_drone = world.time
 	var/mob/living/silicon/robot/drone/new_drone = new /mob/living/silicon/robot/drone(GET_TURF(src))
 	new_drone.transfer_personality(player)
 
-	drone_progress = 0
+	COOLDOWN_START(src, build_time, CONFIG_GET(/decl/configuration_entry/drone_build_time))
 
 /mob/dead/ghost/verb/join_as_drone()
 	set category = PANEL_GHOST
@@ -91,32 +87,25 @@
 	if(!CONFIG_GET(/decl/configuration_entry/allow_drone_spawn))
 		to_chat(src, SPAN_WARNING("That verb is not currently permitted."))
 		return
-
-	if (!src.stat)
+	if(!stat)
+		return
+	if(has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
+		to_chat(src, SPAN_INFO_B("Upon using the antagHUD you forfeited the ability to join the round."))
 		return
 
-	if (usr != src)
-		return 0 //something is terribly wrong
+	var/time_since_death = world.time - timeofdeath
+	var/minutes_since_death = round(time_since_death / (1 MINUTE))
+	var/plural_check = "minute"
+	if(minutes_since_death == 0)
+		plural_check = ""
+	else if(minutes_since_death == 1)
+		plural_check = " [minutes_since_death] minute and"
+	else if(minutes_since_death > 1)
+		plural_check = " [minutes_since_death] minutes and"
+	var/deathtimeseconds = round((time_since_death - minutes_since_death * (1 MINUTE)) / 10, 1)
 
-	var/deathtime = world.time - src.timeofdeath
-	if(isghost(src))
-		var/mob/dead/ghost/G = src
-		if(G.has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
-			to_chat(G, SPAN_INFO_B("Upon using the antagHUD you forfeited the ability to join the round."))
-			return
-
-	var/deathtimeminutes = round(deathtime / 600)
-	var/pluralcheck = "minute"
-	if(deathtimeminutes == 0)
-		pluralcheck = ""
-	else if(deathtimeminutes == 1)
-		pluralcheck = " [deathtimeminutes] minute and"
-	else if(deathtimeminutes > 1)
-		pluralcheck = " [deathtimeminutes] minutes and"
-	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-
-	if(deathtime < 6000)
-		to_chat(usr, SPAN_WARNING("You have been dead for[pluralcheck] [deathtimeseconds] seconds."))
+	if(time_since_death < (10 MINUTES))
+		to_chat(usr, SPAN_WARNING("You have been dead for[plural_check] [deathtimeseconds] seconds."))
 		to_chat(usr, SPAN_WARNING("You must wait 10 minutes to respawn as a drone!"))
 		return
 
@@ -127,7 +116,7 @@
 			to_chat(src, SPAN_WARNING("There are too many active drones in the world for you to spawn."))
 			return
 
-		drone_fab.create_drone(src.client)
+		drone_fab.create_drone(client)
 		return
 
 	to_chat(src, SPAN_WARNING("There are no available drone spawn points, sorry."))
