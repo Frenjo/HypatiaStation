@@ -188,9 +188,7 @@
 	},
 /area/centcom/rescue_shuttle/one)
 "aM" = (
-/obj/machinery/librarycomp,
-/obj/structure/table/woodentable,
-/turf/open/floor/wood,
+/turf/closed/wall/reinforced/riveted,
 /area/enemy/wizard_station)
 "aN" = (
 /obj/machinery/computer/ordercomp,
@@ -363,8 +361,7 @@
 	pixel_y = 4
 	},
 /obj/machinery/light{
-	dir = 1;
-	on = 1
+	dir = 1
 	},
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/one)
@@ -492,10 +489,8 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "bK" = (
-/obj/structure/stool/bed/chair{
-	dir = 4
-	},
-/turf/open/floor/wood,
+/obj/effect/window_spawner/reinforced_plasma,
+/turf/open/floor/plating/metal,
 /area/enemy/wizard_station)
 "bL" = (
 /obj/machinery/autolathe{
@@ -591,8 +586,10 @@
 	},
 /area/centcom/holding)
 "ch" = (
-/obj/structure/bookcase,
-/turf/open/floor/wood,
+/obj/structure/shuttle/engine/propulsion/burst/left{
+	dir = 4
+	},
+/turf/open/floor/plating/metal/airless,
 /area/enemy/wizard_station)
 "ci" = (
 /obj/machinery/door/poddoor{
@@ -936,9 +933,13 @@
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/two)
 "du" = (
-/obj/structure/stool/bed,
-/obj/item/bedsheet/rd,
-/turf/open/floor/carpet,
+/obj/structure/window/plasmareinforced{
+	dir = 4
+	},
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating/metal/airless,
 /area/enemy/wizard_station)
 "dv" = (
 /turf/closed/wall/shuttle{
@@ -1049,11 +1050,9 @@
 	},
 /area/centcom/living)
 "dU" = (
-/obj/effect/decal/floor/chapel/red{
-	dir = 8
-	},
-/mob/living/carbon/monkey,
-/turf/open/floor/tiled/dark_chapel,
+/obj/structure/closet/cabinet,
+/obj/item/storage/satchel,
+/turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "dW" = (
 /turf/open/floor{
@@ -1769,12 +1768,9 @@
 /turf/open/floor/shuttle/red,
 /area/centcom/rescue_shuttle/one)
 "hA" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/wizrobe/red,
-/obj/item/clothing/shoes/sandal,
-/obj/item/clothing/head/wizard/red,
-/obj/item/staff,
-/turf/open/floor/linoleum,
+/obj/structure/stool/bed,
+/obj/item/bedsheet/rd,
+/turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "hB" = (
 /obj/item/radio/intercom{
@@ -1844,12 +1840,7 @@
 	},
 /area/enemy/syndicate/mothership)
 "hR" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/wizrobe/marisa,
-/obj/item/clothing/shoes/sandal/marisa,
-/obj/item/clothing/head/wizard/marisa,
-/obj/item/staff/broom,
-/turf/open/floor/linoleum,
+/turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "hS" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -1860,10 +1851,10 @@
 /turf/closed/wall/shuttle/corner/interior/white/nw,
 /area/shuttle/transport/centcom)
 "hU" = (
-/obj/structure/mirror{
-	pixel_y = 28
+/obj/structure/shuttle/engine/propulsion/burst/right{
+	dir = 4
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/plating/metal/airless,
 /area/enemy/wizard_station)
 "hV" = (
 /turf/space,
@@ -1957,11 +1948,16 @@
 /turf/open/floor/shuttle/red,
 /area/centcom/rescue_shuttle/one)
 "iD" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/wizrobe/magusred,
-/obj/item/clothing/head/wizard/magus,
-/obj/item/staff,
-/turf/open/floor/linoleum,
+/obj/structure/window/plasmareinforced{
+	dir = 4
+	},
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating/metal/airless,
 /area/enemy/wizard_station)
 "iE" = (
 /turf/open/floor/plating/metal,
@@ -2032,6 +2028,11 @@
 "iY" = (
 /turf/closed/wall/shuttle/corner/interior/white/nw,
 /area/centcom/rescue_shuttle/two)
+"iZ" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/turf/open/floor/linoleum,
+/area/enemy/wizard_station)
 "jd" = (
 /obj/structure/table,
 /obj/machinery/juicer{
@@ -2071,10 +2072,8 @@
 	},
 /area/centcom/living)
 "jk" = (
-/obj/effect/decal/floor/chapel/red{
-	dir = 4
-	},
-/turf/open/floor/tiled/dark_chapel,
+/obj/machinery/light,
+/turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "jl" = (
 /obj/machinery/vending/cigarette,
@@ -2370,12 +2369,10 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/control)
 "lc" = (
-/obj/effect/decal/cleanable/cobweb2,
-/obj/structure/showcase,
-/obj/effect/decal/floor/chapel/red{
-	dir = 4
+/obj/structure/mirror{
+	pixel_y = -32
 	},
-/turf/open/floor/tiled/dark_chapel,
+/turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "ld" = (
 /obj/structure/shuttle/engine/propulsion,
@@ -2606,8 +2603,14 @@
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
 "mj" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/wood,
+/obj/structure/window/plasmareinforced{
+	dir = 8
+	},
+/obj/structure/window/plasmareinforced{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/molten_item,
+/turf/open/floor/tiled/freezer,
 /area/enemy/wizard_station)
 "mk" = (
 /obj/machinery/vending/snack,
@@ -2668,7 +2671,12 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "mH" = (
-/turf/open/floor/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/door/window/northright,
+/obj/effect/decal/remains/human,
+/turf/open/floor/tiled/freezer,
 /area/enemy/wizard_station)
 "mK" = (
 /obj/structure/stool/bed/chair{
@@ -2683,8 +2691,8 @@
 	},
 /area/centcom/tdome/admin)
 "mM" = (
-/obj/structure/stool/bed/chair,
-/turf/open/floor/wood,
+/obj/machinery/door/window/southleft,
+/turf/open/floor/carpet,
 /area/enemy/wizard_station)
 "mO" = (
 /obj/structure/table/woodentable{
@@ -2764,9 +2772,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/machinery/light{
-	on = 1
-	},
+/obj/machinery/light,
 /turf/open/floor/shuttle/blue,
 /area/centcom/rescue_shuttle/two)
 "ni" = (
@@ -3022,7 +3028,12 @@
 /turf/open/floor/tiled/dark,
 /area/centcom/control)
 "ou" = (
-/turf/open/floor/linoleum,
+/obj/structure/window/plasmareinforced,
+/obj/structure/window/plasmareinforced{
+	dir = 8
+	},
+/obj/effect/decal/remains/human,
+/turf/open/floor/tiled/freezer,
 /area/enemy/wizard_station)
 "ow" = (
 /obj/effect/decal/floor/coloured/green{
@@ -3401,6 +3412,7 @@
 	},
 /area/centcom/living)
 "qc" = (
+/obj/structure/window/plasmareinforced,
 /mob/living/simple/hostile/creature{
 	name = "Experiment 35b"
 	},
@@ -3699,13 +3711,8 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/specops/centcom)
 "rG" = (
-/obj/structure/table/woodentable,
-/obj/item/paper{
-	info = "<p><b>LIST OF SPELLS AVAILABLE</b></p><p>Magic Missile:<br>This spell fires several, slow moving, magic projectiles at nearby targets. If they hit a target, it is paralyzed and takes minor damage.</p><p>Fireball:<br>This spell fires a fireball at a target and does not require wizard garb. Be careful not to fire it at people that are standing next to you.</p><p>Disintegrate:</br>This spell instantly kills somebody adjacent to you with the vilest of magick. It has a long cooldown.</p><p>Disable Technology:<br>This spell disables all weapons, cameras and most other technology in range.</p><p>Smoke:<br>This spell spawns a cloud of choking smoke at your location and does not require wizard garb.</p><p>Blind:<br>This spell temporarly blinds a single person and does not require wizard garb.<p>Forcewall:<br>This spell creates an unbreakable wall that lasts for 30 seconds and does not require wizard garb.</p><p>Blink:<br>This spell randomly teleports you a short distance. Useful for evasion or getting into areas if you have patience.</p><p>Teleport:<br>This spell teleports you to a type of area of your selection. Very useful if you are in danger, but has a decent cooldown, and is unpredictable.</p><p>Mutate:<br>This spell causes you to turn into a hulk, and gain telekinesis for a short while.</p><p>Ethereal Jaunt:<br>This spell creates your ethereal form, temporarily making you invisible and able to pass through walls.</p><p>Knock:<br>This spell opens nearby doors and does not require wizard garb.</p>";
-	name = "List of Available Spells (READ)"
-	},
-/obj/item/trash/tray,
-/turf/open/floor/carpet,
+/obj/structure/closet/secure/freezer/fridge,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "rI" = (
 /obj/structure/window/reinforced{
@@ -3929,10 +3936,15 @@
 /turf/closed/wall/shuttle/corner/interior/white/nw,
 /area/shuttle/supply/centcom)
 "sD" = (
-/obj/structure/rack,
-/obj/item/kitchenknife/ritual,
-/obj/effect/decal/floor/chapel/red,
-/turf/open/floor/tiled/dark_chapel,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/machinery/microwave{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "sI" = (
 /obj/effect/decal/floor/coloured/green{
@@ -4171,8 +4183,8 @@
 /area/shuttle/escape/centcom)
 "uf" = (
 /obj/structure/table/woodentable,
-/obj/item/trash/cheesie,
-/turf/open/floor/wood,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "ug" = (
 /obj/machinery/computer/card/centcom,
@@ -4739,12 +4751,9 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "wX" = (
-/obj/structure/rack,
-/obj/item/clothing/under/psysuit,
-/obj/item/clothing/suit/wizrobe/psypurple,
-/obj/item/clothing/head/wizard/amp,
-/turf/open/floor/linoleum,
-/area/enemy/wizard_station)
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "wY" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/shuttle/blue,
@@ -4813,10 +4822,12 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/escape/centcom)
 "xq" = (
-/obj/structure/table/reinforced,
-/obj/structure/kitchenspike,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
 /obj/effect/decal/floor/chapel/red{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
@@ -5522,6 +5533,10 @@
 /obj/structure/closet/secure/courtroom,
 /turf/open/floor/carpet,
 /area/centcom/control)
+"AO" = (
+/obj/machinery/computer/security/wooden_tv,
+/turf/open/floor/linoleum,
+/area/enemy/wizard_station)
 "AP" = (
 /obj/machinery/computer/communications,
 /turf/open/floor/shuttle/blue,
@@ -5724,10 +5739,10 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/shuttle_dock/emergency)
 "BZ" = (
-/obj/structure/bookcase{
-	name = "bookcase (Tactics)"
-	},
-/turf/open/floor/wood,
+/obj/structure/table/woodentable,
+/obj/machinery/librarycomp,
+/obj/effect/decal/floor/chapel/red,
+/turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
 "Cc" = (
 /turf/closed/wall/shuttle{
@@ -5839,10 +5854,7 @@
 /turf/closed/wall/reinforced/riveted,
 /area/centcom/shuttle_dock/emergency)
 "CB" = (
-/obj/structure/table/woodentable,
-/obj/item/dice/d20,
-/obj/item/dice,
-/turf/open/floor/wood,
+/turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "CC" = (
 /turf/closed/wall/shuttle{
@@ -5917,8 +5929,7 @@
 	on = 1
 	},
 /obj/machinery/light{
-	dir = 1;
-	on = 1
+	dir = 1
 	},
 /turf/open/floor/shuttle/white,
 /area/shuttle/escape/centcom)
@@ -5991,10 +6002,15 @@
 /turf/closed/wall/shuttle/corner/exterior/white/ne,
 /area/shuttle/escape/centcom)
 "Dp" = (
-/obj/structure/bookcase{
-	name = "Forbidden Knowledge"
+/obj/structure/table/woodentable,
+/obj/item/paper{
+	info = "<p><b>LIST OF SPELLS AVAILABLE</b></p><p>Magic Missile:<br>This spell fires several, slow moving, magic projectiles at nearby targets. If they hit a target, it is paralyzed and takes minor damage.</p><p>Fireball:<br>This spell fires a fireball at a target and does not require wizard garb. Be careful not to fire it at people that are standing next to you.</p><p>Disintegrate:</br>This spell instantly kills somebody adjacent to you with the vilest of magick. It has a long cooldown.</p><p>Disable Technology:<br>This spell disables all weapons, cameras and most other technology in range.</p><p>Smoke:<br>This spell spawns a cloud of choking smoke at your location and does not require wizard garb.</p><p>Blind:<br>This spell temporarly blinds a single person and does not require wizard garb.<p>Forcewall:<br>This spell creates an unbreakable wall that lasts for 30 seconds and does not require wizard garb.</p><p>Blink:<br>This spell randomly teleports you a short distance. Useful for evasion or getting into areas if you have patience.</p><p>Teleport:<br>This spell teleports you to a type of area of your selection. Very useful if you are in danger, but has a decent cooldown, and is unpredictable.</p><p>Mutate:<br>This spell causes you to turn into a hulk, and gain telekinesis for a short while.</p><p>Ethereal Jaunt:<br>This spell creates your ethereal form, temporarily making you invisible and able to pass through walls.</p><p>Knock:<br>This spell opens nearby doors and does not require wizard garb.</p>";
+	name = "List of Available Spells (READ)"
 	},
-/turf/open/floor/wood,
+/obj/effect/landmark{
+	name = "Teleport-Scroll"
+	},
+/turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "Dq" = (
 /turf/open/floor/plating/metal,
@@ -6295,11 +6311,8 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/two)
 "EC" = (
-/obj/structure/table/woodentable,
-/obj/effect/landmark{
-	name = "Teleport-Scroll"
-	},
-/turf/open/floor/carpet,
+/obj/machinery/vending/magivend,
+/turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "EF" = (
 /obj/structure/window/reinforced,
@@ -6438,8 +6451,7 @@
 	},
 /area/centcom/living)
 "Fj" = (
-/obj/item/trash/raisins,
-/turf/open/floor/wood,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "Fk" = (
 /turf/space,
@@ -6467,8 +6479,12 @@
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/elite/mothership)
 "Fr" = (
-/obj/item/trash/chips,
-/turf/open/floor/wood,
+/obj/structure/table/woodentable,
+/obj/item/kitchen/utensil/knife,
+/obj/item/reagent_holder/food/drinks/britcup,
+/obj/item/kitchen/utensil/fork,
+/obj/item/kitchen/utensil/spoon,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "Fs" = (
 /obj/structure/closet/secure/freezer/meat,
@@ -6698,12 +6714,9 @@
 /turf/open/floor/plating/metal/shuttle/airless,
 /area/shuttle/syndicate/mercenary/start)
 "Gu" = (
-/obj/structure/table/reinforced,
-/obj/structure/kitchenspike,
-/obj/effect/decal/floor/chapel/red{
-	dir = 1
-	},
-/turf/open/floor/tiled/dark_chapel,
+/obj/machinery/door/poddoor,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/reinforced,
 /area/enemy/wizard_station)
 "Gv" = (
 /turf/closed/wall/shuttle/corner/interior/white/sw,
@@ -6865,13 +6878,10 @@
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
 "Hs" = (
-/obj/structure/closet{
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed"
+/obj/effect/decal/floor/chapel/red{
+	dir = 1
 	},
-/obj/item/storage/satchel,
-/turf/open/floor/carpet,
+/turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
 "Ht" = (
 /turf/closed/wall/shuttle/corner/interior/white/se{
@@ -6995,7 +7005,7 @@
 /area/enemy/syndicate/mothership)
 "HP" = (
 /obj/effect/decal/floor/chapel/red{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
@@ -7200,8 +7210,8 @@
 /turf/open/floor/shuttle/blue,
 /area/shuttle/administration/centcom)
 "IV" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/tiled/freezer,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/reinforced,
 /area/enemy/wizard_station)
 "IW" = (
 /obj/structure/rack,
@@ -7321,8 +7331,8 @@
 /turf/open/floor/tiled/grey,
 /area/centcom)
 "JI" = (
-/obj/machinery/vending/magivend,
-/turf/open/floor/wood,
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "JK" = (
 /obj/structure/holostool,
@@ -7450,9 +7460,11 @@
 	},
 /area/enemy/syndicate/mothership)
 "Km" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/floor/chapel/red,
-/turf/open/floor/tiled/dark_chapel,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "Ks" = (
 /turf/open/floor/beach/sand,
@@ -7488,16 +7500,10 @@
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/ferry)
 "Kz" = (
-/obj/item/radio/intercom{
-	desc = "Talk through this. Evilly";
-	freerange = 1;
-	frequency = 1213;
-	name = "Syndicate Intercom";
-	pixel_x = 32;
-	subspace_transmission = 1;
-	syndie = 1
+/obj/effect/decal/floor/chapel/red{
+	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
 "KA" = (
 /obj/structure/table,
@@ -7719,10 +7725,10 @@
 	},
 /area/special/beach)
 "LE" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/floor/chapel/red{
-	dir = 8
-	},
+/obj/structure/rack,
+/obj/item/kitchenknife/ritual,
+/obj/item/kitchenknife/ritual,
+/obj/effect/decal/floor/chapel/red,
 /turf/open/floor/tiled/dark_chapel,
 /area/enemy/wizard_station)
 "LG" = (
@@ -8240,7 +8246,8 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/tdome)
 "Ol" = (
-/turf/closed/wall/reinforced/riveted,
+/obj/machinery/bot/medbot,
+/turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "Om" = (
 /obj/effect/decal/floor/coloured/neutral{
@@ -8363,11 +8370,11 @@
 /turf/space,
 /area/space)
 "OR" = (
-/obj/structure/bookcase{
-	name = "Forbidden Knowledge"
-	},
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/wood,
+/obj/structure/closet/crate/bin,
+/obj/item/trash/chips,
+/obj/item/trash/raisins,
+/obj/item/trash/cheesie,
+/turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "OU" = (
 /obj/machinery/computer/security/telescreen{
@@ -8978,9 +8985,8 @@
 /turf/open/floor/shuttle/red,
 /area/centcom/rescue_shuttle/one)
 "RI" = (
-/obj/structure/table/woodentable,
-/obj/item/cash/c1,
-/turf/open/floor/wood,
+/obj/structure/reagent_dispenser/water_cooler,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "RJ" = (
 /obj/structure/table,
@@ -9002,10 +9008,17 @@
 	},
 /area/special/holodeck/source/boxing_court)
 "RM" = (
-/obj/effect/landmark/start{
-	name = "wizard"
+/obj/machinery/door/window/northright,
+/obj/item/radio/intercom{
+	desc = "Talk through this. Evilly";
+	freerange = 1;
+	frequency = 1213;
+	name = "Syndicate Intercom";
+	pixel_x = -32;
+	subspace_transmission = 1;
+	syndie = 1
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "RN" = (
 /turf/open/floor{
@@ -9355,12 +9368,17 @@
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "TF" = (
-/obj/structure/table/woodentable,
-/turf/open/floor/wood,
+/obj/structure/window/plasmareinforced{
+	dir = 1
+	},
+/obj/structure/stool/bed/chair/comfy/brown,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "TG" = (
-/obj/effect/decal/cleanable/molten_item,
-/turf/open/floor/tiled/freezer,
+/obj/structure/stool/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "TJ" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -9511,7 +9529,11 @@
 	},
 /area/centcom/tdome/admin)
 "UC" = (
-/turf/open/floor/tiled/freezer,
+/obj/machinery/light/small,
+/obj/structure/table/woodentable,
+/obj/item/reagent_holder/food/snacks/chawanmushi,
+/obj/item/kitchen/utensil/spoon,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "UD" = (
 /obj/structure/stool/bed/chair,
@@ -9523,10 +9545,10 @@
 	},
 /area/special/holodeck/source/desert)
 "UI" = (
-/obj/effect/decal/floor/chapel/red{
+/obj/structure/stool/bed/chair{
 	dir = 8
 	},
-/turf/open/floor/tiled/dark_chapel,
+/turf/open/floor/tiled/cafeteria,
 /area/enemy/wizard_station)
 "UJ" = (
 /turf/closed/wall/shuttle{
@@ -9547,17 +9569,16 @@
 	},
 /area/centcom/living)
 "UQ" = (
-/obj/structure/showcase,
-/obj/effect/decal/floor/chapel/red{
+/obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tiled/dark_chapel,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "US" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/wizrobe/magusblue,
-/obj/item/clothing/head/wizard/magus,
-/obj/item/staff,
+/obj/structure/stool/bed/chair/comfy/brown,
+/obj/effect/landmark/start{
+	name = "wizard"
+	},
 /turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "UV" = (
@@ -9654,7 +9675,7 @@
 /turf/open/floor/shuttle/yellow,
 /area/shuttle/transport/centcom)
 "VI" = (
-/turf/open/floor/carpet,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "VK" = (
 /turf/closed/wall/shuttle/corner/exterior/inverted/ne,
@@ -9900,12 +9921,10 @@
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)
 "WZ" = (
-/obj/structure/rack,
-/obj/item/kitchenknife/ritual,
-/obj/effect/decal/floor/chapel/red{
-	dir = 8
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/tiled/dark_chapel,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "Xd" = (
 /obj/machinery/light,
@@ -10094,6 +10113,12 @@
 	icon_state = "redyellowfull"
 	},
 /area/centcom/tdome/admin)
+"Ye" = (
+/obj/structure/rack,
+/obj/item/dice/d20,
+/obj/item/dice,
+/turf/open/floor/linoleum,
+/area/enemy/wizard_station)
 "Yf" = (
 /obj/machinery/sleeper,
 /turf/open/floor/carpet,
@@ -10122,8 +10147,8 @@
 /turf/open/floor/tiled/freezer,
 /area/centcom/holding)
 "Yp" = (
-/obj/effect/decal/floor/chapel/red,
-/turf/open/floor/tiled/dark_chapel,
+/obj/structure/bookcase,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "Yr" = (
 /obj/structure/closet/secure/personal/standard,
@@ -10236,8 +10261,13 @@
 	},
 /area/centcom/solitary)
 "YM" = (
-/obj/effect/window_spawner/reinforced,
-/turf/open/floor/plating/metal,
+/obj/structure/table/woodentable,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/open/floor/linoleum,
 /area/enemy/wizard_station)
 "YN" = (
 /obj/structure/holostool,
@@ -14905,11 +14935,11 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
+aM
+wX
+wX
+wX
+aM
 ua
 ua
 ua
@@ -15162,11 +15192,11 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
+aM
+aM
+Gu
+aM
+aM
 ua
 ua
 ua
@@ -15417,15 +15447,15 @@ ua
 ua
 ua
 ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+ch
+hU
+aM
+xq
+Hs
+Kz
+aM
+ch
+hU
 ua
 ua
 "}
@@ -15659,19 +15689,6 @@ ua
 ua
 ua
 ua
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
 ua
 ua
 ua
@@ -15684,6 +15701,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+aM
+du
+iD
+aM
+BZ
+HP
+LE
+aM
+du
+du
+aM
 ua
 "}
 (21,1,1) = {"
@@ -15916,31 +15946,31 @@ ua
 ua
 ua
 ua
-Ol
-OR
-mH
-BZ
-mH
-ch
-mH
-mH
-YM
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+aM
+dU
+jk
+aM
+bK
 IV
-qc
-IV
-Ol
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bK
+aM
+UQ
+Yp
+aM
 ua
 "}
 (22,1,1) = {"
@@ -16173,31 +16203,31 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+bK
+hA
+lc
+aM
+CB
+CB
 Ol
-Dp
-mH
-BZ
-mH
-ch
-mH
-mH
+aM
+US
 YM
-UC
-UC
-TG
-Ol
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+bK
 ua
 "}
 (23,1,1) = {"
@@ -16430,19 +16460,6 @@ ua
 ua
 ua
 ua
-Ol
-mH
-mH
-mH
-mH
-mH
-mH
-mH
-YM
-YM
-YM
-YM
-Ol
 ua
 ua
 ua
@@ -16455,6 +16472,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+bK
+hR
+hR
+mM
+CB
+CB
+CB
+RM
+VI
+iZ
+bK
 ua
 "}
 (24,1,1) = {"
@@ -16687,31 +16717,31 @@ ua
 ua
 ua
 ua
-Ol
-aM
-mH
-mH
-mH
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 bK
+hR
+mj
+ou
+Dp
+CB
+CB
+TF
+VI
+Ye
 bK
-mH
-Fj
-mH
-mH
-mH
-Ol
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
 ua
 "}
 (25,1,1) = {"
@@ -16944,31 +16974,31 @@ ua
 ua
 ua
 ua
-Ol
-JI
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+aM
+hR
 mH
-mH
-mM
+qc
+EC
+CB
+OR
 TF
-uf
-mH
-mH
-mH
-mH
-Fr
-Ol
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
-ua
+WZ
+AO
+aM
 ua
 "}
 (26,1,1) = {"
@@ -17201,19 +17231,6 @@ ua
 ua
 ua
 ua
-Ol
-mj
-mH
-Kz
-mM
-CB
-RI
-Ol
-YM
-mH
-mH
-YM
-Ol
 ua
 ua
 ua
@@ -17226,6 +17243,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+aM
+aM
+aM
+aM
+bK
+JI
+bK
+aM
+aM
+aM
+aM
 ua
 "}
 (27,1,1) = {"
@@ -17458,19 +17488,6 @@ ua
 ua
 ua
 ua
-Ol
-Ol
-mH
-Ol
-Ol
-Ol
-Ol
-Ol
-UQ
-UI
-HP
-WZ
-Ol
 ua
 ua
 ua
@@ -17482,6 +17499,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+aM
+aM
+rG
+Fj
+Fj
+Fj
+TG
+aM
+aM
 ua
 ua
 "}
@@ -17715,19 +17745,6 @@ ua
 ua
 ua
 ua
-Ol
-Hs
-VI
-rG
-Ol
-hR
-hA
-Ol
-xq
-Km
-jk
-Yp
-Ol
 ua
 ua
 ua
@@ -17738,6 +17755,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+ua
+ua
+aM
+sD
+Fj
+Fj
+RI
+UC
+aM
 ua
 ua
 ua
@@ -17972,19 +18002,6 @@ ua
 ua
 ua
 ua
-Ol
-hU
-RM
-VI
-ou
-ou
-wX
-Ol
-Gu
-dU
-HP
-LE
-Ol
 ua
 ua
 ua
@@ -17995,6 +18012,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+ua
+ua
+aM
+uf
+Fr
+Km
+Fj
+UI
+aM
 ua
 ua
 ua
@@ -18229,19 +18259,6 @@ ua
 ua
 ua
 ua
-Ol
-du
-VI
-EC
-Ol
-US
-iD
-Ol
-lc
-Yp
-jk
-sD
-Ol
 ua
 ua
 ua
@@ -18252,6 +18269,19 @@ ua
 ua
 ua
 ua
+ua
+ua
+ua
+ua
+ua
+ua
+aM
+aM
+bK
+bK
+bK
+aM
+aM
 ua
 ua
 ua
@@ -18486,19 +18516,19 @@ ua
 ua
 ua
 ua
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
-Ol
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
+ua
 ua
 ua
 ua

@@ -65,8 +65,18 @@
 	icon_state = "MagiVend"
 
 	products = list(
-		/obj/item/clothing/head/wizard = 1, /obj/item/clothing/suit/wizrobe = 1, /obj/item/clothing/head/wizard/red = 1,
-		/obj/item/clothing/suit/wizrobe/red = 1, /obj/item/clothing/shoes/sandal = 1, /obj/item/staff = 2
+		// Hats
+		/obj/item/clothing/head/wizard = 1, /obj/item/clothing/head/wizard/red = 1, /obj/item/clothing/head/wizard/marisa = 1,
+		/obj/item/clothing/head/wizard/magus = 2, /obj/item/clothing/head/wizard/amp = 1,
+		// Robes
+		/obj/item/clothing/suit/wizrobe = 1, /obj/item/clothing/suit/wizrobe/red = 1, /obj/item/clothing/suit/wizrobe/marisa = 1,
+		/obj/item/clothing/suit/wizrobe/magusblue = 1, /obj/item/clothing/suit/wizrobe/magusred = 1, /obj/item/clothing/suit/wizrobe/psypurple = 1,
+		// Under
+		/obj/item/clothing/under/lightpurple = 5, /obj/item/clothing/under/psysuit = 1,
+		// Shoes
+		/obj/item/clothing/shoes/sandal = 5, /obj/item/clothing/shoes/sandal/marisa = 1,
+		// Staves
+		/obj/item/staff = 5, /obj/item/staff/broom = 1
 	)
 	contraband = list(/obj/item/reagent_holder/glass/bottle/wizarditis = 1)	// No one can get to the machine to hack it anyways; for the lulz - Microwave
 
