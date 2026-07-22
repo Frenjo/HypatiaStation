@@ -53,10 +53,6 @@
 	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
-/mob/living/bot/proc/healthcheck()
-	if(health <= 0)
-		explode()
-
 /mob/living/bot/proc/Emag(mob/user)
 	emagged = 1
 	to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
