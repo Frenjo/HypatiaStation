@@ -189,13 +189,14 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /mob/living/bot/ed209/UnarmedAttack(atom/to_attack)
 	if(iscarbon(to_attack))
 		var/mob/living/carbon/to_cuff = to_attack
-		if(to_cuff.stunned && a_intent != INTENT_HARM && !to_cuff.handcuffed)
+		if(to_cuff.stunned && !to_cuff.handcuffed)
+			visible_message(SPAN_DANGER("[to_attack] is being handcuffed by [src]!"), SPAN_NOTICE("You begin handcuffing [to_attack]..."))
 			spawn(60)
-				if(get_dist(src, target) > 1)
+				if(get_dist(src, to_attack) > 1)
 					return
 				
 				if(!to_cuff.handcuffed)
-					to_cuff.handcuffed = new /obj/item/handcuffs(target)
+					to_cuff.handcuffed = new /obj/item/handcuffs(to_attack)
 					to_cuff.update_inv_handcuffed()	//update the handcuffs overlay
 			return
 
