@@ -9,7 +9,7 @@
 //	weight = 1.0E7
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 	health = 100
-	maxhealth = 100
+	maxHealth = 100
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 
@@ -26,7 +26,6 @@
 	var/target_lastloc //Loc of target when arrested.
 	var/last_found //There's a delay
 	var/frustration = 0
-//var/emagged = 0 //Emagged Secbots view everyone as a criminal
 	var/idcheck = TRUE //If false, all station IDs are authorized for weapons.
 	var/check_records = TRUE //Does it check security records?
 	var/arrest_type = 0 //If true, don't handcuff
@@ -195,10 +194,14 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		projectile = null
 		mode = SECBOT_IDLE
 
-/mob/living/bot/ed209/process()
+/mob/living/bot/ed209/Life()
 	set background = BACKGROUND_ENABLED
+	. = ..()
 
 	if(!on)
+		return
+
+	if(client)
 		return
 
 	var/list/targets = list()
@@ -601,7 +604,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			visible_message("<b>[src]</b> points at [C.name]!")
 			mode = SECBOT_HUNT
 			spawn(0)
-				process()	// ensure bot quickly responds to a perp
+				Life()	// ensure bot quickly responds to a perp
 			break
 		else
 			continue
@@ -858,6 +861,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	new /mob/living/bot/ed209(GET_TURF(src), null, "r")
 	qdel(src)
+
 
 // ED-209 Assembly
 /obj/item/ed209_assembly

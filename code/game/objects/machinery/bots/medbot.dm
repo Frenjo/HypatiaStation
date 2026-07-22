@@ -9,12 +9,11 @@
 	icon_state = "medibot0"
 	layer = 5.0
 	density = FALSE
-	anchored = FALSE
 	health = 20
-	maxhealth = 20
+	maxHealth = 20
 	req_access = list(ACCESS_MEDICAL)
 
-	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
+	var/stun_time = 0 //It can be stunned by tasers. Delicate circuits.
 //var/emagged = 0
 	var/list/botcard_access = list(ACCESS_MEDICAL)
 	var/obj/item/reagent_holder/glass/reagent_glass = null //Can be set to draw from this for reagents.
@@ -37,7 +36,7 @@
 	var/treatment_tox = "tricordrazine"
 	var/treatment_virus = "spaceacillin"
 	var/shut_up = 0 //self explanatory :)
-
+/*
 /mob/living/bot/medbot/mysterious
 	name = "mysterious medibot"
 	desc = "International Medibot of mystery."
@@ -219,20 +218,20 @@
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
-		stunned = 0
+		stun_time = 0
 		return
 
-	if(stunned)
+	if(stun_time)
 		icon_state = "medibota"
-		stunned--
+		stun_time--
 
 		oldpatient = patient
 		patient = null
 		currently_healing = 0
 
-		if(stunned <= 0)
+		if(stun_time <= 0)
 			icon_state = "medibot[on]"
-			stunned = 0
+			stun_time = 0
 		return
 
 	if(frustration > 8)
@@ -433,7 +432,7 @@
 
 /mob/living/bot/medbot/bullet_act(obj/projectile/Proj)
 	if(Proj.flag == "taser")
-		stunned = min(stunned + 10, 20)
+		stun_time = min(stun_time + 10, 20)
 	..()
 
 /mob/living/bot/medbot/explode()
@@ -528,7 +527,7 @@
 	user.drop_from_inventory(src)
 	qdel(src)
 	return TRUE
-
+*/
 /obj/item/medbot_assembly
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."

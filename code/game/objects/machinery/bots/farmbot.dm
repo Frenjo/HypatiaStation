@@ -32,7 +32,7 @@
 	density = TRUE
 	anchored = FALSE
 	health = 50
-	maxhealth = 50
+	maxHealth = 50
 	req_access = list(ACCESS_HYDROPONICS)
 
 	var/Max_Fertilizers = 10
@@ -219,7 +219,7 @@
 	make_sparks(3, TRUE, src)
 	return ..()
 
-/mob/living/bot/farmbot/process()
+/mob/living/bot/farmbot/Life()
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
@@ -227,6 +227,9 @@
 
 	if(emagged && prob(1))
 		flick("farmbot_broke", src)
+
+	if(client)
+		return
 
 	if(mode == FARMBOT_MODE_WAITING)
 		return

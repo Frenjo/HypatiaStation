@@ -7,42 +7,62 @@
 	density = FALSE
 	anchored = FALSE
 	health = 25
-	maxhealth = 25
+	maxHealth = 25
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 //	weight = 1.0E7
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 
+
 	var/mob/target
+	/// To avoid re-targeting
 	var/oldtarget_name
-	var/threatlevel = 0
-	var/target_lastloc //Loc of target when arrested.
-	var/last_found //There's a delay
+	/// Loc of target when arrested.
+	var/target_lastloc 
+	/// There's a delay
+	var/last_found 
+	/// Give up counter
 	var/frustration = 0
-//	var/emagged = 0 //Emagged Secbots view everyone as a criminal
-	var/idcheck = 0 //If false, all station IDs are authorized for weapons.
-	var/check_records = 1 //Does it check security records?
-	var/arrest_type = 0 //If true, don't handcuff
+	/// If false, all station IDs are authorized for weapons.
+	var/idcheck = 0 
+	/// Does it check security records?
+	var/check_records = 1 
+	/// If true, don't handcuff
+	var/arrest_type = 0 
+	/// It beats simplemobs to death
 	var/next_harm_time = 0
 
+	/// What we're doing. See defines in bots.dm
 	var/mode = 0
 
-	var/auto_patrol = 0		// set to make bot automatically patrol
+	/// set to make bot automatically patrol
+	var/auto_patrol = 0		
 
-	var/beacon_freq = 1445		// navigation beacon frequency
-	var/control_freq = 1447		// bot control frequency
+	/// navigation beacon frequency
+	var/beacon_freq = 1445		
+	/// bot control frequency
+	var/control_freq = 1447		
 
-	var/turf/patrol_target	// this is turf to navigate to (location of beacon)
-	var/new_destination		// pending new destination (waiting for beacon response)
-	var/destination			// destination description tag
-	var/next_destination	// the next destination in the patrol route
-	var/list/path = new				// list of path turfs
+	/// this is turf to navigate to (location of beacon)
+	var/turf/patrol_target	
+	/// pending new destination (waiting for beacon response)
+	var/new_destination		
+	/// destination description tag
+	var/destination			
+	/// the next destination in the patrol route
+	var/next_destination	
+	/// list of path turfs
+	var/list/path = new				
 
-	var/blockcount = 0		//number of times retried a blocked path
-	var/awaiting_beacon	= 0	// count of pticks awaiting a beacon response
+	///number of times retried a blocked path
+	var/blockcount = 0		
+	/// count of life ticks awaiting a beacon response
+	var/awaiting_beacon	= 0	
 
-	var/nearest_beacon			// the nearest beacon's tag
-	var/turf/nearest_beacon_loc	// the nearest beacon's location
+	/// the nearest beacon's tag
+	var/nearest_beacon			
+	/// the nearest beacon's location
+	var/turf/nearest_beacon_loc	
 
 /mob/living/bot/secbot/beepsky
 	name = "Officer Beep O'sky"
@@ -160,8 +180,8 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			else
 				FEEDBACK_ACCESS_DENIED(user)
 	else
-		..()
-		if(!isscrewdriver(W) && W.force && !target)
+		. = ..() // returns TRUE if actual attack was made
+		if(!target && .)
 			target = user
 			mode = SECBOT_HUNT
 
@@ -183,10 +203,33 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		icon_state = "secbot[on]"
 		mode = SECBOT_IDLE
 
-/mob/living/bot/secbot/process()
+/mob/living/bot/secbot/UnarmedAttack(atom/to_attack)
+	if(iscarbon(to_attack))
+		var/mob/living/carbon/to_cuff = to_attack
+		if(to_cuff.stunned && a_intent != INTENT_HARM && !to_cuff.handcuffed)
+			spawn(60)
+				if(get_dist(src, target) > 1)
+					return
+				
+				if(!to_cuff.handcuffed)
+					to_cuff.handcuffed = new /obj/item/handcuffs(target)
+					to_cuff.update_inv_handcuffed()	//update the handcuffs overlay
+			return
+
+		stun_whack(to_attack)
+		return
+
+	return ..()
+	
+
+/mob/living/bot/secbot/Life()
 	set background = BACKGROUND_ENABLED
+	. = ..()
 
 	if(!on)
+		return
+
+	if(client)
 		return
 
 	switch(mode)
@@ -214,25 +257,15 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 						icon_state = "secbot-c"
 						spawn(2)
 							icon_state = "secbot[on]"
-						var/mob/living/carbon/M = target
 						var/maxstuns = 4
-						if(ishuman(M))
-							if(M.stuttering < 10 && (!(MUTATION_HULK in M.mutations)))
-								M.stuttering = 10
-							M.Stun(10)
-							M.Weaken(10)
-						else
-							M.Weaken(10)
-							M.stuttering = 10
-							M.Stun(10)
+						stun_whack(target)
 						maxstuns--
 						if(maxstuns <= 0)
 							target = null
-						visible_message(SPAN_DANGER("[target] has been stunned by [src]!"))
 
 						mode = SECBOT_PREP_ARREST
 						anchored = TRUE
-						target_lastloc = M.loc
+						target_lastloc = target.loc
 						return
 
 					else if(issimple(target))
@@ -348,6 +381,17 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					sleep(4)
 					patrol_step()
 
+/mob/living/bot/secbot/proc/stun_whack(mob/living/carbon/criminal)
+	if(ishuman(criminal))
+		if(criminal.stuttering < 10 && (!(MUTATION_HULK in criminal.mutations)))
+			criminal.stuttering = 10
+			criminal.Stun(10)
+			criminal.Weaken(10)
+		else
+			criminal.Weaken(10)
+			criminal.stuttering = 10
+			criminal.Stun(10)
+		visible_message(SPAN_DANGER("[criminal] has been stunned by [src]!"))
 
 // perform a single patrol step
 /mob/living/bot/secbot/proc/patrol_step()
@@ -551,6 +595,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /mob/living/bot/secbot/proc/look_for_perp()
 	anchored = FALSE
 	for(var/mob/living/M in view(7, src)) //Let's find us a criminal
+		var/threatlevel = 0
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(C.stat || C.handcuffed)
@@ -581,7 +626,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			visible_message("<b>[src]</b> points at [M.name]!")
 			mode = SECBOT_HUNT
 			spawn(0)
-				process()	// ensure bot quickly responds to a perp
+				Life()	// ensure bot quickly responds to a perp
 			break
 		else
 			continue
@@ -645,7 +690,8 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
 			D.open()
 			frustration = 0
-	else if(isliving(M) && !anchored)
+		return
+	if(isliving(M) && !anchored)
 		loc = M:loc
 		frustration = 0
 
@@ -685,24 +731,23 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	return ..()
 
 // Secbot Assembly
-/obj/item/clothing/head/helmet/attack_by(obj/item/I, mob/user)
-	if(!issignaler(I))
+/obj/item/clothing/head/helmet/attack_by(obj/item/attacking_item, mob/user)
+	if(!issignaler(attacking_item))
 		return ..()
-	var/obj/item/assembly/signaler/S = I
 
 	if(type != /obj/item/clothing/head/helmet) //Eh, but we don't want people making secbots out of space helmets.
 		return ..()
 
-	if(S.secured)
-		qdel(S)
-		var/obj/item/secbot_assembly/assembly = new /obj/item/secbot_assembly()
-		user.put_in_hands(assembly)
-		to_chat(user, SPAN_INFO("You add the signaler to the helmet."))
-		user.drop_from_inventory(src)
-		qdel(src)
-		return TRUE
+	if(!astype(attacking_item, /obj/item/assembly/signaler).secured)
+		return ..()
 
-	return ..()
+	qdel(attacking_item)
+	var/obj/item/secbot_assembly/assembly = new /obj/item/secbot_assembly()
+	user.put_in_hands(assembly)
+	to_chat(user, SPAN_INFO("You add the signaler to the helmet."))
+	user.drop_from_inventory(src)
+	qdel(src)
+	return TRUE
 
 /obj/item/secbot_assembly
 	name = "helmet/signaler assembly"

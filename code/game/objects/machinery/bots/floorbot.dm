@@ -8,7 +8,7 @@
 	density = FALSE
 	anchored = FALSE
 	health = 25
-	maxhealth = 25
+	maxHealth = 25
 	//weight = 1.0E7
 
 	req_access = list(ACCESS_CONSTRUCTION)
@@ -80,7 +80,9 @@
 		amount += loaded
 		to_chat(user, SPAN_INFO("You load [loaded] tiles into the floorbot. He now contains [amount] tiles."))
 		updateicon()
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
+		return
+	
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(usr) && !open && !emagged)
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
@@ -92,8 +94,9 @@
 			else
 				FEEDBACK_ACCESS_DENIED(user)
 		updateUsrDialog()
-	else
-		..()
+		return
+	
+	return ..()
 
 /mob/living/bot/floorbot/Emag(mob/user)
 	. = ..()
@@ -137,13 +140,19 @@
 					targetdirection = null
 			updateUsrDialog()
 
-/mob/living/bot/floorbot/process()
+/mob/living/bot/floorbot/Life()
 	set background = BACKGROUND_ENABLED
+	. = ..()
 
 	if(!on)
 		return
+
 	if(repairing)
 		return
+		
+	if(client)
+		return
+
 	var/list/floorbottargets = list()
 	if(amount <= 0 && ((target == null) || !target))
 		if(eattiles)
@@ -333,7 +342,7 @@
 		target = null
 		repairing = FALSE
 
-/mob/living/bot/floorbot/proc/updateicon()
+/mob/living/bot/floorbot/updateicon()
 	if(amount > 0)
 		icon_state = "floorbot[on]"
 	else

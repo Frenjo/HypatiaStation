@@ -31,12 +31,13 @@
 	small = 1
 	speak_emote = list("beeps","clicks","chirps")
 
+	req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
+
 	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
-	var/list/req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
 
 	var/obj/item/held_item = null //Storage for single item they can hold.
 	var/emagged = 0               //IS WE EXPLODEN?

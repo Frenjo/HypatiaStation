@@ -14,10 +14,10 @@
 	anchored = TRUE
 	animate_movement = 1
 	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
-	maxhealth = 150
+	maxHealth = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
-
+	
 	var/static/static_mulebot_id = 0
 	suffix = ""
 
@@ -56,7 +56,7 @@
 	var/datum/wires/mulebot/wires = null
 
 	var/bloodiness = 0	// count of bloodiness
-
+	
 /mob/living/bot/mulebot/New()
 	. = ..()
 	if(!suffix)
@@ -105,7 +105,9 @@
 		C.forceMove(src)
 		cell = C
 		updateDialog()
-	else if(isscrewdriver(I))
+		return
+	
+	if(isscrewdriver(I))
 		if(locked)
 			to_chat(user, SPAN_WARNING("The maintenance panel cannot be opened or closed while the controls are locked."))
 			return
@@ -120,26 +122,29 @@
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open)
 
 		updateDialog()
-	else if(iswrench(I))
-		if(health < maxhealth)
-			health = min(maxhealth, health + 25)
-			user.visible_message(
-				SPAN_NOTICE("[user] repairs [src]!"),
-				SPAN_NOTICE("You repair [src]!")
-			)
-		else
+		return
+
+	if(iswrench(I))
+		if(health >= maxHealth)
 			to_chat(user, SPAN_WARNING("[src] does not need repairs!"))
-	else if(load && ismob(load))  // chance to knock off rider
-		if(prob(1 + I.force * 2))
+			return
+		health = min(maxHealth, health + 25)
+		user.visible_message(
+			SPAN_NOTICE("[user] repairs [src]!"),
+			SPAN_NOTICE("You repair [src]!")
+		)
+		return
+			
+	if(load && ismob(load))  // chance to knock off rider
+		if(!prob(1 + I.force * 2))
+			to_chat(user, SPAN_WARNING("You hit [src] with \the [I] but to no effect."))
+		else
 			unload(0)
 			user.visible_message(
 				SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"),
 				SPAN_WARNING("You knock [load] off [src] with \the [I]!")
 			)
-		else
-			to_chat(user, SPAN_WARNING("You hit [src] with \the [I] but to no effect."))
-	else
-		..()
+	return ..()
 
 /mob/living/bot/mulebot/ex_act(severity)
 	unload(0)
@@ -476,10 +481,15 @@
 				M.client.eye = src
 	mode = 0
 
-/mob/living/bot/mulebot/process()
+/mob/living/bot/mulebot/Life()
+	. = ..()
 	if(!has_power())
 		on = FALSE
 		return
+
+	if(client)
+		return
+	
 	if(on)
 		var/speed = (wires.Motor1() ? 1:0) + (wires.Motor2() ? 2:0)
 		//to_world("speed: [speed]")
@@ -712,9 +722,6 @@
 				M.lying = 1
 	..()
 
-/mob/living/bot/mulebot/alter_health()
-	return GET_TURF(src)
-
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
 /mob/living/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
@@ -887,3 +894,4 @@
 	new /obj/effect/decal/cleanable/blood/oil(loc)
 	unload(0)
 	return ..()
+	

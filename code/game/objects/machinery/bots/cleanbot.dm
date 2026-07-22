@@ -34,7 +34,7 @@
 	var/list/patrol_path = null
 	/// Frequency of navigation beacons
 	var/beacon_freq = 1445	
-	/// We go to the closest signal, so this is the closest we've been to a signal. It doesn't reset. Won't that mean if you get signaled while really close, far signals won't work again? probably.
+	/// We go to the closest signal, so this is the closest we've been to a signal. It doesn't reset. Won't that mean if you get signaled while really close, far signals won't work again? probably, who knows.
 	var/closest_dist
 	/// The loc that won the closest_dist competition
 	var/closest_loc
@@ -158,7 +158,14 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		return
 
 	to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
-		
+
+/mob/living/bot/cleanbot/UnarmedAttack(atom/to_attack)
+	if(!istype(to_attack, /turf)) // we can't click on decals. for some reason.
+		return ..()
+	var/decal = locate(/obj/effect/decal/cleanable) in to_attack
+	if(!decal)
+		return ..()
+	clean(decal)
 
 /mob/living/bot/cleanbot/Emag(mob/user)
 	. = ..()
@@ -179,27 +186,30 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	if(!screwloose && !oddbutton && prob(5))
 		visible_message("[src] makes an excited beeping booping sound!")
 
-	if(screwloose && prob(5))
-		if(isopenturf(loc))
-			var/turf/open/T = loc
-			if(T.wet < 1)
-				T.wet = TRUE
-				if(T.wet_overlay)
-					T.remove_overlay(T.wet_overlay)
-					T.wet_overlay = null
-				T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
-				T.add_overlay(T.wet_overlay)
-				spawn(800)
-					if(istype(T) && T.wet < 2)
-						T.wet = FALSE
-						if(T.wet_overlay)
-							T.remove_overlay(T.wet_overlay)
-							T.wet_overlay = null
+	if(screwloose && prob(5) && isopenturf(loc))
+		var/turf/open/T = loc
+		if(T.wet < 1)
+			T.wet = TRUE
+			if(T.wet_overlay)
+				T.remove_overlay(T.wet_overlay)
+				T.wet_overlay = null
+			T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
+			T.add_overlay(T.wet_overlay)
+			spawn(800)
+				if(istype(T) && T.wet < 2)
+					T.wet = FALSE
+					if(T.wet_overlay)
+						T.remove_overlay(T.wet_overlay)
+						T.wet_overlay = null
 	if(oddbutton && prob(5))
 		visible_message("Something flies out of [src]. He seems to be acting oddly.")
 		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(loc)
 		//gib.streak(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		oldtarget = gib
+
+	if(client)
+		return // No ai if we're occupied
+
 	if(!target)
 		for(var/obj/effect/decal/cleanable/D in view(7, src))
 			for(var/T in target_types)

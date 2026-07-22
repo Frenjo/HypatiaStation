@@ -116,7 +116,7 @@
 		return	
 
 	if(!hasvar(attacking_item, "force") || !hasvar(attacking_item, "damtype"))
-		return ..()
+		return
 		
 	var/damage = null
 	switch(attacking_item.damtype)
@@ -128,6 +128,7 @@
 			damage = attacking_item.force
 
 	apply_damage(damage, attacking_item.damtype)
+	return TRUE
 
 /mob/living/bot/bullet_act(obj/projectile/bullet)
 	if(bullet.damage_type != BRUTE && bullet.damage_type != BURN)
