@@ -15,9 +15,11 @@
 	name = "Inaprovaline"
 	id = "inaprovaline"
 	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = 0.5 * REAGENTS_METABOLISM
 	overdose = REAGENTS_OVERDOSE*2
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/inaprovaline/on_mob_life(mob/living/carbon/C, alien)
 	if(alien && alien == IS_VOX)
@@ -25,16 +27,16 @@
 	else
 		if(C.losebreath >= 10)
 			C.losebreath = max(10, C.losebreath - 5)
-
-	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
+	. = ..()
 
 /datum/reagent/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/bicaridine/on_mob_life(mob/living/carbon/C, alien)
 	if(C.stat == DEAD)
@@ -47,9 +49,10 @@
 	name = "Kelotane"
 	id = "kelotane"
 	description = "Kelotane is a drug used to treat burns."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/kelotane/on_mob_life(mob/living/carbon/C)
 	if(C.stat == DEAD)
@@ -62,6 +65,7 @@
 	name = "Dylovene"
 	id = "dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -77,9 +81,10 @@
 	name = "Dexalin"
 	id = "dexalin"
 	description = "Dexalin is used in the treatment of oxygen deprivation."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/dexalin/on_mob_life(mob/living/carbon/C, alien)
 	if(C.stat == DEAD)
@@ -90,8 +95,7 @@
 	else if(!alien || alien != IS_DIONA)
 		C.adjustOxyLoss(-2 * REM)
 
-	if(holder.has_reagent("lexorin"))
-		holder.remove_reagent("lexorin", 2 * REM)
+	holder.remove_reagent("lexorin", 2 * REM)
 	. = ..()
 
 // Added cordrazine for fluff reasons, half as effective as tricordrazine. -Frenjo
@@ -99,6 +103,7 @@
 	name = "Cordrazine"
 	id = "cordrazine"
 	description = "Cordrazine is a stimulant, originally derived from inaprovaline. Can be used to treat a wide range of injuries."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#DDC8EA" // rgb: 221, 200, 234 - I was aiming for a lighter version of tricordrazine.
 
@@ -120,6 +125,7 @@
 	name = "Tricordrazine"
 	id = "tricordrazine"
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -141,10 +147,11 @@
 	name = "Hyronalin"
 	id = "hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of radiation poisoning."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/hyronalin/on_mob_life(mob/living/carbon/C)
 	C.radiation = max(C.radiation - 3 * REM,0)
@@ -154,20 +161,23 @@
 	name = "Spaceacillin"
 	id = "spaceacillin"
 	description = "An all-purpose antiviral agent."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.01
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/toxin/soporific
 	name = "Soporific"
 	id = "soporific"
 	description = "An effective hypnotic used to treat insomnia."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#E895CC" // rgb: 232, 149, 204
-	toxpwr = 0
 	custom_metabolism = 0.1
 	overdose = REAGENTS_OVERDOSE
+	color = "#E895CC" // rgb: 232, 149, 204
+
+	toxpwr = 0
 
 /datum/reagent/toxin/soporific/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
@@ -181,10 +191,10 @@
 		if(15 to 49)
 			if(prob(50))
 				C.Weaken(2)
-			C.drowsyness  = max(C.drowsyness, 20)
+			C.drowsyness = max(C.drowsyness, 20)
 		if(50 to INFINITY)
 			C.Weaken(20)
-			C.drowsyness  = max(C.drowsyness, 30)
+			C.drowsyness = max(C.drowsyness, 30)
 	data["special"]++
 	. = ..()
 
@@ -193,6 +203,7 @@
 	name = "Atropine"
 	id = "atropine"
 	description = "If a patient is in critical condition, rapidly heals all damage types as well as regulating oxygen in the body. Excellent for stabilizing wounded patients."
+
 	reagent_state = REAGENT_LIQUID
 	custom_metabolism = 0.25 * REAGENTS_METABOLISM
 	overdose = REAGENTS_OVERDOSE + 5
@@ -213,13 +224,15 @@
 				C.adjustOxyLoss(-3 * REM)
 		if(C.losebreath)
 			C.losebreath = 0
+	. = ..()
 
 /datum/reagent/salicylic_acid
 	name = "Salicylic Acid"
 	id = "salicylic"
 	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will worsen existing bruising."
+
 	reagent_state = REAGENT_LIQUID
-	custom_metabolism = 0.5 *  REAGENTS_METABOLISM
+	custom_metabolism = 0.5 * REAGENTS_METABOLISM
 	overdose = REAGENTS_OVERDOSE - 5
 	color = "#D2D2D2"
 
@@ -234,9 +247,10 @@
 	name = "Dermaline"
 	id = "dermaline"
 	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
+
 	reagent_state = REAGENT_LIQUID
+	overdose = REAGENTS_OVERDOSE / 2
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/dermaline/on_mob_life(mob/living/carbon/C, alien)
 	if(C.stat == DEAD) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
@@ -249,6 +263,7 @@
 	name = "Thializid"
 	id = "thializid"
 	description = "A potent antidote for intravenous use with a narrow therapeutic index."
+
 	reagent_state = REAGENT_LIQUID
 	custom_metabolism = 0.75 * REAGENTS_METABOLISM
 	overdose = REAGENTS_OVERDOSE / 5
@@ -257,8 +272,8 @@
 /datum/reagent/thializid/on_mob_life(mob/living/carbon/C, alien)
 	if(!alien || alien != IS_DIONA)
 		C.adjustToxLoss(-3.34 * REM)
-		for(var/datum/reagent/chem in C.reagents.reagent_list)
-			if(chem.type == src.type)
+		for_no_type_check(var/datum/reagent/chem, C.reagents.reagent_list)
+			if(chem.type == type)
 				continue
 			C.reagents.remove_reagent(chem, 0.27 * REAGENTS_METABOLISM)
 	. = ..()
@@ -267,9 +282,10 @@
 	name = "Dexalin Plus"
 	id = "dexalinp"
 	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
+
 	reagent_state = REAGENT_LIQUID
+	overdose = REAGENTS_OVERDOSE / 2
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/dexalinp/on_mob_life(mob/living/carbon/C, alien)
 	if(C.stat == DEAD)
@@ -280,18 +296,18 @@
 	else if(!alien || alien != IS_DIONA)
 		C.adjustOxyLoss(-C.getOxyLoss())
 
-	if(holder.has_reagent("lexorin"))
-		holder.remove_reagent("lexorin", 2 * REM)
+	holder.remove_reagent("lexorin", 2 * REM)
 	. = ..()
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
 	id = "arithrazine"
 	description = "Arithrazine is an unstable medication used for the most extreme cases of radiation poisoning."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/arithrazine/on_mob_life(mob/living/carbon/C)
 	if(C.stat == DEAD)
@@ -306,9 +322,11 @@
 	name = "Soporific Rejuvenant"
 	id = "stoxin2"
 	description = "Put people to sleep, and heals them."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = 0.2
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/srejuvenate/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
@@ -316,12 +334,11 @@
 	data["special"]++
 	if(C.losebreath >= 10)
 		C.losebreath = max(10, C.losebreath - 10)
-	holder.remove_reagent(id, 0.2)
 	switch(data["special"])
 		if(1 to 15)
 			C.eye_blurry = max(C.eye_blurry, 10)
 		if(15 to 25)
-			C.drowsyness  = max(C.drowsyness, 20)
+			C.drowsyness = max(C.drowsyness, 20)
 		if(25 to INFINITY)
 			C.sleeping += 1
 			C.adjustOxyLoss(-C.getOxyLoss())
@@ -340,9 +357,10 @@
 	name = "Ryetalyn"
 	id = "ryetalyn"
 	description = "Ryetalyn can cure all genetic abnomalities via a catalytic process."
+
 	reagent_state = REAGENT_SOLID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/ryetalyn/on_mob_life(mob/living/carbon/C)
 	var/needs_update = length(C.mutations)
@@ -362,10 +380,11 @@
 	name = "Alkysine"
 	id = "alkysine"
 	description = "Alkysine is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/alkysine/on_mob_life(mob/living/carbon/C)
 	C.adjustBrainLoss(-3 * REM)
@@ -375,9 +394,10 @@
 	name = "Imidazoline"
 	id = "imidazoline"
 	description = "Heals eye damage"
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/imidazoline/on_mob_life(mob/living/carbon/C)
 	C.eye_blurry = max(C.eye_blurry - 5 , 0)
@@ -394,18 +414,18 @@
 	name = "Synaptizine"
 	id = "synaptizine"
 	description = "Synaptizine is used to treat various diseases."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.01
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/synaptizine/on_mob_life(mob/living/carbon/C)
 	C.drowsyness = max(C.drowsyness - 5, 0)
 	C.AdjustParalysis(-1)
 	C.AdjustStunned(-1)
 	C.AdjustWeakened(-1)
-	if(holder.has_reagent("mindbreaker"))
-		holder.remove_reagent("mindbreaker", 5)
+	holder.remove_reagent("mindbreaker", 5)
 	C.hallucination = max(0, C.hallucination - 10)
 	if(prob(60))
 		C.adjustToxLoss(1)
@@ -415,9 +435,10 @@
 	name = "Leporazine"
 	id = "leporazine"
 	description = "Leporazine can be use to stabilize an individual's body temperature."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/leporazine/on_mob_life(mob/living/carbon/C)
 	if(C.bodytemperature > 310)
@@ -430,9 +451,10 @@
 	name = "Rezadone"
 	id = "rezadone"
 	description = "A powder derived from fish toxin, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
+
 	reagent_state = REAGENT_SOLID
-	color = "#669900" // rgb: 102, 153, 0
 	overdose = REAGENTS_OVERDOSE
+	color = "#669900" // rgb: 102, 153, 0
 
 /datum/reagent/rezadone/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
@@ -456,9 +478,10 @@
 	name = "Peridaxon"
 	id = "peridaxon"
 	description = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = 10
+	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/peridaxon/on_mob_life(mob/living/carbon/C)
 	if(ishuman(C))
@@ -473,9 +496,10 @@
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
 	description = "A powerful oxidizer that reacts with ethanol."
+
 	reagent_state = REAGENT_SOLID
-	color = "#605048" // rgb: 96, 80, 72
 	overdose = REAGENTS_OVERDOSE
+	color = "#605048" // rgb: 96, 80, 72
 
 /datum/reagent/ethylredoxrazine/on_mob_life(mob/living/carbon/C)
 	C.dizziness = 0
@@ -490,6 +514,7 @@
 	name = "Cryoxadone"
 	id = "cryoxadone"
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the targets body temperature must be under 170K for it to metabolise correctly."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -505,6 +530,7 @@
 	name = "Clonexadone"
 	id = "clonexadone"
 	description = "A liquid compound similar to that used in the cloning process. Can be used to 'finish' the cloning process when used in conjunction with a cryo tube."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -521,6 +547,7 @@
 	name = "Sterilizine"
 	id = "sterilizine"
 	description = "Sterilizes wounds in preparation for surgery."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -545,6 +572,7 @@
 	name = "Adminordrazine"
 	id = "adminordrazine"
 	description = "It's magic. We don't have to explain it."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 

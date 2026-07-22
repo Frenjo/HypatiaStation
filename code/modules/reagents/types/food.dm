@@ -5,6 +5,7 @@
 	name = "Nutriment"
 	id = "nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
+
 	reagent_state = REAGENT_SOLID
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
@@ -12,7 +13,6 @@
 /datum/reagent/nutriment/on_mob_life(mob/living/carbon/C)
 	if(prob(50))
 		C.heal_organ_damage(1, 0)
-	C.nutrition += nutriment_factor	// For hunger and fatness
 /*
 				// If overeaten - vomit and fall down
 				// Makes you feel bad but removes reagents and some effect
@@ -36,18 +36,15 @@
 	name = "Stokaline"
 	id = "stokaline"
 	description = "A synthetic vitamin supplement for the health conscious spacer. Don't take too much at once."
+
 	reagent_state = REAGENT_LIQUID
-
 	// Okay so this code is untested but I hope it works like I think it does. -Frenjo
-	custom_metabolism = REAGENTS_METABOLISM
 	nutriment_factor = 25 * REAGENTS_METABOLISM
-
-	color = "#665145" // rgb: 102, 81, 69 - Sort of a more grey nutriment.
 	overdose = REAGENTS_OVERDOSE / 3 // 30 becomes 10. -Frenjo
+	color = "#665145" // rgb: 102, 81, 69 - Sort of a more grey nutriment.
 
 /datum/reagent/stokaline/on_mob_life(mob/living/carbon/C)
 	//if(prob(50)) M.heal_organ_damage(1,0)
-	C.nutrition += nutriment_factor	// For hunger and fatness
 
 	// Basically a copy of the commented out nutriment code with added overdose condition.
 	// I'll probably tweak this later to make it less severe after testing. -Frenjo
@@ -74,22 +71,23 @@
 	name = "Lipozine" // The anti-nutriment.
 	id = "lipozine"
 	description = "A chemical compound that causes a powerful fat-burning reaction."
+
 	reagent_state = REAGENT_LIQUID
-	nutriment_factor = 10 * REAGENTS_METABOLISM
-	color = "#BBEDA4" // rgb: 187, 237, 164
+	nutriment_factor = -(10 * REAGENTS_METABOLISM)
 	overdose = REAGENTS_OVERDOSE
+	color = "#BBEDA4" // rgb: 187, 237, 164
 
 /datum/reagent/lipozine/on_mob_life(mob/living/carbon/C)
-	C.nutrition -= nutriment_factor
+	. = ..()
 	C.overeatduration = 0
 	if(C.nutrition < 0)//Prevent from going into negatives.
 		C.nutrition = 0
-	. = ..()
 
 /datum/reagent/soysauce
 	name = "Soysauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
+
 	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
@@ -98,6 +96,7 @@
 	name = "Ketchup"
 	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
+
 	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
@@ -106,7 +105,9 @@
 	name = "Capsaicin Oil"
 	id = "capsaicin"
 	description = "This is what makes chilis hot."
+
 	reagent_state = REAGENT_LIQUID
+	custom_metabolism = FOOD_METABOLISM
 	color = "#B31008" // rgb: 179, 16, 8
 
 /datum/reagent/capsaicin/on_mob_life(mob/living/carbon/C)
@@ -115,8 +116,7 @@
 	switch(data["special"])
 		if(1 to 15)
 			C.bodytemperature += 5 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(holder.has_reagent("frostoil"))
-				holder.remove_reagent("frostoil", 5)
+			holder.remove_reagent("frostoil", 5)
 			if(isslime(C))
 				C.bodytemperature += rand(5, 20)
 		if(15 to 25)
@@ -127,7 +127,6 @@
 			C.bodytemperature += 15 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(isslime(C))
 				C.bodytemperature += rand(15, 20)
-	holder.remove_reagent(id, FOOD_METABOLISM)
 	data["special"]++
 	. = ..()
 
@@ -135,6 +134,7 @@
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defence and in police work."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
 
@@ -196,12 +196,15 @@
 /datum/reagent/condensedcapsaicin/on_mob_life(mob/living/carbon/C)
 	if(prob(5))
 		C.visible_message(SPAN_WARNING("[C] [pick("dry heaves!", "coughs!", "splutters!")]"))
+	. = ..()
 
 /datum/reagent/frostoil
 	name = "Frost Oil"
 	id = "frostoil"
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
+
 	reagent_state = REAGENT_LIQUID
+	custom_metabolism = FOOD_METABOLISM
 	color = "#B31008" // rgb: 139, 166, 233
 
 /datum/reagent/frostoil/on_mob_life(mob/living/carbon/C)
@@ -210,8 +213,7 @@
 	switch(data["special"])
 		if(1 to 15)
 			C.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(holder.has_reagent("capsaicin"))
-				holder.remove_reagent("capsaicin", 5)
+			holder.remove_reagent("capsaicin", 5)
 			if(isslime(C))
 				C.bodytemperature -= rand(5, 20)
 		if(15 to 25)
@@ -225,7 +227,6 @@
 			if(isslime(C))
 				C.bodytemperature -= rand(15, 20)
 	data["special"]++
-	holder.remove_reagent(id, FOOD_METABOLISM)
 	. = ..()
 
 /datum/reagent/frostoil/reaction_turf(turf/open/T, volume)
@@ -236,14 +237,16 @@
 	name = "Table Salt"
 	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
+
 	reagent_state = REAGENT_SOLID
-	color = "#FFFFFF" // rgb: 255,255,255
 	overdose = REAGENTS_OVERDOSE
+	color = "#FFFFFF" // rgb: 255,255,255
 
 /datum/reagent/blackpepper
 	name = "Black Pepper"
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
+
 	reagent_state = REAGENT_SOLID
 	// no color (ie, black)
 
@@ -251,20 +254,18 @@
 	name = "Coco Powder"
 	id = "coco"
 	description = "A fatty, bitter paste made from coco beans."
+
 	reagent_state = REAGENT_SOLID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-
-/datum/reagent/coco/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
-	. = ..()
 
 /datum/reagent/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
 	description = "A strong psychotropic derived from certain species of mushroom."
-	color = "#E700E7" // rgb: 231, 0, 231
+
 	overdose = REAGENTS_OVERDOSE
+	color = "#E700E7" // rgb: 231, 0, 231
 
 /datum/reagent/psilocybin/on_mob_life(mob/living/carbon/C)
 	C.druggy = max(C.druggy, 30)
@@ -293,7 +294,6 @@
 			C.druggy = max(C.druggy, 40)
 			if(prob(30))
 				C.emote(pick("twitch", "giggle"))
-	holder.remove_reagent(id, 0.2)
 	data["special"]++
 	. = ..()
 
@@ -301,11 +301,11 @@
 	name = "Sprinkles"
 	id = "sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
+
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FF00FF" // rgb: 255, 0, 255
 
 /datum/reagent/sprinkles/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		if(H.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
@@ -337,13 +337,10 @@
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
+
 	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 20 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-
-/datum/reagent/cornoil/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
-	. = ..()
 
 /datum/reagent/cornoil/reaction_turf(turf/open/T, volume)
 	if(!istype(T))
@@ -380,32 +377,30 @@
 	name = "Universal Enzyme"
 	id = "enzyme"
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#365E30" // rgb: 54, 94, 48
 	overdose = REAGENTS_OVERDOSE
+	color = "#365E30" // rgb: 54, 94, 48
 
 /datum/reagent/dry_ramen
 	name = "Dry Ramen"
 	id = "dry_ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
+
 	reagent_state = REAGENT_SOLID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-
-/datum/reagent/dry_ramen/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
-	. = ..()
 
 /datum/reagent/hot_ramen
 	name = "Hot Ramen"
 	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
+
 	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/hot_ramen/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
 	if(C.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 		C.bodytemperature = min(310, C.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	. = ..()
@@ -414,12 +409,12 @@
 	name = "Hell Ramen"
 	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
+
 	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/hell_ramen/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
 	C.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 	. = ..()
 
@@ -443,27 +438,20 @@
 					new /obj/effect/decal/cleanable/flour(T)
 */
 
-
 /datum/reagent/rice
 	name = "Rice"
 	id = "rice"
 	description = "Enjoy the great taste of nothing."
+
 	reagent_state = REAGENT_SOLID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FFFFFF" // rgb: 0, 0, 0
-
-/datum/reagent/rice/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
-	. = ..()
 
 /datum/reagent/cherryjelly
 	name = "Cherry Jelly"
 	id = "cherryjelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
+
 	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#801E28" // rgb: 128, 30, 40
-
-/datum/reagent/cherryjelly/on_mob_life(mob/living/carbon/C)
-	C.nutrition += nutriment_factor
-	. = ..()

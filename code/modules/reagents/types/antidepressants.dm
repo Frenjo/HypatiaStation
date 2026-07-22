@@ -2,10 +2,11 @@
 	name = "Methylphenidate"
 	id = "methylphenidate"
 	description = "Improves the ability to concentrate."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
 	data = list("special" = 0)
+	custom_metabolism = 0.01
+	color = "#C8A5DC"
 
 /datum/reagent/antidepressant/methylphenidate/on_mob_life(mob/living/carbon/C)
 	if(volume <= 0.1)
@@ -22,10 +23,11 @@
 	name = "Citalopram"
 	id = "citalopram"
 	description = "Stabilizes the mind a little."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
 	data = list("special" = 0)
+	custom_metabolism = 0.01
+	color = "#C8A5DC"
 
 /datum/reagent/antidepressant/citalopram/on_mob_life(mob/living/carbon/C)
 	if(volume <= 0.1)
@@ -42,10 +44,11 @@
 	name = "Paroxetine"
 	id = "paroxetine"
 	description = "Stabilizes the mind greatly, but has a chance of adverse effects."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
 	data = list("special" = 0)
+	custom_metabolism = 0.01
+	color = "#C8A5DC"
 
 /datum/reagent/antidepressant/paroxetine/on_mob_life(mob/living/carbon/C)
 	if(volume <= 0.1)
