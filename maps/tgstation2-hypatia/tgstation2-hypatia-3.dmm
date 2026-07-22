@@ -500,7 +500,7 @@
 /obj/structure/computerframe{
 	anchored = TRUE
 	},
-/turf/space,
+/turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "hz" = (
 /obj/item/radio/intercom{
