@@ -16,8 +16,6 @@
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/sharp = 0	// whether this object cuts
 	var/edge = 0	// whether this object is more likely to dismember
-	var/in_use = FALSE 	// If we have a user using us, this will be set to TRUE.
-						// We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 
 	var/damtype = "brute"
 	var/force = 0
@@ -54,7 +52,7 @@
 	//DEFAULT: Take air from turf to give to have mob process
 	return (breath_request > 0) ? remove_air(breath_request) : null
 
-/obj/proc/updateUsrDialog()
+/atom/movable/proc/updateUsrDialog()
 	if(in_use)
 		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
@@ -77,7 +75,7 @@
 						attack_hand(usr)
 		in_use = is_in_use
 
-/obj/proc/updateDialog()
+/atom/movable/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
 	if(in_use)
 		var/list/nearby = viewers(1, src)
@@ -91,7 +89,7 @@
 		if(!ai_in_use && !is_in_use)
 			in_use = FALSE
 
-/obj/proc/interact(mob/user)
+/atom/movable/proc/interact(mob/user)
 	return
 
 /obj/proc/update_icon()

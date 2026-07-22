@@ -1,37 +1,53 @@
 // Cleanbot
-/obj/machinery/bot/cleanbot
+/mob/living/bot/cleanbot
 	name = "cleanbot"
 	desc = "A little cleaning robot. He looks so excited!"
 	icon = 'icons/mob/bot/cleanbot.dmi'
 	icon_state = "cleanbot0"
 	layer = 5
 	density = FALSE
-	anchored = FALSE
 	//weight = 1.0E7
 	health = 25
-	maxhealth = 25
+	maxHealth = 25
 
 	req_access = list(ACCESS_JANITOR)
 
+	/// If we are actively cleaning
 	var/cleaning = FALSE
+	/// If our screw's been... twiddled. It makes us leaky
 	var/screwloose = FALSE
+	/// If our odd button (?) has been pressed. It makes us eject gibs
 	var/oddbutton = FALSE
+	/// Whether we clean blood
 	var/blood = TRUE
+	/// The types of things we're allowed to clean. Why isn't blood part of this? fuck if I know
 	var/list/target_types = list()
+	/// Currently pathfinding towards this one
 	var/obj/effect/decal/cleanable/target
+	/// Exists to avoid trying and failing the same target multiple times in a row
 	var/obj/effect/decal/cleanable/oldtarget
+	/// Exists to reset oldtarget when we move
 	var/oldloc = null
+	/// The actual path we've gotten from pathfinding
 	var/list/path = list()
+	/// This is also just an actual path
 	var/list/patrol_path = null
-	var/beacon_freq = 1445		// navigation beacon frequency
+	/// Frequency of navigation beacons
+	var/beacon_freq = 1445	
+	/// We go to the closest signal, so this is the closest we've been to a signal. It doesn't reset. Won't that mean if you get signaled while really close, far signals won't work again? probably.
 	var/closest_dist
+	/// The loc that won the closest_dist competition
 	var/closest_loc
+	/// If we fail to move four times, we give up
 	var/failed_steps
+	/// Patrolling toggle
 	var/should_patrol
+	/// Next destination while we're patrolling. Only exists to avoid repeatedly resetting the next destination, next_dest_loc is the important part
 	var/next_dest
+	/// The actual place we're going, while patrolling
 	var/next_dest_loc
 
-/obj/machinery/bot/cleanbot/New()
+/mob/living/bot/cleanbot/New()
 	. = ..()
 	get_targets()
 	icon_state = "cleanbot[on]"
@@ -46,16 +62,16 @@
 
 	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 
-/obj/machinery/bot/cleanbot/Destroy()
+/mob/living/bot/cleanbot/Destroy()
 	unregister_radio(src, beacon_freq)
 	return ..()
 
-/obj/machinery/bot/cleanbot/turn_on()
+/mob/living/bot/cleanbot/turn_on()
 	. = ..()
 	icon_state = "cleanbot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/turn_off()
+/mob/living/bot/cleanbot/turn_off()
 	. = ..()
 	if(isnotnull(target))
 		target.targeted_by = null
@@ -66,14 +82,14 @@
 	path = list()
 	updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attack_hand(mob/user)
+/mob/living/bot/cleanbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/bot/cleanbot/interact(mob/user)
+/mob/living/bot/cleanbot/interact(mob/user)
 	var/dat
 	dat += {"
 <TT><B>Automatic Station Cleaner v1.0</B></TT><BR><BR>
@@ -92,7 +108,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	SHOW_BROWSER(user, "<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
 	onclose(user, "autocleaner")
 
-/obj/machinery/bot/cleanbot/Topic(href, href_list)
+/mob/living/bot/cleanbot/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -125,22 +141,26 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 			to_chat(usr, SPAN_NOTICE("You press the weird button."))
 			updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
-		if(allowed(usr) && !open && !emagged)
-			locked = !locked
-			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
-		else
-			if(emagged)
-				FEEDBACK_ERROR_GENERIC(user)
-			if(open)
-				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
-			else
-				FEEDBACK_ACCESS_DENIED(user)
-	else
+/mob/living/bot/cleanbot/attackby(obj/item/attacking_item, mob/user)
+	if(!istype(attacking_item, /obj/item/card/id) && istype(attacking_item, /obj/item/pda))
 		return ..()
+	if(allowed(usr) && !open && !emagged)
+		locked = !locked
+		FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
+		return
 
-/obj/machinery/bot/cleanbot/Emag(mob/user)
+	if(emagged)
+		FEEDBACK_ERROR_GENERIC(user)
+		return
+
+	if(!open)
+		FEEDBACK_ACCESS_DENIED(user)
+		return
+
+	to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
+		
+
+/mob/living/bot/cleanbot/Emag(mob/user)
 	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -148,8 +168,8 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		oddbutton = TRUE
 		screwloose = TRUE
 
-/obj/machinery/bot/cleanbot/process()
-	set background = BACKGROUND_ENABLED
+/mob/living/bot/cleanbot/Life()
+	. = ..()
 
 	if(!on)
 		return
@@ -248,7 +268,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 
 	oldloc = loc
 
-/obj/machinery/bot/cleanbot/proc/patrol_move()
+/mob/living/bot/cleanbot/proc/patrol_move()
 	if(!length(patrol_path))
 		return
 
@@ -267,7 +287,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	else
 		failed_steps = 0
 
-/obj/machinery/bot/cleanbot/receive_signal(datum/signal/signal)
+/mob/living/bot/cleanbot/receive_signal(datum/signal/signal)
 	if(!..())
 		return
 
@@ -286,7 +306,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		next_dest_loc = signal.source.loc
 		next_dest = signal.data["next_patrol"]
 
-/obj/machinery/bot/cleanbot/proc/get_targets()
+/mob/living/bot/cleanbot/proc/get_targets()
 	target_types = list(
 		/obj/effect/decal/cleanable/blood/oil,
 		/obj/effect/decal/cleanable/vomit,
@@ -299,7 +319,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	if(blood)
 		target_types.Add(/obj/effect/decal/cleanable/blood)
 
-/obj/machinery/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/target)
+/mob/living/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/target)
 	anchored = TRUE
 	icon_state = "cleanbot-c"
 	visible_message(SPAN_WARNING("[src] begins to clean up the [target]."))
@@ -317,7 +337,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		anchored = FALSE
 		target = null
 
-/obj/machinery/bot/cleanbot/explode()
+/mob/living/bot/cleanbot/explode()
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
@@ -367,7 +387,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	if(istype(I, /obj/item/robot_part/l_arm) || istype(I, /obj/item/robot_part/r_arm))
 		user.drop_item()
 		qdel(I)
-		var/obj/machinery/bot/cleanbot/bot = new /obj/machinery/bot/cleanbot(GET_TURF(src))
+		var/mob/living/bot/cleanbot/bot = new /mob/living/bot/cleanbot(GET_TURF(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
 		user.drop_from_inventory(src)
