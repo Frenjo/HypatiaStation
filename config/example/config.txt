@@ -14,8 +14,8 @@ HOSTEDBY
 
 ### TICK ###
 
-## Defines the ticklag for the world. 0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.9
+## Defines the ticklag for the world.
+TICKLAG 0.2
 
 ### URLS ###
 
@@ -379,3 +379,5 @@ GATEWAY_DELAY 18000
 
 ## Configures the brightness of ambient starlight on space tiles.
 STARLIGHT 2
+
+

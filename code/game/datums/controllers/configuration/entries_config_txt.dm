@@ -14,7 +14,7 @@ CONFIG_ENTRY(hostedby, null, list("Sets a hosted by name for unix platforms."), 
 /*
  * Category: Tick
  */
-CONFIG_ENTRY(ticklag, 0.9, list("Defines the ticklag for the world. 0.9 is the normal one, 0.5 is smoother."), CATEGORY_TICK, TYPE_NUMERIC)
+CONFIG_ENTRY(ticklag, 0.2, list("Defines the ticklag for the world."), CATEGORY_TICK, TYPE_NUMERIC)
 
 /*
  * Category: URLs
