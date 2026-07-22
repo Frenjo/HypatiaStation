@@ -180,6 +180,11 @@
 	else
 		..()
 
+/mob/living/bot/farmbot/UnarmedAttack(atom/to_attack)
+	if(!istype(to_attack, /obj/machinery/hydroponics) && !istype(to_attack, /obj/structure/sink) && !emagged)
+		return ..()
+	use_farmbot_item(to_attack)
+
 /mob/living/bot/farmbot/Emag(mob/user)
 	. = ..()
 	if(user)
@@ -248,24 +253,27 @@
 		if(get_dist(target, src) <= 1 || (emagged && mode == FARMBOT_MODE_FERTILIZE))
 			// If we are in emagged fertilize mode, we throw the fertilizer, so distance doesn't matter
 			frustration = 0
-			use_farmbot_item()
+			use_farmbot_item(target)
 		else
 			move_to_target()
 
-/mob/living/bot/farmbot/proc/use_farmbot_item()
-	if(isnull(target))
+/mob/living/bot/farmbot/proc/use_farmbot_item(atom/to_farm)
+	if(isnull(to_farm))
 		mode = FARMBOT_MODE_NONE
 		return 0
 
-	if(emagged && !ismob(target)) // Humans are plants!
+	if(emagged && !ismob(to_farm)) // Humans are plants!
 		mode = FARMBOT_MODE_NONE
 		target = null
 		return 0
 
-	if(!emagged && !istype(target, /obj/machinery/hydroponics) && !istype(target, /obj/structure/sink)) // Humans are not plants!
+	if(!emagged && !istype(to_farm, /obj/machinery/hydroponics) && !istype(to_farm, /obj/structure/sink)) // Humans are not plants!
 		mode = FARMBOT_MODE_NONE
 		target = null
 		return 0
+
+	if(client)
+		return manual_farmbotting(to_farm)
 
 	if(mode == FARMBOT_MODE_FERTILIZE)
 		//Find which fertilizer to use
@@ -277,16 +285,61 @@
 			target = null
 			mode = FARMBOT_MODE_NONE
 			return
-		fertilize(fert)
+		fertilize(fert, to_farm)
 
 	if(mode == FARMBOT_MODE_WEED)
-		weed()
+		weed(to_farm)
 
 	if(mode == FARMBOT_MODE_WATER)
-		water()
+		water(to_farm)
 
 	if(mode == FARMBOT_MODE_REFILL)
-		refill()
+		refill(to_farm)
+
+/mob/living/bot/farmbot/proc/manual_farmbotting(atom/to_farm)
+	if(emagged)
+		var/list/options = list("weed")
+		if(tank?.reagents.total_volume > 1)
+			options += "water"
+		if(locate(/obj/item/nutrient) in contents)
+			options += "fertilize"
+		switch(pick(options)) // what no intents or combat mode does to a person
+			if("weed")
+				weed(to_farm)
+			if("water")
+				water(to_farm)
+			if("fertilize")
+				fertilize(to_farm)
+		return
+
+
+
+	if(istype(to_farm, /obj/machinery/hydroponics))
+		var/obj/machinery/hydroponics/weak_plant = to_farm
+		if(weak_plant.weedlevel)
+			weed(to_farm)
+			return
+
+		if(weak_plant.waterlevel < 80)
+			water(to_farm)
+			return
+
+		//Find which fertilizer to use
+		var/obj/item/nutrient/fert
+		for(var/obj/item/nutrient/nut in contents)
+			fert = nut
+			break
+
+		if(!fert)
+			target = null
+			mode = FARMBOT_MODE_NONE
+			return
+
+		fertilize(fert, to_farm)
+		return
+		
+	if(istype(to_farm, /obj/structure/sink))
+		refill(to_farm)
 
 /mob/living/bot/farmbot/proc/find_target()
 	if(emagged) //Find a human and help them!
@@ -376,7 +429,7 @@
 	if(length(path) > 8 && target)
 		frustration++
 
-/mob/living/bot/farmbot/proc/fertilize(obj/item/nutrient/fert)
+/mob/living/bot/farmbot/proc/fertilize(obj/item/nutrient/fert, atom/to_fertilize)
 	if(!fert)
 		target = null
 		mode = FARMBOT_MODE_NONE
@@ -385,32 +438,32 @@
 	if(emagged) // Warning, hungry humans detected: throw fertilizer at them
 		spawn(0)
 			fert.forceMove(loc)
-			fert.throw_at(target, 16, 3)
-		visible_message(SPAN_DANGER("[src] launches [fert.name] at [target.name]!"))
+			fert.throw_at(to_fertilize, 16, 3)
+		visible_message(SPAN_DANGER("[src] launches [fert.name] at [to_fertilize.name]!"))
 		flick("farmbot_broke", src)
 		spawn(FARMBOT_EMAG_DELAY)
 			mode = FARMBOT_MODE_NONE
 			target = null
 		return 1
 
-	else // feed them plants~
-		var /obj/machinery/hydroponics/tray = target
-		tray.nutrilevel = 10
-		tray.yieldmod = fert.yieldmod
-		tray.mutmod = fert.mutmod
-		qdel(fert)
-		tray.updateicon()
-		icon_state = "farmbot_fertile"
-		mode = FARMBOT_MODE_WAITING
+	// feed them plants~
+	var/obj/machinery/hydroponics/tray = to_fertilize
+	tray.nutrilevel = 10
+	tray.yieldmod = fert.yieldmod
+	tray.mutmod = fert.mutmod
+	qdel(fert)
+	tray.updateicon()
+	icon_state = "farmbot_fertile"
+	mode = FARMBOT_MODE_WAITING
 
-		spawn(FARMBOT_ACTION_DELAY)
-			mode = FARMBOT_MODE_NONE
-			target = null
-		spawn(FARMBOT_ANIMATION_TIME)
-			icon_state = "farmbot[on]"
-		return 1
+	spawn(FARMBOT_ACTION_DELAY)
+		mode = FARMBOT_MODE_NONE
+		target = null
+	spawn(FARMBOT_ANIMATION_TIME)
+		icon_state = "farmbot[on]"
+	return 1
 
-/mob/living/bot/farmbot/proc/weed()
+/mob/living/bot/farmbot/proc/weed(atom/to_weed)
 	icon_state = "farmbot_hoe"
 	spawn(FARMBOT_ANIMATION_TIME)
 		icon_state = "farmbot[on]"
@@ -421,29 +474,30 @@
 			mode = FARMBOT_MODE_NONE
 
 		if(prob(50)) // better luck next time little guy
-			visible_message(SPAN_DANGER("[src] swings wildly at [target] with a minihoe, missing completely!"))
+			visible_message(SPAN_DANGER("[src] swings wildly at [to_weed] with a minihoe, missing completely!"))
+			return
 
-		else // yayyy take that weeds~
-			var/attackVerb = pick("slashed", "sliced", "cut", "clawed")
-			var/mob/living/carbon/human/human = target
+		// yayyy take that weeds~
+		var/attackVerb = pick("slashed", "sliced", "cut", "clawed")
+		var/mob/living/carbon/human/human = to_weed
 
-			visible_message(SPAN_DANGER("[src] [attackVerb] [human]!"))
-			var/damage = 5
-			var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
-			var/datum/organ/external/affecting = human.get_organ(ran_zone(dam_zone))
-			var/armor = human.run_armor_check(affecting, "melee")
-			human.apply_damage(damage, BRUTE, affecting, armor, sharp = 1, edge = 1)
+		visible_message(SPAN_DANGER("[src] [attackVerb] [human]!"))
+		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
+		var/datum/organ/external/affecting = human.get_organ(ran_zone(dam_zone))
+		var/armor = human.run_armor_check(affecting, "melee")
+		human.apply_damage(5, BRUTE, affecting, armor, sharp = 1, edge = 1)
+		return
 
-	else // warning, plants infested with weeds!
-		mode = FARMBOT_MODE_WAITING
-		spawn(FARMBOT_ACTION_DELAY)
-			mode = FARMBOT_MODE_NONE
+	// warning, plants infested with weeds!
+	mode = FARMBOT_MODE_WAITING
+	spawn(FARMBOT_ACTION_DELAY)
+		mode = FARMBOT_MODE_NONE
 
-		var/obj/machinery/hydroponics/tray = target
-		tray.weedlevel = 0
-		tray.updateicon()
+	var/obj/machinery/hydroponics/tray = to_weed
+	tray.weedlevel = 0
+	tray.updateicon()
 
-/mob/living/bot/farmbot/proc/water()
+/mob/living/bot/farmbot/proc/water(atom/to_water)
 	if(!tank || tank.reagents.total_volume < 1)
 		mode = FARMBOT_MODE_NONE
 		target = null
@@ -455,12 +509,12 @@
 
 	if(emagged) // warning, humans are thirsty!
 		var/splashAmount = min(70, tank.reagents.total_volume)
-		visible_message(SPAN_WARNING("[src] splashes [target] with a bucket of water!"))
+		visible_message(SPAN_WARNING("[src] splashes [to_water] with a bucket of water!"))
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		if(prob(50))
-			tank.reagents.reaction(target, TOUCH) //splash the human!
+			tank.reagents.reaction(to_water, TOUCH) //splash the human!
 		else
-			tank.reagents.reaction(target.loc, TOUCH) //splash the human's roots!
+			tank.reagents.reaction(to_water.loc, TOUCH) //splash the human's roots!
 		spawn(5)
 			tank.reagents.remove_any(splashAmount)
 
@@ -468,7 +522,7 @@
 		spawn(FARMBOT_EMAG_DELAY)
 			mode = FARMBOT_MODE_NONE
 	else
-		var/obj/machinery/hydroponics/tray = target
+		var/obj/machinery/hydroponics/tray = to_water
 		var/b_amount = tank.reagents.get_reagent_amount("water")
 		if(b_amount > 0 && tray.waterlevel < 100)
 			if(b_amount + tray.waterlevel > 100)
@@ -487,16 +541,18 @@
 		spawn(FARMBOT_ACTION_DELAY)
 			mode = FARMBOT_MODE_NONE
 
-/mob/living/bot/farmbot/proc/refill()
-	if(!tank || !tank.reagents.total_volume > 600 || !istype(target, /obj/structure/sink))
+/mob/living/bot/farmbot/proc/refill(atom/to_refill)
+	if(!tank || !tank.reagents.total_volume > 600 || !istype(to_refill, /obj/structure/sink))
 		mode = FARMBOT_MODE_NONE
 		target = null
 		return
 
 	mode = FARMBOT_MODE_WAITING
 	playsound(src, 'sound/effects/slosh.ogg', 25, 1)
-	visible_message(SPAN_INFO("[src] starts filling it's tank from [target]."))
+	visible_message(SPAN_INFO("[src] starts filling it's tank from [to_refill]."))
 	spawn(300)
+		if(!tank || get_dist(tank, src) > 1)
+			return
 		visible_message(SPAN_INFO("[src] finishes filling it's tank."))
 		mode = FARMBOT_MODE_NONE
 		tank.reagents.add_reagent("water", tank.reagents.maximum_volume - tank.reagents.total_volume )

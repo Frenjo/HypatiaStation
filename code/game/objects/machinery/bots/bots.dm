@@ -58,12 +58,11 @@
 		explode()
 
 /mob/living/bot/proc/Emag(mob/user)
-	if(locked)
-		locked = FALSE
-		emagged = 1
-		to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
+	emagged = 1
+	to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
 	if(!locked && open)
 		emagged = 2
+	locked = FALSE
 
 /mob/living/bot/get_examine_text()
 	. = ..()

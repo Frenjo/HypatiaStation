@@ -98,6 +98,41 @@
 	
 	return ..()
 
+/mob/living/bot/floorbot/UnarmedAttack(atom/to_attack)
+	if(istype(to_attack, /obj/item/stack/tile/metal/grey))
+		eattile(to_attack)
+		return
+
+	if(istype(to_attack, /obj/item/stack/sheet/steel))
+		maketile(to_attack)
+		return
+		
+	if(istype(to_attack, /turf/) && emagged < 2)
+		repair(to_attack)
+		return
+
+	if(emagged == 2 && isfloorturf(to_attack))
+		var/turf/open/floor/soon_to_be_space = to_attack
+		anchored = TRUE
+		repairing = TRUE
+		if(prob(90))
+			soon_to_be_space.break_tile_to_plating()
+		else
+			soon_to_be_space.ReplaceWithLattice()
+		visible_message(
+			SPAN_NOTICE("[src] makes an excited booping sound."),
+			SPAN_NOTICE("You hear an excited booping.")
+		)
+		spawn(50)
+			amount ++
+			anchored = FALSE
+			repairing = FALSE
+			to_attack = null
+		return
+
+	return ..()
+	
+
 /mob/living/bot/floorbot/Emag(mob/user)
 	. = ..()
 	if(open && !locked)
@@ -271,37 +306,43 @@
 
 	oldloc = loc
 
-/mob/living/bot/floorbot/proc/repair(turf/target)
-	if(isspace(target))
-		if(istype(target.loc, world.area))
-			return
-	else if(!isfloorturf(target))
+/mob/living/bot/floorbot/proc/repair(turf/to_repair)
+	if(!isfloorturf(to_repair) && !isspace(to_repair))
 		return
+
 	if(amount <= 0)
 		return
+
 	anchored = TRUE
 	icon_state = "floorbot-c"
-	if(isspace(target))
+	if(isspace(to_repair))
 		visible_message(SPAN_NOTICE("[src] begins to repair the hole."))
 		var/obj/item/stack/tile/metal/grey/T = new /obj/item/stack/tile/metal/grey()
 		repairing = TRUE
 		spawn(50)
-			T.build(loc)
 			repairing = FALSE
+			anchored = FALSE
+			if(!isspace(to_repair) || get_dist(src, to_repair) > 1)
+				updateicon()
+				return
+			T.build(to_repair)
 			amount -= 1
 			updateicon()
-			anchored = FALSE
 			target = null
-	else
-		visible_message(SPAN_NOTICE("[src] begins to improve the floor."))
-		repairing = TRUE
-		spawn(50)
-			loc.icon_state = "floor"
-			repairing = FALSE
-			amount -= 1
+		return
+	
+	visible_message(SPAN_NOTICE("[src] begins to improve the floor."))
+	repairing = TRUE
+	spawn(50)
+		repairing = FALSE
+		anchored = FALSE
+		if(!isfloorturf(to_repair) || get_dist(src, to_repair) > 1)
 			updateicon()
-			anchored = FALSE
-			target = null
+			return
+		to_repair.icon_state = "floor"
+		amount -= 1
+		updateicon()
+		target = null
 
 /mob/living/bot/floorbot/proc/eattile(obj/item/stack/tile/metal/grey/T)
 	if(!istype(T, /obj/item/stack/tile/metal/grey))
@@ -309,7 +350,7 @@
 	visible_message(SPAN_NOTICE("[src] begins to collect tiles."))
 	repairing = TRUE
 	spawn(20)
-		if(isnull(T))
+		if(isnull(T) || get_dist(src, T) > 1)
 			target = null
 			repairing = FALSE
 			return
@@ -331,8 +372,9 @@
 		return
 	visible_message(SPAN_NOTICE("[src] begins to create tiles."))
 	repairing = TRUE
+
 	spawn(20)
-		if(isnull(M))
+		if(isnull(M) || get_dist(src, M) > 1)
 			target = null
 			repairing = FALSE
 			return
