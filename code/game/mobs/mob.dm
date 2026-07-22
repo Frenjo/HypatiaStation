@@ -527,7 +527,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 				namecounts[name] = 1
 			creatures[name] = O
 
-		if(istype(O, /obj/machinery/bot))
+		if(istype(O, /mob/living/bot))
 			var/name = "BOT: [O.name]"
 			if(names.Find(name))
 				namecounts[name]++

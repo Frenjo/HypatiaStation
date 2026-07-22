@@ -1,5 +1,5 @@
 // Floorbot
-/obj/machinery/bot/floorbot
+/mob/living/bot/floorbot
 	name = "floorbot"
 	desc = "A little floor repairing robot. He looks so excited!"
 	icon = 'icons/mob/bot/floorbot.dmi'
@@ -24,16 +24,16 @@
 	var/list/path = list()
 	var/targetdirection
 
-/obj/machinery/bot/floorbot/New()
+/mob/living/bot/floorbot/New()
 	. = ..()
 	updateicon()
 
-/obj/machinery/bot/floorbot/turn_on()
+/mob/living/bot/floorbot/turn_on()
 	. = ..()
 	updateicon()
 	updateUsrDialog()
 
-/obj/machinery/bot/floorbot/turn_off()
+/mob/living/bot/floorbot/turn_off()
 	. = ..()
 	target = null
 	oldtarget = null
@@ -42,14 +42,14 @@
 	path = list()
 	updateUsrDialog()
 
-/obj/machinery/bot/floorbot/attack_hand(mob/user)
+/mob/living/bot/floorbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/bot/floorbot/interact(mob/user)
+/mob/living/bot/floorbot/interact(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='byond://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
@@ -70,7 +70,7 @@
 	SHOW_BROWSER(user, "<HEAD><TITLE>Repairbot v1.0 controls</TITLE></HEAD>[dat]", "window=autorepair")
 	onclose(user, "autorepair")
 
-/obj/machinery/bot/floorbot/attackby(obj/item/W, mob/user)
+/mob/living/bot/floorbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/tile/metal/grey))
 		var/obj/item/stack/tile/metal/grey/T = W
 		if(amount >= 50)
@@ -95,13 +95,13 @@
 	else
 		..()
 
-/obj/machinery/bot/floorbot/Emag(mob/user)
+/mob/living/bot/floorbot/Emag(mob/user)
 	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
 			to_chat(user, SPAN_NOTICE("\The [src] buzzes and beeps."))
 
-/obj/machinery/bot/floorbot/Topic(href, href_list)
+/mob/living/bot/floorbot/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -137,7 +137,7 @@
 					targetdirection = null
 			updateUsrDialog()
 
-/obj/machinery/bot/floorbot/process()
+/mob/living/bot/floorbot/process()
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
@@ -262,7 +262,7 @@
 
 	oldloc = loc
 
-/obj/machinery/bot/floorbot/proc/repair(turf/target)
+/mob/living/bot/floorbot/proc/repair(turf/target)
 	if(isspace(target))
 		if(istype(target.loc, world.area))
 			return
@@ -294,7 +294,7 @@
 			anchored = FALSE
 			target = null
 
-/obj/machinery/bot/floorbot/proc/eattile(obj/item/stack/tile/metal/grey/T)
+/mob/living/bot/floorbot/proc/eattile(obj/item/stack/tile/metal/grey/T)
 	if(!istype(T, /obj/item/stack/tile/metal/grey))
 		return
 	visible_message(SPAN_NOTICE("[src] begins to collect tiles."))
@@ -315,7 +315,7 @@
 		target = null
 		repairing = FALSE
 
-/obj/machinery/bot/floorbot/proc/maketile(obj/item/stack/sheet/steel/M)
+/mob/living/bot/floorbot/proc/maketile(obj/item/stack/sheet/steel/M)
 	if(!istype(M, /obj/item/stack/sheet/steel))
 		return
 	if(M.amount > 1)
@@ -333,13 +333,13 @@
 		target = null
 		repairing = FALSE
 
-/obj/machinery/bot/floorbot/proc/updateicon()
+/mob/living/bot/floorbot/proc/updateicon()
 	if(amount > 0)
 		icon_state = "floorbot[on]"
 	else
 		icon_state = "floorbot[on]e"
 
-/obj/machinery/bot/floorbot/explode()
+/mob/living/bot/floorbot/explode()
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 
@@ -415,7 +415,7 @@
 
 	if(has_sensor && (istype(I, /obj/item/robot_part/l_arm) || istype(I, /obj/item/robot_part/r_arm)))
 		qdel(I)
-		var/obj/machinery/bot/floorbot/bot = new /obj/machinery/bot/floorbot(GET_TURF(src))
+		var/mob/living/bot/floorbot/bot = new /mob/living/bot/floorbot(GET_TURF(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		user.drop_from_inventory(src)

@@ -56,8 +56,8 @@
 				T = M
 				break
 
-		if(istype(A, /obj/machinery/bot))
-			var/obj/machinery/bot/B = A
+		if(istype(A, /mob/living/bot))
+			var/mob/living/bot/B = A
 			if(B.health > 0)
 				stance = HOSTILE_STANCE_ATTACK
 				T = B
@@ -112,8 +112,8 @@
 		var/obj/mecha/M = target
 		M.attack_animal(src)
 		return M
-	if(istype(target, /obj/machinery/bot))
-		var/obj/machinery/bot/B = target
+	if(istype(target, /mob/living/bot))
+		var/mob/living/bot/B = target
 		B.attack_animal(src)
 
 /mob/living/simple/hostile/proc/LoseTarget()

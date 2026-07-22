@@ -87,7 +87,7 @@
 			H.client?.screen |= GLOBL.global_hud.ion_storm
 
 	if(bot_emag_chance)
-		for(var/obj/machinery/bot/bot in GLOBL.bots_list)
+		for(var/mob/living/bot/bot in GLOBL.bots_list)
 			if(isnotstationlevel(bot.z))
 				continue
 			if(prob(bot_emag_chance))

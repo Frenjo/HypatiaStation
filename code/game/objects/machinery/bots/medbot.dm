@@ -2,7 +2,7 @@
 //MEDBOT PATHFINDING
 //MEDBOT ASSEMBLY
 
-/obj/machinery/bot/medbot
+/mob/living/bot/medbot
 	name = "medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/mob/bot/medibot.dmi'
@@ -38,7 +38,7 @@
 	var/treatment_virus = "spaceacillin"
 	var/shut_up = 0 //self explanatory :)
 
-/obj/machinery/bot/medbot/mysterious
+/mob/living/bot/medbot/mysterious
 	name = "mysterious medibot"
 	desc = "International Medibot of mystery."
 	skin = "bezerk"
@@ -47,11 +47,11 @@
 	treatment_fire = "kelotane"
 	treatment_tox = "dylovene"
 
-/obj/machinery/bot/medbot/New()
+/mob/living/bot/medbot/New()
 	. = ..()
 	icon_state = "medibot[on]"
 
-/obj/machinery/bot/medbot/initialise()
+/mob/living/bot/medbot/initialise()
 	. = ..()
 
 	if(isnotnull(skin))
@@ -64,12 +64,12 @@
 	else
 		botcard.access = botcard_access
 
-/obj/machinery/bot/medbot/turn_on()
+/mob/living/bot/medbot/turn_on()
 	. = ..()
 	icon_state = "medibot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/medbot/turn_off()
+/mob/living/bot/medbot/turn_off()
 	. = ..()
 	patient = null
 	oldpatient = null
@@ -80,10 +80,10 @@
 	icon_state = "medibot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/user)
+/mob/living/bot/medbot/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/bot/medbot/attack_hand(mob/user)
+/mob/living/bot/medbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -120,7 +120,7 @@
 	SHOW_BROWSER(user, "<HEAD><TITLE>Medibot v1.0 controls</TITLE></HEAD>[dat]", "window=automed")
 	onclose(user, "automed")
 
-/obj/machinery/bot/medbot/Topic(href, href_list)
+/mob/living/bot/medbot/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -162,7 +162,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/bot/medbot/attackby(obj/item/W, mob/user)
+/mob/living/bot/medbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
@@ -196,7 +196,7 @@
 		if(health < maxhealth && !isscrewdriver(W) && W.force)
 			step_to(src, (get_step_away(src, user)))
 
-/obj/machinery/bot/medbot/Emag(mob/user)
+/mob/living/bot/medbot/Emag(mob/user)
 	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -215,7 +215,7 @@
 		on = TRUE
 		icon_state = "medibot[on]"
 
-/obj/machinery/bot/medbot/process()
+/mob/living/bot/medbot/process()
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
@@ -306,7 +306,7 @@
 	if(length(path) > 8 && patient)
 		frustration++
 
-/obj/machinery/bot/medbot/proc/assess_patient(mob/living/carbon/C)
+/mob/living/bot/medbot/proc/assess_patient(mob/living/carbon/C)
 	//Time to see if they need medical help!
 	if(C.stat == DEAD)
 		return 0 //welp too late for them!
@@ -344,7 +344,7 @@
 
 	return 0
 
-/obj/machinery/bot/medbot/proc/medicate_patient(mob/living/carbon/C)
+/mob/living/bot/medbot/proc/medicate_patient(mob/living/carbon/C)
 	if(!on)
 		return
 
@@ -425,18 +425,18 @@
 	reagent_id = null
 	return
 
-/obj/machinery/bot/medbot/proc/speak(message)
+/mob/living/bot/medbot/proc/speak(message)
 	if((!on) || (!message))
 		return
 	visible_message("[src] beeps, \"[message]\"")
 	return
 
-/obj/machinery/bot/medbot/bullet_act(obj/projectile/Proj)
+/mob/living/bot/medbot/bullet_act(obj/projectile/Proj)
 	if(Proj.flag == "taser")
 		stunned = min(stunned + 10, 20)
 	..()
 
-/obj/machinery/bot/medbot/explode()
+/mob/living/bot/medbot/explode()
 	on = 0
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 
@@ -454,7 +454,7 @@
 	make_sparks(3, TRUE, src)
 	return ..()
 
-/obj/machinery/bot/medbot/Bump(atom/M) //Leave no door unopened!
+/mob/living/bot/medbot/Bump(atom/M) //Leave no door unopened!
 	if(istype(M, /obj/machinery/door) && isnotnull(botcard))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
@@ -465,7 +465,7 @@
 		frustration = 0
 
 /* terrible
-/obj/machinery/bot/medbot/Bumped(atom/movable/M)
+/mob/living/bot/medbot/Bumped(atom/movable/M)
 	spawn(0)
 		if (M)
 			var/turf/T = GET_TURF(src)
@@ -571,7 +571,7 @@
 				qdel(I)
 				build_step++
 				to_chat(user, SPAN_INFO("You complete the Medibot! Beep boop."))
-				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(GET_TURF(src))
+				var/mob/living/bot/medbot/S = new /mob/living/bot/medbot(GET_TURF(src))
 				S.skin = skin
 				S.name = created_name
 				user.drop_from_inventory(src)

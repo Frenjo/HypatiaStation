@@ -3560,7 +3560,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/machinery/bot/floorbot,
+/mob/living/bot/floorbot,
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "qM" = (
@@ -8246,7 +8246,7 @@
 /turf/open/floor/tiled/grey,
 /area/centcom/tdome)
 "Ol" = (
-/obj/machinery/bot/medbot,
+/mob/living/bot/medbot,
 /turf/open/floor/shuttle/purple,
 /area/enemy/wizard_station)
 "Om" = (

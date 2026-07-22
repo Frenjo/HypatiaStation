@@ -1,4 +1,4 @@
-/obj/machinery/bot/ed209
+/mob/living/bot/ed209
 	name = "\improper ED-209 security robot"
 	desc = "A security robot. He looks less than thrilled."
 	icon = 'icons/mob/bot/ed209.dmi'
@@ -52,7 +52,7 @@
 	var/nearest_beacon			// the nearest beacon's tag
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
 
-/obj/machinery/bot/ed209/New(loc, created_name, created_lasercolor)
+/mob/living/bot/ed209/New(loc, created_name, created_lasercolor)
 	. = ..()
 	if(created_name)
 		name = created_name
@@ -60,7 +60,7 @@
 		lasercolor = created_lasercolor
 	icon_state = "[lasercolor]ed209[on]"
 
-/obj/machinery/bot/ed209/initialise()
+/mob/living/bot/ed209/initialise()
 	. = ..()
 
 	botcard = new /obj/item/card/id(src)
@@ -80,13 +80,13 @@
 		if(lasercolor == "r" && name == "ED-209 Security Robot")
 			name = pick("RED RAMPAGE", "RED ROVER", "RED KILLDEATH MURDERBOT")
 
-/obj/machinery/bot/ed209/turn_on()
+/mob/living/bot/ed209/turn_on()
 	. = ..()
 	icon_state = "[lasercolor]ed209[on]"
 	mode = SECBOT_IDLE
 	updateUsrDialog()
 
-/obj/machinery/bot/ed209/turn_off()
+/mob/living/bot/ed209/turn_off()
 	. = ..()
 	target = null
 	oldtarget_name = null
@@ -96,7 +96,7 @@
 	icon_state = "[lasercolor]ed209[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/ed209/attack_hand(mob/user)
+/mob/living/bot/ed209/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -122,7 +122,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	SHOW_BROWSER(user, "<HEAD><TITLE>Securitron v2.5 controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 
-/obj/machinery/bot/ed209/Topic(href, href_list)
+/mob/living/bot/ed209/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -155,7 +155,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			mode = SECBOT_IDLE
 			updateUsrDialog()
 
-/obj/machinery/bot/ed209/attackby(obj/item/W, mob/user)
+/mob/living/bot/ed209/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
@@ -176,7 +176,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					shootAt(user)
 				mode = SECBOT_HUNT
 
-/obj/machinery/bot/ed209/Emag(mob/user)
+/mob/living/bot/ed209/Emag(mob/user)
 	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -195,7 +195,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		projectile = null
 		mode = SECBOT_IDLE
 
-/obj/machinery/bot/ed209/process()
+/mob/living/bot/ed209/process()
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
@@ -370,7 +370,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					patrol_step()
 
 // perform a single patrol step
-/obj/machinery/bot/ed209/proc/patrol_step()
+/mob/living/bot/ed209/proc/patrol_step()
 	if(loc == patrol_target)		// reached target
 		at_patrol_target()
 		return
@@ -413,7 +413,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		mode = SECBOT_START_PATROL
 
 // finds a new patrol target
-/obj/machinery/bot/ed209/proc/find_patrol_target()
+/mob/living/bot/ed209/proc/find_patrol_target()
 	send_status()
 	if(awaiting_beacon)			// awaiting beacon response
 		awaiting_beacon++
@@ -428,7 +428,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 // finds the nearest beacon to self
 // signals all beacons matching the patrol code
-/obj/machinery/bot/ed209/proc/find_nearest_beacon()
+/mob/living/bot/ed209/proc/find_nearest_beacon()
 	nearest_beacon = null
 	new_destination = "__nearest__"
 	post_signal(beacon_freq, "findbeacon", "patrol")
@@ -443,21 +443,21 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			speak("Disengaging patrol mode.")
 			send_status()
 
-/obj/machinery/bot/ed209/proc/at_patrol_target()
+/mob/living/bot/ed209/proc/at_patrol_target()
 	find_patrol_target()
 	return
 
 // sets the current destination
 // signals all beacons matching the patrol code
 // beacons will return a signal giving their locations
-/obj/machinery/bot/ed209/proc/set_destination(new_dest)
+/mob/living/bot/ed209/proc/set_destination(new_dest)
 	new_destination = new_dest
 	post_signal(beacon_freq, "findbeacon", "patrol")
 	awaiting_beacon = 1
 
 // receive a radio signal
 // used for beacon reception
-/obj/machinery/bot/ed209/receive_signal(datum/signal/signal)
+/mob/living/bot/ed209/receive_signal(datum/signal/signal)
 	if(!..())
 		return
 	if(!on)
@@ -528,11 +528,11 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			nearest_beacon_loc = signal.source.loc
 
 // send a radio signal with a single data key/value pair
-/obj/machinery/bot/ed209/proc/post_signal(freq, key, value)
+/mob/living/bot/ed209/proc/post_signal(freq, key, value)
 	post_signal_multiple(freq, list("[key]" = value) )
 
 // send a radio signal with multiple data key/values
-/obj/machinery/bot/ed209/proc/post_signal_multiple(freq, list/keyval)
+/mob/living/bot/ed209/proc/post_signal_multiple(freq, list/keyval)
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(isnull(frequency))
@@ -553,7 +553,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		frequency.post_signal(src, signal)
 
 // signals bot status etc. to controller
-/obj/machinery/bot/ed209/proc/send_status()
+/mob/living/bot/ed209/proc/send_status()
 	var/list/kv = list(
 		"type" = "secbot",
 		"name" = name,
@@ -564,12 +564,12 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 // calculates a path to the current destination
 // given an optional turf to avoid
-/obj/machinery/bot/ed209/proc/calc_path(turf/avoid = null)
+/mob/living/bot/ed209/proc/calc_path(turf/avoid = null)
 	path = AStar(loc, patrol_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude = avoid)
 	LAZYINITLIST(path)
 
 // look for a criminal in view of the bot
-/obj/machinery/bot/ed209/proc/look_for_perp()
+/mob/living/bot/ed209/proc/look_for_perp()
 	if(disabled)
 		return
 	anchored = FALSE
@@ -608,7 +608,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 //If the security records say to arrest them, arrest them
 //Or if they have weapons and aren't security, arrest them.
-/obj/machinery/bot/ed209/proc/assess_perp(mob/living/carbon/human/perp)
+/mob/living/bot/ed209/proc/assess_perp(mob/living/carbon/human/perp)
 	var/threatcount = 0
 
 	if(emagged == 2)
@@ -680,7 +680,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	return threatcount
 
-/obj/machinery/bot/ed209/Bump(atom/M) //Leave no door unopened!
+/mob/living/bot/ed209/Bump(atom/M) //Leave no door unopened!
 	if(istype(M, /obj/machinery/door) && isnotnull(botcard))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
@@ -691,18 +691,18 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		frustration = 0
 
 /* terrible
-/obj/machinery/bot/ed209/Bumped(atom/movable/M)
+/mob/living/bot/ed209/Bumped(atom/movable/M)
 	spawn(0)
 		if(M)
 			var/turf/T = GET_TURF(src)
 			M:loc = T
 */
 
-/obj/machinery/bot/ed209/proc/speak(message)
+/mob/living/bot/ed209/proc/speak(message)
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"",2)
 
-/obj/machinery/bot/ed209/explode()
+/mob/living/bot/ed209/explode()
 	walk_to(src, 0)
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
@@ -743,7 +743,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	new /obj/effect/decal/cleanable/blood/oil(loc)
 	return ..()
 
-/obj/machinery/bot/ed209/proc/shootAt(mob/target)
+/mob/living/bot/ed209/proc/shootAt(mob/target)
 	if(lastfired && world.time - lastfired < shot_delay)
 		return
 	lastfired = world.time
@@ -786,7 +786,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		A.process()
 		return
 
-/obj/machinery/bot/ed209/emp_act(severity)
+/mob/living/bot/ed209/emp_act(severity)
 	if(severity == 2 && prob(70))
 		..(severity - 1)
 	else
@@ -821,7 +821,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 						target = toarrest
 						mode = SECBOT_HUNT
 
-/obj/machinery/bot/ed209/bullet_act(obj/projectile/proj)
+/mob/living/bot/ed209/bullet_act(obj/projectile/proj)
 	if(lasercolor == "b" && !disabled)
 		if(istype(proj, /obj/projectile/energy/beam/laser/tag/red))
 			disabled = TRUE
@@ -841,22 +841,22 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	else
 		..()
 
-/obj/machinery/bot/ed209/bluetag
+/mob/living/bot/ed209/bluetag
 	icon_state = "bed2090"
 
-/obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
+/mob/living/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
 	SHOULD_CALL_PARENT(FALSE)
 
-	new /obj/machinery/bot/ed209(GET_TURF(src), null, "b")
+	new /mob/living/bot/ed209(GET_TURF(src), null, "b")
 	qdel(src)
 
-/obj/machinery/bot/ed209/redtag
+/mob/living/bot/ed209/redtag
 	icon_state = "red2090"
 
-/obj/machinery/bot/ed209/redtag/New()
+/mob/living/bot/ed209/redtag/New()
 	SHOULD_CALL_PARENT(FALSE)
 
-	new /obj/machinery/bot/ed209(GET_TURF(src), null, "r")
+	new /mob/living/bot/ed209(GET_TURF(src), null, "r")
 	qdel(src)
 
 // ED-209 Assembly
@@ -994,7 +994,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			if(istype(W, /obj/item/cell))
 				build_step++
 				to_chat(user, SPAN_INFO("You complete the ED-209."))
-				new /obj/machinery/bot/ed209(GET_TURF(src), created_name, lasercolor)
+				new /mob/living/bot/ed209(GET_TURF(src), created_name, lasercolor)
 				user.drop_item()
 				qdel(W)
 				user.drop_from_inventory(src)

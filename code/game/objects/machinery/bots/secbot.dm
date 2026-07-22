@@ -1,4 +1,4 @@
-/obj/machinery/bot/secbot
+/mob/living/bot/secbot
 	name = "securitron"
 	desc = "A little security robot. He looks less than thrilled."
 	icon = 'icons/mob/bot/securitron.dmi'
@@ -44,28 +44,28 @@
 	var/nearest_beacon			// the nearest beacon's tag
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
 
-/obj/machinery/bot/secbot/beepsky
+/mob/living/bot/secbot/beepsky
 	name = "Officer Beep O'sky"
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
 	idcheck = 0
 	auto_patrol = 1
 
-/obj/machinery/bot/secbot/armsky
+/mob/living/bot/secbot/armsky
 	name = "Sergeant-at-Armsky"
 	desc = "It's Sergeant-at-Armsky! Powered by a potato and a shot of whiskey, protecting the armoury 'til the end of time."
 	idcheck = 1
 	arrest_type = 1
 
-/obj/machinery/bot/secbot/pingsky
+/mob/living/bot/secbot/pingsky
 	name = "Officer Pingsky"
 	desc = "It's Officer Pingsky! Powered by a potato and a shot of whiskey, protecting the home of its robotic kin."
 	idcheck = 1
 
-/obj/machinery/bot/secbot/New()
+/mob/living/bot/secbot/New()
 	. = ..()
 	icon_state = "secbot[on]"
 
-/obj/machinery/bot/secbot/initialise()
+/mob/living/bot/secbot/initialise()
 	. = ..()
 
 	botcard = new /obj/item/card/id(src)
@@ -75,17 +75,17 @@
 	register_radio(src, null, control_freq, RADIO_SECBOT)
 	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 
-/obj/machinery/bot/secbot/Destroy()
+/mob/living/bot/secbot/Destroy()
 	unregister_radio(src, beacon_freq)
 	unregister_radio(src, control_freq)
 	return ..()
 
-/obj/machinery/bot/secbot/turn_on()
+/mob/living/bot/secbot/turn_on()
 	. = ..()
 	icon_state = "secbot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/secbot/turn_off()
+/mob/living/bot/secbot/turn_off()
 	. = ..()
 	target = null
 	oldtarget_name = null
@@ -95,14 +95,14 @@
 	icon_state = "secbot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/secbot/attack_hand(mob/user)
+/mob/living/bot/secbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/bot/secbot/interact(mob/user)
+/mob/living/bot/secbot/interact(mob/user)
 	var/dat
 
 	dat += {"
@@ -121,7 +121,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	SHOW_BROWSER(user, "<HEAD><TITLE>Securitron v1.3 controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 
-/obj/machinery/bot/secbot/Topic(href, href_list)
+/mob/living/bot/secbot/Topic(href, href_list)
 	. = ..()
 	usr.set_machine(src)
 	add_fingerprint(usr)
@@ -147,7 +147,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			mode = SECBOT_IDLE
 			updateUsrDialog()
 
-/obj/machinery/bot/secbot/attackby(obj/item/W, mob/user)
+/mob/living/bot/secbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
@@ -165,7 +165,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			target = user
 			mode = SECBOT_HUNT
 
-/obj/machinery/bot/secbot/Emag(mob/user)
+/mob/living/bot/secbot/Emag(mob/user)
 	..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -183,7 +183,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		icon_state = "secbot[on]"
 		mode = SECBOT_IDLE
 
-/obj/machinery/bot/secbot/process()
+/mob/living/bot/secbot/process()
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
@@ -350,7 +350,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 
 // perform a single patrol step
-/obj/machinery/bot/secbot/proc/patrol_step()
+/mob/living/bot/secbot/proc/patrol_step()
 	if(loc == patrol_target)		// reached target
 		at_patrol_target()
 		return
@@ -390,7 +390,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		mode = SECBOT_START_PATROL
 
 // finds a new patrol target
-/obj/machinery/bot/secbot/proc/find_patrol_target()
+/mob/living/bot/secbot/proc/find_patrol_target()
 	send_status()
 	if(awaiting_beacon)			// awaiting beacon response
 		awaiting_beacon++
@@ -405,7 +405,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 // finds the nearest beacon to self
 // signals all beacons matching the patrol code
-/obj/machinery/bot/secbot/proc/find_nearest_beacon()
+/mob/living/bot/secbot/proc/find_nearest_beacon()
 	nearest_beacon = null
 	new_destination = "__nearest__"
 	post_signal(beacon_freq, "findbeacon", "patrol")
@@ -420,24 +420,24 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			speak("Disengaging patrol mode.")
 			send_status()
 
-/obj/machinery/bot/secbot/proc/at_patrol_target()
+/mob/living/bot/secbot/proc/at_patrol_target()
 	find_patrol_target()
 	return
 
 // sets the current destination
 // signals all beacons matching the patrol code
 // beacons will return a signal giving their locations
-/obj/machinery/bot/secbot/proc/set_destination(new_dest)
+/mob/living/bot/secbot/proc/set_destination(new_dest)
 	new_destination = new_dest
 	post_signal(beacon_freq, "findbeacon", "patrol")
 	awaiting_beacon = 1
 
 // receive a radio signal
 // used for beacon reception
-/obj/machinery/bot/secbot/receive_signal(datum/signal/signal)
+/mob/living/bot/secbot/receive_signal(datum/signal/signal)
 	if(!..())
 		return
-	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/bot/secbot/receive_signal([signal.debug_print()])")
+	//log_admin("DEBUG \[[world.timeofday]\]: /mob/living/bot/secbot/receive_signal([signal.debug_print()])")
 	if(!on)
 		return
 
@@ -506,11 +506,11 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			nearest_beacon_loc = signal.source.loc
 
 // send a radio signal with a single data key/value pair
-/obj/machinery/bot/secbot/proc/post_signal(freq, key, value)
+/mob/living/bot/secbot/proc/post_signal(freq, key, value)
 	post_signal_multiple(freq, list("[key]" = value))
 
 // send a radio signal with multiple data key/values
-/obj/machinery/bot/secbot/proc/post_signal_multiple(freq, list/keyval)
+/mob/living/bot/secbot/proc/post_signal_multiple(freq, list/keyval)
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(!frequency)
@@ -531,7 +531,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		frequency.post_signal(src, signal)
 
 // signals bot status etc. to controller
-/obj/machinery/bot/secbot/proc/send_status()
+/mob/living/bot/secbot/proc/send_status()
 	var/list/kv = list(
 		"type" = "secbot",
 		"name" = name,
@@ -542,13 +542,13 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 // calculates a path to the current destination
 // given an optional turf to avoid
-/obj/machinery/bot/secbot/proc/calc_path(turf/avoid = null)
+/mob/living/bot/secbot/proc/calc_path(turf/avoid = null)
 	path = AStar(loc, patrol_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude = avoid)
 	if(!path)
 		path = list()
 
 // look for a criminal in view of the bot
-/obj/machinery/bot/secbot/proc/look_for_perp()
+/mob/living/bot/secbot/proc/look_for_perp()
 	anchored = FALSE
 	for(var/mob/living/M in view(7, src)) //Let's find us a criminal
 		if(iscarbon(M))
@@ -588,7 +588,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 //If the security records say to arrest them, arrest them
 //Or if they have weapons and aren't security, arrest them.
-/obj/machinery/bot/secbot/proc/assess_perp(mob/living/carbon/human/perp)
+/mob/living/bot/secbot/proc/assess_perp(mob/living/carbon/human/perp)
 	var/threatcount = 0
 
 	if(emagged == 2)
@@ -639,7 +639,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	return threatcount
 
-/obj/machinery/bot/secbot/Bump(atom/M) //Leave no door unopened!
+/mob/living/bot/secbot/Bump(atom/M) //Leave no door unopened!
 	if((istype(M, /obj/machinery/door)) && (isnotnull(botcard)))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
@@ -650,18 +650,18 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		frustration = 0
 
 /* terrible
-/obj/machinery/bot/secbot/Bumped(atom/movable/M)
+/mob/living/bot/secbot/Bumped(atom/movable/M)
 	spawn(0)
 		if(M)
 			var/turf/T = GET_TURF(src)
 			M:loc = T
 */
 
-/obj/machinery/bot/secbot/proc/speak(message)
+/mob/living/bot/secbot/proc/speak(message)
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"",2)
 
-/obj/machinery/bot/secbot/explode()
+/mob/living/bot/secbot/explode()
 	walk_to(src, 0)
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 	var/turf/T = GET_TURF(src)
@@ -754,7 +754,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	if(istype(I, /obj/item/melee/baton) && build_step >= 3)
 		user.drop_item()
 		build_step++
-		var/obj/machinery/bot/secbot/bot = new /obj/machinery/bot/secbot(GET_TURF(src))
+		var/mob/living/bot/secbot/bot = new /mob/living/bot/secbot(GET_TURF(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You complete the Securitron! Beep boop."))
 		qdel(I)

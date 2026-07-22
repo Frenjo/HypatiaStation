@@ -750,7 +750,7 @@
 /turf/open/floor/plating/metal,
 /area/station/research/xenobiology)
 "aoW" = (
-/obj/machinery/bot/medbot{
+/mob/living/bot/medbot{
 	name = "Dr. Shivago"
 	},
 /obj/effect/decal/floor/coloured/blue,
@@ -12301,7 +12301,7 @@
 /turf/closed/wall/reinforced,
 /area/station/engineering/storage)
 "eqv" = (
-/obj/machinery/bot/secbot/armsky,
+/mob/living/bot/secbot/armsky,
 /obj/machinery/atmospherics/mains_pipe/cap/hidden,
 /turf/open/floor/tiled/dark,
 /area/station/security/armoury)
@@ -23660,7 +23660,7 @@
 /turf/open/floor/wood,
 /area/station/crew/bar)
 "ilD" = (
-/obj/machinery/bot/secbot/pingsky,
+/mob/living/bot/secbot/pingsky,
 /obj/machinery/atmospherics/mains_pipe/manifold4w/hidden,
 /obj/structure/cable/orange{
 	icon_state = "1-4"
@@ -33880,7 +33880,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
 "lQe" = (
-/obj/machinery/bot/secbot/beepsky{
+/mob/living/bot/secbot/beepsky{
 	name = "Officer Beepsky"
 	},
 /obj/machinery/hologram/holopad,
@@ -59746,7 +59746,7 @@
 	freq = 1400;
 	location = "QM #1"
 	},
-/obj/machinery/bot/mulebot{
+/mob/living/bot/mulebot{
 	home_destination = "QM #1";
 	suffix = "#1"
 	},
@@ -60697,7 +60697,7 @@
 	freq = 1400;
 	location = "QM #2"
 	},
-/obj/machinery/bot/mulebot{
+/mob/living/bot/mulebot{
 	home_destination = "QM #2";
 	suffix = "#2"
 	},
