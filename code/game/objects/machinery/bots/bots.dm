@@ -130,6 +130,11 @@
 	apply_damage(damage, attacking_item.damtype)
 	return TRUE
 
+/mob/living/bot/updatehealth()
+	. = ..()
+	if(health <= 0)
+		explode()
+
 /mob/living/bot/bullet_act(obj/projectile/bullet)
 	if(bullet.damage_type != BRUTE && bullet.damage_type != BURN)
 		return

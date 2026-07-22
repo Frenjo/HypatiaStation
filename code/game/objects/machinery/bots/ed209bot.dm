@@ -175,6 +175,35 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					shootAt(user)
 				mode = SECBOT_HUNT
 
+/mob/living/bot/ed209/proc/baton_whack(mob/living/carbon/criminal)
+	if(criminal.stuttering < 10 && (!(MUTATION_HULK in criminal.mutations))  /*&& (!istype(criminal:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
+		criminal.stuttering = 10
+		criminal.Stun(10)
+		criminal.Weaken(10)
+	else
+		criminal.Weaken(10)
+		criminal.stuttering = 10
+		criminal.Stun(10)
+	visible_message(SPAN_DANGER("[criminal] has been stunned by [src]!"))
+
+/mob/living/bot/ed209/UnarmedAttack(atom/to_attack)
+	if(iscarbon(to_attack))
+		var/mob/living/carbon/to_cuff = to_attack
+		if(to_cuff.stunned && a_intent != INTENT_HARM && !to_cuff.handcuffed)
+			spawn(60)
+				if(get_dist(src, target) > 1)
+					return
+				
+				if(!to_cuff.handcuffed)
+					to_cuff.handcuffed = new /obj/item/handcuffs(target)
+					to_cuff.update_inv_handcuffed()	//update the handcuffs overlay
+			return
+
+		baton_whack(to_attack)
+		return
+
+	return ..()
+
 /mob/living/bot/ed209/Emag(mob/user)
 	. = ..()
 	if(open && !locked)
@@ -256,25 +285,18 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					icon_state = "[lasercolor]ed209-c"
 					spawn(2)
 						icon_state = "[lasercolor]ed209[on]"
-					var/mob/living/carbon/M = target
 					var/maxstuns = 4
-					if(ishuman(M))
-						if(M.stuttering < 10 && (!(MUTATION_HULK in M.mutations))  /*&& (!istype(M:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
-							M.stuttering = 10
-						M.Stun(10)
-						M.Weaken(10)
-					else
-						M.Weaken(10)
-						M.stuttering = 10
-						M.Stun(10)
-					maxstuns--
+					
 					if(maxstuns <= 0)
 						target = null
-					visible_message(SPAN_DANGER("[target] has been stunned by [src]!"))
+						return
+
+					baton_whack(target)
+					maxstuns--
 
 					mode = SECBOT_PREP_ARREST
 					anchored = TRUE
-					target_lastloc = M.loc
+					target_lastloc = target.loc
 					return
 
 				else								// not next to perp

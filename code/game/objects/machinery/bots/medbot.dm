@@ -14,7 +14,6 @@
 	req_access = list(ACCESS_MEDICAL)
 
 	var/stun_time = 0 //It can be stunned by tasers. Delicate circuits.
-//var/emagged = 0
 	var/list/botcard_access = list(ACCESS_MEDICAL)
 	var/obj/item/reagent_holder/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
@@ -36,7 +35,7 @@
 	var/treatment_tox = "tricordrazine"
 	var/treatment_virus = "spaceacillin"
 	var/shut_up = 0 //self explanatory :)
-/*
+
 /mob/living/bot/medbot/mysterious
 	name = "mysterious medibot"
 	desc = "International Medibot of mystery."
@@ -163,19 +162,25 @@
 
 /mob/living/bot/medbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
-		if(allowed(user) && !open && !emagged)
-			locked = !locked
-			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
-			updateUsrDialog()
-		else
-			if(emagged)
-				FEEDBACK_ERROR_GENERIC(user)
-			if(open)
-				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
-			else
-				FEEDBACK_ACCESS_DENIED(user)
+		if(!allowed(user))
+			FEEDBACK_ACCESS_DENIED(user)
+			return
 
-	else if(istype(W, /obj/item/reagent_holder/glass))
+		if(emagged)
+			FEEDBACK_ERROR_GENERIC(user)
+			return
+
+		if(open)
+			to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
+			return
+
+		locked = !locked
+		FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
+		updateUsrDialog()
+		return
+				
+
+	if(istype(W, /obj/item/reagent_holder/glass))
 		if(locked)
 			to_chat(user, SPAN_NOTICE("You cannot insert a beaker because the panel is locked."))
 			return
@@ -190,10 +195,14 @@
 		updateUsrDialog()
 		return
 
-	else
-		..()
-		if(health < maxhealth && !isscrewdriver(W) && W.force)
-			step_to(src, (get_step_away(src, user)))
+	
+	..()
+	if(health < maxHealth && !isscrewdriver(W) && W.force)
+		step_to(src, (get_step_away(src, user)))
+
+/mob/living/bot/medbot/UnarmedAttack(atom/to_attack)
+	if(iscarbon(to_attack))
+		medicate_patient(to_attack)
 
 /mob/living/bot/medbot/Emag(mob/user)
 	. = ..()
@@ -214,7 +223,7 @@
 		on = TRUE
 		icon_state = "medibot[on]"
 
-/mob/living/bot/medbot/process()
+/mob/living/bot/medbot/Life()
 	set background = BACKGROUND_ENABLED
 
 	if(!on)
@@ -232,6 +241,9 @@
 		if(stun_time <= 0)
 			icon_state = "medibot[on]"
 			stun_time = 0
+		return
+
+	if(client)
 		return
 
 	if(frustration > 8)
@@ -527,7 +539,7 @@
 	user.drop_from_inventory(src)
 	qdel(src)
 	return TRUE
-*/
+
 /obj/item/medbot_assembly
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
