@@ -355,18 +355,18 @@
 
 	return 0
 
-/mob/living/bot/medbot/proc/medicate_patient(mob/living/carbon/C)
+/mob/living/bot/medbot/proc/medicate_patient(mob/living/carbon/to_heal)
 	if(!on)
 		return
 
-	if(!istype(C))
+	if(!istype(to_heal))
 		oldpatient = patient
 		patient = null
 		currently_healing = 0
 		last_found = world.time
 		return
 
-	if(C.stat == DEAD)
+	if(to_heal.stat == DEAD)
 		var/death_message = pick("No! NO!", "Live, damnit! LIVE!", "I...I've never lost a patient before. Not today, I mean.")
 		speak(death_message)
 		oldpatient = patient
@@ -385,27 +385,27 @@
 		reagent_id = "toxin"
 
 	var/virus = 0
-	for(var/datum/disease/D in C.viruses)
+	for(var/datum/disease/D in to_heal.viruses)
 		virus = 1
 
 	if(!reagent_id && virus)
-		if(!C.reagents.has_reagent(treatment_virus))
+		if(!to_heal.reagents.has_reagent(treatment_virus))
 			reagent_id = treatment_virus
 
-	if(!reagent_id && (C.getBruteLoss() >= heal_threshold))
-		if(!C.reagents.has_reagent(treatment_brute))
+	if(!reagent_id && (to_heal.getBruteLoss() >= heal_threshold))
+		if(!to_heal.reagents.has_reagent(treatment_brute))
 			reagent_id = treatment_brute
 
-	if(!reagent_id && (C.getOxyLoss() >= (15 + heal_threshold)))
-		if(!C.reagents.has_reagent(treatment_oxy))
+	if(!reagent_id && (to_heal.getOxyLoss() >= (15 + heal_threshold)))
+		if(!to_heal.reagents.has_reagent(treatment_oxy))
 			reagent_id = treatment_oxy
 
-	if(!reagent_id && (C.getFireLoss() >= heal_threshold))
-		if(!C.reagents.has_reagent(treatment_fire))
+	if(!reagent_id && (to_heal.getFireLoss() >= heal_threshold))
+		if(!to_heal.reagents.has_reagent(treatment_fire))
 			reagent_id = treatment_fire
 
-	if(!reagent_id && (C.getToxLoss() >= heal_threshold))
-		if(!C.reagents.has_reagent(treatment_tox))
+	if(!reagent_id && (to_heal.getToxLoss() >= heal_threshold))
+		if(!to_heal.reagents.has_reagent(treatment_tox))
 			reagent_id = treatment_tox
 
 	if(!reagent_id) //If they don't need any of that they're probably cured!
@@ -416,21 +416,21 @@
 		var/message = pick("All patched up!", "An apple a day keeps me away.", "Feel better soon!")
 		speak(message)
 		return
-	else
-		icon_state = "medibots"
-		visible_message(SPAN_DANGER("[src] is trying to inject [patient]!"))
-		spawn(30)
-			if((get_dist(src, patient) <= 1) && on)
-				if(reagent_id == "internal_beaker" && reagent_glass?.reagents.total_volume)
-					reagent_glass.reagents.trans_to(patient, injection_amount) //Inject from beaker instead.
-					reagent_glass.reagents.reaction(patient, 2)
-				else
-					patient.reagents.add_reagent(reagent_id, injection_amount)
-				visible_message(SPAN_DANGER("[src] injects [patient] with the syringe!"))
+		
+	icon_state = "medibots"
+	visible_message(SPAN_DANGER("[src] is trying to inject [to_heal]!"))
+	spawn(30)
+		if((get_dist(src, to_heal) <= 1) && on)
+			if(reagent_id == "internal_beaker" && reagent_glass?.reagents.total_volume)
+				reagent_glass.reagents.trans_to(to_heal, injection_amount) //Inject from beaker instead.
+				reagent_glass.reagents.reaction(to_heal, 2)
+			else
+				to_heal.reagents.add_reagent(reagent_id, injection_amount)
+			visible_message(SPAN_DANGER("[src] injects [to_heal] with the syringe!"))
 
-			icon_state = "medibot[on]"
-			currently_healing = 0
-			return
+		icon_state = "medibot[on]"
+		currently_healing = 0
+		return
 
 //	speak(reagent_id)
 	reagent_id = null
