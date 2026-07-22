@@ -14,8 +14,8 @@ HOSTEDBY
 
 ### TICK ###
 
-## Defines the ticklag for the world. 0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.9
+## Defines the ticklag for the world.
+TICKLAG 0.2
 
 ### URLS ###
 
@@ -333,7 +333,7 @@ ALLOW_DRONE_SPAWN 1
 ## The maximum number of maintenance drones that can spawn, assuming they're allowed to.
 MAX_MAINT_DRONES 5
 
-## The time in ticks between new maintenance drones becoming available.
+## The time in deciseconds between new maintenance drones becoming available.
 ## Default is 2 minutes.
 DRONE_BUILD_TIME 1200
 

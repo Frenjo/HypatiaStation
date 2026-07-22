@@ -5,8 +5,7 @@
 	set category = "Drone"
 
 	var/tag = input("Select the desired destination.", "Set Mail Tag", null) as null|anything in GLOBL.tagger_locations
-
-	if(!tag || GLOBL.tagger_locations[tag])
+	if(isnull(tag) || GLOBL.tagger_locations[tag])
 		mail_destination = 0
 		return
 

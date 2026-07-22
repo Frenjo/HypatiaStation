@@ -181,7 +181,7 @@
 	return TRUE
 
 /obj/item/mecha_equipment/tool/extinguisher/get_equip_info()
-	. = "[..()] \[[reagents.total_volume]\]"
+	. = "[..()] \[[reagents?.total_volume]\]"
 
 /obj/item/mecha_equipment/tool/extinguisher/on_reagent_change()
 	return

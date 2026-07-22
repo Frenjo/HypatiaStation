@@ -784,6 +784,7 @@
 #include "code\game\objects\effects\decals\floor\industrial.dm"
 #include "code\game\objects\effects\decals\floor\siding.dm"
 #include "code\game\objects\effects\decals\floor\signs.dm"
+#include "code\game\objects\effects\decals\floor\snow.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\random_spawner.dm"

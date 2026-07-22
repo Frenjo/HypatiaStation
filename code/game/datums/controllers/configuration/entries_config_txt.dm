@@ -14,7 +14,7 @@ CONFIG_ENTRY(hostedby, null, list("Sets a hosted by name for unix platforms."), 
 /*
  * Category: Tick
  */
-CONFIG_ENTRY(ticklag, 0.9, list("Defines the ticklag for the world. 0.9 is the normal one, 0.5 is smoother."), CATEGORY_TICK, TYPE_NUMERIC)
+CONFIG_ENTRY(ticklag, 0.2, list("Defines the ticklag for the world."), CATEGORY_TICK, TYPE_NUMERIC)
 
 /*
  * Category: URLs
@@ -177,7 +177,7 @@ CONFIG_ENTRY(respawn, TRUE, list("If true, allows respawning."), CATEGORY_MOBS, 
 CONFIG_ENTRY(allow_ai, TRUE, list("Allow ai job?"), CATEGORY_MOBS, TYPE_BOOLEAN)
 CONFIG_ENTRY(allow_drone_spawn, TRUE, list("If enabled, allows the spawning of maintenance drones."), CATEGORY_MOBS, TYPE_BOOLEAN)
 CONFIG_ENTRY(max_maint_drones, 5, list("The maximum number of maintenance drones that can spawn, assuming they're allowed to."), CATEGORY_MOBS, TYPE_NUMERIC)
-CONFIG_ENTRY(drone_build_time, 1200, list("The time in ticks between new maintenance drones becoming available.",\
+CONFIG_ENTRY(drone_build_time, 1200, list("The time in deciseconds between new maintenance drones becoming available.",\
 "Default is 2 minutes."), CATEGORY_MOBS, TYPE_NUMERIC)
 CONFIG_ENTRY(humans_need_surnames, FALSE, list("If true, forces all player controlled mobs to have a second name."), CATEGORY_MOBS, TYPE_BOOLEAN)
 CONFIG_ENTRY(jobs_have_minimal_access, TRUE, list("Determines whether jobs use minimal or expanded access.",\

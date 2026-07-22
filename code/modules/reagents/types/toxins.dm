@@ -4,10 +4,12 @@
 	name = "Toxin"
 	id = "toxin"
 	description = "A toxic chemical."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
 	custom_metabolism = 0.1
+	color = "#CF3600" // rgb: 207, 54, 0
+
+	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
 
 /datum/reagent/toxin/on_mob_life(mob/living/carbon/C)
 	if(toxpwr)
@@ -18,16 +20,20 @@
 	name = "Amatoxin"
 	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#792300" // rgb: 121, 35, 0
+
 	toxpwr = 1
 
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E" // rgb: 19, 188, 94
+
 	toxpwr = 0
 
 /datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method = TOUCH, volume)
@@ -53,10 +59,12 @@
 	name = "Plasma"
 	id = "plasma"
 	description = "Plasma in its liquid form."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#E71B00" // rgb: 231, 27, 0
-	var/toxpwr = 3
 	custom_metabolism = 0.1
+	color = "#E71B00" // rgb: 231, 27, 0
+
+	var/toxpwr = 3
 
 /datum/reagent/plasma/on_mob_life(mob/living/carbon/C, alien)
 	if(alien && alien == IS_PLASMALIN)
@@ -65,8 +73,7 @@
 	if(!alien || alien != IS_PLASMALIN)
 		C.adjustToxLoss(toxpwr * REM)
 
-	if(holder.has_reagent("inaprovaline"))
-		holder.remove_reagent("inaprovaline", 2 * REM)
+	holder.remove_reagent("inaprovaline", 2 * REM)
 	. = ..()
 
 /datum/reagent/plasma/reaction_obj(obj/O, volume)
@@ -88,10 +95,12 @@
 	name = "Lexorin"
 	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	toxpwr = 0
 	overdose = REAGENTS_OVERDOSE
+	color = "#C8A5DC" // rgb: 200, 165, 220
+
+	toxpwr = 0
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
 	if(C.stat == DEAD)
@@ -107,8 +116,10 @@
 	name = "Slime Jelly"
 	id = "slimejelly"
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#801E28" // rgb: 128, 30, 40
+
 	toxpwr = 0
 
 /datum/reagent/toxin/slimejelly/on_mob_life(mob/living/carbon/C)
@@ -123,10 +134,12 @@
 	name = "Cyanide"
 	id = "cyanide"
 	description = "A highly toxic chemical."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	toxpwr = 4
 	custom_metabolism = 0.4
+	color = "#CF3600" // rgb: 207, 54, 0
+
+	toxpwr = 4
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/carbon/C)
 	C.adjustOxyLoss(4 * REM)
@@ -137,8 +150,10 @@
 	name = "Mint Toxin"
 	id = "minttoxin"
 	description = "Useful for dealing with undesirable customers."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
+
 	toxpwr = 0
 
 /datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/C)
@@ -150,16 +165,20 @@
 	name = "Carpotoxin"
 	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#003333" // rgb: 0, 51, 51
+
 	toxpwr = 2
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
 	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
+
 	reagent_state = REAGENT_SOLID
 	color = "#669900" // rgb: 102, 153, 0
+
 	toxpwr = 0.5
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/C)
@@ -180,8 +199,10 @@
 	name = "Plant-B-Gone"
 	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
+
 	reagent_state = REAGENT_LIQUID
 	color = "#49002E" // rgb: 73, 0, 46
+
 	toxpwr = 1
 
 	// Clear off wallrot fungi
@@ -225,12 +246,14 @@
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
 	description = "A powerful sedative."
+
 	reagent_state = REAGENT_SOLID
-	color = "#000067" // rgb: 0, 0, 103
-	toxpwr = 1
 	custom_metabolism = 0.1 //Default 0.2
 	overdose = 15
 	overdose_dam = 5
+	color = "#000067" // rgb: 0, 0, 103
+
+	toxpwr = 1
 
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
@@ -250,10 +273,12 @@
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
+
 	reagent_state = REAGENT_SOLID
-	color = "#FFFFFF" // rgb: 255,255,255
-	toxpwr = 0
 	overdose = 30
+	color = "#FFFFFF" // rgb: 255,255,255
+
+	toxpwr = 0
 
 /datum/reagent/toxin/potassium_chloride/on_mob_life(mob/living/carbon/C)
 	if(C.stat != 1)
@@ -268,10 +293,12 @@
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
+
 	reagent_state = REAGENT_SOLID
-	color = "#FFFFFF" // rgb: 255,255,255
-	toxpwr = 2
 	overdose = 20
+	color = "#FFFFFF" // rgb: 255,255,255
+
+	toxpwr = 2
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/C)
 	if(C.stat != 1)
@@ -285,10 +312,11 @@
 	name = "Beer"
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be imcomplete." //If the players manage to analyse this, they deserve to know something is wrong.
+
 	reagent_state = REAGENT_LIQUID
-	color = "#664300" // rgb: 102, 67, 0
 	custom_metabolism = 0.15 // Sleep toxins should always be consumed pretty fast
-	overdose = REAGENTS_OVERDOSE/2
+	overdose = REAGENTS_OVERDOSE / 2
+	color = "#664300" // rgb: 102, 67, 0
 
 /datum/reagent/toxin/beer2/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
@@ -309,7 +337,9 @@
 	name = "Sulphuric acid"
 	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
+
 	reagent_state = REAGENT_LIQUID
+
 	color = "#DB5008" // rgb: 219, 80, 8
 	toxpwr = 1
 
@@ -384,18 +414,22 @@
 	name = "Polytrinic acid"
 	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
+
 	reagent_state = REAGENT_LIQUID
 	color = "#8E18A9" // rgb: 142, 24, 169
+
 	toxpwr = 2
+
 	meltprob = 30
 
 /datum/reagent/slimetoxin
 	name = "Mutation Toxin"
 	id = "mutationtoxin"
 	description = "A corruptive toxin produced by slimes."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
+	color = "#13BC5E" // rgb: 19, 188, 94
 
 /datum/reagent/slimetoxin/on_mob_life(mob/living/carbon/C)
 	if(ishuman(C))
@@ -410,9 +444,10 @@
 	name = "Advanced Mutation Toxin"
 	id = "amutationtoxin"
 	description = "An advanced corruptive toxin produced by slimes."
+
 	reagent_state = REAGENT_LIQUID
-	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
+	color = "#13BC5E" // rgb: 19, 188, 94
 
 /datum/reagent/aslimetoxin/on_mob_life(mob/living/carbon/C)
 	if(iscarbon(C) && C.stat != DEAD)
