@@ -208,13 +208,11 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		var/mob/living/carbon/to_cuff = to_attack
 		if(to_cuff.stunned && !to_cuff.handcuffed)
 			visible_message(SPAN_DANGER("[to_attack] is being handcuffed by [src]!"), SPAN_NOTICE("You begin handcuffing [to_attack]..."))
-			spawn(60)
-				if(get_dist(src, to_attack) > 1)
-					return
-				
-				if(!to_cuff.handcuffed)
-					to_cuff.handcuffed = new /obj/item/handcuffs(to_attack)
-					to_cuff.update_inv_handcuffed()	//update the handcuffs overlay
+			if(!do_after(src, 6 SECONDS, to_attack))
+				return
+			if(!to_cuff.handcuffed)
+				to_cuff.handcuffed = new /obj/item/handcuffs(to_attack)
+				to_cuff.update_inv_handcuffed()	//update the handcuffs overlay
 			return
 
 		stun_whack(to_attack)
@@ -310,27 +308,26 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					mode = SECBOT_ARREST
 					visible_message(SPAN_DANGER("[src] is trying to put handcuffs on [target]!"))
 
-					spawn(60)
-						if(get_dist(src, target) <= 1)
-							/*if(target.handcuffed)
-								return*/
+					if(do_after(src, 6 SECONDS, target))
+						/*if(target.handcuffed)
+							return*/
 
-							if(iscarbon(target))
-								C = target
-								if(!C.handcuffed)
-									C.handcuffed = new /obj/item/handcuffs(target)
-									C.update_inv_handcuffed()	//update the handcuffs overlay
+						if(iscarbon(target))
+							C = target
+							if(!C.handcuffed)
+								C.handcuffed = new /obj/item/handcuffs(target)
+								C.update_inv_handcuffed()	//update the handcuffs overlay
 
-							mode = SECBOT_IDLE
-							target = null
-							anchored = FALSE
-							last_found = world.time
-							frustration = 0
+						mode = SECBOT_IDLE
+						target = null
+						anchored = FALSE
+						last_found = world.time
+						frustration = 0
 
-							// No expletive laden voice line please and thank you. -Frenjo
-							playsound(src, pick('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg'/*, 'sound/voice/binsult.ogg'*/, 'sound/voice/bcreep.ogg'), 50, 0)
-		//					var/arrest_message = pick("Have a secure day!","I AM THE LAW.", "God made tomorrow for the crooks we don't catch today.","You can't outrun a radio.")
-		//					speak(arrest_message)
+						// No expletive laden voice line please and thank you. -Frenjo
+						playsound(src, pick('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg'/*, 'sound/voice/binsult.ogg'*/, 'sound/voice/bcreep.ogg'), 50, 0)
+		//				var/arrest_message = pick("Have a secure day!","I AM THE LAW.", "God made tomorrow for the crooks we don't catch today.","You can't outrun a radio.")
+		//				speak(arrest_message)
 
 			else
 				mode = SECBOT_IDLE

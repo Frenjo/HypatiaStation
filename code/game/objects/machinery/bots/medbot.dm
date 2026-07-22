@@ -416,25 +416,24 @@
 		var/message = pick("All patched up!", "An apple a day keeps me away.", "Feel better soon!")
 		speak(message)
 		return
-		
+
 	icon_state = "medibots"
 	visible_message(SPAN_DANGER("[src] is trying to inject [to_heal]!"))
-	spawn(30)
-		if((get_dist(src, to_heal) <= 1) && on)
-			if(reagent_id == "internal_beaker" && reagent_glass?.reagents.total_volume)
-				reagent_glass.reagents.trans_to(to_heal, injection_amount) //Inject from beaker instead.
-				reagent_glass.reagents.reaction(to_heal, 2)
-			else
-				to_heal.reagents.add_reagent(reagent_id, injection_amount)
-			visible_message(SPAN_DANGER("[src] injects [to_heal] with the syringe!"))
-
+	if(!do_after(src, 3 SECONDS, to_heal) || !on)
 		icon_state = "medibot[on]"
 		currently_healing = 0
 		return
 
+	if(reagent_id == "internal_beaker" && reagent_glass?.reagents.total_volume)
+		reagent_glass.reagents.trans_to(to_heal, injection_amount) //Inject from beaker instead.
+		reagent_glass.reagents.reaction(to_heal, 2)
+	else
+		to_heal.reagents.add_reagent(reagent_id, injection_amount)
+	visible_message(SPAN_DANGER("[src] injects [to_heal] with the syringe!"))
+
+	icon_state = "medibot[on]"
+	currently_healing = 0
 //	speak(reagent_id)
-	reagent_id = null
-	return
 
 /mob/living/bot/medbot/proc/speak(message)
 	if((!on) || (!message))

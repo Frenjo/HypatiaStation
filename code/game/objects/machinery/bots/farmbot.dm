@@ -550,13 +550,12 @@
 	mode = FARMBOT_MODE_WAITING
 	playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 	visible_message(SPAN_INFO("[src] starts filling it's tank from [to_refill]."))
-	spawn(300)
-		if(!tank || get_dist(tank, src) > 1)
-			return
-		visible_message(SPAN_INFO("[src] finishes filling it's tank."))
-		mode = FARMBOT_MODE_NONE
-		tank.reagents.add_reagent("water", tank.reagents.maximum_volume - tank.reagents.total_volume )
-		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
+	if(!do_after(src, 30 SECONDS, to_refill))
+		return
+	visible_message(SPAN_INFO("[src] finishes filling it's tank."))
+	mode = FARMBOT_MODE_NONE
+	tank.reagents.add_reagent("water", tank.reagents.maximum_volume - tank.reagents.total_volume )
+	playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 
 // Farmbot Assembly
 /obj/structure/reagent_dispenser/watertank/attack_by(obj/item/I, mob/user)

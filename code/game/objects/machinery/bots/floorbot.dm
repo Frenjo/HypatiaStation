@@ -115,6 +115,11 @@
 		var/turf/open/floor/soon_to_be_space = to_attack
 		anchored = TRUE
 		repairing = TRUE
+		if(!do_after(src, 5 SECONDS, to_attack))
+			anchored = FALSE
+			repairing = FALSE
+			return
+
 		if(prob(90))
 			soon_to_be_space.break_tile_to_plating()
 		else
@@ -123,11 +128,9 @@
 			SPAN_NOTICE("[src] makes an excited booping sound."),
 			SPAN_NOTICE("You hear an excited booping.")
 		)
-		spawn(50)
-			amount ++
-			anchored = FALSE
-			repairing = FALSE
-			to_attack = null
+		amount ++
+		anchored = FALSE
+		repairing = FALSE
 		return
 
 	return ..()
@@ -319,70 +322,77 @@
 		visible_message(SPAN_NOTICE("[src] begins to repair the hole."))
 		var/obj/item/stack/tile/metal/grey/T = new /obj/item/stack/tile/metal/grey()
 		repairing = TRUE
-		spawn(50)
+		if(!do_after(src, 5 SECONDS, to_repair))
 			repairing = FALSE
 			anchored = FALSE
-			if(!isspace(to_repair) || get_dist(src, to_repair) > 1)
-				updateicon()
-				return
-			T.build(to_repair)
-			amount -= 1
+			return
+		repairing = FALSE
+		anchored = FALSE
+		if(!isspace(to_repair))
 			updateicon()
-			target = null
+			return
+		T.build(to_repair)
+		amount -= 1
+		updateicon()
+		target = null
 		return
 	
 	visible_message(SPAN_NOTICE("[src] begins to improve the floor."))
 	repairing = TRUE
-	spawn(50)
+	if(!do_after(src, 5 SECONDS, to_repair))
 		repairing = FALSE
 		anchored = FALSE
-		if(!isfloorturf(to_repair) || get_dist(src, to_repair) > 1)
-			updateicon()
-			return
-		to_repair.icon_state = "floor"
-		amount -= 1
-		updateicon()
-		target = null
-
-/mob/living/bot/floorbot/proc/eattile(obj/item/stack/tile/metal/grey/T)
-	if(!istype(T, /obj/item/stack/tile/metal/grey))
 		return
+	repairing = FALSE
+	anchored = FALSE
+	if(!isfloorturf(to_repair))
+		updateicon()
+		return
+	to_repair.icon_state = "floor"
+	amount -= 1
+	updateicon()
+	target = null
+
+/mob/living/bot/floorbot/proc/eattile(obj/item/stack/tile/metal/grey/tile)
+	if(!istype(tile, /obj/item/stack/tile/metal/grey))
+		return
+
 	visible_message(SPAN_NOTICE("[src] begins to collect tiles."))
 	repairing = TRUE
-	spawn(20)
-		if(isnull(T) || get_dist(src, T) > 1)
-			target = null
-			repairing = FALSE
-			return
-		if(amount + T.amount > 50)
-			var/i = 50 - amount
-			amount += i
-			T.amount -= i
-		else
-			amount += T.amount
-			qdel(T)
-		updateicon()
+	if(!do_after(src, 2 SECONDS, tile))
 		target = null
 		repairing = FALSE
-
-/mob/living/bot/floorbot/proc/maketile(obj/item/stack/sheet/steel/M)
-	if(!istype(M, /obj/item/stack/sheet/steel))
 		return
-	if(M.amount > 1)
+
+	if(amount + tile.amount > 50)
+		var/i = 50 - amount
+		amount += i
+		tile.amount -= i
+	else
+		amount += tile.amount
+		qdel(tile)
+	updateicon()
+	target = null
+	repairing = FALSE
+
+/mob/living/bot/floorbot/proc/maketile(obj/item/stack/sheet/steel/material)
+	if(!istype(material, /obj/item/stack/sheet/steel))
+		return
+	if(material.amount > 1)
 		return
 	visible_message(SPAN_NOTICE("[src] begins to create tiles."))
 	repairing = TRUE
 
-	spawn(20)
-		if(isnull(M) || get_dist(src, M) > 1)
-			target = null
-			repairing = FALSE
-			return
-		var/obj/item/stack/tile/metal/grey/T = new /obj/item/stack/tile/metal/grey(M.loc)
-		T.amount = 4
-		qdel(M)
+	if(!do_after(src, 2 SECONDS, material))
 		target = null
 		repairing = FALSE
+		return
+
+	var/obj/item/stack/tile/metal/grey/fuel = new /obj/item/stack/tile/metal/grey(material.loc)
+	fuel.amount = 4
+	qdel(material)
+	target = null
+	repairing = FALSE
 
 /mob/living/bot/floorbot/updateicon()
 	if(amount > 0)

@@ -329,23 +329,24 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	if(blood)
 		target_types.Add(/obj/effect/decal/cleanable/blood)
 
-/mob/living/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/target)
+/mob/living/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/to_clean)
 	anchored = TRUE
 	icon_state = "cleanbot-c"
-	visible_message(SPAN_WARNING("[src] begins to clean up the [target]."))
+	visible_message(SPAN_WARNING("[src] begins to clean up the [to_clean]."))
 	cleaning = TRUE
 	var/cleantime = 50
-	if(istype(target, /obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster
+	if(istype(to_clean, /obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster
 		cleantime = 10
-	spawn(cleantime)
-		if(isopenturf(loc))
-			var/turf/open/f = loc
-			f.dirt = 0
-		cleaning = FALSE
-		qdel(target)
-		icon_state = "cleanbot[on]"
-		anchored = FALSE
-		target = null
+	if(!do_after(src, cleantime, to_clean))
+		return
+	if(isopenturf(loc))
+		var/turf/open/f = loc
+		f.dirt = 0
+	cleaning = FALSE
+	qdel(to_clean)
+	icon_state = "cleanbot[on]"
+	anchored = FALSE
+	target = null
 
 /mob/living/bot/cleanbot/explode()
 	on = FALSE
