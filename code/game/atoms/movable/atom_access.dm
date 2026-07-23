@@ -21,6 +21,10 @@
 		//they can only hold things :(
 		if(check_access(george.get_active_hand()))
 			return TRUE
+	else if(isbot(M))
+		var/mob/living/bot/bot = M
+		if(check_access(bot.botcard))
+			return TRUE
 	return FALSE
 
 /atom/movable/proc/get_access()

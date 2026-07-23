@@ -74,7 +74,7 @@
 					dat += "<a href='byond://?src=\ref[src];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"
 					var/bdat = null
-					for(var/mob/living/bot/medbot/M in GLOBL.bots_list)
+					for(var/mob/living/bot/medbot/M in GLOBL.bot_list)
 						var/turf/bl = GET_TURF(M)
 						bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
 						if(isnotnull(M.reagent_glass))

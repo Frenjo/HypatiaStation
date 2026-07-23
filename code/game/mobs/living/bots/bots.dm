@@ -30,10 +30,10 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
-	GLOBL.bots_list.Add(src)
+	GLOBL.bot_list.Add(src)
 
 /mob/living/bot/Destroy()
-	GLOBL.bots_list.Remove(src)
+	GLOBL.bot_list.Remove(src)
 	QDEL_NULL(botcard)
 	return ..()
 
@@ -108,11 +108,11 @@
 			SPAN_WARNING("[user] repairs [src]!"),
 			SPAN_INFO("You repair [src]!")
 		)
-		return	
+		return
 
 	if(!hasvar(attacking_item, "force") || !hasvar(attacking_item, "damtype"))
 		return
-		
+
 	var/damage = null
 	switch(attacking_item.damtype)
 		if("fire")
@@ -192,7 +192,7 @@
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(loc)
 	apply_damage(rand(15, 30) * brute_dam_coeff, BRUTE)
-	
+
 
 /******************************************************************/
 // Navigation procs

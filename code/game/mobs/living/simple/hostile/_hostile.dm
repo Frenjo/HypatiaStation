@@ -55,13 +55,6 @@
 				stance = HOSTILE_STANCE_ATTACK
 				T = M
 				break
-
-		if(istype(A, /mob/living/bot))
-			var/mob/living/bot/B = A
-			if(B.health > 0)
-				stance = HOSTILE_STANCE_ATTACK
-				T = B
-				break
 	return T
 
 /mob/living/simple/hostile/proc/Found(atom/A)
@@ -112,9 +105,6 @@
 		var/obj/mecha/M = target
 		M.attack_animal(src)
 		return M
-	if(istype(target, /mob/living/bot))
-		var/mob/living/bot/B = target
-		B.attack_animal(src)
 
 /mob/living/simple/hostile/proc/LoseTarget()
 	stance = HOSTILE_STANCE_IDLE
