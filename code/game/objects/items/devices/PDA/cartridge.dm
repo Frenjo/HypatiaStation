@@ -176,7 +176,7 @@
 				beepskyData["botstatus"] = list("loca" = null, "mode" = -1)
 			var/botsCount = 0
 			if(length(SC.botlist))
-				for(var/mob/living/bot/B in SC.botlist)
+				for_no_type_check(var/mob/living/bot/B, SC.botlist)
 					botsCount++
 					if(B.loc)
 						botsData[++botsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
@@ -230,7 +230,7 @@
 				)
 
 			var/mulebotsCount = 0
-			for(var/mob/living/bot/B in QC.botlist)
+			for_no_type_check(var/mob/living/bot/B, QC.botlist)
 				mulebotsCount++
 				if(B.loc)
 					mulebotsData[++mulebotsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
