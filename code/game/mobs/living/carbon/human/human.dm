@@ -414,31 +414,28 @@
 			siemens_coeff = G.siemens_coefficient
 	return ..(shock_damage, source, siemens_coeff)
 
+/mob/living/carbon/human/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-/mob/living/carbon/human/Topic(href, href_list)
-	if(href_list["refresh"])
-		if(machine && in_range(src, usr))
+	if(topic.has("refresh"))
+		if(isnotnull(machine) && in_range(src, user))
 			show_inv(machine)
 
-	if(href_list["mach_close"])
-		var/t1 = "window=[href_list["mach_close"]]"
-		unset_machine()
-		CLOSE_BROWSER(src, t1)
-
-	if(href_list["item"] && !usr.stat && usr.canmove && !usr.restrained() && in_range(src, usr) && global.PCticker) //if game hasn't started, can't make an equip_e
+	//if game hasn't started, can't make an equip_e
+	if(topic.has("item") && !user.stat && user.canmove && !user.restrained() && in_range(src, user) && global.PCticker)
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
-		O.source = usr
+		O.source = user
 		O.target = src
-		O.item = usr.get_active_hand()
-		O.s_loc = usr.loc
+		O.item = user.get_active_hand()
+		O.s_loc = user.loc
 		O.t_loc = loc
-		O.place = href_list["item"]
+		O.place = topic.get_str("item")
 		requests += O
-		spawn(0)
-			O.process()
-			return
+		START_PROCESSING(PCobj, O)
 
-	if(href_list["criminal"])
+	if(topic.has("criminal"))
 		if(hasHUD(usr, "security"))
 			var/modified = 0
 			var/perpname = "wot"
@@ -447,37 +444,33 @@
 				perpname = isnotnull(I) ? I.registered_name : name
 			else
 				perpname = name
-
 			if(perpname)
 				for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
 					if(E.fields["name"] == perpname)
 						for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 							if(R.fields["id"] == E.fields["id"])
-
-								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
-
-								if(hasHUD(usr, "security"))
+								var/setcriminal = input(user, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
+								if(hasHUD(user, "security"))
 									if(setcriminal != "Cancel")
 										R.fields["criminal"] = setcriminal
 										modified = 1
 
 										spawn()
 											BITSET(hud_updateflag, WANTED_HUD)
-											if(ishuman(usr))
-												var/mob/living/carbon/human/U = usr
+											if(ishuman(user))
+												var/mob/living/carbon/human/U = user
 												U.handle_regular_hud_updates()
-											if(isrobot(usr))
-												var/mob/living/silicon/robot/U = usr
+											if(isrobot(user))
+												var/mob/living/silicon/robot/U = user
 												U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
+				to_chat(user, SPAN_WARNING("Unable to locate a data core entry for this person."))
 
-	if(href_list["secrecord"])
-		if(hasHUD(usr, "security"))
+	if(topic.has("secrecord"))
+		if(hasHUD(user, "security"))
 			var/perpname = "wot"
 			var/read = 0
-
 			if(id_store)
 				if(istype(id_store, /obj/item/card/id))
 					perpname = id_store:registered_name
@@ -490,24 +483,23 @@
 				if(E.fields["name"] == perpname)
 					for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr, "security"))
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
-								to_chat(usr, "<b>Minor Crimes:</b> [R.fields["mi_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_crim_d"]]")
-								to_chat(usr, "<b>Major Crimes:</b> [R.fields["ma_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_crim_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='byond://?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
+							if(hasHUD(user, "security"))
+								to_chat(user, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
+								to_chat(user, "<b>Minor Crimes:</b> [R.fields["mi_crim"]]")
+								to_chat(user, "<b>Details:</b> [R.fields["mi_crim_d"]]")
+								to_chat(user, "<b>Major Crimes:</b> [R.fields["ma_crim"]]")
+								to_chat(user, "<b>Details:</b> [R.fields["ma_crim_d"]]")
+								to_chat(user, "<b>Notes:</b> [R.fields["notes"]]")
+								to_chat(user, "<a href='byond://?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
 								read = 1
 
 			if(!read)
-				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
+				to_chat(user, SPAN_WARNING("Unable to locate a data core entry for this person."))
 
-	if(href_list["secrecordComment"])
-		if(hasHUD(usr, "security"))
+	if(topic.has("secrecordComment"))
+		if(hasHUD(user, "security"))
 			var/perpname = "wot"
 			var/read = 0
-
 			if(id_store)
 				if(istype(id_store, /obj/item/card/id))
 					perpname = id_store:registered_name
@@ -520,21 +512,21 @@
 				if(E.fields["name"] == perpname)
 					for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr, "security"))
+							if(hasHUD(user, "security"))
 								read = 1
 								var/counter = 1
 								while(R.fields["com_[counter]"])
-									to_chat(usr, "[R.fields["com_[counter]"]]")
+									to_chat(user, "[R.fields["com_[counter]"]]")
 									counter++
 								if(counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='byond://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
+									to_chat(user, "No comment found")
+								to_chat(user, "<a href='byond://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
-				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
+				to_chat(user, SPAN_WARNING("Unable to locate a data core entry for this person."))
 
-	if(href_list["secrecordadd"])
-		if(hasHUD(usr, "security"))
+	if(topic.has("secrecordadd"))
+		if(hasHUD(user, "security"))
 			var/perpname = "wot"
 			if(id_store)
 				if(istype(id_store, /obj/item/card/id))
@@ -548,159 +540,150 @@
 				if(E.fields["name"] == perpname)
 					for_no_type_check(var/datum/record/R, GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr, "security"))
+							if(hasHUD(user, "security"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null) as message), 1, MAX_MESSAGE_LEN)
-								if(!t1 || usr.stat || usr.restrained() || !hasHUD(usr, "security"))
+								if(!t1 || user.stat || user.restrained() || !hasHUD(user, "security"))
 									return
 								var/counter = 1
 								while(R.fields["com_[counter]"])
 									counter++
-								if(ishuman(usr))
-									var/mob/living/carbon/human/U = usr
+								if(ishuman(user))
+									var/mob/living/carbon/human/U = user
 									R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
-								if(isrobot(usr))
-									var/mob/living/silicon/robot/U = usr
+								if(isrobot(user))
+									var/mob/living/silicon/robot/U = user
 									R.fields["com_[counter]"] = "Made by [U.name] ([U.model.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 
-	if(href_list["medical"])
-		if(hasHUD(usr, "medical"))
-			var/perpname = "wot"
-			var/modified = 0
+		if(topic.has("medical"))
+			if(hasHUD(user, "medical"))
+				var/perpname = "wot"
+				var/modified = 0
+				if(id_store)
+					if(istype(id_store,/obj/item/card/id))
+						perpname = id_store:registered_name
+					else if(istype(id_store,/obj/item/pda))
+						var/obj/item/pda/tempPda = id_store
+						perpname = tempPda.owner
+				else
+					perpname = src.name
+				for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
+					if(E.fields["name"] == perpname)
+						for_no_type_check(var/datum/record/R, GLOBL.data_core.general)
+							if(R.fields["id"] == E.fields["id"])
+								var/setmedical = input(user, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
+								if(hasHUD(user, "medical"))
+									if(setmedical != "Cancel")
+										R.fields["p_stat"] = setmedical
+										modified = 1
+										if(length(GLOBL.data_core.pda_manifest))
+											GLOBL.data_core.pda_manifest.Cut()
 
-			if(id_store)
-				if(istype(id_store,/obj/item/card/id))
-					perpname = id_store:registered_name
-				else if(istype(id_store,/obj/item/pda))
-					var/obj/item/pda/tempPda = id_store
-					perpname = tempPda.owner
-			else
-				perpname = src.name
+										spawn()
+											if(ishuman(user))
+												var/mob/living/carbon/human/U = user
+												U.handle_regular_hud_updates()
+											if(isrobot(user))
+												var/mob/living/silicon/robot/U = user
+												U.handle_regular_hud_updates()
 
-			for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
-				if(E.fields["name"] == perpname)
-					for_no_type_check(var/datum/record/R, GLOBL.data_core.general)
-						if(R.fields["id"] == E.fields["id"])
+				if(!modified)
+					to_chat(user, SPAN_WARNING("Unable to locate a data core entry for this person."))
 
-							var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
+		if(topic.has("medrecord"))
+			if(hasHUD(user, "medical"))
+				var/perpname = "wot"
+				var/read = 0
+				if(id_store)
+					if(istype(id_store,/obj/item/card/id))
+						perpname = id_store:registered_name
+					else if(istype(id_store,/obj/item/pda))
+						var/obj/item/pda/tempPda = id_store
+						perpname = tempPda.owner
+				else
+					perpname = src.name
+				for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
+					if(E.fields["name"] == perpname)
+						for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
+							if(R.fields["id"] == E.fields["id"])
+								if(hasHUD(user, "medical"))
+									to_chat(user, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
+									to_chat(user, "<b>DNA:</b> [R.fields["b_dna"]]")
+									to_chat(user, "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]")
+									to_chat(user, "<b>Details:</b> [R.fields["mi_dis_d"]]")
+									to_chat(user, "<b>Major Disabilities:</b> [R.fields["ma_dis"]]")
+									to_chat(user, "<b>Details:</b> [R.fields["ma_dis_d"]]")
+									to_chat(user, "<b>Notes:</b> [R.fields["notes"]]")
+									to_chat(user, "<a href='byond://?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
+									read = 1
 
-							if(hasHUD(usr, "medical"))
-								if(setmedical != "Cancel")
-									R.fields["p_stat"] = setmedical
-									modified = 1
-									if(length(GLOBL.data_core.pda_manifest))
-										GLOBL.data_core.pda_manifest.Cut()
+				if(!read)
+					to_chat(user, SPAN_WARNING("Unable to locate a data core entry for this person."))
 
-									spawn()
-										if(ishuman(usr))
-											var/mob/living/carbon/human/U = usr
-											U.handle_regular_hud_updates()
-										if(isrobot(usr))
-											var/mob/living/silicon/robot/U = usr
-											U.handle_regular_hud_updates()
+		if(topic.has("medrecordComment"))
+			if(hasHUD(user, "medical"))
+				var/perpname = "wot"
+				var/read = 0
+				if(id_store)
+					if(istype(id_store,/obj/item/card/id))
+						perpname = id_store:registered_name
+					else if(istype(id_store,/obj/item/pda))
+						var/obj/item/pda/tempPda = id_store
+						perpname = tempPda.owner
+				else
+					perpname = src.name
+				for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
+					if(E.fields["name"] == perpname)
+						for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
+							if(R.fields["id"] == E.fields["id"])
+								if(hasHUD(user, "medical"))
+									read = 1
+									var/counter = 1
+									while(R.fields["com_[counter]"])
+										to_chat(user, "[R.fields["com_[counter]"]]")
+										counter++
+									if(counter == 1)
+										to_chat(user, "No comment found")
+									to_chat(user, "<a href='byond://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
 
-			if(!modified)
-				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
+				if(!read)
+					to_chat(user, SPAN_WARNING("Unable to locate a data core entry for this person."))
 
-	if(href_list["medrecord"])
-		if(hasHUD(usr, "medical"))
-			var/perpname = "wot"
-			var/read = 0
+		if(topic.has("medrecordadd"))
+			if(hasHUD(user, "medical"))
+				var/perpname = "wot"
+				if(id_store)
+					if(istype(id_store,/obj/item/card/id))
+						perpname = id_store:registered_name
+					else if(istype(id_store,/obj/item/pda))
+						var/obj/item/pda/tempPda = id_store
+						perpname = tempPda.owner
+				else
+					perpname = src.name
+				for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
+					if(E.fields["name"] == perpname)
+						for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
+							if(R.fields["id"] == E.fields["id"])
+								if(hasHUD(user, "medical"))
+									var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message), 1, MAX_MESSAGE_LEN)
+									if(!t1 || user.stat || user.restrained() || !hasHUD(user, "medical"))
+										return
+									var/counter = 1
+									while(R.fields["com_[counter]"])
+										counter++
+									if(ishuman(user))
+										var/mob/living/carbon/human/U = user
+										R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
+									if(isrobot(user))
+										var/mob/living/silicon/robot/U = user
+										R.fields["com_[counter]"] = "Made by [U.name] ([U.model.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 
-			if(id_store)
-				if(istype(id_store,/obj/item/card/id))
-					perpname = id_store:registered_name
-				else if(istype(id_store,/obj/item/pda))
-					var/obj/item/pda/tempPda = id_store
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
-				if(E.fields["name"] == perpname)
-					for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
-						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr, "medical"))
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
-								to_chat(usr, "<b>DNA:</b> [R.fields["b_dna"]]")
-								to_chat(usr, "<b>Minor Disabilities:</b> [R.fields["mi_dis"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_dis_d"]]")
-								to_chat(usr, "<b>Major Disabilities:</b> [R.fields["ma_dis"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_dis_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='byond://?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
-								read = 1
+		if(topic.has("lookitem"))
+			var/obj/item/I = topic.get_obj("lookitem")
+			I.examine(usr)
 
-			if(!read)
-				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
-
-	if(href_list["medrecordComment"])
-		if(hasHUD(usr, "medical"))
-			var/perpname = "wot"
-			var/read = 0
-
-			if(id_store)
-				if(istype(id_store,/obj/item/card/id))
-					perpname = id_store:registered_name
-				else if(istype(id_store,/obj/item/pda))
-					var/obj/item/pda/tempPda = id_store
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
-				if(E.fields["name"] == perpname)
-					for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
-						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr, "medical"))
-								read = 1
-								var/counter = 1
-								while(R.fields["com_[counter]"])
-									to_chat(usr, "[R.fields["com_[counter]"]]")
-									counter++
-								if(counter == 1)
-									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='byond://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
-
-			if(!read)
-				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
-
-	if(href_list["medrecordadd"])
-		if(hasHUD(usr, "medical"))
-			var/perpname = "wot"
-			if(id_store)
-				if(istype(id_store,/obj/item/card/id))
-					perpname = id_store:registered_name
-				else if(istype(id_store,/obj/item/pda))
-					var/obj/item/pda/tempPda = id_store
-					perpname = tempPda.owner
-			else
-				perpname = src.name
-			for_no_type_check(var/datum/record/E, GLOBL.data_core.general)
-				if(E.fields["name"] == perpname)
-					for_no_type_check(var/datum/record/R, GLOBL.data_core.medical)
-						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr, "medical"))
-								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message), 1, MAX_MESSAGE_LEN)
-								if(!t1 || usr.stat || usr.restrained() || !hasHUD(usr, "medical"))
-									return
-								var/counter = 1
-								while(R.fields["com_[counter]"])
-									counter++
-								if(ishuman(usr))
-									var/mob/living/carbon/human/U = usr
-									R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
-								if(isrobot(usr))
-									var/mob/living/silicon/robot/U = usr
-									R.fields["com_[counter]"] = "Made by [U.name] ([U.model.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
-
-	if(href_list["lookitem"])
-		var/obj/item/I = locate(href_list["lookitem"])
-		I.examine(usr)
-
-	if(href_list["lookmob"])
-		var/mob/M = locate(href_list["lookmob"])
-		M.examine(usr)
-	..()
-	return
-
+		if(topic.has("lookmob"))
+			var/mob/M = topic.get_mob("lookmob")
+			M.examine(usr)
 
 ///eyecheck()
 ///Returns a number between -1 to 2

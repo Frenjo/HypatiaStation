@@ -375,11 +375,13 @@
 	icon_dead = "puppy_dead"
 
 //pupplies cannot wear anything.
-/mob/living/simple/corgi/puppy/Topic(href, href_list)
-	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, SPAN_WARNING("You can't fit this on \the [src]."))
-		return
-	..()
+/mob/living/simple/corgi/puppy/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("remove_inv") || topic.has("add_inv"))
+		to_chat(user, SPAN_WARNING("You can't fit this on \the [src]."))
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/simple/corgi/Lisa
@@ -397,11 +399,13 @@
 	var/puppies = 0
 
 //Lisa already has a cute bow!
-/mob/living/simple/corgi/Lisa/Topic(href, href_list)
-	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, SPAN_WARNING("\The [src] already has a cute bow!"))
-		return
-	..()
+/mob/living/simple/corgi/Lisa/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("remove_inv") || topic.has("add_inv"))
+		to_chat(user, SPAN_WARNING("\The [src] already has a cute bow!"))
 
 /mob/living/simple/corgi/Lisa/Life()
 	..()
