@@ -36,4 +36,4 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/conveyor/conveyors_list)
 // A list of all newscasters in existence.
 GLOBAL_GLOBL_LIST_NEW(obj/machinery/newscaster/all_newscasters)
 
-GLOBAL_GLOBL_LIST_NEW(obj/machinery/bot/bots_list)
+GLOBAL_GLOBL_LIST_NEW(mob/living/bot/bot_list)

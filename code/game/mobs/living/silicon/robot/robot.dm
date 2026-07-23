@@ -201,36 +201,6 @@
 	else
 		stat(null, "No Cell Inserted!")
 
-/mob/living/silicon/robot/proc/allowed(mob/M)
-	//check if it doesn't require any access at all
-	if(check_access(null))
-		return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.id_store))
-			return 1
-	else if(ismonkey(M))
-		var/mob/living/carbon/monkey/george = M
-		//they can only hold things :(
-		if(george.get_active_hand() && istype(george.get_active_hand(), /obj/item/card/id) && check_access(george.get_active_hand()))
-			return 1
-	return 0
-
-/mob/living/silicon/robot/proc/check_access(obj/item/card/id/I)
-	if(!islist(req_access)) //something's very wrong
-		return 1
-
-	var/list/L = req_access
-	if(!length(L)) //no requirements
-		return 1
-	if(!I || !istype(I, /obj/item/card/id) || !I.access) //not ID or no access
-		return 0
-	for(var/req in req_access)
-		if(!(req in I.access)) //doesn't have this access
-			return 0
-	return 1
-
 /mob/living/silicon/robot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
 	if(!.)

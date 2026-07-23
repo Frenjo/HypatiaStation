@@ -332,7 +332,7 @@
 // called when something steps onto a human
 // this could be made more general, but for now just handle mulebot
 /mob/living/carbon/human/Crossed(atom/movable/AM)
-	var/obj/machinery/bot/mulebot/mulebot = AM
+	var/mob/living/bot/mulebot/mulebot = AM
 	if(istype(mulebot))
 		mulebot.RunOver(src)
 

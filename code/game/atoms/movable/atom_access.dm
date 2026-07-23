@@ -1,10 +1,10 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-/obj
+/atom/movable
 	var/list/req_access
 	var/list/req_one_access
 
 // Returns TRUE if this mob has sufficient access to use this object.
-/obj/proc/allowed(mob/M)
+/atom/movable/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
 	if(check_access(null))
 		return TRUE
@@ -21,15 +21,19 @@
 		//they can only hold things :(
 		if(check_access(george.get_active_hand()))
 			return TRUE
+	else if(isbot(M))
+		var/mob/living/bot/bot = M
+		if(check_access(bot.botcard))
+			return TRUE
 	return FALSE
 
-/obj/item/proc/get_access()
+/atom/movable/proc/get_access()
 	return list()
 
-/obj/item/proc/get_id()
+/atom/movable/proc/get_id()
 	return null
 
-/obj/proc/check_access(obj/item/I)
+/atom/movable/proc/check_access(obj/item/I)
 	if(!length(req_access) && !length(req_one_access)) //no requirements
 		return TRUE
 	if(isnull(I))
@@ -44,7 +48,7 @@
 		return FALSE
 	return TRUE
 
-/obj/proc/check_access_list(list/L)
+/atom/movable/proc/check_access_list(list/L)
 	if(!length(req_access) && !length(req_one_access))
 		return TRUE
 	if(isnull(L))
@@ -64,12 +68,12 @@
 // These are overridden on /obj/item/pda and /obj/item/card/id.
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
-/obj/proc/get_job_real_name()
+/atom/movable/proc/get_job_real_name()
 	return
 //gets the alt title, failing that the actual job rank
 //this is unused
-/obj/proc/get_job_display_name()
+/atom/movable/proc/get_job_display_name()
 	return
 //Used in secHUD icon generation
-/obj/proc/get_job_name()
+/atom/movable/proc/get_job_name()
 	return

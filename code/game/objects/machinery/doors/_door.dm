@@ -70,13 +70,6 @@
 			bumpopen(M)
 		return
 
-	if(istype(AM, /obj/machinery/bot))
-		var/obj/machinery/bot/bot = AM
-		if(check_access(bot.botcard))
-			if(density)
-				open()
-		return
-
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
 		if(density)

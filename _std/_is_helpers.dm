@@ -39,6 +39,7 @@
 // Living
 #define isliving(X) istype(X, /mob/living)
 #define isbrain(X) istype(X, /mob/living/brain)
+#define isbot(X) istype(X, /mob/living/bot)
 
 // Carbon
 #define iscarbon(X) istype(X, /mob/living/carbon)

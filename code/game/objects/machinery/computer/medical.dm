@@ -104,7 +104,7 @@
 					dat += "<a href='byond://?src=\ref[src];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"
 					var/bdat = null
-					for(var/obj/machinery/bot/medbot/M in GLOBL.bots_list)
+					for(var/mob/living/bot/medbot/M in GLOBL.bot_list)
 
 						if(M.z != src.z)	continue	//only find medibots on the same z-level as the computer
 						var/turf/bl = GET_TURF(M)

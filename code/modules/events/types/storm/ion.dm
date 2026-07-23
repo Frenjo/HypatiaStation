@@ -64,7 +64,7 @@
 
 /datum/round_event/storm/ion/tick()
 	if(bot_emag_chance)
-		for_no_type_check(var/obj/machinery/bot/bot, GLOBL.bots_list)
+		for_no_type_check(var/mob/living/bot/bot, GLOBL.bot_list)
 			if(isnotstationlevel(bot.z))
 				continue
 			if(prob(bot_emag_chance))

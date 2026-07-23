@@ -9,147 +9,156 @@
 #define SECBOT_PATROL		5		// patrolling
 #define SECBOT_SUMMON		6		// summoned by PDA
 
-/obj/machinery/bot
-	layer = MOB_LAYER
+/mob/living/bot
 	light_range = 3
 
-	power_state = USE_POWER_OFF
-
-	var/obj/item/card/id/botcard	// the ID card that the bot "holds"
+	/// The ID card the bot has pinned to it
+	var/obj/item/card/id/botcard
+	/// What do you think it means?
 	var/on = TRUE
-	var/health = 0 //do not forget to set health for your bot!
-	var/maxhealth = 0
-	var/fire_dam_coeff = 1
-	var/brute_dam_coeff = 1
-	var/open = FALSE //Maint panel
+	/// The bot's maintenance panel
+	var/open = FALSE
 	var/locked = TRUE
 
-/obj/machinery/bot/New()
+	/// Whether we're emagged. Can be 0, 1, or 2 for some reason
+	var/emagged = 0
+
+	var/fire_dam_coeff = 1
+	var/brute_dam_coeff = 1
+
+/mob/living/bot/New()
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
-	GLOBL.bots_list.Add(src)
+	GLOBL.bot_list.Add(src)
 
-/obj/machinery/bot/Destroy()
-	GLOBL.bots_list.Remove(src)
+/mob/living/bot/Destroy()
+	GLOBL.bot_list.Remove(src)
 	QDEL_NULL(botcard)
 	return ..()
 
-/obj/machinery/bot/proc/turn_on()
+/mob/living/bot/proc/turn_on()
 	if(stat)
-		return 0
+		return FALSE
+
 	on = TRUE
 	set_light(initial(light_range))
-	return 1
+	return TRUE
 
-/obj/machinery/bot/proc/turn_off()
+/mob/living/bot/proc/turn_off()
 	on = FALSE
 	set_light(0)
 
-/obj/machinery/bot/proc/explode()
+/mob/living/bot/proc/explode()
 	SHOULD_CALL_PARENT(TRUE)
-
 	qdel(src)
 
-/obj/machinery/bot/proc/healthcheck()
-	if(health <= 0)
-		explode()
-
-/obj/machinery/bot/proc/Emag(mob/user)
-	if(locked)
-		locked = FALSE
-		emagged = 1
-		to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
+/mob/living/bot/proc/Emag(mob/user)
+	emagged = 1
+	to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
 	if(!locked && open)
 		emagged = 2
+	locked = FALSE
 
-/obj/machinery/bot/get_examine_text()
+/mob/living/bot/get_examine_text()
 	. = ..()
-	if(health < maxhealth)
-		if(health > maxhealth / 3)
-			. += SPAN_WARNING("Its parts look loose.")
-		else
-			. += SPAN_DANGER("Its parts look very loose!")
-
-/obj/machinery/bot/attack_animal(mob/living/simple/M)
-	if(M.melee_damage_upper == 0)
+	if(health >= maxHealth)
 		return
-	health -= M.melee_damage_upper
-	visible_message(SPAN_DANGER("[M] has [M.attacktext] [src]!"))
-	M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [name]</font>"
+	if(health > maxHealth / 3)
+		. += SPAN_WARNING("Its parts look loose.")
+	else
+		. += SPAN_DANGER("Its parts look very loose!")
+
+/mob/living/bot/attack_animal(mob/living/simple/user)
+	if(user.melee_damage_upper == 0)
+		return
+	visible_message(SPAN_DANGER("[user] has [user.attacktext] [src]!"))
+	user.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [name]</font>"
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(loc)
-	healthcheck()
+	apply_damage(rand(user.melee_damage_lower, user.melee_damage_upper), user.melee_damage_type)
 
-/obj/machinery/bot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
-	if(emagged >= 2)
+/mob/living/bot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged == 2)
 		FEEDBACK_ALREADY_EMAGGED(user)
 		return FALSE
 
 	Emag(user)
 	return TRUE
 
-/obj/machinery/bot/attackby(obj/item/W, mob/user)
-	if(isscrewdriver(W))
-		if(!locked)
-			open = !open
-			playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
-			FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open)
-	else if(iswelder(W))
-		if(health < maxhealth)
-			if(open)
-				health = min(maxhealth, health + 10)
-				user.visible_message(
-					SPAN_WARNING("[user] repairs [src]!"),
-					SPAN_INFO("You repair [src]!")
-				)
-			else
-				to_chat(user, SPAN_WARNING("You must open the maintenance panel first."))
-		else
+/mob/living/bot/attackby(obj/item/attacking_item, mob/user)
+	if(isscrewdriver(attacking_item))
+		if(locked)
+			return
+		open = !open
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open)
+		return
+
+	if(iswelder(attacking_item))
+		if(health >= maxHealth)
 			to_chat(user, SPAN_NOTICE("[src] does not need repairs."))
-	else
-		if(hasvar(W, "force") && hasvar(W, "damtype"))
-			switch(W.damtype)
-				if("fire")
-					health -= W.force * fire_dam_coeff
-				if("brute")
-					health -= W.force * brute_dam_coeff
-			..()
-			healthcheck()
+			return
+
+		if(!open)
+			to_chat(user, SPAN_WARNING("You must open the maintenance panel first."))
+			return
+		health = min(maxHealth, health + 10)
+		user.visible_message(
+			SPAN_WARNING("[user] repairs [src]!"),
+			SPAN_INFO("You repair [src]!")
+		)
+		return
+
+	if(!hasvar(attacking_item, "force") || !hasvar(attacking_item, "damtype"))
+		return
+
+	var/damage = null
+	switch(attacking_item.damtype)
+		if("fire")
+			damage = attacking_item.force * fire_dam_coeff
+		if("brute")
+			damage = attacking_item.force * brute_dam_coeff
 		else
-			..()
+			damage = attacking_item.force
 
-/obj/machinery/bot/bullet_act(obj/projectile/bullet)
-	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
-		health -= bullet.damage
-		..()
-		healthcheck()
+	apply_damage(damage, attacking_item.damtype)
+	return TRUE
 
-/obj/machinery/bot/meteorhit()
+/mob/living/bot/updatehealth()
+	. = ..()
+	if(health <= 0)
+		explode()
+
+/mob/living/bot/bullet_act(obj/projectile/bullet)
+	if(bullet.damage_type != BRUTE && bullet.damage_type != BURN)
+		return
+	apply_damage(bullet.damage, bullet.damage_type)
+
+/mob/living/bot/meteorhit()
 	explode()
 
-/obj/machinery/bot/blob_act()
-	health -= rand(20, 40) * fire_dam_coeff
-	healthcheck()
+/mob/living/bot/blob_act()
+	apply_damage(rand(20, 40) * fire_dam_coeff, BURN)
 
-/obj/machinery/bot/ex_act(severity)
+/mob/living/bot/ex_act(severity)
 	switch(severity)
 		if(1)
 			explode()
 			return
 		if(2)
-			health -= rand(5, 10) * fire_dam_coeff
-			health -= rand(10, 20) * brute_dam_coeff
-			healthcheck()
+			apply_damage(rand(5, 10) * fire_dam_coeff, BURN)
+			apply_damage(rand(10, 20) * brute_dam_coeff, BRUTE)
 			return
-		if(3)
-			if(prob(50))
-				health -= rand(1, 5) * fire_dam_coeff
-				health -= rand(1, 5) * brute_dam_coeff
-				healthcheck()
-				return
 
-/obj/machinery/bot/emp_act(severity)
+		if(3)
+			if(!prob(50))
+				return
+			apply_damage(rand(1, 5) * fire_dam_coeff, BURN)
+			apply_damage(rand(1, 5) * brute_dam_coeff, BRUTE)
+			return
+
+/mob/living/bot/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
 	var/obj/effect/overlay/pulse2 = new /obj/effect/overlay(loc)
@@ -168,20 +177,22 @@
 		if(was_on)
 			turn_on()
 
-/obj/machinery/bot/attack_ai(mob/user)
+/mob/living/bot/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/bot/attack_hand(mob/living/carbon/human/user)
-	if(!istype(user))
-		return ..()
+/mob/living/bot/attack_hand(mob/living/user)
+	if(!istype(user, /mob/living/carbon/human))
+		return
 
-	if(user.species.can_shred(user))
-		health -= rand(15, 30) * brute_dam_coeff
-		visible_message(SPAN_DANGER("[user] has slashed [src]!"))
-		playsound(src, 'sound/weapons/melee/slice.ogg', 25, 1, -1)
-		if(prob(10))
-			new /obj/effect/decal/cleanable/blood/oil(loc)
-		healthcheck()
+	if(!astype(user, /mob/living/carbon/human).species.can_shred(user))
+		return
+
+	visible_message(SPAN_DANGER("[user] has slashed [src]!"))
+	playsound(src, 'sound/weapons/melee/slice.ogg', 25, 1, -1)
+	if(prob(10))
+		new /obj/effect/decal/cleanable/blood/oil(loc)
+	apply_damage(rand(15, 30) * brute_dam_coeff, BRUTE)
+
 
 /******************************************************************/
 // Navigation procs

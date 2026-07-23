@@ -139,7 +139,7 @@
 				. += "data\[\"[i]\"\] list has: [t]"
 
 /*
- * /obj/proc/receive_signal(datum/signal/signal, var/receive_method as num, var/receive_param)
+ * /atom/movable/proc/receive_signal(datum/signal/signal, var/receive_method as num, var/receive_param)
  *	Handler for received signals. By default only checks that the signal object is non-null.
  *	Define your own for your object but always early return if ..() is FALSE!
  *	Avoid sending signals directly from this proc, use spawn(-1). Do not use sleep() here please.
@@ -149,7 +149,7 @@
  *		TRANSMISSION_WIRE is currently unused.
  *		receive_param - for TRANSMISSION_RADIO this is the frequency.
 */
-/obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
+/atom/movable/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(isnull(signal))

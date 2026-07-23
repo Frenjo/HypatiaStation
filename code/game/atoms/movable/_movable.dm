@@ -18,6 +18,9 @@
 	var/moved_recently = FALSE
 	var/mob/pulledby = null
 
+	/// Whether we are being used(have a window open)
+	var/in_use = FALSE 
+
 /atom/movable/New()
 	SHOULD_CALL_PARENT(TRUE)
 

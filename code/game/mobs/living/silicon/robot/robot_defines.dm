@@ -12,6 +12,8 @@
 	mob_swap_flags = ROBOT | MONKEY | SLIME | SIMPLE_ANIMAL
 	mob_push_flags = ALLMOBS //trundle trundle
 
+	req_access = list(ACCESS_ROBOTICS)
+
 	var/default_law_type = BASE_LAW_TYPE
 
 	// The overlay for the robot's "eye" lights.
@@ -56,7 +58,6 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
