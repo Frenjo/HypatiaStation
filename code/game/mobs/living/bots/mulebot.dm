@@ -17,7 +17,7 @@
 	maxHealth = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
-	
+
 	var/static/static_mulebot_id = 0
 	suffix = ""
 
@@ -56,7 +56,7 @@
 	var/datum/wires/mulebot/wires = null
 
 	var/bloodiness = 0	// count of bloodiness
-	
+
 /mob/living/bot/mulebot/New()
 	. = ..()
 	if(!suffix)
@@ -106,7 +106,7 @@
 		cell = C
 		updateDialog()
 		return
-	
+
 	if(isscrewdriver(I))
 		if(locked)
 			to_chat(user, SPAN_WARNING("The maintenance panel cannot be opened or closed while the controls are locked."))
@@ -134,7 +134,7 @@
 			SPAN_NOTICE("You repair [src]!")
 		)
 		return
-			
+
 	if(load && ismob(load))  // chance to knock off rider
 		if(!prob(1 + I.force * 2))
 			to_chat(user, SPAN_WARNING("You hit [src] with \the [I] but to no effect."))
@@ -246,79 +246,58 @@
 	SHOW_BROWSER(user, "<HEAD><TITLE>MULEbot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 
-/mob/living/bot/mulebot/Topic(href, href_list)
-	if(..())
-		return
-	if(usr.stat)
-		return
-	if((in_range(src, usr) && isturf(loc)) || issilicon(usr))
-		usr.set_machine(src)
+/mob/living/bot/mulebot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!issilicon(user) || (!in_range(src, user) || !isturf(loc)))
+		return FALSE
 
-		switch(href_list["op"])
+	if(topic.has("op"))
+		switch(topic.get_str("op"))
 			if("lock", "unlock")
-				if(allowed(usr))
+				if(allowed(user))
 					locked = !locked
-					updateDialog()
 				else
-					FEEDBACK_ACCESS_DENIED(usr)
-					return
-			if("power")
-				if(on)
-					turn_off()
-				else if (cell && !open)
-					if(!turn_on())
-						to_chat(usr, SPAN_WARNING("You can't switch on [src]."))
-						return
-				else
-					return
-				visible_message(
-					SPAN_INFO("[usr] switches [src] [on ? "on" : "off"]."),
-					SPAN_INFO("You hear a switch being clicked.")
-				)
-				updateDialog()
+					FEEDBACK_ACCESS_DENIED(user)
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !user.get_active_hand())
 					cell.updateicon()
-					usr.put_in_active_hand(cell)
+					user.put_in_active_hand(cell)
 					cell.add_fingerprint(usr)
 					cell = null
 
-					usr.visible_message(
-						SPAN_INFO("[usr] removes the power cell from [src]."),
+					user.visible_message(
+						SPAN_INFO("[user] removes the power cell from [src]."),
 						SPAN_INFO("You remove the power cell from [src].")
 					)
-					updateDialog()
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = user.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
+						user.drop_item()
 						cell = C
 						C.forceMove(src)
-						C.add_fingerprint(usr)
+						C.add_fingerprint(user)
 
-						usr.visible_message(
-							SPAN_INFO("[usr] inserts a power cell into [src]."),
+						user.visible_message(
+							SPAN_INFO("[user] inserts a power cell into [src]."),
 							SPAN_INFO("You insert the power cell into [src].")
 						)
-						updateDialog()
 
 			if("stop")
 				if(mode >=2)
 					mode = 0
-					updateDialog()
 
 			if("go")
 				if(mode == 0)
 					start()
-					updateDialog()
 
 			if("home")
 				if(mode == 0 || mode == 2)
 					start_home()
-					updateDialog()
 
 			if("destination")
 				refresh = 0
@@ -334,7 +313,6 @@
 				if(new_id)
 					suffix = new_id
 					name = "MULEbot ([suffix])"
-					updateDialog()
 
 			if("sethome")
 				refresh = 0
@@ -342,7 +320,6 @@
 				refresh = 1
 				if(new_home)
 					home_destination = new_home
-					updateDialog()
 
 			if("unload")
 				if(load && mode !=1)
@@ -359,13 +336,9 @@
 
 			if("close")
 				usr.unset_machine()
-				CLOSE_BROWSER(usr, "window=mulebot")
+				CLOSE_BROWSER(user, "window=mulebot")
 
 		updateDialog()
-		//updateUsrDialog()
-	else
-		CLOSE_BROWSER(usr, "window=mulebot")
-		usr.unset_machine()
 
 // returns true if the bot has power
 /mob/living/bot/mulebot/proc/has_power()
@@ -489,7 +462,7 @@
 
 	if(client)
 		return
-	
+
 	if(on)
 		var/speed = (wires.Motor1() ? 1:0) + (wires.Motor2() ? 2:0)
 		//to_world("speed: [speed]")
@@ -894,4 +867,3 @@
 	new /obj/effect/decal/cleanable/blood/oil(loc)
 	unload(0)
 	return ..()
-	

@@ -60,6 +60,25 @@
 		emagged = 2
 	locked = FALSE
 
+/mob/living/bot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	add_fingerprint(user)
+	if(topic.has("power") && allowed(user))
+		if(on)
+			turn_off()
+		else
+			if(!turn_on())
+				to_chat(user, SPAN_WARNING("You can't switch on [src]."))
+		visible_message(
+			SPAN_INFO("[user] switches [src] [on ? "on" : "off"]."),
+			SPAN_INFO("You hear a switch being clicked.")
+		)
+		updateUsrDialog()
+		return TRUE
+
 /mob/living/bot/get_examine_text()
 	. = ..()
 	if(health >= maxHealth)

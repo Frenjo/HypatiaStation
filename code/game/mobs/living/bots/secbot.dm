@@ -18,17 +18,17 @@
 	/// To avoid re-targeting
 	var/oldtarget_name
 	/// Loc of target when arrested.
-	var/target_lastloc 
+	var/target_lastloc
 	/// There's a delay
-	var/last_found 
+	var/last_found
 	/// Give up counter
 	var/frustration = 0
 	/// If false, all station IDs are authorized for weapons.
-	var/idcheck = 0 
+	var/idcheck = 0
 	/// Does it check security records?
-	var/check_records = 1 
+	var/check_records = 1
 	/// If true, don't handcuff
-	var/arrest_type = 0 
+	var/arrest_type = 0
 	/// It beats simplemobs to death
 	var/next_harm_time = 0
 
@@ -36,33 +36,33 @@
 	var/mode = 0
 
 	/// set to make bot automatically patrol
-	var/auto_patrol = 0		
+	var/auto_patrol = 0
 
 	/// navigation beacon frequency
-	var/beacon_freq = 1445		
+	var/beacon_freq = 1445
 	/// bot control frequency
-	var/control_freq = 1447		
+	var/control_freq = 1447
 
 	/// this is turf to navigate to (location of beacon)
-	var/turf/patrol_target	
+	var/turf/patrol_target
 	/// pending new destination (waiting for beacon response)
-	var/new_destination		
+	var/new_destination
 	/// destination description tag
-	var/destination			
+	var/destination
 	/// the next destination in the patrol route
-	var/next_destination	
+	var/next_destination
 	/// list of path turfs
-	var/list/path = new				
+	var/list/path = new
 
 	///number of times retried a blocked path
-	var/blockcount = 0		
+	var/blockcount = 0
 	/// count of life ticks awaiting a beacon response
-	var/awaiting_beacon	= 0	
+	var/awaiting_beacon	= 0
 
 	/// the nearest beacon's tag
-	var/nearest_beacon			
+	var/nearest_beacon
 	/// the nearest beacon's location
-	var/turf/nearest_beacon_loc	
+	var/turf/nearest_beacon_loc
 
 /mob/living/bot/secbot/beepsky
 	name = "Officer Beep O'sky"
@@ -141,31 +141,24 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	SHOW_BROWSER(user, "<HEAD><TITLE>Securitron v1.3 controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 
-/mob/living/bot/secbot/Topic(href, href_list)
+/mob/living/bot/secbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(href_list["power"] && allowed(usr))
-		if(on)
-			turn_off()
-		else
-			turn_on()
-		return
+	if(!.)
+		return FALSE
 
-	switch(href_list["operation"])
-		if("idcheck")
-			idcheck = !idcheck
-			updateUsrDialog()
-		if("ignorerec")
-			check_records = !check_records
-			updateUsrDialog()
-		if("switchmode")
-			arrest_type = !arrest_type
-			updateUsrDialog()
-		if("patrol")
-			auto_patrol = !auto_patrol
-			mode = SECBOT_IDLE
-			updateUsrDialog()
+	if(topic.has("operation"))
+		switch(topic.get_str("operation"))
+			if("idcheck")
+				idcheck = !idcheck
+			if("ignorerec")
+				check_records = !check_records
+			if("switchmode")
+				arrest_type = !arrest_type
+			if("patrol")
+				auto_patrol = !auto_patrol
+				mode = SECBOT_IDLE
+
+	updateUsrDialog()
 
 /mob/living/bot/secbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
@@ -219,7 +212,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		return
 
 	return ..()
-	
+
 
 /mob/living/bot/secbot/Life()
 	set background = BACKGROUND_ENABLED

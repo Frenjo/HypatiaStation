@@ -118,44 +118,40 @@
 	SHOW_BROWSER(user, "<HEAD><TITLE>Medibot v1.0 controls</TITLE></HEAD>[dat]", "window=automed")
 	onclose(user, "automed")
 
-/mob/living/bot/medbot/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(href_list["power"] && allowed(usr))
-		if(on)
-			turn_off()
-		else
-			turn_on()
+/mob/living/bot/medbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	else if(href_list["adj_threshold"] && (!locked || issilicon(usr)))
-		var/adjust_num = text2num(href_list["adj_threshold"])
-		heal_threshold += adjust_num
+	if(topic.has("eject") && locked && isnotnull(reagent_glass))
+		to_chat(user, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))
+		return TRUE
+
+	if(locked && !issilicon(user))
+		return FALSE
+
+	if(topic.has("adj_threshold"))
+		heal_threshold += topic.get_num("adj_threshold")
 		if(heal_threshold < 5)
 			heal_threshold = 5
 		if(heal_threshold > 75)
 			heal_threshold = 75
 
-	else if(href_list["adj_inject"] && (!locked || issilicon(usr)))
-		var/adjust_num = text2num(href_list["adj_inject"])
-		injection_amount += adjust_num
+	if(topic.has("adj_inject"))
+		injection_amount += topic.get_num("adj_inject")
 		if(injection_amount < 5)
 			injection_amount = 5
 		if(injection_amount > 15)
 			injection_amount = 15
 
-	else if(href_list["use_beaker"] && (!locked || issilicon(usr)))
+	if(topic.has("use_beaker"))
 		use_beaker = !use_beaker
 
-	else if(href_list["eject"] && isnotnull(reagent_glass))
-		if(!locked)
-			reagent_glass.forceMove(GET_TURF(src))
-			reagent_glass = null
-		else
-			to_chat(usr, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))
+	if(topic.has("eject") && isnotnull(reagent_glass))
+		reagent_glass.forceMove(GET_TURF(src))
+		reagent_glass = null
 
-	else if(href_list["togglevoice"] && (!locked || issilicon(usr)))
+	if(topic.has("togglevoice"))
 		shut_up = !shut_up
 
 	updateUsrDialog()
@@ -178,7 +174,7 @@
 		FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		updateUsrDialog()
 		return
-				
+
 
 	if(istype(W, /obj/item/reagent_holder/glass))
 		if(locked)
@@ -195,7 +191,7 @@
 		updateUsrDialog()
 		return
 
-	
+
 	..()
 	if(health < maxHealth && !isscrewdriver(W) && W.force)
 		step_to(src, (get_step_away(src, user)))

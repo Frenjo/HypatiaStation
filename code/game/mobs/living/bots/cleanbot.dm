@@ -33,7 +33,7 @@
 	/// This is also just an actual path
 	var/list/patrol_path = null
 	/// Frequency of navigation beacons
-	var/beacon_freq = 1445	
+	var/beacon_freq = 1445
 	/// We go to the closest signal, so this is the closest we've been to a signal. It doesn't reset. Won't that mean if you get signaled while really close, far signals won't work again? probably, who knows.
 	var/closest_dist
 	/// The loc that won the closest_dist competition
@@ -93,7 +93,7 @@
 	var/dat
 	dat += {"
 <TT><B>Automatic Station Cleaner v1.0</B></TT><BR><BR>
-Status: ["<A href='byond://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A>"]<BR>
+Status: ["<A href='byond://?src=\ref[src];power=1'>[on ? "On" : "Off"]</A>"]<BR>
 Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
 Maintenance panel is [open ? "opened" : "closed"]"}
 	if(!locked || issilicon(user))
@@ -108,38 +108,30 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	SHOW_BROWSER(user, "<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
 	onclose(user, "autocleaner")
 
-/mob/living/bot/cleanbot/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	switch(href_list["operation"])
-		if("start")
-			if(on)
-				turn_off()
-			else
-				turn_on()
-		if("blood")
-			blood = !blood
-			get_targets()
-			updateUsrDialog()
-		if("patrol")
-			should_patrol =!should_patrol
-			patrol_path = null
-			updateUsrDialog()
-		if("freq")
-			var/freq = text2num(input("Select frequency for navigation beacons", "Frequency", num2text(beacon_freq / 10))) * 10
-			if(freq > 0)
-				beacon_freq = freq
-			updateUsrDialog()
-		if("screw")
-			screwloose = !screwloose
-			to_chat(usr, SPAN_NOTICE("You twiddle the screw."))
-			updateUsrDialog()
-		if("oddbutton")
-			oddbutton = !oddbutton
-			to_chat(usr, SPAN_NOTICE("You press the weird button."))
-			updateUsrDialog()
+/mob/living/bot/cleanbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("operation"))
+		switch(topic.get_str("operation"))
+			if("blood")
+				blood = !blood
+				get_targets()
+			if("patrol")
+				should_patrol =!should_patrol
+				patrol_path = null
+			if("freq")
+				var/freq = text2num(input("Select frequency for navigation beacons", "Frequency", num2text(beacon_freq / 10))) * 10
+				if(freq > 0)
+					beacon_freq = freq
+			if("screw")
+				screwloose = !screwloose
+				to_chat(user, SPAN_NOTICE("You twiddle the screw."))
+			if("oddbutton")
+				oddbutton = !oddbutton
+				to_chat(user, SPAN_NOTICE("You press the weird button."))
+		updateUsrDialog()
 
 /mob/living/bot/cleanbot/attackby(obj/item/attacking_item, mob/user)
 	if(!istype(attacking_item, /obj/item/card/id) && istype(attacking_item, /obj/item/pda))

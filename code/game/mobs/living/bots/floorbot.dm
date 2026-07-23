@@ -52,7 +52,7 @@
 /mob/living/bot/floorbot/interact(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='byond://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
+	dat += "Status: <A href='byond://?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel panel is [open ? "opened" : "closed"]<BR>"
 	dat += "Tiles left: [amount]<BR>"
 	dat += "Behvaiour controls are [locked ? "locked" : "unlocked"]<BR>"
@@ -81,7 +81,7 @@
 		to_chat(user, SPAN_INFO("You load [loaded] tiles into the floorbot. He now contains [amount] tiles."))
 		updateicon()
 		return
-	
+
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(usr) && !open && !emagged)
 			locked = !locked
@@ -95,7 +95,7 @@
 				FEEDBACK_ACCESS_DENIED(user)
 		updateUsrDialog()
 		return
-	
+
 	return ..()
 
 /mob/living/bot/floorbot/UnarmedAttack(atom/to_attack)
@@ -106,7 +106,7 @@
 	if(istype(to_attack, /obj/item/stack/sheet/steel))
 		maketile(to_attack)
 		return
-		
+
 	if(istype(to_attack, /turf/) && emagged < 2)
 		repair(to_attack)
 		return
@@ -134,7 +134,6 @@
 		return
 
 	return ..()
-	
 
 /mob/living/bot/floorbot/Emag(mob/user)
 	. = ..()
@@ -142,41 +141,32 @@
 		if(isnotnull(user))
 			to_chat(user, SPAN_NOTICE("\The [src] buzzes and beeps."))
 
-/mob/living/bot/floorbot/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	switch(href_list["operation"])
-		if("start")
-			if(on)
-				turn_off()
-			else
-				turn_on()
-		if("improve")
-			improvefloors = !improvefloors
-			updateUsrDialog()
-		if("tiles")
-			eattiles = !eattiles
-			updateUsrDialog()
-		if("make")
-			maketiles = !maketiles
-			updateUsrDialog()
-		if("bridgemode")
-			switch(targetdirection)
-				if(null)
-					targetdirection = 1
-				if(1)
-					targetdirection = 2
-				if(2)
-					targetdirection = 4
-				if(4)
-					targetdirection = 8
-				if(8)
-					targetdirection = null
-				else
-					targetdirection = null
-			updateUsrDialog()
+/mob/living/bot/floorbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("operation"))
+		switch(topic.get_str("operation"))
+			if("improve")
+				improvefloors = !improvefloors
+			if("tiles")
+				eattiles = !eattiles
+			if("make")
+				maketiles = !maketiles
+			if("bridgemode")
+				switch(targetdirection)
+					if(null)
+						targetdirection = 1
+					if(1)
+						targetdirection = 2
+					if(2)
+						targetdirection = 4
+					if(4)
+						targetdirection = 8
+					else
+						targetdirection = null
+		updateUsrDialog()
 
 /mob/living/bot/floorbot/Life()
 	set background = BACKGROUND_ENABLED
@@ -187,7 +177,7 @@
 
 	if(repairing)
 		return
-		
+
 	if(client)
 		return
 
@@ -336,7 +326,7 @@
 		updateicon()
 		target = null
 		return
-	
+
 	visible_message(SPAN_NOTICE("[src] begins to improve the floor."))
 	repairing = TRUE
 	if(!do_after(src, 5 SECONDS, to_repair))

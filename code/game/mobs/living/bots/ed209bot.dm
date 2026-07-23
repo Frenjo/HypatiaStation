@@ -121,38 +121,35 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	SHOW_BROWSER(user, "<HEAD><TITLE>Securitron v2.5 controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
 
-/mob/living/bot/ed209/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(lasercolor && ishuman(usr))
-		var/mob/living/carbon/human/H = usr
-		if(lasercolor == "b" && istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/red))//Opposing team cannot operate it
-			return
-		else if(lasercolor == "r" && istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/blue))
-			return
-	if(href_list["power"] && allowed(usr))
-		if(on)
-			turn_off()
-		else
-			turn_on()
-		return
+/mob/living/bot/ed209/allowed(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(lasercolor && ishuman(user)) // Opposing team cannot operate it.
+		var/mob/living/carbon/human/humie = user
+		if(lasercolor == "b" && istype(humie.wear_suit, /obj/item/clothing/suit/laser_tag/red))
+			return FALSE
+		else if(lasercolor == "r" && istype(humie.wear_suit, /obj/item/clothing/suit/laser_tag/blue))
+			return FALSE
 
-	switch(href_list["operation"])
-		if("idcheck")
-			idcheck = !idcheck
-			updateUsrDialog()
-		if("ignorerec")
-			check_records = !check_records
-			updateUsrDialog()
-		if("switchmode")
-			arrest_type = !arrest_type
-			updateUsrDialog()
-		if("patrol")
-			auto_patrol = !auto_patrol
-			mode = SECBOT_IDLE
-			updateUsrDialog()
+/mob/living/bot/ed209/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("operation"))
+		switch(topic.get_str("operation"))
+			if("idcheck")
+				idcheck = !idcheck
+			if("ignorerec")
+				check_records = !check_records
+			if("switchmode")
+				arrest_type = !arrest_type
+			if("patrol")
+				auto_patrol = !auto_patrol
+				mode = SECBOT_IDLE
+
+	updateUsrDialog()
 
 /mob/living/bot/ed209/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
@@ -286,7 +283,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					spawn(2)
 						icon_state = "[lasercolor]ed209[on]"
 					var/maxstuns = 4
-					
+
 					if(maxstuns <= 0)
 						target = null
 						return

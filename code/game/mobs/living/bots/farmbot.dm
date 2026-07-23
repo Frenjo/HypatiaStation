@@ -127,34 +127,33 @@
 	SHOW_BROWSER(user, "<HEAD><TITLE>Farmbot v1.0 controls</TITLE></HEAD>[dat]", "window=autofarm")
 	onclose(user, "autofarm")
 
-/mob/living/bot/farmbot/Topic(href, href_list)
-	if(..())
-		return
-	usr.machine = src
-	add_fingerprint(usr)
-	if(href_list["power"] && allowed(usr))
-		if(on)
-			turn_off()
-		else
-			turn_on()
+/mob/living/bot/farmbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	else if(href_list["water"] && !locked)
-		setting_water = !setting_water
-	else if(href_list["refill"] && !locked)
-		setting_refill = !setting_refill
-	else if(href_list["fertilize"] && !locked)
-		setting_fertilize = !setting_fertilize
-	else if(href_list["weed"] && !locked)
-		setting_weed = !setting_weed
-	else if(href_list["ignoreWeed"] && !locked)
-		setting_ignoreWeeds = !setting_ignoreWeeds
-	else if(href_list["ignoreMush"] && !locked)
-		setting_ignoreMushrooms = !setting_ignoreMushrooms
-	else if(href_list["eject"])
+	if(topic.has("eject"))
 		flick("farmbot_hatch", src)
 		for(var/obj/item/nutrient/fert in contents)
 			fert.forceMove(GET_TURF(src))
+		updateUsrDialog()
+		return TRUE
 
+	if(locked && !issilicon(user))
+		return FALSE
+
+	if(topic.has("water"))
+		setting_water = !setting_water
+	if(topic.has("refill"))
+		setting_refill = !setting_refill
+	if(topic.has("fertilize"))
+		setting_fertilize = !setting_fertilize
+	if(topic.has("weed"))
+		setting_weed = !setting_weed
+	if(topic.has("ignoreWeed"))
+		setting_ignoreWeeds = !setting_ignoreWeeds
+	if(topic.has("ignoreMush"))
+		setting_ignoreMushrooms = !setting_ignoreMushrooms
 	updateUsrDialog()
 
 /mob/living/bot/farmbot/attackby(obj/item/W, mob/user)
@@ -337,7 +336,7 @@
 
 		fertilize(fert, to_farm)
 		return
-		
+
 	if(istype(to_farm, /obj/structure/sink))
 		refill(to_farm)
 
