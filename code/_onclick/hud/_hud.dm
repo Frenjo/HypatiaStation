@@ -45,6 +45,7 @@
 	adding = list(screentip_text)
 	other = list()
 	setup(ui_style2icon(owner.client.prefs.UI_style), owner.client.prefs.UI_style_color, owner.client.prefs.UI_style_alpha)
+	hidden_inventory_update()
 
 /datum/hud/Destroy()
 	owner = null

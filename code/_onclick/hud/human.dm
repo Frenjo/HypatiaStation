@@ -238,7 +238,6 @@
 	. = ..()
 	H.client.screen.Add(hud_elements)
 	H.client.screen.Add(hotkey_buttons)
-	inventory_shown = FALSE
 
 	return TRUE
 
