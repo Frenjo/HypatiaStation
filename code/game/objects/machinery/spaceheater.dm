@@ -113,9 +113,6 @@
 
 /obj/machinery/space_heater/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("op"))
 		switch(topic.get_str("op"))
 			if("temp")

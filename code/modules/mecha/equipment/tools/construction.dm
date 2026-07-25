@@ -83,9 +83,6 @@
 
 /obj/item/mecha_equipment/tool/rcd/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("mode"))
 		mode = topic.get_num("mode")
 		switch(mode)
@@ -140,9 +137,6 @@
 
 /obj/item/mecha_equipment/tool/cable_layer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle"))
 		set_ready_state(!equip_ready)
 		occupant_message("[src] [equip_ready ? "dea" : "a"]ctivated.")

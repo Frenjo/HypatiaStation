@@ -37,9 +37,6 @@
 
 /obj/item/mecha_equipment/repair_droid/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle_repairs"))
 		chassis.remove_overlay(droid_overlay)
 		if(equip_ready)
@@ -231,9 +228,6 @@
 
 /obj/item/mecha_equipment/gravcatapult/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("mode"))
 		mode = topic.get_num("mode")
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())

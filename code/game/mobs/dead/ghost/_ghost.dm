@@ -74,9 +74,6 @@
 
 /mob/dead/ghost/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("track"))
 		var/mob/target = locate(topic.get("track")) in GLOBL.mob_list
 		if(isnotnull(target))

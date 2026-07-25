@@ -71,15 +71,15 @@
 	SHOW_BROWSER(usr, dat, "window=id_com;size=350x200")
 	return
 
-/obj/item/paper/talisman/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/paper/talisman/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
-	if(!src)
-		return FALSE
+		return
 	if(user.stat || user.restrained() || !in_range(src, user))
 		return FALSE
 
+/obj/item/paper/talisman/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("rune"))
 		switch(topic.get_str("rune"))
 			if("newtome")

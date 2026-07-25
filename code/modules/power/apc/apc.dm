@@ -129,13 +129,15 @@
 		else
 			. += SPAN_INFO("The cover is closed.")
 
-/obj/machinery/power/apc/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/power/apc/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!can_use(user, TRUE))
 		return FALSE
 
+/obj/machinery/power/apc/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("lock"))
 		coverlocked = !coverlocked
 

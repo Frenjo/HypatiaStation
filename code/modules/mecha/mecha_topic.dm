@@ -1,17 +1,17 @@
 /////////////////
 ///// Topic /////
 /////////////////
-/obj/mecha/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/mecha/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user != occupant)
-		return FALSE
-	if(topic.has("close"))
 		return FALSE
 	if(user.stat > 0)
 		return FALSE
 
+/obj/mecha/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("update_content"))
 		send_byjax(occupant, "exosuit.browser", "content", get_stats_part())
 		return

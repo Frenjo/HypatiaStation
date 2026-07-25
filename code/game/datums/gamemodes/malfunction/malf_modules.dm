@@ -279,14 +279,16 @@ rcd light flash thingy on matter drain
 	SHOW_BROWSER(user, dat, "window=modpicker")
 	onclose(user, "modpicker")
 
-/datum/malf_module/module_picker/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/datum/malf_module/module_picker/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!isAI(user))
 		return FALSE
-	var/mob/living/silicon/ai/malf = user
 
+/datum/malf_module/module_picker/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	var/mob/living/silicon/ai/malf = user
 	if(topic.has("coreup"))
 		var/already = FALSE
 		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)

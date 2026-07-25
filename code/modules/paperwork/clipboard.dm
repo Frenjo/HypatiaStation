@@ -80,15 +80,17 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/clipboard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/clipboard/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
-	if((user.stat || user.restrained()))
+		return
+	if(user.stat || user.restrained())
 		return FALSE
 	if(!user.contents.Find(src))
 		return FALSE
 
+/obj/item/clipboard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("pen"))
 		if(isnotnull(haspen))
 			haspen.forceMove(user.loc)

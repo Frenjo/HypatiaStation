@@ -92,9 +92,6 @@
 
 /obj/structure/filingcabinet/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("retrieve"))
 		SHOW_BROWSER(user, "", "window=filingcabinet") // Close the menu
 		//var/retrieveindex = text2num(href_list["retrieve"])

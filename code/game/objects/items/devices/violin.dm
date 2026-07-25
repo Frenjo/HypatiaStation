@@ -288,16 +288,15 @@
 	SHOW_BROWSER(user, dat, "window=violin;size=700x300")
 	onclose(user, "violin")
 
-/obj/item/violin/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/violin/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
-
+		return
 	if(!in_range(src, user) || issilicon(user) || !isliving(user) || !user.canmove || user.restrained())
-		CLOSE_BROWSER(user, "window=violin;size=700x300")
-		onclose(user, "violin")
 		return FALSE
 
+/obj/item/violin/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("newsong"))
 		song = new /datum/song()
 

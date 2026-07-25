@@ -111,15 +111,15 @@
 	onclose(user, "infra")
 	return
 
-/obj/item/assembly/infra/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/assembly/infra/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
-		CLOSE_BROWSER(user, "window=infra")
-		onclose(user, "infra")
 		return FALSE
 
+/obj/item/assembly/infra/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("state"))
 		on = !(on)
 		update_icon()

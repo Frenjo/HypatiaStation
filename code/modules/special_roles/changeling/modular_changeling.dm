@@ -447,14 +447,15 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	SHOW_BROWSER(usr, dat, "window=powers;size=900x480")
 
-
-/datum/changeling/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/datum/changeling/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!ismob(user))
 		return FALSE
 
+/datum/changeling/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("P"))
 		var/datum/mind/M = user.mind
 		if(!istype(M))

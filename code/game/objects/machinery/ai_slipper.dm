@@ -84,15 +84,16 @@
 	onclose(user, "\ref[src]")
 	return
 
-/obj/machinery/ai_slipper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/ai_slipper/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
-
+		return
 	if(locked && !issilicon(user))
 		to_chat(user, SPAN_WARNING("The control panel is locked!"))
 		return FALSE
 
+/obj/machinery/ai_slipper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("toggleOn"))
 		disabled = !disabled
 		icon_state = disabled ? "motion0" : "motion3"

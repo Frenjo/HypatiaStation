@@ -25,9 +25,6 @@
 
 /obj/mecha/working/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("drop_from_cargo"))
 		var/atom/movable/mover = topic.get_and_locate("drop_from_cargo")
 		if(isnotnull(mover) && (mover in cargo))
@@ -35,7 +32,6 @@
 			mover.forceMove(GET_TURF(src))
 			cargo.Remove(mover)
 			log_message("Unloaded [mover]. Cargo compartment capacity: [cargo_capacity - length(cargo)]")
-		return
 
 /obj/mecha/working/proc/unload_all_cargo()
 	if(isemptylist(cargo))

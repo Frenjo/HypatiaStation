@@ -156,20 +156,15 @@
 				ai_call_shuttle()
 	..()
 
-/mob/living/silicon/ai/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/mob/living/silicon/ai/handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user != src)
 		return FALSE
 
-	if(topic.has("mach_close"))
-		if(topic.get_str("mach_close") == "aialerts")
-			viewalerts = 0
-		var/t1 = "window=[topic.get_str("mach_close")]"
-		unset_machine()
-		CLOSE_BROWSER(src, t1)
-		return
+/mob/living/silicon/ai/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("switchcamera"))
 		switchCamera(topic.get_and_locate("switchcamera")) in global.CTcameranet.cameras
 		return

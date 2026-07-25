@@ -103,13 +103,15 @@
 	onclose(user, "stack")
 	return
 
-/obj/item/stack/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/stack/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user.restrained() || user.stat || user.get_active_hand() != src)
 		return FALSE
 
+/obj/item/stack/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("sublist") && !topic.has("make"))
 		list_recipes(user, topic.get_num("sublist"))
 

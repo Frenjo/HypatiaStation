@@ -94,9 +94,6 @@
 
 /datum/game_mode/malfunction/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("ai_win"))
 		ai_win()
 

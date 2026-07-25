@@ -207,9 +207,6 @@
 
 /obj/machinery/biogenerator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	switch(topic.get_str("action"))
 		if("activate")
 			activate()

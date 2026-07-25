@@ -380,6 +380,15 @@ nanoui is used to open and update nano browser uis
 	//user << list2json(data) // used for debugging
 	TO_OUTPUT(user, list2params(list(json_encode(data))), "[window_id].browser:receiveUpdateData")
 
+/datum/nanoui/can_handle_topic(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	update_status(FALSE)
+	if(status != STATUS_INTERACTIVE || src.user != user) // If UI is not interactive or user calling Topic is not the UI user.
+		return FALSE
+
  /**
   * This handle_topic() proc is called whenever a user clicks on a link within a Nano UI.
   * If the UI status is currently STATUS_INTERACTIVE then call the src_object's Topic().
@@ -389,13 +398,6 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
-	update_status(FALSE) // update the status
-	if(status != STATUS_INTERACTIVE || src.user != user) // If UI is not interactive or user calling Topic is not the UI user.
-		return
-
 	if(src_object?.Topic(topic._href, topic._href_list))
 		global.PCnanoui.update_uis(src_object) // update all UIs attached to src_object
 

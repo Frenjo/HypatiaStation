@@ -122,9 +122,6 @@ GLOBAL_BYOND_NEW(vs_control/vsc)
 
 /vs_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("changevar"))
 		ChangeSetting(user, topic.get("changevar"))
 

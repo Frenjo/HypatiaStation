@@ -42,9 +42,6 @@
 
 /obj/item/gun/energy/temperature/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	user.set_machine(src)
 	add_fingerprint(user)
 

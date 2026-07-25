@@ -26,13 +26,15 @@
 	interact()
 	return
 
-/obj/item/blueprints/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/blueprints/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user.restrained() || user.stat || user.get_active_hand() != src)
 		return FALSE
 
+/obj/item/blueprints/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("action"))
 		switch(topic.get("action"))
 			if("create_area")

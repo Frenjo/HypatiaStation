@@ -252,9 +252,6 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 
 /obj/machinery/power/rust_core/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("str"))
 		var/dif = topic.get_num("str")
 		field_strength = min(max(field_strength + dif, MIN_FIELD_STR), MAX_FIELD_STR)

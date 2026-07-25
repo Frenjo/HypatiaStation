@@ -212,10 +212,10 @@
 	add_fingerprint(usr)
 	return 0
 
-/obj/machinery/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(stat & BROKEN)
 		return FALSE
 	if((stat & NOPOWER) && power_usage[power_state] != 0)
@@ -241,6 +241,8 @@
 		if((!in_range(src, user) || !isturf(loc)) && !issilicon(user))
 			return FALSE
 
+/obj/machinery/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("close"))
 		CLOSE_BROWSER(user, "window=\ref[src]")
 		user.unset_machine()

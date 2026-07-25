@@ -300,40 +300,42 @@ var/engwords = list(
 				</html>
 				"}
 
-/obj/item/tome/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/tome/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
+		return
+	if(loc != user)
+		return FALSE
+	if(user.stat || user.restrained())
 		return FALSE
 
-	if(loc == user)
-		var/number = topic.get_num("number")
-		if(user.stat || user.restrained())
-			return FALSE
-		switch(topic.get_str("action"))
-			if("clear")
-				words[words[number]] = words[number]
-			if("change")
-				words[words[number]] = input("Enter the translation for [words[number]]", "Word notes") in engwords
-				for (var/w in words)
-					if((words[w] == words[words[number]]) && (w != words[number]))
-						words[w] = w
-		notedat = {"
-					<br><b>Word translation notes</b> <br>
-					[words[1]] is <a href='byond://?src=\ref[src];number=1;action=change'>[words[words[1]]]</A> <A href='byond://?src=\ref[src];number=1;action=clear'>Clear</A><BR>
-					[words[2]] is <A href='byond://?src=\ref[src];number=2;action=change'>[words[words[2]]]</A> <A href='byond://?src=\ref[src];number=2;action=clear'>Clear</A><BR>
-					[words[3]] is <a href='byond://?src=\ref[src];number=3;action=change'>[words[words[3]]]</A> <A href='byond://?src=\ref[src];number=3;action=clear'>Clear</A><BR>
-					[words[4]] is <a href='byond://?src=\ref[src];number=4;action=change'>[words[words[4]]]</A> <A href='byond://?src=\ref[src];number=4;action=clear'>Clear</A><BR>
-					[words[5]] is <a href='byond://?src=\ref[src];number=5;action=change'>[words[words[5]]]</A> <A href='byond://?src=\ref[src];number=5;action=clear'>Clear</A><BR>
-					[words[6]] is <a href='byond://?src=\ref[src];number=6;action=change'>[words[words[6]]]</A> <A href='byond://?src=\ref[src];number=6;action=clear'>Clear</A><BR>
-					[words[7]] is <a href='byond://?src=\ref[src];number=7;action=change'>[words[words[7]]]</A> <A href='byond://?src=\ref[src];number=7;action=clear'>Clear</A><BR>
-					[words[8]] is <a href='byond://?src=\ref[src];number=8;action=change'>[words[words[8]]]</A> <A href='byond://?src=\ref[src];number=8;action=clear'>Clear</A><BR>
-					[words[9]] is <a href='byond://?src=\ref[src];number=9;action=change'>[words[words[9]]]</A> <A href='byond://?src=\ref[src];number=9;action=clear'>Clear</A><BR>
-					[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
-					"}
-		SHOW_BROWSER(user, "[notedat]", "window=notes")
+/obj/item/tome/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	var/number = topic.get_num("number")
+	switch(topic.get_str("action"))
+		if("clear")
+			words[words[number]] = words[number]
+		if("change")
+			words[words[number]] = input("Enter the translation for [words[number]]", "Word notes") in engwords
+			for (var/w in words)
+				if((words[w] == words[words[number]]) && (w != words[number]))
+					words[w] = w
+
+	notedat = {"
+				<br><b>Word translation notes</b> <br>
+				[words[1]] is <a href='byond://?src=\ref[src];number=1;action=change'>[words[words[1]]]</A> <A href='byond://?src=\ref[src];number=1;action=clear'>Clear</A><BR>
+				[words[2]] is <A href='byond://?src=\ref[src];number=2;action=change'>[words[words[2]]]</A> <A href='byond://?src=\ref[src];number=2;action=clear'>Clear</A><BR>
+				[words[3]] is <a href='byond://?src=\ref[src];number=3;action=change'>[words[words[3]]]</A> <A href='byond://?src=\ref[src];number=3;action=clear'>Clear</A><BR>
+				[words[4]] is <a href='byond://?src=\ref[src];number=4;action=change'>[words[words[4]]]</A> <A href='byond://?src=\ref[src];number=4;action=clear'>Clear</A><BR>
+				[words[5]] is <a href='byond://?src=\ref[src];number=5;action=change'>[words[words[5]]]</A> <A href='byond://?src=\ref[src];number=5;action=clear'>Clear</A><BR>
+				[words[6]] is <a href='byond://?src=\ref[src];number=6;action=change'>[words[words[6]]]</A> <A href='byond://?src=\ref[src];number=6;action=clear'>Clear</A><BR>
+				[words[7]] is <a href='byond://?src=\ref[src];number=7;action=change'>[words[words[7]]]</A> <A href='byond://?src=\ref[src];number=7;action=clear'>Clear</A><BR>
+				[words[8]] is <a href='byond://?src=\ref[src];number=8;action=change'>[words[words[8]]]</A> <A href='byond://?src=\ref[src];number=8;action=clear'>Clear</A><BR>
+				[words[9]] is <a href='byond://?src=\ref[src];number=9;action=change'>[words[words[9]]]</A> <A href='byond://?src=\ref[src];number=9;action=clear'>Clear</A><BR>
+				[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
+				"}
+	SHOW_BROWSER(user, "[notedat]", "window=notes")
 //		call(/obj/item/tome/proc/edit_notes)()
-	else
-		CLOSE_BROWSER(user, "window=notes")
 
 
 //	proc/edit_notes()     FUCK IT. Cant get it to work properly. - K0000

@@ -74,15 +74,15 @@
 	onclose(user, "timer")
 	return
 
-/obj/item/assembly/timer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/assembly/timer/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
-		CLOSE_BROWSER(user, "window=timer")
-		onclose(user, "timer")
 		return FALSE
 
+/obj/item/assembly/timer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("time"))
 		timing = topic.get_num("time")
 		update_icon()

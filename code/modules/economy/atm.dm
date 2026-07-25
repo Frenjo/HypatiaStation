@@ -223,9 +223,6 @@ log transactions
 
 /obj/machinery/atm/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("choice"))
 		switch(topic.get_str("choice"))
 			if("transfer")

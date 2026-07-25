@@ -51,9 +51,6 @@
 //Modified phazon code
 /obj/mecha/working/hoverpod/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("stabilisation"))
 		stabilisation = !stabilisation
 		balloon_alert(occupant, "[stabilisation ? "en" : "dis"]abled stabilisation")

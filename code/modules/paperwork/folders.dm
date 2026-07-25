@@ -52,15 +52,17 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/folder/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/folder/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
-	if((user.stat || user.restrained()))
+		return
+	if(user.stat || user.restrained())
 		return FALSE
 	if(!user.contents.Find(src))
 		return FALSE
 
+/obj/item/folder/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("remove"))
 		var/obj/item/P = topic.get_and_locate("remove")
 		if(P?.loc == src)

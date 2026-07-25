@@ -64,9 +64,6 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 
 /obj/machinery/stacking_unit_console/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("release"))
 		var/stack_path = topic.get_path("release")
 		if(!(stack_path in machine.stack_amounts))

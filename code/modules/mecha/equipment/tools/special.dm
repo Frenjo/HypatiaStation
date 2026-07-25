@@ -70,9 +70,6 @@
 
 /obj/item/mecha_equipment/tool/ore_compartment/handle_topic(mob/user, datum/topic_input/topic)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("dump_ore"))
 		if(length(ore_box.contents))
 			for_no_type_check(var/obj/item/ore/O, ore_box)

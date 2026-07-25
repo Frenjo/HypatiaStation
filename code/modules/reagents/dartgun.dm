@@ -256,9 +256,6 @@
 
 /obj/item/gun/dartgun/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	add_fingerprint(user)
 	if(topic.has("stop_mix"))
 		var/index = topic.get_num("stop_mix")

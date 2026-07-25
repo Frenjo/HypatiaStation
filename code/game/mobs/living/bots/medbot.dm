@@ -120,9 +120,6 @@
 
 /mob/living/bot/medbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("eject") && locked && isnotnull(reagent_glass))
 		to_chat(user, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))
 		return TRUE

@@ -197,15 +197,16 @@
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/autolathe/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/autolathe/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
-
 	if(busy)
-		to_chat(usr, SPAN_WARNING("\The [src] is busy. Please wait for completion of the previous operation."))
+		to_chat(user, SPAN_WARNING("\The [src] is busy. Please wait for completion of the previous operation."))
 		return FALSE
 
+/obj/machinery/autolathe/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("make"))
 		var/build_path = topic.get_path("make")
 		var/multiplier = topic.get_num("multiplier")

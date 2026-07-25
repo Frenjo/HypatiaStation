@@ -66,15 +66,15 @@ Code:
 	onclose(user, "radio")
 	return
 
-/obj/item/assembly/signaler/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/assembly/signaler/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
-		CLOSE_BROWSER(user, "window=radio")
-		onclose(user, "radio")
 		return FALSE
 
+/obj/item/assembly/signaler/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("freq"))
 		var/new_frequency = (frequency + topic.get_num("freq"))
 		if(new_frequency < 1200 || new_frequency > 1600)

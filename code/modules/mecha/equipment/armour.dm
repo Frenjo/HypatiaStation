@@ -53,9 +53,6 @@
 
 /obj/item/mecha_equipment/melee_defence_shocker/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle_shocker"))
 		active = !active
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())

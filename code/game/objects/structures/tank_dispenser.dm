@@ -74,16 +74,17 @@
 			anchored = TRUE
 		return
 
-/obj/structure/dispenser/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/structure/dispenser/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user.stat || user.restrained())
 		return FALSE
 	if(!Adjacent(user))
-		CLOSE_BROWSER(user, "window=dispenser")
 		return FALSE
 
+/obj/structure/dispenser/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	user.set_machine(src)
 	add_fingerprint(user)
 	if(topic.has("oxygen"))

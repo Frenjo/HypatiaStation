@@ -203,15 +203,6 @@
 
 /mob/living/silicon/robot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
-	if(topic.has("mach_close"))
-		var/t1 = "window=[topic.get("mach_close")]"
-		unset_machine()
-		CLOSE_BROWSER(user, t1)
-		return
-
 	if(topic.has("showalerts"))
 		robot_alerts()
 		return

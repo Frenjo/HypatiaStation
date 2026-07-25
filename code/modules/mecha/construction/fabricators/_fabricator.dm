@@ -365,9 +365,6 @@
 
 /obj/machinery/robotics_fabricator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("part_set"))
 		var/tpart_set = topic.get_str("part_set")
 		if(tpart_set)

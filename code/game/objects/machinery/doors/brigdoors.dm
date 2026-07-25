@@ -219,9 +219,6 @@
 // Also updates dialog window and timer icon
 /obj/machinery/door_timer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("timing"))
 		timing = topic.get_num("timing")
 		if(timing)

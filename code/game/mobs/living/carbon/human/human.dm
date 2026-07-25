@@ -416,9 +416,6 @@
 
 /mob/living/carbon/human/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("refresh"))
 		if(isnotnull(machine) && in_range(src, user))
 			show_inv(machine)

@@ -254,14 +254,15 @@
 			else
 				to_chat(usr, SPAN_WARNING("You must hold \the [P] steady to burn \the [src]."))
 
-
-/obj/item/paper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/paper/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user || (user.stat || user.restrained()))
 		return FALSE
 
+/obj/item/paper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("write"))
 		var/id = topic.get_str("write")
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message

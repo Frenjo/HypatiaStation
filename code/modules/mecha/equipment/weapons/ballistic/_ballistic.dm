@@ -18,8 +18,5 @@
 
 /obj/item/mecha_equipment/weapon/ballistic/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("rearm"))
 		rearm()

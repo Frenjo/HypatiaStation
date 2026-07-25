@@ -148,9 +148,6 @@
 
 /obj/item/eftpos/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("choice"))
 		switch(topic.get_str("choice"))
 			if("change_code")

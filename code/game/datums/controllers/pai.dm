@@ -20,9 +20,6 @@ CONTROLLER_DEF(pai)
 
 /datum/controller/pai/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("download"))
 		var/datum/pAI_candidate/candidate = topic.get_and_locate("candidate")
 		var/obj/item/paicard/card = topic.get_and_locate("device")

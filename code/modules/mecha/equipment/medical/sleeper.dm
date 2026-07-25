@@ -123,9 +123,6 @@
 
 /obj/item/mecha_equipment/medical/sleeper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("eject"))
 		go_out()
 	if(topic.has("view_stats"))

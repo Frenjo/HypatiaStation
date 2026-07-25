@@ -77,9 +77,6 @@
 
 /obj/mecha/combat/eidolon/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("ball_mode"))
 		toggle_ball_mode()
 

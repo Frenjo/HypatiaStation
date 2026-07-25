@@ -110,9 +110,6 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 
 /mob/living/bot/cleanbot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("operation"))
 		switch(topic.get_str("operation"))
 			if("blood")

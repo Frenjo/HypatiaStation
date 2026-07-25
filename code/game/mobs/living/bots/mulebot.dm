@@ -246,13 +246,15 @@
 	SHOW_BROWSER(user, "<HEAD><TITLE>MULEbot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 
-/mob/living/bot/mulebot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/mob/living/bot/mulebot/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!issilicon(user) || (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
+/mob/living/bot/mulebot/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("op"))
 		switch(topic.get_str("op"))
 			if("lock", "unlock")

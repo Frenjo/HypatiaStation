@@ -84,9 +84,6 @@
 
 /obj/machinery/particle_accelerator/control_box/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("togglep"))
 		if(!wires.IsIndexCut(PARTICLE_TOGGLE_WIRE))
 			toggle_power()

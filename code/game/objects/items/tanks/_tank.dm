@@ -155,15 +155,17 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/tank/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user.stat|| user.restrained())
 		return FALSE
 	if(loc != user)
 		return FALSE
 
+/obj/item/tank/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("dist_p"))
 		switch(topic.get("dist_p"))
 			if("reset")

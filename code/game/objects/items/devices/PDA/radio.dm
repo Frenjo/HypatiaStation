@@ -82,11 +82,7 @@
 
 /obj/item/radio/integrated/beepsky/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	var/obj/item/pda/PDA = src.hostpda
-
 	switch(topic.get_str("op"))
 		if("control")
 			active = topic.get_and_locate("bot")
@@ -161,9 +157,6 @@
 
 /obj/item/radio/integrated/mule/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	var/cmd = "command"
 	if(active)
 		cmd = "command [active.suffix]"

@@ -86,14 +86,16 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/keycard_auth/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/keycard_auth/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(busy)
 		to_chat(user, SPAN_WARNING("\The [src] is busy."))
 		return FALSE
 
+/obj/machinery/keycard_auth/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("triggerevent"))
 		event = topic.get_str("triggerevent")
 		screen = 2

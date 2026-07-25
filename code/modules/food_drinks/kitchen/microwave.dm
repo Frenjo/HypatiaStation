@@ -325,9 +325,6 @@
 
 /obj/machinery/microwave/handle_topic(mob/user, datum/topic_input/topic, topic_reason)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	switch(topic.get_str("action"))
 		if("cook")
 			cook()

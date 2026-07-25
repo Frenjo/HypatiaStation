@@ -145,13 +145,15 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/atmospherics/unary/cryo_cell/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/atmospherics/unary/cryo_cell/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user == occupant)
 		return FALSE
 
+/obj/machinery/atmospherics/unary/cryo_cell/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("switchOn"))
 		on = TRUE
 		update_icon()

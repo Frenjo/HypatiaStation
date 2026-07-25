@@ -104,9 +104,6 @@
 
 /obj/machinery/computer/rust_core_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("goto_scanlist"))
 		cur_viewed_device = null
 	if(topic.has("manage_individual"))

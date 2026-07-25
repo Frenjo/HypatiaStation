@@ -118,15 +118,15 @@
 	onclose(user, "prox")
 	return
 
-/obj/item/assembly/prox_sensor/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/assembly/prox_sensor/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
-		CLOSE_BROWSER(user, "window=prox")
-		onclose(user, "prox")
 		return FALSE
 
+/obj/item/assembly/prox_sensor/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("scanning"))
 		toggle_scan()
 

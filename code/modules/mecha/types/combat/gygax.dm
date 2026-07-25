@@ -20,9 +20,6 @@
 
 /obj/mecha/combat/gygax/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle_leg_overload"))
 		toggle_actuator_overload()
 		return

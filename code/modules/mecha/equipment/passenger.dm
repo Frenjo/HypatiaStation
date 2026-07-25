@@ -91,9 +91,6 @@
 
 /obj/item/mecha_equipment/passenger/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle_lock"))
 		door_locked = !door_locked
 		occupant_message(SPAN_INFO("Passenger compartment hatch [door_locked ? "locked" : "unlocked"]."))

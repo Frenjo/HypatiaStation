@@ -64,27 +64,28 @@
 	onclose(user, "implantpad")
 	return
 
-/obj/item/implantpad/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/implantpad/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user.stat)
 		return FALSE
+	if(loc != user || (!in_range(src, user) || !isturf(loc)))
+		return FALSE
 
-	if(user.contents.Find(src) || ((in_range(src, user) && isturf(loc))))
-		user.set_machine(src)
-		if(topic.has("tracking_id"))
-			var/obj/item/implant/tracking/T = case.imp
-			T.id += topic.get_num("tracking_id")
-			T.id = min(100, T.id)
-			T.id = max(1, T.id)
+/obj/item/implantpad/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	user.set_machine(src)
+	if(topic.has("tracking_id"))
+		var/obj/item/implant/tracking/T = case.imp
+		T.id += topic.get_num("tracking_id")
+		T.id = min(100, T.id)
+		T.id = max(1, T.id)
 
-		if(ismob(loc))
-			attack_self(loc)
-		else
-			for(var/mob/M in viewers(1, src))
-				if(isnotnull(M.client))
-					attack_self(M)
-		add_fingerprint(user)
+	if(ismob(loc))
+		attack_self(loc)
 	else
-		CLOSE_BROWSER(user, "window=implantpad")
+		for(var/mob/M in viewers(1, src))
+			if(isnotnull(M.client))
+				attack_self(M)
+	add_fingerprint(user)

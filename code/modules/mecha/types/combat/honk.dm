@@ -137,9 +137,6 @@
 
 /obj/mecha/combat/honk/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("play_sound"))
 		switch(topic.get_str("play_sound"))
 			if("sadtrombone")

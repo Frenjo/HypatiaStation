@@ -79,9 +79,6 @@
 
 /obj/item/beacon_locator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	user.set_machine(src)
 
 	if(topic.has("reset_tracking"))

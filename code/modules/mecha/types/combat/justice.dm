@@ -76,9 +76,6 @@
 
 /obj/mecha/combat/justice/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("safety"))
 		do_safety()
 		return

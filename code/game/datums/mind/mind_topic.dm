@@ -1,11 +1,12 @@
-/datum/mind/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/datum/mind/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
-
+		return
 	if(!check_rights(R_ADMIN))
 		return FALSE
 
+/datum/mind/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("memory_edit"))
 		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null | message), 1, MAX_MESSAGE_LEN)
 		if(isnull(new_memo))

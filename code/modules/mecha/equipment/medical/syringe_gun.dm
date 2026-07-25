@@ -127,9 +127,6 @@
 
 /obj/item/mecha_equipment/medical/syringe_gun/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle_mode"))
 		mode = !mode
 		update_equip_info()

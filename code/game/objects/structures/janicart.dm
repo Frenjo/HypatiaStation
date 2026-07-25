@@ -98,20 +98,17 @@
 	popup.set_content(html)
 	popup.open()
 
-/obj/structure/janitorialcart/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/structure/janitorialcart/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!in_range(src, user))
 		return FALSE
 	if(!isliving(user))
 		return FALSE
 
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=janicart")
-		user.unset_machine()
-		return
-
+/obj/structure/janitorialcart/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("garbage"))
 		if(isnotnull(mybag))
 			user.put_in_hands(mybag)

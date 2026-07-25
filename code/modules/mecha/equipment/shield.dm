@@ -66,9 +66,6 @@
 
 /obj/item/mecha_equipment/shield_droid/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle_shield"))
 		toggle_shield()
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())

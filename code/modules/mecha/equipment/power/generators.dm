@@ -36,9 +36,6 @@
 
 /obj/item/mecha_equipment/generator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggle"))
 		if(equip_ready)
 			START_PROCESSING(PCobj, src)

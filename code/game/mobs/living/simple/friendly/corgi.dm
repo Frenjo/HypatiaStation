@@ -377,9 +377,6 @@
 //pupplies cannot wear anything.
 /mob/living/simple/corgi/puppy/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("remove_inv") || topic.has("add_inv"))
 		to_chat(user, SPAN_WARNING("You can't fit this on \the [src]."))
 
@@ -401,9 +398,6 @@
 //Lisa already has a cute bow!
 /mob/living/simple/corgi/Lisa/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("remove_inv") || topic.has("add_inv"))
 		to_chat(user, SPAN_WARNING("\The [src] already has a cute bow!"))
 

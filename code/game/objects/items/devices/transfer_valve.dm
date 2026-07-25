@@ -89,15 +89,17 @@
 		// auto update every Master Controller tick
 		//ui.set_auto_update(1)
 
-/obj/item/transfer_valve/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/transfer_valve/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(user.stat || user.restrained())
 		return FALSE
 	if(loc != user)
 		return FALSE
 
+/obj/item/transfer_valve/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(isnotnull(tank_one) && topic.has("tankone"))
 		split_gases()
 		valve_open = 0

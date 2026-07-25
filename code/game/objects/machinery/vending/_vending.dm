@@ -237,15 +237,17 @@
 	SHOW_BROWSER(user, jointext(content, "<br>"), "window=vending")
 	onclose(user, "")
 
-/obj/machinery/vending/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/vending/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(stat & (BROKEN | NOPOWER))
 		return FALSE
 	if(user.stat || user.restrained())
 		return FALSE
 
+/obj/machinery/vending/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(!issilicon(user))
 		if(topic.has("remove_coin"))
 			if(isnull(coin))
@@ -270,11 +272,6 @@
 
 /obj/machinery/vending/Topic(href, href_list)
 	. = ..()
-	if(stat & (BROKEN | NOPOWER))
-		return
-	if(usr.stat || usr.restrained())
-		return
-
 	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)))
 		usr.set_machine(src)
 		if(href_list["vend"] && vend_ready && !currently_vending)

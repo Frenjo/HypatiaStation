@@ -22,20 +22,23 @@
 	onclose(user, "scroll")
 	return
 
-/obj/item/teleportation_scroll/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/teleportation_scroll/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
+		return
+	if(loc != user || (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 	if(user.stat || user.restrained() || loc != user)
 		return FALSE
 	if(!ishuman(user))
 		return FALSE
 
-	if(user == loc || (in_range(src, user) && isturf(loc)))
-		user.set_machine(src)
-		if(topic.has("spell_teleport"))
-			if(uses >= 1)
-				teleportscroll(user)
+/obj/item/teleportation_scroll/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	user.set_machine(src)
+	if(topic.has("spell_teleport"))
+		if(uses >= 1)
+			teleportscroll(user)
 	attack_self(user)
 
 /obj/item/teleportation_scroll/proc/teleportscroll(mob/user)

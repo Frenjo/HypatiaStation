@@ -557,19 +557,15 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = FALSE
 
-/mob/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/mob/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(isnull(client))
 		return FALSE
 
-	if(topic.has("mach_close"))
-		var/t1 = "window=[topic.get("mach_close")]"
-		unset_machine()
-		CLOSE_BROWSER(src, t1)
-		return
-
+/mob/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("flavor_change"))
 		update_flavor_text()
 		return

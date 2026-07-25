@@ -77,15 +77,15 @@
 	onclose(user, "aicard")
 	return
 
-/obj/item/aicard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/aicard/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!in_range(src, user) || user.machine != src) // If they are not in range of 1 or less or their machine is not the card (ie, clicked on something else).
-		CLOSE_BROWSER(user, "window=aicard")
-		user.unset_machine()
 		return FALSE
 
+/obj/item/aicard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	add_fingerprint(user)
 	user.set_machine(src)
 

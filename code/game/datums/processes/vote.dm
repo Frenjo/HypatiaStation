@@ -331,13 +331,15 @@ PROCESS_DEF(vote)
 		. += "</ul><hr>"
 	. += "<a href='byond://?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
 
-/datum/process/vote/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/datum/process/vote/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(isnull(user?.client))
 		return FALSE //not necessary but meh...just in-case somebody does something stupid
 
+/datum/process/vote/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	switch(topic.get("vote"))
 		if("close")
 			voting.Remove(user.client)

@@ -26,8 +26,16 @@
 /datum/Topic(href, list/href_list)
 	SHOULD_CALL_PARENT(TRUE)
 
+	if(!can_handle_topic(usr))
+		return FALSE
+
 	. = ..()
 	. = handle_topic(usr, new /datum/topic_input(href, href_list), .)
+
+/datum/proc/can_handle_topic(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return TRUE
 
 /datum/proc/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	SHOULD_CALL_PARENT(TRUE)

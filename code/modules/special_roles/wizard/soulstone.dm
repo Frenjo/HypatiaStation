@@ -51,15 +51,15 @@
 	onclose(user, "aicard")
 	return
 
-/obj/item/soulstone/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/soulstone/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!in_range(src, user) || user.machine != src)
-		CLOSE_BROWSER(user, "window=aicard")
-		user.unset_machine()
 		return FALSE
 
+/obj/item/soulstone/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	add_fingerprint(user)
 	user.set_machine(src)
 

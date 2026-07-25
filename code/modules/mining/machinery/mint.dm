@@ -76,14 +76,16 @@
 	dat += "<br><A href='byond://?src=\ref[src];makeCoins=[1]'>Make coins</A>"
 	SHOW_BROWSER(user, dat, "window=\ref[src]")
 
-/obj/machinery/mint/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/mint/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(processing)
-		to_chat(usr, SPAN_INFO("The machine is processing."))
+		to_chat(user, SPAN_INFO("The machine is processing."))
 		return FALSE
 
+/obj/machinery/mint/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("choose"))
 		chosen = topic.get_path("choose")
 

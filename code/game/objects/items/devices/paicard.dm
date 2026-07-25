@@ -221,13 +221,15 @@
 	onclose(user, "paicard")
 	return
 
-/obj/item/paicard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/paicard/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user || user.stat)
 		return FALSE
 
+/obj/item/paicard/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("setdna"))
 		if(isnotnull(pai.master_dna))
 			return

@@ -1,8 +1,5 @@
 /mob/living/silicon/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("lawc")) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
 		var/L = topic.get_num("lawc")
 		switch(lawcheck[L + 1])

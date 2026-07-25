@@ -95,20 +95,21 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 	return html
 
-/datum/wires/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/datum/wires/can_handle_topic(mob/user)
 	. = ..()
+	if(!.)
+		return
 	if(!in_range(holder, user))
 		return FALSE
 	if(!isliving(user))
-		return FALSE
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=wires")
-		user.unset_machine()
 		return FALSE
 	var/mob/living/L = user
 	if(!CanUse(L))
 		return FALSE
 
+/datum/wires/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	var/mob/living/L = user
 	if(!topic.has("action"))
 		return FALSE
 

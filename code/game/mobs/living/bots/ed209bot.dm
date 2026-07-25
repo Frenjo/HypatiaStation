@@ -134,9 +134,6 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 /mob/living/bot/ed209/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("operation"))
 		switch(topic.get_str("operation"))
 			if("idcheck")

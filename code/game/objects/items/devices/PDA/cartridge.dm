@@ -372,15 +372,15 @@
 
 	return values
 
-/obj/item/cartridge/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/item/cartridge/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
-		user.unset_machine()
-		CLOSE_BROWSER(user, "window=pda")
 		return FALSE
 
+/obj/item/cartridge/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	switch(topic.get_str("choice"))
 		if("Medical Records")
 			var/datum/record/R = topic.get_and_locate("target")

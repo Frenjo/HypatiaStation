@@ -230,13 +230,15 @@
 		SHOW_BROWSER(user, dat, "window=\ref[src]")
 		onclose(user, "\ref[src]")
 
-/obj/machinery/fire_alarm/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+/obj/machinery/fire_alarm/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	if(buildstage != 2)
 		return FALSE
 
+/obj/machinery/fire_alarm/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	if(topic.has("reset"))
 		reset()
 

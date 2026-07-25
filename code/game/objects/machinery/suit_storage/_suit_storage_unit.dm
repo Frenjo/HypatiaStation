@@ -141,9 +141,6 @@
 
 /obj/machinery/suit_storage_unit/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("toggleUV"))
 		toggleUV(user)
 

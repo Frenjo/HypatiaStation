@@ -55,9 +55,6 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 
 /obj/item/gps/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("tag"))
 		var/a = input("Please enter desired tag.", name, gpstag) as text
 		a = uppertext(copytext(sanitize(a), 1, 5))

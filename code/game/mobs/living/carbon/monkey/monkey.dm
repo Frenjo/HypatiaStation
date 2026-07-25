@@ -121,15 +121,6 @@
 
 /mob/living/carbon/monkey/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
-	if(topic.has("mach_close"))
-		var/t1 = "window=[topic.get_str("mach_close")]"
-		unset_machine()
-		CLOSE_BROWSER(src, t1)
-		return
-
 	if(topic.has("item") && !user.stat && !user.restrained() && in_range(src, user))
 		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey()
 		O.source = user

@@ -153,9 +153,6 @@
 
 /obj/item/anodevice/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(!.)
-		return FALSE
-
 	if(topic.has("neg_changetime_max"))
 		time += -100
 		if(time > inserted_battery.capacity)
