@@ -119,24 +119,12 @@
 	t += "Temperature: [round(input2.air_contents.temperature, 0.1)] K<BR>"
 	t += "Pressure: [round(input2.air_contents.return_pressure(), 0.1)] kPa<BR>"
 
-	t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR>"
 
 	t += "</PRE>"
 	SHOW_BROWSER(user, t, "window=teg;size=460x300")
 	onclose(user, "teg")
 	return 1
-
-
-/obj/machinery/power/generator_type2/Topic(href, href_list)
-	..()
-
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=teg")
-		usr.unset_machine()
-		return 0
-
-	return 1
-
 
 /obj/machinery/power/generator_type2/power_change()
 	..()

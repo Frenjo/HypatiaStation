@@ -243,11 +243,6 @@
 
 /obj/machinery/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=\ref[src]")
-		user.unset_machine()
-		return FALSE
-
 	add_fingerprint(user)
 	user.set_machine(src)
 

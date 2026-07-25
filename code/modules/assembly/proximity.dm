@@ -113,7 +113,6 @@
 	dat += text("<BR>Range: <A href='byond://?src=\ref[];range=-1'>-</A> [] <A href='byond://?src=\ref[];range=1'>+</A>", src, range, src)
 	dat += "<BR><A href='byond://?src=\ref[src];scanning=1'>[scanning?"Armed":"Unarmed"]</A> (Movement sensor active when armed!)"
 	dat += "<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 	SHOW_BROWSER(user, dat, "window=prox")
 	onclose(user, "prox")
 	return
@@ -143,10 +142,6 @@
 		var/r = topic.get_num("range")
 		range += r
 		range = min(max(range, 1), 5)
-
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=prox")
-		return
 
 	if(isnotnull(user))
 		attack_self(user)

@@ -38,7 +38,6 @@ var/const/max_assembly_amount = 300
 			return
 
 	var/t = "<B>Reactor Fuel Rod Compressor / Assembler</B><BR>"
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	if(locked)
 		t += "Swipe your ID to unlock this console."
 	else
@@ -49,7 +48,6 @@ var/const/max_assembly_amount = 300
 		for(var/reagent in new_assembly_quantities)
 			t += "	[reagent] rods: [new_assembly_quantities[reagent]] \[<A href='byond://?src=\ref[src];change_reagent=[reagent]'>Modify</A>\]<br>"
 	t += "<hr>"
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
 	SHOW_BROWSER(user, t, "window=fuelcomp;size=500x300")
 	user.set_machine(src)
@@ -59,10 +57,6 @@ var/const/max_assembly_amount = 300
 
 /obj/machinery/rust_fuel_compressor/Topic(href, href_list)
 	..()
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=fuelcomp")
-		usr.machine = null
-
 	if( href_list["eject_matter"] )
 		var/ejected = 0
 		while(compressed_matter > 10)

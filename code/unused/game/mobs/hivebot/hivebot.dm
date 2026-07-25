@@ -288,10 +288,7 @@
 		src.pick_model()
 		return
 	var/dat = "<HEAD><TITLE>Modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
-	<BR>
-	<BR>
-	<B>Activated Modules</B>
+	dat += {"<B>Activated Modules</B>
 	<BR>
 	Module 1: [module_state_1 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_1]'>[module_state_1]</A>" : "No Module"]<BR>
 	Module 2: [module_state_2 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_2]'>[module_state_2]</A>" : "No Module"]<BR>
@@ -310,17 +307,11 @@
 		else
 			dat += text("[obj]: \[<A href='byond://?src=\ref[src];act=\ref[obj]'>Activate</A> | <B>Deactivated</B>\]<BR>")
 */
-	SHOW_BROWSER(src, dat, "window=robotmod&can_close=0")
+	SHOW_BROWSER(src, dat, "window=robotmod")
 
 
 /mob/living/silicon/hivebot/Topic(href, href_list)
 	..()
-	if (href_list["mach_close"])
-		var/t1 = text("window=[href_list["mach_close"]]")
-		src.machine = null
-		CLOSE_BROWSER(src, t1)
-		return
-
 	if (href_list["mod"])
 		var/obj/item/O = locate(href_list["mod"])
 		O.attack_self(src)

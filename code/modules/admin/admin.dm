@@ -312,7 +312,6 @@ var/global/floorIsLava = 0
 			dat+= {"<HR><BR><A href='byond://?src=\ref[src];ac_create_channel=1'>Create Feed Channel</A>
 				<BR><A href='byond://?src=\ref[src];ac_view=1'>View Feed Channels</A>
 				<BR><A href='byond://?src=\ref[src];ac_create_feed_story=1'>Submit new Feed story</A>
-				<BR><BR><A href='byond://?src=\ref[usr];mach_close=newscaster_main'>Exit</A>
 			"}
 
 			var/wanted_already = 0

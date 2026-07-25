@@ -93,7 +93,6 @@
 			dat += "<HR><A href='byond://?src=\ref[src];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
-		dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=sleeper'>Close</A>"
 		SHOW_BROWSER(user, dat, "window=sleeper;size=400x500")
 		onclose(user, "sleeper")
 	return

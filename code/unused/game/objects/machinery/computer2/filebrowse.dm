@@ -13,8 +13,7 @@
 		if((!src.current_folder) || !(src.current_folder.holder in src.master))
 			src.current_folder = src.holder.root
 
-		var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a> | "
-		dat += "<a href='byond://?src=\ref[src];quit=1'>Quit</a>"
+		var/dat = "<a href='byond://?src=\ref[src];quit=1'>Quit</a>"
 
 		switch(mode)
 			if(0)

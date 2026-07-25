@@ -101,8 +101,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 	<a href='byond://?src=\ref[src];solars_aft_port=1'>Aft port solar</a> |
 	<a href='byond://?src=\ref[src];solars_fore_starboard=1'>Fore starboard solar</a><br>
 	<a href='byond://?src=\ref[src];solars_aft_starboard=1'>Aft starboard solar</a> |
-	<a href='byond://?src=\ref[src];mining=1'>Mining Asteroid</a><br>
-	<a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"}
+	<a href='byond://?src=\ref[src];mining=1'>Mining Asteroid</a>"}
 
 	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")

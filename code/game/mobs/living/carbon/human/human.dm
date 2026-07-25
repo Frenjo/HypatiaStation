@@ -323,7 +323,6 @@
 	<BR><A href='byond://?src=\ref[src];item=splints'>Remove Splints</A>
 	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
 	SHOW_BROWSER(user, dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")

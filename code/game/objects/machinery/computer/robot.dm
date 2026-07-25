@@ -82,16 +82,12 @@
 				\n<BR>
 				\nCountdown: [src.timeleft]/60 <A href='byond://?src=\ref[src];reset=1'>\[Reset\]</A><BR>
 				\n<BR>
-				\n<A href='byond://?src=\ref[src];eject=1'>Start Sequence</A><BR>
-				\n<BR>
-				\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+				\n<A href='byond://?src=\ref[src];eject=1'>Start Sequence</A>"}
 			else
 				dat = {"<B>Emergency Robot Self-Destruct</B><HR>\nStatus: Activated<BR>
 				\n<BR>
 				\nCountdown: [src.timeleft]/60 \[Reset\]<BR>
-				\n<BR>\n<A href='byond://?src=\ref[src];stop=1'>Stop Sequence</A><BR>
-				\n<BR>
-				\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+				\n<BR>\n<A href='byond://?src=\ref[src];stop=1'>Stop Sequence</A>"}
 			dat += "<A href='byond://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
 
 	dat += "</body></html>"

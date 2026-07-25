@@ -90,7 +90,7 @@
 		dat += "<br>"
 
 	dat += "<hr>"
-	dat += "<a href='byond://?src=\ref[src]'>Refresh</a> <a href='byond://?src=\ref[src];close=1'>Close</a>"
+	dat += "<a href='byond://?src=\ref[src]'>Refresh</a>"
 
 	SHOW_BROWSER(user, dat, "window=anodevice;size=400x500")
 	onclose(user, "anodevice")
@@ -191,9 +191,6 @@
 		inserted_battery.forceMove(GET_TURF(src))
 		inserted_battery = null
 		UpdateSprite()
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=anodevice")
-		user.unset_machine(src)
 
 	updateDialog()
 

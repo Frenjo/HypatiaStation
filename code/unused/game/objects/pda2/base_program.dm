@@ -166,11 +166,6 @@
 
 		usr.machine = src.master
 
-		if (href_list["close"])
-			usr.machine = null
-			CLOSE_BROWSER(usr, "window=pda2")
-			return 0
-
 		if (href_list["quit"])
 //			src.master.processing_programs.Remove(src)
 			if(src.master.host_program && src.master.host_program.holder && (src.master.host_program.holder in src.master.contents))

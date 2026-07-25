@@ -164,7 +164,7 @@ Version 1 changes (from version 0):
 
 	html += "</th></tr></table></body>"
 
-	SHOW_BROWSER(target, html, "window=\ref[src];size=[size];can_close=0")
+	SHOW_BROWSER(target, html, "window=\ref[src];size=[size]")
 
 /sd_alert/proc/Response()
 	var/validated

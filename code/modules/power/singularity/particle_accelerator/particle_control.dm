@@ -227,7 +227,6 @@
 
 	var/dat = "<html><body>"
 	dat += "Particle Accelerator Control Panel<BR>"
-	dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR><BR>"
 	dat += "Status:<BR>"
 	if(!assembled)
 		dat += "Unable to detect all parts!<BR>"

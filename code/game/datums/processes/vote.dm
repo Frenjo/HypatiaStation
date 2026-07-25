@@ -34,12 +34,12 @@ PROCESS_DEF(vote)
 			result()
 			for(var/client/C in voting)
 				if(C)
-					CLOSE_BROWSER(C, "window=vote;can_close=0")
+					CLOSE_BROWSER(C, "window=vote")
 			reset()
 		else
 			for(var/client/C in voting)
 				if(C)
-					SHOW_BROWSER(C, interface(C), "window=vote;can_close=0")
+					SHOW_BROWSER(C, interface(C), "window=vote")
 			voting.Cut()
 
 /datum/process/vote/proc/autotransfer()
@@ -375,4 +375,4 @@ PROCESS_DEF(vote)
 	set name = "Vote"
 
 	if(isnotnull(global.PCvote))
-		SHOW_BROWSER(src, global.PCvote.interface(client), "window=vote;can_close=0")
+		SHOW_BROWSER(src, global.PCvote.interface(client), "window=vote")

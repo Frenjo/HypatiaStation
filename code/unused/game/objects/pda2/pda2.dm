@@ -97,8 +97,6 @@
 
 	var/dat = "<html><head><title>Personal Data Assistant</title></head><body>"
 
-	dat += "<a href='byond://?src=\ref[src];close=1'>Close</a>"
-
 	if (!src.owner)
 		if(src.cartridge)
 			dat += " | <a href='byond://?src=\ref[src];eject_cart=1'>Eject [src.cartridge]</a>"
@@ -144,10 +142,6 @@
 
 		else if (href_list["refresh"])
 			src.updateSelfDialog()
-
-		else if (href_list["close"])
-			CLOSE_BROWSER(usr, "window=pda2")
-			usr.machine = null
 
 		src.updateSelfDialog()
 		return

@@ -137,7 +137,7 @@
 		dat += "<HR>\nPower Level: [temp]<BR>\n<A href='byond://?src=\ref[src];alarm=1'>Firing Sequence</A><BR>\n<A href='byond://?src=\ref[src];drive=1'>Test Fire Driver</A><BR>\n<A href='byond://?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
 	else
 		dat += "<BR>\n<A href='byond://?src=\ref[src];door=1'>Toggle Outer Door</A><BR>"
-	dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=computer'>Close</A></TT></BODY></HTML>"
+	dat += "</TT></BODY></HTML>"
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	add_fingerprint(usr)
 	onclose(user, "computer")

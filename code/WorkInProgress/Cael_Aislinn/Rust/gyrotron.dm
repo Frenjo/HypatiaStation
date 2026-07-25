@@ -31,10 +31,6 @@
 
 /obj/machinery/rust/gyrotron/Topic(href, href_list)
 	..()
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=gyro_monitor")
-		usr.machine = null
-		return
 	if(href_list["modifypower"])
 		var/new_val = text2num(input("Enter new emission power level (0.001 - 0.01)", "Modifying power level (MeV)", mega_energy))
 		if(!new_val)
@@ -187,6 +183,5 @@
 	else
 		t += "<b><font color=red>Gyrotron unresponsive</font></b>"
 	t += "<hr>"
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	SHOW_BROWSER(user, t, "window=gyro_monitor;size=500x800")
 	user.machine = src

@@ -67,7 +67,7 @@
 		dat += "<B><font color=red>Unable to locate analysis pad.</font><BR></b>"
 	//
 	dat += "<HR>"
-	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A> <A href='byond://?src=\ref[src];close=1'>Close<BR>"
+	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
 	SHOW_BROWSER(user, dat, "window=artharvester;size=450x500")
 	onclose(user, "artharvester")
 
@@ -212,9 +212,5 @@
 				visible_message("<b>[src]</b> states, \"Cannot dump energy. Battery is drained of charge already.\"")
 		else
 			visible_message("<b>[src]</b> states, \"Cannot dump energy. No battery inserted.\"")
-
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=artharvester")
-		usr.unset_machine(src)
 
 	updateDialog()

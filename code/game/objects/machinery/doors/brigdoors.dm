@@ -203,7 +203,6 @@
 		else
 			dat += "<br/><A href='byond://?src=\ref[src];fc=1'>Activate Flash</A>"
 
-	dat += "<br/><br/><a href='byond://?src=\ref[user];close=1'>Close</a>"
 	dat += "</TT></BODY></HTML>"
 
 	SHOW_BROWSER(user, dat, "window=\ref[src];size=400x500")

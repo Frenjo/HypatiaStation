@@ -81,8 +81,7 @@ var/prison_shuttle_timeleft = 0
 		else
 			dat += {"<BR><B>Prison Shuttle</B><HR>
 			\nLocation: [prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison ? "Moving to station ([prison_shuttle_timeleft] Secs.)":prison_shuttle_at_station ? "Station":"Dock"]<BR>
-			[prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison ? "\n*Shuttle already called*<BR>\n<BR>":prison_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Send to Dock</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Send to station</A><BR>\n<BR>"]
-			\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+			[prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison ? "\n*Shuttle already called*<BR>\n<BR>":prison_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Send to Dock</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Send to station</A><BR>\n<BR>"]"}
 
 		SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 		onclose(user, "computer")

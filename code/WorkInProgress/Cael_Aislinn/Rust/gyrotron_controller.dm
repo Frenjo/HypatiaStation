@@ -7,10 +7,6 @@
 
 /obj/machinery/computer/rust_gyrotron_controller/Topic(href, href_list)
 	..()
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=gyrotron_controller")
-		usr.machine = null
-		return
 	if(href_list["target"])
 		var/obj/machinery/rust/gyrotron/gyro = locate(href_list["target"])
 		gyro.Topic(href, href_list)
@@ -80,6 +76,5 @@
 			t += "</tr>"
 	t += "</table>"
 	*/
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	SHOW_BROWSER(user, t, "window=gyrotron_controller;size=500x400")
 	user.machine = src

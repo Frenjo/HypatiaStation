@@ -131,8 +131,7 @@
 		<a href='byond://?src=\ref[src];max_field_strength=10'>++</a> \
 		<a href='byond://?src=\ref[src];max_field_strength=100'>\[max\]</a><br>"
 	t += "<hr>"
-	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A>"
 	SHOW_BROWSER(user, t, "window=\ref[src];size=500x800")
 	user.set_machine(src)
 

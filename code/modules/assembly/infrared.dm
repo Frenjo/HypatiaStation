@@ -106,7 +106,6 @@
 	user.set_machine(src)
 	var/dat = text("<TT><B>Infrared Laser</B>\n<B>Status</B>: []<BR>\n<B>Visibility</B>: []<BR>\n</TT>", (on ? text("<A href='byond://?src=\ref[];state=0'>On</A>", src) : text("<A href='byond://?src=\ref[];state=1'>Off</A>", src)), (src.visible ? text("<A href='byond://?src=\ref[];visible=0'>Visible</A>", src) : text("<A href='byond://?src=\ref[];visible=1'>Invisible</A>", src)))
 	dat += "<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 	SHOW_BROWSER(user, dat, "window=infra")
 	onclose(user, "infra")
 	return
@@ -128,10 +127,6 @@
 		visible = !visible
 		spawn(0)
 			first?.vis_spread(visible)
-
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=infra")
-		return
 
 	if(isnotnull(user))
 		attack_self(user)

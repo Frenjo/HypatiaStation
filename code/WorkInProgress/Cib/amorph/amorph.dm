@@ -491,11 +491,6 @@
 		if((machine)&&(in_range(src, usr)))
 			show_inv(machine)
 
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		machine = null
-		CLOSE_BROWSER(src, t1)
-
 	if ((href_list["item"] && !( usr.stat ) && usr.canmove && !( usr.restrained() ) && in_range(src, usr) && ticker)) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 		O.source = usr

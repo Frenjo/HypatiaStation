@@ -69,7 +69,6 @@
 	var/minute = (time - second) / 60
 	var/dat = text("<TT><B>Timing Unit</B>\n[] []:[]\n<A href='byond://?src=\ref[];tp=-30'>-</A> <A href='byond://?src=\ref[];tp=-1'>-</A> <A href='byond://?src=\ref[];tp=1'>+</A> <A href='byond://?src=\ref[];tp=30'>+</A>\n</TT>", (timing ? text("<A href='byond://?src=\ref[];time=0'>Timing</A>", src) : text("<A href='byond://?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
 	dat += "<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 	SHOW_BROWSER(user, dat, "window=timer")
 	onclose(user, "timer")
 	return
@@ -90,10 +89,6 @@
 	if(topic.has("tp"))
 		time += topic.get_num("tp")
 		time = min(max(round(time), 0), 600)
-
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=timer")
-		return
 
 	if(isnotnull(user))
 		attack_self(user)

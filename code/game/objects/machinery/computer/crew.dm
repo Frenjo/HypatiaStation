@@ -44,12 +44,6 @@
 	if(src.z > 6)
 		to_chat(usr, SPAN_WARNING("<b>Unable to establish a connection</b>: ") + "\black You're too far away from the station!")
 		return 0
-	if(href_list["close"])
-		var/mob/user = usr
-		var/datum/nanoui/ui = global.PCnanoui.get_open_ui(user, src, "main")
-		usr.unset_machine()
-		ui.close()
-		return 0
 	if(href_list["update"])
 		src.updateDialog()
 		return 1

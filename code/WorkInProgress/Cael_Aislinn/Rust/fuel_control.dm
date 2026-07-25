@@ -112,8 +112,7 @@
 	dat += "</table>"
 
 	dat += "<hr>"
-	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A> "
-	dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
+	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
 	SHOW_BROWSER(user, dat, "window=fuel_control;size=800x400")
 	user.set_machine(src)
 
@@ -165,10 +164,6 @@
 
 	if( href_list["announce_stageprogression"] )
 		announce_stageprogression = text2num(href_list["announce_stageprogression"])
-
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=fuel_control")
-		usr.unset_machine()
 
 	if( href_list["set_next_stage"] )
 		var/cur_stage = href_list["set_next_stage"]

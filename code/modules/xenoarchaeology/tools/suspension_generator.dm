@@ -113,7 +113,6 @@
 	else
 		dat += "<br>"
 	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh console</A><br>"
-	dat += "<A href='byond://?src=\ref[src];close=1'>Close console</A>"
 	SHOW_BROWSER(user, dat, "window=suspension;size=500x400")
 	onclose(user, "suspension")
 
@@ -154,9 +153,6 @@
 				auth_card = null
 	else if(href_list["lock"])
 		locked = 1
-	else if(href_list["close"])
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=suspension")
 
 	updateUsrDialog()
 

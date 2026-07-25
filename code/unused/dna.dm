@@ -637,7 +637,6 @@
 			 	(src.scan ? text("[]", src.scan.name) : "----------"),
 			 	(src.scan ? text("<A href='byond://?src=\ref[];u_dat=1'>Upload Data</A>", src) : "No disk to upload"),
 			 	((src.data || src.func || src.special) ? text("<A href='byond://?src=\ref[];c_dat=1'>Clear Data</A><BR><A href='byond://?src=\ref[];e_dat=1'>Execute Data</A><BR>Function Type: [][]<BR>Data: []", src, src, src.func, (src.special ? text("-[]", src.special) : null), src.data) : "No data uploaded"))
-			dat += text("<BR><BR><A href='byond://?src=\ref[];mach_close=scanner'>Close</A>", user)
 	SHOW_BROWSER(user, dat, "window=scanner;size=400x500")
 	onclose(user, "scanner")
 	return

@@ -232,7 +232,6 @@
 			<A href='byond://?src=\ref[src];arccheckout=1'>Yes.</A><BR>
 			<A href='byond://?src=\ref[src];switchscreen=0'>No.</A><BR>"}
 
-	//dat += "<A href='byond://?src=\ref[user];mach_close=library'>Close</A><br><br>"
 	SHOW_BROWSER(user, dat, "window=library")
 	onclose(user, "library")
 

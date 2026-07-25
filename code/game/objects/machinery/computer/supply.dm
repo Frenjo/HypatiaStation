@@ -68,8 +68,7 @@
 		<HR>Supply points: [global.PCsupply.points]<BR>
 		<BR>\n<A href='byond://?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='byond://?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
-		<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
-		<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+		<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A>"}
 
 	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")
@@ -208,8 +207,7 @@
 		[supply_shuttle.has_arrive_time() ? "\n*Must be away to order items*<BR>\n<BR>":supply_shuttle.at_station() ? "\n*Must be away to order items*<BR>\n<BR>":"\n<A href='byond://?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>"]
 		[supply_shuttle.has_arrive_time() ? "\n*Shuttle already called*<BR>\n<BR>":supply_shuttle.at_station() ? "\n<A href='byond://?src=\ref[src];send=1'>Send away</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];send=1'>Send to station</A><BR>\n<BR>"]
 		\n<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
-		\n<A href='byond://?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
-		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+		\n<A href='byond://?src=\ref[src];vieworders=1'>View orders</A>"}
 
 	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")

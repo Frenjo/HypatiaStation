@@ -8,8 +8,7 @@
 		if(..())
 			return
 
-		var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a> | "
-		dat += "<a href='byond://?src=\ref[src];quit=1'>Quit</a>"
+		var/dat = "<a href='byond://?src=\ref[src];quit=1'>Quit</a>"
 
 		/*
 		dat += "<br><TT>Frequency: "

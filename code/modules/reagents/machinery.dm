@@ -399,10 +399,6 @@
 		if(loaded_pill_bottle)
 			loaded_pill_bottle.forceMove(loc)
 			loaded_pill_bottle = null
-	else if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=chemmaster")
-		usr.unset_machine()
-		return
 
 	if(beaker)
 		var/datum/reagents/R = beaker:reagents
@@ -562,7 +558,6 @@
 			dat += "<A href='byond://?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
-		dat += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 	else
 		var/datum/reagents/R = beaker:reagents
 		dat += "<A href='byond://?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
@@ -786,7 +781,6 @@
 		dat = "[src.temphtml]<BR><BR><A href='byond://?src=\ref[src];clear=1'>Main Menu</A>"
 	else if(!beaker)
 		dat += "Please insert beaker.<BR>"
-		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>Close</A>"
 	else
 		var/datum/reagents/R = beaker.reagents
 		var/datum/reagent/blood/Blood = null
@@ -860,7 +854,6 @@
 			else
 				dat += "nothing<BR>"
 		dat += "<BR><A href='byond://?src=\ref[src];eject=1'>Eject beaker</A>[(R.total_volume && length(R.reagent_list) ? "-- <A href='byond://?src=\ref[src];empty_beaker=1'>Empty beaker</A>" : "")]<BR>"
-		dat += "<A href='byond://?src=\ref[user];mach_close=pandemic'>Close</A>"
 
 	SHOW_BROWSER(user, "<TITLE>[src.name]</TITLE><BR>[dat]", "window=pandemic;size=575x400")
 	onclose(user, "pandemic")

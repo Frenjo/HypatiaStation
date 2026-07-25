@@ -66,7 +66,6 @@
 		if (!ishuman(user))
 			return ..(user)
 		var/t = "<B>Circuitboard Console - Camera Monitoring Computer</B><BR>"
-		t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 		t += "<hr> Please select a camera network:<br>"
 
 		for(var/curNet in possibleNets)
@@ -82,16 +81,11 @@
 				t += "<A href='byond://?src=\ref[src];auth=1'><b>*Authenticate*</b></A> (Requires an appropriate access ID)<br>"
 		else
 			t += "<A href='byond://?src=\ref[src];auth=1'>*Authenticate*</A> (Requires an appropriate access ID)<BR>"
-		t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 		SHOW_BROWSER(user, t, "window=camcircuit;size=500x400")
 		onclose(user, "camcircuit")
 
 	Topic(href, href_list)
 		..()
-		if( href_list["close"] )
-			CLOSE_BROWSER(usr, "window=camcircuit")
-			usr.machine = null
-			return
 		else if(href_list["net"])
 			network = href_list["net"]
 			authorised = 0

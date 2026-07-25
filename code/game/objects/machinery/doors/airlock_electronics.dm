@@ -50,17 +50,12 @@
 			else
 				t1 += "<a style='color: red' href='byond://?src=\ref[src];access=[acc]'>[aname]</a><br>"
 
-	t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
-
 	SHOW_BROWSER(user, t1, "window=airlock_electronics")
 	onclose(user, "airlock")
 
 /obj/item/airlock_electronics/Topic(href, href_list)
 	..()
 	if(usr.stat || usr.restrained() || !ishuman(usr))
-		return
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=airlock")
 		return
 
 	if(href_list["login"])

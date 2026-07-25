@@ -277,11 +277,6 @@
 	if(in_range(src, usr) && isturf(src.loc))
 		usr.set_machine(src)
 
-		if(href_list["close"])
-			usr.unset_machine()
-			CLOSE_BROWSER(usr, "window=disposal")
-			return
-
 		if(href_list["pump"])
 			if(text2num(href_list["pump"]))
 				mode = 1

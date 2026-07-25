@@ -75,7 +75,6 @@
 
 		var/t = "<B>Lockdown Control</B><BR>"
 		t += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
-		t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 		t += "<table border=1>"
 		var/empty = 1
 		for(var/curNetId in connected_doors)
@@ -105,16 +104,11 @@
 		if(empty)
 			t += "\red No networks connected.<br>"
 		t += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
-		t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 		SHOW_BROWSER(user, t, "window=lockdown;size=550x600")
 		onclose(user, "lockdown")
 
 	Topic(href, href_list)
 		..()
-
-		if( href_list["close"] )
-			CLOSE_BROWSER(usr, "window=lockdown")
-			usr.machine = null
 
 		if( href_list["show_net"] )
 			displayedNetworks.Add(href_list["show_net"])

@@ -103,8 +103,7 @@
 		<a href='byond://?src=\ref[src];charge_rate=10000'>\[+++\]</a> \
 		<a href='byond://?src=\ref[src];charge_rate=100000'>\[+++\]</a><br>"
 	t += "<hr>"
-	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A>"
 
 	SHOW_BROWSER(user, t, "window=\ref[src];size=500x400")
 	user.set_machine(src)

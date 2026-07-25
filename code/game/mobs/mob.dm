@@ -225,7 +225,6 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	<BR>[internal ? "<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>" : ""]
 	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
 	SHOW_BROWSER(user, dat, "window=mob[name];size=325x500")
 	onclose(user, "mob[name]")

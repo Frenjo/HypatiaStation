@@ -98,7 +98,6 @@
 		dat += "No entries recorded."
 	dat += "<hr>"
 	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</a><br>"
-	dat += "<A href='byond://?src=\ref[src];close=1'>Close</a><br>"
 	SHOW_BROWSER(user, dat,"window=depth_scanner;size=300x500")
 	onclose(user, "depth_scanner")
 
@@ -122,9 +121,5 @@
 			//GC will hopefully pick them up before too long
 			positive_locations = list()
 			qdel(current)
-
-	else if(topic.has("close"))
-		user.unset_machine()
-		CLOSE_BROWSER(user, "window=depth_scanner")
 
 	updateSelfDialog()

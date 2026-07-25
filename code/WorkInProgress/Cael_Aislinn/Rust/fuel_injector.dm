@@ -190,7 +190,6 @@
 
 		dat += "<hr>"
 		dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A> "
-		dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
 	SHOW_BROWSER(user, dat, "window=fuel_injector;size=500x300")
 	onclose(user, "fuel_injector")
@@ -236,10 +235,6 @@
 		var/obj/machinery/computer/rust_fuel_control/C = locate(href_list["update_extern"])
 		if(C)
 			C.updateDialog()
-
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=fuel_injector")
-		usr.unset_machine()
 
 	updateDialog()
 

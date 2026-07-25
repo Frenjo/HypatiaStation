@@ -73,7 +73,6 @@
 				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 				"}
 
-	dat += "<A href='byond://?src=\ref[src];close=1'>Close</a><br>"
 	SHOW_BROWSER(user, dat, "window=locater;size=300x150")
 	onclose(user, "locater")
 
@@ -89,8 +88,5 @@
 		if(frequency < 1200 || frequency > 1600)
 			new_frequency = sanitize_frequency(new_frequency, 1499)
 		frequency = new_frequency
-	else if(topic.has("close"))
-		user.unset_machine()
-		CLOSE_BROWSER(user, "window=locater")
 
 	updateSelfDialog()

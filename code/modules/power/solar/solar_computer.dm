@@ -104,8 +104,6 @@
 	html += "Solar panels : [length(connected_panels)] connected<BR>"
 	html += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
 
-	html += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
-
 	var/datum/browser/popup = new /datum/browser(user, "solcon", name)
 	popup.set_content(html)
 	popup.open()
@@ -157,10 +155,6 @@
 
 /obj/machinery/power/solar_control/Topic(href, href_list)
 	if(..())
-		CLOSE_BROWSER(usr, "window=solcon")
-		usr.unset_machine()
-		return
-	if(href_list["close"] )
 		CLOSE_BROWSER(usr, "window=solcon")
 		usr.unset_machine()
 		return

@@ -390,7 +390,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 			dat += "Confirm the change to: [GLOBL.security_level.name]<BR>"
 			dat += "<A href='byond://?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
-	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A href='byond://?src=\ref[user];mach_close=communications'>Close</A> \]"
+	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A href='byond://?src=\ref[src];operation=main'>Main Menu</A> | " : ""] \]"
 	SHOW_BROWSER(user, dat, "window=communications;size=400x500")
 	onclose(user, "communications")
 
@@ -442,7 +442,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
 			dat += " <A href='byond://?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> |"
 
-	dat += "<BR>\[ [src.aistate != STATE_DEFAULT ? "<A href='byond://?src=\ref[src];operation=ai-main'>Main Menu</A> | " : ""]<A href='byond://?src=\ref[user];mach_close=communications'>Close</A> \]"
+	dat += "<BR>\[ [src.aistate != STATE_DEFAULT ? "<A href='byond://?src=\ref[src];operation=ai-main'>Main Menu</A> | " : ""] \]"
 	return dat
 
 /*

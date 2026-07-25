@@ -125,17 +125,13 @@
 	if(!ptank)
 		to_chat(user, SPAN_NOTICE("Attach a plasma tank first!"))
 		return
-	var/dat = "<TT><B>Flamethrower (<A href='byond://?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Tank Pressure: [ptank.air_contents.return_pressure()]<BR>\nAmount to throw: <A href='byond://?src=\ref[src];amount=-100'>-</A> <A href='byond://?src=\ref[src];amount=-10'>-</A> <A href='byond://?src=\ref[src];amount=-1'>-</A> [throw_amount] <A href='byond://?src=\ref[src];amount=1'>+</A> <A href='byond://?src=\ref[src];amount=10'>+</A> <A href='byond://?src=\ref[src];amount=100'>+</A><BR>\n<A href='byond://?src=\ref[src];remove=1'>Remove plasmatank</A> - <A href='byond://?src=\ref[src];close=1'>Close</A></TT>"
+	var/dat = "<TT><B>Flamethrower (<A href='byond://?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Tank Pressure: [ptank.air_contents.return_pressure()]<BR>\nAmount to throw: <A href='byond://?src=\ref[src];amount=-100'>-</A> <A href='byond://?src=\ref[src];amount=-10'>-</A> <A href='byond://?src=\ref[src];amount=-1'>-</A> [throw_amount] <A href='byond://?src=\ref[src];amount=1'>+</A> <A href='byond://?src=\ref[src];amount=10'>+</A> <A href='byond://?src=\ref[src];amount=100'>+</A><BR>\n<A href='byond://?src=\ref[src];remove=1'>Remove plasmatank</A></TT>"
 	SHOW_BROWSER(user, dat, "window=flamethrower;size=600x300")
 	onclose(user, "flamethrower")
 	return
 
 /obj/item/flamethrower/Topic(href, list/href_list)
 	. = ..()
-	if(href_list["close"])
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=flamethrower")
-		return
 	if(usr.stat || usr.restrained() || usr.lying)
 		return
 	usr.set_machine(src)

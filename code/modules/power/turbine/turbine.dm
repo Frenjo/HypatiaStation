@@ -68,7 +68,7 @@
 
 	t += "Starter: [ compressor.starter ? "<A href='byond://?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];str=1'>On</A>"]"
 
-	t += "</PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
+	t += "</PRE><HR>"
 
 	t += "</TT>"
 	SHOW_BROWSER(user, t, "window=\ref[src]")

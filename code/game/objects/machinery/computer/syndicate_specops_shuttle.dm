@@ -213,8 +213,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	else
 		dat  = {"<BR><B>Special Operations Shuttle</B><HR>
 		\nLocation: [syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "Departing for [GLOBL.current_map.station_name] in ([syndicate_elite_shuttle_timeleft] seconds.)":syndicate_elite_shuttle_at_station ? "Station":"Dock"]<BR>
-		[syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "\n*The Syndicate Elite shuttle is already leaving.*<BR>\n<BR>":syndicate_elite_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle Offline</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [GLOBL.current_map.station_name]</A><BR>\n<BR>"]
-		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+		[syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "\n*The Syndicate Elite shuttle is already leaving.*<BR>\n<BR>":syndicate_elite_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle Offline</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [GLOBL.current_map.station_name]</A><BR>\n<BR>"]"}
 
 	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")

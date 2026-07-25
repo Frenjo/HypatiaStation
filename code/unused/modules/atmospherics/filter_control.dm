@@ -82,14 +82,9 @@
 		dat += "<big><font color='red'>Warning! Severe Internal Memory Corruption!</big><BR>\n<BR>\nConsult a qualified station technician immediately!</font><BR>\n"
 		dat += "<BR>\n<small>Error codes: 0x0000001E 0x0000007B</small><BR>\n"
 
-	dat += "<BR>\n<A href='byond://?src=\ref[src];close=1'>Close</A><BR>\n"
 	SHOW_BROWSER(user, dat, "window=filter_control;size=300x225")
 	onclose(user, "filter_control")
 /obj/machinery/filter_control/Topic(href, href_list)
-	if (href_list["close"])
-		CLOSE_BROWSER(usr, "window=filter_control;")
-		usr.machine = null
-		return	//Who cares if we're dead or whatever let us close the fucking window
 	if(..())
 		return
 	if(((in_range(src, usr) || usr.telekinesis == 1) || issilicon(usr)) && isturf(loc))

@@ -88,7 +88,6 @@
 	var/t = "<html><body><TT><B>Power Monitoring</B><HR>"
 
 	t += "<BR><HR><A href='byond://?src=\ref[src];update=1'>Refresh</A>"
-	t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	if(!powernet)
 		t += "\red No connection"
@@ -125,10 +124,6 @@
 
 /obj/machinery/power/monitor/Topic(href, href_list)
 	..()
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=powcomp")
-		usr.unset_machine()
-		return
 	if( href_list["update"] )
 		src.updateDialog()
 		return

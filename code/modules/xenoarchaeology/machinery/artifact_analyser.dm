@@ -50,7 +50,7 @@
 
 	dat += "<br>"
 	dat += "<hr>"
-	dat += "<a href='byond://?src=\ref[src]'>Refresh</a> <a href='byond://?src=\ref[src];close=1'>Close</a>"
+	dat += "<a href='byond://?src=\ref[src]'>Refresh</a>"
 	SHOW_BROWSER(user, dat, "window=artanalyser;size=450x500")
 	user.set_machine(src)
 	onclose(user, "artanalyser")
@@ -118,10 +118,6 @@
 	if(href_list["halt_scan"])
 		scan_in_progress = 0
 		visible_message("<b>[name]</b> states, \"Scanning halted.\"")
-
-	if(href_list["close"])
-		usr.unset_machine(src)
-		CLOSE_BROWSER(usr, "window=artanalyser")
 
 	..()
 	updateDialog()

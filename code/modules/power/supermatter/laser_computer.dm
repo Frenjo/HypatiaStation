@@ -37,7 +37,6 @@
 		t += "Frequency: <A href='byond://?src=\ref[laser];freq=-10000'>-</A> <A href='byond://?src=\ref[laser];freq=-1000'>-</A> [laser.freq] <A href='byond://?src=\ref[laser];freq=1000'>+</A> <A href='byond://?src=\ref[laser];freq=10000'>+</A><BR>"
 		t += "Output: [laser.active ? "<B>Online</B> <A href='byond://?src=\ref[laser];online=1'>Offline</A>" : "<A href='byond://?src=\ref[laser];online=1'>Online</A> <B>Offline</B> "]<BR>"
 	t += "<hr>"
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	SHOW_BROWSER(user, t, "window=laser_control;size=500x800")
 	user.machine = src
 */
@@ -58,7 +57,6 @@
 		t += "Frequency: <A href='byond://?src=\ref[laser];freq=-10000'>-</A> <A href='byond://?src=\ref[laser];freq=-1000'>-</A> [laser.freq] <A href='byond://?src=\ref[laser];freq=1000'>+</A> <A href='byond://?src=\ref[laser];freq=10000'>+</A><BR>"
 		t += "Output: [laser.active ? "<B>Online</B> <A href='byond://?src=\ref[laser];online=1'>Offline</A>" : "<A href='byond://?src=\ref[laser];online=1'>Online</A> <B>Offline</B> "]<BR>"
 	t += "<hr>"
-	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	SHOW_BROWSER(user, t, "window=laser_control")
 	user.machine = src
 	*/
@@ -94,7 +92,7 @@
 
 		t += "Output: [laser.on ? "<B>Online</B> <A href='byond://?src=\ref[src];online=1'>Offline</A>" : "<A href='byond://?src=\ref[src];online=1'>Online</A> <B>Offline</B> "]<BR>"
 
-		t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A></TT>"
+		t += "<BR><HR></TT>"
 
 	SHOW_BROWSER(user, t, "window=lascomp;size=420x700")
 	onclose(user, "lascomp")
@@ -103,11 +101,7 @@
 /obj/machinery/computer/lasercon/Topic(href, href_list)
 	..()
 	// Commented this out to reflect NanoUI port. -Frenjo
-	/*if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=laser_control")
-		usr.machine = null
-		return
-
+	/*
 	if( href_list["input"] )
 		var/i = text2num(href_list["input"])
 		var/d = i

@@ -60,8 +60,6 @@
 
 		t1 += "<br>\n[(locked ? "The door bolts have fallen!" : "The door bolts look up.")]<br>\n[(lights ? "The door bolt lights are on." : "The door bolt lights are off!")]<br>\n[((arePowerSystemsOn() && !(stat & NOPOWER)) ? "The test light is on." : "The test light is off!")]<br>\n[(!aiControlDisabled == AIRLOCK_AI_CONTROL_ENABLED ? "The 'AI control allowed' light is on." : "The 'AI control allowed' light is off.")]<br>\n[(!safe ? "The 'Check Wiring' light is on." : "The 'Check Wiring' light is off.")]<br>\n[(!normalspeed ? "The 'Check Timing Mechanism' light is on." : "The 'Check Timing Mechanism' light is off.")]"
 
-		t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
-
 		SHOW_BROWSER(user, t1, "window=airlock")
 		onclose(user, "airlock")
 
@@ -171,7 +169,6 @@
 		else
 			t1 += "<A href='byond://?src=\ref[src];aiDisable=7'>Close door</a><br>\n"
 
-	t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
 	SHOW_BROWSER(user, t1, "window=airlock")
 	onclose(user, "airlock")
 

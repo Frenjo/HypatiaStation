@@ -274,10 +274,6 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		if(isnotnull(user))
 			id_tag = input("Enter a new ID tag", "Tokamak core ID tag", id_tag) as text | null
 
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=core_gen")
-		user.unset_machine()
-
 	if(topic.has("extern_update"))
 		var/obj/machinery/computer/rust_core_control/control = topic.get_and_locate("extern_update")
 		control?.updateDialog()

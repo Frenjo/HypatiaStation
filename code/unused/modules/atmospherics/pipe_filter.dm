@@ -181,7 +181,6 @@
 		dat += "<BR>Gas Levels: <BR>\nPressure: [pressure]%<BR>\nNitrogen: [nitrogen]%<BR>\nOxygen: [oxygen]%<BR>\nPlasma: [plasma]%<BR>\nCO2: [co2]%<BR>\nN2O: [no2]%<BR>\n"
 	else
 		dat += "<BR>Gas Levels: <BR>\nPressure: 0%<BR>\nNitrogen: 0%<BR>\nOxygen: 0%<BR>\nPlasma: 0%<BR>\nCO2: 0%<BR>\nN2O: 0%<BR>\n"
-	dat += "<BR>\n<A href='byond://?src=\ref[src];close=1'>Close</A><BR>\n"
 
 	SHOW_BROWSER(user, dat, "window=pipefilter;size=300x365")*/ //TODO: FIX
 	//onclose(user, "pipefilter")
@@ -192,10 +191,6 @@
 		return
 	if(((in_range(src, usr) || usr.telekinesis == 1) || issilicon(usr)) && isturf(loc))
 		usr.machine = src
-		if (href_list["close"])
-			CLOSE_BROWSER(usr, "window=pipefilter;")
-			usr.machine = null
-			return
 		if (src.allowed(usr) || src.emagged || src.bypassed)
 			if (href_list["fp"])
 				src.f_per = min(max(round(src.f_per + text2num(href_list["fp"])), 0), src.maxrate)

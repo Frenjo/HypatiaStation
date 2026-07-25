@@ -198,7 +198,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 		else
 	dat += text("<A href='byond://?src=\ref[];refresh=1'>(Refresh)</A><BR>", src)
 	dat += text("<A href='byond://?src=\ref[];release=1'>RELEASE (Siphons only)</A> <A href='byond://?src=\ref[];siphon=1'>Siphon (Siphons only)</A> <A href='byond://?src=\ref[];stop_siph=1'>Stop</A> <A href='byond://?src=\ref[];auto=1'>Regulate</A><BR>", src, src, src, src)
-	dat += text("<BR><BR><A href='byond://?src=\ref[];mach_close=computer'>Close</A></TT></BODY></HTML>", user)
+	dat += "</TT></BODY></HTML>"
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return

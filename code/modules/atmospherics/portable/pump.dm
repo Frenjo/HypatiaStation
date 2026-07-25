@@ -110,7 +110,6 @@ Power Switch: <A href='byond://?src=\ref[src];power=1'>[on?("On"):("Off")]</A><B
 Pump Direction: <A href='byond://?src=\ref[src];direction=1'>[direction_out?("Out"):("In")]</A><BR>
 Target Pressure: <A href='byond://?src=\ref[src];pressure_adj=-1000'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-100'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-10'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-1'>-</A> [target_pressure] <A href='byond://?src=\ref[src];pressure_adj=1'>+</A> <A href='byond://?src=\ref[src];pressure_adj=10'>+</A> <A href='byond://?src=\ref[src];pressure_adj=100'>+</A> <A href='byond://?src=\ref[src];pressure_adj=1000'>+</A><BR>
 <HR>
-<A href='byond://?src=\ref[user];close=1'>Close</A><BR>
 "}
 
 	SHOW_BROWSER(user, output_text, "window=\ref[src];size=600x300")

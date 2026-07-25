@@ -24,7 +24,6 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 	set name = "Show Alerts"
 
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A href='byond://?src=\ref[src];mach_close=aialerts'>Close</A><BR><BR>"
 	for(var/cat in alarms)
 		dat += "<B>[cat]</B><BR>\n"
 		var/list/alarmlist = alarms[cat]
@@ -46,7 +45,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	SHOW_BROWSER(src, dat, "window=aialerts&can_close=0")
+	SHOW_BROWSER(src, dat, "window=aialerts")
 
 // Robot
 /mob/living/silicon/robot/verb/robot_alerts()
@@ -54,7 +53,6 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 	set name = "Show Alerts"
 
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A href='byond://?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
 	for(var/cat in alarms)
 		dat += "<B>[cat]</B><BR>\n"
 		var/list/alarmlist = alarms[cat]
@@ -71,7 +69,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	SHOW_BROWSER(src, dat, "window=robotalerts&can_close=0")
+	SHOW_BROWSER(src, dat, "window=robotalerts")
 
 /*
  * Show Station Manifest

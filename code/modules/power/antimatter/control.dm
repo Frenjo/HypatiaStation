@@ -271,7 +271,6 @@
 
 	var/dat = ""
 	dat += "AntiMatter Control Panel<BR>"
-	dat += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
 	dat += "<A href='byond://?src=\ref[src];refreshicons=1'>Force Shielding Update</A><BR><BR>"
 	dat += "Status: [(active?"Injecting":"Standby")] <BR>"
@@ -306,11 +305,6 @@
 	if(stat & (BROKEN|NOPOWER) || (!in_range(src, usr) && !issilicon(usr)))
 		usr.unset_machine()
 		CLOSE_BROWSER(usr, "window=AMcontrol")
-		return
-
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=AMcontrol")
-		usr.unset_machine()
 		return
 
 	if(href_list["togglestatus"])

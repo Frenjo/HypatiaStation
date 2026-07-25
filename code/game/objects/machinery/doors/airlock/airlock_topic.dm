@@ -4,12 +4,6 @@
 	if(usr.stat || usr.restrained() || usr.small)
 		return
 	add_fingerprint(usr)
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=airlock")
-		if(usr.machine == src)
-			usr.unset_machine()
-			return
-
 	if((in_range(src, usr) && isturf(loc)) && p_open)
 		usr.set_machine(src)
 		if(href_list["wires"])

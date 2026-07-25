@@ -104,7 +104,6 @@
 		var/dat = ""
 		if(!dish)
 			dat = "Please insert dish into the incubator.<BR>"
-			dat += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 		var/string = "Off"
 		if(on)
 			string = "On"

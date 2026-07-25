@@ -82,7 +82,6 @@
 		var/dat = ""
 		if(!beaker)
 			dat = "Please insert sample into the isolator.<BR>"
-			dat += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 		else if(isolating)
 			dat = "Isolating"
 		else

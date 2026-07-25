@@ -66,7 +66,6 @@
 			dat += {"<br><br><A href='byond://?src=\ref[src];fix=1'>Begin Reconstruction</A>"}
 		else
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
-	dat += {" <A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	dat += "</body></html>"
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")

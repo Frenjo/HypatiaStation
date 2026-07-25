@@ -11,8 +11,7 @@
 		if(..())
 			return
 
-		var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a> | "
-		dat += "<a href='byond://?src=\ref[src];quit=1'>Quit</a><br>"
+		var/dat = "<a href='byond://?src=\ref[src];quit=1'>Quit</a>"
 
 		dat += "<b>SpaceMessenger V4.1.2</b><br>"
 

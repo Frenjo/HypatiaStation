@@ -190,10 +190,7 @@
 		transform_to_model(/obj/item/robot_model/drone)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
-	<BR>
-	<BR>
-	<B>Activated Modules</B>
+	dat += {"<B>Activated Modules</B>
 	<BR>
 	Module 1: [module_state_1 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_1]'>[module_state_1]</A>" : "No Module"]<BR>
 	Module 2: [module_state_2 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_2]'>[module_state_2]</A>" : "No Module"]<BR>
@@ -223,7 +220,7 @@
 
 	dat += resources
 
-	SHOW_BROWSER(src, dat, "window=robotmod&can_close=0")
+	SHOW_BROWSER(src, dat, "window=robotmod")
 
 //Putting the decompiler here to avoid doing list checks every tick.
 /mob/living/silicon/robot/drone/use_power()

@@ -95,8 +95,7 @@
 				dat += "No devices connected.<br>"
 
 		dat += "<hr>"
-		dat += "<a href='byond://?src=\ref[src];refresh=1'>Refresh</a> "
-		dat += "<a href='byond://?src=\ref[src];close=1'>Close</a>"
+		dat += "<a href='byond://?src=\ref[src];refresh=1'>Refresh</a>"
 
 	SHOW_BROWSER(user, dat, "window=core_control;size=500x400")
 	onclose(user, "core_control")
@@ -119,10 +118,6 @@
 		cur_viewed_device?.Startup()
 	if(topic.has("shutdown"))
 		cur_viewed_device?.Shutdown()
-
-	if(topic.has("close"))
-		CLOSE_BROWSER(user, "window=core_control")
-		user.unset_machine()
 
 	updateDialog()
 

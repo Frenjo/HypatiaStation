@@ -251,10 +251,6 @@
 /obj/machinery/computer/telescience/Topic(href, href_list)
 	if(..())
 		return
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=telesci")
-		usr.unset_machine()
-		return
 	if(href_list["setrotation"])
 		var/new_rot = input("Please input desired bearing in degrees.", name, rotation) as num
 		if(..()) // Check after we input a value, as they could've moved after they entered something

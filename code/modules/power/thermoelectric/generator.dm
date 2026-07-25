@@ -177,7 +177,7 @@
 
 	t += "<BR>"
 	t += "<HR>"
-	t += "<A href='byond://?src=\ref[src]'>Refresh</A> <A href='byond://?src=\ref[src];close=1'>Close</A>"
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A>"
 
 	SHOW_BROWSER(user, t, "window=\ref[src];size=460x300")
 	onclose(user, "\ref[src]")

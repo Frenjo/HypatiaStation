@@ -63,8 +63,7 @@
 	if(..())
 		return
 	user.set_machine(src)
-	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"
-	dat += "<center><h4>[src.enemy_name]</h4></center>"
+	var/dat = "<center><h4>[src.enemy_name]</h4></center>"
 
 	dat += "<br><center><h3>[src.temp]</h3></center>"
 	dat += "<br><center>Health: [src.player_hp] | Magic: [src.player_mp] | Enemy Health: [src.enemy_hp]</center>"
@@ -126,11 +125,7 @@
 			sleep(10)
 			src.arcade_action()
 
-	if (href_list["close"])
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=arcade")
-
-	else if (href_list["newgame"]) //Reset everything
+	if (href_list["newgame"]) //Reset everything
 		temp = "New Round"
 		player_hp = 30
 		player_mp = 10

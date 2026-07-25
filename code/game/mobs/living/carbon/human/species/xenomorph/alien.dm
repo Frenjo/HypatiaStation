@@ -63,7 +63,6 @@ Des: Removes all infected images from the alien.
 	<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=head'>[(head ? "[head]" : "Nothing")]</A>
 	<BR><B>(Exo)Suit:</B> <A href='byond://?src=\ref[src];item=suit'>[(wear_suit ? "[wear_suit]" : "Nothing")]</A>
 	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pouches</A>
-	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
 	SHOW_BROWSER(user, dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")

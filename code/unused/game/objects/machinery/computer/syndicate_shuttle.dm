@@ -59,8 +59,7 @@
 	<a href='byond://?src=\ref[src];station_s=1'>South of SS13</a> |
 	<a href='byond://?src=\ref[src];station_se=1'>South East of SS13</a><br>
 	<a href='byond://?src=\ref[src];commssat=1'>South of the Communication Satellite</a> |
-	<a href='byond://?src=\ref[src];mining=1'>North East of the Mining Asteroid</a><br>
-	<a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"}
+	<a href='byond://?src=\ref[src];mining=1'>North East of the Mining Asteroid</a>"}
 
 	SHOW_BROWSER(user, dat, "window=computer;size=575x450")
 	onclose(user, "computer")
