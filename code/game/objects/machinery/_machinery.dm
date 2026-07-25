@@ -184,7 +184,7 @@
 	if(prob(50))
 		qdel(src)
 
-/obj/machinery/Topic(href, href_list)
+/obj/machinery/Topic(href, href_list) // DEPRECATED
 	..()
 	if(stat & (NOPOWER | BROKEN))
 		return 1
@@ -211,6 +211,43 @@
 
 	add_fingerprint(usr)
 	return 0
+
+/obj/machinery/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(stat & BROKEN)
+		return FALSE
+	if((stat & NOPOWER) && power_usage[power_state] != 0)
+		return FALSE
+	if(user.restrained() || user.lying || user.stat)
+		return FALSE
+	if(!allowed(user))
+		return FALSE
+	if(ismonkey(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+		return FALSE
+	else if(!ishuman(user) && !issilicon(user))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+		return FALSE
+
+	var/bypass_range = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(istype(human_user.l_hand, /obj/item/tk_grab) || istype(human_user.r_hand, /obj/item/tk_grab))
+			bypass_range = TRUE
+
+	if(!bypass_range)
+		if((!in_range(src, user) || !isturf(loc)) && !issilicon(user))
+			return FALSE
+
+	if(topic.has("close"))
+		CLOSE_BROWSER(user, "window=\ref[src]")
+		user.unset_machine()
+		return FALSE
+
+	add_fingerprint(user)
+	user.set_machine(src)
 
 /obj/machinery/attack_ai(mob/user)
 	if(isrobot(user))

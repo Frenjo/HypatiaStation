@@ -105,19 +105,17 @@
 	onclose(user, "juicer")
 	return
 
+/obj/machinery/juicer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("action"))
+		switch(topic.get_str("action"))
+			if("juice")
+				juice()
 
-/obj/machinery/juicer/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	switch(href_list["action"])
-		if("juice")
-			juice()
+			if("detach")
+				detach()
 
-		if("detach")
-			detach()
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
 
 /obj/machinery/juicer/verb/detach()
 	set category = null

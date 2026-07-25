@@ -145,33 +145,30 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/atmospherics/unary/cryo_cell/Topic(href, href_list)
-	if(usr == occupant)
-		return 0 // don't update UIs attached to this object
+/obj/machinery/atmospherics/unary/cryo_cell/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user == occupant)
+		return FALSE
 
-	if(..())
-		return 0 // don't update UIs attached to this object
-
-	if(href_list["switchOn"])
-		on = 1
+	if(topic.has("switchOn"))
+		on = TRUE
 		update_icon()
 
-	if(href_list["switchOff"])
-		on = 0
+	else if(topic.has("switchOff"))
+		on = FALSE
 		update_icon()
 
-	if(href_list["ejectBeaker"])
-		if(beaker)
+	else if(topic.has("ejectBeaker"))
+		if(isnotnull(beaker))
 			beaker.forceMove(get_step(loc, SOUTH))
 			beaker = null
 
-	if(href_list["ejectOccupant"])
-		if(!occupant || isslime(usr) || ispAI(usr))
-			return 0 // don't update UIs attached to this object
+	else if(topic.has("ejectOccupant"))
+		if(isnull(occupant) || isslime(user) || ispAI(user))
+			return FALSE
 		go_out()
-
-	add_fingerprint(usr)
-	return 1 // update UIs attached to this object
 
 /obj/machinery/atmospherics/unary/cryo_cell/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
 	for(var/mob/living/simple/slime/S in range(1, grabbed))

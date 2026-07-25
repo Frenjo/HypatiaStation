@@ -82,37 +82,28 @@
 					icon_state = "[reference]c"
 	return
 
-/obj/machinery/particle_accelerator/control_box/Topic(href, href_list)
-	..()
-	// Ignore input if we are broken or a non-silicon guy can't touch us.
-	if(stat & (BROKEN|NOPOWER) || (!in_range(src, usr) && !issilicon(usr)))
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=pacontrol")
-		return
+/obj/machinery/particle_accelerator/control_box/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=pacontrol")
-		usr.unset_machine()
-		return
-
-	if(href_list["togglep"])
+	if(topic.has("togglep"))
 		if(!wires.IsIndexCut(PARTICLE_TOGGLE_WIRE))
-			src.toggle_power()
+			toggle_power()
 
-	else if(href_list["scan"])
-		src.part_scan()
+	else if(topic.has("scan"))
+		part_scan()
 
-	else if(href_list["strengthup"])
+	else if(topic.has("strengthup"))
 		if(!wires.IsIndexCut(PARTICLE_STRENGTH_WIRE))
 			add_strength()
 
-	else if(href_list["strengthdown"])
+	else if(topic.has("strengthdown"))
 		if(!wires.IsIndexCut(PARTICLE_STRENGTH_WIRE))
 			remove_strength()
 
-	src.updateDialog()
-	src.update_icon()
-	return
+	updateDialog()
+	update_icon()
 
 /obj/machinery/particle_accelerator/control_box/proc/strength_change()
 	for(var/obj/structure/particle_accelerator/part in connected_parts)
@@ -256,6 +247,6 @@
 		dat += "<A href='byond://?src=\ref[src];strengthdown=1'>--</A>|<A href='byond://?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 	dat += "</body></html>"
 
-	SHOW_BROWSER(user, dat, "window=pacontrol;size=420x500")
-	onclose(user, "pacontrol")
+	SHOW_BROWSER(user, dat, "window=\ref[src];size=420x500")
+	onclose(user, "\ref[src]")
 	return

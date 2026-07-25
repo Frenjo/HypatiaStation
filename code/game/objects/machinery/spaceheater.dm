@@ -100,8 +100,8 @@
 		dat += "<A href='byond://?src=\ref[src];op=temp;val=5'>+</A><BR>"
 
 		user.set_machine(src)
-		SHOW_BROWSER(user, "<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
-		onclose(user, "spaceheater")
+		SHOW_BROWSER(user, "<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=\ref[src]")
+		onclose(user, "\ref[src]")
 	else
 		on = !on
 		user.visible_message(
@@ -111,46 +111,43 @@
 		update_icon()
 	return
 
-/obj/machinery/space_heater/Topic(href, href_list)
+/obj/machinery/space_heater/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(usr.stat)
-		return
-	if((in_range(src, usr) && isturf(src.loc)) || issilicon(usr))
-		usr.set_machine(src)
+	if(!.)
+		return FALSE
 
-		switch(href_list["op"])
+	if(topic.has("op"))
+		switch(topic.get_str("op"))
 			if("temp")
-				var/value = text2num(href_list["val"])
+				var/value = topic.get_num("val")
 				// limit to 20-90 degC
 				set_temperature = dd_range(0, 90, set_temperature + value)
+
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && isnotnull(cell) && !user.get_active_hand())
 					cell.updateicon()
-					usr.put_in_hands(cell)
-					cell.add_fingerprint(usr)
+					user.put_in_hands(cell)
+					cell.add_fingerprint(user)
 					cell = null
-					usr.visible_message(
-						SPAN_INFO("[usr] removes the power cell from \the [src]."),
+					user.visible_message(
+						SPAN_INFO("[user] removes the power cell from \the [src]."),
 						SPAN_INFO("You remove the power cell from \the [src].")
 					)
+
 			if("cellinstall")
-				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
+				if(open && isnull(cell))
+					var/obj/item/cell/C = user.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
+						user.drop_item()
 						cell = C
 						C.forceMove(src)
-						C.add_fingerprint(usr)
-
-						usr.visible_message(
-							SPAN_INFO("[usr] inserts a power cell into \the [src]."),
+						C.add_fingerprint(user)
+						user.visible_message(
+							SPAN_INFO("[user] inserts a power cell into \the [src]."),
 							SPAN_INFO("You insert the power cell into \the [src].")
 						)
-		updateDialog()
-	else
-		CLOSE_BROWSER(usr, "window=spaceheater")
-		usr.unset_machine()
-	return
+
+	updateDialog()
 
 /obj/machinery/space_heater/process()
 	if(on)

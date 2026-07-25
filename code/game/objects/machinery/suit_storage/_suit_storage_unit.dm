@@ -139,35 +139,40 @@
 	SHOW_BROWSER(user, dat, "window=suit_storage_unit;size=400x500")
 	onclose(user, "suit_storage_unit")
 
-/obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
-	if(..())
-		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
-		usr.set_machine(src)
-		if(href_list["toggleUV"])
-			toggleUV(usr)
-		if(href_list["togglesafeties"])
-			togglesafeties(usr)
-		if(href_list["dispense_helmet"])
-			dispense_helmet(usr)
-		if(href_list["dispense_suit"])
-			dispense_suit(usr)
-		if(href_list["dispense_mask"])
-			dispense_mask(usr)
-		if(href_list["toggle_open"])
-			toggle_open(usr)
-		if(href_list["toggle_lock"])
-			toggle_lock(usr)
-		if(href_list["start_UV"])
-			start_UV(usr)
-		if(href_list["eject_guy"])
-			eject_occupant(usr)
-	/*if (href_list["refresh"])
-		updateUsrDialog()*/
+/obj/machinery/suit_storage_unit/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggleUV"))
+		toggleUV(user)
+
+	else if(topic.has("togglesafeties"))
+		togglesafeties(user)
+
+	else if(topic.has("dispense_helmet"))
+		dispense_helmet(user)
+
+	else if(topic.has("dispense_suit"))
+		dispense_suit(user)
+
+	else if(topic.has("dispense_mask"))
+		dispense_mask(user)
+
+	else if(topic.has("toggle_open"))
+		toggle_open(user)
+
+	else if(topic.has("toggle_lock"))
+		toggle_lock(user)
+
+	else if(topic.has("start_UV"))
+		start_UV(user)
+
+	else if(topic.has("eject_guy"))
+		eject_occupant(user)
 
 	updateUsrDialog()
 	update_icon()
-	add_fingerprint(usr)
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user)
 //	var/protected = 0

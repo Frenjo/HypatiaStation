@@ -239,29 +239,32 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/power/port_gen/pacman/Topic(href, href_list)
-	if(..())
-		return
+/obj/machinery/power/port_gen/pacman/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("action"))
+		switch(topic.get_str("action"))
+			if("enable")
+				if(!active && has_fuel() && !crit_fail)
+					active = TRUE
+					icon_state = "portgen1"
 
-	add_fingerprint(usr)
-	if(href_list["action"])
-		if(href_list["action"] == "enable")
-			if(!active && has_fuel() && !crit_fail)
-				active = 1
-				icon_state = "portgen1"
-		if(href_list["action"] == "disable")
-			if(active)
-				active = 0
-				icon_state = "portgen0"
-		if(href_list["action"] == "eject")
-			if(!active)
-				drop_fuel()
-		if(href_list["action"] == "lower_power")
-			if(power_output > 0) // Edited this so you can 'indirectly' switch it off. -Frenjo
-				power_output--
-		if(href_list["action"] == "higher_power")
-			if(power_output < 4 || emagged)
-				power_output++
+			if("disable")
+				if(active)
+					active = FALSE
+					icon_state = "portgen0"
+
+			if("eject")
+				if(!active)
+					drop_fuel()
+
+			if("lower_power")
+				if(power_output > 0) // Edited this so you can 'indirectly' switch it off. -Frenjo
+					power_output--
+
+			if("higher_power")
+				if(power_output < 4 || emagged)
+					power_output++
+
 	updateUsrDialog()
 
 /obj/machinery/power/port_gen/pacman/super

@@ -316,51 +316,37 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/power/smes/Topic(href, href_list)
-	..()
-
-	if(usr.stat || usr.restrained())
-		return
-
-	if(!ishuman(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))
-		if(!issilicon(usr))
-			FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
-			return
-
-	if(!isturf(src.loc) && !issilicon(usr))
-		return 0 // Do not update ui
-
-	if(href_list["cmode"])
+/obj/machinery/power/smes/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("cmode"))
 		input_attempt = !input_attempt
 		update_icon()
 
-	else if(href_list["online"])
+	else if(topic.has("online"))
 		output_attempt = !output_attempt
 		update_icon()
 
-	else if(href_list["input"])
-		switch(href_list["input"])
+	else if(topic.has("input"))
+		switch(topic.get_str("input"))
 			if("min")
 				input_level = 0
 			if("max")
 				input_level = input_level_max
 			if("set")
-				input_level = input(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
-		input_level = max(0, min(input_level_max, input_level))	// clamp to range
+				input_level = input(user, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
+		input_level = max(0, min(input_level_max, input_level)) // clamp to range
 
-	else if(href_list["output"])
-		switch(href_list["output"])
+	else if(topic.has("output"))
+		switch(topic.get_str("output"))
 			if("min")
 				output_level = 0
 			if("max")
 				output_level = output_level_max
 			if("set")
-				output_level = input(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
-		output_level = max(0, min(output_level_max, output_level))	// clamp to range
+				output_level = input(user, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
+		output_level = max(0, min(output_level_max, output_level)) // clamp to range
 
-	investigate_log("input/output; [input_level>output_level?"<font color='green'>":"<font color='red'>"][input_level]/[output_level]</font> | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
-
-	return 1
+	investigate_log("input/output; [input_level > output_level ? "<font color='green'>" : "<font color='red'>"][input_level]/[output_level]</font> | Output-mode: [output_attempt ? "<font color='green'>on</font>" : "<font color='red'>off</font>"] | Input-mode: [input_attempt ? "<font color='green'>auto</font>" : "<font color='red'>off</font>"] by [user.key]", "singulo")
 
 /obj/machinery/power/smes/proc/ion_act()
 	if(isstationlevel(src.z))

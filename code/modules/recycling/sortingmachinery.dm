@@ -202,13 +202,13 @@
 	openwindow(user)
 	return
 
-/obj/item/dest_tagger/Topic(href, href_list)
+/obj/item/dest_tagger/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	src.add_fingerprint(usr)
-	if(href_list["nextTag"])
-		var/n = text2num(href_list["nextTag"])
-		src.currTag = n
-	openwindow(usr)
+	add_fingerprint(user)
+	if(topic.has("nextTag"))
+		var/new_tag = topic.get_num("nextTag")
+		currTag = new_tag
+	openwindow(user)
 
 
 /obj/machinery/disposal/delivery_chute

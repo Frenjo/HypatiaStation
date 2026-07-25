@@ -74,27 +74,23 @@
 
 	dat += "<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins."
 	dat += "<br><A href='byond://?src=\ref[src];makeCoins=[1]'>Make coins</A>"
-	SHOW_BROWSER(user, dat, "window=mint")
+	SHOW_BROWSER(user, dat, "window=\ref[src]")
 
-/obj/machinery/mint/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-
+/obj/machinery/mint/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(processing)
 		to_chat(usr, SPAN_INFO("The machine is processing."))
-		return
+		return FALSE
 
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
+	if(topic.has("choose"))
+		chosen = topic.get_path("choose")
 
-	if(href_list["choose"])
-		chosen = topic_filter.get_path("choose")
+	else if(topic.has("chooseAmt"))
+		coinsToProduce = clamp(coinsToProduce + topic.get_num("chooseAmt"), 0, 1000)
 
-	if(href_list["chooseAmt"])
-		coinsToProduce = clamp(coinsToProduce + topic_filter.get_num("chooseAmt"), 0, 1000)
-
-	if(href_list["makeCoins"])
+	else if(topic.has("makeCoins"))
 		var/temp_coins = coinsToProduce
 		if(isnotnull(output_turf))
 			processing = TRUE
@@ -116,4 +112,5 @@
 			icon_state = "coinpress0"
 			processing = FALSE
 			coinsToProduce = temp_coins
+
 	updateUsrDialog()

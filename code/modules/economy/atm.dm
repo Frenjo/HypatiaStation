@@ -221,20 +221,23 @@ log transactions
 	else
 		CLOSE_BROWSER(user,"window=atm")
 
-/obj/machinery/atm/Topic(href, href_list)
+/obj/machinery/atm/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(href_list["choice"])
-		switch(href_list["choice"])
+	if(!.)
+		return FALSE
+
+	if(topic.has("choice"))
+		switch(topic.get_str("choice"))
 			if("transfer")
 				if(authenticated_account)
-					var/transfer_amount = text2num(href_list["funds_amount"])
+					var/transfer_amount = topic.get_num("funds_amount")
 					if(transfer_amount <= 0)
 						alert("That is not a valid amount.")
 					else if(transfer_amount <= authenticated_account.money)
-						var/target_account_number = text2num(href_list["target_acc_number"])
-						var/transfer_purpose = href_list["purpose"]
+						var/target_account_number = topic.get_num("target_acc_number")
+						var/transfer_purpose = topic.get_str("purpose")
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, SPAN_INFO("[icon2html(src, usr)] Funds transfer successful."))
+							to_chat(user, SPAN_INFO("[icon2html(src, user)] Funds transfer successful."))
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -247,25 +250,25 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Funds transfer failed."))
+							to_chat(user, SPAN_WARNING("[icon2html(src, user)] Funds transfer failed."))
 
 					else
-						to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] You don't have enough funds to do that!"))
+						to_chat(user, SPAN_WARNING("[icon2html(src, user)] You don't have enough funds to do that!"))
 			if("view_screen")
-				view_screen = text2num(href_list["view_screen"])
+				view_screen = topic.get_num("view_screen")
 			if("change_security_level")
 				if(authenticated_account)
-					var/new_sec_level = max(min(text2num(href_list["new_security_level"]), 2), 0)
+					var/new_sec_level = max(min(topic.get_num("new_security_level"), 2), 0)
 					authenticated_account.security_level = new_sec_level
 			if("attempt_auth")
 				// check if they have low security enabled
 				scan_user(usr)
 
 				if(!ticks_left_locked_down && isnotnull(held_card))
-					var/tried_account_num = text2num(href_list["account_num"])
+					var/tried_account_num = topic.get_num("account_num")
 					if(!tried_account_num)
 						tried_account_num = held_card.associated_account_number
-					var/tried_pin = text2num(href_list["account_pin"])
+					var/tried_pin = topic.get_num("account_pin")
 
 					authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card?.associated_account_number == tried_account_num ? 2 : 1)
 					if(!authenticated_account)
@@ -287,11 +290,11 @@ log transactions
 									T.time = worldtime2text()
 									failed_account.transaction_log.Add(T)
 							else
-								to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
+								to_chat(user, SPAN_WARNING("[icon2html(src, user)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 								previous_account_number = tried_account_num
 								playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 						else
-							to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] incorrect pin/account combination entered."))
+							to_chat(user, SPAN_WARNING("[icon2html(src, user)] incorrect pin/account combination entered."))
 							number_incorrect_tries = 0
 					else
 						playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -307,11 +310,11 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 
-						to_chat(usr, SPAN_INFO("[icon2html(src, usr)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
+						to_chat(user, SPAN_INFO("[icon2html(src, user)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					previous_account_number = tried_account_num
 			if("withdrawal")
-				var/amount = max(text2num(href_list["funds_amount"]),0)
+				var/amount = max(topic.get_num("funds_amount"), 0)
 				if(amount <= 0)
 					alert("That is not a valid amount.")
 				else if(authenticated_account && amount > 0)
@@ -333,10 +336,10 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] You don't have enough funds to do that!"))
+						to_chat(user, SPAN_WARNING("[icon2html(src, user)] You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
-					var/obj/item/paper/R = new(src.loc)
+					var/obj/item/paper/R = new /obj/item/paper(loc)
 					R.name = "Account balance: [authenticated_account.owner_name]"
 					R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
@@ -360,7 +363,7 @@ log transactions
 
 			if("print_transaction")
 				if(authenticated_account)
-					var/obj/item/paper/R = new(src.loc)
+					var/obj/item/paper/R = new /obj/item/paper(loc)
 					R.name = "Transaction logs: [authenticated_account.owner_name]"
 					R.info = "<b>Transaction logs</b><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
@@ -404,20 +407,19 @@ log transactions
 				if(isnull(held_card))
 					//this might happen if the user had the browser window open when somebody emagged it
 					if(emagged > 0)
-						to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
+						to_chat(user, SPAN_WARNING("[icon2html(src, user)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
 					else
-						var/obj/item/I = usr.get_active_hand()
+						var/obj/item/I = user.get_active_hand()
 						if(istype(I, /obj/item/card/id))
-							usr.drop_item()
+							user.drop_item()
 							I.forceMove(src)
 							held_card = I
 				else
-					release_held_id(usr)
+					release_held_id(user)
 			if("logout")
 				authenticated_account = null
-				//CLOSE_BROWSER(usr,"window=atm")
 
-	src.attack_hand(usr)
+	attack_hand(user)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri
 /obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user)

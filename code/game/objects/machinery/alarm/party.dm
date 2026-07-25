@@ -45,8 +45,8 @@
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		SHOW_BROWSER(user, dat, "window=partyalarm")
-		onclose(user, "partyalarm")
+		SHOW_BROWSER(user, dat, "window=\ref[src]")
+		onclose(user, "\ref[src]")
 	else
 		if(A.fire_alarm)
 			d1 = "<A href='byond://?src=\ref[src];reset=1'>[stars("No Party :(")]</A>"
@@ -59,8 +59,8 @@
 		var/second = time % 60
 		var/minute = (time - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Party Button")]</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		SHOW_BROWSER(user, dat, "window=partyalarm")
-		onclose(user, "partyalarm")
+		SHOW_BROWSER(user, dat, "window=\ref[src]")
+		onclose(user, "\ref[src]")
 
 /obj/machinery/party_alarm/proc/reset()
 	if(!working)
@@ -80,28 +80,22 @@
 		//A = A.master
 	A.trigger_alert(ALERT_PARTY)
 
-/obj/machinery/party_alarm/Topic(href, href_list)
-	..()
-	if(usr.stat || stat & (BROKEN|NOPOWER))
-		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
-		usr.machine = src
-		if(href_list["reset"])
-			reset()
-		else
-			if(href_list["alarm"])
-				alarm()
-			else
-				if(href_list["time"])
-					timing = text2num(href_list["time"])
-				else
-					if(href_list["tp"])
-						var/tp = text2num(href_list["tp"])
-						time += tp
-						time = min(max(round(time), 0), 120)
-		updateUsrDialog()
+/obj/machinery/party_alarm/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-		add_fingerprint(usr)
-	else
-		CLOSE_BROWSER(usr, "window=partyalarm")
-		return
+	if(topic.has("reset"))
+		reset()
+
+	else if(topic.has("alarm"))
+		alarm()
+
+	else if(topic.has("time"))
+		timing = topic.get_num("time")
+
+	else if(topic.has("tp"))
+		time += topic.get_num("tp")
+		time = min(max(round(time), 0), 120)
+
+	updateUsrDialog()

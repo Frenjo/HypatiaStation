@@ -110,37 +110,28 @@ Power Switch: <A href='byond://?src=\ref[src];power=1'>[on?("On"):("Off")]</A><B
 Pump Direction: <A href='byond://?src=\ref[src];direction=1'>[direction_out?("Out"):("In")]</A><BR>
 Target Pressure: <A href='byond://?src=\ref[src];pressure_adj=-1000'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-100'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-10'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-1'>-</A> [target_pressure] <A href='byond://?src=\ref[src];pressure_adj=1'>+</A> <A href='byond://?src=\ref[src];pressure_adj=10'>+</A> <A href='byond://?src=\ref[src];pressure_adj=100'>+</A> <A href='byond://?src=\ref[src];pressure_adj=1000'>+</A><BR>
 <HR>
-<A href='byond://?src=\ref[user];mach_close=pump'>Close</A><BR>
+<A href='byond://?src=\ref[user];close=1'>Close</A><BR>
 "}
 
-	SHOW_BROWSER(user, output_text, "window=pump;size=600x300")
-	onclose(user, "pump")
+	SHOW_BROWSER(user, output_text, "window=\ref[src];size=600x300")
+	onclose(user, "\ref[src]")
 
-/obj/machinery/portable_atmospherics/pump/Topic(href, href_list)
-	..()
-	if(usr.stat || usr.restrained())
-		return
+/obj/machinery/portable_atmospherics/pump/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("power"))
+		on = !on
 
-	if((in_range(src, usr)) && isturf(loc))
-		usr.set_machine(src)
+	else if(topic.has("direction"))
+		direction_out = !direction_out
 
-		if(href_list["power"])
-			on = !on
+	else if(topic.has("remove_tank"))
+		if(isnotnull(holding))
+			holding.forceMove(loc)
+			holding = null
 
-		if(href_list["direction"])
-			direction_out = !direction_out
+	else if(topic.has("pressure_adj"))
+		var/diff = topic.get_num("pressure_adj")
+		target_pressure = min(10 * ONE_ATMOSPHERE, max(0, target_pressure + diff))
 
-		if(href_list["remove_tank"])
-			if(isnotnull(holding))
-				holding.forceMove(loc)
-				holding = null
-
-		if(href_list["pressure_adj"])
-			var/diff = text2num(href_list["pressure_adj"])
-			target_pressure = min(10 * ONE_ATMOSPHERE, max(0, target_pressure + diff))
-
-		updateUsrDialog()
-		add_fingerprint(usr)
-		update_icon()
-	else
-		CLOSE_BROWSER(usr, "window=pump")
+	updateUsrDialog()
+	update_icon()

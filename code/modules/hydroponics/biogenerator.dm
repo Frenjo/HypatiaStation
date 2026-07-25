@@ -205,27 +205,22 @@
 	update_icon()
 	return 1
 
-/obj/machinery/biogenerator/Topic(href, href_list)
+/obj/machinery/biogenerator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(!in_range(src, usr))
-		return
+	if(!.)
+		return FALSE
 
-	usr.set_machine(src)
-
-	switch(href_list["action"])
+	switch(topic.get_str("action"))
 		if("activate")
 			activate()
 		if("detach")
-			if(beaker)
+			if(isnotnull(beaker))
 				beaker.forceMove(loc)
 				beaker = null
 				update_icon()
 		if("create")
-			create_product(href_list["item"], text2num(href_list["cost"]))
+			create_product(topic.get_str("item"), topic.get_num("cost"))
 		if("menu")
 			menustat = "menu"
+
 	updateUsrDialog()

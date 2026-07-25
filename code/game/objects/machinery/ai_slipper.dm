@@ -13,6 +13,8 @@
 	var/cooldown_on = 0
 	req_access = list(ACCESS_AI_UPLOAD)
 
+	COOLDOWN_DECLARE(use_cooldown)
+
 /obj/machinery/ai_slipper/power_change()
 	if(stat & BROKEN)
 		return
@@ -78,45 +80,26 @@
 		t += "Dispenser [src.disabled ? "deactivated" : "activated"] - <A href='byond://?src=\ref[src];toggleOn=1'>[src.disabled ? "Enable" : "Disable"]?</a><br>\n"
 		t += "Uses Left: [uses]. <A href='byond://?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n"
 
-	SHOW_BROWSER(user, t, "window=computer;size=575x450")
-	onclose(user, "computer")
+	SHOW_BROWSER(user, t, "window=\ref[src];size=575x450")
+	onclose(user, "\ref[src]")
 	return
 
-/obj/machinery/ai_slipper/Topic(href, href_list)
-	..()
-	if(src.locked)
-		if(!issilicon(usr))
-			to_chat(usr, "Control panel is locked!")
-			return
-	if(href_list["toggleOn"])
-		src.disabled = !src.disabled
-		icon_state = src.disabled ? "motion0" : "motion3"
-	if(href_list["toggleUse"])
-		if(cooldown_on || disabled)
-			return
-		else
-			new /obj/effect/foam(src.loc)
-			src.uses--
-			cooldown_on = 1
-			cooldown_time = world.timeofday + 100
-			slip_process()
-			return
+/obj/machinery/ai_slipper/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	src.attack_hand(usr)
-	return
+	if(locked && !issilicon(user))
+		to_chat(user, SPAN_WARNING("The control panel is locked!"))
+		return FALSE
 
-/obj/machinery/ai_slipper/proc/slip_process()
-	while(cooldown_time - world.timeofday > 0)
-		var/ticksleft = cooldown_time - world.timeofday
+	if(topic.has("toggleOn"))
+		disabled = !disabled
+		icon_state = disabled ? "motion0" : "motion3"
 
-		if(ticksleft > 1e5)
-			cooldown_time = world.timeofday + 10	// midnight rollover
-
-		cooldown_timeleft = (ticksleft / 10)
-		sleep(5)
-	if(uses <= 0)
-		return
-	if(uses >= 0)
-		cooldown_on = 0
-	src.power_change()
-	return
+	else if(topic.has("toggleUse"))
+		if(disabled || !COOLDOWN_FINISHED(src, use_cooldown))
+			return FALSE
+		new /obj/effect/foam(loc)
+		uses--
+		COOLDOWN_START(src, use_cooldown, 10 SECONDS)

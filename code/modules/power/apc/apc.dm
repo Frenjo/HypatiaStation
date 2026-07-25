@@ -23,7 +23,7 @@
 	var/equipment = POWERCHAN_ON_AUTO
 	var/environ = POWERCHAN_ON_AUTO
 	var/operating = 1
-	var/charging = 0
+	var/charging = FALSE
 	var/chargemode = 1
 	var/chargecount = 0
 	var/locked = 1
@@ -129,96 +129,79 @@
 		else
 			. += SPAN_INFO("The cover is closed.")
 
-/obj/machinery/power/apc/Topic(href, href_list)
-	if(..())
-		return 0
+/obj/machinery/power/apc/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!can_use(user, TRUE))
+		return FALSE
 
-	if(!can_use(usr, 1))
-		return 0
-
-	if(href_list["lock"])
+	if(topic.has("lock"))
 		coverlocked = !coverlocked
 
-	else if(href_list["breaker"])
+	else if(topic.has("breaker"))
 		toggle_breaker()
 
-	else if(href_list["cmode"])
+	else if(topic.has("cmode"))
 		chargemode = !chargemode
 		if(!chargemode)
-			charging = 0
+			charging = FALSE
 			update_icon()
 
-	else if(href_list["eqp"])
-		var/val = text2num(href_list["eqp"])
-
+	else if(topic.has("eqp"))
+		var/val = topic.get_num("eqp")
 		equipment = setsubsystem(val)
-
 		update_icon()
 		update()
 
-	else if(href_list["lgt"])
-		var/val = text2num(href_list["lgt"])
-
+	else if(topic.has("lgt"))
+		var/val = topic.get_num("lgt")
 		lighting = setsubsystem(val)
-
 		update_icon()
 		update()
 
-	else if(href_list["env"])
-		var/val = text2num(href_list["env"])
-
+	else if(topic.has("env"))
+		var/val = topic.get_num("env")
 		environ = setsubsystem(val)
-
 		update_icon()
 		update()
 
-	else if(href_list["overload"])
-		if(issilicon(usr))
-			src.overload_lighting()
+	else if(topic.has("overload") && issilicon(user))
+		overload_lighting()
 
-	else if(href_list["malfhack"])
-		var/mob/living/silicon/ai/malfai = usr
-		if(get_malf_status(malfai) == 1)
-			if(malfai.malfhacking)
-				to_chat(malfai, "You are already hacking an APC.")
-				return 1
-			to_chat(malfai, "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.")
-			malfai.malfhack = src
-			malfai.malfhacking = 1
-			sleep(600)
-			if(src)
-				if(!src.aidisabled)
-					malfai.malfhack = null
-					malfai.malfhacking = 0
-					locked = 1
-					if(IS_GAME_MODE(/datum/game_mode/malfunction))
-						if(isstationlevel(src.z))
-							var/datum/game_mode/malfunction/malf = global.PCticker.mode
-							malf.apcs++
-					if(usr:parent)
-						src.malfai = usr:parent
-					else
-						src.malfai = usr
-					to_chat(malfai, "Hack complete. The APC is now under your exclusive control.")
-					update_icon()
-
-	else if(href_list["occupyapc"])
-		if(get_malf_status(usr))
-			malfoccupy(usr)
-
-	else if(href_list["deoccupyapc"])
-		if(get_malf_status(usr))
-			malfvacate()
-
-	else if(href_list["toggleaccess"])
-		if(issilicon(usr))
-			if(emagged || (stat & (BROKEN | MAINT)))
-				to_chat(usr, "The APC does not respond to the command.")
-			else
-				locked = !locked
+	else if(topic.has("malfhack") && (get_malf_status(user) == 1))
+		var/mob/living/silicon/ai/malf_ai = user
+		if(malf_ai.malfhacking)
+			to_chat(malfai, SPAN_WARNING("You are already hacking an APC."))
+			return TRUE
+		to_chat(malf_ai, SPAN_INFO("Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process."))
+		malf_ai.malfhack = src
+		malf_ai.malfhacking = TRUE
+		spawn(1 MINUTE)
+			if(isnotnull(src) && !aidisabled)
+				malf_ai.malfhack = null
+				malf_ai.malfhacking = FALSE
+				locked = TRUE
+				if(IS_GAME_MODE(/datum/game_mode/malfunction))
+					if(isstationlevel(z))
+						var/datum/game_mode/malfunction/malf = global.PCticker.mode
+						malf.apcs++
+				malfai = malf_ai
+				to_chat(malf_ai, SPAN_INFO("Hack complete. The APC is now under your exclusive control."))
 				update_icon()
 
-	return 1
+	else if(topic.has("occupyapc") && get_malf_status(user))
+		malfoccupy(user)
+
+	else if(topic.has("deoccupyapc") && get_malf_status(user))
+		malfvacate()
+
+	else if(topic.has("toggleaccess") && issilicon(user))
+		if(emagged || (stat & (BROKEN | MAINT)))
+			to_chat(user, SPAN_WARNING("The APC does not respond to the command."))
+		else
+			locked = !locked
+			update_icon()
 
 /obj/machinery/power/apc/updateDialog()
 	if(stat & (BROKEN|MAINT))

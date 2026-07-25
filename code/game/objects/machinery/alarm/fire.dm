@@ -212,8 +212,8 @@
 		var/second = round(time) % 60
 		var/minute = (round(time) - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOBL.security_level.name]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		SHOW_BROWSER(user, dat, "window=firealarm")
-		onclose(user, "firealarm")
+		SHOW_BROWSER(user, dat, "window=\ref[src]")
+		onclose(user, "\ref[src]")
 	else
 		A = A.loc
 		if(A.fire_alarm)
@@ -227,38 +227,32 @@
 		var/second = round(time) % 60
 		var/minute = (round(time) - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(GLOBL.security_level.name)]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=\ref[src];tp=-30'>-</A> <A href='byond://?src=\ref[src];tp=-1'>-</A> <A href='byond://?src=\ref[src];tp=1'>+</A> <A href='byond://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		SHOW_BROWSER(user, dat, "window=firealarm")
-		onclose(user, "firealarm")
+		SHOW_BROWSER(user, dat, "window=\ref[src]")
+		onclose(user, "\ref[src]")
 
-/obj/machinery/fire_alarm/Topic(href, href_list)
-	..()
-	if(usr.stat || stat & (BROKEN|NOPOWER))
-		return
-
+/obj/machinery/fire_alarm/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(buildstage != 2)
-		return
+		return FALSE
 
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
-		usr.set_machine(src)
-		if(href_list["reset"])
-			reset()
-		else if(href_list["alarm"])
-			alarm()
-		else if(href_list["time"])
-			timing = text2num(href_list["time"])
-			last_process = world.timeofday
-			START_PROCESSING(PCobj, src)
-		else if(href_list["tp"])
-			var/tp = text2num(href_list["tp"])
-			time += tp
-			time = min(max(round(time), 0), 120)
+	if(topic.has("reset"))
+		reset()
 
-		updateUsrDialog()
+	else if(topic.has("alarm"))
+		alarm()
 
-		add_fingerprint(usr)
-	else
-		CLOSE_BROWSER(usr, "window=firealarm")
-		return
+	else if(topic.has("time"))
+		timing = topic.get_num("time")
+		last_process = world.timeofday
+		START_PROCESSING(PCobj, src)
+
+	else if(topic.has("tp"))
+		time += topic.get_num("tp")
+		time = min(max(round(time), 0), 120)
+
+	updateUsrDialog()
 
 /obj/machinery/fire_alarm/proc/reset()
 	if(!working)

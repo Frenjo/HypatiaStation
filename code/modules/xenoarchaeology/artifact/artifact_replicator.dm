@@ -101,18 +101,17 @@
 	for(var/index in 1 to length(construction))
 		dat += "<A href='byond://?src=\ref[src];activate=[index]'>\[[construction[index]]\]</a><br>"
 
-	SHOW_BROWSER(user, dat, "window=alien_replicator")
+	SHOW_BROWSER(user, dat, "window=\ref[src]")
 
-/obj/machinery/replicator/Topic(href, href_list)
+/obj/machinery/replicator/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(href_list["activate"])
-		var/index = text2num(href_list["activate"])
+	if(topic.has("activate"))
+		var/index = topic.get_num("activate")
 		if(index > 0 && index <= length(construction))
 			if(length(spawning_types))
 				visible_message(SPAN_INFO("[icon2html(src, viewers(src))] a [pick("light", "dial", "display", "meter", "pad")] on [src]'s front [pick("blinks","flashes")] [pick("red", "yellow", "blue", "orange", "purple", "green", "white")]."))
 			else
 				visible_message(SPAN_INFO("[icon2html(src, viewers(src))] [src]'s front compartment slides shut."))
-
 			spawning_types.Add(construction[construction[index]])
 			spawn_progress = 0
 			update_power_state(USE_POWER_ACTIVE)

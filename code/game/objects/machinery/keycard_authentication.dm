@@ -86,22 +86,22 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/keycard_auth/Topic(href, href_list)
-	..()
+/obj/machinery/keycard_auth/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(busy)
-		to_chat(usr, "This device is busy.")
-		return
-	if(usr.stat || stat & (BROKEN | NOPOWER))
-		to_chat(usr, "This device is without power.")
-		return
-	if(href_list["triggerevent"])
-		event = href_list["triggerevent"]
+		to_chat(user, SPAN_WARNING("\The [src] is busy."))
+		return FALSE
+
+	if(topic.has("triggerevent"))
+		event = topic.get_str("triggerevent")
 		screen = 2
-	if(href_list["reset"])
+
+	else if(topic.has("reset"))
 		reset()
 
 	updateUsrDialog()
-	add_fingerprint(usr)
 
 /obj/machinery/keycard_auth/proc/reset()
 	active = FALSE

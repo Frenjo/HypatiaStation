@@ -1051,26 +1051,24 @@
 			dat += "<A href='byond://?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
-	SHOW_BROWSER(user, "<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")
-	onclose(user, "reagentgrinder")
+	SHOW_BROWSER(user, "<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=\ref[src]")
+	onclose(user, "\ref[src]")
 	return
 
+/obj/machinery/reagentgrinder/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = .. ()
+	if(topic.has("action"))
+		switch(topic.get_str("action"))
+			if("grind")
+				grind()
+			if("juice")
+				juice()
+			if("eject")
+				eject()
+			if("detach")
+				detach()
 
-/obj/machinery/reagentgrinder/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	switch(href_list["action"])
-		if ("grind")
-			grind()
-		if("juice")
-			juice()
-		if("eject")
-			eject()
-		if ("detach")
-			detach()
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
 
 /obj/machinery/reagentgrinder/proc/detach()
 	if(usr.stat != 0)

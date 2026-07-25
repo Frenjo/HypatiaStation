@@ -60,13 +60,6 @@
 #undef TURBGENG
 
 /obj/machinery/power/turbine/interact(mob/user)
-	if(!in_range(src, user) || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
-		user.machine = null
-		CLOSE_BROWSER(user, "window=turbine")
-		return
-
-	user.machine = src
-
 	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
 
 	t += "Generated power : [round(lastgen)] W<BR><BR>"
@@ -78,38 +71,11 @@
 	t += "</PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</TT>"
-	SHOW_BROWSER(user, t, "window=turbine")
-	onclose(user, "turbine")
+	SHOW_BROWSER(user, t, "window=\ref[src]")
 
 	return
 
-/obj/machinery/power/turbine/Topic(href, href_list)
-	..()
-	if(stat & BROKEN)
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(!ishuman(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))
-		if(!issilicon(usr))
-			FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
-			return
-
-	if((usr.machine == src && (in_range(src, usr) && isturf(loc))) || issilicon(usr))
-		if(href_list["close"])
-			CLOSE_BROWSER(usr, "window=turbine")
-			usr.machine = null
-			return
-
-		else if(href_list["str"])
-			compressor.starter = !compressor.starter
-
-		spawn(0)
-			for(var/mob/M in viewers(1, src))
-				if(M.client && M.machine == src)
-					src.interact(M)
-
-	else
-		CLOSE_BROWSER(usr, "window=turbine")
-		usr.machine = null
-
-	return
+/obj/machinery/power/turbine/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("str"))
+		compressor.starter = !compressor.starter

@@ -197,21 +197,18 @@
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/autolathe/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
+/obj/machinery/autolathe/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
 	if(busy)
 		to_chat(usr, SPAN_WARNING("\The [src] is busy. Please wait for completion of the previous operation."))
-		return
+		return FALSE
 
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-
-	if(href_list["make"])
-		var/build_path = topic_filter.get_path("make")
-		var/multiplier = topic_filter.get_num("multiplier")
+	if(topic.has("make"))
+		var/build_path = topic.get_path("make")
+		var/multiplier = topic.get_num("multiplier")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(!(D.build_type & DESIGN_TYPE_AUTOLATHE))
 				continue

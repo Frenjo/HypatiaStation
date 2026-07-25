@@ -232,30 +232,29 @@ Status: []<BR>"},
 	onclose(user, "autosec")
 	return
 
-/obj/machinery/porta_turret/Topic(href, href_list)
-	if (..())
-		return
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-	if ((href_list["power"]) && (src.allowed(usr)))
+/obj/machinery/porta_turret/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("power"))
 		if(anchored) // you can't turn a turret on/off if it's not anchored/secured
 			on = !on // toggle on/off
 		else
-			to_chat(usr, SPAN_WARNING("It has to be secured first!"))
+			to_chat(user, SPAN_WARNING("It has to be secured first!"))
 
-		updateUsrDialog()
-		return
+	else if(topic.has("operation"))
+		switch(topic.get_str("operation"))
+			// toggles customizable behavioural protocols
+			if("authweapon")
+				auth_weapons = !auth_weapons
+			if("checkrecords")
+				check_records = !check_records
+			if("shootcrooks")
+				criminals = !criminals
+			if("shootall")
+				stun_all = !stun_all
 
-	switch(href_list["operation"])
-		// toggles customizable behavioural protocols
-		if ("authweapon")
-			src.auth_weapons = !src.auth_weapons
-		if ("checkrecords")
-			src.check_records = !src.check_records
-		if ("shootcrooks")
-			src.criminals = !src.criminals
-		if("shootall")
-			stun_all = !stun_all
 	updateUsrDialog()
 
 /obj/machinery/porta_turret/power_change()

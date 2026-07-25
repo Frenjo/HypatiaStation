@@ -182,8 +182,8 @@
 <A href='byond://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	SHOW_BROWSER(user, "<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
-	onclose(user, "microwave")
+	SHOW_BROWSER(user, "<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=\ref[src]")
+	onclose(user, "\ref[src]")
 	return
 
 /***********************************
@@ -323,19 +323,16 @@
 	ffuu.reagents.add_reagent("toxin", amount / 10)
 	return ffuu
 
-/obj/machinery/microwave/Topic(href, href_list)
-	if(..())
-		return
+/obj/machinery/microwave/handle_topic(mob/user, datum/topic_input/topic, topic_reason)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	usr.set_machine(src)
-	if(src.operating)
-		src.updateUsrDialog()
-		return
-
-	switch(href_list["action"])
+	switch(topic.get_str("action"))
 		if("cook")
 			cook()
 
 		if("dispose")
 			dispose()
-	return
+
+	updateUsrDialog()

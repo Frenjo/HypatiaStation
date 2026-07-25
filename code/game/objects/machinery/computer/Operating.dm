@@ -70,15 +70,6 @@
 	SHOW_BROWSER(user, dat, "window=op")
 	onclose(user, "op")
 
-
-/obj/machinery/computer/operating/Topic(href, href_list)
-	if(..())
-		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))
-		usr.set_machine(src)
-	return
-
-
 /obj/machinery/computer/operating/process()
 	if(..())
 		src.updateDialog()

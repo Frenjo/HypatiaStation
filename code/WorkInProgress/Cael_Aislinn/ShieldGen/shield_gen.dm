@@ -101,11 +101,6 @@
 	interact(user)
 
 /obj/machinery/shield_gen/interact(mob/user)
-	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
-		if (!issilicon(user))
-			user.unset_machine()
-			CLOSE_BROWSER(user, "window=shield_generator")
-			return
 	var/t = "<B>Shield Generator Control Console</B><BR><br>"
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
@@ -138,7 +133,7 @@
 	t += "<hr>"
 	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
-	SHOW_BROWSER(user, t, "window=shield_generator;size=500x800")
+	SHOW_BROWSER(user, t, "window=\ref[src];size=500x800")
 	user.set_machine(src)
 
 /obj/machinery/shield_gen/process()
@@ -178,33 +173,35 @@
 	else
 		average_field_strength = 0
 
-/obj/machinery/shield_gen/Topic(href, list/href_list)
-	..()
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=shield_generator")
-		usr.unset_machine()
-		return
-	else if( href_list["toggle"] )
+/obj/machinery/shield_gen/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle"))
 		toggle()
-	else if( href_list["change_radius"] )
-		field_radius += text2num(href_list["change_radius"])
+
+	else if(topic.has("change_radius"))
+		field_radius += topic.get_num("change_radius")
 		if(field_radius > 200)
 			field_radius = 200
 		else if(field_radius < 0)
 			field_radius = 0
-	else if( href_list["strengthen_rate"] )
-		strengthen_rate += text2num(href_list["strengthen_rate"])
+
+	else if(topic.has("strengthen_rate"))
+		strengthen_rate += topic.get_num("strengthen_rate")
 		if(strengthen_rate > 1)
 			strengthen_rate = 1
 		else if(strengthen_rate < 0)
 			strengthen_rate = 0
-	else if( href_list["max_field_strength"] )
-		max_field_strength += text2num(href_list["max_field_strength"])
+
+	else if(topic.has("max_field_strength"))
+		max_field_strength += topic.get_num("max_field_strength")
 		if(max_field_strength > 1000)
 			max_field_strength = 1000
 		else if(max_field_strength < 0)
 			max_field_strength = 0
-	//
+
 	updateDialog()
 
 /obj/machinery/shield_gen/power_change()

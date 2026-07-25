@@ -58,23 +58,24 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 
 	html += "<br>Stacking: [machine.max_stack_amount]<br><br>"
 
-	SHOW_BROWSER(user, html, "window=console_stacking_machine")
-	onclose(user, "console_stacking_machine")
+	SHOW_BROWSER(user, html, "window=\ref[src]")
+	onclose(user, "\ref[src]")
 #undef ADD_MATERIAL
 
-/obj/machinery/stacking_unit_console/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(href_list["release"])
-		var/stack_path = text2path(href_list["release"])
+/obj/machinery/stacking_unit_console/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("release"))
+		var/stack_path = topic.get_path("release")
 		if(!(stack_path in machine.stack_amounts))
-			return
+			return FALSE
 		var/amount = machine.stack_amounts[stack_path]
 		if(amount > 0)
 			new stack_path(machine.output_turf, amount)
 			machine.stack_amounts[stack_path] = 0
+
 	updateUsrDialog()
 
 /*

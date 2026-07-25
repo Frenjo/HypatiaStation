@@ -98,37 +98,28 @@ Power Switch: <A href='byond://?src=\ref[src];power=1'>[on?("On"):("Off")]</A><B
 Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href='byond://?src=\ref[src];volume_adj=-100'>-</A> <A href='byond://?src=\ref[src];volume_adj=-10'>-</A> <A href='byond://?src=\ref[src];volume_adj=-1'>-</A> [volume_rate] <A href='byond://?src=\ref[src];volume_adj=1'>+</A> <A href='byond://?src=\ref[src];volume_adj=10'>+</A> <A href='byond://?src=\ref[src];volume_adj=100'>+</A> <A href='byond://?src=\ref[src];volume_adj=1000'>+</A><BR>
 
 <HR>
-<A href='byond://?src=\ref[user];mach_close=scrubber'>Close</A><BR>
+<A href='byond://?src=\ref[user];close=1'>Close</A><BR>
 "}
 
-	SHOW_BROWSER(user, output_text, "window=scrubber;size=600x300")
-	onclose(user, "scrubber")
+	SHOW_BROWSER(user, output_text, "window=\ref[src];size=600x300")
+	onclose(user, "\ref[src]")
 
-/obj/machinery/portable_atmospherics/scrubber/Topic(href, href_list)
-	..()
-	if(usr.stat || usr.restrained())
-		return
+/obj/machinery/portable_atmospherics/scrubber/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("power"))
+		on = !on
 
-	if((in_range(src, usr)) && isturf(loc))
-		usr.set_machine(src)
+	else if(topic.has("remove_tank"))
+		if(isnotnull(holding))
+			holding.forceMove(loc)
+			holding = null
 
-		if(href_list["power"])
-			on = !on
+	else if(topic.has("volume_adj"))
+		var/diff = topic.get_num("volume_adj")
+		volume_rate = min(10 * ONE_ATMOSPHERE, max(0, volume_rate + diff))
 
-		if(href_list["remove_tank"])
-			if(isnotnull(holding))
-				holding.forceMove(loc)
-				holding = null
-
-		if(href_list["volume_adj"])
-			var/diff = text2num(href_list["volume_adj"])
-			volume_rate = min(10 * ONE_ATMOSPHERE, max(0, volume_rate + diff))
-
-		updateUsrDialog()
-		add_fingerprint(usr)
-		update_icon()
-	else
-		CLOSE_BROWSER(usr, "window=scrubber")
+	updateUsrDialog()
+	update_icon()
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
 	if(stat & (BROKEN | NOPOWER))

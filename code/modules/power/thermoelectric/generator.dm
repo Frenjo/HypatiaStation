@@ -179,18 +179,8 @@
 	t += "<HR>"
 	t += "<A href='byond://?src=\ref[src]'>Refresh</A> <A href='byond://?src=\ref[src];close=1'>Close</A>"
 
-	SHOW_BROWSER(user, t, "window=teg;size=460x300")
-	onclose(user, "teg")
-	return 1
-
-/obj/machinery/power/generator/Topic(href, href_list)
-	..()
-	if(href_list["close"])
-		CLOSE_BROWSER(usr, "window=teg")
-		usr.unset_machine()
-		return 0
-
-	updateDialog()
+	SHOW_BROWSER(user, t, "window=\ref[src];size=460x300")
+	onclose(user, "\ref[src]")
 	return 1
 
 /obj/machinery/power/generator/power_change()

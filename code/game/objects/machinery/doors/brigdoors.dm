@@ -203,11 +203,11 @@
 		else
 			dat += "<br/><A href='byond://?src=\ref[src];fc=1'>Activate Flash</A>"
 
-	dat += "<br/><br/><a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"
+	dat += "<br/><br/><a href='byond://?src=\ref[user];close=1'>Close</a>"
 	dat += "</TT></BODY></HTML>"
 
-	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
-	onclose(user, "computer")
+	SHOW_BROWSER(user, dat, "window=\ref[src];size=400x500")
+	onclose(user, "\ref[src]")
 	return
 
 //Function for using door_timer dialog input, checks if user has permission
@@ -217,49 +217,34 @@
 //  "fc" activates flasher
 // 	"change" resets the timer to the timetoset amount while the timer is counting down
 // Also updates dialog window and timer icon
-/obj/machinery/door_timer/Topic(href, href_list)
-	if(..())
-		return
-	if(!allowed(usr))
-		return
+/obj/machinery/door_timer/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	usr.set_machine(src)
-
-	if(href_list["timing"])
-		timing = text2num(href_list["timing"])
-
+	if(topic.has("timing"))
+		timing = topic.get_num("timing")
 		if(timing)
 			timer_start()
 		else
 			timer_end()
 
-	else
-		if(href_list["tp"])  //adjust timer, close door if not already closed
-			var/tp = text2num(href_list["tp"])
-			var/addtime = (timetoset / 10)
-			addtime += tp
-			addtime = min(max(round(addtime), 0), 3600)
+	else if(topic.has("tp")) // Adjust timer, close door if not already closed.
+		var/tp = topic.get_num("tp")
+		var/addtime = (timetoset / 10)
+		addtime += tp
+		addtime = min(max(round(addtime), 0), 3600)
+		timeset(addtime)
 
-			timeset(addtime)
+	else if(topic.has("fc"))
+		for(var/obj/machinery/flasher/F in targets)
+			F.flash()
 
-		if(href_list["fc"])
-			for(var/obj/machinery/flasher/F in targets)
-				F.flash()
-
-		if(href_list["change"])
-			timer_start()
-
-	add_fingerprint(usr)
-	updateUsrDialog()
-	update_icon()
-
-	/* if(timing)
+	else if(topic.has("change"))
 		timer_start()
 
-	else
-		timer_end() */
-
-	return
+	updateUsrDialog()
+	update_icon()
 
 //icon update function
 // if NOPOWER, display blank

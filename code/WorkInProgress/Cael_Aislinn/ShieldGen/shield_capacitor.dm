@@ -86,11 +86,6 @@
 	interact(user)
 
 /obj/machinery/shield_capacitor/interact(mob/user)
-	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
-		if (!issilicon(user))
-			user.unset_machine()
-			CLOSE_BROWSER(user, "window=shield_capacitor")
-			return
 	var/t = "<B>Shield Capacitor Control Console</B><br><br>"
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
@@ -111,7 +106,7 @@
 	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
-	SHOW_BROWSER(user, t, "window=shield_capacitor;size=500x400")
+	SHOW_BROWSER(user, t, "window=\ref[src];size=500x400")
 	user.set_machine(src)
 
 /obj/machinery/shield_capacitor/process()
@@ -130,25 +125,25 @@
 	if(stored_charge < power_usage[USE_POWER_ACTIVE] * 1.5)
 		time_since_fail = 0
 
-/obj/machinery/shield_capacitor/Topic(href, list/href_list)
-	..()
-	if( href_list["close"] )
-		CLOSE_BROWSER(usr, "window=shield_capacitor")
-		usr.unset_machine()
-		return
-	if( href_list["toggle"] )
+/obj/machinery/shield_capacitor/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(topic.has("toggle"))
 		active = !active
 		if(active)
 			update_power_state(USE_POWER_ACTIVE)
 		else
 			update_power_state(USE_POWER_IDLE)
-	if( href_list["charge_rate"] )
-		charge_rate += text2num(href_list["charge_rate"])
+
+	else if(topic.has("charge_rate"))
+		charge_rate += topic.get_num("charge_rate")
 		if(charge_rate > charge_limit)
 			charge_rate = charge_limit
 		else if(charge_rate < 0)
 			charge_rate = 0
-	//
+
 	updateDialog()
 
 /obj/machinery/shield_capacitor/power_change()
