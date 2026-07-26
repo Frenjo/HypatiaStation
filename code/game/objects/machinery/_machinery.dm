@@ -223,6 +223,7 @@
 	if(user.restrained() || user.lying || user.stat)
 		return FALSE
 	if(!allowed(user))
+		FEEDBACK_ACCESS_DENIED(user)
 		return FALSE
 	if(ismonkey(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)

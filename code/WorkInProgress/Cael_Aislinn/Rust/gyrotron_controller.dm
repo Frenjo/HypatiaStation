@@ -5,12 +5,12 @@
 	icon_state = "engine"
 	var/updating = 1
 
-/obj/machinery/computer/rust_gyrotron_controller/Topic(href, href_list)
-	..()
-	if(href_list["target"])
-		var/obj/machinery/rust/gyrotron/gyro = locate(href_list["target"])
-		gyro.Topic(href, href_list)
-		return
+/obj/machinery/computer/rust_gyrotron_controller/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("target"))
+		var/obj/machinery/rust/gyrotron/gyro = topic.get_and_locate("target")
+		if(gyro.can_handle_topic(user))
+			return gyro.handle_topic(user, topic, topic_result)
 
 /obj/machinery/computer/rust_gyrotron_controller/process()
 	..()

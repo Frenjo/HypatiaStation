@@ -42,27 +42,22 @@
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 
-/obj/machinery/computer/mecha/Topic(href, href_list)
-	if(..())
-		return
-
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
-	if(topic_filter.has("send_message"))
-		var/obj/item/mecha_part/tracking/beacon = topic_filter.get_obj("send_message")
-		var/message = strip_html_simple(input(usr, "Input message", "Transmit message") as text)
+/obj/machinery/computer/mecha/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("send_message"))
+		var/obj/item/mecha_part/tracking/beacon = topic.get_obj("send_message")
+		var/message = strip_html_simple(input(user, "Input message", "Transmit message") as text)
 		var/obj/mecha/mech = beacon.in_mecha()
 		if(trim(message))
 			mech?.occupant_message(message)
-		return
-
-	if(topic_filter.has("shock"))
-		var/obj/item/mecha_part/tracking/beacon = topic_filter.get_obj("shock")
+	else if(topic.has("shock"))
+		var/obj/item/mecha_part/tracking/beacon = topic.get_obj("shock")
 		beacon.shock()
-	if(topic_filter.has("get_log"))
-		var/obj/item/mecha_part/tracking/beacon = topic_filter.get_obj("get_log")
+	else if(topic.has("get_log"))
+		var/obj/item/mecha_part/tracking/beacon = topic.get_obj("get_log")
 		stored_data = beacon.get_mecha_log()
 		screen = 1
-	if(topic_filter.has("return"))
+	else if(topic.has("return"))
 		screen = 0
 
 	updateUsrDialog()

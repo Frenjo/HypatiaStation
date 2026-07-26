@@ -69,23 +69,20 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/computer/shuttle_control/Topic(href, href_list)
-	if(..())
-		return
+/obj/machinery/computer/shuttle_control/can_handle_topic(mob/user)
+	. = ..()
+	if(!istype(global.PCshuttle.shuttles[shuttle_tag], /datum/shuttle/ferry))
+		return FALSE
 
-	usr.set_machine(src)
-	add_fingerprint(usr)
-
+/obj/machinery/computer/shuttle_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
 	var/datum/shuttle/ferry/shuttle = global.PCshuttle.shuttles[shuttle_tag]
-	if(!istype(shuttle))
-		return
-
-	if(href_list["move"])
-		shuttle.launch(src)
-	if(href_list["force"])
-		shuttle.force_launch(src)
-	else if(href_list["cancel"])
-		shuttle.cancel_launch(src)
+	if(topic.has("move"))
+		shuttle.launch(user)
+	else if(topic.has("force"))
+		shuttle.force_launch(user)
+	else if(topic.has("cancel"))
+		shuttle.cancel_launch(user)
 
 /obj/machinery/computer/shuttle_control/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))

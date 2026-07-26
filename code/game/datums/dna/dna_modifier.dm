@@ -445,17 +445,19 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/computer/scan_consolenew/Topic(href, href_list)
-	if(..())
-		return 0 // don't update uis
-	if(!isturf(usr.loc))
-		return 0 // don't update uis
+/obj/machinery/computer/scan_consolenew/can_handle_topic(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!isturf(user.loc))
+		return FALSE // don't update uis
 	if(!src || !src.connected)
-		return 0 // don't update uis
+		return FALSE // don't update uis
 	if(irradiating) // Make sure that it isn't already irradiating someone...
-		return 0 // don't update uis
+		return FALSE // don't update uis
 
-	add_fingerprint(usr)
+/obj/machinery/computer/scan_consolenew/Topic(href, href_list)
+	. = ..()
 
 	if(href_list["selectMenuKey"])
 		selected_menu_key = href_list["selectMenuKey"]

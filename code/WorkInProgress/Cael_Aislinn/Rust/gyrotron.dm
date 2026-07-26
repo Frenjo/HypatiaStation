@@ -29,86 +29,60 @@
 	//pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 	//pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/rust/gyrotron/Topic(href, href_list)
-	..()
-	if(href_list["modifypower"])
-		var/new_val = text2num(input("Enter new emission power level (0.001 - 0.01)", "Modifying power level (MeV)", mega_energy))
+/obj/machinery/rust/gyrotron/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	var/update_computers = FALSE
+	if(topic.has("modifypower"))
+		var/new_val = text2num(input(user, "Enter new emission power level (0.001 - 0.01)", "Modifying power level (MeV)", mega_energy))
 		if(!new_val)
-			to_chat(usr, SPAN_WARNING("That's not a valid number."))
-			return
+			to_chat(user, SPAN_WARNING("That's not a valid number."))
+			return TRUE
 		new_val = min(new_val, 0.01)
 		new_val = max(new_val, 0.001)
 		mega_energy = new_val
-		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
-			comp.updateDialog()
-		return
-	if(href_list["modifyrate"])
-		var/new_val = text2num(input("Enter new emission rate (1 - 10)", "Modifying emission rate (sec)", rate))
+		update_computers = TRUE
+
+	else if(topic.has("modifyrate"))
+		var/new_val = text2num(input(user, "Enter new emission rate (1 - 10)", "Modifying emission rate (sec)", rate))
 		if(!new_val)
-			to_chat(usr, SPAN_WARNING("That's not a valid number."))
-			return
+			to_chat(user, SPAN_WARNING("That's not a valid number."))
+			return TRUE
 		new_val = min(new_val, 1)
 		new_val = max(new_val, 10)
 		rate = new_val
-		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
-			comp.updateDialog()
-		return
-	if(href_list["modifyfreq"])
-		var/new_val = text2num(input("Enter new emission frequency (1 - 50000)", "Modifying emission frequency (GHz)", frequency))
+		update_computers = TRUE
+
+	else if(topic.has("modifyfreq"))
+		var/new_val = text2num(input(user, "Enter new emission frequency (1 - 50000)", "Modifying emission frequency (GHz)", frequency))
 		if(!new_val)
-			to_chat(usr, SPAN_WARNING("That's not a valid number."))
-			return
+			to_chat(user, SPAN_WARNING("That's not a valid number."))
+			return TRUE
 		new_val = min(new_val, 1)
 		new_val = max(new_val, 50000)
 		frequency = new_val
-		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
-			comp.updateDialog()
-		return
-	if(href_list["activate"])
-		emitting = 1
+		update_computers = TRUE
+
+	else if(topic.has("activate"))
+		emitting = TRUE
 		spawn(rate)
-			Emit()
+			Emit() // This is really icky and needs updating.
+		update_computers = TRUE
+
+	else if(topic.has("deactivate"))
+		emitting = FALSE
+		update_computers = TRUE
+
+	else if(topic.has("enableremote"))
+		remoteenabled = TRUE
+		update_computers = TRUE
+
+	else if(topic.has("disableremote"))
+		remoteenabled = FALSE
+		update_computers = TRUE
+
+	if(update_computers)
 		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
 			comp.updateDialog()
-		return
-	if(href_list["deactivate"])
-		emitting = 0
-		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
-			comp.updateDialog()
-		return
-	if(href_list["enableremote"])
-		remoteenabled = 1
-		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
-			comp.updateDialog()
-		return
-	if(href_list["disableremote"])
-		remoteenabled = 0
-		for(var/obj/machinery/computer/rust_gyrotron_controller/comp in range(25))
-			comp.updateDialog()
-		return
-/*
-		var/obj/projectile/beam/emitter/A = new /obj/projectile/beam/emitter( src.loc )
-		playsound(src.loc, 'sound/weapons/gun/emitter.ogg', 25, 1)
-		if(prob(35))
-			make_sparks(5, TRUE, src)
-		A.dir = src.dir
-		if(src.dir == 1)//Up
-			A.yo = 20
-			A.xo = 0
-		else if(src.dir == 2)//Down
-			A.yo = -20
-			A.xo = 0
-		else if(src.dir == 4)//Right
-			A.yo = 0
-			A.xo = 20
-		else if(src.dir == 8)//Left
-			A.yo = 0
-			A.xo = -20
-		else // Any other
-			A.yo = -20
-			A.xo = 0
-		A.fired()
-*/
 
 /obj/machinery/rust/gyrotron/proc/Emit()
 	var/obj/projectile/energy/beam/emitter/A = new /obj/projectile/energy/beam/emitter( src.loc )
@@ -164,11 +138,6 @@
 	pixel_y = -pixel_y
 
 /obj/machinery/rust/gyrotron/control_panel/interact(mob/user)
-	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
-		if(!issilicon(user))
-			user.machine = null
-			CLOSE_BROWSER(user, "window=gyro_monitor")
-			return
 	var/t = "<B>Free electron MASER (Gyrotron) Control Panel</B><BR>"
 	if(owned_gyrotron && owned_gyrotron.on)
 		t += "<font color=green>Gyrotron operational</font><br>"
@@ -183,5 +152,6 @@
 	else
 		t += "<b><font color=red>Gyrotron unresponsive</font></b>"
 	t += "<hr>"
-	SHOW_BROWSER(user, t, "window=gyro_monitor;size=500x800")
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
+	SHOW_BROWSER(user, t, "window=\ref[src];size=500x800")
 	user.machine = src

@@ -130,37 +130,29 @@
 	onclose(user, "flamethrower")
 	return
 
-/obj/item/flamethrower/Topic(href, list/href_list)
+/obj/item/flamethrower/handle_topic(mob/user, datum/topic_input/topic, topic_result)
 	. = ..()
-	if(usr.stat || usr.restrained() || usr.lying)
-		return
-	usr.set_machine(src)
-	if(href_list["light"])
-		if(!ptank)
-			return
-		if(ptank.air_contents.gas[/decl/xgm_gas/plasma] < 1)
+	if(!topic.has("light"))
+		if(ptank?.air_contents.gas[/decl/xgm_gas/plasma] < 1)
 			return
 		if(!status)
 			return
 		lit = !lit
 		if(lit)
 			START_PROCESSING(PCobj, src)
-	if(href_list["amount"])
-		throw_amount = throw_amount + text2num(href_list["amount"])
+
+	else if(topic.has("amount"))
+		throw_amount += topic.get_num("amount")
 		throw_amount = max(50, min(5000, throw_amount))
-	if(href_list["remove"])
-		if(!ptank)
+
+	else if(topic.has("remove"))
+		if(isnull(ptank))
 			return
-		usr.put_in_hands(ptank)
+		user.put_in_hands(ptank)
 		ptank = null
-		lit = 0
-		usr.unset_machine()
-		CLOSE_BROWSER(usr, "window=flamethrower")
-	for(var/mob/M in viewers(1, loc))
-		if(M.client && M.machine == src)
-			attack_self(M)
+		lit = FALSE
+
 	update_icon()
-	return
 
 //Called from turf.dm turf/dblclick
 /obj/item/flamethrower/proc/flame_turf(turflist)

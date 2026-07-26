@@ -116,17 +116,16 @@
 	SHOW_BROWSER(user, dat, "window=fuel_control;size=800x400")
 	user.set_machine(src)
 
-/obj/machinery/computer/rust_fuel_control/Topic(href, href_list)
-	..()
-
-	if( href_list["scan"] )
+/obj/machinery/computer/rust_fuel_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("scan"))
 		connected_injectors = list()
 		for(var/obj/machinery/power/rust_fuel_injector/I in range(scan_range, src))
 			if(check_injector_status(I))
 				connected_injectors.Add(I)
 
-	if( href_list["toggle_stage"] )
-		var/cur_stage = href_list["toggle_stage"]
+	else if(topic.has("toggle_stage"))
+		var/cur_stage = topic.get_str("toggle_stage")
 		if(active_stages.Find(cur_stage))
 			active_stages.Remove(cur_stage)
 			for(var/obj/machinery/power/rust_fuel_injector/I in connected_injectors)
@@ -138,38 +137,38 @@
 				if(I.id_tag == cur_stage && check_injector_status(I))
 					I.BeginInjecting()
 
-	if( href_list["cooldown"] )
+	else if(topic.has("cooldown"))
 		for(var/obj/machinery/power/rust_fuel_injector/I in connected_injectors)
 			if(check_injector_status(I))
 				I.StopInjecting()
 		active_stages = list()
 
-	if( href_list["warmup"] )
+	else if(topic.has("warmup"))
 		for(var/obj/machinery/power/rust_fuel_injector/I in connected_injectors)
 			if(check_injector_status(I))
 				I.BeginInjecting()
 			if(!active_stages.Find(I.id_tag))
 				active_stages.Add(I.id_tag)
 
-	if( href_list["stage_time"] )
-		var/cur_stage = href_list["stage_time"]
-		var/new_duration = input("Enter new stage duration in seconds", "Stage duration") as num
+	else if(topic.has("stage_time"))
+		var/cur_stage = topic.get_str("stage_time")
+		var/new_duration = input(user, "Enter new stage duration in seconds", "Stage duration") as num
 		if(new_duration)
 			stage_times[cur_stage] = new_duration
 		else if(stage_times.Find(cur_stage))
 			stage_times.Remove(cur_stage)
 
-	if( href_list["announce_fueldepletion"] )
-		announce_fueldepletion = text2num(href_list["announce_fueldepletion"])
+	else if(topic.has("announce_fueldepletion"))
+		announce_fueldepletion = topic.get_num("announce_fueldepletion")
 
-	if( href_list["announce_stageprogression"] )
-		announce_stageprogression = text2num(href_list["announce_stageprogression"])
+	else if(topic.has("announce_stageprogression"))
+		announce_stageprogression = topic.get_num("announce_stageprogression")
 
-	if( href_list["set_next_stage"] )
-		var/cur_stage = href_list["set_next_stage"]
+	else if(topic.has("set_next_stage"))
+		var/cur_stage = topic.get_str("set_next_stage")
 		if(!proceeding_stages.Find(cur_stage))
 			proceeding_stages.Add(cur_stage)
-		var/next_stage = input("Enter next stage ID", "Automated stage procession") as text|null
+		var/next_stage = input(user, "Enter next stage ID", "Automated stage procession") as text | null
 		if(next_stage)
 			proceeding_stages[cur_stage] = next_stage
 		else

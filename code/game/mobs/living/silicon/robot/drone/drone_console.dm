@@ -41,73 +41,56 @@
 	SHOW_BROWSER(user, dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 
-/obj/machinery/computer/drone_control/Topic(href, href_list)
-	if(..())
-		return
-
-	if(!allowed(usr))
-		FEEDBACK_ACCESS_DENIED(usr)
-		return
-
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))
-		usr.set_machine(src)
-
-	if(href_list["setarea"])
-		//Probably should consider using another list, but this one will do.
-		var/t_area = input("Select the area to ping.", "Set Target Area", null) as null | anything in GLOBL.tagger_locations
-
+/obj/machinery/computer/drone_control/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("setarea"))
+		// Probably should consider using another list, but this one will do.
+		var/t_area = input(user, "Select the area to ping.", "Set Target Area", null) as null | anything in GLOBL.tagger_locations
 		if(!t_area || GLOBL.tagger_locations[t_area])
 			return
-
 		drone_call_area = t_area
-		to_chat(usr, SPAN_INFO("You set the area selector to [drone_call_area]."))
+		to_chat(user, SPAN_INFO("You set the area selector to [drone_call_area]."))
 
-	else if(href_list["ping"])
-		to_chat(usr, SPAN_INFO("You issue a maintenance request for all active drones, highlighting [drone_call_area]."))
+	else if(topic.has("ping"))
+		to_chat(user, SPAN_INFO("You issue a maintenance request for all active drones, highlighting [drone_call_area]."))
 		for(var/mob/living/silicon/robot/drone/D in GLOBL.mob_list)
 			if(D.client && D.stat == CONSCIOUS)
 				to_chat(D, "-- Maintenance drone presence requested in: [drone_call_area].")
 
-	else if(href_list["resync"])
-		var/mob/living/silicon/robot/drone/D = locate(href_list["resync"])
-
+	else if(topic.has("resync"))
+		var/mob/living/silicon/robot/drone/D = topic.get_and_locate("resync")
 		if(D.stat != DEAD)
-			to_chat(usr, SPAN_WARNING("You issue a law synchronization directive for the drone."))
+			to_chat(user, SPAN_WARNING("You issue a law synchronization directive for the drone."))
 			D.law_resync()
 
-	else if (href_list["shutdown"])
-		var/mob/living/silicon/robot/drone/D = locate(href_list["shutdown"])
-
+	else if(topic.has("shutdown"))
+		var/mob/living/silicon/robot/drone/D = topic.get_and_locate("shutdown")
 		if(D.stat != DEAD)
-			to_chat(usr, SPAN_WARNING("You issue a kill command for the unfortunate drone."))
-			message_admins("[key_name_admin(usr)] issued kill order for drone [key_name_admin(D)] from control console.")
-			log_game("[key_name(usr)] issued kill order for [key_name(src)] from control console.")
+			to_chat(user, SPAN_WARNING("You issue a kill command for the unfortunate drone."))
+			message_admins("[key_name_admin(user)] issued kill order for drone [key_name_admin(D)] from control console.")
+			log_game("[key_name(user)] issued kill order for [key_name(src)] from control console.")
 			D.shut_down()
 
-	else if(href_list["search_fab"])
-		if(dronefab)
+	else if(topic.has("search_fab"))
+		if(isnotnull(dronefab))
 			return
-
-		for(var/obj/machinery/drone_fabricator/fab in oview(3,src))
+		for(var/obj/machinery/drone_fabricator/fab in oview(3, src))
 			if(fab.stat & NOPOWER)
 				continue
-
 			dronefab = fab
-			to_chat(usr, SPAN_INFO("Drone fabricator located."))
+			to_chat(user, SPAN_INFO("Drone fabricator located."))
 			return
+		if(isnull(dronefab))
+			to_chat(user, SPAN_WARNING("Unable to locate drone fabricator."))
 
-		to_chat(usr, SPAN_WARNING("Unable to locate drone fabricator."))
-
-	else if(href_list["toggle_fab"])
-		if(!dronefab)
+	else if(topic.has("toggle_fab"))
+		if(isnull(dronefab))
 			return
-
-		if(get_dist(src,dronefab) > 3)
+		if(get_dist(src, dronefab) > 3)
 			dronefab = null
-			to_chat(usr, SPAN_WARNING("Unable to locate drone fabricator."))
+			to_chat(user, SPAN_WARNING("Unable to locate drone fabricator."))
 			return
-
 		dronefab.produce_drones = !dronefab.produce_drones
-		to_chat(usr, SPAN_INFO("You [dronefab.produce_drones ? "enable" : "disable"] drone production in the nearby fabricator."))
+		to_chat(user, SPAN_INFO("You [dronefab.produce_drones ? "enable" : "disable"] drone production in the nearby fabricator."))
 
-	src.updateUsrDialog()
+	updateUsrDialog()

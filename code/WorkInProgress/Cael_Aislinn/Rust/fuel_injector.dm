@@ -195,46 +195,43 @@
 	onclose(user, "fuel_injector")
 	user.set_machine(src)
 
-/obj/machinery/power/rust_fuel_injector/Topic(href, href_list)
-	..()
+/obj/machinery/power/rust_fuel_injector/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("modify_tag"))
+		id_tag = input(user, "Enter new ID tag", "Modifying ID tag") as text | null
 
-	if( href_list["modify_tag"] )
-		id_tag = input("Enter new ID tag", "Modifying ID tag") as text|null
-
-	if( href_list["fuel_assembly"] )
+	else if(topic.has("fuel_assembly"))
 		attempt_fuel_swap()
 
-	if( href_list["emergency_fuel_assembly"] )
-		if(cur_assembly)
+	else if(topic.has("emergency_fuel_assembly"))
+		if(isnotnull(cur_assembly))
 			cur_assembly.forceMove(loc)
 			cur_assembly = null
-			//irradiate!
 		else
 			emergency_insert_ready = !emergency_insert_ready
 
-	if( href_list["toggle_injecting"] )
+	else if(topic.has("toggle_injecting"))
 		if(injecting)
 			StopInjecting()
 		else
 			BeginInjecting()
 
-	if( href_list["toggle_remote"] )
+	else if(topic.has("toggle_remote"))
 		remote_access_enabled = !remote_access_enabled
 
-	if( href_list["fuel_usage"] )
-		var/new_usage = text2num(input("Enter new fuel usage (0.01% - 100%)", "Modifying fuel usage", fuel_usage * 100))
+	else if(topic.has("fuel_usage"))
+		var/new_usage = text2num(input(user, "Enter new fuel usage (0.01% - 100%)", "Modifying fuel usage", fuel_usage * 100))
 		if(!new_usage)
-			to_chat(usr, SPAN_WARNING("That's not a valid number."))
+			to_chat(user, SPAN_WARNING("That's not a valid number."))
 			return
 		new_usage = max(new_usage, 0.01)
 		new_usage = min(new_usage, 100)
 		fuel_usage = new_usage / 100
 		power_usage[USE_POWER_ACTIVE] = 500 + 1000 * fuel_usage
 
-	if( href_list["update_extern"] )
-		var/obj/machinery/computer/rust_fuel_control/C = locate(href_list["update_extern"])
-		if(C)
-			C.updateDialog()
+	else if(topic.has("update_extern"))
+		var/obj/machinery/computer/rust_fuel_control/C = topic.get_and_locate("update_extern")
+		C?.updateDialog()
 
 	updateDialog()
 

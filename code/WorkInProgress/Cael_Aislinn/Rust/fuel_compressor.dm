@@ -55,57 +55,52 @@ var/const/max_assembly_amount = 300
 	//var/locked
 	//var/coverlocked
 
-/obj/machinery/rust_fuel_compressor/Topic(href, href_list)
-	..()
-	if( href_list["eject_matter"] )
+/obj/machinery/rust_fuel_compressor/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("eject_matter"))
 		var/ejected = 0
 		while(compressed_matter > 10)
-			new /obj/item/rcd_ammo(get_step(GET_TURF(src), src.dir))
+			new /obj/item/rcd_ammo(get_step(GET_TURF(src), dir))
 			compressed_matter -= 10
 			ejected = 1
 		if(ejected)
-			to_chat(usr, SPAN_INFO("[icon2html(src, usr)] [src] ejects some compressed matter units."))
+			to_chat(user, SPAN_INFO("[icon2html(src, user)] [src] ejects some compressed matter units."))
 		else
-			to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] [src] contains no compressed matter units!"))
+			to_chat(user, SPAN_WARNING("[icon2html(src, user)] [src] contains no compressed matter units!"))
 
-	if( href_list["activate"] )
-		//to_world("\blue New fuel rod assembly")
-		var/obj/item/fuel_assembly/F = new(src)
-		var/fail = 0
+	else if(topic.has("activate"))
+		var/fail = FALSE
+		var/obj/item/fuel_assembly/assembly = new /obj/item/fuel_assembly(src)
 		var/old_matter = compressed_matter
 		for(var/reagent in new_assembly_quantities)
 			var/req_matter = round(new_assembly_quantities[reagent] / 30)
-			//to_world("[reagent] matter: [req_matter]/[compressed_matter]")
 			if(req_matter <= compressed_matter)
-				F.rod_quantities[reagent] = new_assembly_quantities[reagent]
+				assembly.rod_quantities[reagent] = new_assembly_quantities[reagent]
 				compressed_matter -= req_matter
 				if(compressed_matter < 1)
 					compressed_matter = 0
 			else
-				/*to_world("bad reagent: [reagent], [req_matter > compressed_matter ? "req_matter > compressed_matter"\
-				 : (req_matter < compressed_matter ? "req_matter < compressed_matter" : "req_matter == compressed_matter")]")*/
-				fail = 1
+				fail = TRUE
 				break
-			//to_world("\blue	[reagent]: new_assembly_quantities[reagent]<br>")
 		if(fail)
-			qdel(F)
+			qdel(assembly)
 			compressed_matter = old_matter
-			to_chat(usr, SPAN_WARNING("[icon2html(src, usr)] [src] flashes red: \"Out of matter.\""))
+			to_chat(user, SPAN_WARNING("[icon2html(src, user)] [src] flashes red: \"Out of matter.\""))
 		else
-			F.forceMove(loc)//get_step(GET_TURF(src), src.dir)
-			F.percent_depleted = 0
+			assembly.forceMove(loc)
+			assembly.percent_depleted = 0
 			if(compressed_matter < 0.034)
 				compressed_matter = 0
 
-	if( href_list["change_reagent"] )
-		var/cur_reagent = href_list["change_reagent"]
+	else if(topic.has("change_reagent"))
+		var/cur_reagent = topic.get_str("change_reagent")
 		var/avail_rods = 300
 		for(var/rod in new_assembly_quantities)
 			avail_rods -= new_assembly_quantities[rod]
 		avail_rods += new_assembly_quantities[cur_reagent]
 		avail_rods = max(avail_rods, 0)
 
-		var/new_amount = min(input("Enter new [cur_reagent] rod amount (max [avail_rods])", "Fuel Assembly Rod Composition ([cur_reagent])") as num, avail_rods)
+		var/new_amount = min(input(user, "Enter new [cur_reagent] rod amount (max [avail_rods])", "Fuel Assembly Rod Composition ([cur_reagent])") as num, avail_rods)
 		new_assembly_quantities[cur_reagent] = new_amount
 
 	updateDialog()

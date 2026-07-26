@@ -136,17 +136,15 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/computer/shuttle_control/emergency/Topic(href, href_list)
-	if(..())
-		return
-
-	if(href_list["removeid"])
-		var/dna_hash = href_list["removeid"]
+/obj/machinery/computer/shuttle_control/emergency/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("removeid"))
+		var/dna_hash = topic.get_str("removeid")
 		authorized.Remove(dna_hash)
 
-	if(!emagged && href_list["scanid"])
-		//They selected an empty entry. Try to scan their id.
-		if(ishuman(usr))
-			var/mob/living/carbon/human/H = usr
-			if(!read_authorisation(H.get_active_hand()))	//try to read what's in their hand first
+	else if(!emagged && topic.has("scanid"))
+		// They selected an empty entry. Try to scan their id.
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(!read_authorisation(H.get_active_hand())) //try to read what's in their hand first
 				read_authorisation(H.id_store)

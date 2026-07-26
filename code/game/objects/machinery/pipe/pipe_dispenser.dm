@@ -52,31 +52,33 @@
 	onclose(user, "pipedispenser")
 	return
 
-/obj/machinery/pipedispenser/Topic(href, href_list)
-	if(..())
+/obj/machinery/pipedispenser/can_handle_topic(mob/user)
+	. = ..()
+	if(!.)
 		return
-	if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		CLOSE_BROWSER(usr, "window=pipedispenser")
-		return
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-	if(href_list["make"])
+	if(unwrenched || !user.canmove)
+		return FALSE
+	if(wait) // Should probably add some feedback text here.
+		return FALSE
+
+/obj/machinery/pipedispenser/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("make"))
 		if(!wait)
-			var/p_type = text2num(href_list["make"])
-			var/p_dir = text2num(href_list["dir"])
-			var/obj/item/pipe/P = new (/*usr.loc*/ src.loc, pipe_type=p_type, dir=p_dir)
+			var/p_type = topic.get_num("make")
+			var/p_dir = topic.get_num("dir")
+			var/obj/item/pipe/P = new /obj/item/pipe(loc, pipe_type = p_type, dir = p_dir)
 			P.update()
-			P.add_fingerprint(usr)
-			wait = 1
-			spawn(10)
-				wait = 0
-	if(href_list["makemeter"])
+			wait = TRUE
+			spawn(1 SECOND)
+				wait = FALSE
+
+	else if(topic.has("makemeter"))
 		if(!wait)
-			new /obj/item/pipe_meter(/*usr.loc*/ src.loc)
-			wait = 1
-			spawn(15)
-				wait = 0
-	return
+			new /obj/item/pipe_meter(loc)
+			wait = TRUE
+			spawn(1.5 SECONDS)
+				wait = FALSE
 
 /obj/machinery/pipedispenser/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(usr)
@@ -167,51 +169,41 @@ Nah
 
 // 0=straight, 1=bent, 2=junction-j1, 3=junction-j2, 4=junction-y, 5=trunk
 
-
-/obj/machinery/pipedispenser/disposal/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-	if(href_list["dmake"])
-		if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-			CLOSE_BROWSER(usr, "window=pipedispenser")
-			return
-		if(!wait)
-			var/p_type = text2num(href_list["dmake"])
-			var/obj/structure/disposalconstruct/C = new (src.loc)
-			switch(p_type)
-				if(0)
-					C.ptype = 0
-				if(1)
-					C.ptype = 1
-				if(2)
-					C.ptype = 2
-				if(3)
-					C.ptype = 4
-				if(4)
-					C.ptype = 5
-				if(5)
-					C.ptype = 6
-					C.density = TRUE
-				if(6)
-					C.ptype = 7
-					C.density = TRUE
-				if(7)
-					C.ptype = 8
-					C.density = TRUE
+/obj/machinery/pipedispenser/disposal/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("dmake"))
+		var/p_type = topic.get_num("dmake")
+		var/obj/structure/disposalconstruct/C = new /obj/structure/disposalconstruct(loc)
+		switch(p_type)
+			if(0)
+				C.ptype = 0
+			if(1)
+				C.ptype = 1
+			if(2)
+				C.ptype = 2
+			if(3)
+				C.ptype = 4
+			if(4)
+				C.ptype = 5
+			if(5)
+				C.ptype = 6
+				C.density = TRUE
+			if(6)
+				C.ptype = 7
+				C.density = TRUE
+			if(7)
+				C.ptype = 8
+				C.density = TRUE
 ///// Z-Level stuff
-				if(21)
-					C.ptype = 11
-				if(22)
-					C.ptype = 12
+			if(21)
+				C.ptype = 11
+			if(22)
+				C.ptype = 12
 ///// Z-Level stuff
-			C.add_fingerprint(usr)
-			C.update()
-			wait = 1
-			spawn(15)
-				wait = 0
-	return
+		C.update()
+		wait = TRUE
+		spawn(1.5 SECONDS)
+			wait = FALSE
 
 // adding a pipe dispensers that spawn unhooked from the ground
 /obj/machinery/pipedispenser/orderable
