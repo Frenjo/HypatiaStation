@@ -80,26 +80,22 @@
 	. = ..()
 	if(topic.has("show_preferences"))
 		client.prefs.character_setup_panel(src)
-		return
 
-	if(topic.has("ready"))
+	else if(topic.has("ready"))
 		if(global.PCticker?.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = !ready
 		else
 			ready = FALSE
 		new_player_panel()
-		return
 
-	if(topic.has("refresh"))
+	else if(topic.has("refresh"))
 		CLOSE_BROWSER(src, "window=playersetup") // Closes the player setup window.
 		new_player_panel()
-		return
 
-	if(!ready && topic.has("preference"))
+	else if(!ready && topic.has("preference"))
 		client.prefs.process_link(src, topic)
-		return
 
-	if(topic.has("observe"))
+	else if(topic.has("observe"))
 		if(alert(src, "Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!", "Player Setup", "Yes", "No") == "Yes")
 			if(isnull(client))
 				return
@@ -132,9 +128,7 @@
 			observer.key = key
 			qdel(src)
 
-			return
-
-	if(topic.has("late_join"))
+	else if(topic.has("late_join"))
 		if(global.PCticker?.current_state != GAME_STATE_PLAYING)
 			to_chat(user, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
@@ -145,13 +139,11 @@
 				return
 
 		late_join_choices_panel()
-		return
 
-	if(topic.has("manifest"))
+	else if(topic.has("manifest"))
 		GLOBL.data_core.show_manifest_to(user, is_ooc = TRUE)
-		return
 
-	if(topic.has("SelectedJob"))
+	else if(topic.has("SelectedJob"))
 		if(!GLOBL.enter_allowed)
 			to_chat(user, SPAN_INFO("There is an administrative lock on entering the game!"))
 			return
@@ -161,9 +153,8 @@
 			return 0
 
 		attempt_late_spawn(topic.get("SelectedJob"), client.prefs.spawnpoint)
-		return
 
-	if(topic.has("privacy_poll"))
+	else if(topic.has("privacy_poll"))
 		establish_db_connection()
 		if(!GLOBL.dbcon.IsConnected())
 			return
@@ -200,21 +191,18 @@
 			query_insert.Execute()
 			to_chat(user, "<b>Thank you for your vote!</b>")
 			CLOSE_BROWSER(user, "window=privacypoll")
-		return
 
-	if(topic.has("showpoll"))
+	else if(topic.has("showpoll"))
 		handle_player_polling()
-		return
 
-	if(topic.has("pollid"))
+	else if(topic.has("pollid"))
 		var/pollid = topic.get_str("pollid")
 		if(istext(pollid))
 			pollid = text2num(pollid)
 		if(isnum(pollid))
 			poll_player(pollid)
-		return
 
-	if(topic.has("votepollid") && topic.has("votetype"))
+	else if(topic.has("votepollid") && topic.has("votetype"))
 		var/pollid = topic.get_num("votepollid")
 		var/votetype = topic.get_str("votetype")
 		switch(votetype)
@@ -254,7 +242,6 @@
 				for(var/optionid in id_min to id_max)
 					if(topic.has("option_[optionid]")) // Test if this optionid was selected.
 						vote_on_poll(pollid, optionid, 1)
-		return
 
 /mob/dead/new_player/proc/is_job_available(rank)
 	var/datum/job/job = global.CTjobs.get_job(rank)

@@ -73,7 +73,7 @@
 	. = ..()
 	if(topic.get("burst_mode"))
 		burst_mode = TRUE
-	if(topic.get("cannon_mode"))
+	else if(topic.get("cannon_mode"))
 		burst_mode = FALSE
 	update_equip_info()
 

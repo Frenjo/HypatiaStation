@@ -125,11 +125,11 @@
 	. = ..()
 	if(topic.has("eject"))
 		go_out()
-	if(topic.has("view_stats"))
+	else if(topic.has("view_stats"))
 		SHOW_BROWSER(chassis.occupant, get_patient_stats(),"window=msleeper")
 		onclose(chassis.occupant, "msleeper")
-		return
-	if(topic.get("inject"))
+
+	else if(topic.get("inject"))
 		inject_reagent(topic.get_type("inject", /datum/reagent), topic.get_obj("source"))
 
 /obj/item/mecha_equipment/medical/sleeper/proc/get_patient_stats()

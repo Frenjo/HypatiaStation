@@ -156,7 +156,7 @@
 				ai_call_shuttle()
 	..()
 
-/mob/living/silicon/ai/handle_topic(mob/user)
+/mob/living/silicon/ai/can_handle_topic(mob/user)
 	. = ..()
 	if(!.)
 		return
@@ -167,25 +167,21 @@
 	. = ..()
 	if(topic.has("switchcamera"))
 		switchCamera(topic.get_and_locate("switchcamera")) in global.CTcameranet.cameras
-		return
-	if(topic.has("showalerts"))
+	else if(topic.has("showalerts"))
 		ai_alerts()
-		return
 	//Carn: holopad requests
-	if(topic.has("jumptoholopad"))
+	else if(topic.has("jumptoholopad"))
 		var/obj/machinery/hologram/holopad/H = topic.get_and_locate("jumptoholopad")
 		if(stat == CONSCIOUS)
 			if(isnotnull(H))
 				H.attack_ai(src) //may as well recycle
 			else
 				to_chat(src, SPAN_NOTICE("Unable to locate the holopad."))
-		return
 
-	if(topic.has("say_word"))
+	else if(topic.has("say_word"))
 		play_vox_word(topic.get_str("say_word"), null, src)
-		return
 
-	if(topic.has("track"))
+	else if(topic.has("track"))
 		var/mob/target = locate(topic.get("track")) in GLOBL.mob_list
 		/*
 		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in mob_list
@@ -194,9 +190,8 @@
 		*/
 		if(isnotnull(target))
 			ai_actual_track(target)
-		return
 
-	if(topic.has("faketrack"))
+	else if(topic.has("faketrack"))
 		var/mob/target = locate(topic.get("track")) in GLOBL.mob_list
 		var/mob/living/silicon/ai/A = locate(topic.get("track2")) in GLOBL.mob_list
 		if(isnotnull(A) && isnotnull(target))

@@ -141,15 +141,15 @@
 
 	if(topic.has("water"))
 		setting_water = !setting_water
-	if(topic.has("refill"))
+	else if(topic.has("refill"))
 		setting_refill = !setting_refill
-	if(topic.has("fertilize"))
+	else if(topic.has("fertilize"))
 		setting_fertilize = !setting_fertilize
-	if(topic.has("weed"))
+	else if(topic.has("weed"))
 		setting_weed = !setting_weed
-	if(topic.has("ignoreWeed"))
+	else if(topic.has("ignoreWeed"))
 		setting_ignoreWeeds = !setting_ignoreWeeds
-	if(topic.has("ignoreMush"))
+	else if(topic.has("ignoreMush"))
 		setting_ignoreMushrooms = !setting_ignoreMushrooms
 	updateUsrDialog()
 

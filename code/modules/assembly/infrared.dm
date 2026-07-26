@@ -123,7 +123,7 @@
 		on = !(on)
 		update_icon()
 
-	if(topic.has("visible"))
+	else if(topic.has("visible"))
 		visible = !visible
 		spawn(0)
 			first?.vis_spread(visible)

@@ -286,21 +286,21 @@
 				release_log += "Valve was <b>opened</b> by [user] ([user.ckey]), starting the transfer into the [SPAN_DANGER("air")]<br>"
 		valve_open = !valve_open
 
-	if(topic.has("remove_tank"))
+	else if(topic.has("remove_tank"))
 		if(isnotnull(holding))
 			if(istype(holding, /obj/item/tank))
 				holding.manipulated_by = user.real_name
 			holding.forceMove(loc)
 			holding = null
 
-	if(topic.has("pressure_adj"))
+	else if(topic.has("pressure_adj"))
 		var/diff = topic.get_num("pressure_adj")
 		if(diff > 0)
 			release_pressure = min(10 * ONE_ATMOSPHERE, release_pressure + diff)
 		else
 			release_pressure = max(ONE_ATMOSPHERE / 10, release_pressure + diff)
 
-	if(topic.has("relabel"))
+	else if(topic.has("relabel"))
 		if(can_label)
 			var/label = input("Choose canister label", "Gas Canister") as null | anything in all_colours
 			if(isnotnull(label))

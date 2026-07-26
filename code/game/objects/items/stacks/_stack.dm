@@ -115,7 +115,7 @@
 	if(topic.has("sublist") && !topic.has("make"))
 		list_recipes(user, topic.get_num("sublist"))
 
-	if(topic.has("make"))
+	else if(topic.has("make"))
 		if(amount < 1)
 			qdel(src) //Never should happen
 

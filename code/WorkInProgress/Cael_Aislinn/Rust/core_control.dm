@@ -105,18 +105,18 @@
 	. = ..()
 	if(topic.has("goto_scanlist"))
 		cur_viewed_device = null
-	if(topic.has("manage_individual"))
+	else if(topic.has("manage_individual"))
 		cur_viewed_device = topic.get_and_locate("manage_individual")
 
-	if(topic.has("scan"))
+	else if(topic.has("scan"))
 		connected_devices = list()
 		for(var/obj/machinery/power/rust_core/C in range(scan_range, src))
 			if(check_core_status(C))
 				connected_devices.Add(C)
 
-	if(topic.has("startup"))
+	else if(topic.has("startup"))
 		cur_viewed_device?.Startup()
-	if(topic.has("shutdown"))
+	else if(topic.has("shutdown"))
 		cur_viewed_device?.Shutdown()
 
 	updateDialog()

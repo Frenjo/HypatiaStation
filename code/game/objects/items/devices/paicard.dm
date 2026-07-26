@@ -241,11 +241,11 @@
 			pai.master_dna = dna.unique_enzymes
 			to_chat(pai, SPAN_WARNING("<h3>You have been bound to a new master.</h3>"))
 
-	if(topic.has("request"))
+	else if(topic.has("request"))
 		src.looking_for_personality = 1
 		global.CTpai.find_pAI(src, user)
 
-	if(topic.has("wipe"))
+	else if(topic.has("wipe"))
 		var/confirm = input("Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe") in list("Yes", "No")
 		if(confirm == "Yes")
 			for(var/mob/living/L in src)
@@ -256,14 +256,14 @@
 				L.death(FALSE)
 			removePersonality()
 
-	if(topic.has("wires"))
+	else if(topic.has("wires"))
 		var/t1 = topic.get_num("wires")
 		if(radio.wires & t1)
 			radio.wires &= ~t1
 		else
 			radio.wires |= t1
 
-	if(topic.has("setlaws"))
+	else if(topic.has("setlaws"))
 		var/newlaws = copytext(sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message), 1, MAX_MESSAGE_LEN)
 		if(newlaws)
 			pai.pai_laws = newlaws

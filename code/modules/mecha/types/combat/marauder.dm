@@ -96,10 +96,8 @@
 	. = ..()
 	if(topic.has("thrusters"))
 		toggle_thrusters()
-		return
-	if(topic.has("smoke"))
+	else if(topic.has("smoke"))
 		smoke()
-		return
 
 /obj/mecha/combat/marauder/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

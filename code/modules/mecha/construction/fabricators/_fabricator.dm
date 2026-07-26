@@ -374,7 +374,7 @@
 				part_set = tpart_set
 				screen = "parts"
 
-	if(topic.has("part"))
+	else if(topic.has("part"))
 		var/path = topic.get_path("part")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
@@ -385,7 +385,7 @@
 						add_to_queue(D)
 					break
 
-	if(topic.has("add_to_queue"))
+	else if(topic.has("add_to_queue"))
 		var/path = topic.get_path("add_to_queue")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
@@ -394,15 +394,15 @@
 					break
 		return update_queue_on_page()
 
-	if(topic.has("remove_from_queue"))
+	else if(topic.has("remove_from_queue"))
 		remove_from_queue(topic.get_num("remove_from_queue"))
 		return update_queue_on_page()
 
-	if(topic.has("partset_to_queue"))
+	else if(topic.has("partset_to_queue"))
 		add_part_set_to_queue(topic.get("partset_to_queue"))
 		return update_queue_on_page()
 
-	if(topic.has("process_queue"))
+	else if(topic.has("process_queue"))
 		spawn(-1)
 			if(processing_queue || being_built)
 				return
@@ -410,13 +410,13 @@
 			process_queue()
 			processing_queue = FALSE
 
-	if(topic.has("clear_temp"))
+	else if(topic.has("clear_temp"))
 		temp = null
 
-	if(topic.has("screen"))
+	else if(topic.has("screen"))
 		screen = topic.get("screen")
 
-	if(topic.has("queue_move") && topic.has("index"))
+	else if(topic.has("queue_move") && topic.has("index"))
 		var/index = topic.get_num("index")
 		var/new_index = index + topic.get_num("queue_move")
 		if(isnum(index) && isnum(new_index))
@@ -424,16 +424,16 @@
 				queue.Swap(index, new_index)
 		return update_queue_on_page()
 
-	if(topic.has("clear_queue"))
+	else if(topic.has("clear_queue"))
 		queue = list()
 		return update_queue_on_page()
 
-	if(topic.has("sync"))
+	else if(topic.has("sync"))
 		queue = list()
 		sync()
 		return update_queue_on_page()
 
-	if(topic.has("part_desc"))
+	else if(topic.has("part_desc"))
 		var/path = topic.get_path("part_desc")
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(D.build_type & design_flag)
@@ -445,7 +445,7 @@
 							"}
 					break
 
-	if(topic.has("remove_mat") && topic.has("material"))
+	else if(topic.has("remove_mat") && topic.has("material"))
 		var/decl/material/material_type = topic.get_path("material")
 		GET_COMPONENT(container, /datum/component/material_container)
 		temp = "Ejected [container.eject_sheets(material_type, topic.get_num("remove_mat"))] sheets of [lowertext(material_type::name)]."

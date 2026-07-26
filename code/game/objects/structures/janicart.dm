@@ -114,22 +114,26 @@
 			user.put_in_hands(mybag)
 			to_chat(user, SPAN_NOTICE("You take [mybag] from \the [src]."))
 			mybag = null
-	if(topic.has("mop"))
+
+	else if(topic.has("mop"))
 		if(isnotnull(mymop))
 			user.put_in_hands(mymop)
 			to_chat(user, SPAN_NOTICE("You take [mymop] from \the [src]."))
 			mymop = null
-	if(topic.has("spray"))
+
+	else if(topic.has("spray"))
 		if(isnotnull(myspray))
 			user.put_in_hands(myspray)
 			to_chat(user, SPAN_NOTICE("You take [myspray] from \the [src]."))
 			myspray = null
-	if(topic.has("replacer"))
+
+	else if(topic.has("replacer"))
 		if(isnotnull(myreplacer))
 			user.put_in_hands(myreplacer)
 			to_chat(user, SPAN_NOTICE("You take [myreplacer] from \the [src]."))
 			myreplacer = null
-	if(topic.has("sign"))
+
+	else if(topic.has("sign"))
 		if(signs)
 			var/obj/item/caution/sign = locate() in src
 			if(isnotnull(sign))

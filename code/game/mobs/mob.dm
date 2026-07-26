@@ -567,11 +567,9 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	. = ..()
 	if(topic.has("flavor_change"))
 		update_flavor_text()
-		return
-	if(topic.has("flavor_more"))
+	else if(topic.has("flavor_more"))
 		SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><TT>[replacetext(flavor_text, "\n", "<BR>")]</TT></BODY></HTML>", "window=[name];size=500x200")
 		onclose(user, "[name]")
-		return
 
 /mob/proc/pull_damage()
 	if(ishuman(src))

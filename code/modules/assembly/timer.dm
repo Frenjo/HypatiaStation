@@ -86,7 +86,7 @@
 		timing = topic.get_num("time")
 		update_icon()
 
-	if(topic.has("tp"))
+	else if(topic.has("tp"))
 		time += topic.get_num("tp")
 		time = min(max(round(time), 0), 600)
 

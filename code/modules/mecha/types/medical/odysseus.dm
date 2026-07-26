@@ -135,7 +135,6 @@
 	. = ..()
 	if(topic.has("camouflage"))
 		do_camouflage()
-		return
 
 /obj/mecha/medical/odysseus/eurymachus/verb/toggle_camouflage()
 	set category = "Exosuit Interface"

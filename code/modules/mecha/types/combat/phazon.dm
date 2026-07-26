@@ -88,10 +88,8 @@
 	. = ..()
 	if(topic.has("phasing"))
 		toggle_phasing()
-		return
-	if(topic.has("switch_damage_type"))
+	else if(topic.has("switch_damage_type"))
 		switch_damage_type()
-		return
 
 /obj/mecha/combat/phazon/verb/toggle_phasing()
 	set category = "Exosuit Interface"

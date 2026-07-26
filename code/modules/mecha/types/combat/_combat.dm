@@ -269,10 +269,9 @@
 	. = ..()
 	if(topic.has("zoom"))
 		toggle_zoom_mode()
-		return
-	if(topic.has("defence_mode"))
+	else if(topic.has("defence_mode"))
 		toggle_defence_mode()
-		return
+
 	/*
 	if(filter.has("saminput"))
 		if(md5(filter.get("saminput")) == am)

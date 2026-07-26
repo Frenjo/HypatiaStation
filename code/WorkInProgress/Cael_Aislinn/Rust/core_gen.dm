@@ -258,23 +258,23 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		power_usage[USE_POWER_ACTIVE] = 5 * field_strength //change to 500 later
 		owned_field?.ChangeFieldStrength(field_strength)
 
-	if(topic.has("freq"))
+	else if(topic.has("freq"))
 		var/dif = topic.get_num("freq")
 		field_frequency = min(max(field_frequency + dif, MIN_FIELD_FREQ), MAX_FIELD_FREQ)
 		owned_field?.ChangeFieldFrequency(field_frequency)
 
-	if(topic.has("toggle_active"))
+	else if(topic.has("toggle_active"))
 		if(!Startup())
 			Shutdown()
 
-	if(topic.has("toggle_remote"))
+	else if(topic.has("toggle_remote"))
 		remote_access_enabled = !remote_access_enabled
 
-	if(topic.has("new_id_tag"))
+	else if(topic.has("new_id_tag"))
 		if(isnotnull(user))
 			id_tag = input("Enter a new ID tag", "Tokamak core ID tag", id_tag) as text | null
 
-	if(topic.has("extern_update"))
+	else if(topic.has("extern_update"))
 		var/obj/machinery/computer/rust_core_control/control = topic.get_and_locate("extern_update")
 		control?.updateDialog()
 

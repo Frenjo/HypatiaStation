@@ -14,86 +14,71 @@
 	. = ..()
 	if(topic.has("update_content"))
 		send_byjax(occupant, "exosuit.browser", "content", get_stats_part())
-		return
 
-	if(topic.has("select_equip"))
+	else if(topic.has("select_equip"))
 		var/obj/item/mecha_equipment/equip = topic.get_obj("select_equip")
 		if(isnotnull(equip))
 			selected = equip
 			occupant_message("You switch to [equip]")
 			visible_message("[src] raises [equip]")
 			send_byjax(occupant, "exosuit.browser", "eq_list", get_equipment_list())
-		return
 
-	if(topic.has("eject"))
+	else if(topic.has("eject"))
 		eject()
-		return
 
-	if(topic.has("toggle_lights"))
+	else if(topic.has("toggle_lights"))
 		toggle_lights()
-		return
 
-	if(topic.has("toggle_airtank"))
+	else if(topic.has("toggle_airtank"))
 		toggle_internal_tank()
-		return
 
-	if(topic.has("rmictoggle"))
+	else if(topic.has("rmictoggle"))
 		radio.broadcasting = !radio.broadcasting
 		send_byjax(occupant, "exosuit.browser", "rmicstate", (radio.broadcasting ? "Engaged" : "Disengaged"))
-		return
 
-	if(topic.has("rspktoggle"))
+	else if(topic.has("rspktoggle"))
 		radio.listening = !radio.listening
 		send_byjax(occupant, "exosuit.browser", "rspkstate", (radio.listening ? "Engaged" : "Disengaged"))
-		return
 
-	if(topic.has("rfreq"))
+	else if(topic.has("rfreq"))
 		var/new_frequency = (radio.frequency + topic.get_num("rfreq"))
 		if(!radio.freerange || (radio.frequency < 1200 || radio.frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency)
 		radio.radio_connection = register_radio(radio, new_frequency, new_frequency, RADIO_CHAT)
 		send_byjax(occupant, "exosuit.browser", "rfreq", "[format_frequency(radio.frequency)]")
-		return
 
-	if(topic.has("port_disconnect"))
+	else if(topic.has("port_disconnect"))
 		disconnect_from_port()
-		return
 
-	if(topic.has("port_connect"))
+	else if(topic.has("port_connect"))
 		connect_to_port()
-		return
 
-	if(topic.has("view_log"))
+	else if(topic.has("view_log"))
 		SHOW_BROWSER(occupant, get_log_html(), "window=exosuit_log")
 		onclose(occupant, "exosuit_log")
-		return
 
-	if(topic.has("change_name"))
+	else if(topic.has("change_name"))
 		var/newname = strip_html_simple(input(occupant, "Choose new exosuit name", "Rename exosuit", initial(name)) as text, MAX_NAME_LEN)
 		if(newname && trim(newname))
 			name = newname
 		else
 			alert(occupant, "nope.avi")
-		return
 
-	if(topic.has("toggle_id_upload"))
+	else if(topic.has("toggle_id_upload"))
 		add_req_access = !add_req_access
 		send_byjax(occupant, "exosuit.browser", "t_id_upload", "[add_req_access ? "L" : "Unl"]ock ID upload panel")
-		return
 
-	if(topic.has("toggle_maint_access"))
+	else if(topic.has("toggle_maint_access"))
 		if(state)
 			occupant_message(SPAN_WARNING("Maintenance protocols in effect."))
 			return
 		maint_access = !maint_access
 		send_byjax(occupant, "exosuit.browser", "t_maint_access", "[maint_access ? "Forbid" : "Permit"] maintenance protocols")
-		return
 
-	if(topic.has("req_access") && add_req_access)
+	else if(topic.has("req_access") && add_req_access)
 		output_access_dialog(topic.get_obj("id_card"), user)
-		return
 
-	if(topic.has("maint_access") && maint_access)
+	else if(topic.has("maint_access") && maint_access)
 		if(!in_range(src, user))
 			return
 		if(state == 0)
@@ -103,52 +88,45 @@
 			state = 0
 			to_chat(user, SPAN_INFO("The securing bolts are now hidden."))
 		output_maintenance_dialog(topic.get_obj("id_card"), user)
-		return
 
-	if(topic.has("set_internal_tank_valve") && state >= 1)
+	else if(topic.has("set_internal_tank_valve") && state >= 1)
 		if(!in_range(src, user))
 			return
 		var/new_pressure = input(user, "Input new output pressure", "Pressure setting", internal_tank_valve) as num
 		if(isnotnull(new_pressure))
 			internal_tank_valve = new_pressure
 			to_chat(user, SPAN_INFO("The internal pressure valve has been set to [internal_tank_valve]kPa."))
-		return
 
-	if(topic.has("add_req_access") && add_req_access && topic.get_obj("id_card"))
+	else if(topic.has("add_req_access") && add_req_access && topic.get_obj("id_card"))
 		if(!in_range(src, user))
 			return
 		operation_req_access += topic.get_num("add_req_access")
 		output_access_dialog(topic.get_obj("id_card"), user)
-		return
 
-	if(topic.has("del_req_access") && add_req_access && topic.get_obj("id_card"))
+	else if(topic.has("del_req_access") && add_req_access && topic.get_obj("id_card"))
 		if(!in_range(src, user))
 			return
 		operation_req_access -= topic.get_num("del_req_access")
 		output_access_dialog(topic.get_obj("id_card"), user)
-		return
 
-	if(topic.has("finish_req_access"))
+	else if(topic.has("finish_req_access"))
 		if(!in_range(src, user))
 			return
 		add_req_access = FALSE
 		CLOSE_BROWSER(user,"window=exosuit_add_access")
-		return
 
-	if(topic.has("dna_lock"))
+	else if(topic.has("dna_lock"))
 		if(isbrain(occupant))
 			occupant_message("You are a brain. No.")
 			return
 		if(occupant)
 			dna = occupant.dna.unique_enzymes
 			occupant_message("You feel a prick as the needle takes your DNA sample.")
-		return
 
-	if(topic.has("reset_dna"))
+	else if(topic.has("reset_dna"))
 		dna = null
-		return
 
-	if(topic.has("repair_int_control_lost"))
+	else if(topic.has("repair_int_control_lost"))
 		occupant_message("Recalibrating coordination system.")
 		log_message("Recalibration of coordination system started.")
 		var/T = loc
@@ -160,7 +138,6 @@
 			else
 				occupant_message(SPAN_WARNING("Recalibration failed."))
 				log_message("Recalibration of coordination system failed with 1 error.", 1)
-		return
 
 /*
 /obj/mecha/Topic(href, href_list)

@@ -134,21 +134,21 @@
 		if(heal_threshold > 75)
 			heal_threshold = 75
 
-	if(topic.has("adj_inject"))
+	else if(topic.has("adj_inject"))
 		injection_amount += topic.get_num("adj_inject")
 		if(injection_amount < 5)
 			injection_amount = 5
 		if(injection_amount > 15)
 			injection_amount = 15
 
-	if(topic.has("use_beaker"))
+	else if(topic.has("use_beaker"))
 		use_beaker = !use_beaker
 
-	if(topic.has("eject") && isnotnull(reagent_glass))
+	else if(topic.has("eject") && isnotnull(reagent_glass))
 		reagent_glass.forceMove(GET_TURF(src))
 		reagent_glass = null
 
-	if(topic.has("togglevoice"))
+	else if(topic.has("togglevoice"))
 		shut_up = !shut_up
 
 	updateUsrDialog()

@@ -69,7 +69,7 @@
 			P.forceMove(user.loc)
 			user.put_in_hands(P)
 
-	if(topic.has("read"))
+	else if(topic.has("read"))
 		var/obj/item/paper/P = topic.get_and_locate("read")
 		if(isnotnull(P))
 			if(!(ishuman(user) || isghost(user) || issilicon(user)))
@@ -79,7 +79,7 @@
 				SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
 				onclose(user, "[P.name]")
 
-	if(topic.has("look"))
+	else if(topic.has("look"))
 		var/obj/item/photo/P = topic.get_and_locate("look")
 		P?.show(user)
 

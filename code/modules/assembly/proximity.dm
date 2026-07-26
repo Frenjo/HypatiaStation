@@ -129,16 +129,16 @@
 	if(topic.has("scanning"))
 		toggle_scan()
 
-	if(topic.has("time"))
+	else if(topic.has("time"))
 		timing = topic.get_num("time")
 		update_icon()
 
-	if(topic.has("tp"))
+	else if(topic.has("tp"))
 		var/tp = topic.get_num("tp")
 		time += tp
 		time = min(max(round(time), 0), 600)
 
-	if(topic.has("range"))
+	else if(topic.has("range"))
 		var/r = topic.get_num("range")
 		range += r
 		range = min(max(range, 1), 5)

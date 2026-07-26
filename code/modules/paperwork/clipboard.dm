@@ -97,7 +97,7 @@
 			user.put_in_hands(haspen)
 			haspen = null
 
-	if(topic.has("addpen"))
+	else if(topic.has("addpen"))
 		if(isnull(haspen))
 			if(istype(user.get_active_hand(), /obj/item/pen))
 				var/obj/item/pen/W = user.get_active_hand()
@@ -106,13 +106,13 @@
 				haspen = W
 				to_chat(user, SPAN_NOTICE("You slot the pen into \the [src]."))
 
-	if(topic.has("write"))
+	else if(topic.has("write"))
 		var/obj/item/P = topic.get_and_locate("write")
 		if(isnotnull(P))
 			if(user.get_active_hand())
 				P.attackby(user.get_active_hand(), user)
 
-	if(topic.has("remove"))
+	else if(topic.has("remove"))
 		var/obj/item/P = topic.get_and_locate("remove")
 		if(isnotnull(P))
 			P.forceMove(user.loc)
@@ -125,7 +125,7 @@
 				else
 					toppaper = null
 
-	if(topic.has("read"))
+	else if(topic.has("read"))
 		var/obj/item/paper/P = topic.get_and_locate("read")
 		if(isnotnull(P))
 			if(!(ishuman(user) || isghost(user) || issilicon(user)))
@@ -135,11 +135,11 @@
 				SHOW_BROWSER(user, "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
 				onclose(user, "[P.name]")
 
-	if(topic.has("look"))
+	else if(topic.has("look"))
 		var/obj/item/photo/P = topic.get_and_locate("look")
 		P?.show(user)
 
-	if(topic.has("top"))
+	else if(topic.has("top"))
 		var/obj/item/P = topic.get_and_locate("top")
 		if(isnotnull(P))
 			toppaper = P

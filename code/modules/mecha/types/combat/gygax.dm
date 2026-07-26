@@ -22,7 +22,6 @@
 	. = ..()
 	if(topic.has("toggle_leg_overload"))
 		toggle_actuator_overload()
-		return
 
 /obj/mecha/combat/gygax/do_move(direction)
 	. = ..()

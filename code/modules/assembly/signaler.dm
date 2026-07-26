@@ -81,13 +81,13 @@ Code:
 			new_frequency = sanitize_frequency(new_frequency)
 		radio_connection = register_radio(src, new_frequency, new_frequency, RADIO_CHAT)
 
-	if(topic.has("code"))
+	else if(topic.has("code"))
 		src.code += topic.get_num("code")
 		src.code = round(src.code)
 		src.code = min(100, src.code)
 		src.code = max(1, src.code)
 
-	if(topic.has("send"))
+	else if(topic.has("send"))
 		spawn(0)
 			signal()
 

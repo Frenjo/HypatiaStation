@@ -78,11 +78,8 @@
 	. = ..()
 	if(topic.has("safety"))
 		do_safety()
-		return
-
-	if(topic.has("invisibility"))
+	else if(topic.has("invisibility"))
 		do_invisibility()
-		return
 
 /obj/mecha/combat/justice/verb/toggle_safety()
 	set category = "Exosuit Interface"

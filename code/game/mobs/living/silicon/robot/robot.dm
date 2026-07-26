@@ -207,12 +207,12 @@
 		robot_alerts()
 		return
 
-	if(topic.has("mod"))
+	else if(topic.has("mod"))
 		var/obj/item/O = topic.get_and_locate("mod")
 		if(isnotnull(O))
 			O.attack_self(user)
 
-	if(topic.has("act"))
+	else if(topic.has("act"))
 		var/obj/item/O = topic.get_and_locate("act")
 		if(activated(O))
 			to_chat(user, SPAN_WARNING("Module already activated."))
@@ -242,7 +242,7 @@
 			to_chat(user, SPAN_WARNING("You need to disable a module first!"))
 		installed_modules()
 
-	if(topic.has("deact"))
+	else if(topic.has("deact"))
 		var/obj/item/O = topic.get_and_locate("deact")
 		if(activated(O))
 			if(module_state_1 == O)

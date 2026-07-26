@@ -141,8 +141,8 @@
 		set_ready_state(!equip_ready)
 		occupant_message("[src] [equip_ready ? "dea" : "a"]ctivated.")
 		log_message("[equip_ready ? "Dea" : "A"]ctivated.")
-		return
-	if(topic.has("cut"))
+
+	else if(topic.has("cut"))
 		if(cable?.amount)
 			var/m = round(input(chassis.occupant, "Please specify the length of cable to cut", "Cut cable", min(cable.amount, 30)), 1)
 			m = min(m, cable.amount)

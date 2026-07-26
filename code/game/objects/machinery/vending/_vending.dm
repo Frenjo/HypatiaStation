@@ -258,8 +258,8 @@
 				user.put_in_hands(coin)
 			to_chat(user, SPAN_INFO("You remove \the [coin] from \the [src]"))
 			coin = null
-			return
-		if(topic.has("remove_charge_card"))
+
+		else if(topic.has("remove_charge_card"))
 			if(isnull(cash_card))
 				to_chat(user, SPAN_WARNING("There is no charge card in \the [src]."))
 				return
@@ -268,7 +268,6 @@
 				user.put_in_hands(cash_card)
 			to_chat(usr, SPAN_INFO("You remove \the [cash_card] from \the [src]"))
 			cash_card = null
-			return
 
 /obj/machinery/vending/Topic(href, href_list)
 	. = ..()

@@ -60,7 +60,6 @@
 	. = ..()
 	if(topic.has("stealth"))
 		do_stealth()
-		return
 
 /obj/mecha/combat/reticence/verb/toggle_stealth()
 	set category = "Exosuit Interface"

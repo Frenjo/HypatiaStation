@@ -55,7 +55,6 @@
 		stabilisation = !stabilisation
 		balloon_alert(occupant, "[stabilisation ? "en" : "dis"]abled stabilisation")
 		send_byjax(occupant, "exosuit.browser", "stabilisation_command", "[stabilisation ? "Dis" : "En"]able Thruster Stabilisation")
-		return
 
 //No space drifting
 /obj/mecha/working/hoverpod/check_for_support()

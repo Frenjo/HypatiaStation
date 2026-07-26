@@ -67,7 +67,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	if(topic.has("release"))
 		var/stack_path = topic.get_path("release")
 		if(!(stack_path in machine.stack_amounts))
-			return FALSE
+			return
 		var/amount = machine.stack_amounts[stack_path]
 		if(amount > 0)
 			new stack_path(machine.output_turf, amount)

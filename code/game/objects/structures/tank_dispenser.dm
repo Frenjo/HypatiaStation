@@ -100,7 +100,7 @@
 			oxygentanks--
 			update_icon()
 
-	if(topic.has("plasma"))
+	else if(topic.has("plasma"))
 		if(plasmatanks > 0)
 			var/obj/item/tank/plasma/P
 			if(length(platanks) == plasmatanks)

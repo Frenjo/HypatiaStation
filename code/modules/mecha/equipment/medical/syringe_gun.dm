@@ -130,8 +130,8 @@
 	if(topic.has("toggle_mode"))
 		mode = !mode
 		update_equip_info()
-		return
-	if(topic.has("select_reagents"))
+
+	else if(topic.has("select_reagents"))
 		processed_reagents.len = 0
 		var/m = 0
 		var/message
@@ -149,18 +149,17 @@
 			occupant_message(message)
 			occupant_message("Reagent processing started.")
 			log_message("Reagent processing started.")
-		return
-	if(topic.has("show_reagents"))
+
+	else if(topic.has("show_reagents"))
 		SHOW_BROWSER(chassis.occupant, get_reagents_page(), "window=msyringegun")
-		return
-	if(topic.has("purge_reagent"))
+
+	else if(topic.has("purge_reagent"))
 		var/reagent_type = topic.get_path("purge_reagent")
 		if(isnotnull(reagent_type))
 			reagents.del_reagent(reagent_type)
-		return
-	if(topic.has("purge_all"))
+
+	else if(topic.has("purge_all"))
 		reagents.clear_reagents()
-		return
 
 /obj/item/mecha_equipment/medical/syringe_gun/proc/get_reagents_page()
 	. = {"<html>
