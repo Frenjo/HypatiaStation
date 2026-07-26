@@ -32,11 +32,7 @@
 
 	uses--
 	if(uses < 1)
-		source.visible_message(SPAN_WARNING("[src] fizzles and sparks - it seems it's been used once too often, and is now broken."))
-		source.drop_item()
-		var/obj/item/card/emag_broken/junk = new /obj/item/card/emag_broken(source.loc)
-		junk.add_fingerprint(source)
-		qdel(src)
+		fizzle_and_break(source)
 
 // This needs to be replaced with the new system.
 /obj/item/card/emag/afterattack(obj/item/O, mob/user)
@@ -46,14 +42,17 @@
 			break
 
 	if(uses < 1)
-		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
-		user.drop_item()
-		var/obj/item/card/emag_broken/junk = new(user.loc)
-		junk.add_fingerprint(user)
-		qdel(src)
+		fizzle_and_break(user)
 		return
 
 	. = ..()
+
+/obj/item/card/emag/proc/fizzle_and_break(mob/user)
+	user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
+	user.drop_item()
+	var/obj/item/card/emag_broken/junk = new /obj/item/card/emag_broken(user)
+	junk.add_fingerprint(user)
+	qdel(src)
 
 // Broken
 /obj/item/card/emag_broken
