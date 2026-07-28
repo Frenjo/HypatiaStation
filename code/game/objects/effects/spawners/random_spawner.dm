@@ -19,7 +19,7 @@
 	if(isnull(item_type))
 		return
 	var/obj/item/new_item = new item_type(loc)
-	new_item.initialise() // Have to make sure anything spawned during initialise() also gets initialise()'d.
+	queue_for_initialisation(new_item) // Have to make sure anything spawned during initialise() also gets initialise()'d.
 
 // Tool
 /obj/effect/random_spawner/tool
