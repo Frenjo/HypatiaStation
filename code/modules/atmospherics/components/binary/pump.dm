@@ -154,32 +154,25 @@ Thus, the two variables affect pump operation are set in New():
 	usr.set_machine(src)
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
 
-/obj/machinery/atmospherics/binary/pump/Topic(href,href_list)
-	if(..())
-		return
-	/*if(href_list["power"])
-		on = !on
-	if(href_list["set_press"])
-		var/new_pressure = input(usr,"Enter new output pressure (0-4500kPa)","Pressure control",src.target_pressure) as num
-		src.target_pressure = max(0, min(4500, new_pressure))*/
+/obj/machinery/atmospherics/binary/pump/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("power"))
+		switch(topic.get_str("power"))
+			if("on")
+				on = TRUE
+			if("off")
+				on = FALSE
 
-	// Edited this to reflect NanoUI port. -Frenjo
-	switch(href_list["power"])
-		if("off")
-			on = FALSE
-		if("on")
-			on = TRUE
+	else if(topic.has("set_press"))
+		switch(topic.get_str("set_press"))
+			if("min")
+				target_pressure = 0
+			if("max")
+				target_pressure = max_pressure
+			if("set")
+				var/new_pressure = input(user, "Enter new output pressure (0 - [max_pressure]kPa)", "Pressure Control", target_pressure) as num
+				target_pressure = max(0, min(max_pressure, new_pressure))
 
-	switch(href_list["set_press"])
-		if("min")
-			src.target_pressure = 0
-		if("max")
-			src.target_pressure = max_pressure
-		if("set")
-			var/new_pressure = input(usr, "Enter new output pressure (0 - [max_pressure]kPa)", "Pressure Control", target_pressure) as num
-			target_pressure = max(0, min(max_pressure, new_pressure))
-
-	usr.set_machine(src)
 	update_icon()
 	updateUsrDialog()
 

@@ -127,15 +127,14 @@
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/atmospherics/binary/passive_gate/Topic(href, href_list)
-	if(..())
-		return
-	if(href_list["power"])
+/obj/machinery/atmospherics/binary/passive_gate/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("power"))
 		on = !on
-	if(href_list["set_press"])
-		var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", target_pressure) as num
+	else if(topic.has("set_press"))
+		var/new_pressure = input(user, "Enter new output pressure (0-4500kPa)", "Pressure control", target_pressure) as num
 		target_pressure = max(0, min(4500, new_pressure))
-	usr.set_machine(src)
+
 	update_icon()
 	updateUsrDialog()
 

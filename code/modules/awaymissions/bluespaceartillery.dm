@@ -5,59 +5,42 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/reload = 180 // This seems to be measured in machinery process ticks but I'm not sure? -Frenjo
-
-/obj/machinery/artillerycontrol/process()
-	if(src.reload < initial(reload))
-		src.reload++
+	COOLDOWN_DECLARE(reload_cooldown)
 
 /obj/machinery/artillerycontrol/attack_hand(mob/user)
 	user.set_machine(src)
-	var/dat = "<B>Bluespace Artillery Control:</B><BR>"
-	dat += "Locked on<BR>"
-	dat += "<B>Charge progress: [reload]/180:</B><BR>"
-	dat += "<A href='byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
-	dat += "Deployment of weapon authorized by <br>NanoTrasen Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
-	SHOW_BROWSER(user, dat, "window=scroll")
-	onclose(user, "scroll")
+	var/html = "<B>Bluespace Artillery Control:</B>"
+	html += "<BR>"
+	html += SPAN_ALIUM("LOCKED ON")
+	html += "<BR>"
+	html += "<B>Status: [COOLDOWN_FINISHED(src, reload_cooldown) ? SPAN_RADIOACTIVE("READY") : SPAN_DANGER("COOLING DOWN")]</B>"
+	html += "<BR>"
+	html += "<A href='byond://?src=\ref[src];fire=1'>Open Fire</A>"
+	html += "<HR>"
+	html += "<i>Deployment of weapon authorized by NanoTrasen Naval Command.</i>"
+	html += "<BR>"
+	html += SPAN_WARNING("<i>Remember, friendly fire is grounds for termination of your contract and life.<i>")
+	html += "<HR>"
+	SHOW_BROWSER(user, html, "window=\ref[src]")
+	onclose(user, "\ref[src]")
 
-/obj/machinery/artillerycontrol/Topic(href, href_list)
-	..()
-	if(usr.stat || usr.restrained())
-		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))
-		var/A
-		A = input("Area to jump bombard", "Open Fire", A) in GLOBL.teleportlocs
-		var/area/thearea = GLOBL.teleportlocs[A]
-		if(usr.stat || usr.restrained())
+/obj/machinery/artillerycontrol/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("fire"))
+		if(!COOLDOWN_FINISHED(src, reload_cooldown))
 			return
-		if(src.reload < initial(reload))
+		var/A = input(user, "Area to jump bombard", "Open Fire") in GLOBL.teleportlocs
+		if(isnull(A))
+			return
+		var/area/target_area = GLOBL.teleportlocs[A]
+		if(isnull(target_area))
 			return
 
-		if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))
-			priority_announce("Bluespace artillery fire detected. Brace for impact.")
-			message_admins("[key_name_admin(usr)] has launched an artillery strike.", 1)
-			var/list/L = list()
-			for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
-				L += T
-			var/loc = pick(L)
-			explosion(loc, 2, 5, 11)
-			reload = 0
-
-
-/*mob/proc/openfire()
-	var/A
-	A = input("Area to jump bombard", "Open Fire", A) in global.teleportlocs
-	var/area/thearea = global.teleportlocs[A]
-	priority_announce("Bluespace artillery fire detected. Brace for impact.")
-	spawn(30)
-	var/list/L = list()
-
-	for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
-		L+=T
-	var/loc = pick(L)
-	explosion(loc,2,5,11)*/
-
+		priority_announce("Bluespace artillery fire detected. Brace for impact.", "General Alert")
+		message_admins("[key_name_admin(user)] has launched an artillery strike.", 1)
+		var/turf/target = pick(get_area_turfs(target_area))
+		explosion(target, 2, 5, 11)
+		COOLDOWN_START(src, reload_cooldown, 15 SECONDS)
 
 /obj/structure/artilleryplaceholder
 	name = "artillery"

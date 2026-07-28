@@ -140,31 +140,25 @@ Thus, the two variables affect pump operation are set in New():
 	usr.set_machine(src)
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
 
-/obj/machinery/atmospherics/binary/volume_pump/Topic(href, href_list)
-	if(..()) return
-	/*if(href_list["power"])
-		on = !on
-	if(href_list["set_transfer_rate"])
-		var/new_transfer_rate = input(usr,"Enter new output volume (0-200l/s)","Flow control",src.transfer_rate) as num
-		src.transfer_rate = max(0, min(200, new_transfer_rate))*/
+/obj/machinery/atmospherics/binary/volume_pump/handle_topic(mob/user, datum/topic_input/topic, topic_result)
+	. = ..()
+	if(topic.has("power"))
+		switch(topic.get_str("power"))
+			if("on")
+				on = TRUE
+			if("off")
+				on = FALSE
 
-	// Edited this to reflect NanoUI port. -Frenjo
-	switch(href_list["power"])
-		if("off")
-			on = FALSE
-		if("on")
-			on = TRUE
+	else if(topic.has("set_press"))
+		switch(topic.get_str("set_press"))
+			if("min")
+				transfer_rate = 0
+			if("max")
+				transfer_rate = max_transfer_rate
+			if("set")
+				var/new_transfer_rate = input(user, "Enter new output volume (0 - [max_transfer_rate]l/s)", "Flow Control", transfer_rate) as num
+				transfer_rate = max(0, min(max_transfer_rate, new_transfer_rate))
 
-	switch(href_list["set_pressure"])
-		if("min")
-			src.transfer_rate = 0
-		if("max")
-			src.transfer_rate = max_transfer_rate
-		if("set")
-			var/new_transfer_rate = input(usr, "Enter new output volume (0 - [max_transfer_rate]l/s)", "Flow control", transfer_rate) as num
-			transfer_rate = max(0, min(200, new_transfer_rate))
-
-	usr.set_machine(src)
 	update_icon()
 	updateUsrDialog()
 
