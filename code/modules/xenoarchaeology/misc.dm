@@ -95,7 +95,7 @@
 		/obj/item/ano_scanner,
 		/obj/item/depth_scanner,
 		/obj/item/core_sampler,
-		/obj/item/gps,
+		/obj/item/relay_device,
 		/obj/item/beacon_locator,
 		/obj/item/radio/beacon,
 		/obj/item/clothing/glasses/meson,

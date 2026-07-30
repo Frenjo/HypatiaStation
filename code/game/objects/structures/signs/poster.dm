@@ -3,6 +3,7 @@
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/posters/poster.dmi'
+	icon_state = "random"
 	anchored = TRUE
 
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it

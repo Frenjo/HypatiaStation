@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Miscellaneous xenoarchaeology tools
-/obj/item/gps
+/obj/item/relay_device
 	name = "relay positioning device"
 	desc = "Triangulates the approximate co-ordinates using a nearby satellite network."
 	icon = 'icons/obj/items/devices/device.dmi'
@@ -8,7 +8,7 @@
 	item_state = "locator"
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/gps/attack_self(mob/user)
+/obj/item/relay_device/attack_self(mob/user)
 	var/turf/T = GET_TURF(src)
 	to_chat(user, SPAN_INFO("[icon2html(src, user)] [src] flashes <i>[T.x].[rand(0, 9)]:[T.y].[rand(0, 9)]:[T.z].[rand(0, 9)]</i>."))
 

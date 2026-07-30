@@ -8,7 +8,7 @@
 		/obj/item/core_sampler,
 		/obj/item/beacon_locator,
 		/obj/item/radio/beacon,
-		/obj/item/gps,
+		/obj/item/relay_device,
 		/obj/item/measuring_tape,
 		/obj/item/flashlight,
 		/obj/item/pickaxe,
