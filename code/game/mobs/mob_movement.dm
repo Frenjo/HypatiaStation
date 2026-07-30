@@ -10,18 +10,6 @@
 	else
 		return (!mover.density || !density || lying)
 
-/client/North()
-	..()
-
-/client/South()
-	..()
-
-/client/West()
-	..()
-
-/client/East()
-	..()
-
 /client/Northeast()
 	swap_hand()
 
@@ -86,50 +74,107 @@
 	if(!isrobot(mob))
 		mob.drop_item_v()
 
-/client/Center()
-	/* No 3D movement in 2D spessman game. dir 16 is Z Up
-	if (isobj(mob.loc))
-		var/obj/O = mob.loc
-		if (mob.canmove)
-			return O.relaymove(mob, 16)
-	*/
+/client/Move(new_loc, direction)
+	if(world.time < move_delay)
+		return FALSE
+	if(!direction || !new_loc)
+		return FALSE
+	if(isnull(mob?.loc))
+		return FALSE
+	if(mob.monkeyizing)
+		return FALSE // This is sorta the goto stop mobs from moving var.
+	if(mob.stat == DEAD)
+		return FALSE
 
-/atom/movable/Move(NewLoc, direct)
-	if(direct & (direct - 1))
-		if(direct & 1)
-			if(direct & 4)
-				if(step(src, NORTH))
-					step(src, EAST)
-				else
-					if(step(src, EAST))
-						step(src, NORTH)
-			else
-				if(direct & 8)
-					if(step(src, NORTH))
-						step(src, WEST)
-					else
-						if(step(src, WEST))
-							step(src, NORTH)
-		else
-			if(direct & 2)
-				if(direct & 4)
-					if(step(src, SOUTH))
-						step(src, EAST)
-					else
-						if(step(src, EAST))
-							step(src, SOUTH)
-				else
-					if(direct & 8)
-						if(step(src, SOUTH))
-							step(src, WEST)
-						else
-							if(step(src, WEST))
-								step(src, SOUTH)
+	// Ported some other code across here! -Frenjo
+	var/leftover = world.time - move_delay
+	if(leftover > 1)
+		leftover = 0
+
+	if(!isliving(mob))
+		return mob.Move(new_loc, direction)
+
+	var/mob/living/living_mover = mob
+	if(living_mover.incorporeal_move) // Move though walls.
+		process_incorporeal_movement(direction)
+		return FALSE
+
+	if(isnotnull(mob.control_object))
+		move_control_object(direction)
+		return FALSE
+
+	if(locate(/obj/effect/stop, mob.loc))
+		for(var/obj/effect/stop/S in mob.loc)
+			if(S.victim == mob)
+				return FALSE
+
+	if(isAI(mob))
+		var/mob/living/silicon/ai/moving_ai = mob
+		return moving_ai.AIMove(new_loc, direction)
+
+	if(isnotnull(mob.client) && mob.client.view != world.view)
+		if(locate(/obj/item/gun/energy/sniperrifle, mob.contents)) // If mob moves while zoomed in with sniper rifle, unzoom them.
+			var/obj/item/gun/energy/sniperrifle/s = locate() in mob
+			if(s.zoom)
+				s.zoom()
+
+	if(process_grab())
+		return FALSE
+
+	if(isnotnull(mob.buckled)) // If we're buckled to something, tell it we moved.
+		return mob.buckled.relaymove(mob, direction)
+
+	if(!mob.canmove)
+		return FALSE
+
+	if(isnull(mob.lastarea))
+		mob.lastarea = GET_AREA(mob)
+
+	if(isspace(mob.loc) || !mob.lastarea.has_gravity)
+		if(!mob.Process_Spacemove(0))
+			return FALSE
+
+	if(ismovable(mob.loc)) // Inside an object, tell it we moved.
+		var/atom/movable/loc_atom = mob.loc
+		return loc_atom.relaymove(mob, direction)
+
+	if(!isturf(mob.loc))
+		return FALSE
+
+	if(mob.restrained()) // Why being pulled while cuffed prevents you from moving.
+		for(var/mob/M in range(mob, 1))
+			if(M.pulling != mob)
+				continue
+			if(!M.restrained() && M.stat == CONSCIOUS && M.canmove && mob.Adjacent(M))
+				to_chat(src, SPAN_INFO("You're restrained! You can't move!"))
+				return FALSE
+			M.stop_pulling()
+
+	if(length(mob.pinned))
+		to_chat(src, SPAN_INFO("You're pinned to a wall by [mob.pinned[1]]!"))
+		return FALSE
+
+	// We are now going to move.
+	move_delay = world.time - leftover // Sets the initial move delay.
+	mob.last_move_intent = world.time + 10
+	move_delay += mob.move_intent.move_delay
+	move_delay += mob.movement_delay()
+
+	// Something with pulling things.
+	if(locate(/obj/item/grab, mob))
+		process_pulling(mob, direction)
+
+	if(mob.confused)
+		step(mob, pick(GLOBL.cardinal))
 	else
 		. = ..()
 
-/client/proc/Move_object(direct)
-	if(isnull(mob) || isnull(mob.control_object))
+/*
+ * move_control_object
+ * Called by /client/Move()
+ */
+/client/proc/move_control_object(direct)
+	if(isnull(mob?.control_object))
 		return
 
 	if(mob.control_object.density)
@@ -140,142 +185,12 @@
 	else
 		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
-/client/Move(n, direct)
-	if(isnull(mob))
-		return
-
-	// Ported some other code across here! -Frenjo
-	var/leftover = world.time - move_delay
-	if(leftover > 1)
-		leftover = 0
-
-	if(isnotnull(mob.control_object))
-		Move_object(direct)
-
-	if(isghost(mob))
-		return mob.Move(n, direct)
-
-	if(moving || world.time < move_delay)
-		return 0
-
-	if(locate(/obj/effect/stop, mob.loc))
-		for(var/obj/effect/stop/S in mob.loc)
-			if(S.victim == mob)
-				return
-
-	if(mob.stat == DEAD)
-		return
-
-	if(isAI(mob))
-		return AIMove(n, direct, mob)
-
-	if(mob.monkeyizing)
-		return // This is sota the goto stop mobs from moving var.
-
-	if(isliving(mob))
-		var/mob/living/L = mob
-		if(L.incorporeal_move) // Move though walls.
-			Process_Incorpmove(direct)
-			return
-		if(isnotnull(mob.client))
-			if(mob.client.view != world.view)
-				if(locate(/obj/item/gun/energy/sniperrifle, mob.contents)) // If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/gun/energy/sniperrifle/s = locate() in mob
-					if(s.zoom)
-						s.zoom()
-
-	if(Process_Grab())
-		return
-
-	if(isnotnull(mob.buckled)) // If we're buckled to something, tell it we moved.
-		return mob.buckled.relaymove(mob, direct)
-
-	if(!mob.canmove)
-		return
-
-	//if(isspace(mob.loc) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
-
-	if(isnull(mob.lastarea))
-		mob.lastarea = GET_AREA(mob)
-
-	if(isspace(mob.loc) || !mob.lastarea.has_gravity)
-		if(!mob.Process_Spacemove(0))
-			return 0
-
-	if(isobj(mob.loc) || ismob(mob.loc)) // Inside an object, tell it we moved.
-		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
-
-	if(isturf(mob.loc))
-		if(mob.restrained()) // Why being pulled while cuffed prevents you from moving.
-			for(var/mob/M in range(mob, 1))
-				if(M.pulling == mob)
-					if(!M.restrained() && M.stat == CONSCIOUS && M.canmove && mob.Adjacent(M))
-						to_chat(src, SPAN_INFO("You're restrained! You can't move!"))
-						return 0
-					else
-						M.stop_pulling()
-
-		if(length(mob.pinned))
-			to_chat(src, SPAN_INFO("You're pinned to a wall by [mob.pinned[1]]!"))
-			return 0
-
-		// Ported some other code here, see above. -Frenjo
-		move_delay = world.time - leftover	//set move delay
-
-		mob.last_move_intent = world.time + 10
-		move_delay += mob.move_intent.move_delay
-		move_delay += mob.movement_delay()
-
-		// We are now going to move.
-		moving = TRUE
-		// Something with pulling things.
-		if(locate(/obj/item/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
-			var/list/L = mob.ret_grab()
-			if(islist(L))
-				if(length(L) == 2)
-					L.Remove(mob)
-					var/mob/M = L[1]
-					if(isnotnull(M))
-						if(get_dist(mob, M) <= 1 || M.loc == mob.loc)
-							var/turf/T = mob.loc
-							. = ..()
-							if(isturf(M.loc))
-								var/diag = get_dir(mob, M)
-								if((diag - 1) & diag)
-								else
-									diag = null
-								if(get_dist(mob, M) > 1 || diag)
-									step(M, get_dir(M.loc, T))
-				else
-					for(var/mob/M in L)
-						M.other_mobs = 1
-						if(mob != M)
-							M.animate_movement = SLIDE_STEPS
-					for(var/mob/M in L)
-						spawn(0)
-							step(M, direct)
-							return
-						spawn(1)
-							M.other_mobs = null
-							M.animate_movement = SLIDE_STEPS
-							return
-
-		else if(mob.confused)
-			step(mob, pick(GLOBL.cardinal))
-		else
-			. = ..()
-
-		moving = FALSE
-
 /*
  * Process_Grab()
  * Called by client/Move()
  * Checks to see if you are grabbing anything and if moving will affect your grab.
  */
-/client/proc/Process_Grab()
+/client/proc/process_grab()
 	for(var/obj/item/grab/G in list(mob.l_hand, mob.r_hand))
 		if(G.state == GRAB_KILL) //no wandering across the station/asteroid while choking someone
 			mob.visible_message(SPAN_WARNING("[mob] lost \his tight grip on [G.affecting]'s neck!"))
@@ -283,24 +198,24 @@
 			G.state = GRAB_NECK
 
 /*
- * Process_Incorpmove
+ * process_incorporeal_movement
  * Called by client/Move()
  * Allows mobs to run though walls.
  */
-/client/proc/Process_Incorpmove(direct)
+/client/proc/process_incorporeal_movement(direction)
 	var/turf/mobloc = GET_TURF(mob)
 	if(!isliving(mob))
 		return
 	var/mob/living/L = mob
 	switch(L.incorporeal_move)
 		if(1)
-			L.forceMove(get_step(L, direct))
-			L.set_dir(direct)
+			L.forceMove(get_step(L, direction))
+			L.set_dir(direction)
 		if(2)
 			if(prob(50))
 				var/locx
 				var/locy
-				switch(direct)
+				switch(direction)
 					if(NORTH)
 						locx = mobloc.x
 						locy = (mobloc.y + 2)
@@ -335,9 +250,48 @@
 			else
 				spawn(0)
 					anim(mobloc, mob, 'icons/mob/mob.dmi', , "shadow", , L.dir)
-				L.forceMove(get_step(L, direct))
-			L.set_dir(direct)
+				L.forceMove(get_step(L, direction))
+			L.set_dir(direction)
 	return 1
+
+/*
+ * process_pulling
+ * Called by /client/Move()
+ */
+/client/proc/process_pulling(mob/puller, direction)
+	move_delay = max(move_delay, world.time + 7)
+	var/list/L = puller.ret_grab()
+	if(!islist(L))
+		return
+
+	if(length(L) == 2)
+		L.Remove(puller)
+		var/mob/M = L[1]
+		if(isnull(M))
+			return
+
+		if(get_dist(puller, M) <= 1 || M.loc == puller.loc)
+			var/turf/T = puller.loc
+			if(isturf(M.loc))
+				var/diag = get_dir(puller, M)
+				if((diag - 1) & diag)
+				else
+					diag = null
+				if(get_dist(puller, M) > 1 || diag)
+					step(M, get_dir(M.loc, T))
+	else
+		for(var/mob/M in L)
+			M.other_mobs = 1
+			if(puller != M)
+				M.animate_movement = SLIDE_STEPS
+		for(var/mob/M in L)
+			spawn(0)
+				step(M, direction)
+				return
+			spawn(1)
+				M.other_mobs = null
+				M.animate_movement = SLIDE_STEPS
+				return
 
 /*
  * Process_Spacemove
@@ -414,24 +368,24 @@
 	return(prob_slip)
 
 // The real Move() proc is above, but touching that massive block just to put this in isn't worth it.
-/mob/Move(newloc, direct)
-	. = ..(newloc, direct)
+/mob/Move(new_loc, direction)
+	. = ..(new_loc, direction)
 	if(.)
-		post_move(newloc, direct)
+		post_move(new_loc, direction)
 
 // Called when a mob successfully moves.
 // Would've been an /atom/movable proc but it caused issues.
-/mob/proc/post_move(newloc, direct)
+/mob/proc/post_move(new_loc, direction)
 	for(var/obj/O in contents)
-		O.on_loc_moved(newloc, direct)
+		O.on_loc_moved(new_loc, direction)
 
 // Received from post_move(), useful for items that need to know that their loc just moved.
-/obj/proc/on_loc_moved(newloc, direct)
+/obj/proc/on_loc_moved(new_loc, direction)
 	return
 
-/obj/item/weapon/storage/on_loc_moved(newloc, direct)
+/obj/item/storage/on_loc_moved(new_loc, direction)
 	for(var/obj/O in contents)
-		O.on_loc_moved(newloc, direct)
+		O.on_loc_moved(new_loc, direction)
 
 // /tg/ movement verbs
 // The BYOND versions of these verbs wait for the next tick before acting.

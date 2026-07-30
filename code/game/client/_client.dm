@@ -42,7 +42,6 @@
 	// Player preferences datum for the client.
 	var/datum/preferences/prefs = null
 	var/move_delay = 1
-	var/moving = FALSE
 	var/adminobs = FALSE
 	// When the client last died as a mouse.
 	var/time_died_as_mouse = null
