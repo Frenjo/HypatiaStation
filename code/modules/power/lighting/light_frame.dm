@@ -117,7 +117,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
 	anchored = TRUE
-	layer = 5
+
 	stage = LIGHT_STAGE_ONE
 	fixture_type = /obj/machinery/light/small
 	sheets_refunded = 1

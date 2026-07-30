@@ -28,9 +28,8 @@
 	desc = "A little farming robot. The botanist's best friend."
 	icon = 'icons/mob/bot/farmbot.dmi'
 	icon_state = "farmbot0"
-	layer = 5
 	density = TRUE
-	anchored = FALSE
+
 	health = 50
 	maxHealth = 50
 	req_access = list(ACCESS_HYDROPONICS)

@@ -4,9 +4,7 @@
 	desc = "A little floor repairing robot. He looks so excited!"
 	icon = 'icons/mob/bot/floorbot.dmi'
 	icon_state = "floorbot0"
-	layer = 5
-	density = FALSE
-	anchored = FALSE
+
 	health = 25
 	maxHealth = 25
 	//weight = 1.0E7

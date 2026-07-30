@@ -1,8 +1,8 @@
 /atom/movable
-	layer = 3
+	layer = OBJ_LAYER
 	glide_size = 4
 
-	appearance_flags = PIXEL_SCALE
+	appearance_flags = parent_type::appearance_flags | PIXEL_SCALE
 
 	// Can this atom currently be moved?
 	var/anchored = FALSE
@@ -19,7 +19,7 @@
 	var/mob/pulledby = null
 
 	/// Whether we are being used(have a window open)
-	var/in_use = FALSE 
+	var/in_use = FALSE
 
 /atom/movable/New()
 	SHOULD_CALL_PARENT(TRUE)

@@ -13,6 +13,8 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	plane = DEFAULT_PLANE
 	layer = 2
 
+	appearance_flags = LONG_GLIDE | TILE_BOUND
+
 	var/level = 2
 
 	// Stores atom-specific bitflag values.

@@ -1,7 +1,7 @@
 /mob
 	density = TRUE
-	layer = 4.0
-	animate_movement = 2
+	layer = MOB_LAYER
+	animate_movement = SLIDE_STEPS
 //	flags = NOREACT
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

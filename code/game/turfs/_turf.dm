@@ -39,8 +39,7 @@
 
 	var/area/turf_area = loc
 	turf_area.turf_list.Remove(src)
-	if(isnotnull(PCturf))
-		STOP_PROCESSING(PCturf, src)
+	STOP_PROCESSING(PCturf, src)
 	return ..()
 
 /turf/proc/process()

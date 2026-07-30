@@ -3,9 +3,8 @@
 	desc = "A security robot. He looks less than thrilled."
 	icon = 'icons/mob/bot/ed209.dmi'
 	icon_state = "ed2090"
-	layer = 5.0
 	density = TRUE
-	anchored = FALSE
+
 //	weight = 1.0E7
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 	health = 100

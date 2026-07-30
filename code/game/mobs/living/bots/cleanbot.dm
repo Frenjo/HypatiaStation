@@ -4,8 +4,7 @@
 	desc = "A little cleaning robot. He looks so excited!"
 	icon = 'icons/mob/bot/cleanbot.dmi'
 	icon_state = "cleanbot0"
-	layer = 5
-	density = FALSE
+
 	//weight = 1.0E7
 	health = 25
 	maxHealth = 25

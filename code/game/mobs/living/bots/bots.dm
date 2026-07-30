@@ -10,6 +10,8 @@
 #define SECBOT_SUMMON		6		// summoned by PDA
 
 /mob/living/bot
+	density = FALSE
+
 	light_range = 3
 
 	/// The ID card the bot has pinned to it

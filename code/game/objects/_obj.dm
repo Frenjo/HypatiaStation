@@ -1,5 +1,5 @@
 /obj
-	animate_movement = 2
+	animate_movement = SLIDE_STEPS
 
 	// Stores object-specific bitflag values.
 	// Overridden on subtypes or manipulated with *_OBJ_FLAGS(OBJECT, FLAGS) macros.
@@ -21,8 +21,7 @@
 	var/force = 0
 
 /obj/Destroy()
-	if(isnotnull(PCobj))
-		STOP_PROCESSING(PCobj, src)
+	STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/assume_air(datum/gas_mixture/giver)

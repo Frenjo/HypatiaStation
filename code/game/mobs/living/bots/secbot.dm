@@ -3,16 +3,13 @@
 	desc = "A little security robot. He looks less than thrilled."
 	icon = 'icons/mob/bot/securitron.dmi'
 	icon_state = "secbot0"
-	layer = 5.0
-	density = FALSE
-	anchored = FALSE
+
 	health = 25
 	maxHealth = 25
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 //	weight = 1.0E7
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
-
 
 	var/mob/target
 	/// To avoid re-targeting

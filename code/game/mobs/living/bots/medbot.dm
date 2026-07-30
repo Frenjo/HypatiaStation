@@ -7,8 +7,7 @@
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/mob/bot/medibot.dmi'
 	icon_state = "medibot0"
-	layer = 5.0
-	density = FALSE
+
 	health = 20
 	maxHealth = 20
 	req_access = list(ACCESS_MEDICAL)

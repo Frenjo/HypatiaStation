@@ -12,7 +12,6 @@
 	layer = MOB_LAYER
 	density = TRUE
 	anchored = TRUE
-	animate_movement = 1
 	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
 	maxHealth = 150
 	fire_dam_coeff = 0.7
