@@ -10,8 +10,13 @@ PROCESS_DEF(initialisation)
 /datum/process/initialisation/do_work()
 	for(var/last_object in GLOBL.queued_initialisations)
 		var/atom/A = last_object
-		dequeue_for_initialisation(A)
 		A.initialise()
+		SCHECK
+
+	for(var/last_object in GLOBL.queued_initialisations)
+		var/atom/A = last_object
+		dequeue_for_initialisation(A)
+		A.late_initialise()
 		SCHECK
 
 	if(!length(GLOBL.queued_initialisations))

@@ -17,8 +17,7 @@
 
 /obj/machinery/meter/initialise()
 	. = ..()
-	if(isnull(target))
-		target = locate(/obj/machinery/atmospherics/pipe) in loc
+	target = get_target()
 
 /obj/machinery/meter/process()
 	if(isnull(target))
@@ -111,12 +110,12 @@
 		t += "The connect error light is blinking."
 	return t
 
+/obj/machinery/meter/proc/get_target()
+	return locate(/obj/machinery/atmospherics/pipe) in loc
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
-/obj/machinery/meter/turf/initialise()
-	. = ..()
-	if(isnull(target))
-		target = loc
+/obj/machinery/meter/turf/get_target()
+	return loc
 
 /obj/machinery/meter/turf/attackby(obj/item/W, mob/user)
 	return

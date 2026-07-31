@@ -1,4 +1,4 @@
-/obj/effect/mapping_helper/airlock/initialise()
+/obj/effect/mapping_helper/airlock/late_initialise()
 	. = ..()
 	var/obj/machinery/door/airlock/target = locate(/obj/machinery/door/airlock) in loc
 	if(isnotnull(target))

@@ -116,9 +116,10 @@
 /obj/machinery/initialise()
 	. = ..()
 	global.PCmachinery.register_machine(src)
-	if(!global.CTmaster.initialised)
-		spawn(5 SECONDS) // I hate this and there's probably a better way but that's out of scope for now.
-			refresh_parts()
+
+/obj/machinery/late_initialise()
+	. = ..()
+	refresh_parts()
 
 /obj/machinery/Destroy()
 	var/area/machine_area = GET_AREA(src)

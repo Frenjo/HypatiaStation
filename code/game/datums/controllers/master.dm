@@ -258,12 +258,6 @@ CONTROLLER_DEF(master)
 			object.initialise()
 	WAIT_FOR_BACKLOG
 
-	to_world(SPAN_DANGER("↪ Initialising mapping helpers."))
-	for_no_type_check(var/obj/effect/mapping_helper/helper, GLOBL.mapping_helpers)
-		if(!GC_DESTROYED(helper))
-			helper.initialise()
-	WAIT_FOR_BACKLOG
-
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
 	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
 		if(!GC_DESTROYED(machine))
@@ -277,6 +271,12 @@ CONTROLLER_DEF(master)
 	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics/unary)
 		if(!GC_DESTROYED(machine))
 			machine.broadcast_status()
+	WAIT_FOR_BACKLOG
+
+	to_world(SPAN_DANGER("↪ Initialising late objects."))
+	for_no_type_check(var/atom/movable/object, GLOBL.movable_atom_list)
+		if(!GC_DESTROYED(object))
+			object.late_initialise()
 	WAIT_FOR_BACKLOG
 
 	// Sets up spawn points.

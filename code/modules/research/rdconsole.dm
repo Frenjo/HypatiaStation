@@ -55,7 +55,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files = new /datum/research(src) // Sets up the research data holder.
 	if(!id)
 		FOR_MACHINES_TYPED(server, /obj/machinery/r_n_d/server/centcom)
-			server.initialise()
+			queue_for_initialisation(server)
 			break
 	sync_devices()
 

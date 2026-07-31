@@ -56,6 +56,12 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	if(GC_DESTROYED(src))
 		CRASH("GC: -- [type] had initialise() called after qdel() --")
 
+/atom/proc/late_initialise()
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(GC_DESTROYED(src))
+		CRASH("GC: -- [type] had late_initialise() called after qdel() --")
+
 /atom/Del()
 	if(!GC_DESTROYED(src) && isnotnull(loc))
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
