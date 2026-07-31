@@ -166,9 +166,7 @@
 "adD" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "prisonshuttle_sat_airlock_exterior";
-	locked = 1
+	id_tag = "prisonshuttle_sat_airlock_exterior"
 	},
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -177,6 +175,7 @@
 	pixel_x = -7;
 	pixel_y = 25
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/prison/rec_room)
 "adQ" = (
@@ -1097,11 +1096,10 @@
 "awK" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_airlock_north_interior";
-	locked = 1;
 	name = "Escape Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/escape)
 "awZ" = (
@@ -2183,14 +2181,13 @@
 "aOX" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "specopsshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "aOY" = (
@@ -3155,12 +3152,11 @@
 /obj/machinery/door/airlock/glass/research{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "tox_airlock_exterior";
-	locked = 1;
 	name = "Mixing Room Exterior Airlock";
 	req_access = list(8)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/reinforced,
 /area/station/research/toxins/mixing)
 "biw" = (
@@ -3260,12 +3256,11 @@
 "bkE" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_5_berth_hatch";
-	locked = 1;
 	name = "Escape Pod Berth Five";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "bkK" = (
@@ -4360,15 +4355,14 @@
 	autoclose = 0;
 	frequency = 1379;
 	heat_proof = 1;
-	icon_state = "door_locked";
 	id_tag = "incinerator_airlock_exterior";
-	locked = 1;
 	name = "Incinerator Exterior Airlock";
 	req_access = list(12)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/reinforced/vacuum,
 /area/station/maintenance/incinerator)
 "bDk" = (
@@ -4996,10 +4990,9 @@
 "bLW" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "prisonshuttle_hatch";
-	locked = 1
+	id_tag = "prisonshuttle_hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/prison/station)
 "bMa" = (
@@ -5941,10 +5934,9 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "prisonshuttle_dock_airlock_exterior";
-	locked = 1
+	id_tag = "prisonshuttle_dock_airlock_exterior"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/security/brig)
 "ccf" = (
@@ -6390,13 +6382,12 @@
 "cit" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivals_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "ciK" = (
@@ -6794,13 +6785,12 @@
 "crf" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "prisonshuttle_dock_airlock_interior";
-	locked = 1
+	id_tag = "prisonshuttle_dock_airlock_interior"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/security/brig)
 "crg" = (
@@ -7388,10 +7378,8 @@
 /turf/open/floor/tiled/grey,
 /area/station/engineering/hallway/main)
 "czY" = (
-/obj/machinery/door/airlock/hatch{
-	icon_state = "door_locked";
-	locked = 1
-	},
+/obj/machinery/door/airlock/hatch,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/reinforced/vacuum,
 /area/station/engineering/engine/supermatter)
 "cAx" = (
@@ -8003,14 +7991,13 @@
 "cNP" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_airlock_north_interior";
-	locked = 1;
 	name = "Escape Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/escape)
 "cOh" = (
@@ -8097,12 +8084,11 @@
 "cPn" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_2_berth_hatch";
-	locked = 1;
 	name = "Escape Pod Berth Two";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "cPv" = (
@@ -9778,11 +9764,10 @@
 "dtf" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineeringshuttle_hatch";
-	locked = 1;
 	name = "Shuttle Hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/engineering/station)
 "dtK" = (
@@ -9876,12 +9861,11 @@
 "dus" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_2_hatch";
-	locked = 1;
 	name = "Escape Pod";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape_pod/two/station)
 "duu" = (
@@ -10032,9 +10016,7 @@
 /obj/machinery/door/airlock/research{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "xeno_airlock_exterior";
-	locked = 1;
 	name = "Xenobiology External Airlock";
 	req_access = list(55)
 	},
@@ -10050,6 +10032,7 @@
 	name = "firelock south"
 	},
 /obj/machinery/atmospherics/mains_pipe/cap/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/white,
 /area/station/research/xenobiology)
 "dwK" = (
@@ -10118,14 +10101,13 @@
 "dyx" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "unused_dock_airlock_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "dyM" = (
@@ -10227,9 +10209,7 @@
 "dAI" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Mining Dock Airlock";
 	req_access = list(48)
 	},
@@ -10241,6 +10221,7 @@
 	pixel_y = 25;
 	req_access = list(48)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/cargo/mining_dock)
 "dAR" = (
@@ -10299,15 +10280,14 @@
 "dBY" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "solar_tool_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_port)
 "dCb" = (
@@ -10447,12 +10427,11 @@
 "dEP" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_southstarboard_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "dEZ" = (
@@ -12051,10 +12030,9 @@
 "ehL" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "exec_chamber_outer";
-	locked = 1
+	id_tag = "exec_chamber_outer"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/prison/solitary)
 "ehU" = (
@@ -12439,9 +12417,7 @@
 "esG" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "toxin_test_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
@@ -12450,6 +12426,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "esL" = (
@@ -12484,11 +12461,10 @@
 "ety" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_airlock_north_exterior";
-	locked = 1;
 	name = "Escape Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/escape)
 "etE" = (
@@ -16431,11 +16407,10 @@
 "fNP" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_southport_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "fNR" = (
@@ -16594,12 +16569,11 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/machinery/door/airlock/vault{
-	icon_state = "door_locked";
 	id_tag = "vault_outer";
-	locked = 1;
 	name = "Vault";
 	req_access = list(53)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -16633,12 +16607,11 @@
 "fQP" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_northstarboard_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "fQS" = (
@@ -16791,13 +16764,12 @@
 "fSS" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "exec_chamber_inner";
-	locked = 1
+	id_tag = "exec_chamber_inner"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/prison/solitary)
 "fST" = (
@@ -16957,12 +16929,11 @@
 "fWr" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_southport_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "fWv" = (
@@ -17037,15 +17008,14 @@
 "fXi" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supplyshuttle_airlock_south_interior";
-	locked = 1;
 	name = "Supply Dock Airlock";
 	req_access = list(31)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/cargo/bay)
 "fXj" = (
@@ -18303,9 +18273,7 @@
 "gsY" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "adminshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/access_button{
@@ -18315,6 +18283,7 @@
 	pixel_x = -27;
 	pixel_y = -7
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "gsZ" = (
@@ -20883,14 +20852,13 @@
 /area/station/engineering/atmospherics/control)
 "hpI" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "solar_prison_inner";
-	locked = 1
+	id_tag = "solar_prison_inner"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/prison/solar_control)
 "hpJ" = (
@@ -21501,15 +21469,14 @@
 "hAP" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "security_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "hAX" = (
@@ -21529,15 +21496,14 @@
 "hBj" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "solar_chapel_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_starboard)
 "hBs" = (
@@ -21569,12 +21535,11 @@
 "hBR" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningshuttle_hatch";
-	locked = 1;
 	name = "Shuttle Airlock";
 	req_access = list(48)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/mining/station)
 "hBT" = (
@@ -23123,11 +23088,10 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_airlock_north_exterior";
-	locked = 1;
 	name = "Escape Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/escape)
 "ico" = (
@@ -23746,9 +23710,7 @@
 "inq" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "solar_tool_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
@@ -23756,6 +23718,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_port)
 "inr" = (
@@ -24863,15 +24826,14 @@
 	autoclose = 0;
 	frequency = 1379;
 	heat_proof = 1;
-	icon_state = "door_locked";
 	id_tag = "incinerator_airlock_interior";
-	locked = 1;
 	name = "Incinerator Interior Airlock";
 	req_access = list(12)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/incinerator)
 "iCX" = (
@@ -25044,12 +25006,11 @@
 "iHz" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_1_hatch";
-	locked = 1;
 	name = "Escape Pod";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape_pod/one/station)
 "iHA" = (
@@ -25691,11 +25652,10 @@
 "iRx" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "adminshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "iRD" = (
@@ -25834,11 +25794,10 @@
 "iUW" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_northstarboard_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "iUX" = (
@@ -26676,12 +26635,11 @@
 /obj/machinery/door/airlock/glass/research{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "tox_airlock_interior";
-	locked = 1;
 	name = "Mixing Room Interior Airlock";
 	req_access = list(8)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/reinforced,
 /area/station/research/toxins/mixing)
 "jiY" = (
@@ -27137,12 +27095,11 @@
 "jsa" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "researchshuttle_hatch";
-	locked = 1;
 	name = "Shuttle Airlock";
 	req_access = list(65)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/research/station)
 "jsc" = (
@@ -27225,12 +27182,11 @@
 "jtN" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_5_hatch";
-	locked = 1;
 	name = "Escape Pod";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape_pod/five/station)
 "jtR" = (
@@ -28273,15 +28229,14 @@
 "jRf" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "solar_xeno_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_starboard)
 "jRG" = (
@@ -29558,10 +29513,9 @@
 "kmQ" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "prisonshuttle_sat_airlock_interior";
-	locked = 1
+	id_tag = "prisonshuttle_sat_airlock_interior"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/prison/rec_room)
 "kmR" = (
@@ -29979,12 +29933,11 @@
 "ktP" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "researchshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Shuttle Airlock";
 	req_access = list(65)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "ktS" = (
@@ -30729,12 +30682,11 @@
 "kHU" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supplyshuttle_airlock_north_exterior";
-	locked = 1;
 	name = "Supply Dock Airlock";
 	req_access = list(31)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/cargo/bay)
 "kIn" = (
@@ -32009,9 +31961,7 @@
 "lhm" = (
 /obj/machinery/door/airlock/hatch/maintenance{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supermatter_airlock_interior";
-	locked = 1;
 	name = "Supermatter Engine Access";
 	req_access = list(10)
 	},
@@ -32023,6 +31973,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/visible{
 	dir = 1
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "lhq" = (
@@ -32558,11 +32509,10 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "unused_dock_airlock_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "lsq" = (
@@ -33628,9 +33578,7 @@
 /obj/machinery/door/airlock/medical{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "virology_airlock_exterior";
-	locked = 1;
 	name = "Virology Exterior Airlock";
 	req_access = list(39)
 	},
@@ -33651,6 +33599,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/mains_pipe/cap/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/white,
 /area/station/medical/virology)
 "lMz" = (
@@ -34591,12 +34540,11 @@
 "mdY" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_3_berth_hatch";
-	locked = 1;
 	name = "Escape Pod Berth Three";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "mel" = (
@@ -35027,12 +34975,11 @@
 "mlq" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_3_hatch";
-	locked = 1;
 	name = "Escape Pod";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape_pod/three/station)
 "mlX" = (
@@ -37980,15 +37927,14 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "robotics_solar_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_port)
 "nmd" = (
@@ -38336,9 +38282,7 @@
 "nqM" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "researchshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Shuttle Airlock";
 	req_access = list(65)
 	},
@@ -38350,6 +38294,7 @@
 	pixel_y = 10;
 	req_access = list(65)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/research/shuttle_dock)
 "nqP" = (
@@ -38514,13 +38459,12 @@
 /area/station/research/xenobiology)
 "nuI" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "solar_prison_outer";
-	locked = 1
+	id_tag = "solar_prison_outer"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/prison/solar_control)
 "nuP" = (
@@ -38771,9 +38715,7 @@
 "nyi" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "specopsshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/access_button{
@@ -38783,6 +38725,7 @@
 	pixel_x = -7;
 	pixel_y = -25
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "nyj" = (
@@ -39025,15 +38968,14 @@
 "nCl" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supplyshuttle_airlock_north_interior";
-	locked = 1;
 	name = "Supply Dock Airlock";
 	req_access = list(31)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/cargo/bay)
 "nCw" = (
@@ -39446,14 +39388,13 @@
 "nLl" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_airlock_south_interior";
-	locked = 1;
 	name = "Escape Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/escape)
 "nLm" = (
@@ -40347,14 +40288,13 @@
 "nZR" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "centcomshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "nZX" = (
@@ -40376,11 +40316,10 @@
 "oap" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "adminshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "oas" = (
@@ -40765,12 +40704,11 @@
 "ohO" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "Brig_airlock_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "oil" = (
@@ -41685,12 +41623,11 @@
 "ozy" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "virology_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "ozL" = (
@@ -43516,15 +43453,14 @@
 "pfK" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "robotics_solar_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_port)
 "pfQ" = (
@@ -43996,11 +43932,10 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "centcomshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "ppk" = (
@@ -44367,9 +44302,7 @@
 /obj/machinery/door/airlock/research{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "xeno_airlock_interior";
-	locked = 1;
 	name = "Xenobiology Internal Airlock";
 	req_access = list(55)
 	},
@@ -44385,6 +44318,7 @@
 	name = "firelock north"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/white,
 /area/station/research/xenobiology)
 "pvn" = (
@@ -44621,9 +44555,7 @@
 "pyR" = (
 /obj/machinery/door/airlock/hatch/maintenance{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "thermengine_airlock_exterior";
-	locked = 1;
 	name = "Thermoelectric Engine Access";
 	req_access = list(10)
 	},
@@ -44640,6 +44572,7 @@
 	req_access = list(10)
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/thermoelectric)
 "pyV" = (
@@ -45143,11 +45076,10 @@
 "pIa" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_northport_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "pIb" = (
@@ -45188,12 +45120,11 @@
 "pIs" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_4_hatch";
-	locked = 1;
 	name = "Escape Pod";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape_pod/four/station)
 "pIv" = (
@@ -45443,9 +45374,7 @@
 "pPI" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_airlock_south_exterior";
-	locked = 1;
 	name = "Escape Airlock"
 	},
 /obj/machinery/access_button{
@@ -45456,6 +45385,7 @@
 	pixel_y = 25;
 	req_access = list(65)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/escape)
 "pPW" = (
@@ -46284,9 +46214,7 @@
 /obj/machinery/door/airlock/medical{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "virology_airlock_interior";
-	locked = 1;
 	name = "Virology Interior Airlock";
 	req_access = list(39)
 	},
@@ -46301,6 +46229,7 @@
 	name = "firelock north"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/white,
 /area/station/medical/virology)
 "qgw" = (
@@ -46498,12 +46427,11 @@
 "qjU" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_1_berth_hatch";
-	locked = 1;
 	name = "Escape Pod Berth One";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "qkf" = (
@@ -48544,9 +48472,7 @@
 /obj/machinery/door/airlock/glass/research{
 	autoclose = 0;
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "toxins_outer";
-	locked = 1;
 	name = "Toxins Lab";
 	req_access = list(8)
 	},
@@ -48565,6 +48491,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/white,
 /area/station/research/toxins/mixing)
 "qTW" = (
@@ -48610,9 +48537,7 @@
 "qUD" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineering_singulo_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13);
 	req_one_access = list(11,24)
@@ -48628,6 +48553,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/singularity)
 "qUL" = (
@@ -48688,12 +48614,11 @@
 "qVD" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "security_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "qVM" = (
@@ -49424,14 +49349,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/door/airlock/hatch/maintenance{
-	icon_state = "door_locked";
-	locked = 1;
 	name = "Emergency Engine Access";
 	req_access = list(10)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "riS" = (
@@ -49790,9 +49714,7 @@
 "rnH" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineeringshuttle_dock_airlock_exterior";
-	locked = 1;
 	name = "Shuttle Airlock";
 	req_access = list(65)
 	},
@@ -49804,6 +49726,7 @@
 	pixel_y = -10;
 	req_one_access = list(13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/hallway/auxiliary)
 "rnN" = (
@@ -50226,9 +50149,7 @@
 "rwi" = (
 /obj/machinery/door/airlock/glass/mining{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Mining Dock Airlock";
 	req_access = list(48)
 	},
@@ -50236,6 +50157,7 @@
 	dir = 4;
 	tag = "icon-intact-f (EAST)"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/station/cargo/mining_dock)
 "rwq" = (
@@ -51358,13 +51280,12 @@
 "rOV" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningmaint_airlock_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "rPe" = (
@@ -53565,9 +53486,7 @@
 "sEl" = (
 /obj/machinery/door/airlock/hatch/maintenance{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "thermengine_airlock_interior";
-	locked = 1;
 	name = "Thermoelectric Engine Access";
 	req_access = list(10)
 	},
@@ -53577,6 +53496,7 @@
 	name = "engineering firelock south"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/thermoelectric)
 "sEw" = (
@@ -53748,11 +53668,10 @@
 "sJh" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_hatch";
-	locked = 1;
 	name = "Shuttle Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/arrival/station)
 "sJu" = (
@@ -54552,9 +54471,7 @@
 "sZf" = (
 /obj/machinery/door/airlock/glass/research{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "toxins_inner";
-	locked = 1;
 	name = "Toxins Lab";
 	req_access = list(8)
 	},
@@ -54566,6 +54483,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/white,
 /area/station/research/toxins/mixing)
 "sZg" = (
@@ -55102,9 +55020,7 @@
 "tmL" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "solar_xeno_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
@@ -55112,6 +55028,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_starboard)
 "tmM" = (
@@ -55362,12 +55279,11 @@
 "trT" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_northport_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "tsa" = (
@@ -55485,12 +55401,11 @@
 "tsY" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningmaint_airlock_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "ttb" = (
@@ -56599,11 +56514,10 @@
 "tNZ" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_airlock_southstarboard_exterior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "tOj" = (
@@ -56789,12 +56703,11 @@
 "tRC" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivals_outer";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(10,13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "tRH" = (
@@ -57324,14 +57237,13 @@
 "ubV" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "adminshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "ucc" = (
@@ -57603,12 +57515,11 @@
 "ugs" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "virology_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "ugE" = (
@@ -58735,11 +58646,10 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/highsecurity{
-	icon_state = "door_locked";
-	locked = 1;
 	name = "Emergency Engine Access";
 	req_access = list(10)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/smes/singularity)
 "uAI" = (
@@ -59667,9 +59577,7 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "toxin_test_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
@@ -59678,6 +59586,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "uTD" = (
@@ -60230,9 +60139,7 @@
 "vfQ" = (
 /obj/machinery/door/airlock/hatch/maintenance{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supermatter_airlock_exterior";
-	locked = 1;
 	name = "Supermatter Engine Access";
 	req_access = list(10)
 	},
@@ -60249,6 +60156,7 @@
 	req_access = list(10)
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "vfR" = (
@@ -61335,15 +61243,14 @@
 "vCf" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineeringshuttle_dock_airlock_interior";
-	locked = 1;
 	name = "Shuttle Airlock";
 	req_access = list(65)
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/hallway/auxiliary)
 "vCn" = (
@@ -62206,12 +62113,11 @@
 "vTW" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supplyshuttle_airlock_south_exterior";
-	locked = 1;
 	name = "Supply Dock Airlock";
 	req_access = list(31)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/cargo/bay)
 "vTX" = (
@@ -63381,12 +63287,11 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/machinery/door/airlock/vault{
-	icon_state = "door_locked";
 	id_tag = "vault_inner";
-	locked = 1;
 	name = "Vault";
 	req_one_access = list(53)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -63452,12 +63357,11 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "Brig_airlock_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
 "woq" = (
@@ -63898,9 +63802,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineering_singulo_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13);
 	req_one_access = list(11,24)
@@ -63916,6 +63818,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/singularity)
 "wwK" = (
@@ -64509,8 +64412,6 @@
 /area/station/maintenance/fore/port)
 "wIc" = (
 /obj/machinery/door/airlock/hatch/maintenance{
-	icon_state = "door_locked";
-	locked = 1;
 	name = "Emergency Engine Access";
 	req_access = list(10)
 	},
@@ -64522,6 +64423,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/thermoelectric)
 "wIn" = (
@@ -65439,9 +65341,7 @@
 "wYR" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "solar_chapel_inner";
-	locked = 1;
 	name = "Engineering External Access";
 	req_access = list(13)
 	},
@@ -65449,6 +65349,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_starboard)
 "wYS" = (
@@ -67909,12 +67810,11 @@
 "xPV" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escape_pod_4_berth_hatch";
-	locked = 1;
 	name = "Escape Pod Berth Four";
 	req_one_access = list(11,24)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard_central)
 "xPY" = (

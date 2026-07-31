@@ -24,11 +24,10 @@
 "ag" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_hatch";
-	locked = 1;
 	name = "Shuttle Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape/centcom)
 "ah" = (
@@ -161,11 +160,10 @@
 /area/shuttle/specops/centcom)
 "aH" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_2_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/one)
 "aJ" = (
@@ -343,11 +341,10 @@
 /area/centcom/rescue_shuttle/one)
 "bm" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_1_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/one)
 "bn" = (
@@ -1087,11 +1084,10 @@
 "ea" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "escapeshuttle_centcomdock_hatch";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/emergency)
 "eb" = (
@@ -1644,10 +1640,9 @@
 "hb" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "adminshuttle_bay_hatch";
-	locked = 1
+	id_tag = "adminshuttle_bay_hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/administration)
 "he" = (
@@ -2187,10 +2182,9 @@
 /area/shuttle/specops/centcom)
 "jV" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/centcom)
 "jY" = (
@@ -2556,11 +2550,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/airlock/hatch{
 	frequency = 1331;
-	icon_state = "door_locked";
 	id_tag = "vox_southeast_lock";
-	locked = 1;
 	req_access = list(150)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
 "mc" = (
@@ -2809,11 +2802,10 @@
 /area/centcom)
 "nm" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_3_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/one)
 "nt" = (
@@ -3037,21 +3029,19 @@
 /area/centcom/control)
 "oy" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_6_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/two)
 "oA" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
-	locked = 1;
 	name = "Shuttle Hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/supply/centcom)
 "oB" = (
@@ -3528,10 +3518,9 @@
 "qF" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "admin_shuttle_hatch";
-	locked = 1
+	id_tag = "admin_shuttle_hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/administration/centcom)
 "qJ" = (
@@ -3750,10 +3739,9 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "specopsshuttle_port_hatch";
-	locked = 1
+	id_tag = "specopsshuttle_port_hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/specops/centcom)
 "rU" = (
@@ -4434,14 +4422,13 @@
 "vp" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "specopsshuttle_fore_hatch";
-	locked = 1
+	id_tag = "specopsshuttle_fore_hatch"
 	},
 /obj/machinery/door/poddoor{
 	id = "NTrasen";
 	name = "Outer Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/specops/centcom)
 "vq" = (
@@ -4510,11 +4497,10 @@
 "vC" = (
 /obj/machinery/door/airlock/hatch{
 	frequency = 1331;
-	icon_state = "door_locked";
 	id_tag = "vox_northeast_lock";
-	locked = 1;
 	req_access = list(150)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
 "vF" = (
@@ -5271,11 +5257,10 @@
 /area/enemy/syndicate/mothership)
 "zy" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_8_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/two)
 "zz" = (
@@ -6706,6 +6691,7 @@
 "Gu" = (
 /obj/machinery/door/poddoor,
 /obj/machinery/door/airlock/external,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/reinforced,
 /area/enemy/wizard_station)
 "Gv" = (
@@ -6910,10 +6896,9 @@
 "HB" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "specopsshuttle_dock_centcom_hatch";
-	locked = 1
+	id_tag = "specopsshuttle_dock_centcom_hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -7250,11 +7235,10 @@
 "Jn" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_centcomdock_hatch";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/centcom/shuttle_dock/arrival)
 "Jo" = (
@@ -7528,11 +7512,10 @@
 "KL" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "centcomshuttle_bay_hatch";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/ferry)
 "KN" = (
@@ -8154,11 +8137,10 @@
 /area/centcom)
 "NU" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_5_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/one)
 "NV" = (
@@ -8222,11 +8204,10 @@
 "Oi" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "centcom_shuttle_hatch";
-	locked = 1;
 	name = "Shuttle Hatch"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/transport/centcom)
 "Oj" = (
@@ -8434,9 +8415,7 @@
 "Pi" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "specopsshuttle_port_hatch";
-	locked = 1
+	id_tag = "specopsshuttle_port_hatch"
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -8445,6 +8424,7 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/specops/centcom)
 "Pj" = (
@@ -8471,11 +8451,10 @@
 /area/shuttle/vox/start)
 "Po" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_7_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/two)
 "Pt" = (
@@ -8656,11 +8635,10 @@
 "Ql" = (
 /obj/machinery/door/airlock/hatch{
 	frequency = 1331;
-	icon_state = "door_locked";
 	id_tag = "vox_northwest_lock";
-	locked = 1;
 	req_access = list(150)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
 "Qn" = (
@@ -9098,11 +9076,10 @@
 /area/centcom/specops)
 "Sw" = (
 /obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
 	id_tag = "escape_pod_4_recovery_hatch";
-	locked = 1;
 	name = "Salvage Shuttle Dock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/centcom/rescue_shuttle/two)
 "Sx" = (
@@ -9498,11 +9475,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/airlock/hatch{
 	frequency = 1331;
-	icon_state = "door_locked";
 	id_tag = "vox_southwest_lock";
-	locked = 1;
 	req_access = list(150)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/vox/start)
 "UB" = (
@@ -10059,11 +10035,10 @@
 "XN" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "arrivalshuttle_centcomdock_hatch";
-	locked = 1;
 	name = "Arrival Airlock"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/centcom/shuttle_dock/arrival)
 "XP" = (

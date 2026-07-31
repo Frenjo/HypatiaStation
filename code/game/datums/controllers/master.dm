@@ -258,6 +258,12 @@ CONTROLLER_DEF(master)
 			object.initialise()
 	WAIT_FOR_BACKLOG
 
+	to_world(SPAN_DANGER("↪ Initialising mapping helpers."))
+	for_no_type_check(var/obj/effect/mapping_helper/helper, GLOBL.mapping_helpers)
+		if(!GC_DESTROYED(helper))
+			helper.initialise()
+	WAIT_FOR_BACKLOG
+
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
 	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
 		if(!GC_DESTROYED(machine))

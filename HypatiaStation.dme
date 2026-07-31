@@ -793,6 +793,8 @@
 #include "code\game\objects\effects\decals\floor\siding.dm"
 #include "code\game\objects\effects\decals\floor\signs.dm"
 #include "code\game\objects\effects\decals\floor\snow.dm"
+#include "code\game\objects\effects\mapping_helpers\_mapping_helper.dm"
+#include "code\game\objects\effects\mapping_helpers\airlock.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\random_spawner.dm"

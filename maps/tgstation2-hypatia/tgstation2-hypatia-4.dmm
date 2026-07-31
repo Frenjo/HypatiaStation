@@ -1567,9 +1567,7 @@
 "qL" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineeringshuttle_outpost_airlock_exterior";
-	locked = 1;
 	name = "Ruskie DJ Station"
 	},
 /obj/machinery/access_button{
@@ -1580,6 +1578,7 @@
 	pixel_y = -10;
 	req_one_access = list(13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/djstation)
 "qR" = (
@@ -4152,12 +4151,11 @@
 "Um" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "engineeringshuttle_outpost_airlock_interior";
-	locked = 1;
 	name = "Ruskie DJ Station"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/djstation)
 "Un" = (

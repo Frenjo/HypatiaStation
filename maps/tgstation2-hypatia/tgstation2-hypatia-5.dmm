@@ -283,12 +283,11 @@
 "bo" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningshuttle_outpost_airlock_exterior";
-	locked = 1;
 	name = "Mining Shuttle Airlock";
 	req_access = list(48)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/starboard_wing)
 "bp" = (
@@ -926,12 +925,11 @@
 "es" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_east_outer";
-	locked = 1;
 	name = "Mining External Access";
 	req_access = list(10,13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/eva)
 "et" = (
@@ -2681,14 +2679,13 @@
 "mn" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_west_outpost_inner";
-	locked = 1;
 	name = "Mining External Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
 "mp" = (
@@ -4218,11 +4215,10 @@
 "tC" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_gutlunch_outer";
-	locked = 1;
 	name = "Mining External Access"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/gutlunch_farm)
 "tD" = (
@@ -4658,12 +4654,11 @@
 "vM" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "researchshuttle_outpost_hatch";
-	locked = 1;
 	name = "Research Outpost Dock Airlock";
 	req_access = list(65)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/shuttle_dock)
 "vO" = (
@@ -5009,11 +5004,10 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_west_outer";
-	locked = 1;
 	name = "Mining External Access"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/port_wing)
 "xk" = (
@@ -5994,12 +5988,11 @@
 "Bd" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "research_inner";
-	locked = 1;
 	name = "Research Outpost External Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
 "Bl" = (
@@ -7047,12 +7040,11 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_west_inner";
-	locked = 1;
 	name = "Mining External Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
 "FN" = (
@@ -7676,11 +7668,10 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_gutlunch_inner";
-	locked = 1;
 	name = "Mining External Access"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/hydroponics,
 /area/external/mining_outpost/gutlunch_farm)
 "IE" = (
@@ -7971,12 +7962,11 @@
 "Kr" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_west_outpost_outer";
-	locked = 1;
 	name = "Mining External Access";
 	req_access = list(10,13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "Kw" = (
@@ -8083,12 +8073,11 @@
 "KV" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "research_outer";
-	locked = 1;
 	name = "Research Outpost External Access";
 	req_access = list(10,13)
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/expedition_prep)
 "KY" = (
@@ -8278,15 +8267,14 @@
 "LT" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "miningshuttle_outpost_airlock_interior";
-	locked = 1;
 	name = "Mining Shuttle Airlock";
 	req_access = list(48)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
 "LV" = (
@@ -9623,14 +9611,13 @@
 "RW" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
-	icon_state = "door_locked";
 	id_tag = "mining_east_inner";
-	locked = 1;
 	name = "Mining External Access"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
 "RX" = (

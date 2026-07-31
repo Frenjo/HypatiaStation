@@ -17,8 +17,6 @@
 /area/turret_protected/tcomsat/foyer)
 "am" = (
 /obj/machinery/door/airlock/hatch{
-	icon_state = "door_locked";
-	locked = 1;
 	name = "Telecoms Control Room";
 	req_access = list(61)
 	},
@@ -31,6 +29,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/computer)
 "at" = (
@@ -127,9 +126,7 @@
 "bj" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1381;
-	icon_state = "door_locked";
 	id_tag = "telecoms_inner";
-	locked = 1;
 	name = "External Access";
 	req_access = list(13)
 	},
@@ -139,6 +136,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/tcomsat/entrance)
 "bw" = (
@@ -1374,15 +1372,14 @@
 "tW" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1381;
-	icon_state = "door_locked";
 	id_tag = "telecoms_outer";
-	locked = 1;
 	name = "External Access";
 	req_access = list(10,13)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
 /area/external/tcomsat/entrance)
 "uf" = (
