@@ -43,7 +43,7 @@
 	ambience = list(
 		'sound/ambience/ambimalf.ogg'
 	)
-	area_flags = AREA_FLAG_IS_SURGE_PROTECTED | AREA_FLAG_IS_SILICON_UPLOAD
+	area_flags = AREA_FLAG_IS_SURGE_PROTECTED | AREA_FLAG_HAS_SECURE_NETWORK_ACCESS
 
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"
@@ -59,7 +59,7 @@
 	ambience = list(
 		'sound/ambience/ambimalf.ogg'
 	)
-	area_flags = AREA_FLAG_IS_SURGE_PROTECTED | AREA_FLAG_IS_SILICON_UPLOAD
+	area_flags = AREA_FLAG_IS_SURGE_PROTECTED | AREA_FLAG_HAS_SECURE_NETWORK_ACCESS
 
 // These two are just grouped here as they're right next to /area/turret_protected/ai_upload_foyer.
 /area/turret_protected/robot_station

@@ -7334,7 +7334,7 @@
 /turf/open/floor/plating/metal,
 /area/station/crew/law_office)
 "czp" = (
-/obj/machinery/computer/robot_upload,
+/obj/machinery/computer/law_upload/robot,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_y = 26
@@ -54658,7 +54658,7 @@
 /turf/open/floor/tiled/white,
 /area/station/medical/cloning)
 "tbl" = (
-/obj/machinery/computer/ai_upload,
+/obj/machinery/computer/law_upload/ai,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_y = 26

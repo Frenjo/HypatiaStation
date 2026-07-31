@@ -18,8 +18,8 @@
 	origin_tech = alist(/decl/tech/programming = 3)
 
 /obj/item/ai_module/proc/install(obj/machinery/computer/C)
-	if(istype(C, /obj/machinery/computer/ai_upload))
-		var/obj/machinery/computer/ai_upload/comp = C
+	if(istype(C, /obj/machinery/computer/law_upload/ai))
+		var/obj/machinery/computer/law_upload/ai/comp = C
 		if(comp.stat & NOPOWER)
 			to_chat(usr, SPAN_WARNING("The upload computer has no power!"))
 			return
@@ -49,8 +49,8 @@
 					R.show_laws()
 			to_chat(usr, SPAN_INFO("Upload complete. The AI's laws have been modified."))
 
-	else if(istype(C, /obj/machinery/computer/robot_upload))
-		var/obj/machinery/computer/robot_upload/comp = C
+	else if(istype(C, /obj/machinery/computer/law_upload/robot))
+		var/obj/machinery/computer/law_upload/robot/comp = C
 		if(comp.stat & NOPOWER)
 			to_chat(usr, SPAN_WARNING("The upload computer has no power!"))
 			return
