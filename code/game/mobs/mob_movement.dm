@@ -77,17 +77,13 @@
 /client/Move(new_loc, direction)
 	if(world.time < move_delay)
 		return FALSE
+	move_delay = world.time + world.tick_lag // This is here because Move() can now be called mutiple times per tick.
 	if(!direction || !new_loc)
 		return FALSE
 	if(isnull(mob?.loc))
 		return FALSE
 	if(mob.monkeyizing)
 		return FALSE // This is sorta the goto stop mobs from moving var.
-
-	// Ported some other code across here! -Frenjo
-	var/leftover = world.time - move_delay
-	if(leftover > 1)
-		leftover = 0
 
 	if(!isliving(mob))
 		return mob.Move(new_loc, direction)
@@ -156,10 +152,10 @@
 		return FALSE
 
 	// We are now going to move.
-	move_delay = world.time - leftover // Sets the initial move delay.
+	var/new_delay = mob.move_intent.move_delay // Sets the initial move delay.
 	mob.last_move_intent = world.time + 10
-	move_delay += mob.move_intent.move_delay
-	move_delay += mob.movement_delay()
+	new_delay += mob.movement_delay()
+	mob.glide_size = DELAY_TO_GLIDE_SIZE(new_delay)
 
 	// Something with pulling things.
 	if(locate(/obj/item/grab, mob))
@@ -169,6 +165,8 @@
 		step(mob, pick(GLOBL.cardinal))
 	else
 		. = ..()
+
+	move_delay += new_delay
 
 /*
  * move_control_object

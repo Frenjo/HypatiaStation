@@ -35,6 +35,8 @@
 	if(!move_result)
 		return FALSE
 
+	glide_size = DELAY_TO_GLIDE_SIZE(move_delay)
+
 	use_power(step_energy_drain)
 	if(isspace(loc) && !check_for_support())
 		pr_inertial_movement.start(list(src, direction))
