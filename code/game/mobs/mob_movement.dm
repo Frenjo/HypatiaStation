@@ -83,8 +83,6 @@
 		return FALSE
 	if(mob.monkeyizing)
 		return FALSE // This is sorta the goto stop mobs from moving var.
-	if(mob.stat == DEAD)
-		return FALSE
 
 	// Ported some other code across here! -Frenjo
 	var/leftover = world.time - move_delay
@@ -93,6 +91,9 @@
 
 	if(!isliving(mob))
 		return mob.Move(new_loc, direction)
+
+	if(mob.stat == DEAD)
+		return FALSE
 
 	var/mob/living/living_mover = mob
 	if(living_mover.incorporeal_move) // Move though walls.

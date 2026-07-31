@@ -156,25 +156,25 @@ Works together with spawning an observer, noted above.
 			ghost.verbs.Remove(/mob/dead/ghost/verb/toggle_antagHUD) // Poor guys, don't know what they are missing!
 		return ghost
 
-/mob/dead/ghost/Move(NewLoc, direct)
-	dir = direct
-	if(NewLoc)
-		loc = NewLoc
-		for(var/obj/effect/step_trigger/S in NewLoc)
+/mob/dead/ghost/Move(new_loc, direction)
+	set_dir(direction)
+	if(isnotnull(new_loc))
+		loc = new_loc
+		for(var/obj/effect/step_trigger/S in new_loc)
 			S.Crossed(src)
 		return
 
-	loc = GET_TURF(src) //Get out of closets and such as a ghost
-	if((direct & NORTH) && y < world.maxy)
-		y++
-	else if((direct & SOUTH) && y > 1)
-		y--
-	if((direct & EAST) && x < world.maxx)
-		x++
-	else if((direct & WEST) && x > 1)
-		x--
-
-	for(var/obj/effect/step_trigger/S in locate(x, y, z))	//<-- this is dumb
+	var/turf/destination = GET_TURF(src) // Get out of closets and such as a ghost.
+	if((direction & NORTH) && y < world.maxy)
+		destination = get_step(destination, NORTH)
+	else if((direction & SOUTH) && y > 1)
+		destination = get_step(destination, SOUTH)
+	if((direction & EAST) && x < world.maxx)
+		destination = get_step(destination, EAST)
+	else if((direction & WEST) && x > 1)
+		destination = get_step(destination, WEST)
+	loc = destination
+	for(var/obj/effect/step_trigger/S in destination)
 		S.Crossed(src)
 
 /mob/dead/ghost/is_active()
