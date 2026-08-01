@@ -7705,7 +7705,6 @@
 "IM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/glass/mining{
-	name = "Mining Station EVA";
 	req_access = list(54)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -7721,6 +7720,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
 "IN" = (
@@ -10228,7 +10228,6 @@
 /area/external/asteroid/mine/explored)
 "Vb" = (
 /obj/machinery/door/airlock/mining{
-	name = "Mining Station Storage";
 	req_access = list(48)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -10242,6 +10241,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/storage)
 "Vc" = (
