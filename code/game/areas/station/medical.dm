@@ -59,7 +59,7 @@
 	)
 
 /area/station/medical/chemistry
-	name = "\improper Chemistry"
+	name = "\improper Chemistry Lab"
 	icon_state = "chem"
 
 /area/station/medical/surgery

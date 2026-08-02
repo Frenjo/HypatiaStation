@@ -17,7 +17,6 @@
 /area/turret_protected/tcomsat/foyer)
 "am" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Telecoms Control Room";
 	req_access = list(61)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -29,6 +28,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/computer)
@@ -252,7 +252,6 @@
 /area/space)
 "dt" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Telecoms Control Room";
 	req_access = list(61)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -268,6 +267,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/computer)
 "dw" = (
@@ -319,7 +319,6 @@
 /area/external/tcomsat/solar/fore)
 "eA" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Telecoms Lounge";
 	req_access = list(61)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -333,6 +332,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/lounge)
 "eK" = (
@@ -951,7 +951,6 @@
 /area/external/tcomsat/lounge)
 "oH" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Telecoms Satellite";
 	req_access = list(61)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -965,6 +964,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/entrance)
 "oJ" = (
@@ -1590,7 +1590,6 @@
 /area/turret_protected/tcomsat)
 "wM" = (
 /obj/machinery/door/airlock/hatch/maintenance{
-	name = "Telecoms Server Access";
 	req_access = list(61)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -1603,6 +1602,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -1619,7 +1619,6 @@
 /area/external/tcomsat/chamber)
 "wS" = (
 /obj/machinery/door/airlock/hatch{
-	name = "Telecoms Satellite";
 	req_access = list(61)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -1633,6 +1632,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "wW" = (
