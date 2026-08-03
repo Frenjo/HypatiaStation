@@ -11,7 +11,7 @@
 	. = ..()
 ///// Z-Level Stuff
 	if(!isspace(loc) && !isopenspace(loc))
-		qdel(src)
+		return INITIALISE_QDEL
 ///// Z-Level Stuff
 
 	for(var/obj/structure/lattice/other in loc)

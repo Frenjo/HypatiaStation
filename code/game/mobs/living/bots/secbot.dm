@@ -84,7 +84,6 @@
 
 /mob/living/bot/secbot/initialise()
 	. = ..()
-
 	botcard = new /obj/item/card/id(src)
 	var/datum/job/detective/J = GLOBL.all_jobs["Detective"]
 	botcard.access = J.get_access()

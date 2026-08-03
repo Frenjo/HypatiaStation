@@ -110,7 +110,7 @@
 /obj/effect/spacevine_controller/initialise()
 	. = ..()
 	if(!isfloorturf(src.loc))
-		qdel(src)
+		return INITIALISE_QDEL
 
 	spawn_spacevine_piece(src.loc)
 	START_PROCESSING(PCobj, src)

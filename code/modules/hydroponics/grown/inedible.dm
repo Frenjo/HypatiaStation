@@ -272,7 +272,7 @@
 //Workaround to keep harvesting from working weirdly.
 /obj/item/reagent_holder/food/snacks/grown/money/initialise()
 	. = ..()
-	qdel(src)
+	return INITIALISE_QDEL
 
 /*
  * Grass

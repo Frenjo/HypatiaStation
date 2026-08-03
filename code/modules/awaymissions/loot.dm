@@ -23,4 +23,4 @@
 				continue
 
 			new loot_path(GET_TURF(src))
-	qdel(src)
+	return INITIALISE_QDEL

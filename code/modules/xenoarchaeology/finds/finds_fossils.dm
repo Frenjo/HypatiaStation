@@ -20,7 +20,7 @@
 	if(istype(T, /turf/closed/rock))
 		var/turf/closed/rock/closed = T
 		closed.last_find = W
-	qdel(src)
+	return INITIALISE_QDEL
 
 /obj/item/fossil/bone
 	name = "fossilised bone"

@@ -11,7 +11,7 @@
 	if(!spawn_type)
 		var/new_type = pick(subtypesof(/obj/effect/landmark/animal_spawner))
 		new new_type(GET_TURF(src))
-		qdel(src)
+		return INITIALISE_QDEL
 	spawned_animal = new spawn_type(GET_TURF(src))
 	START_PROCESSING(PCobj, src)
 

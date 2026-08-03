@@ -28,7 +28,7 @@
 	if(isnotnull(machine))
 		machine.console = src
 	else
-		qdel(src)
+		return INITIALISE_QDEL
 
 /obj/machinery/processing_unit_console/process()
 	updateDialog()

@@ -8,8 +8,6 @@
 	if(isnotnull(target))
 		payload(target)
 
-	qdel(src)
-
 /obj/effect/mapping_helper/airlock/proc/payload(obj/machinery/door/airlock/target)
 	return
 

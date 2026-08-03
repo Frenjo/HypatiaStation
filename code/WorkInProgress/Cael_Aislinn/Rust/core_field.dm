@@ -47,7 +47,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 		owned_core = core
 
 	if(!owned_core)
-		qdel(src)
+		return INITIALISE_QDEL
 
 	//create the gimmicky things to handle field collisions
 	var/obj/effect/rust_particle_catcher/catcher

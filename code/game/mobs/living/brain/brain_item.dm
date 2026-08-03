@@ -17,7 +17,7 @@
 	. = ..()
 	//Shifting the brain "mob" over to the brain object so it's easier to keep track of. --NEO
 	//WASSSSSUUUPPPP /N
-	if(brainmob && brainmob.client)
+	if(isnotnull(brainmob?.client))
 		brainmob.client.screen.len = null //clear the hud
 
 /obj/item/brain/Destroy()

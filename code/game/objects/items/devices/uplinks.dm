@@ -311,7 +311,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/uplink/hidden/initialise()
 	. = ..()
 	if(!isitem(src.loc))
-		qdel(src)
+		return INITIALISE_QDEL
 
 // Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
 /obj/item/uplink/hidden/proc/toggle()
