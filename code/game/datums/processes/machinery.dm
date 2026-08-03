@@ -34,7 +34,7 @@ PROCESS_DEF(machinery)
 
 /datum/process/machinery/proc/unregister_machine(obj/machinery/machine)
 	var/list/existing = machines_by_type[machine.type]
-	existing.Remove(machine)
+	existing?.Remove(machine)
 	if(!length(existing))
 		machines_by_type.Remove(machine.type)
 	machines.Remove(machine)

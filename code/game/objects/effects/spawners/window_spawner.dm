@@ -17,6 +17,7 @@
 	. = ..()
 	if(global.PCticker?.current_state < GAME_STATE_PLAYING)
 		activate()
+		return INITIALISE_QDEL
 
 // Stops ZAS expanding zones past us, the windows will block the zone anyway.
 /obj/effect/window_spawner/CanPass()
@@ -53,7 +54,6 @@
 	for_no_type_check(var/obj/effect/window_spawner/other, neighbours)
 		if(!other.activated)
 			other.activate()
-	qdel(src)
 
 /obj/effect/window_spawner/proc/handle_window_spawn(obj/structure/window/W)
 	return

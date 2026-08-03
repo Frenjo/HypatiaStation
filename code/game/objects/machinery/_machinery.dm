@@ -125,8 +125,7 @@
 /obj/machinery/Destroy()
 	var/area/machine_area = GET_AREA(src)
 	machine_area?.machines_list.Remove(src)
-	if(isnotnull(global.PCmachinery))
-		global.PCmachinery.unregister_machine(src)
+	global.PCmachinery.unregister_machine(src)
 
 	if(length(component_parts))
 		for_no_type_check(var/obj/item/part, component_parts)

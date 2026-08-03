@@ -52609,15 +52609,6 @@
 "snN" = (
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
-"snT" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	name = "engineering emergency shutter"
-	},
-/obj/effect/window_spawner/reinforced,
-/turf/open/floor/plating/metal/airless,
-/area/station/maintenance/solar/aft_port)
 "soT" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
@@ -90436,7 +90427,7 @@ qSI
 ghq
 nlZ
 qSI
-snT
+qSI
 eMU
 eMU
 eMU
