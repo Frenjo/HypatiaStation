@@ -55,6 +55,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 
 	if(GC_DESTROYED(src))
 		CRASH("GC: -- [type] had initialise() called after qdel() --")
+	return INITIALISE_NORMAL
 
 /atom/proc/late_initialise()
 	SHOULD_CALL_PARENT(TRUE)

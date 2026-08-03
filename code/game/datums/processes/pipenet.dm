@@ -9,6 +9,15 @@ PROCESS_DEF(pipenet)
 
 	var/static/list/datum/pipe_network/processing_list = list()
 
+/datum/process/pipenet/setup()
+	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
+	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
+		if(!GC_DESTROYED(machine))
+			machine.atmos_initialise()
+	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
+		if(!GC_DESTROYED(machine))
+			machine.build_network()
+
 /datum/process/pipenet/do_work()
 	if(processing_killed)
 		return

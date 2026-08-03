@@ -116,6 +116,7 @@
 /obj/machinery/initialise()
 	. = ..()
 	global.PCmachinery.register_machine(src)
+	return INITIALISE_LATE
 
 /obj/machinery/late_initialise()
 	. = ..()

@@ -237,48 +237,6 @@ CONTROLLER_DEF(master)
 	WAIT_FOR_BACKLOG
 
 /datum/controller/master/proc/setup_objects()
-	to_world(SPAN_DANGER("↪ Initialising areas."))
-	for_no_type_check(var/area/area, GLOBL.area_list)
-		if(!GC_DESTROYED(area))
-			area.initialise()
-	WAIT_FOR_BACKLOG
-
-	to_world(SPAN_DANGER("↪ Initialising turfs."))
-	for_no_type_check(var/turf/open/turf, GLOBL.open_turf_list)
-		if(!GC_DESTROYED(turf))
-			turf.initialise()
-	for_no_type_check(var/turf/closed/turf, GLOBL.closed_turf_list)
-		if(!GC_DESTROYED(turf))
-			turf.initialise()
-	WAIT_FOR_BACKLOG
-
-	to_world(SPAN_DANGER("↪ Initialising objects."))
-	for_no_type_check(var/atom/movable/object, GLOBL.movable_atom_list)
-		if(!GC_DESTROYED(object))
-			object.initialise()
-	WAIT_FOR_BACKLOG
-
-	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
-	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
-		if(!GC_DESTROYED(machine))
-			machine.atmos_initialise()
-	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics)
-		if(!GC_DESTROYED(machine))
-			machine.build_network()
-	WAIT_FOR_BACKLOG
-
-	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
-	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics/unary)
-		if(!GC_DESTROYED(machine))
-			machine.broadcast_status()
-	WAIT_FOR_BACKLOG
-
-	to_world(SPAN_DANGER("↪ Initialising late objects."))
-	for_no_type_check(var/atom/movable/object, GLOBL.movable_atom_list)
-		if(!GC_DESTROYED(object))
-			object.late_initialise()
-	WAIT_FOR_BACKLOG
-
 	// Sets up spawn points.
 	to_world(SPAN_DANGER("↪ Populating spawn points."))
 	populate_spawn_points()

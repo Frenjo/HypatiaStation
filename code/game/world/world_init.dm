@@ -48,6 +48,9 @@
 	call_hook(/hook/startup)
 
 	global.CTmaster = new /datum/controller/master()
+	global.CTmaster.defer_setup_for(/datum/process/machinery)
+	global.CTmaster.defer_setup_for(/datum/process/pipenet)
+	global.CTmaster.defer_setup_for(/datum/process/initialisation)
 	global.CTmaster.setup()
 	global.PCticker.pregame() // This was moved here to avoid unnecessary while() and sleep().
 

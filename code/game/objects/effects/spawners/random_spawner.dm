@@ -11,7 +11,7 @@
 	. = ..()
 	if(!prob(spawn_nothing_percentage))
 		spawn_item()
-	qdel(src)
+	return INITIALISE_QDEL
 
 // creates the random item
 /obj/effect/random_spawner/proc/spawn_item()

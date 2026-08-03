@@ -6,7 +6,7 @@
 /obj/effect/decal/floor/initialise()
 	. = ..()
 	loc.add_overlay(image(icon, loc, icon_state, layer, dir))
-	qdel(src)
+	return INITIALISE_QDEL
 
 // Chapel floor pattern
 /obj/effect/decal/floor/chapel
