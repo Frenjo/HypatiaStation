@@ -14,7 +14,7 @@ PROCESS_DEF(initialisation)
 	LAZYINITLIST(late_loaders)
 	LAZYINITLIST(late_qdels)
 
-	to_world(SPAN_DANGER("↪ Initialising atoms."))
+	to_world(SPAN_DANGER("↪ Initialising atoms..."))
 	for(var/atom/A in world)
 		initialise_atom(A, TRUE)
 

@@ -47,6 +47,15 @@ PROCESS_DEF(ticker)
 /datum/process/ticker/setup()
 	last_time = world.timeofday
 
+	// Loads an away mission.
+	createRandomZlevel()
+	to_world(SPAN_DANGER("↪ Generating mining asteroid..."))
+	// Sets up the mining asteroid's caves and secret rooms.
+	for(var/i = 0, i < ASTEROID_MAX_CAVES, i++)
+		make_mining_asteroid_cave()
+	for(var/i = 0, i < ASTEROID_MAX_SECRET_ROOMS, i++)
+		make_mining_asteroid_secret()
+
 /datum/process/ticker/do_work()
 	var/currentTime = world.timeofday
 

@@ -14,7 +14,7 @@ PROCESS_DEF(machinery)
 	var/static/list/datum/powernet/powernets = list()
 
 /datum/process/machinery/setup()
-	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
+	to_world(SPAN_DANGER("↪ Initialising atmos machinery..."))
 	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics/unary)
 		if(!GC_DESTROYED(machine))
 			machine.broadcast_status()
