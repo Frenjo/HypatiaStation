@@ -271,16 +271,8 @@
 
 /obj/machinery/processing_unit/initialise()
 	. = ..()
-	for(var/dir in GLOBL.cardinal)
-		var/obj/machinery/input_plate/in_plate = locate(/obj/machinery/input_plate, get_step(src, dir))
-		if(isnotnull(in_plate))
-			input_turf = GET_TURF(in_plate)
-			break
-	for(var/dir in GLOBL.cardinal)
-		var/obj/machinery/output_plate/out_plate = locate(/obj/machinery/output_plate, get_step(src, dir))
-		if(isnotnull(out_plate))
-			output_turf = GET_TURF(out_plate)
-			break
+	input_turf = get_step(src, NORTH)
+	output_turf = get_step(src, SOUTH)
 	START_PROCESSING(PCobj, src)
 
 /obj/machinery/processing_unit/Destroy()
