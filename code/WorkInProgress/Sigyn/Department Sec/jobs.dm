@@ -10,7 +10,7 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 			if("supply")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/cargo(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/supply(H), slot_ears)
-				access = list(access_mailsorting, access_mining)
+				access = list(access_mining)
 				destination = /area/station/security/checkpoint/supply
 			if("engineering")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/engine(H), SLOT_ID_WEAR_UNIFORM)

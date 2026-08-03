@@ -13,7 +13,6 @@
 /var/const/access_engine_equip= 11
 /var/const/access_maint_tunnels = 12
 /var/const/access_external_airlocks = 13
-/var/const/access_emergency_storage = 14
 /var/const/access_change_ids = 15
 /var/const/access_ai_upload = 16
 /var/const/access_teleporter = 17
@@ -33,9 +32,7 @@
 /var/const/access_cargo = 31
 /var/const/access_construction = 32
 /var/const/access_chemistry = 33
-/var/const/access_cargo_bot = 34
 /var/const/access_hydroponics = 35
-/var/const/access_manufacturing = 36
 /var/const/access_library = 37
 /var/const/access_lawyer = 38
 /var/const/access_virology = 39
@@ -48,12 +45,7 @@
 /var/const/access_theatre = 46
 /var/const/access_research = 47
 /var/const/access_mining = 48
-/var/const/access_mining_office = 49 //not in use
-/var/const/access_mailsorting = 50
-/var/const/access_mint = 51
-/var/const/access_mint_vault = 52
 /var/const/access_heads_vault = 53
-/var/const/access_mining_station = 54
 /var/const/access_xenobiology = 55
 /var/const/access_ce = 56
 /var/const/access_hop = 57
@@ -222,8 +214,8 @@
 			            access_tox, access_tox_storage, access_chemistry, access_medical, access_genetics, access_engine,
 			            access_emergency_storage, access_change_ids, access_ai_upload, access_eva, access_heads,
 			            access_all_personal_lockers, access_tech_storage, access_maint_tunnels, access_bar, access_janitor,
-			            access_crematorium, access_kitchen, access_robotics, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
-			            access_theatre, access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
+			            access_crematorium, access_kitchen, access_robotics, access_cargo, access_qm, access_hydroponics, access_lawyer,
+			            access_theatre, access_chapel_office, access_library, access_research, access_mining, access_heads_vault,
 			            access_clown, access_mime, access_hop, access_RC_announce, access_keycard_auth, access_gateway)
 		if("Atmospheric Technician")
 			return list(access_atmospherics, access_maint_tunnels, access_emergency_storage, access_construction)
@@ -242,16 +234,16 @@
 		if("Roboticist")
 			return list(access_robotics, access_tech_storage, access_morgue) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 		if("Cargo Technician")
-			return list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+			return list(access_maint_tunnels, access_cargo)
 		if("Shaft Miner")
-			return list(access_mining, access_mint, access_mining_station)
+			return list(access_mining)
 		if("Quartermaster")
-			return list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
+			return list(access_maint_tunnels, access_cargo, access_qm, access_mining)
 		if("Chief Engineer")
 			return list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
 			            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
 			            access_heads, access_ai_upload, access_construction, access_robotics,
-			            access_mint, access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_sec_doors)
+			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_sec_doors)
 		if("Research Director")
 			return list(access_rd, access_heads, access_tox, access_genetics,
 			            access_tox_storage, access_teleporter,
@@ -294,10 +286,10 @@
 	            access_external_airlocks, access_emergency_storage, access_change_ids, access_ai_upload,
 	            access_teleporter, access_eva, access_heads, access_captain, access_all_personal_lockers,
 	            access_tech_storage, access_chapel_office, access_atmospherics, access_kitchen,
-	            access_bar, access_janitor, access_crematorium, access_robotics, access_cargo, access_cargo_bot, access_construction,
-	            access_hydroponics, access_library, access_manufacturing, access_lawyer, access_virology, access_cmo, access_qm, access_clown, access_mime, access_surgery,
-	            access_theatre, access_research, access_mining, access_mailsorting, access_mint_vault, access_mint,
-	            access_heads_vault, access_mining_station, access_xenobiology, access_ce, access_hop, access_hos, access_RC_announce,
+	            access_bar, access_janitor, access_crematorium, access_robotics, access_cargo, access_construction,
+	            access_hydroponics, access_library, access_lawyer, access_virology, access_cmo, access_qm, access_clown, access_mime, access_surgery,
+	            access_theatre, access_research, access_mining,
+	            access_heads_vault, access_xenobiology, access_ce, access_hop, access_hos, access_RC_announce,
 	            access_keycard_auth, access_tcomsat, access_gateway)
 
 /proc/get_all_centcom_access()
@@ -323,7 +315,7 @@
 		if(6) //station general
 			return list(access_kitchen,access_bar, access_hydroponics, access_janitor, access_chapel_office, access_crematorium, access_library, access_theatre, access_lawyer, access_clown, access_mime)
 		if(7) //supply
-			return list(access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_mining, access_mining_station)
+			return list(access_cargo, access_qm, access_mining)
 
 /proc/get_region_accesses_name(var/code)
 	switch(code)
@@ -349,8 +341,6 @@
 	switch(A)
 		if(access_cargo)
 			return "Cargo Bay"
-		if(access_cargo_bot)
-			return "Cargo Bot Delivery"
 		if(access_security)
 			return "Security"
 		if(access_brig)
@@ -437,24 +427,12 @@
 			return "Surgery"
 		if(access_theatre)
 			return "Theatre"
-		if(access_manufacturing)
-			return "Manufacturing"
 		if(access_research)
 			return "Science"
 		if(access_mining)
 			return "Mining"
-		if(access_mining_office)
-			return "Mining Office"
-		if(access_mailsorting)
-			return "Delivery Office"
-		if(access_mint)
-			return "Mint"
-		if(access_mint_vault)
-			return "Mint Vault"
 		if(access_heads_vault)
 			return "Main Vault"
-		if(access_mining_station)
-			return "Mining Station EVA"
 		if(access_xenobiology)
 			return "Xenobiology Lab"
 		if(access_hop)

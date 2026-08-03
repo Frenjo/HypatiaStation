@@ -215,18 +215,10 @@
 /obj/effect/decal/floor/coloured/green,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
-"bb" = (
-/obj/machinery/door/airlock/external{
-	name = "Mining Bridge";
-	req_access = list(54)
-	},
-/turf/open/floor/tiled/grey/asteroid/airless,
-/area/external/asteroid/mine/explored)
 "bc" = (
 /obj/machinery/door/airlock/external{
 	id_tag = "riso3";
-	name = "Access Airlock";
-	req_access = list(65)
+	name = "Access Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
@@ -236,6 +228,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/one)
 "bd" = (
@@ -589,9 +582,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -599,6 +590,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/one)
 "cM" = (
@@ -716,15 +708,14 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
 "dg" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock North"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "di" = (
@@ -1089,9 +1080,7 @@
 	},
 /area/external/mining_outpost/starboard_wing)
 "ff" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -1106,6 +1095,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "fg" = (
@@ -1162,9 +1152,7 @@
 /area/external/mining_outpost/port_wing)
 "fs" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -1180,6 +1168,7 @@
 	dir = 8
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -1361,15 +1350,14 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/shuttle_dock)
 "ge" = (
-/obj/machinery/door/airlock/glass/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/glass/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock North"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/hallway)
 "gi" = (
@@ -1649,9 +1637,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass/mining{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/glass/mining,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -1659,6 +1645,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
 "hx" = (
@@ -1698,8 +1685,7 @@
 /area/space)
 "hI" = (
 /obj/machinery/door/airlock/research{
-	name = "Anomalous Materials Locker Room";
-	req_access = list(65)
+	name = "Anomalous Materials Locker Room"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only{
@@ -1707,6 +1693,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock North"
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "hJ" = (
@@ -1735,8 +1722,7 @@
 /area/external/research_outpost/hallway)
 "hO" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Station Maintenance";
-	req_access = list(54)
+	name = "Mining Station Maintenance"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -1749,6 +1735,7 @@
 	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "hQ" = (
@@ -1989,9 +1976,7 @@
 	},
 /area/external/mining_outpost/port_wing)
 "jg" = (
-/obj/machinery/door/airlock/glass/medical{
-	req_one_access = list(5,65)
-	},
+/obj/machinery/door/airlock/glass/medical,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -2155,9 +2140,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
 "jW" = (
-/obj/machinery/door/airlock/glass/mining{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/glass/mining,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -2169,6 +2152,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/temporary)
 "jX" = (
@@ -2975,8 +2959,7 @@
 /area/external/research_outpost/storage/auxiliary)
 "oa" = (
 /obj/machinery/door/airlock/glass/mining{
-	name = "Mining Station Bridge";
-	req_access = list(48)
+	name = "Mining Station Bridge"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -2994,6 +2977,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock East"
 	},
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
 "ob" = (
@@ -3383,8 +3367,7 @@
 /area/external/research_outpost/power)
 "pw" = (
 /obj/machinery/door/airlock/glass/mining{
-	name = "Break Room";
-	req_access = list(54)
+	name = "Break Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3393,12 +3376,11 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
 	},
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
 "py" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -3406,6 +3388,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/anomaly)
 "pA" = (
@@ -3602,9 +3585,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -3612,6 +3593,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/two)
 "qN" = (
@@ -3633,8 +3615,7 @@
 "rd" = (
 /obj/machinery/door/airlock/external{
 	id_tag = "riso3";
-	name = "Access Airlock";
-	req_access = list(65)
+	name = "Access Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
@@ -3644,6 +3625,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/two)
 "re" = (
@@ -4023,15 +4005,14 @@
 /turf/open/floor/circuit_grid/blue,
 /area/external/mining_outpost/communications)
 "sP" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock East"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "sS" = (
@@ -4429,9 +4410,7 @@
 /turf/open/floor/tiled/showroom,
 /area/external/mining_outpost/port_wing)
 "uH" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4443,17 +4422,17 @@
 	name = "Firelock North"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/spectro)
 "uI" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access = list(12,65)
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/auxiliary)
 "uJ" = (
@@ -4570,9 +4549,7 @@
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
 "vv" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -4582,6 +4559,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/harvesting)
 "vx" = (
@@ -4607,8 +4585,7 @@
 /area/external/research_outpost/hallway)
 "vC" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Maintenance Storage";
-	req_one_access = list(12,65)
+	name = "Maintenance Storage"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -4621,6 +4598,7 @@
 	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/maintenance)
 "vD" = (
@@ -4650,10 +4628,10 @@
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
 	id_tag = "researchshuttle_outpost_hatch";
-	name = "Research Outpost Dock Airlock";
-	req_access = list(65)
+	name = "Research Outpost Dock Airlock"
 	},
 /obj/effect/mapping_helper/airlock/lock,
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/shuttle_dock)
 "vO" = (
@@ -4888,9 +4866,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -4898,6 +4874,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/three)
 "wR" = (
@@ -5234,8 +5211,7 @@
 /area/external/research_outpost/storage/auxiliary)
 "yh" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Station Communications";
-	req_access = list(48)
+	name = "Mining Station Communications"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -5248,6 +5224,7 @@
 	name = "Firelock North"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/access/supply/mining,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -5634,9 +5611,7 @@
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "zV" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -5649,6 +5624,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/sample)
 "zX" = (
@@ -5671,9 +5647,7 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Ac" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access = list(12,65)
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5685,6 +5659,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock South"
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
 "Ae" = (
@@ -5834,14 +5809,13 @@
 /turf/closed/wall/steel,
 /area/external/research_outpost/hallway)
 "AH" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -5945,8 +5919,7 @@
 "Ba" = (
 /obj/machinery/door/airlock/external{
 	id_tag = "riso3";
-	name = "Access Airlock";
-	req_access = list(65)
+	name = "Access Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
@@ -5956,6 +5929,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/three)
 "Bb" = (
@@ -6171,15 +6145,14 @@
 /turf/open/floor/tiled/white,
 /area/external/mining_outpost/infirmary)
 "BM" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock North"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -6689,8 +6662,7 @@
 /area/external/asteroid/mine/explored)
 "DX" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Station Maintenance";
-	req_access = list(54)
+	name = "Mining Station Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/door/firedoor/border_only{
@@ -6698,6 +6670,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock South"
 	},
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "DY" = (
@@ -7499,14 +7472,14 @@
 "HO" = (
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/machinery/door/airlock/glass{
-	name = "Gutlunch Pasture";
-	req_access = list(48)
+	name = "Gutlunch Pasture"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock South"
 	},
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/hydroponics,
 /area/external/mining_outpost/gutlunch_farm)
 "HT" = (
@@ -7612,9 +7585,7 @@
 	},
 /area/external/research_outpost/hallway)
 "Iu" = (
-/obj/machinery/door/airlock/maintenance{
-	req_one_access = list(12,65)
-	},
+/obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -7623,6 +7594,7 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 4
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
 "Iv" = (
@@ -7699,9 +7671,7 @@
 /area/external/mining_outpost/eva)
 "IM" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/glass/mining{
-	req_access = list(54)
-	},
+/obj/machinery/door/airlock/glass/mining,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -7716,6 +7686,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
 "IN" = (
@@ -7852,14 +7823,14 @@
 /area/external/mining_outpost/starboard_wing)
 "JK" = (
 /obj/machinery/door/airlock/external{
-	name = "Access Airlock";
-	req_access = list(65)
+	name = "Access Airlock"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock East"
 	},
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/harvesting)
 "JM" = (
@@ -8069,8 +8040,7 @@
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
 	id_tag = "research_outer";
-	name = "Research Outpost External Access";
-	req_access = list(10,13)
+	name = "Research Outpost External Access"
 	},
 /obj/effect/mapping_helper/airlock/lock,
 /turf/open/floor/plating/metal,
@@ -8103,9 +8073,7 @@
 	},
 /area/external/research_outpost/hallway)
 "Lf" = (
-/obj/machinery/door/airlock/glass/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/glass/research,
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
@@ -8119,6 +8087,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/shuttle_dock)
 "Li" = (
@@ -8424,20 +8393,17 @@
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "MF" = (
-/obj/machinery/door/airlock/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "MI" = (
-/obj/machinery/door/airlock/glass/research{
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/glass/research,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -8450,6 +8416,7 @@
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/hallway)
 "MJ" = (
@@ -8538,8 +8505,7 @@
 /area/external/research_outpost/storage/auxiliary)
 "Ne" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Mining Station Maintenance";
-	req_access = list(48)
+	name = "Mining Station Maintenance"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -8552,6 +8518,7 @@
 	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/effect/mapping_helper/airlock/access/supply/mining,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/port_wing)
 "Ni" = (
@@ -8707,8 +8674,7 @@
 /area/external/research_outpost/anomaly)
 "NS" = (
 /obj/machinery/door/airlock/glass/mining{
-	name = "Mining Station Bridge";
-	req_access = list(48)
+	name = "Mining Station Bridge"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -8725,6 +8691,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "Firelock West"
 	},
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
 "NT" = (
@@ -9009,10 +8976,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/storage)
 "PC" = (
-/obj/machinery/door/airlock/research{
-	name = "Spectrometry Lab Sample Preparation";
-	req_access = list(65)
-	},
+/obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -9022,6 +8986,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/research/xenoarch,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/spectro)
 "PD" = (
@@ -9108,8 +9073,7 @@
 /area/external/asteroid/mine/unexplored)
 "PS" = (
 /obj/machinery/door/airlock/glass{
-	name = "Crew Area";
-	req_access = list(48)
+	name = "Crew Area"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9122,6 +9086,7 @@
 	name = "Firelock North"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/access/supply/mining,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
 "PV" = (
@@ -10223,9 +10188,7 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Vb" = (
-/obj/machinery/door/airlock/mining{
-	req_access = list(48)
-	},
+/obj/machinery/door/airlock/mining,
 /obj/machinery/door/firedoor/border_only{
 	dir = 2;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
@@ -10238,6 +10201,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/effect/mapping_helper/airlock/access/supply/mining,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/storage)
 "Vc" = (
@@ -11315,9 +11279,9 @@
 /area/external/research_outpost/hallway)
 "ZY" = (
 /obj/machinery/door/airlock/external{
-	name = "Mining Bridge";
-	req_one_access = list(54,65)
+	name = "Mining Bridge"
 	},
+/obj/effect/mapping_helper/airlock/access/supply/mining/eva,
 /turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ZZ" = (
@@ -24857,7 +24821,7 @@ St
 St
 St
 Yz
-bb
+ZY
 Yz
 fk
 St
@@ -26918,7 +26882,7 @@ Df
 Df
 Df
 Df
-bb
+ZY
 fk
 fk
 fk
@@ -27166,7 +27130,7 @@ fk
 fk
 fk
 fk
-bb
+ZY
 Df
 Df
 Df

@@ -16,9 +16,8 @@
 	selection_color = "#8c7846"
 
 	access = list(
-		ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT,
-		ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION,
-		ACCESS_RC_ANNOUNCE
+		ACCESS_MAINT_TUNNELS, ACCESS_CARGO,
+		ACCESS_QM, ACCESS_MINING, ACCESS_RC_ANNOUNCE
 	)
 
 	outfit = /decl/hierarchy/outfit/job/cargo/qm
@@ -39,10 +38,10 @@
 	selection_color = "#aa9682"
 
 	access = list(
-		ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT,
-		ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION
+		ACCESS_MAINT_TUNNELS, ACCESS_CARGO,
+		ACCESS_QM, ACCESS_MINING
 	)
-	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO)
 
 	outfit = /decl/hierarchy/outfit/job/cargo/technician
 
@@ -62,10 +61,10 @@
 	selection_color = "#aa9682"
 
 	access = list(
-		ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT,
-		ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION
+		ACCESS_MAINT_TUNNELS, ACCESS_CARGO,
+		ACCESS_QM, ACCESS_MINING
 	)
-	minimal_access = list(ACCESS_MAILSORTING, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MINING)
 
 	outfit = /decl/hierarchy/outfit/job/cargo/mining/foreman
 	alt_titles = list("Head Miner")
@@ -88,10 +87,10 @@
 	selection_color = "#aa9682"
 
 	access = list(
-		ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT,
-		ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION
+		ACCESS_MAINT_TUNNELS, ACCESS_CARGO,
+		ACCESS_QM, ACCESS_MINING
 	)
-	minimal_access = list(ACCESS_MAILSORTING, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MINING)
 
 	outfit = /decl/hierarchy/outfit/job/cargo/mining/miner
 	alt_titles = list("Prospector")
@@ -117,7 +116,7 @@
 	supervisors = "the Head of Personnel and the Quartermaster"
 	selection_color = "#aa9682"
 
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO)
 
 	outfit = /decl/hierarchy/outfit/job/cargo/mailman
 	alt_titles = list("Postman", "Delivery Technician") // Should probably change this to "Delivery Specialist", but "Cargo Technician" exists. -Frenjo
