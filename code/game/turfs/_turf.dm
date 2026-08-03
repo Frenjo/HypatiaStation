@@ -30,16 +30,11 @@
 	turf_area.turf_list.Add(src)
 	levelupdate()
 
-/turf/initialise()
-	. = ..()
-	START_PROCESSING(PCturf, src)
-
 /turf/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
 
 	var/area/turf_area = loc
 	turf_area.turf_list.Remove(src)
-	STOP_PROCESSING(PCturf, src)
 	return ..()
 
 /turf/proc/process()

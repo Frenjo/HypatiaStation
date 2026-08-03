@@ -57,6 +57,14 @@
 	var/last_event = 0
 	var/active = null
 
+/turf/closed/wall/uranium/initialise()
+	. = ..()
+	START_PROCESSING(PCturf, src)
+
+/turf/closed/wall/uranium/Destroy()
+	STOP_PROCESSING(PCturf, src)
+	return ..()
+
 /turf/closed/wall/uranium/process()
 	radiate()
 

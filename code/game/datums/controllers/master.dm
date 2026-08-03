@@ -131,15 +131,8 @@ CONTROLLER_DEF(master)
 	initialised = TRUE
 
 /datum/controller/master/process()
-	update_current_tick_data()
-
-	for(var/i = world.tick_lag, i < world.tick_lag * 50, i += world.tick_lag)
-		spawn(i)
-			update_current_tick_data()
 	while(is_running)
-		// Hopefully spawning this for 50 ticks in the future will make it the first thing in the queue.
-		spawn(world.tick_lag * 50)
-			update_current_tick_data()
+		update_current_tick_data()
 		check_running_processes()
 		queue_processes()
 		run_queued_processes()
