@@ -23,6 +23,10 @@ Pipelines + Other Objects -> Pipe network
 	var/initialize_directions = 0
 	var/pipe_color
 
+/obj/machinery/atmospherics/late_initialise()
+	. = ..()
+	atmos_initialise()
+
 /obj/machinery/atmospherics/proc/atmos_initialise()
 	return
 
