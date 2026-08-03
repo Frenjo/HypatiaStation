@@ -39,14 +39,14 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 	//create radiator
 	for(var/obj/machinery/rust/rad_source/rad in range(0))
 		radiator = rad
-	if(!radiator)
+	if(isnull(radiator))
 		radiator = new()
 
 	//make sure there's a field generator
 	for(var/obj/machinery/power/rust_core/core in loc)
 		owned_core = core
 
-	if(!owned_core)
+	if(isnull(owned_core))
 		return INITIALISE_QDEL
 
 	//create the gimmicky things to handle field collisions

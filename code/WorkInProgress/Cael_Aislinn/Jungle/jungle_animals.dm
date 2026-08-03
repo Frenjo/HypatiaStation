@@ -2,13 +2,14 @@
 //spawns one of the specified animal type
 /obj/effect/landmark/animal_spawner
 	icon_state = "x3"
-	var/spawn_type
-	var/mob/living/spawned_animal
 	invisibility = INVISIBILITY_MAXIMUM
+
+	var/spawn_type = null
+	var/mob/living/spawned_animal
 
 /obj/effect/landmark/animal_spawner/initialise()
 	. = ..()
-	if(!spawn_type)
+	if(isnull(spawn_type))
 		var/new_type = pick(subtypesof(/obj/effect/landmark/animal_spawner))
 		new new_type(GET_TURF(src))
 		return INITIALISE_QDEL
