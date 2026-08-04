@@ -21,7 +21,7 @@
 	gas_contained = new /datum/gas_mixture()
 	inturf = get_step(src, dir)
 	turbine = locate() in get_step(src, get_dir(inturf, src))
-	if(!turbine)
+	if(isnull(turbine))
 		stat |= BROKEN
 
 #define COMPFRICTION 5e5

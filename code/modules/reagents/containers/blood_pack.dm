@@ -9,7 +9,7 @@
 
 /obj/item/reagent_holder/blood/initialise()
 	. = ..()
-	if(blood_type != null)
+	if(isnotnull(blood_type))
 		name = "\improper BloodPack [blood_type]"
 		reagents.add_reagent("blood", 200, list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = blood_type, "resistances" = null, "trace_chem" = null))
 		update_icon()

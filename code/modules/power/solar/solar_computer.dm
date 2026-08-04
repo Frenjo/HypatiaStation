@@ -35,8 +35,7 @@
 /obj/machinery/power/solar_control/initialise()
 	. = ..()
 	if(isnull(powernet))
-		return
-	connect_to_network()
+		connect_to_network()
 
 /obj/machinery/power/solar_control/Destroy()
 	for_no_type_check(var/obj/machinery/power/solar/M, connected_panels)
@@ -51,10 +50,9 @@
 	GLOBL.solars_list.Remove(src)
 
 /obj/machinery/power/solar_control/connect_to_network()
-	var/to_return = ..()
+	. = ..()
 	if(isnotnull(powernet)) //if connected and not already in solar_list...
 		GLOBL.solars_list |= src //... add it
-	return to_return
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)

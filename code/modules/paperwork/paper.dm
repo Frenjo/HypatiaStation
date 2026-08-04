@@ -42,9 +42,12 @@
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
-	spawn(2)
-		update_icon()
-		updateinfolinks()
+	return INITIALISE_LATE
+
+/obj/item/paper/late_initialise()
+	. = ..()
+	update_icon()
+	updateinfolinks()
 
 /obj/item/paper/update_icon()
 	if(icon_state == "paper_talisman")

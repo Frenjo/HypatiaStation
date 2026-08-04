@@ -59,7 +59,7 @@
 
 /obj/machinery/power/smes/initialise()
 	. = ..()
-	if(!powernet)
+	if(isnull(powernet))
 		connect_to_network()
 
 	dir_loop:

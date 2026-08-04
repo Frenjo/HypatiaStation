@@ -70,13 +70,14 @@
 
 /obj/structure/transit_tube_pod/initialise()
 	. = ..()
-
 	air_contents.adjust_multi(/decl/xgm_gas/oxygen, MOLES_O2STANDARD * 2, /decl/xgm_gas/nitrogen, MOLES_N2STANDARD)
 	air_contents.temperature = T20C
+	return INITIALISE_LATE
 
-	// Give auto tubes time to align before trying to start moving
-	spawn(5)
-		follow_tube()
+// Give auto tubes time to align before trying to start moving
+/obj/structure/transit_tube_pod/late_initialise()
+	. = ..()
+	follow_tube()
 
 /obj/structure/transit_tube/initialise()
 	. = ..()

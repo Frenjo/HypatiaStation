@@ -10,7 +10,8 @@
 /obj/structure/noticeboard/initialise()
 	. = ..()
 	for(var/obj/item/I in loc)
-		if(notices > 4) break
+		if(notices > 4)
+			break
 		if(istype(I, /obj/item/paper))
 			I.forceMove(src)
 			notices++

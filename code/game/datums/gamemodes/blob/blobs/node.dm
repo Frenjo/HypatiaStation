@@ -11,7 +11,6 @@
 
 /obj/effect/blob/node/initialise()
 	. = ..()
-	GLOBL.blobs.Add(src)
 	GLOBL.blob_nodes.Add(src)
 	START_PROCESSING(PCobj, src)
 

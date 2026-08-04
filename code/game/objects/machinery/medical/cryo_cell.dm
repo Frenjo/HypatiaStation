@@ -13,7 +13,7 @@
 
 	var/current_heat_capacity = 50
 
-/obj/machinery/atmospherics/unary/cryo_cell/New()
+/obj/machinery/atmospherics/unary/cryo_cell/initialise()
 	..()
 	initialize_directions = dir
 
@@ -25,16 +25,6 @@
 		mover.forceMove(T)
 	occupant = null
 	return ..()
-
-/obj/machinery/atmospherics/unary/cryo_cell/initialise()
-	. = ..()
-	if(node)
-		return
-	var/node_connect = dir
-	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
-		if(target.initialize_directions & get_dir(target, src))
-			node = target
-			break
 
 /obj/machinery/atmospherics/unary/cryo_cell/process()
 	..()

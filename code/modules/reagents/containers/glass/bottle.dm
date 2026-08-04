@@ -11,7 +11,7 @@
 
 /obj/item/reagent_holder/glass/bottle/initialise()
 	. = ..()
-	if(!icon_state)
+	if(isnull(icon_state))
 		icon_state = "bottle[rand(1, 20)]"
 
 /obj/item/reagent_holder/glass/bottle/update_icon()
@@ -157,8 +157,7 @@
 
 /obj/item/reagent_holder/glass/bottle/random/initialise()
 	. = ..()
-	var/datum/disease/advance/F = new(0)
-	reagents.add_reagent("blood", 20, list("viruses" = list(F)))
+	reagents.add_reagent("blood", 20, list("viruses" = list(new /datum/disease/advance(0))))
 
 /obj/item/reagent_holder/glass/bottle/retrovirus
 	name = "Retrovirus culture bottle"
@@ -181,7 +180,7 @@
 
 /obj/item/reagent_holder/glass/bottle/gbs/initialise()
 	. = ..()
-	reagents.add_reagent("blood", 20, list("viruses" = list(new /datum/disease/gbs())))
+	reagents.add_reagent("blood", 20, list("viruses" = list(new /datum/disease/gbs(0))))
 
 /obj/item/reagent_holder/glass/bottle/fake_gbs
 	name = "GBS culture bottle"

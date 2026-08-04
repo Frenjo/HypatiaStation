@@ -19,7 +19,7 @@
 	. = ..()
 	//connect to a nearby scanner pad
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
-	if(!owned_scanner)
+	if(isnull(owned_scanner))
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
 /obj/machinery/artifact_harvester/attack_by(obj/item/I, mob/user)

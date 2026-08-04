@@ -11,6 +11,10 @@
 
 /area/ai_monitored/initialise()
 	. = ..()
+	return INITIALISE_LATE
+
+/area/ai_monitored/late_initialise()
+	. = ..()
 	// locate and store the motioncamera
 	// spawn on a delay to let turfs/objs load
 	for(var/obj/machinery/camera/M in machines_list)

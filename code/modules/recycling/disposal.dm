@@ -34,7 +34,7 @@
 /obj/machinery/disposal/initialise()
 	. = ..()
 	trunk = locate() in loc
-	if(!trunk)
+	if(isnull(trunk))
 		mode = 0
 		flush = 0
 	else
@@ -1324,8 +1324,7 @@
 	target = get_ranged_target_turf(src, dir, 10)
 
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
-	if(trunk)
-		trunk.linked = src	// link the pipe trunk to self
+	trunk?.linked = src // link the pipe trunk to self
 
 // expel the contents of the holder object, then delete it
 // called when the holder exits the outlet

@@ -9,13 +9,13 @@
 
 /obj/item/fossil/base/initialise()
 	. = ..()
-	var/list/l = list(
+	var/list/paths = list(
 		/obj/item/fossil/bone = 9,
 		/obj/item/fossil/skull = 3,
 		/obj/item/fossil/skull/horned = 2
 	)
-	var/t = pickweight(l)
-	var/obj/item/W = new t(src.loc)
+	var/path = pickweight(paths)
+	var/obj/item/W = new path(loc)
 	var/turf/T = GET_TURF(src)
 	if(istype(T, /turf/closed/rock))
 		var/turf/closed/rock/closed = T

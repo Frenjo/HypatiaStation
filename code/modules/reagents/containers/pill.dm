@@ -12,7 +12,7 @@
 
 /obj/item/reagent_holder/pill/initialise()
 	. = ..()
-	if(!icon_state)
+	if(isnull(icon_state))
 		icon_state = "pill[rand(1, 20)]"
 
 /obj/item/reagent_holder/pill/attack_self(mob/user)
