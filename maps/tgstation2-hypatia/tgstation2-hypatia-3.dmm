@@ -1202,10 +1202,7 @@
 /turf/open/floor/tiled/grey,
 /area/turret_protected/tcomsat/foyer)
 "ss" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "sy" = (
@@ -1410,10 +1407,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/tcomsat/lounge)
 "uP" = (
-/obj/machinery/sleep_console{
-	icon_state = "sleeperconsole-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleep_console/right,
 /turf/open/floor/shuttle/white,
 /area/external/abandoned/ship)
 "uT" = (

@@ -6,18 +6,15 @@
 	name = "sleeper console"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
-	var/obj/machinery/sleeper/connected = null
 	anchored = TRUE //About time someone fixed this.
 	density = FALSE
-	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
+
+	var/orientation = WEST
+	var/obj/machinery/sleeper/connected = null
 
 /obj/machinery/sleep_console/initialise()
 	. = ..()
-	if(orient == "RIGHT")
-		icon_state = "sleeperconsole-r"
-		src.connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
-	else
-		src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
+	connected = locate(/obj/machinery/sleeper, get_step(src, orientation))
 
 /obj/machinery/sleep_console/process()
 	if(stat & (NOPOWER|BROKEN))
@@ -131,6 +128,10 @@
 	return
 	// no change - sleeper works without power (you just can't inject more)
 
+/obj/machinery/sleep_console/right
+	icon_state = "sleeperconsole-r"
+	orientation = EAST
+
 /////////////////////////////////////////
 // THE SLEEPER ITSELF
 /////////////////////////////////////////
@@ -141,7 +142,10 @@
 	icon_state = "sleeper_0"
 	density = TRUE
 	anchored = TRUE
-	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
+
+	var/idle_icon_state = "sleeper_0"
+	var/active_icon_state = "sleeper_1"
+
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list(
 		"inaprovaline" = "Inaprovaline",
@@ -157,11 +161,6 @@
 /obj/machinery/sleeper/New()
 	..()
 	beaker = new /obj/item/reagent_holder/glass/beaker/large(src)
-
-/obj/machinery/sleeper/initialise()
-	. = ..()
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
 
 /obj/machinery/sleeper/allow_drop()
 		return 0
@@ -208,10 +207,7 @@
 		grabbed.client.eye = src
 	grabbed.forceMove(src)
 	occupant = grabbed
-	if(orient == "RIGHT")
-		icon_state = "sleeper_1-r"
-	else
-		icon_state = "sleeper_1"
+	icon_state = active_icon_state
 	to_chat(grabbed, SPAN_INFO_B("You feel cool air surround you. You go numb as your senses turn inward."))
 	add_fingerprint(user)
 	qdel(grab)
@@ -304,9 +300,7 @@
 		src.occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(loc)
 	src.occupant = null
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
-	return
+	icon_state = idle_icon_state
 
 /obj/machinery/sleeper/proc/inject_chemical(mob/living/user, chemical, amount)
 	if(src.occupant && src.occupant.reagents)
@@ -353,9 +347,6 @@
 
 	if(usr.stat != CONSCIOUS)
 		return
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
-	src.icon_state = "sleeper_0"
 	src.go_out()
 	add_fingerprint(usr)
 	return
@@ -401,9 +392,7 @@
 		usr.client.eye = src
 		usr.forceMove(src)
 		src.occupant = usr
-		src.icon_state = "sleeper_1"
-		if(orient == "RIGHT")
-			icon_state = "sleeper_1-r"
+		icon_state = active_icon_state
 
 		to_chat(usr, SPAN_INFO_B("You feel cool air surround you. You go numb as your senses turn inward."))
 
@@ -412,3 +401,9 @@
 		src.add_fingerprint(usr)
 		return
 	return
+
+/obj/machinery/sleeper/right
+	icon_state = "sleeper_0-r"
+
+	idle_icon_state = "sleeper_0-r"
+	active_icon_state = "sleeper_1-r"

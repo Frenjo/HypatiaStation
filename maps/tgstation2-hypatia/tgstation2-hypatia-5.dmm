@@ -9582,13 +9582,11 @@
 /turf/open/floor/airless,
 /area/external/abandoned/mining_outpost)
 "Si" = (
-/obj/machinery/sleeper{
-	dir = 1
-	},
 /obj/effect/decal/floor/coloured/green,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 9
 	},
+/obj/machinery/sleeper,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/infirmary)
 "Sn" = (

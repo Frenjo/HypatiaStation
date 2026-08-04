@@ -31,10 +31,7 @@
 /turf/open/floor/plating/metal/shuttle,
 /area/shuttle/escape/centcom)
 "ah" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /turf/open/floor/shuttle/white,
 /area/shuttle/escape/centcom)
 "ai" = (
@@ -4937,10 +4934,7 @@
 	},
 /area/centcom/control)
 "xN" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -5100,10 +5094,7 @@
 /turf/open/floor/shuttle/white,
 /area/shuttle/syndicate/mercenary/start)
 "yC" = (
-/obj/machinery/sleep_console{
-	icon_state = "sleeperconsole-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleep_console/right,
 /turf/open/floor/shuttle/white,
 /area/centcom/rescue_shuttle/two)
 "yE" = (
@@ -5392,10 +5383,7 @@
 	},
 /area/shuttle/syndicate/mercenary/start)
 "An" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /turf/open/floor/shuttle/white,
 /area/centcom/rescue_shuttle/two)
 "Ao" = (
@@ -6061,10 +6049,7 @@
 /turf/open/floor/beach/sand,
 /area/special/beach)
 "DE" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /turf/open/floor/shuttle/blue,
 /area/shuttle/administration/centcom)
 "DF" = (
@@ -6366,10 +6351,7 @@
 	},
 /area/special/holodeck/source/basketball_court)
 "EW" = (
-/obj/machinery/sleep_console{
-	icon_state = "sleeperconsole-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleep_console/right,
 /turf/open/floor/shuttle/white,
 /area/shuttle/escape/centcom)
 "EY" = (
