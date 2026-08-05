@@ -241,5 +241,4 @@
 		"Check your Blob verbs and hit Create Node to build a node."
 	)
 	to_chat(B, jointext(message, "<br>"))
-	spawn(10)
-		qdel(G_found)
+	QDEL_IN(G_found, 1 SECOND)

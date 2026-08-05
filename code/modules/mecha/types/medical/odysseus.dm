@@ -179,8 +179,7 @@
 	pulse.icon = 'icons/effects/effects.dmi'
 	pulse.plane = UNLIT_EFFECTS_PLANE
 	flick("emppulse", pulse)
-	spawn(8)
-		qdel(pulse)
+	QDEL_IN(pulse, 8)
 	playsound(T, 'sound/effects/pop.ogg', 100, TRUE, -6)
 
 /obj/mecha/medical/odysseus/eurymachus/proc/enable_camouflage()

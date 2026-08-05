@@ -42,8 +42,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 
 	src.energy = starting_energy
 	if(temp)
-		spawn(temp)
-			qdel(src)
+		QDEL_IN(src, temp)
 	. = ..()
 
 /obj/singularity/initialise()

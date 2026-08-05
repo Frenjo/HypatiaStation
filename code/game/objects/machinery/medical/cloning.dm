@@ -326,9 +326,7 @@
 		src.mess = 1
 		src.icon_state = "pod_g"
 		src.occupant.ghostize()
-		spawn(5)
-			qdel(src.occupant)
-	return
+		QDEL_IN(occupant, 5)
 
 /obj/machinery/clonepod/relaymove(mob/user)
 	if(user.stat)

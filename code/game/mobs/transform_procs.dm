@@ -46,8 +46,7 @@
 
 	to_chat(O, "You are now [O].")
 
-	spawn(0)//To prevent the proc from returning null.
-		qdel(src)
+	QDEL_IN(src, 0) // To prevent the proc from returning null.
 	qdel(animation)
 
 	return O
@@ -164,8 +163,7 @@
 	O.notify_ai(1)
 	O.namepick()
 
-	spawn(0) // To prevent the proc from returning null.
-		qdel(src)
+	QDEL_IN(src, 0) // To prevent the proc from returning null.
 	return O
 
 //human -> alien
@@ -189,8 +187,7 @@
 	new_xeno.key = key
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
-	spawn(0)//To prevent the proc from returning null.
-		qdel(src)
+	QDEL_IN(src, 0) // To prevent the proc from returning null.
 	return
 
 /mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
@@ -225,8 +222,7 @@
 	new_slime.key = key
 
 	to_chat(new_slime, "<B>You are now a slime. Skreee!</B>")
-	spawn(0)//To prevent the proc from returning null.
-		qdel(src)
+	QDEL_IN(src, 0) // To prevent the proc from returning null.
 	return
 
 /mob/living/carbon/human/proc/corgize()
@@ -247,8 +243,7 @@
 	new_corgi.key = key
 
 	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
-	spawn(0)//To prevent the proc from returning null.
-		qdel(src)
+	QDEL_IN(src, 0) // To prevent the proc from returning null.
 	return
 
 /mob/living/carbon/human/Animalize()
@@ -279,8 +274,7 @@
 	new_mob.a_intent = INTENT_HARM
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
-	spawn()
-		qdel(src)
+	QDEL_IN(src, 0) // To prevent the proc from returning null.
 	return
 
 /mob/proc/Animalize()

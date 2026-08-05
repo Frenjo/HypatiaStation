@@ -172,7 +172,5 @@
 	F.icon_state = "wall_thermite"
 	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
 
-	spawn(100)
-		if(O)
-			qdel(O)
+	QDEL_IN(O, 10 SECONDS)
 //	F.sd_LumReset()		//TODO: ~Carn

@@ -211,8 +211,7 @@
 				var/obj/effect/stop/S = new /obj/effect/stop()
 				S.victim = M
 				S.forceMove(M.loc)
-				spawn(20)
-					qdel(S)
+				QDEL_IN(S, 2 SECONDS)
 				M.emote("scream")
 			var/turf/location = loc
 			if(isopenturf(location))

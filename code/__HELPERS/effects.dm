@@ -15,8 +15,7 @@
 	if(isnotnull(attach_to))
 		sparks.attach(attach_to)
 	sparks.start()
-	spawn(2.5 SECONDS)
-		qdel(sparks)
+	QDEL_IN(sparks, 2.5 SECONDS)
 
 // Smoke.
 /proc/make_smoke(number, cardinal_only, location, atom/attach_to = null, direction = null)
@@ -25,8 +24,7 @@
 	if(isnotnull(attach_to))
 		smoke.attach(attach_to)
 	smoke.start()
-	spawn(2.5 SECONDS)
-		qdel(smoke)
+	QDEL_IN(smoke, 2.5 SECONDS)
 
 // Chem Smoke.
 // holder - reagent holder to use chemicals from.
@@ -36,8 +34,7 @@
 	if(isnotnull(attach_to))
 		chem_smoke.attach(attach_to)
 	chem_smoke.start()
-	spawn(2.5 SECONDS)
-		qdel(chem_smoke)
+	QDEL_IN(chem_smoke, 2.5 SECONDS)
 
 // "Bad" Smoke.
 /proc/make_bad_smoke(number, cardinal_only, location, atom/attach_to = null, direction = null)
@@ -46,8 +43,7 @@
 	if(isnotnull(attach_to))
 		bad_smoke.attach(attach_to)
 	bad_smoke.start()
-	spawn(2.5 SECONDS)
-		qdel(bad_smoke)
+	QDEL_IN(bad_smoke, 2.5 SECONDS)
 
 // Steam.
 /proc/make_steam(number, cardinal_only, location, atom/attach_to = null, direction = null)
@@ -56,5 +52,4 @@
 	if(isnotnull(attach_to))
 		steam.attach(attach_to)
 	steam.start()
-	spawn(2.5 SECONDS)
-		qdel(steam)
+	QDEL_IN(steam, 2.5 SECONDS)

@@ -108,10 +108,7 @@
 			sleep(1)
 
 		if(D)
-			spawn(10)
-				qdel(D)
-
-		return
+			QDEL_IN(D, 1 SECOND)
 
 
 /obj/item/gun/syringe/rapidsyringe

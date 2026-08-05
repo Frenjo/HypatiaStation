@@ -122,9 +122,7 @@
 		spawn(0)
 			new /obj/item/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
 			playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-	spawn(0)
-		qdel(src)
-		return
+	QDEL_IN(src, 0)
 
 /obj/item/grenade/flashbang/clusterbang/segment
 	desc = "A smaller segment of a clusterbang. Better run."
@@ -153,9 +151,7 @@
 		spawn(0)
 			new /obj/item/grenade/flashbang/cluster(src.loc)
 			playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-	spawn(0)
-		qdel(src)
-		return
+	QDEL_IN(src, 0)
 
 /obj/item/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
 	spawn(0)

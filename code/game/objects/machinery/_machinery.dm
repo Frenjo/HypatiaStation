@@ -163,8 +163,7 @@
 		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(GLOBL.cardinal))
 
-		spawn(10)
-			qdel(pulse2)
+		QDEL_IN(pulse2, 1 SECOND)
 	..()
 
 /obj/machinery/ex_act(severity)

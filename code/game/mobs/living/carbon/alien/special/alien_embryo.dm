@@ -9,15 +9,6 @@
 	var/mob/living/affected_mob
 	var/stage = 0
 
-/obj/item/alien_embryo/New()
-	. = ..()
-	if(isliving(loc))
-		affected_mob = loc
-		spawn(0)
-			AddInfectionImages(affected_mob)
-	else
-		qdel(src)
-
 /obj/item/alien_embryo/initialise()
 	. = ..()
 	if(!isliving(loc))

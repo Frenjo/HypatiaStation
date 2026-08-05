@@ -162,6 +162,4 @@
 			return 0
 		visible_message("[usr] collapses \the [src.name].")
 		new/obj/item/roller(GET_TURF(src))
-		spawn(0)
-			qdel(src)
-		return
+		QDEL_IN(src, 0)

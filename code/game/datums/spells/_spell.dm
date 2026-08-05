@@ -153,8 +153,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			spell.icon_state = overlay_icon_state
 			spell.anchored = TRUE
 			spell.density = FALSE
-			spawn(overlay_lifespan)
-				qdel(spell)
+			QDEL_IN(spell, overlay_lifespan)
 
 /obj/effect/proc_holder/spell/proc/after_cast(list/targets)
 	for(var/atom/target in targets)

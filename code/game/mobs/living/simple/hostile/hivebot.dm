@@ -90,6 +90,5 @@
 				new /mob/living/simple/hostile/hivebot/range(GET_TURF(src))
 			if("rapid")
 				new /mob/living/simple/hostile/hivebot/rapid(GET_TURF(src))
-	spawn(100)
-		qdel(src)
+	QDEL_IN(src, 10 SECONDS)
 	return

@@ -15,8 +15,7 @@
 		pulse.icon_state = "emppulse"
 		pulse.name = "emp pulse"
 		pulse.anchored = TRUE
-		spawn(20)
-			qdel(pulse)
+		QDEL_IN(pulse, 2 SECONDS)
 
 	if(heavy_range > light_range)
 		light_range = heavy_range

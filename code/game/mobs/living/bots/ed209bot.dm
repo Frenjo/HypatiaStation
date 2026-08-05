@@ -812,8 +812,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		pulse2.name = "emp sparks"
 		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(GLOBL.cardinal))
-		spawn(10)
-			qdel(pulse2)
+		QDEL_IN(pulse2, 1 SECOND)
 		var/list/mob/living/carbon/targets = list()
 		for(var/mob/living/carbon/C in view(12, src))
 			if(C.stat == DEAD)

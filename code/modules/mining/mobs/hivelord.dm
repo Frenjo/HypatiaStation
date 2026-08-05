@@ -71,8 +71,7 @@
 
 /mob/living/simple/hostile/asteroid/hivelord_brood/New()
 	. = ..()
-	spawn(10 SECONDS)
-		qdel(src)
+	QDEL_IN(src, 10 SECONDS)
 
 /mob/living/simple/hostile/asteroid/hivelord_brood/Die()
 	qdel(src)

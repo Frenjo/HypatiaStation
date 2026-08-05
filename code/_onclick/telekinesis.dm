@@ -170,8 +170,7 @@
 	O.icon = 'icons/effects/effects.dmi'
 	O.icon_state = "nothing"
 	flick("empdisable", O)
-	spawn(5)
-		qdel(O)
+	QDEL_IN(O, 5)
 
 /obj/item/tk_grab/update_icon()
 	cut_overlays()

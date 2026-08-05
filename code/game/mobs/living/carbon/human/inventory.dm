@@ -345,10 +345,8 @@
 /obj/effect/equip_e/New()
 	if(!global.PCticker)
 		qdel(src)
-	spawn(100)
-		qdel(src)
+	QDEL_IN(src, 10 SECONDS)
 	..()
-	return
 
 /obj/effect/equip_e/human/process()
 	if(item)

@@ -48,11 +48,6 @@
 		qdel(active_dummy)
 		active_dummy = null
 		to_chat(usr, SPAN_INFO("You deactivate the [src]."))
-		var/obj/effect/overlay/T = new /obj/effect/overlay(GET_TURF(src))
-		T.icon = 'icons/effects/effects.dmi'
-		flick("emppulse", T)
-		spawn(8)
-			qdel(T)
 	else
 		playsound(GET_TURF(src), 'sound/effects/pop.ogg', 100, 1, -6)
 		var/obj/O = new saved_item(src)
@@ -62,11 +57,11 @@
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
 		qdel(O)
 		to_chat(usr, SPAN_INFO("You activate the [src]."))
-		var/obj/effect/overlay/T = new /obj/effect/overlay(GET_TURF(src))
-		T.icon = 'icons/effects/effects.dmi'
-		flick("emppulse", T)
-		spawn(8)
-			qdel(T)
+
+	var/obj/effect/overlay/T = new /obj/effect/overlay(GET_TURF(src))
+	T.icon = 'icons/effects/effects.dmi'
+	flick("emppulse", T)
+	QDEL_IN(T, 8)
 
 /obj/item/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)

@@ -117,8 +117,7 @@ GLOBAL_GLOBL_ALIST_INIT(department_radio_keys, alist(
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/hud/talk.dmi', src, "h[speech_bubble_test]")
-	spawn(30)
-		qdel(speech_bubble)
+	QDEL_IN(speech_bubble, 3 SECONDS)
 
 	if(length(used_radios))
 		for(var/mob/living/M in hearers(5, src))

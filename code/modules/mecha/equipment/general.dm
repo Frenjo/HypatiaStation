@@ -152,8 +152,7 @@
 	P.name = "wormhole"
 	start_cooldown()
 	qdel(src)
-	spawn(rand(15 SECONDS, 30 SECONDS))
-		qdel(P)
+	QDEL_IN(P, rand(15 SECONDS, 30 SECONDS))
 	return TRUE
 
 // Gravitational Catapult

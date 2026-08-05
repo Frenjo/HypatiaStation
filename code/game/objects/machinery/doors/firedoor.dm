@@ -23,9 +23,7 @@
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			spawn(1)
-				qdel(src)
-			return
+			QDEL_IN(src, 1)
 	var/area/A = GET_AREA(src)
 	ASSERT(istype(A))
 
