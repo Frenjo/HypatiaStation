@@ -13550,7 +13550,6 @@
 /area/station/engineering/storage/emergency)
 "eMH" = (
 /obj/machinery/door/airlock/glass/command{
-	name = "E.V.A.";
 	req_one_access = list(1,5,11,18,24)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -13559,6 +13558,7 @@
 	name = "firelock north"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "eMU" = (
@@ -31180,9 +31180,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/primary)
 "kUa" = (
-/obj/machinery/door/airlock/glass/mining{
-	req_access = list(41)
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -31200,6 +31197,9 @@
 	dir = 4
 	},
 /obj/effect/mapping_helper/airlock/autoname,
+/obj/machinery/door/airlock/glass/command{
+	req_access = list(41)
+	},
 /turf/open/floor/tiled/grey,
 /area/station/cargo/quartermaster)
 "kUr" = (
@@ -35218,7 +35218,6 @@
 /area/station/hallway/secondary/arrivals)
 "msT" = (
 /obj/machinery/door/airlock/glass/command{
-	name = "E.V.A.";
 	req_one_access = list(1,5,11,18,24)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -35226,6 +35225,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock north"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "msY" = (
@@ -41823,13 +41823,13 @@
 /area/station/solar/aft/starboard)
 "oFN" = (
 /obj/machinery/door/airlock/glass/command{
-	name = "E.V.A.";
 	req_one_access = list(1,5,11,18,24)
 	},
 /obj/machinery/door/firedoor/border_only{
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock west"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "oGm" = (
@@ -46587,7 +46587,6 @@
 /area/station/research/miscellaneous)
 "qoA" = (
 /obj/machinery/door/airlock/glass/command{
-	name = "E.V.A.";
 	req_one_access = list(1,5,11,18,24)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -46595,6 +46594,7 @@
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
 	name = "firelock east"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "qoI" = (
@@ -63885,7 +63885,6 @@
 /area/turret_protected/ai_upload)
 "wzH" = (
 /obj/machinery/door/airlock/glass/security{
-	name = "Detective";
 	req_access = list(4)
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -63899,6 +63898,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helper/airlock/autoname,
 /turf/open/floor/tiled/grey,
 /area/station/security/detective)
 "wzJ" = (
