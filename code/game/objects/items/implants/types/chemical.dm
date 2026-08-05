@@ -40,9 +40,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	to_chat(R, "You hear a faint *beep*.")
 	if(!src.reagents.total_volume)
 		to_chat(R, "You hear a faint click from your chest.")
-		spawn(0)
-			qdel(src)
-	return
+		QDEL_IN(src, 0)
 
 /obj/item/implant/chem/emp_act(severity)
 	if(malfunction)

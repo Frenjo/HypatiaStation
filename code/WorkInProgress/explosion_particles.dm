@@ -8,8 +8,7 @@
 
 /obj/effect/expl_particles/initialise()
 	. = ..()
-	spawn(15)
-		qdel(src)
+	QDEL_IN(src, 1.5 SECONDS)
 
 /datum/effect/system/expl_particles/set_up(n = 10, loca)
 	number = n
@@ -37,8 +36,7 @@
 
 /obj/effect/explosion/initialise()
 	. = ..()
-	spawn(10)
-		qdel(src)
+	QDEL_IN(src, 1 SECOND)
 
 /datum/effect/system/explosion/set_up(loca)
 	location = isturf(loca) ? loca : GET_TURF(loca)

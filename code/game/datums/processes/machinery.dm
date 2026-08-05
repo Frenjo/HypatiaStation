@@ -4,7 +4,6 @@
 PROCESS_DEF(machinery)
 	name = "Machinery"
 	schedule_interval = 2 SECONDS
-	start_delay = 12
 
 	var/static/machinery_sort_required = FALSE
 
@@ -13,6 +12,12 @@ PROCESS_DEF(machinery)
 
 	var/static/list/obj/item/processing_power_items = list()
 	var/static/list/datum/powernet/powernets = list()
+
+/datum/process/machinery/setup()
+	to_world(SPAN_DANGER("↪ Initialising atmos machinery..."))
+	FOR_MACHINES_SUBTYPED(machine, /obj/machinery/atmospherics/unary)
+		if(!GC_DESTROYED(machine))
+			machine.broadcast_status()
 
 /datum/process/machinery/do_work()
 	internal_sort()
@@ -29,7 +34,7 @@ PROCESS_DEF(machinery)
 
 /datum/process/machinery/proc/unregister_machine(obj/machinery/machine)
 	var/list/existing = machines_by_type[machine.type]
-	existing.Remove(machine)
+	existing?.Remove(machine)
 	if(!length(existing))
 		machines_by_type.Remove(machine.type)
 	machines.Remove(machine)

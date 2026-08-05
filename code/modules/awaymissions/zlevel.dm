@@ -3,7 +3,7 @@
 		return
 
 	var/list/possible_z_levels = list()
-	to_world(SPAN_DANGER("Searching for away missions..."))
+	to_world(SPAN_DANGER("↪ Searching for away missions..."))
 
 	var/list/mission_list = file2list("maps/RandomZLevels/fileList.txt")
 	if(!length(mission_list))
@@ -36,7 +36,7 @@
 		possible_z_levels.Add(name)
 
 	if(length(possible_z_levels))
-		to_world(SPAN_DANGER("Loading away mission..."))
+		to_world(SPAN_DANGER("↪ Loading away mission..."))
 
 		var/map = pick(possible_z_levels)
 		var/file = file(map)
@@ -49,8 +49,8 @@
 				continue
 			GLOBL.awaydestinations.Add(L)
 
-		to_world(SPAN_DANGER("Away mission loaded."))
+		to_world(SPAN_DANGER("↪ Away mission loaded."))
 
 	else
-		to_world(SPAN_DANGER("No away missions found."))
+		to_world(SPAN_DANGER("↪ No away missions found."))
 		return

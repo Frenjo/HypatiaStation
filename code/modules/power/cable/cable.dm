@@ -70,7 +70,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	d2 = text2num( copytext( icon_state, dash+1 ) )
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 
 	if(level == 1)
 		hide(T.intact)

@@ -563,8 +563,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		FOR_MACHINES_TYPED(generator, /obj/machinery/singularity_generator)
 			if(generator.anchored)
 				var/obj/singularity/S = new /obj/singularity(GET_TURF(generator), 50)
-				spawn(0)
-					qdel(generator)
+				QDEL_IN(generator, 0)
 				S.energy = 1750
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'

@@ -68,8 +68,8 @@
 
 /obj/effect/biomass_controller/initialise()
 	. = ..()
-	if(!isfloorturf(src.loc))
-		qdel(src)
+	if(!isfloorturf(loc))
+		return INITIALISE_QDEL
 
 	spawn_biomass_piece(src.loc)
 	START_PROCESSING(PCobj, src)

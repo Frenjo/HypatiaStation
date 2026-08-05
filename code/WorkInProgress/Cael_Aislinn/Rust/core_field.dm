@@ -39,71 +39,71 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 	//create radiator
 	for(var/obj/machinery/rust/rad_source/rad in range(0))
 		radiator = rad
-	if(!radiator)
-		radiator = new()
+	if(isnull(radiator))
+		radiator = new /obj/machinery/rust/rad_source()
 
 	//make sure there's a field generator
 	for(var/obj/machinery/power/rust_core/core in loc)
 		owned_core = core
 
-	if(!owned_core)
-		qdel(src)
+	if(isnull(owned_core))
+		return INITIALISE_QDEL
 
 	//create the gimmicky things to handle field collisions
 	var/obj/effect/rust_particle_catcher/catcher
 	//
-	catcher = new (locate(src.x,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(1)
 	particle_catchers.Add(catcher)
 	//
-	catcher = new (locate(src.x-1,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x-1,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(3)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x+1,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x+1,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(3)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x,src.y+1,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y+1,src.z))
 	catcher.parent = src
 	catcher.SetSize(3)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x,src.y-1,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y-1,src.z))
 	catcher.parent = src
 	catcher.SetSize(3)
 	particle_catchers.Add(catcher)
 	//
-	catcher = new (locate(src.x-2,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x-2,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(5)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x+2,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x+2,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(5)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x,src.y+2,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y+2,src.z))
 	catcher.parent = src
 	catcher.SetSize(5)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x,src.y-2,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y-2,src.z))
 	catcher.parent = src
 	catcher.SetSize(5)
 	particle_catchers.Add(catcher)
 	//
-	catcher = new (locate(src.x-3,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x-3,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(7)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x+3,src.y,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x+3,src.y,src.z))
 	catcher.parent = src
 	catcher.SetSize(7)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x,src.y+3,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y+3,src.z))
 	catcher.parent = src
 	catcher.SetSize(7)
 	particle_catchers.Add(catcher)
-	catcher = new (locate(src.x,src.y-3,src.z))
+	catcher = new /obj/effect/rust_particle_catcher(locate(src.x,src.y-3,src.z))
 	catcher.parent = src
 	catcher.SetSize(7)
 	particle_catchers.Add(catcher)

@@ -32,9 +32,11 @@
 		var/datum/process/process = target
 		_target_name = "[process.name]"
 		_is_controller = FALSE
-	else
-		// If it's not attached to a controller or a process it just deletes itself.
-		qdel(src)
+
+/atom/movable/clickable_stat/initialise()
+	. = ..()
+	if(isnull(_target)) // If it's not attached to a controller or a process it just deletes itself.
+		return INITIALISE_QDEL
 
 /atom/movable/clickable_stat/Click()
 	if(isnull(usr.client.holder) || isnull(_target))

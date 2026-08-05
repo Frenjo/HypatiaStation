@@ -34,7 +34,7 @@
 /obj/machinery/disposal/initialise()
 	. = ..()
 	trunk = locate() in loc
-	if(!trunk)
+	if(isnull(trunk))
 		mode = 0
 		flush = 0
 	else
@@ -797,8 +797,7 @@
 		if(isnotnull(H))
 			expel(H, T, 0)
 
-	spawn(2)	// delete pipe after 2 ticks to ensure expel proc finished
-		qdel(src)
+	QDEL_IN(src, 2) // delete pipe after 2 ticks to ensure expel proc finished
 
 // pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
@@ -1324,8 +1323,7 @@
 	target = get_ranged_target_turf(src, dir, 10)
 
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
-	if(trunk)
-		trunk.linked = src	// link the pipe trunk to self
+	trunk?.linked = src // link the pipe trunk to self
 
 // expel the contents of the holder object, then delete it
 // called when the holder exits the outlet

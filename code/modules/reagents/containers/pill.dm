@@ -12,7 +12,7 @@
 
 /obj/item/reagent_holder/pill/initialise()
 	. = ..()
-	if(!icon_state)
+	if(isnull(icon_state))
 		icon_state = "pill[rand(1, 20)]"
 
 /obj/item/reagent_holder/pill/attack_self(mob/user)
@@ -71,10 +71,7 @@
 		for(var/mob/O in viewers(2, user))
 			O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
 
-		spawn(5)
-			qdel(src)
-
-	return
+		QDEL_IN(src, 5)
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END

@@ -81,7 +81,7 @@
 /obj/effect/landmark/initialise()
 	. = ..()
 	if(delete_me)
-		qdel(src)
+		return INITIALISE_QDEL
 
 /obj/effect/landmark/Destroy()
 	GLOBL.landmark_list.Remove(src)

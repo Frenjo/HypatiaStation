@@ -168,8 +168,7 @@
 		s.set_up(3, 1, src)
 		s.start()
 		explosion(mob, 1, 0, 0, 0)
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 
 
 /obj/effect/meatgrinder

@@ -75,9 +75,7 @@
 			return 0
 		visible_message("[usr] folds up the [src.name]")
 		new item_path(GET_TURF(src))
-		spawn(0)
-			qdel(src)
-		return
+		QDEL_IN(src, 0)
 
 /obj/structure/closet/bodybag/update_icon()
 	if(!opened)

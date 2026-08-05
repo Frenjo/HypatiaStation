@@ -13,8 +13,7 @@
 		transform = mat
 
 /obj/effect/projectile/proc/activate()
-	spawn(0.3 SECONDS)
-		qdel(src)
+	QDEL_IN(src, 0.3 SECONDS)
 
 //----------------------------
 // Omni laser beam / Disabler beam

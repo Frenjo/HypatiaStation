@@ -1463,8 +1463,7 @@
 		S = new /obj/effect/stop
 		S.victim = M
 		S.forceMove(M.loc)
-		spawn(20)
-			qdel(S)
+		QDEL_IN(S, 2 SECONDS)
 
 		var/turf/open/floor/T = GET_TURF(M)
 		if(istype(T))

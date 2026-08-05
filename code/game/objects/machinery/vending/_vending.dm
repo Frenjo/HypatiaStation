@@ -65,7 +65,7 @@
 	last_slogan = world.time + rand(0, slogan_delay)
 
 	build_inventory(products)
-	 //Add hidden inventory
+	// Add hidden inventory.
 	build_inventory(contraband, 1)
 	build_inventory(premium, 0, 1)
 	power_change()

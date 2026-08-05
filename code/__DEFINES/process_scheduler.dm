@@ -43,3 +43,8 @@
 // Used to add and remove POWERNETs from the global powernets list.
 #define REGISTER_POWERNET(POWERNET) global.PCmachinery.powernets.Add(POWERNET)
 #define UNREGISTER_POWERNET(POWERNET) global.PCmachinery.powernets.Remove(POWERNET)
+
+#define INITIALISE_NORMAL 0
+#define INITIALISE_LATE 1
+#define INITIALISE_QDEL 2
+#define INITIALISE_LATE_QDEL 3

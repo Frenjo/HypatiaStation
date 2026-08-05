@@ -257,9 +257,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
-	spawn(20)
-		if(isnotnull(P))
-			qdel(P)
+	QDEL_IN(P, 2 SECONDS)
 
 	return TRUE
 

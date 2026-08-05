@@ -13,7 +13,7 @@
 	. = ..()
 	outturf = get_step(src, dir)
 	compressor = locate() in get_step(src, get_dir(outturf, src))
-	if(!compressor)
+	if(isnull(compressor))
 		stat |= BROKEN
 
 #define TURBPRES 9000000

@@ -11,7 +11,7 @@
 /obj/effect/shield/initialise()
 	. = ..()
 	set_dir(pick(GLOBL.cardinal))
-	update_nearby_tiles(need_rebuild = 1)
+	update_nearby_tiles(TRUE)
 
 /obj/effect/shield/Destroy()
 	set_opacity(FALSE)

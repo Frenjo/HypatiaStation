@@ -48,14 +48,15 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 
 /obj/machinery/telecoms/initialise()
 	. = ..()
-	if(length(autolinkers))
-		// Links nearby machines
-		if(!long_range_link)
-			for(var/obj/machinery/telecoms/T in orange(20, src))
-				add_link(T)
-		else
-			for_no_type_check(var/obj/machinery/telecoms/T, GLOBL.telecoms_list)
-				add_link(T)
+	if(!length(autolinkers))
+		return
+	// Links nearby machines
+	if(!long_range_link)
+		for(var/obj/machinery/telecoms/T in orange(20, src))
+			add_link(T)
+	else
+		for_no_type_check(var/obj/machinery/telecoms/T, GLOBL.telecoms_list)
+			add_link(T)
 
 /obj/machinery/telecoms/Destroy()
 	GLOBL.telecoms_list.Remove(src)

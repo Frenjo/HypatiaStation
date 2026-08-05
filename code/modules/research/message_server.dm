@@ -202,9 +202,8 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 //Only one can exsist in the world!
 /obj/machinery/blackbox_recorder/initialise()
 	. = ..()
-	if(blackbox)
-		if(istype(blackbox, /obj/machinery/blackbox_recorder))
-			qdel(src)
+	if(istype(blackbox, /obj/machinery/blackbox_recorder))
+		return INITIALISE_QDEL
 	blackbox = src
 
 /obj/machinery/blackbox_recorder/Destroy()

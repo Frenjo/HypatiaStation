@@ -16,36 +16,6 @@
 	var/gibtime = 40 // Time from starting until meat appears
 	var/mob/living/occupant // Mob who has been put inside
 
-//auto-gibs anything that bumps into it
-/obj/machinery/gibber/autogibber
-	var/turf/input_plate
-
-/obj/machinery/gibber/autogibber/New()
-	..()
-	spawn(5)
-		for(var/i in GLOBL.cardinal)
-			var/obj/machinery/input_plate/input_obj = locate(/obj/machinery/input_plate, get_step(src.loc, i))
-			if(input_obj)
-				if(isturf(input_obj.loc))
-					input_plate = input_obj.loc
-					qdel(input_obj)
-					break
-
-		if(!input_plate)
-			log_misc("a [src] didn't find an input plate.")
-			return
-
-/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
-	if(!input_plate) return
-
-	if(isliving(A))
-		var/mob/living/L = A
-
-		if(L.loc == input_plate)
-			L.forceMove(src)
-			L.gib()
-
-
 /obj/machinery/gibber/New()
 	..()
 	add_overlay("grjam")

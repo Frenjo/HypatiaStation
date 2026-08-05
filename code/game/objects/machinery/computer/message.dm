@@ -75,7 +75,7 @@
 /obj/machinery/computer/message_monitor/initialise()
 	. = ..()
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
-	if(!linkedServer)
+	if(isnull(linkedServer))
 		if(length(GLOBL.message_servers))
 			linkedServer = GLOBL.message_servers[1]
 

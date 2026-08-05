@@ -14,8 +14,7 @@
 
 /obj/effect/portal/initialise()
 	. = ..()
-	spawn(delete_time)
-		qdel(src)
+	QDEL_IN(src, delete_time)
 
 /obj/effect/portal/Bumped(mob/M)
 	spawn(0)

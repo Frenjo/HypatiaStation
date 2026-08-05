@@ -186,8 +186,7 @@
 		if(a_right)
 			a_right:holder = null
 			a_right.forceMove(T)
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 	return
 
 /obj/item/assembly_holder/process_activation(obj/D, normal = 1, special = 1)

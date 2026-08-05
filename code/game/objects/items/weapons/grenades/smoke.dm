@@ -29,5 +29,4 @@
 		var/damage = round(30 / (get_dist(B, src) + 1))
 		B.health -= damage
 		B.update_icon()
-	sleep(8 SECONDS)
-	qdel(src)
+	QDEL_IN(src, 8 SECONDS)

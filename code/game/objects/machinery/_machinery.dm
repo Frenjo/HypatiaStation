@@ -116,6 +116,7 @@
 /obj/machinery/initialise()
 	. = ..()
 	global.PCmachinery.register_machine(src)
+	return INITIALISE_LATE
 
 /obj/machinery/late_initialise()
 	. = ..()
@@ -124,8 +125,7 @@
 /obj/machinery/Destroy()
 	var/area/machine_area = GET_AREA(src)
 	machine_area?.machines_list.Remove(src)
-	if(isnotnull(global.PCmachinery))
-		global.PCmachinery.unregister_machine(src)
+	global.PCmachinery.unregister_machine(src)
 
 	if(length(component_parts))
 		for_no_type_check(var/obj/item/part, component_parts)
@@ -163,8 +163,7 @@
 		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(GLOBL.cardinal))
 
-		spawn(10)
-			qdel(pulse2)
+		QDEL_IN(pulse2, 1 SECOND)
 	..()
 
 /obj/machinery/ex_act(severity)

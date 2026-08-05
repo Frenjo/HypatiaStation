@@ -26,6 +26,11 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	var/attached = 0
 
+/obj/item/clothing/mask/facehugger/initialise()
+	. = ..()
+	if(!CONFIG_GET(/decl/configuration_entry/aliens_allowed))
+		return INITIALISE_QDEL
+
 /obj/item/clothing/mask/facehugger/attack_paw(mob/user) //can be picked up by aliens
 	if(isalien(user))
 		attack_hand(user)
@@ -46,12 +51,6 @@ var/const/MAX_ACTIVE_TIME = 400
 	..()
 	user.drop_from_inventory(src)
 	Attach(M)
-
-/obj/item/clothing/mask/facehugger/New()
-	if(CONFIG_GET(/decl/configuration_entry/aliens_allowed))
-		..()
-	else
-		qdel(src)
 
 /obj/item/clothing/mask/facehugger/get_examine_text()
 	. = ..()

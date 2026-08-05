@@ -40,8 +40,7 @@ proc/cardinalrange(var/center)
 		return
 	for(var/obj/machinery/am_shielding/AMS in loc.contents)
 		if(AMS == src) continue
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 		return
 
 	//Search for shielding first
@@ -60,8 +59,7 @@ proc/cardinalrange(var/center)
 			spawn(20)
 				controllerscan(1)//Last chance
 			return
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 	return
 
 
@@ -96,8 +94,7 @@ proc/cardinalrange(var/center)
 			new /obj/effect/blob/node(src.loc,150)
 		else
 			new /obj/effect/blob(src.loc,60)
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 		return
 	check_stability()
 	return

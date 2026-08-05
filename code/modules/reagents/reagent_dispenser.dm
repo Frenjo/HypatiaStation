@@ -17,7 +17,7 @@
 	. = ..()
 	create_reagents(1000)
 	if(!possible_transfer_amounts)
-		src.verbs -= /obj/structure/reagent_dispenser/verb/set_APTFT
+		verbs -= /obj/structure/reagent_dispenser/verb/set_APTFT
 
 /obj/structure/reagent_dispenser/get_examine_text(mob/user)
 	. = ..()

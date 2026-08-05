@@ -36,18 +36,12 @@
 
 	. = ..()
 
-	// Loads an away mission.
-	createRandomZlevel()
-	// Sets up the mining asteroid's caves and secret rooms.
-	for(var/i = 0, i < ASTEROID_MAX_CAVES, i++)
-		make_mining_asteroid_cave()
-	for(var/i = 0, i < ASTEROID_MAX_SECRET_ROOMS, i++)
-		make_mining_asteroid_secret()
-	WAIT_FOR_BACKLOG
-
 	call_hook(/hook/startup)
 
 	global.CTmaster = new /datum/controller/master()
+	global.CTmaster.defer_setup_for(/datum/process/machinery)
+	global.CTmaster.defer_setup_for(/datum/process/pipenet)
+	global.CTmaster.defer_setup_for(/datum/process/initialisation)
 	global.CTmaster.setup()
 	global.PCticker.pregame() // This was moved here to avoid unnecessary while() and sleep().
 

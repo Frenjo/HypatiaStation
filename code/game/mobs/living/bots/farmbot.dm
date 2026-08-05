@@ -57,7 +57,6 @@
 
 /mob/living/bot/farmbot/initialise()
 	. = ..()
-
 	botcard = new /obj/item/card/id(src)
 	botcard.access = req_access
 

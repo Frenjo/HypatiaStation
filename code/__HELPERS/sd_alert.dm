@@ -185,6 +185,5 @@ Version 1 changes (from version 0):
 				response = null
 		else
 			validated = 1
-	spawn(2)
-		qdel(src)
+	QDEL_IN(src, 2)
 	return response

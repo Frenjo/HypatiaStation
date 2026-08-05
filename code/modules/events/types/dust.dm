@@ -94,7 +94,6 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	src.z = pick(GLOBL.current_map.station_levels)
 	spawn(0)
 		walk_towards(src, goal, 1)
-	return
 
 /obj/effect/space_dust/Bump(atom/A)
 	spawn(0)
@@ -113,8 +112,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 			life--
 			if(life <= 0)
 				walk(src, 0)
-				spawn(1)
-					qdel(src)
+				QDEL_IN(src, 1)
 				return
 	return
 

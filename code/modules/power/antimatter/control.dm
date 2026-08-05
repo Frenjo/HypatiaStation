@@ -106,9 +106,7 @@
 	if(prob(100-stability))//Might infect the rest of the machine
 		for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 			AMS.blob_act()
-		spawn(0)
-			//Likely explode
-			qdel(src)
+		QDEL_IN(src, 0) //Likely explode
 		return
 	check_stability()
 	return

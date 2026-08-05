@@ -14,8 +14,7 @@
 	var/revhref
 
 /datum/getrev/proc/abort()
-	spawn()
-		qdel(src)
+	QDEL_IN(src, 0)
 
 /datum/getrev/New(filename)
 	..()

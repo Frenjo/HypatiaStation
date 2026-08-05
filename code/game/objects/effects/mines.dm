@@ -31,16 +31,14 @@
 	obj:radiation += 50
 	randmutb(obj)
 	domutcheck(obj,null)
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)
 
 /obj/effect/mine/proc/triggerstun(obj)
 	if(ismob(obj))
 		var/mob/M = obj
 		M.Stun(30)
 	make_sparks(3, TRUE, src)
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)
 
 /obj/effect/mine/proc/triggern2o(obj)
 	//example: n2o triggerproc
@@ -49,8 +47,7 @@
 		if(!HAS_TURF_FLAGS(target, TURF_FLAG_BLOCKS_AIR))
 			target.assume_gas(/decl/xgm_gas/nitrous_oxide, 30)
 
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)
 
 /obj/effect/mine/proc/triggerplasma(obj)
 	for(var/turf/open/floor/target in RANGE_TURFS(src, 1))
@@ -58,19 +55,16 @@
 			target.assume_gas(/decl/xgm_gas/plasma, 30)
 			target.hotspot_expose(1000, CELL_VOLUME)
 
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)
 
 /obj/effect/mine/proc/triggerkick(obj)
 	make_sparks(3, TRUE, src)
 	qdel(obj:client)
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)
 
 /obj/effect/mine/proc/explode(obj)
 	explosion(loc, 0, 1, 2, 3)
-	spawn(0)
-		qdel(src)
+	QDEL_IN(src, 0)
 
 
 /obj/effect/mine/dnascramble

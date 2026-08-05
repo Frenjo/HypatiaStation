@@ -35,7 +35,7 @@
 
 /obj/structure/table/initialise()
 	. = ..()
-	for(var/obj/structure/table/T in src.loc)
+	for(var/obj/structure/table/T in loc)
 		if(T != src)
 			qdel(T)
 	update_icon()

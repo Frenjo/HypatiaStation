@@ -8,7 +8,7 @@
 
 /turf/open/floor/carpet/initialise()
 	. = ..()
-	if(!icon_state)
+	if(isnull(icon_state))
 		icon_state = "carpet"
 
 /turf/open/floor/carpet/update_special()

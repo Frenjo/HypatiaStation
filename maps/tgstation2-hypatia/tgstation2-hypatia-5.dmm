@@ -1308,7 +1308,6 @@
 	dir = 4;
 	id = "mining_west"
 	},
-/obj/machinery/output_plate,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "fV" = (
@@ -2858,7 +2857,7 @@
 	},
 /area/external/research_outpost/hallway)
 "ns" = (
-/obj/machinery/unloading_machine,
+/obj/machinery/unloading_machine/west_east,
 /turf/open/floor{
 	icon_state = "floorgrime"
 	},
@@ -4793,7 +4792,6 @@
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "wE" = (
-/obj/machinery/input_plate,
 /obj/effect/decal/floor/industrial/loadingarea,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
@@ -6789,13 +6787,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
-"EL" = (
-/obj/machinery/conveyor{
-	id = "mining_internal"
-	},
-/obj/machinery/output_plate,
-/turf/open/floor/plating/metal,
-/area/external/mining_outpost/starboard_wing)
 "EN" = (
 /obj/machinery/light{
 	dir = 4
@@ -7122,14 +7113,6 @@
 /obj/effect/decal/floor/coloured/brown,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
-"Gg" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "mining_internal"
-	},
-/obj/machinery/output_plate,
-/turf/open/floor/plating/metal,
-/area/external/mining_outpost/starboard_wing)
 "Gh" = (
 /obj/machinery/light,
 /turf/open/floor/tiled/hydroponics,
@@ -7430,9 +7413,7 @@
 /turf/closed/wall/reinforced,
 /area/external/research_outpost/storage/auxiliary)
 "HD" = (
-/obj/machinery/unloading_machine{
-	icon_state = "unloader-corner"
-	},
+/obj/machinery/unloading_machine/corner,
 /turf/open/floor{
 	icon_state = "floorgrime"
 	},
@@ -7613,7 +7594,6 @@
 	dir = 10;
 	id = "mining_internal"
 	},
-/obj/machinery/input_plate,
 /obj/effect/decal/floor/industrial/loadingarea{
 	dir = 8
 	},
@@ -7701,14 +7681,6 @@
 /obj/effect/decal/floor/industrial/warning/asteroid,
 /turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
-"IU" = (
-/obj/machinery/conveyor{
-	id = "mining_internal"
-	},
-/obj/machinery/output_plate,
-/obj/structure/plasticflaps/mining,
-/turf/open/floor/plating/metal,
-/area/external/mining_outpost/starboard_wing)
 "IZ" = (
 /obj/effect/decal/floor/coloured/brown/corner{
 	dir = 1
@@ -7793,7 +7765,7 @@
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/gutlunch_farm)
 "JA" = (
-/obj/machinery/unloading_machine,
+/obj/machinery/unloading_machine/north_south,
 /turf/open/floor{
 	icon_state = "floorgrime"
 	},
@@ -8847,7 +8819,7 @@
 /turf/closed/wall/steel,
 /area/external/mining_outpost/eva)
 "OJ" = (
-/obj/machinery/unloading_machine,
+/obj/machinery/unloading_machine/west_east,
 /turf/open/floor{
 	icon_state = "floorgrime"
 	},
@@ -9320,14 +9292,6 @@
 /obj/structure/plasticflaps/mining,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/starboard_wing)
-"QT" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "mining_internal"
-	},
-/obj/machinery/output_plate,
-/turf/open/floor/plating/metal,
-/area/external/mining_outpost/starboard_wing)
 "QV" = (
 /obj/structure/table,
 /obj/item/storage/box/solution_trays,
@@ -9618,13 +9582,11 @@
 /turf/open/floor/airless,
 /area/external/abandoned/mining_outpost)
 "Si" = (
-/obj/machinery/sleeper{
-	dir = 1
-	},
 /obj/effect/decal/floor/coloured/green,
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 9
 	},
+/obj/machinery/sleeper,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/infirmary)
 "Sn" = (
@@ -9767,7 +9729,6 @@
 	dir = 4;
 	id = "mining_external"
 	},
-/obj/machinery/input_plate,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/starboard_wing)
 "SV" = (
@@ -10011,7 +9972,6 @@
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
 "Uq" = (
-/obj/machinery/input_plate,
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/decal/floor/industrial/loadingarea{
 	dir = 4
@@ -10886,7 +10846,6 @@
 /obj/machinery/conveyor{
 	id = "anominerals"
 	},
-/obj/machinery/output_plate,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/temporary)
 "Yr" = (
@@ -11140,7 +11099,6 @@
 	dir = 5;
 	id = "mining_west"
 	},
-/obj/machinery/input_plate,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "Zy" = (
@@ -11240,7 +11198,6 @@
 /turf/space,
 /area/external/asteroid/mine/explored)
 "ZR" = (
-/obj/machinery/input_plate,
 /obj/machinery/conveyor_switch/oneway{
 	id = "anominerals";
 	pixel_y = 16
@@ -55423,7 +55380,7 @@ pJ
 XM
 dm
 XM
-QT
+dm
 XM
 df
 fi
@@ -56201,7 +56158,7 @@ Es
 RJ
 sl
 TV
-Gg
+vh
 XM
 fk
 fk
@@ -56450,7 +56407,7 @@ wq
 FL
 XM
 HD
-IU
+sv
 dm
 Yv
 Yv
@@ -56713,7 +56670,7 @@ cT
 cT
 wE
 Sr
-EL
+cT
 cT
 Iy
 XM

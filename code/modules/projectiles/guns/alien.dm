@@ -34,8 +34,8 @@
 
 /obj/item/spikethrower/initialise()
 	. = ..()
-	START_PROCESSING(PCobj, src)
 	last_regen = world.time
+	START_PROCESSING(PCobj, src)
 
 /obj/item/spikethrower/Destroy()
 	QDEL_NULL(spike)

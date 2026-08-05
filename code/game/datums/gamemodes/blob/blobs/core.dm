@@ -11,7 +11,6 @@
 
 /obj/effect/blob/core/initialise()
 	. = ..()
-	GLOBL.blobs.Add(src)
 	GLOBL.blob_cores.Add(src)
 	START_PROCESSING(PCobj, src)
 

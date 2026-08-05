@@ -19,7 +19,7 @@
 
 /obj/item/reagent_holder/spray/initialise()
 	. = ..()
-	src.verbs -= /obj/item/reagent_holder/verb/set_APTFT
+	verbs -= /obj/item/reagent_holder/verb/set_APTFT
 
 /obj/item/reagent_holder/spray/afterattack(atom/A, mob/user)
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \

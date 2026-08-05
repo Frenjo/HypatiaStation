@@ -9,19 +9,15 @@
 	var/mob/living/affected_mob
 	var/stage = 0
 
-/obj/item/alien_embryo/New()
-	. = ..()
-	if(isliving(loc))
-		affected_mob = loc
-		spawn(0)
-			AddInfectionImages(affected_mob)
-	else
-		qdel(src)
-
 /obj/item/alien_embryo/initialise()
 	. = ..()
-	if(isnotnull(affected_mob))
-		START_PROCESSING(PCobj, src)
+	if(!isliving(loc))
+		return INITIALISE_QDEL
+
+	affected_mob = loc
+	spawn(0)
+		AddInfectionImages(affected_mob)
+	START_PROCESSING(PCobj, src)
 
 /obj/item/alien_embryo/Destroy()
 	if(isnotnull(affected_mob))
@@ -29,7 +25,7 @@
 		spawn(0)
 			RemoveInfectionImages(affected_mob)
 		affected_mob = null
-	STOP_PROCESSING(PCobj, src)
+		STOP_PROCESSING(PCobj, src)
 	return ..()
 
 /obj/item/alien_embryo/process()

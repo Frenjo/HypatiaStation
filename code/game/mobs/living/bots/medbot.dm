@@ -50,7 +50,6 @@
 
 /mob/living/bot/medbot/initialise()
 	. = ..()
-
 	if(isnotnull(skin))
 		add_overlay("medskin_[skin]")
 

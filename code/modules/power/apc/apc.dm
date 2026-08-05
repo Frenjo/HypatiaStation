@@ -49,7 +49,6 @@
 	var/static/status_overlays = 0
 	var/updating_icon = 0
 
-	var/standard_max_charge
 	var/static/list/status_overlays_lock
 	var/static/list/status_overlays_charging
 	var/static/list/status_overlays_equipment
@@ -58,11 +57,8 @@
 	var/is_critical = 0
 
 /obj/machinery/power/apc/New(turf/loc, ndir, building = 0)
-	..()
-	wires = new(src)
-	var/obj/item/cell/tmp_cell = new
-	standard_max_charge = tmp_cell.maxcharge
-	qdel(tmp_cell)
+	. = ..()
+	wires = new /datum/wires/apc(src)
 
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area

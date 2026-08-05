@@ -10,7 +10,7 @@
 	return
 
 /turf/space/transit/north // moving to the north
-	pushdirection = SOUTH  // south because the space tile is scrolling south
+	pushdirection = SOUTH // south because the space tile is scrolling south
 
 /*
 	//IF ANYONE KNOWS A MORE EFFICIENT WAY OF MANAGING THESE SPRITES, BE MY GUEST.
@@ -47,7 +47,7 @@
 */
 
 /turf/space/transit/south // moving to the south
-	pushdirection = NORTH  // north because the space tile is scrolling north
+	pushdirection = NORTH // north because the space tile is scrolling north
 
 /turf/space/transit/east // moving to the east
 	pushdirection = WEST

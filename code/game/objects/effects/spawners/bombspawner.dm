@@ -165,4 +165,4 @@
 
 	V.update_icon()
 
-	qdel(src)
+	return INITIALISE_QDEL

@@ -3,7 +3,6 @@
 
 	var/i_attached //Added for possible image attachments to objects. For hallucinations and the like.
 
-
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
 	name = "beam"
 	icon = 'icons/effects/beam.dmi'
@@ -13,9 +12,7 @@
 
 /obj/effect/overlay/beam/initialise()
 	. = ..()
-	spawn(1 SECOND)
-		qdel(src)
-
+	QDEL_IN(src, 1 SECOND)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"

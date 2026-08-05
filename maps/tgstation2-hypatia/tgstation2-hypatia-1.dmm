@@ -22909,10 +22909,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/storage/art)
 "hZr" = (
-/obj/machinery/sleep_console{
-	icon_state = "sleeperconsole-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleep_console/right,
 /obj/machinery/light,
 /turf/open/floor{
 	dir = 8;
@@ -32721,10 +32718,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/secondary/arrivals)
 "lxP" = (
-/obj/machinery/sleep_console{
-	icon_state = "sleeperconsole-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleep_console/right,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "whitehall"
@@ -32936,10 +32930,7 @@
 /turf/open/floor/reinforced/vacuum,
 /area/station/engineering/atmospherics)
 "lBy" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /obj/effect/decal/floor/coloured/green{
 	dir = 5
 	},
@@ -52609,15 +52600,6 @@
 "snN" = (
 /turf/open/floor/tiled/grey,
 /area/station/engineering/storage/emergency)
-"snT" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 2;
-	name = "engineering emergency shutter"
-	},
-/obj/effect/window_spawner/reinforced,
-/turf/open/floor/plating/metal/airless,
-/area/station/maintenance/solar/aft_port)
 "soT" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
@@ -53442,10 +53424,7 @@
 /turf/open/floor/wood,
 /area/station/crew/theatre)
 "sFA" = (
-/obj/machinery/sleeper{
-	icon_state = "sleeper_0-r";
-	orient = "RIGHT"
-	},
+/obj/machinery/sleeper/right,
 /obj/effect/decal/floor/coloured/green{
 	dir = 6
 	},
@@ -90436,7 +90415,7 @@ qSI
 ghq
 nlZ
 qSI
-snT
+qSI
 eMU
 eMU
 eMU

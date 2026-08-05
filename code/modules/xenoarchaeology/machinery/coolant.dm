@@ -47,6 +47,4 @@
 		else
 			env.temperature -= 50
 
-	sleep(10)
-	if(src)
-		qdel(src)
+	QDEL_IN(src, 1 SECOND)

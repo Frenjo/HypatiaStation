@@ -21,7 +21,7 @@
 	var/bloodcolor //Used for gibbed humans.
 
 /obj/effect/gibspawner/New(location, list/viruses, datum/dna/MobDNA, fleshcolor, bloodcolor)
-	..()
+	. = ..()
 
 	if(fleshcolor)
 		src.fleshcolor = fleshcolor
@@ -30,6 +30,10 @@
 
 	if(isturf(loc)) //basically if a badmin spawns it
 		Gib(loc, viruses, MobDNA)
+
+/obj/effect/gibspawner/initialise()
+	. = ..()
+	return INITIALISE_QDEL
 
 /obj/effect/gibspawner/proc/Gib(atom/location, list/viruses = list(), datum/dna/MobDNA = null)
 	if(length(gibtypes) != length(gibamounts) || length(gibamounts) != length(gibdirections))
@@ -75,5 +79,3 @@
 				var/list/directions = gibdirections[i]
 				if(length(directions))
 					gib.streak(directions)
-
-	qdel(src)

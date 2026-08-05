@@ -14,3 +14,9 @@ if(isnotnull(X)) \
 		qdel(I); \
 	X.Cut(); \
 }
+
+#define QDEL_IN(ITEM, TIME) \
+spawn(TIME) \
+{ \
+	qdel(ITEM) \
+}
