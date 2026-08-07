@@ -30,48 +30,20 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 	. = ..()
 	icon_state = "rock"
 	GLOBL.all_rock_turfs.Add(src)
+	return INITIALISE_LATE
+
+/turf/closed/rock/late_initialise()
+	. = ..()
 	update_and_spread_mineral()
 
-	// I've tidied this up but I still hate it.
-	var/turf/T = get_step(src, NORTH)
-	var/is_space = FALSE
-	if(isnotnull(T))
-		is_space = isspace(T)
-		if(isfloorturf(T) || is_space)
-			var/image/overlay = image(icon, "rock_side_s")
-			if(is_space)
-				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.add_overlay(overlay)
-		T = null
-		is_space = FALSE
-	T = get_step(src, SOUTH)
-	if(isnotnull(T))
-		is_space = isspace(T)
-		if(isfloorturf(T) || is_space)
-			var/image/overlay = image(icon, "rock_side_n", layer = 6)
-			if(is_space)
-				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.add_overlay(overlay)
-		T = null
-		is_space = FALSE
-	T = get_step(src, EAST)
-	if(isnotnull(T))
-		is_space = isspace(T)
-		if(isfloorturf(T) || is_space)
-			var/image/overlay = image(icon, "rock_side_w", layer = 6)
-			if(is_space)
-				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.add_overlay(overlay)
-		T = null
-		is_space = FALSE
-	T = get_step(src, WEST)
-	if(isnotnull(T))
-		is_space = isspace(T)
-		if(isfloorturf(T) || is_space)
-			var/image/overlay = image(icon, "rock_side_e", layer = 6)
-			if(is_space)
-				overlay.plane = SPACE_PLANE_ABOVE_PARALLAX
-			T.add_overlay(overlay)
+	var/static/image/north_overlay = image(icon, "rock_side_s")
+	var/static/image/south_overlay = image(icon, "rock_side_n")
+	var/static/image/east_overlay = image(icon, "rock_side_w")
+	var/static/image/west_overlay = image(icon, "rock_side_e")
+	add_boundary_overlay(NORTH, north_overlay)
+	add_boundary_overlay(SOUTH, south_overlay)
+	add_boundary_overlay(EAST, east_overlay)
+	add_boundary_overlay(WEST, west_overlay)
 
 /turf/closed/rock/Destroy()
 	GLOBL.all_rock_turfs.Remove(src)
@@ -239,3 +211,12 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 			if(7)
 				var/obj/item/stack/sheet/uranium/R = new /obj/item/stack/sheet/uranium(src)
 				R.amount = rand(5, 25)
+
+/turf/closed/rock/proc/add_boundary_overlay(direction, image/overlay)
+	var/turf/T = get_step(src, direction)
+	var/is_space = FALSE
+	if(isnotnull(T))
+		is_space = isspace(T)
+		if(isfloorturf(T) || is_space)
+			overlay.plane = is_space ? SPACE_PLANE_ABOVE_PARALLAX : T.plane
+			T.add_overlay(overlay)
